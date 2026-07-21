@@ -6,18 +6,16 @@
 # installed (e.g. "$ENV{HOME}/toolchains/arm-linux-androideabi-r10c-21").
 
 # the name of the target operating system
+#SET(CMAKE_SYSTEM_NAME Windows)
 SET(CMAKE_SYSTEM_NAME Linux)
 
 # which compilers to use for C and C++
-SET(CMAKE_C_COMPILER "$ENV{NDK_TOOLCHAIN_PATH}/clang.exe")
-SET(CMAKE_CXX_COMPILER "$ENV{NDK_TOOLCHAIN_PATH}/clang++.exe")
 #SET(CMAKE_C_COMPILER "${HOST}-clang")
 #SET(CMAKE_CXX_COMPILER "${HOST}-clang++")
+SET(CMAKE_C_COMPILER "$ENV{NDK_TOOLCHAIN_PATH}/${HOST}-clang.cmd")
+SET(CMAKE_CXX_COMPILER "$ENV{NDK_TOOLCHAIN_PATH}/${HOST}-clang++.cmd")
 
 set(CMAKE_SYSTEM_PROCESSOR ${ARCH})
-
-SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --target=${HOST} --sysroot=$ENV{NDK_SYSROOT}")
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --target=${HOST} --sysroot=$ENV{NDK_SYSROOT}")
 
 # Starting NDK21 it enables NEON by default on 32-bit ARM target
 # Disable it to support more devices

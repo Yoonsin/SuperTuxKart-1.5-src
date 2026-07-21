@@ -166,7 +166,7 @@ void complex_fft(std::span<std::complex<double>> const buffer, double const sign
                 std::swap(buffer[idx], buffer[revidx]);
         }
 
-        auto const pi = std::numbers::pi * sign;
+        auto const pi = M_PI * sign; //std::numbers::pi * sign;
         for(auto const i : std::views::iota(0_uz, log2_size))
         {
             auto const step2 = 1_uz << i;
