@@ -1,1 +1,2 @@
-../android/sync.h
+#pragma once
+#include "../android/sync.h"
