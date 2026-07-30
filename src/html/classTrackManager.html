@@ -1,0 +1,773 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: TrackManager 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-static-methods">정적 Public 멤버 함수</a> &#124;
+<a href="#pri-types">Private 타입</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="#pri-static-attribs">정적 Private 속성</a> &#124;
+<a href="classTrackManager-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">TrackManager 클래스 참조<div class="ingroups"><a class="el" href="group__tracks.html">Tracks</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Simple class to load and manage track data, track names and such  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="track__manager_8hpp_source.html">track_manager.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a43aca74674a5da410fc46c9e015a9b05" id="r_a43aca74674a5da410fc46c9e015a9b05"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a43aca74674a5da410fc46c9e015a9b05">TrackManager</a> ()</td></tr>
+<tr class="memdesc:a43aca74674a5da410fc46c9e015a9b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor (currently empty).  <br /></td></tr>
+<tr class="memitem:a0f8faecb1f3186ff616cad592c62779b" id="r_a0f8faecb1f3186ff616cad592c62779b"><td class="memItemLeft"><a id="a0f8faecb1f3186ff616cad592c62779b" name="a0f8faecb1f3186ff616cad592c62779b"></a>
+&#160;</td><td class="memItemRight"><b>~TrackManager</b> ()</td></tr>
+<tr class="memdesc:a0f8faecb1f3186ff616cad592c62779b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete all tracks. <br /></td></tr>
+<tr class="memitem:a25146885e5e43f74b751ed6491c86435" id="r_a25146885e5e43f74b751ed6491c86435"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a25146885e5e43f74b751ed6491c86435">setFavoriteTrackStatus</a> (<a class="el" href="classFavoriteStatus.html">FavoriteStatus</a> *status)</td></tr>
+<tr class="memdesc:a25146885e5e43f74b751ed6491c86435"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a track to the special group of favorite tracks.  <br /></td></tr>
+<tr class="memitem:a403e47f5c75016afac23ac7c06f0360e" id="r_a403e47f5c75016afac23ac7c06f0360e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a403e47f5c75016afac23ac7c06f0360e">clearFavoriteTrackStatus</a> ()</td></tr>
+<tr class="memdesc:a403e47f5c75016afac23ac7c06f0360e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the list of active favorite tracks, used e.g.  <br /></td></tr>
+<tr class="memitem:a278caf8e22110b39d34d5df46d0c7a81" id="r_a278caf8e22110b39d34d5df46d0c7a81"><td class="memItemLeft">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a278caf8e22110b39d34d5df46d0c7a81">getAllTrackIdentifiers</a> ()</td></tr>
+<tr class="memdesc:a278caf8e22110b39d34d5df46d0c7a81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all track identifiers.  <br /></td></tr>
+<tr class="memitem:ad28870fdf263fbf95917579d102f3bc4" id="r_ad28870fdf263fbf95917579d102f3bc4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad28870fdf263fbf95917579d102f3bc4">loadTrackList</a> ()</td></tr>
+<tr class="memdesc:ad28870fdf263fbf95917579d102f3bc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load all .track files from all directories  <br /></td></tr>
+<tr class="memitem:a917509e961198bee407e91fd949bd5e5" id="r_a917509e961198bee407e91fd949bd5e5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a917509e961198bee407e91fd949bd5e5">removeTrack</a> (const std::string &amp;ident)</td></tr>
+<tr class="memdesc:a917509e961198bee407e91fd949bd5e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a track.  <br /></td></tr>
+<tr class="memitem:ab8aadac48ca33770bc5a17fdd84ad6e8" id="r_ab8aadac48ca33770bc5a17fdd84ad6e8"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab8aadac48ca33770bc5a17fdd84ad6e8">loadTrack</a> (const std::string &amp;dirname)</td></tr>
+<tr class="memdesc:ab8aadac48ca33770bc5a17fdd84ad6e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to load a track from a single directory.  <br /></td></tr>
+<tr class="memitem:a9a01e4444abbc76debf8b6586a798c4a" id="r_a9a01e4444abbc76debf8b6586a798c4a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9a01e4444abbc76debf8b6586a798c4a">removeAllCachedData</a> ()</td></tr>
+<tr class="memdesc:a9a01e4444abbc76debf8b6586a798c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all cached data from all tracks.  <br /></td></tr>
+<tr class="memitem:acb5a9bc69d7126e6ad94f9aaec086221" id="r_acb5a9bc69d7126e6ad94f9aaec086221"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#acb5a9bc69d7126e6ad94f9aaec086221">getNumberOfRaceTracks</a> () const</td></tr>
+<tr class="memdesc:acb5a9bc69d7126e6ad94f9aaec086221"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of racing tracks.  <br /></td></tr>
+<tr class="memitem:a2c1b4bc7a368b0927b397c247b9ead35" id="r_a2c1b4bc7a368b0927b397c247b9ead35"><td class="memItemLeft"><a class="el" href="classTrack.html">Track</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a2c1b4bc7a368b0927b397c247b9ead35">getTrack</a> (const std::string &amp;ident) const</td></tr>
+<tr class="memdesc:a2c1b4bc7a368b0927b397c247b9ead35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get TrackData by the track identifier.  <br /></td></tr>
+<tr class="memitem:a5f54784ce63825c9b263ddb9903f928e" id="r_a5f54784ce63825c9b263ddb9903f928e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5f54784ce63825c9b263ddb9903f928e">setUnavailableTracks</a> (const std::vector&lt; std::string &gt; &amp;tracks)</td></tr>
+<tr class="memdesc:a5f54784ce63825c9b263ddb9903f928e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a list of track as being unavailable (e.g.  <br /></td></tr>
+<tr class="memitem:a414af52926b400705c72e320f6d2e00a" id="r_a414af52926b400705c72e320f6d2e00a"><td class="memItemLeft"><a id="a414af52926b400705c72e320f6d2e00a" name="a414af52926b400705c72e320f6d2e00a"></a>
+const std::vector&lt; std::string &gt; *&#160;</td><td class="memItemRight"><b>getAllTrackDirs</b> () const</td></tr>
+<tr class="memdesc:a414af52926b400705c72e320f6d2e00a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all directories that contain a track. <br /></td></tr>
+<tr class="memitem:aa813559a52fab8801e3129eea025a483" id="r_aa813559a52fab8801e3129eea025a483"><td class="memItemLeft"><a id="aa813559a52fab8801e3129eea025a483" name="aa813559a52fab8801e3129eea025a483"></a>
+const std::vector&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight"><b>getAllTrackGroups</b> () const</td></tr>
+<tr class="memdesc:aa813559a52fab8801e3129eea025a483"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of the names of all used track groups. <br /></td></tr>
+<tr class="memitem:aa828c3c10f1b8032ee8eb2eed633bfcc" id="r_aa828c3c10f1b8032ee8eb2eed633bfcc"><td class="memItemLeft"><a id="aa828c3c10f1b8032ee8eb2eed633bfcc" name="aa828c3c10f1b8032ee8eb2eed633bfcc"></a>
+const std::vector&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight"><b>getAllArenaGroups</b> (bool soccer_arena=false) const</td></tr>
+<tr class="memdesc:aa828c3c10f1b8032ee8eb2eed633bfcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of the names of all used arena groups. <br /></td></tr>
+<tr class="memitem:aac8b7200dd8c5a45982f44d7d55b9eaa" id="r_aac8b7200dd8c5a45982f44d7d55b9eaa"><td class="memItemLeft"><a id="aac8b7200dd8c5a45982f44d7d55b9eaa" name="aac8b7200dd8c5a45982f44d7d55b9eaa"></a>
+size_t&#160;</td><td class="memItemRight"><b>getNumberOfTracks</b> () const</td></tr>
+<tr class="memdesc:aac8b7200dd8c5a45982f44d7d55b9eaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of tracks. <br /></td></tr>
+<tr class="memitem:ac7ced67aabae269027f1186f2b4d10f0" id="r_ac7ced67aabae269027f1186f2b4d10f0"><td class="memItemLeft"><a class="el" href="classTrack.html">Track</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ac7ced67aabae269027f1186f2b4d10f0">getTrack</a> (unsigned int index) const</td></tr>
+<tr class="memdesc:ac7ced67aabae269027f1186f2b4d10f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the track with a given index number.  <br /></td></tr>
+<tr class="memitem:a684d0561ef9616f65e31bec463387b51" id="r_a684d0561ef9616f65e31bec463387b51"><td class="memItemLeft"><a id="a684d0561ef9616f65e31bec463387b51" name="a684d0561ef9616f65e31bec463387b51"></a>
+int&#160;</td><td class="memItemRight"><b>getTrackIndexByIdent</b> (const std::string &amp;ident) const</td></tr>
+<tr class="memitem:ac1dca1767192435c38dabe49c707361b" id="r_ac1dca1767192435c38dabe49c707361b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac1dca1767192435c38dabe49c707361b">isAvailable</a> (unsigned int n) const</td></tr>
+<tr class="memdesc:ac1dca1767192435c38dabe49c707361b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a certain track is available.  <br /></td></tr>
+<tr class="memitem:aaccc0aa8175b99e3786ce1723ddfb033" id="r_aaccc0aa8175b99e3786ce1723ddfb033"><td class="memItemLeft">const std::vector&lt; int &gt; &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aaccc0aa8175b99e3786ce1723ddfb033">getTracksInGroup</a> (const std::string &amp;g)</td></tr>
+<tr class="memdesc:aaccc0aa8175b99e3786ce1723ddfb033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all tracks in a given group.  <br /></td></tr>
+<tr class="memitem:aad7ee02944ddfdab412545fb7ba64e1c" id="r_aad7ee02944ddfdab412545fb7ba64e1c"><td class="memItemLeft">const std::vector&lt; int &gt; &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aad7ee02944ddfdab412545fb7ba64e1c">getArenasInGroup</a> (const std::string &amp;g, bool soccer_arena=false)</td></tr>
+<tr class="memdesc:aad7ee02944ddfdab412545fb7ba64e1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of all arenas in a given group.  <br /></td></tr>
+<tr class="memitem:abbb9c6a7450231fd2e3e0ef3fa65e462" id="r_abbb9c6a7450231fd2e3e0ef3fa65e462"><td class="memItemLeft"><a id="abbb9c6a7450231fd2e3e0ef3fa65e462" name="abbb9c6a7450231fd2e3e0ef3fa65e462"></a>
+void&#160;</td><td class="memItemRight"><b>onDemandLoadTrackScreenshots</b> ()</td></tr>
+<tr class="memitem:a0fd84782f5cc227405ccfe2845f62f89" id="r_a0fd84782f5cc227405ccfe2845f62f89"><td class="memItemLeft"><a id="a0fd84782f5cc227405ccfe2845f62f89" name="a0fd84782f5cc227405ccfe2845f62f89"></a>
+void&#160;</td><td class="memItemRight"><b>updateScreenshotCache</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a02db0f2edc8aeffefdf65596179f8cf8" id="r_a02db0f2edc8aeffefdf65596179f8cf8"><td class="memItemLeft"><a id="a02db0f2edc8aeffefdf65596179f8cf8" name="a02db0f2edc8aeffefdf65596179f8cf8"></a>
+static void&#160;</td><td class="memItemRight"><b>removeTrackSearchDirs</b> ()</td></tr>
+<tr class="memitem:afd66a1f79334f8e0b40f120a66f22b27" id="r_afd66a1f79334f8e0b40f120a66f22b27"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#afd66a1f79334f8e0b40f120a66f22b27">addTrackSearchDir</a> (const std::string &amp;dir)</td></tr>
+<tr class="memdesc:afd66a1f79334f8e0b40f120a66f22b27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a directory from which tracks are loaded.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private 타입</h2></td></tr>
+<tr class="memitem:aa4bcc9cfebdb32645b7d6f7a0101b454" id="r_aa4bcc9cfebdb32645b7d6f7a0101b454"><td class="memItemLeft"><a id="aa4bcc9cfebdb32645b7d6f7a0101b454" name="aa4bcc9cfebdb32645b7d6f7a0101b454"></a>enum &#160;</td><td class="memItemRight"><b>TrackGroupType</b> { <b>RACING_TRACK</b> = 0
+, <b>BATTLE_ARENA</b>
+, <b>SOCCER_ARENA</b>
+ }</td></tr>
+<tr class="memitem:a12f1c9f5c865c7453a8ec7c18ba85e2f" id="r_a12f1c9f5c865c7453a8ec7c18ba85e2f"><td class="memItemLeft"><a id="a12f1c9f5c865c7453a8ec7c18ba85e2f" name="a12f1c9f5c865c7453a8ec7c18ba85e2f"></a>
+typedef std::vector&lt; <a class="el" href="classTrack.html">Track</a> * &gt;&#160;</td><td class="memItemRight"><b>Tracks</b></td></tr>
+<tr class="memitem:a46777e1f87f4351dd4edabe7d70780fd" id="r_a46777e1f87f4351dd4edabe7d70780fd"><td class="memItemLeft"><a id="a46777e1f87f4351dd4edabe7d70780fd" name="a46777e1f87f4351dd4edabe7d70780fd"></a>
+typedef std::map&lt; std::string, std::vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight"><b>Group2Indices</b></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:a0c6f23bc180c97c52af6a3008e8de076" id="r_a0c6f23bc180c97c52af6a3008e8de076"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0c6f23bc180c97c52af6a3008e8de076">updateAllGroups</a> (const <a class="el" href="classTrack.html">Track</a> *track)</td></tr>
+<tr class="memdesc:a0c6f23bc180c97c52af6a3008e8de076"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the groups after a track was read in.  <br /></td></tr>
+<tr class="memitem:abcbe090812d8608fa6542ea1a975a028" id="r_abcbe090812d8608fa6542ea1a975a028"><td class="memItemLeft"><a id="abcbe090812d8608fa6542ea1a975a028" name="abcbe090812d8608fa6542ea1a975a028"></a>
+void&#160;</td><td class="memItemRight"><b>updateGroups</b> (TrackGroupType type, const <a class="el" href="classTrack.html">Track</a> *track)</td></tr>
+<tr class="memitem:ab119723841c4834aef66d35fcca97a9f" id="r_ab119723841c4834aef66d35fcca97a9f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab119723841c4834aef66d35fcca97a9f">removeTrackFromGroups</a> (TrackGroupType type, const <a class="el" href="classTrack.html">Track</a> *track)</td></tr>
+<tr class="memdesc:ab119723841c4834aef66d35fcca97a9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the track from all groups it belongs to in a group type.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:a0f00f512818fbf584473e3333418e082" id="r_a0f00f512818fbf584473e3333418e082"><td class="memItemLeft"><a id="a0f00f512818fbf584473e3333418e082" name="a0f00f512818fbf584473e3333418e082"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><b>m_all_track_dirs</b></td></tr>
+<tr class="memdesc:a0f00f512818fbf584473e3333418e082"><td class="mdescLeft">&#160;</td><td class="mdescRight">All directories in which tracks were found. <br /></td></tr>
+<tr class="memitem:a60c25512f98cb9431126350f9605db1b" id="r_a60c25512f98cb9431126350f9605db1b"><td class="memItemLeft"><a id="a60c25512f98cb9431126350f9605db1b" name="a60c25512f98cb9431126350f9605db1b"></a>
+Tracks&#160;</td><td class="memItemRight"><b>m_tracks</b></td></tr>
+<tr class="memdesc:a60c25512f98cb9431126350f9605db1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">All track objects. <br /></td></tr>
+<tr class="memitem:a6e9f80f2a4d3d3102be3956d8f43f94b" id="r_a6e9f80f2a4d3d3102be3956d8f43f94b"><td class="memItemLeft"><a id="a6e9f80f2a4d3d3102be3956d8f43f94b" name="a6e9f80f2a4d3d3102be3956d8f43f94b"></a>
+Group2Indices&#160;</td><td class="memItemRight"><b>m_track_groups</b></td></tr>
+<tr class="memdesc:a6e9f80f2a4d3d3102be3956d8f43f94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of all track indexes for each racing track group. <br /></td></tr>
+<tr class="memitem:a857e05603c11f08a6476e0c7c3ecb2bf" id="r_a857e05603c11f08a6476e0c7c3ecb2bf"><td class="memItemLeft"><a id="a857e05603c11f08a6476e0c7c3ecb2bf" name="a857e05603c11f08a6476e0c7c3ecb2bf"></a>
+Group2Indices&#160;</td><td class="memItemRight"><b>m_arena_groups</b></td></tr>
+<tr class="memdesc:a857e05603c11f08a6476e0c7c3ecb2bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of all arena indexes for each arena group. <br /></td></tr>
+<tr class="memitem:abd9cdc85b3a2377def8be18dcda109ba" id="r_abd9cdc85b3a2377def8be18dcda109ba"><td class="memItemLeft"><a id="abd9cdc85b3a2377def8be18dcda109ba" name="abd9cdc85b3a2377def8be18dcda109ba"></a>
+Group2Indices&#160;</td><td class="memItemRight"><b>m_soccer_arena_groups</b></td></tr>
+<tr class="memdesc:abd9cdc85b3a2377def8be18dcda109ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of all soccer arena indexes for each soccer arena group. <br /></td></tr>
+<tr class="memitem:a5c5fdf73e0f32fc0f0517f4bf01ce94b" id="r_a5c5fdf73e0f32fc0f0517f4bf01ce94b"><td class="memItemLeft"><a id="a5c5fdf73e0f32fc0f0517f4bf01ce94b" name="a5c5fdf73e0f32fc0f0517f4bf01ce94b"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><b>m_track_group_names</b></td></tr>
+<tr class="memdesc:a5c5fdf73e0f32fc0f0517f4bf01ce94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of the names of all groups containing tracks <br /></td></tr>
+<tr class="memitem:aab98383455eb2f1b500846fb3bb1745c" id="r_aab98383455eb2f1b500846fb3bb1745c"><td class="memItemLeft"><a id="aab98383455eb2f1b500846fb3bb1745c" name="aab98383455eb2f1b500846fb3bb1745c"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><b>m_arena_group_names</b></td></tr>
+<tr class="memdesc:aab98383455eb2f1b500846fb3bb1745c"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of the names of all groups containing arenas <br /></td></tr>
+<tr class="memitem:a1d8bf6f7a8c5b0b635223ce8e4ea8764" id="r_a1d8bf6f7a8c5b0b635223ce8e4ea8764"><td class="memItemLeft"><a id="a1d8bf6f7a8c5b0b635223ce8e4ea8764" name="a1d8bf6f7a8c5b0b635223ce8e4ea8764"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><b>m_soccer_arena_group_names</b></td></tr>
+<tr class="memdesc:a1d8bf6f7a8c5b0b635223ce8e4ea8764"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of the names of all groups containing soccer arenas <br /></td></tr>
+<tr class="memitem:a57c825e9c63ad7250f27d561a3d6feaf" id="r_a57c825e9c63ad7250f27d561a3d6feaf"><td class="memItemLeft"><a id="a57c825e9c63ad7250f27d561a3d6feaf" name="a57c825e9c63ad7250f27d561a3d6feaf"></a>
+Group2Indices&#160;</td><td class="memItemRight"><b>m_track_groups_no_custom</b></td></tr>
+<tr class="memdesc:a57c825e9c63ad7250f27d561a3d6feaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as above but without user-defined groups. <br /></td></tr>
+<tr class="memitem:a99f255fa810b003c7dfa929dc3f4711d" id="r_a99f255fa810b003c7dfa929dc3f4711d"><td class="memItemLeft"><a id="a99f255fa810b003c7dfa929dc3f4711d" name="a99f255fa810b003c7dfa929dc3f4711d"></a>
+Group2Indices&#160;</td><td class="memItemRight"><b>m_arena_groups_no_custom</b></td></tr>
+<tr class="memitem:a865972859b8fdc0b6565d03af8d3e9b8" id="r_a865972859b8fdc0b6565d03af8d3e9b8"><td class="memItemLeft"><a id="a865972859b8fdc0b6565d03af8d3e9b8" name="a865972859b8fdc0b6565d03af8d3e9b8"></a>
+Group2Indices&#160;</td><td class="memItemRight"><b>m_soccer_arena_groups_no_custom</b></td></tr>
+<tr class="memitem:a42e26590939edbc004a10886c068be89" id="r_a42e26590939edbc004a10886c068be89"><td class="memItemLeft">std::vector&lt; bool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a42e26590939edbc004a10886c068be89">m_track_avail</a></td></tr>
+<tr class="memdesc:a42e26590939edbc004a10886c068be89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag if this track is available or not.  <br /></td></tr>
+<tr class="memitem:abc3e9535e5950b9138a425bed8be2ce3" id="r_abc3e9535e5950b9138a425bed8be2ce3"><td class="memItemLeft"><a id="abc3e9535e5950b9138a425bed8be2ce3" name="abc3e9535e5950b9138a425bed8be2ce3"></a>
+<a class="el" href="classFavoriteStatus.html">FavoriteStatus</a> *&#160;</td><td class="memItemRight"><b>m_current_favorite_status</b></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+정적 Private 속성</h2></td></tr>
+<tr class="memitem:afc5febe1398b5c76bbfc8626af52244c" id="r_afc5febe1398b5c76bbfc8626af52244c"><td class="memItemLeft"><a id="afc5febe1398b5c76bbfc8626af52244c" name="afc5febe1398b5c76bbfc8626af52244c"></a>
+static std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><b>m_track_search_path</b></td></tr>
+<tr class="memdesc:afc5febe1398b5c76bbfc8626af52244c"><td class="mdescLeft">&#160;</td><td class="mdescRight">All directories in which tracks are searched. <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Simple class to load and manage track data, track names and such </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">생성자 &amp; 소멸자 문서화</h2>
+<a id="a43aca74674a5da410fc46c9e015a9b05" name="a43aca74674a5da410fc46c9e015a9b05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43aca74674a5da410fc46c9e015a9b05">&#9670;&#160;</a></span>TrackManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TrackManager::TrackManager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor (currently empty). </p>
+<p>The real work happens in loadTrackList. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="afd66a1f79334f8e0b40f120a66f22b27" name="afd66a1f79334f8e0b40f120a66f22b27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd66a1f79334f8e0b40f120a66f22b27">&#9670;&#160;</a></span>addTrackSearchDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackManager::addTrackSearchDir </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds a directory from which tracks are loaded. </p>
+<p>The track manager checks if either this directory itself contains a track, and if any subdirectory contains a track. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dir</td><td>The directory to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a403e47f5c75016afac23ac7c06f0360e" name="a403e47f5c75016afac23ac7c06f0360e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a403e47f5c75016afac23ac7c06f0360e">&#9670;&#160;</a></span>clearFavoriteTrackStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackManager::clearFavoriteTrackStatus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears the list of active favorite tracks, used e.g. </p>
+<p>when switching between player profiles. </p>
+
+</div>
+</div>
+<a id="a278caf8e22110b39d34d5df46d0c7a81" name="a278caf8e22110b39d34d5df46d0c7a81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a278caf8e22110b39d34d5df46d0c7a81">&#9670;&#160;</a></span>getAllTrackIdentifiers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; TrackManager::getAllTrackIdentifiers </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a list of all track identifiers. </p>
+<p>Returns a list with all track identifiert. </p>
+
+</div>
+</div>
+<a id="aad7ee02944ddfdab412545fb7ba64e1c" name="aad7ee02944ddfdab412545fb7ba64e1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad7ee02944ddfdab412545fb7ba64e1c">&#9670;&#160;</a></span>getArenasInGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; int &gt; &amp; TrackManager::getArenasInGroup </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>g</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>soccer_arena</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a list of all arenas in a given group. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">g</td><td>Name of the group. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acb5a9bc69d7126e6ad94f9aaec086221" name="acb5a9bc69d7126e6ad94f9aaec086221"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb5a9bc69d7126e6ad94f9aaec086221">&#9670;&#160;</a></span>getNumberOfRaceTracks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int TrackManager::getNumberOfRaceTracks </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the number of racing tracks. </p>
+<p>Those are tracks that are not internal (like cut scenes), arenas, or soccer fields. </p>
+
+</div>
+</div>
+<a id="a2c1b4bc7a368b0927b397c247b9ead35" name="a2c1b4bc7a368b0927b397c247b9ead35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c1b4bc7a368b0927b397c247b9ead35">&#9670;&#160;</a></span>getTrack() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTrack.html">Track</a> * TrackManager::getTrack </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>ident</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get TrackData by the track identifier. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ident</td><td>Identifier = basename of the directory the track is in. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>The corresponding track object, or NULL if not found </dd></dl>
+
+</div>
+</div>
+<a id="ac7ced67aabae269027f1186f2b4d10f0" name="ac7ced67aabae269027f1186f2b4d10f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7ced67aabae269027f1186f2b4d10f0">&#9670;&#160;</a></span>getTrack() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTrack.html">Track</a> * TrackManager::getTrack </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the track with a given index number. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index number of the track. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aaccc0aa8175b99e3786ce1723ddfb033" name="aaccc0aa8175b99e3786ce1723ddfb033"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaccc0aa8175b99e3786ce1723ddfb033">&#9670;&#160;</a></span>getTracksInGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; int &gt; &amp; TrackManager::getTracksInGroup </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>g</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a list of all tracks in a given group. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">g</td><td>Name of the group. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac1dca1767192435c38dabe49c707361b" name="ac1dca1767192435c38dabe49c707361b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1dca1767192435c38dabe49c707361b">&#9670;&#160;</a></span>isAvailable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackManager::isAvailable </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>n</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if a certain track is available. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>Index of the track to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab8aadac48ca33770bc5a17fdd84ad6e8" name="ab8aadac48ca33770bc5a17fdd84ad6e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8aadac48ca33770bc5a17fdd84ad6e8">&#9670;&#160;</a></span>loadTrack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackManager::loadTrack </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>dirname</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tries to load a track from a single directory. </p>
+<p>Returns true if a track was successfully loaded. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dirname</td><td>Name of the directory to load the track from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad28870fdf263fbf95917579d102f3bc4" name="ad28870fdf263fbf95917579d102f3bc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad28870fdf263fbf95917579d102f3bc4">&#9670;&#160;</a></span>loadTrackList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackManager::loadTrackList </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load all .track files from all directories </p>
+<p>Loads all tracks from the track directory (data/track). </p>
+
+</div>
+</div>
+<a id="a9a01e4444abbc76debf8b6586a798c4a" name="a9a01e4444abbc76debf8b6586a798c4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a01e4444abbc76debf8b6586a798c4a">&#9670;&#160;</a></span>removeAllCachedData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackManager::removeAllCachedData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes all cached data from all tracks. </p>
+<p>This is called when the screen resolution is changed and all textures need to be bound again. </p>
+
+</div>
+</div>
+<a id="a917509e961198bee407e91fd949bd5e5" name="a917509e961198bee407e91fd949bd5e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a917509e961198bee407e91fd949bd5e5">&#9670;&#160;</a></span>removeTrack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackManager::removeTrack </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>ident</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes a track. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ident</td><td>Identifier of the track (i.e. the name of the directory). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab119723841c4834aef66d35fcca97a9f" name="ab119723841c4834aef66d35fcca97a9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab119723841c4834aef66d35fcca97a9f">&#9670;&#160;</a></span>removeTrackFromGroups()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackManager::removeTrackFromGroups </td>
+          <td>(</td>
+          <td class="paramtype">TrackGroupType</td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classTrack.html">Track</a> *</td>          <td class="paramname"><span class="paramname"><em>track</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remove the track from all groups it belongs to in a group type. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type of track groups (battle arena, soccer arena, racing track) </td></tr>
+    <tr><td class="paramname">track</td><td>The track to be removed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a25146885e5e43f74b751ed6491c86435" name="a25146885e5e43f74b751ed6491c86435"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25146885e5e43f74b751ed6491c86435">&#9670;&#160;</a></span>setFavoriteTrackStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackManager::setFavoriteTrackStatus </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classFavoriteStatus.html">FavoriteStatus</a> *</td>          <td class="paramname"><span class="paramname"><em>status</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a track to the special group of favorite tracks. </p>
+<p>Adds a player's favorite track status to define the custom group</p>
+<p>We need to treat it specially, because the list of tracks in this group depends on the player-profile, not on the track data. </p>
+
+</div>
+</div>
+<a id="a5f54784ce63825c9b263ddb9903f928e" name="a5f54784ce63825c9b263ddb9903f928e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f54784ce63825c9b263ddb9903f928e">&#9670;&#160;</a></span>setUnavailableTracks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackManager::setUnavailableTracks </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>tracks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets a list of track as being unavailable (e.g. </p>
+<p>Sets all tracks that are not in the list a to be unavailable.</p>
+<p>in network mode the track is not on all connected machines. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tracks</td><td>List of tracks to mark as unavilable.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This is used by the network manager upon receiving the list of available tracks from a client. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tracks</td><td>List of all track identifiere (available on a client). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0c6f23bc180c97c52af6a3008e8de076" name="a0c6f23bc180c97c52af6a3008e8de076"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c6f23bc180c97c52af6a3008e8de076">&#9670;&#160;</a></span>updateAllGroups()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackManager::updateAllGroups </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTrack.html">Track</a> *</td>          <td class="paramname"><span class="paramname"><em>track</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Updates the groups after a track was read in. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">track</td><td>Pointer to the new track, whose groups are now analysed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="a42e26590939edbc004a10886c068be89" name="a42e26590939edbc004a10886c068be89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42e26590939edbc004a10886c068be89">&#9670;&#160;</a></span>m_track_avail</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;bool&gt; TrackManager::m_track_avail</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flag if this track is available or not. </p>
+<p>Tracks are set unavailable if they are not available on all clients (applies only to network mode) </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>tracks/<a class="el" href="track__manager_8hpp_source.html">track_manager.hpp</a></li>
+<li>tracks/<b>track_manager.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: config/stk_config.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>config</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">stk_config.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2006-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_STK_CONFIG_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_STK_CONFIG_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;<a class="code" href="remote__kart__info_8hpp.html">network/remote_kart_info.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;utils/interpolation_array.hpp&quot;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;utils/constants.hpp&quot;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">class </span><a class="code hl_class" href="classKartProperties.html">KartProperties</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">class </span><a class="code hl_class" href="classMusicInformation.html">MusicInformation</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">class </span><a class="code hl_class" href="classXMLNode.html">XMLNode</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="};">
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classSTKConfig.html">   50</a></span><span class="keyword">class </span><a class="code hl_function" href="classSTKConfig.html#a2205f286e36429e01786d48989ecac42">STKConfig</a> : <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>{</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ac96e86dc4bcabe0af9071543cb300971">   54</a></span>    <a class="code hl_class" href="classKartProperties.html">KartProperties</a> *<a class="code hl_variable" href="classSTKConfig.html#ac96e86dc4bcabe0af9071543cb300971">m_default_kart_properties</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    std::map&lt;std::string, KartProperties*&gt; m_kart_properties;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        POWERUP_MODE_NEW,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        POWERUP_MODE_SAME,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        POWERUP_MODE_ONLY_IF_SAME</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a512bbf95e45d86ded5fd2b49dc7a57b9">   68</a></span>    <a class="code hl_variable" href="classSTKConfig.html#a512bbf95e45d86ded5fd2b49dc7a57b9">m_same_powerup_mode</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">int</span>   m_bonusbox_item_return_ticks;  </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classSTKConfig.html#acabd4e90e303088f31dc1273e17ca037">   71</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classSTKConfig.html#acabd4e90e303088f31dc1273e17ca037">m_nitro_item_return_ticks</a>;     </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a81b0f728f950eb51b5c0f9b722f1e2d6">   72</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classSTKConfig.html#a81b0f728f950eb51b5c0f9b722f1e2d6">m_banana_item_return_ticks</a>;    </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a987a6c337a0ee3cc5033f46f4213a502">   73</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classSTKConfig.html#a987a6c337a0ee3cc5033f46f4213a502">m_bubblegum_item_return_ticks</a>; </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a1ff9d7bb9fc2cbde63ba32e834a0ab28">   75</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a1ff9d7bb9fc2cbde63ba32e834a0ab28">UNDEFINED</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a383f159498101689d314add5aa838a4a">   76</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a383f159498101689d314add5aa838a4a">m_bomb_time</a>;                 </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a1088eafc792fad2a48168f90228e73eb">   77</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a1088eafc792fad2a48168f90228e73eb">m_bomb_time_increase</a>;        </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ab46ea87f2f51fd7314798270310c25e5">   79</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classSTKConfig.html#ab46ea87f2f51fd7314798270310c25e5">m_item_switch_ticks</a>;          </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a15d5c7ab6b95463bd9db102c740a1c28">   80</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classSTKConfig.html#a15d5c7ab6b95463bd9db102c740a1c28">m_bubblegum_counter</a>;         </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a74382d73b690b7b8557e6baad8839dfb">   82</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_variable" href="classSTKConfig.html#a74382d73b690b7b8557e6baad8839dfb">m_shield_restrict_weapons</a>;   </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classSTKConfig.html#af583616bbf9e0ea084d9f90156cb0b75">   83</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#af583616bbf9e0ea084d9f90156cb0b75">m_explosion_impulse_objects</a>; </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a46a99e57b59edfa656394918dc882757">   85</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classSTKConfig.html#a46a99e57b59edfa656394918dc882757">m_penalty_ticks</a>;              </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ad7f925fb99e230c978f429f994593327">   87</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#ad7f925fb99e230c978f429f994593327">m_delay_finish_time</a>;         </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ab293149c1f97ce4b18701ec601b62ff9">   89</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#ab293149c1f97ce4b18701ec601b62ff9">m_music_credit_time</a>;         </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a205279733cc5ac2692d195a947227ba5">   91</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classSTKConfig.html#a205279733cc5ac2692d195a947227ba5">m_max_karts</a>;                 </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a2c9d3fe0619df651d56f7ec190e6fd85">   92</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_variable" href="classSTKConfig.html#a2c9d3fe0619df651d56f7ec190e6fd85">m_smooth_normals</a>;            </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a853b6da4147fd372cdddd66d87dcdbca">   96</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a853b6da4147fd372cdddd66d87dcdbca">m_no_explosive_items_timeout</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ac9062c74e7ecb5626a7c85daa4882af8">   99</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classSTKConfig.html#ac9062c74e7ecb5626a7c85daa4882af8">m_max_moveable_objects</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a688cfc577c1b9f419cf8f6d427445487">  104</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a688cfc577c1b9f419cf8f6d427445487">m_network_steering_reduction</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a82c2927e5bc39a1115a54af3f60db348">  109</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a82c2927e5bc39a1115a54af3f60db348">m_smooth_angle_limit</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="classSTKConfig.html#af6a374a364635f848a64cc15187e8b53">  112</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#af6a374a364635f848a64cc15187e8b53">m_default_track_friction</a>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a46b1c1d109d4c949d2840a7b2d5843a7">  115</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a46b1c1d109d4c949d2840a7b2d5843a7">m_default_moveable_friction</a>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classSTKConfig.html#afe50d860997128e936a0822c2c559888">  118</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classSTKConfig.html#afe50d860997128e936a0822c2c559888">m_solver_iterations</a>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ab84515af978fce998ddcac00f6fca9d0">  121</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classSTKConfig.html#ab84515af978fce998ddcac00f6fca9d0">m_solver_split_impulse</a>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a9f311da7b2b5e40890763fe4206c4f44">  124</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a9f311da7b2b5e40890763fe4206c4f44">m_solver_split_impulse_thresh</a>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a88bd8773e34c9032c41c7cf7920d1ab0">  128</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classSTKConfig.html#a88bd8773e34c9032c41c7cf7920d1ab0">m_solver_set_flags</a>, m_solver_reset_flags;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a27eb1d1ecc8db83b804c1a5d3389fbf8">  130</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classSTKConfig.html#a27eb1d1ecc8db83b804c1a5d3389fbf8">m_max_skidmarks</a>;           </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ac748186fb70515d29a07c78d830ead0e">  131</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#ac748186fb70515d29a07c78d830ead0e">m_skid_fadeout_time</a>;       </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a27c0ddd2ae3bd89c9179660e7f2d55ee">  132</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a27c0ddd2ae3bd89c9179660e7f2d55ee">m_near_ground</a>;             </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classSTKConfig.html#af1992240a24d892fb11eb068f7749f10">  136</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classSTKConfig.html#af1992240a24d892fb11eb068f7749f10">m_min_kart_version</a>,        </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a8af62168380e35e98cf9fbd3a0b771e0">  137</a></span>        <a class="code hl_variable" href="classSTKConfig.html#a8af62168380e35e98cf9fbd3a0b771e0">m_max_kart_version</a>;        </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a0fb5e9454763a9f6d488a90be6bafac4">  138</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classSTKConfig.html#a0fb5e9454763a9f6d488a90be6bafac4">m_min_track_version</a>,       </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a4cb4f74d9c428d22c7611eb81ca2842a">  139</a></span>        <a class="code hl_variable" href="classSTKConfig.html#a4cb4f74d9c428d22c7611eb81ca2842a">m_max_track_version</a>;       </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a9e3a4413888bee0723a2fc3daf12dd4b">  140</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classSTKConfig.html#a9e3a4413888bee0723a2fc3daf12dd4b">m_min_server_version</a>,       </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="classSTKConfig.html#abe96aa59dcfc0089a46bf531086e4842">  141</a></span>        <a class="code hl_variable" href="classSTKConfig.html#abe96aa59dcfc0089a46bf531086e4842">m_max_server_version</a>;       </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a66d351f709b1b3ffff8c39bc806b0027">  142</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classSTKConfig.html#a66d351f709b1b3ffff8c39bc806b0027">m_max_display_news</a>;        </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ad2a1614d3147cfb39d45fae7eba0aee0">  149</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classSTKConfig.html#ad2a1614d3147cfb39d45fae7eba0aee0">m_disable_steer_while_unskid</a>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classSTKConfig.html#aa1e4d5c5af56903031f01aed26df2176">  153</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classSTKConfig.html#aa1e4d5c5af56903031f01aed26df2176">m_camera_follow_skid</a>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a8be8589300b6e6323c829bc119c55e96">  155</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a8be8589300b6e6323c829bc119c55e96">m_ai_acceleration</a>;         </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    std::vector&lt;float&gt;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a4936e29bb8cd8b28667ef9fa63df1f08">  159</a></span>        <a class="code hl_variable" href="classSTKConfig.html#a4936e29bb8cd8b28667ef9fa63df1f08">m_leader_intervals</a>;        </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ae67e602209fa01412be2a86095859928">  161</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#ae67e602209fa01412be2a86095859928">m_leader_time_per_kart</a>;    </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a78e5c6db2c1f5b9cde6612b66af909e1">  163</a></span>    std::vector&lt;int&gt; <a class="code hl_variable" href="classSTKConfig.html#a78e5c6db2c1f5b9cde6612b66af909e1">m_switch_items</a>; </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ab2bdaab25acbc9b0e703910a3ed001dc">  167</a></span>    std::vector&lt;int&gt; <a class="code hl_variable" href="classSTKConfig.html#ab2bdaab25acbc9b0e703910a3ed001dc">m_score_increase</a>;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a95da7e2493442ae4ddf66be743e7e13b">  170</a></span>    <a class="code hl_class" href="classMusicInformation.html">MusicInformation</a> *<a class="code hl_variable" href="classSTKConfig.html#a95da7e2493442ae4ddf66be743e7e13b">m_title_music</a>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a00db18b31566d2db7ec71956bf991930">  173</a></span>    <a class="code hl_class" href="classMusicInformation.html">MusicInformation</a> *<a class="code hl_variable" href="classSTKConfig.html#a00db18b31566d2db7ec71956bf991930">m_default_music</a>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a12020cd9c90304b48056cc32d02a629c">  176</a></span>    <a class="code hl_class" href="classMusicInformation.html">MusicInformation</a> *<a class="code hl_variable" href="classSTKConfig.html#a12020cd9c90304b48056cc32d02a629c">m_race_win_music</a>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="classSTKConfig.html#aa82e65df4450ef68ad20d9f9339e51e4">  180</a></span>    <a class="code hl_class" href="classMusicInformation.html">MusicInformation</a> *<a class="code hl_variable" href="classSTKConfig.html#aa82e65df4450ef68ad20d9f9339e51e4">m_race_neutral_music</a>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ac4b38fdc968250ee8722febed078a2c0">  184</a></span>    <a class="code hl_class" href="classMusicInformation.html">MusicInformation</a> *<a class="code hl_variable" href="classSTKConfig.html#ac4b38fdc968250ee8722febed078a2c0">m_race_lose_music</a>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a40adfd9a7725895c7b37e195cac664c5">  187</a></span>    <a class="code hl_class" href="classMusicInformation.html">MusicInformation</a> *<a class="code hl_variable" href="classSTKConfig.html#a40adfd9a7725895c7b37e195cac664c5">m_gp_win_music</a>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a5ef0307c5a7ce6f986db679fe044d7a6">  190</a></span>    <a class="code hl_class" href="classMusicInformation.html">MusicInformation</a> *<a class="code hl_variable" href="classSTKConfig.html#a5ef0307c5a7ce6f986db679fe044d7a6">m_gp_lose_music</a>;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="classSTKConfig.html#aad5ffb13ad6290c8f7f126368cdabbfb">  193</a></span>    <a class="code hl_class" href="classMusicInformation.html">MusicInformation</a> *<a class="code hl_variable" href="classSTKConfig.html#aad5ffb13ad6290c8f7f126368cdabbfb">m_unlock_music</a>;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="classSTKConfig.html#aa0d80d8050eafd4cc5203a35d1890348">  196</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classSTKConfig.html#aa0d80d8050eafd4cc5203a35d1890348">m_replay_max_frames</a>;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a7bf42cbc52256db83c879e9ae1ec71c0">  199</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a7bf42cbc52256db83c879e9ae1ec71c0">m_replay_dt</a>;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a962f05c5448e7ed2b90ea56272056c2a">  203</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a962f05c5448e7ed2b90ea56272056c2a">m_replay_delta_speed</a>;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a56dafa2b1637f01bea42ebb5863f46a1">  207</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a56dafa2b1637f01bea42ebb5863f46a1">m_replay_delta_steering</a>;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a8ca85278ce1378d15ae0afb2ae3ff612">  210</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a8ca85278ce1378d15ae0afb2ae3ff612">m_minimap_size</a>;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="comment">/* The size of icons for AIs and human players, respectively */</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordtype">float</span> m_minimap_ai_icon;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keywordtype">float</span> m_minimap_player_icon;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a9158ffa856722a01fbf8f8d8382ce322">  217</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#a9158ffa856722a01fbf8f8d8382ce322">m_camera_fov</a>[MAX_PLAYER_COUNT];</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keywordtype">float</span> m_cutscene_fov;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="keywordtype">unsigned</span> m_max_skinning_bones;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keywordtype">unsigned</span> m_tc_quality;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a7bb2aad7de5e0ad796d765e6d6321721">  226</a></span>    uint16_t <a class="code hl_variable" href="classSTKConfig.html#a7bb2aad7de5e0ad796d765e6d6321721">m_server_discovery_port</a>;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    uint16_t m_client_port;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    uint16_t m_server_port;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="comment">/* URLs for the stk website, donating and reseting the password */</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    std::string m_stk_website_url;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    std::string m_donate_url;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    std::string m_password_reset_url;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    std::string m_assets_download_url;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="comment">/* SRV records for stun server lists created */</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    std::string m_stun_ipv4;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    std::string m_stun_ipv6;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a67f850604d83b690f83c381cc4465e0a">  241</a></span>    std::vector&lt;std::string&gt; <a class="code hl_variable" href="classSTKConfig.html#a67f850604d83b690f83c381cc4465e0a">m_normal_ttf</a>;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    std::vector&lt;std::string&gt; m_digit_ttf;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    std::string m_color_emoji_ttf;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ab8170e6f25dd50b1f2180d6ad469c42f">  246</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSTKConfig.html#ab8170e6f25dd50b1f2180d6ad469c42f">m_snb_min_adjust_length</a>, m_snb_max_adjust_length,</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>        m_snb_min_adjust_speed, m_snb_max_adjust_time,</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        m_snb_adjust_length_threshold;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="classSTKConfig.html#aa0c6ec397617f47df640141190dbe15f">  251</a></span>    std::string <a class="code hl_variable" href="classSTKConfig.html#aa0c6ec397617f47df640141190dbe15f">m_server_api</a>;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno"><a class="line" href="classSTKConfig.html#aa88c5901f48d8e9f1441b40a999e18da">  254</a></span>    uint32_t <a class="code hl_variable" href="classSTKConfig.html#aa88c5901f48d8e9f1441b40a999e18da">m_server_api_version</a> = 0;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a6b96b975f0cd3a0124ff19ef19565775">  257</a></span>    std::string <a class="code hl_variable" href="classSTKConfig.html#a6b96b975f0cd3a0124ff19ef19565775">m_server_addons</a>;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a3cab0c0626b41d04405ff14f37b5b554">  260</a></span>    std::string <a class="code hl_variable" href="classSTKConfig.html#a3cab0c0626b41d04405ff14f37b5b554">m_server_hardware_report</a>;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a98920d2f470e76a07255dd6d76d42281">  263</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classSTKConfig.html#a98920d2f470e76a07255dd6d76d42281">m_allow_news_redirects</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a3d372d378187a6468853ab0eac5ae963">  267</a></span>    std::set&lt;std::string&gt; <a class="code hl_variable" href="classSTKConfig.html#a3d372d378187a6468853ab0eac5ae963">m_network_capabilities</a>;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno"><a class="line" href="classSTKConfig.html#af1b45a6fbc0ee1b699dcfc5ee6d8ad5b">  274</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_variable" href="classSTKConfig.html#af1b45a6fbc0ee1b699dcfc5ee6d8ad5b">m_has_been_loaded</a>;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ae65f3a551ebdd306ea2c7fa187bfb64c">  277</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classSTKConfig.html#ae65f3a551ebdd306ea2c7fa187bfb64c">m_physics_fps</a>;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    std::string m_title_music_file;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    std::string m_default_music_file;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    std::string m_race_win_music_file;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    std::string m_race_neutral_music_file;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    std::string m_race_lose_music_file;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    std::string m_gp_win_music_file;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    std::string m_gp_lose_music_file;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    std::string m_unlock_music_file;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <a class="code hl_function" href="classSTKConfig.html#a2205f286e36429e01786d48989ecac42">STKConfig</a>();</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <a class="code hl_function" href="classSTKConfig.html#a2205f286e36429e01786d48989ecac42">~STKConfig</a>();</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKConfig.html#a63c057532f83b3a7f18fab74bd709047">init_defaults</a>();</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKConfig.html#aa0a3ea67bc75344c8d1bebdf06b6693e">getAllData</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> * root);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKConfig.html#af20105151b919db693284f47788b1704">load</a>(<span class="keyword">const</span> std::string &amp;filename);</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="keyword">const</span> std::string &amp;getMainMenuPicture(<span class="keywordtype">int</span> n);</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keyword">const</span> std::string &amp;getBackgroundPicture(<span class="keywordtype">int</span> n);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKConfig.html#a594fba5c82b574feb0342b9714fb361e">initMusicFiles</a>();</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSTKConfig.html#a881820220818721b7ac029e57b8c1603">getAllScores</a>(std::vector&lt;int&gt; *all_scores, <span class="keywordtype">int</span> num_karts);</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="keyword">const</span> <a class="code hl_class" href="classKartProperties.html">KartProperties</a> &amp;</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ac801832de0e5ef80f0b2cf7e71021f31">  301</a></span>        <a class="code hl_function" href="classSTKConfig.html#ac801832de0e5ef80f0b2cf7e71021f31">getDefaultKartProperties</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> *<a class="code hl_variable" href="classSTKConfig.html#ac96e86dc4bcabe0af9071543cb300971">m_default_kart_properties</a>; }</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00308" data-start="{" data-end="}">
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a044d036936d4ceaffbf4d61b3fca7f73">  308</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classKartProperties.html">KartProperties</a>&amp; <a class="code hl_function" href="classSTKConfig.html#a044d036936d4ceaffbf4d61b3fca7f73">getKartProperties</a>(<span class="keyword">const</span> std::string &amp;type)</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    {</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>        <span class="keywordflow">return</span> *m_kart_properties.at(type);</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    }   <span class="comment">// getKartProperties</span></div>
+</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno"><a class="line" href="classSTKConfig.html#aa7c5a53b3cabe787a2a1f891c845e3b4">  314</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classSTKConfig.html#aa7c5a53b3cabe787a2a1f891c845e3b4">ticks2Time</a>(<span class="keywordtype">int</span> ticks) { <span class="keywordflow">return</span> float(ticks)/<a class="code hl_variable" href="classSTKConfig.html#ae65f3a551ebdd306ea2c7fa187bfb64c">m_physics_fps</a>; }</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno"><a class="line" href="classSTKConfig.html#a54148e15c15a40388324abd55e73c6da">  317</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classSTKConfig.html#a54148e15c15a40388324abd55e73c6da">time2Ticks</a>(<span class="keywordtype">float</span> t) { <span class="keywordflow">return</span> int(t * <a class="code hl_variable" href="classSTKConfig.html#ae65f3a551ebdd306ea2c7fa187bfb64c">m_physics_fps</a>);  }</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="classSTKConfig.html#ad62a5d891864ffd5f3be8a8a927c230c">  320</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classSTKConfig.html#ad62a5d891864ffd5f3be8a8a927c230c">getPhysicsFPS</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKConfig.html#ae65f3a551ebdd306ea2c7fa187bfb64c">m_physics_fps</a>; }</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>}</div>
+</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>;   <span class="comment">// STKConfig</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="keyword">extern</span> <a class="code hl_class" href="classSTKConfig.html">STKConfig</a>* stk_config;</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassKartProperties_html"><div class="ttname"><a href="classKartProperties.html">KartProperties</a></div><div class="ttdoc">This class stores the properties of a kart.</div><div class="ttdef"><b>Definition</b> kart_properties.hpp:60</div></div>
+<div class="ttc" id="aclassMusicInformation_html"><div class="ttname"><a href="classMusicInformation.html">MusicInformation</a></div><div class="ttdoc">Wrapper around an instance of the Music interface Adds information like composer, song title,...</div><div class="ttdef"><b>Definition</b> music_information.hpp:43</div></div>
+<div class="ttc" id="aclassSTKConfig_html"><div class="ttname"><a href="classSTKConfig.html">STKConfig</a></div><div class="ttdoc">Global STK configuration information.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:51</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a00db18b31566d2db7ec71956bf991930"><div class="ttname"><a href="classSTKConfig.html#a00db18b31566d2db7ec71956bf991930">STKConfig::m_default_music</a></div><div class="ttdeci">MusicInformation * m_default_music</div><div class="ttdoc">Filename of the music that is played when the track&#39;s music was not found.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:173</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a044d036936d4ceaffbf4d61b3fca7f73"><div class="ttname"><a href="classSTKConfig.html#a044d036936d4ceaffbf4d61b3fca7f73">STKConfig::getKartProperties</a></div><div class="ttdeci">const KartProperties &amp; getKartProperties(const std::string &amp;type)</div><div class="ttdoc">Returns the kart properties for a certain type of kart.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:308</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a0fb5e9454763a9f6d488a90be6bafac4"><div class="ttname"><a href="classSTKConfig.html#a0fb5e9454763a9f6d488a90be6bafac4">STKConfig::m_min_track_version</a></div><div class="ttdeci">int m_min_track_version</div><div class="ttdoc">The minimum and maximum .track file</div><div class="ttdef"><b>Definition</b> stk_config.hpp:138</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a1088eafc792fad2a48168f90228e73eb"><div class="ttname"><a href="classSTKConfig.html#a1088eafc792fad2a48168f90228e73eb">STKConfig::m_bomb_time_increase</a></div><div class="ttdeci">float m_bomb_time_increase</div><div class="ttdoc">Time added to bomb timer when it&#39;s passed on.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:77</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a12020cd9c90304b48056cc32d02a629c"><div class="ttname"><a href="classSTKConfig.html#a12020cd9c90304b48056cc32d02a629c">STKConfig::m_race_win_music</a></div><div class="ttdeci">MusicInformation * m_race_win_music</div><div class="ttdoc">Filename of the music to play when a player finishes in 1st place.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:176</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a15d5c7ab6b95463bd9db102c740a1c28"><div class="ttname"><a href="classSTKConfig.html#a15d5c7ab6b95463bd9db102c740a1c28">STKConfig::m_bubblegum_counter</a></div><div class="ttdeci">int m_bubblegum_counter</div><div class="ttdoc">How many times bubble gums must be driven over before they disappear.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:80</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a1ff9d7bb9fc2cbde63ba32e834a0ab28"><div class="ttname"><a href="classSTKConfig.html#a1ff9d7bb9fc2cbde63ba32e834a0ab28">STKConfig::UNDEFINED</a></div><div class="ttdeci">static float UNDEFINED</div><div class="ttdoc">Time until a bubble gum collected bý a kart returns</div><div class="ttdef"><b>Definition</b> stk_config.hpp:75</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a205279733cc5ac2692d195a947227ba5"><div class="ttname"><a href="classSTKConfig.html#a205279733cc5ac2692d195a947227ba5">STKConfig::m_max_karts</a></div><div class="ttdeci">int m_max_karts</div><div class="ttdoc">Maximum number of karts.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:91</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a2205f286e36429e01786d48989ecac42"><div class="ttname"><a href="classSTKConfig.html#a2205f286e36429e01786d48989ecac42">STKConfig::STKConfig</a></div><div class="ttdeci">STKConfig()</div><div class="ttdoc">Constructor, which only initialises the object.</div><div class="ttdef"><b>Definition</b> stk_config.cpp:40</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a27c0ddd2ae3bd89c9179660e7f2d55ee"><div class="ttname"><a href="classSTKConfig.html#a27c0ddd2ae3bd89c9179660e7f2d55ee">STKConfig::m_near_ground</a></div><div class="ttdeci">float m_near_ground</div><div class="ttdoc">Determines when a kart is not near ground anymore and the upright constraint is disabled to allow for...</div><div class="ttdef"><b>Definition</b> stk_config.hpp:132</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a27eb1d1ecc8db83b804c1a5d3389fbf8"><div class="ttname"><a href="classSTKConfig.html#a27eb1d1ecc8db83b804c1a5d3389fbf8">STKConfig::m_max_skidmarks</a></div><div class="ttdeci">int m_max_skidmarks</div><div class="ttdoc">Maximum number of skid marks/kart.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:130</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a2c9d3fe0619df651d56f7ec190e6fd85"><div class="ttname"><a href="classSTKConfig.html#a2c9d3fe0619df651d56f7ec190e6fd85">STKConfig::m_smooth_normals</a></div><div class="ttdeci">bool m_smooth_normals</div><div class="ttdoc">If normals for raycasts for wheels should be interpolated.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:92</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a383f159498101689d314add5aa838a4a"><div class="ttname"><a href="classSTKConfig.html#a383f159498101689d314add5aa838a4a">STKConfig::m_bomb_time</a></div><div class="ttdeci">float m_bomb_time</div><div class="ttdoc">Time before a bomb explodes.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:76</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a3cab0c0626b41d04405ff14f37b5b554"><div class="ttname"><a href="classSTKConfig.html#a3cab0c0626b41d04405ff14f37b5b554">STKConfig::m_server_hardware_report</a></div><div class="ttdeci">std::string m_server_hardware_report</div><div class="ttdoc">URL for the server used for hardware reporting statistics</div><div class="ttdef"><b>Definition</b> stk_config.hpp:260</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a3d372d378187a6468853ab0eac5ae963"><div class="ttname"><a href="classSTKConfig.html#a3d372d378187a6468853ab0eac5ae963">STKConfig::m_network_capabilities</a></div><div class="ttdeci">std::set&lt; std::string &gt; m_network_capabilities</div><div class="ttdoc">List of network capabilities to handle different servers with same version.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:267</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a40adfd9a7725895c7b37e195cac664c5"><div class="ttname"><a href="classSTKConfig.html#a40adfd9a7725895c7b37e195cac664c5">STKConfig::m_gp_win_music</a></div><div class="ttdeci">MusicInformation * m_gp_win_music</div><div class="ttdoc">Filename of the grand prix win music to play.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:187</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a46a99e57b59edfa656394918dc882757"><div class="ttname"><a href="classSTKConfig.html#a46a99e57b59edfa656394918dc882757">STKConfig::m_penalty_ticks</a></div><div class="ttdeci">int m_penalty_ticks</div><div class="ttdoc">Penalty time when starting too early.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:85</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a46b1c1d109d4c949d2840a7b2d5843a7"><div class="ttname"><a href="classSTKConfig.html#a46b1c1d109d4c949d2840a7b2d5843a7">STKConfig::m_default_moveable_friction</a></div><div class="ttdeci">float m_default_moveable_friction</div><div class="ttdoc">Default friction to be used for any moveable, e.g.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:115</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a4936e29bb8cd8b28667ef9fa63df1f08"><div class="ttname"><a href="classSTKConfig.html#a4936e29bb8cd8b28667ef9fa63df1f08">STKConfig::m_leader_intervals</a></div><div class="ttdeci">std::vector&lt; float &gt; m_leader_intervals</div><div class="ttdoc">Interval in follow the leader till last kart is reomved.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:159</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a4cb4f74d9c428d22c7611eb81ca2842a"><div class="ttname"><a href="classSTKConfig.html#a4cb4f74d9c428d22c7611eb81ca2842a">STKConfig::m_max_track_version</a></div><div class="ttdeci">int m_max_track_version</div><div class="ttdoc">version supported by this binary.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:139</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a512bbf95e45d86ded5fd2b49dc7a57b9"><div class="ttname"><a href="classSTKConfig.html#a512bbf95e45d86ded5fd2b49dc7a57b9">STKConfig::m_same_powerup_mode</a></div><div class="ttdeci">enum STKConfig::@070257054072034125050022337314100015170244337051 m_same_powerup_mode</div><div class="ttdoc">What to do if a kart already has a powerup when it hits a bonus box:</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a54148e15c15a40388324abd55e73c6da"><div class="ttname"><a href="classSTKConfig.html#a54148e15c15a40388324abd55e73c6da">STKConfig::time2Ticks</a></div><div class="ttdeci">int time2Ticks(float t)</div><div class="ttdoc">Converts a time value into ticks (of physics time steps).</div><div class="ttdef"><b>Definition</b> stk_config.hpp:317</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a56dafa2b1637f01bea42ebb5863f46a1"><div class="ttname"><a href="classSTKConfig.html#a56dafa2b1637f01bea42ebb5863f46a1">STKConfig::m_replay_delta_steering</a></div><div class="ttdeci">float m_replay_delta_steering</div><div class="ttdoc">A steering difference of more than that will trigger a new event to be generated.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:207</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a594fba5c82b574feb0342b9714fb361e"><div class="ttname"><a href="classSTKConfig.html#a594fba5c82b574feb0342b9714fb361e">STKConfig::initMusicFiles</a></div><div class="ttdeci">void initMusicFiles()</div><div class="ttdoc">Init the music files after downloading assets</div><div class="ttdef"><b>Definition</b> stk_config.cpp:644</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a5ef0307c5a7ce6f986db679fe044d7a6"><div class="ttname"><a href="classSTKConfig.html#a5ef0307c5a7ce6f986db679fe044d7a6">STKConfig::m_gp_lose_music</a></div><div class="ttdeci">MusicInformation * m_gp_lose_music</div><div class="ttdoc">Filename of the grand prix lose music to play.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:190</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a63c057532f83b3a7f18fab74bd709047"><div class="ttname"><a href="classSTKConfig.html#a63c057532f83b3a7f18fab74bd709047">STKConfig::init_defaults</a></div><div class="ttdeci">void init_defaults()</div><div class="ttdoc">Init all values with invalid defaults, which are tested later.</div><div class="ttdef"><b>Definition</b> stk_config.cpp:205</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a66d351f709b1b3ffff8c39bc806b0027"><div class="ttname"><a href="classSTKConfig.html#a66d351f709b1b3ffff8c39bc806b0027">STKConfig::m_max_display_news</a></div><div class="ttdeci">int m_max_display_news</div><div class="ttdoc">How often a news message is displayed before it is ignored.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:142</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a67f850604d83b690f83c381cc4465e0a"><div class="ttname"><a href="classSTKConfig.html#a67f850604d83b690f83c381cc4465e0a">STKConfig::m_normal_ttf</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_normal_ttf</div><div class="ttdoc">Lists of TTF files used in STK.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:241</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a688cfc577c1b9f419cf8f6d427445487"><div class="ttname"><a href="classSTKConfig.html#a688cfc577c1b9f419cf8f6d427445487">STKConfig::m_network_steering_reduction</a></div><div class="ttdeci">float m_network_steering_reduction</div><div class="ttdoc">In case of a network race, remote karts will get their steering somewhat reduced each frame.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:104</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a6b96b975f0cd3a0124ff19ef19565775"><div class="ttname"><a href="classSTKConfig.html#a6b96b975f0cd3a0124ff19ef19565775">STKConfig::m_server_addons</a></div><div class="ttdeci">std::string m_server_addons</div><div class="ttdoc">URL for the server used for the addons management.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:257</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a74382d73b690b7b8557e6baad8839dfb"><div class="ttname"><a href="classSTKConfig.html#a74382d73b690b7b8557e6baad8839dfb">STKConfig::m_shield_restrict_weapons</a></div><div class="ttdeci">bool m_shield_restrict_weapons</div><div class="ttdoc">Wether weapon usage is punished.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:82</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a78e5c6db2c1f5b9cde6612b66af909e1"><div class="ttname"><a href="classSTKConfig.html#a78e5c6db2c1f5b9cde6612b66af909e1">STKConfig::m_switch_items</a></div><div class="ttdeci">std::vector&lt; int &gt; m_switch_items</div><div class="ttdoc">How to switch items.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:163</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a7bb2aad7de5e0ad796d765e6d6321721"><div class="ttname"><a href="classSTKConfig.html#a7bb2aad7de5e0ad796d765e6d6321721">STKConfig::m_server_discovery_port</a></div><div class="ttdeci">uint16_t m_server_discovery_port</div><div class="ttdoc">Client and server port use random ports if enabled in user config.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:226</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a7bf42cbc52256db83c879e9ae1ec71c0"><div class="ttname"><a href="classSTKConfig.html#a7bf42cbc52256db83c879e9ae1ec71c0">STKConfig::m_replay_dt</a></div><div class="ttdeci">float m_replay_dt</div><div class="ttdoc">Maximum time between consecutive saved tranform events.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:199</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a81b0f728f950eb51b5c0f9b722f1e2d6"><div class="ttname"><a href="classSTKConfig.html#a81b0f728f950eb51b5c0f9b722f1e2d6">STKConfig::m_banana_item_return_ticks</a></div><div class="ttdeci">int m_banana_item_return_ticks</div><div class="ttdoc">Time until a nitro collected by a kart returns</div><div class="ttdef"><b>Definition</b> stk_config.hpp:72</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a82c2927e5bc39a1115a54af3f60db348"><div class="ttname"><a href="classSTKConfig.html#a82c2927e5bc39a1115a54af3f60db348">STKConfig::m_smooth_angle_limit</a></div><div class="ttdeci">float m_smooth_angle_limit</div><div class="ttdoc">If the angle between a normal on a vertex and the normal of the triangle are more than this value,...</div><div class="ttdef"><b>Definition</b> stk_config.hpp:109</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a853b6da4147fd372cdddd66d87dcdbca"><div class="ttname"><a href="classSTKConfig.html#a853b6da4147fd372cdddd66d87dcdbca">STKConfig::m_no_explosive_items_timeout</a></div><div class="ttdeci">float m_no_explosive_items_timeout</div><div class="ttdoc">Prevent early explosive items before this world time.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:96</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a881820220818721b7ac029e57b8c1603"><div class="ttname"><a href="classSTKConfig.html#a881820220818721b7ac029e57b8c1603">STKConfig::getAllScores</a></div><div class="ttdeci">void getAllScores(std::vector&lt; int &gt; *all_scores, int num_karts)</div><div class="ttdoc">Defines the points for each position for a race with a given number of karts.</div><div class="ttdef"><b>Definition</b> stk_config.cpp:711</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a88bd8773e34c9032c41c7cf7920d1ab0"><div class="ttname"><a href="classSTKConfig.html#a88bd8773e34c9032c41c7cf7920d1ab0">STKConfig::m_solver_set_flags</a></div><div class="ttdeci">int m_solver_set_flags</div><div class="ttdoc">Bit flags to modify the solver mode.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:128</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a8af62168380e35e98cf9fbd3a0b771e0"><div class="ttname"><a href="classSTKConfig.html#a8af62168380e35e98cf9fbd3a0b771e0">STKConfig::m_max_kart_version</a></div><div class="ttdeci">int m_max_kart_version</div><div class="ttdoc">version supported by this binary.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:137</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a8be8589300b6e6323c829bc119c55e96"><div class="ttname"><a href="classSTKConfig.html#a8be8589300b6e6323c829bc119c55e96">STKConfig::m_ai_acceleration</a></div><div class="ttdeci">float m_ai_acceleration</div><div class="ttdoc">Between 0 and 1, default being 1, can be used to give a handicap to AIs</div><div class="ttdef"><b>Definition</b> stk_config.hpp:155</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a8ca85278ce1378d15ae0afb2ae3ff612"><div class="ttname"><a href="classSTKConfig.html#a8ca85278ce1378d15ae0afb2ae3ff612">STKConfig::m_minimap_size</a></div><div class="ttdeci">float m_minimap_size</div><div class="ttdoc">The minimap size</div><div class="ttdef"><b>Definition</b> stk_config.hpp:210</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a9158ffa856722a01fbf8f8d8382ce322"><div class="ttname"><a href="classSTKConfig.html#a9158ffa856722a01fbf8f8d8382ce322">STKConfig::m_camera_fov</a></div><div class="ttdeci">float m_camera_fov[MAX_PLAYER_COUNT]</div><div class="ttdoc">The field of view for 1, 2, 3, 4 player split screen.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:217</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a95da7e2493442ae4ddf66be743e7e13b"><div class="ttname"><a href="classSTKConfig.html#a95da7e2493442ae4ddf66be743e7e13b">STKConfig::m_title_music</a></div><div class="ttdeci">MusicInformation * m_title_music</div><div class="ttdoc">Filename of the title music to play.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:170</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a962f05c5448e7ed2b90ea56272056c2a"><div class="ttname"><a href="classSTKConfig.html#a962f05c5448e7ed2b90ea56272056c2a">STKConfig::m_replay_delta_speed</a></div><div class="ttdeci">float m_replay_delta_speed</div><div class="ttdoc">If the speed difference with the last transform event is larger than this, a new event is generated.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:203</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a987a6c337a0ee3cc5033f46f4213a502"><div class="ttname"><a href="classSTKConfig.html#a987a6c337a0ee3cc5033f46f4213a502">STKConfig::m_bubblegum_item_return_ticks</a></div><div class="ttdeci">int m_bubblegum_item_return_ticks</div><div class="ttdoc">Time until a banana collected by a kart return</div><div class="ttdef"><b>Definition</b> stk_config.hpp:73</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a98920d2f470e76a07255dd6d76d42281"><div class="ttname"><a href="classSTKConfig.html#a98920d2f470e76a07255dd6d76d42281">STKConfig::m_allow_news_redirects</a></div><div class="ttdeci">bool m_allow_news_redirects</div><div class="ttdoc">If true we allow all the server urls to be redirected by the news.xml.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:263</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a9e3a4413888bee0723a2fc3daf12dd4b"><div class="ttname"><a href="classSTKConfig.html#a9e3a4413888bee0723a2fc3daf12dd4b">STKConfig::m_min_server_version</a></div><div class="ttdeci">int m_min_server_version</div><div class="ttdoc">The minimum and maximum server</div><div class="ttdef"><b>Definition</b> stk_config.hpp:140</div></div>
+<div class="ttc" id="aclassSTKConfig_html_a9f311da7b2b5e40890763fe4206c4f44"><div class="ttname"><a href="classSTKConfig.html#a9f311da7b2b5e40890763fe4206c4f44">STKConfig::m_solver_split_impulse_thresh</a></div><div class="ttdeci">float m_solver_split_impulse_thresh</div><div class="ttdoc">Threshold when to use the split impulse approach.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:124</div></div>
+<div class="ttc" id="aclassSTKConfig_html_aa0a3ea67bc75344c8d1bebdf06b6693e"><div class="ttname"><a href="classSTKConfig.html#aa0a3ea67bc75344c8d1bebdf06b6693e">STKConfig::getAllData</a></div><div class="ttdeci">void getAllData(const XMLNode *root)</div><div class="ttdoc">Extracts the actual information from a xml file.</div><div class="ttdef"><b>Definition</b> stk_config.cpp:279</div></div>
+<div class="ttc" id="aclassSTKConfig_html_aa0c6ec397617f47df640141190dbe15f"><div class="ttname"><a href="classSTKConfig.html#aa0c6ec397617f47df640141190dbe15f">STKConfig::m_server_api</a></div><div class="ttdeci">std::string m_server_api</div><div class="ttdoc">URL for the server used for the API multiplayer.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:251</div></div>
+<div class="ttc" id="aclassSTKConfig_html_aa0d80d8050eafd4cc5203a35d1890348"><div class="ttname"><a href="classSTKConfig.html#aa0d80d8050eafd4cc5203a35d1890348">STKConfig::m_replay_max_frames</a></div><div class="ttdeci">int m_replay_max_frames</div><div class="ttdoc">Maximum number of transform events of a replay.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:196</div></div>
+<div class="ttc" id="aclassSTKConfig_html_aa1e4d5c5af56903031f01aed26df2176"><div class="ttname"><a href="classSTKConfig.html#aa1e4d5c5af56903031f01aed26df2176">STKConfig::m_camera_follow_skid</a></div><div class="ttdeci">bool m_camera_follow_skid</div><div class="ttdoc">If true the camera will stay behind the kart, potentially making it easier to see where the kart is g...</div><div class="ttdef"><b>Definition</b> stk_config.hpp:153</div></div>
+<div class="ttc" id="aclassSTKConfig_html_aa7c5a53b3cabe787a2a1f891c845e3b4"><div class="ttname"><a href="classSTKConfig.html#aa7c5a53b3cabe787a2a1f891c845e3b4">STKConfig::ticks2Time</a></div><div class="ttdeci">float ticks2Time(int ticks)</div><div class="ttdoc">Converts a tick value (in physics time step size) into seconds.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:314</div></div>
+<div class="ttc" id="aclassSTKConfig_html_aa82e65df4450ef68ad20d9f9339e51e4"><div class="ttname"><a href="classSTKConfig.html#aa82e65df4450ef68ad20d9f9339e51e4">STKConfig::m_race_neutral_music</a></div><div class="ttdeci">MusicInformation * m_race_neutral_music</div><div class="ttdoc">Filename of the music to play when a player finishes anywhere in the top half of the total karts but ...</div><div class="ttdef"><b>Definition</b> stk_config.hpp:180</div></div>
+<div class="ttc" id="aclassSTKConfig_html_aa88c5901f48d8e9f1441b40a999e18da"><div class="ttname"><a href="classSTKConfig.html#aa88c5901f48d8e9f1441b40a999e18da">STKConfig::m_server_api_version</a></div><div class="ttdeci">uint32_t m_server_api_version</div><div class="ttdoc">Version of the server API to use</div><div class="ttdef"><b>Definition</b> stk_config.hpp:254</div></div>
+<div class="ttc" id="aclassSTKConfig_html_aad5ffb13ad6290c8f7f126368cdabbfb"><div class="ttname"><a href="classSTKConfig.html#aad5ffb13ad6290c8f7f126368cdabbfb">STKConfig::m_unlock_music</a></div><div class="ttdeci">MusicInformation * m_unlock_music</div><div class="ttdoc">Filename of the feature unlock music to play.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:193</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ab293149c1f97ce4b18701ec601b62ff9"><div class="ttname"><a href="classSTKConfig.html#ab293149c1f97ce4b18701ec601b62ff9">STKConfig::m_music_credit_time</a></div><div class="ttdeci">float m_music_credit_time</div><div class="ttdoc">Time the music credits are displayed.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:89</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ab2bdaab25acbc9b0e703910a3ed001dc"><div class="ttname"><a href="classSTKConfig.html#ab2bdaab25acbc9b0e703910a3ed001dc">STKConfig::m_score_increase</a></div><div class="ttdeci">std::vector&lt; int &gt; m_score_increase</div><div class="ttdoc">The number of points a kart on position X has more than the next kart.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:167</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ab46ea87f2f51fd7314798270310c25e5"><div class="ttname"><a href="classSTKConfig.html#ab46ea87f2f51fd7314798270310c25e5">STKConfig::m_item_switch_ticks</a></div><div class="ttdeci">int m_item_switch_ticks</div><div class="ttdoc">Time items will be switched.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:79</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ab8170e6f25dd50b1f2180d6ad469c42f"><div class="ttname"><a href="classSTKConfig.html#ab8170e6f25dd50b1f2180d6ad469c42f">STKConfig::m_snb_min_adjust_length</a></div><div class="ttdeci">float m_snb_min_adjust_length</div><div class="ttdoc">Configurable values used in SmoothNetworkBody class.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:246</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ab84515af978fce998ddcac00f6fca9d0"><div class="ttname"><a href="classSTKConfig.html#ab84515af978fce998ddcac00f6fca9d0">STKConfig::m_solver_split_impulse</a></div><div class="ttdeci">bool m_solver_split_impulse</div><div class="ttdoc">If position and velocity constraints are solved separately.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:121</div></div>
+<div class="ttc" id="aclassSTKConfig_html_abe96aa59dcfc0089a46bf531086e4842"><div class="ttname"><a href="classSTKConfig.html#abe96aa59dcfc0089a46bf531086e4842">STKConfig::m_max_server_version</a></div><div class="ttdeci">int m_max_server_version</div><div class="ttdoc">version supported by this binary.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:141</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ac4b38fdc968250ee8722febed078a2c0"><div class="ttname"><a href="classSTKConfig.html#ac4b38fdc968250ee8722febed078a2c0">STKConfig::m_race_lose_music</a></div><div class="ttdeci">MusicInformation * m_race_lose_music</div><div class="ttdoc">Filename of the music to play when a player finishes in the bottom half of the total karts.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:184</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ac748186fb70515d29a07c78d830ead0e"><div class="ttname"><a href="classSTKConfig.html#ac748186fb70515d29a07c78d830ead0e">STKConfig::m_skid_fadeout_time</a></div><div class="ttdeci">float m_skid_fadeout_time</div><div class="ttdoc">Time till skidmarks fade away.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:131</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ac801832de0e5ef80f0b2cf7e71021f31"><div class="ttname"><a href="classSTKConfig.html#ac801832de0e5ef80f0b2cf7e71021f31">STKConfig::getDefaultKartProperties</a></div><div class="ttdeci">const KartProperties &amp; getDefaultKartProperties() const</div><div class="ttdoc">Returns the default kart properties for each kart.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:301</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ac9062c74e7ecb5626a7c85daa4882af8"><div class="ttname"><a href="classSTKConfig.html#ac9062c74e7ecb5626a7c85daa4882af8">STKConfig::m_max_moveable_objects</a></div><div class="ttdeci">int m_max_moveable_objects</div><div class="ttdoc">Maximum number of moveable objects in a track when networking is on.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:99</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ac96e86dc4bcabe0af9071543cb300971"><div class="ttname"><a href="classSTKConfig.html#ac96e86dc4bcabe0af9071543cb300971">STKConfig::m_default_kart_properties</a></div><div class="ttdeci">KartProperties * m_default_kart_properties</div><div class="ttdoc">Default kart properties.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:54</div></div>
+<div class="ttc" id="aclassSTKConfig_html_acabd4e90e303088f31dc1273e17ca037"><div class="ttname"><a href="classSTKConfig.html#acabd4e90e303088f31dc1273e17ca037">STKConfig::m_nitro_item_return_ticks</a></div><div class="ttdeci">int m_nitro_item_return_ticks</div><div class="ttdoc">Time until a bonus box collected by a kart returns</div><div class="ttdef"><b>Definition</b> stk_config.hpp:71</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ad2a1614d3147cfb39d45fae7eba0aee0"><div class="ttname"><a href="classSTKConfig.html#ad2a1614d3147cfb39d45fae7eba0aee0">STKConfig::m_disable_steer_while_unskid</a></div><div class="ttdeci">bool m_disable_steer_while_unskid</div><div class="ttdoc">Disable steering if skidding is stopped.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:149</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ad62a5d891864ffd5f3be8a8a927c230c"><div class="ttname"><a href="classSTKConfig.html#ad62a5d891864ffd5f3be8a8a927c230c">STKConfig::getPhysicsFPS</a></div><div class="ttdeci">int getPhysicsFPS() const</div><div class="ttdoc">Returns the physics frame per seconds rate.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:320</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ad7f925fb99e230c978f429f994593327"><div class="ttname"><a href="classSTKConfig.html#ad7f925fb99e230c978f429f994593327">STKConfig::m_delay_finish_time</a></div><div class="ttdeci">float m_delay_finish_time</div><div class="ttdoc">Delay after a race finished before the results are displayed.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:87</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ae65f3a551ebdd306ea2c7fa187bfb64c"><div class="ttname"><a href="classSTKConfig.html#ae65f3a551ebdd306ea2c7fa187bfb64c">STKConfig::m_physics_fps</a></div><div class="ttdeci">int m_physics_fps</div><div class="ttdoc">Default FPS rate for physics.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:277</div></div>
+<div class="ttc" id="aclassSTKConfig_html_ae67e602209fa01412be2a86095859928"><div class="ttname"><a href="classSTKConfig.html#ae67e602209fa01412be2a86095859928">STKConfig::m_leader_time_per_kart</a></div><div class="ttdeci">float m_leader_time_per_kart</div><div class="ttdoc">Additional time to each leader interval for each additional kart.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:161</div></div>
+<div class="ttc" id="aclassSTKConfig_html_af1992240a24d892fb11eb068f7749f10"><div class="ttname"><a href="classSTKConfig.html#af1992240a24d892fb11eb068f7749f10">STKConfig::m_min_kart_version</a></div><div class="ttdeci">int m_min_kart_version</div><div class="ttdoc">The minimum and maximum .kart file</div><div class="ttdef"><b>Definition</b> stk_config.hpp:136</div></div>
+<div class="ttc" id="aclassSTKConfig_html_af1b45a6fbc0ee1b699dcfc5ee6d8ad5b"><div class="ttname"><a href="classSTKConfig.html#af1b45a6fbc0ee1b699dcfc5ee6d8ad5b">STKConfig::m_has_been_loaded</a></div><div class="ttdeci">bool m_has_been_loaded</div><div class="ttdoc">True if stk_config has been loaded.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:274</div></div>
+<div class="ttc" id="aclassSTKConfig_html_af20105151b919db693284f47788b1704"><div class="ttname"><a href="classSTKConfig.html#af20105151b919db693284f47788b1704">STKConfig::load</a></div><div class="ttdeci">void load(const std::string &amp;filename)</div><div class="ttdoc">Loads the stk configuration file.</div><div class="ttdef"><b>Definition</b> stk_config.cpp:97</div></div>
+<div class="ttc" id="aclassSTKConfig_html_af583616bbf9e0ea084d9f90156cb0b75"><div class="ttname"><a href="classSTKConfig.html#af583616bbf9e0ea084d9f90156cb0b75">STKConfig::m_explosion_impulse_objects</a></div><div class="ttdeci">float m_explosion_impulse_objects</div><div class="ttdoc">Impulse of explosion on moving objects, e.g.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:83</div></div>
+<div class="ttc" id="aclassSTKConfig_html_af6a374a364635f848a64cc15187e8b53"><div class="ttname"><a href="classSTKConfig.html#af6a374a364635f848a64cc15187e8b53">STKConfig::m_default_track_friction</a></div><div class="ttdeci">float m_default_track_friction</div><div class="ttdoc">Default friction for the track and any track/library object.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:112</div></div>
+<div class="ttc" id="aclassSTKConfig_html_afe50d860997128e936a0822c2c559888"><div class="ttname"><a href="classSTKConfig.html#afe50d860997128e936a0822c2c559888">STKConfig::m_solver_iterations</a></div><div class="ttdeci">int m_solver_iterations</div><div class="ttdoc">Number of solver iterations.</div><div class="ttdef"><b>Definition</b> stk_config.hpp:118</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+<div class="ttc" id="aremote__kart__info_8hpp_html"><div class="ttname"><a href="remote__kart__info_8hpp.html">remote_kart_info.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

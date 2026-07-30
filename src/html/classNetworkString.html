@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: NetworkString 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-static-methods">정적 Public 멤버 함수</a> &#124;
+<a href="classNetworkString-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">NetworkString 클래스 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>A new implementation of <a class="el" href="classNetworkString.html" title="A new implementation of NetworkString, which has a fixed format: Byte 0: The type of the message,...">NetworkString</a>, which has a fixed format: Byte 0: The type of the message, which is actually a bit field: bit 7: if set, the message needs to be handled synchronously, otherwise it can be handled by the separate protocol manager thread.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="network__string_8hpp_source.html">network_string.hpp</a>&gt;</code></p>
+<div class="dynheader">
+NetworkString에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classNetworkString__inherit__graph.png" border="0" usemap="#aNetworkString_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aNetworkString_inherit__map" id="aNetworkString_inherit__map">
+<area shape="rect" title="A new implementation of NetworkString, which has a fixed format: Byte 0: The type of the message,..." alt="" coords="19,80,123,107"/>
+<area shape="rect" href="classBareNetworkString.html" title="Describes a chain of 8&#45;bit unsigned integers." alt="" coords="5,5,137,32"/>
+<area shape="poly" title=" " alt="" coords="73,46,74,80,68,79,69,50"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a6eff32a0923cc43ab28ce0d682030dc1" id="r_a6eff32a0923cc43ab28ce0d682030dc1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6eff32a0923cc43ab28ce0d682030dc1">NetworkString</a> (ProtocolType type, int capacity=16)</td></tr>
+<tr class="memdesc:a6eff32a0923cc43ab28ce0d682030dc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for a message to be sent.  <br /></td></tr>
+<tr class="memitem:a645d295e48e718f7768fcd4c8ca50a3d" id="r_a645d295e48e718f7768fcd4c8ca50a3d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a645d295e48e718f7768fcd4c8ca50a3d">NetworkString</a> (const uint8_t *data, int len)</td></tr>
+<tr class="memdesc:a645d295e48e718f7768fcd4c8ca50a3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for a received message.  <br /></td></tr>
+<tr class="memitem:a777a55ddc14f8943cafe2e08e3bca126" id="r_a777a55ddc14f8943cafe2e08e3bca126"><td class="memItemLeft"><a id="a777a55ddc14f8943cafe2e08e3bca126" name="a777a55ddc14f8943cafe2e08e3bca126"></a>
+void&#160;</td><td class="memItemRight"><b>clear</b> ()</td></tr>
+<tr class="memdesc:a777a55ddc14f8943cafe2e08e3bca126"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empties the string, but does not reset the pre-allocated size. <br /></td></tr>
+<tr class="memitem:aa8c7d901a033c6cc70af0f0813e3553a" id="r_aa8c7d901a033c6cc70af0f0813e3553a"><td class="memItemLeft"><a id="aa8c7d901a033c6cc70af0f0813e3553a" name="aa8c7d901a033c6cc70af0f0813e3553a"></a>
+ProtocolType&#160;</td><td class="memItemRight"><b>getProtocolType</b> () const</td></tr>
+<tr class="memdesc:aa8c7d901a033c6cc70af0f0813e3553a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the protocol type of this message. <br /></td></tr>
+<tr class="memitem:a78692f293d65ff07af410300903a4c94" id="r_a78692f293d65ff07af410300903a4c94"><td class="memItemLeft"><a id="a78692f293d65ff07af410300903a4c94" name="a78692f293d65ff07af410300903a4c94"></a>
+void&#160;</td><td class="memItemRight"><b>setSynchronous</b> (bool b)</td></tr>
+<tr class="memdesc:a78692f293d65ff07af410300903a4c94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if this message is to be sent synchronous or asynchronous. <br /></td></tr>
+<tr class="memitem:ad4a2622658d897482d13536b86504ae0" id="r_ad4a2622658d897482d13536b86504ae0"><td class="memItemLeft"><a id="ad4a2622658d897482d13536b86504ae0" name="ad4a2622658d897482d13536b86504ae0"></a>
+bool&#160;</td><td class="memItemRight"><b>isSynchronous</b> () const</td></tr>
+<tr class="memdesc:ad4a2622658d897482d13536b86504ae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if this message is synchronous or not. <br /></td></tr>
+<tr class="inherit_header pub_methods_classBareNetworkString"><td colspan="2"><a class="el" href="classBareNetworkString.html">BareNetworkString</a>(으)로부터 상속된 Public 멤버 함수</td></tr>
+<tr class="memitem:a1ddc208de2668001616db15b176b309b pub_methods_classBareNetworkString" id="r_a1ddc208de2668001616db15b176b309b"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>BareNetworkString</b> (int capacity=16)</td></tr>
+<tr class="memdesc:a1ddc208de2668001616db15b176b309b pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor, sets the protocol type of this message. <br /></td></tr>
+<tr class="memitem:a7691df1714731a6e7302d87657ef0369 pub_methods_classBareNetworkString" id="r_a7691df1714731a6e7302d87657ef0369"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>BareNetworkString</b> (const std::string &amp;s)</td></tr>
+<tr class="memitem:a9373b34fb5d5d99d8cf51ba5ce78c594 pub_methods_classBareNetworkString" id="r_a9373b34fb5d5d99d8cf51ba5ce78c594"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>BareNetworkString</b> (const char *data, int len)</td></tr>
+<tr class="memdesc:a9373b34fb5d5d99d8cf51ba5ce78c594 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the string with a sequence of characters. <br /></td></tr>
+<tr class="memitem:ab16baad366a3c67e03b718755600f3b0 pub_methods_classBareNetworkString" id="r_ab16baad366a3c67e03b718755600f3b0"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>reset</b> ()</td></tr>
+<tr class="memdesc:ab16baad366a3c67e03b718755600f3b0 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows one to read a buffer from the beginning again. <br /></td></tr>
+<tr class="memitem:a2256471d79bb13a837d44d9658bcaacd pub_methods_classBareNetworkString" id="r_a2256471d79bb13a837d44d9658bcaacd"><td class="memItemLeft">
+<a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><b>encodeString16</b> (const irr::core::stringw &amp;value, uint16_t max_len=65535)</td></tr>
+<tr class="memdesc:a2256471d79bb13a837d44d9658bcaacd pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encode string with max length of 16bit and utf32, used in motd or chat. <br /></td></tr>
+<tr class="memitem:abe302663dc419a45d44ed60b642a4476 pub_methods_classBareNetworkString" id="r_abe302663dc419a45d44ed60b642a4476"><td class="memItemLeft">
+int&#160;</td><td class="memItemRight"><b>decodeString16</b> (irr::core::stringw *out, uint16_t max_len=65535)</td></tr>
+<tr class="memitem:a4530e52c221f60d090247f073f70f37f pub_methods_classBareNetworkString" id="r_a4530e52c221f60d090247f073f70f37f"><td class="memItemLeft">
+<a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><b>encodeString</b> (const std::string &amp;value)</td></tr>
+<tr class="memdesc:a4530e52c221f60d090247f073f70f37f pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds one byte for the length of the string, and then (up to 255 of) the characters of the given string. <br /></td></tr>
+<tr class="memitem:a027bdda9de4af45221a9d2e1bcc623bb pub_methods_classBareNetworkString" id="r_a027bdda9de4af45221a9d2e1bcc623bb"><td class="memItemLeft">
+<a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><b>encodeString</b> (const irr::core::stringw &amp;value)</td></tr>
+<tr class="memdesc:a027bdda9de4af45221a9d2e1bcc623bb pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds one byte for the length of the string, and then (up to 255 of) the characters of the given string. <br /></td></tr>
+<tr class="memitem:a25217a0af8c37b839a134148f6f26e6c pub_methods_classBareNetworkString" id="r_a25217a0af8c37b839a134148f6f26e6c"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="classBareNetworkString.html#a25217a0af8c37b839a134148f6f26e6c">decodeString</a> (std::string *out) const</td></tr>
+<tr class="memdesc:a25217a0af8c37b839a134148f6f26e6c pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string at the given position.  <br /></td></tr>
+<tr class="memitem:aa871947496269c52dbd67597440af440 pub_methods_classBareNetworkString" id="r_aa871947496269c52dbd67597440af440"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="classBareNetworkString.html#aa871947496269c52dbd67597440af440">decodeStringW</a> (irr::core::stringw *out) const</td></tr>
+<tr class="memdesc:aa871947496269c52dbd67597440af440 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an irrlicht wide string from the utf8 encoded string at the given position.  <br /></td></tr>
+<tr class="memitem:afade27224174f6f4624db975a7743929 pub_methods_classBareNetworkString" id="r_afade27224174f6f4624db975a7743929"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="classBareNetworkString.html#afade27224174f6f4624db975a7743929">getLogMessage</a> (const std::string &amp;indent=&quot;&quot;) const</td></tr>
+<tr class="memdesc:afade27224174f6f4624db975a7743929 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representing this message suitable to be printed to stdout or via the <a class="el" href="classLog.html">Log</a> mechanism.  <br /></td></tr>
+<tr class="memitem:a4213d60425d1e19372aa4f1a060363bc pub_methods_classBareNetworkString" id="r_a4213d60425d1e19372aa4f1a060363bc"><td class="memItemLeft">
+std::vector&lt; uint8_t &gt; &amp;&#160;</td><td class="memItemRight"><b>getBuffer</b> ()</td></tr>
+<tr class="memdesc:a4213d60425d1e19372aa4f1a060363bc pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the internal buffer of the network string. <br /></td></tr>
+<tr class="memitem:adeca77bfc67a5bd0ef2fab0a221af96b pub_methods_classBareNetworkString" id="r_adeca77bfc67a5bd0ef2fab0a221af96b"><td class="memItemLeft">
+char *&#160;</td><td class="memItemRight"><b>getData</b> ()</td></tr>
+<tr class="memdesc:adeca77bfc67a5bd0ef2fab0a221af96b pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a byte pointer to the content of the network string. <br /></td></tr>
+<tr class="memitem:a2ace1e73aef15c5aa3ac1db51afa3d1b pub_methods_classBareNetworkString" id="r_a2ace1e73aef15c5aa3ac1db51afa3d1b"><td class="memItemLeft">
+const char *&#160;</td><td class="memItemRight"><b>getData</b> () const</td></tr>
+<tr class="memdesc:a2ace1e73aef15c5aa3ac1db51afa3d1b pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a byte pointer to the content of the network string. <br /></td></tr>
+<tr class="memitem:a6234be13111482385f2625689e1e9df1 pub_methods_classBareNetworkString" id="r_a6234be13111482385f2625689e1e9df1"><td class="memItemLeft">
+char *&#160;</td><td class="memItemRight"><b>getCurrentData</b> ()</td></tr>
+<tr class="memdesc:a6234be13111482385f2625689e1e9df1 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a byte pointer to the unread remaining content of the network string. <br /></td></tr>
+<tr class="memitem:abdd5ddf668a034c31e0af488574a15ac pub_methods_classBareNetworkString" id="r_abdd5ddf668a034c31e0af488574a15ac"><td class="memItemLeft">
+const char *&#160;</td><td class="memItemRight"><b>getCurrentData</b> () const</td></tr>
+<tr class="memdesc:abdd5ddf668a034c31e0af488574a15ac pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a byte pointer to the unread remaining content of the network string. <br /></td></tr>
+<tr class="memitem:a2695e29e58154ebbeeac67e4650aa286 pub_methods_classBareNetworkString" id="r_a2695e29e58154ebbeeac67e4650aa286"><td class="memItemLeft">
+int&#160;</td><td class="memItemRight"><b>getCurrentOffset</b> () const</td></tr>
+<tr class="memitem:a16da16cb3f947c49c61821990c286627 pub_methods_classBareNetworkString" id="r_a16da16cb3f947c49c61821990c286627"><td class="memItemLeft">
+unsigned int&#160;</td><td class="memItemRight"><b>size</b> () const</td></tr>
+<tr class="memdesc:a16da16cb3f947c49c61821990c286627 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the remaining length of the network string. <br /></td></tr>
+<tr class="memitem:a81f43a81d0750d5f321f3ea6b19e7f5b pub_methods_classBareNetworkString" id="r_a81f43a81d0750d5f321f3ea6b19e7f5b"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>skip</b> (int n)</td></tr>
+<tr class="memdesc:a81f43a81d0750d5f321f3ea6b19e7f5b pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skips the specified number of bytes when reading. <br /></td></tr>
+<tr class="memitem:aac1488d6b8d8261f6b02cfb00f17ca41 pub_methods_classBareNetworkString" id="r_aac1488d6b8d8261f6b02cfb00f17ca41"><td class="memItemLeft">unsigned int&#160;</td><td class="memItemRight"><a class="el" href="classBareNetworkString.html#aac1488d6b8d8261f6b02cfb00f17ca41">getTotalSize</a> () const</td></tr>
+<tr class="memdesc:aac1488d6b8d8261f6b02cfb00f17ca41 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the send size, which is the full length of the buffer.  <br /></td></tr>
+<tr class="memitem:a2b1b7d26aa34a6347bf731fcd7708ebd pub_methods_classBareNetworkString" id="r_a2b1b7d26aa34a6347bf731fcd7708ebd"><td class="memItemLeft">
+<a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><b>addUInt8</b> (const uint8_t value)</td></tr>
+<tr class="memdesc:a2b1b7d26aa34a6347bf731fcd7708ebd pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add 8 bit unsigned int. <br /></td></tr>
+<tr class="memitem:aaa3496d9b13f527342aea10c721653dc pub_methods_classBareNetworkString" id="r_aaa3496d9b13f527342aea10c721653dc"><td class="memItemLeft">
+<a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><b>addChar</b> (const char value)</td></tr>
+<tr class="memdesc:aaa3496d9b13f527342aea10c721653dc pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a single character to the string. <br /></td></tr>
+<tr class="memitem:acab15fabfdb4e74758057d3473548b4f pub_methods_classBareNetworkString" id="r_acab15fabfdb4e74758057d3473548b4f"><td class="memItemLeft">
+<a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><b>addUInt16</b> (const uint16_t value)</td></tr>
+<tr class="memdesc:acab15fabfdb4e74758057d3473548b4f pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds 16 bit unsigned int. <br /></td></tr>
+<tr class="memitem:a4ca12cde66cd4b32a6bb24d32ffec296 pub_methods_classBareNetworkString" id="r_a4ca12cde66cd4b32a6bb24d32ffec296"><td class="memItemLeft">
+<a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><b>addInt24</b> (const int value)</td></tr>
+<tr class="memdesc:a4ca12cde66cd4b32a6bb24d32ffec296 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds signed 24 bit integer. <br /></td></tr>
+<tr class="memitem:ac597fc45dddb57c572f1c818ce148f7c pub_methods_classBareNetworkString" id="r_ac597fc45dddb57c572f1c818ce148f7c"><td class="memItemLeft">
+<a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><b>addUInt32</b> (const uint32_t &amp;value)</td></tr>
+<tr class="memdesc:ac597fc45dddb57c572f1c818ce148f7c pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds unsigned 32 bit integer. <br /></td></tr>
+<tr class="memitem:a6b9c5e03aa1150026dcf518ba46a282c pub_methods_classBareNetworkString" id="r_a6b9c5e03aa1150026dcf518ba46a282c"><td class="memItemLeft">
+<a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><b>addUInt64</b> (const uint64_t &amp;value)</td></tr>
+<tr class="memdesc:a6b9c5e03aa1150026dcf518ba46a282c pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds unsigned 64 bit integer. <br /></td></tr>
+<tr class="memitem:a6efe00981903ad540b9b16f0fdf57ebf pub_methods_classBareNetworkString" id="r_a6efe00981903ad540b9b16f0fdf57ebf"><td class="memItemLeft">
+<a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><b>addFloat</b> (const float value)</td></tr>
+<tr class="memdesc:a6efe00981903ad540b9b16f0fdf57ebf pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a 4 byte floating point value. <br /></td></tr>
+<tr class="memitem:ac0d3dbaa81c661733527005c69f917db pub_methods_classBareNetworkString" id="r_ac0d3dbaa81c661733527005c69f917db"><td class="memItemLeft"><a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="classBareNetworkString.html#ac0d3dbaa81c661733527005c69f917db">operator+=</a> (<a class="el" href="classBareNetworkString.html">BareNetworkString</a> const &amp;value)</td></tr>
+<tr class="memdesc:ac0d3dbaa81c661733527005c69f917db pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the content of another network string.  <br /></td></tr>
+<tr class="memitem:a0dc36809138db2b8616466bb565953a4 pub_methods_classBareNetworkString" id="r_a0dc36809138db2b8616466bb565953a4"><td class="memItemLeft">
+<a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><b>add</b> (float f)</td></tr>
+<tr class="memdesc:a0dc36809138db2b8616466bb565953a4 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a floating point number <br /></td></tr>
+<tr class="memitem:a959229847df2e733e69feab387acd369 pub_methods_classBareNetworkString" id="r_a959229847df2e733e69feab387acd369"><td class="memItemLeft">
+<a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><b>add</b> (const <a class="el" href="classVec3.html">Vec3</a> &amp;xyz)</td></tr>
+<tr class="memdesc:a959229847df2e733e69feab387acd369 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the xyz components of a <a class="el" href="classVec3.html" title="A wrapper around bullets btVector3 to include conventient conversion functions (e....">Vec3</a> to the string. <br /></td></tr>
+<tr class="memitem:a933122807e89605b5576838a42a20dae pub_methods_classBareNetworkString" id="r_a933122807e89605b5576838a42a20dae"><td class="memItemLeft">
+<a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><b>add</b> (const btQuaternion &amp;quat)</td></tr>
+<tr class="memdesc:a933122807e89605b5576838a42a20dae pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the four components of a quaternion. <br /></td></tr>
+<tr class="memitem:aaeea132ac4dd64694e4f5b023085f38e pub_methods_classBareNetworkString" id="r_aaeea132ac4dd64694e4f5b023085f38e"><td class="memItemLeft"><a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="classBareNetworkString.html#aaeea132ac4dd64694e4f5b023085f38e">addTime</a> (int ticks)</td></tr>
+<tr class="memdesc:aaeea132ac4dd64694e4f5b023085f38e pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a function to add a time ticks value.  <br /></td></tr>
+<tr class="memitem:a100a6f43564f31938faac01f17d944e3 pub_methods_classBareNetworkString" id="r_a100a6f43564f31938faac01f17d944e3"><td class="memItemLeft">
+uint64_t&#160;</td><td class="memItemRight"><b>getUInt64</b> () const</td></tr>
+<tr class="memdesc:a100a6f43564f31938faac01f17d944e3 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a unsigned 64 bit integer. <br /></td></tr>
+<tr class="memitem:ad207f98707f7043ca81acc4d43758dfe pub_methods_classBareNetworkString" id="r_ad207f98707f7043ca81acc4d43758dfe"><td class="memItemLeft">
+uint32_t&#160;</td><td class="memItemRight"><b>getUInt32</b> () const</td></tr>
+<tr class="memdesc:ad207f98707f7043ca81acc4d43758dfe pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a unsigned 32 bit integer. <br /></td></tr>
+<tr class="memitem:a8d7653a7d3fa944609b43f57ee6d42d4 pub_methods_classBareNetworkString" id="r_a8d7653a7d3fa944609b43f57ee6d42d4"><td class="memItemLeft">
+int&#160;</td><td class="memItemRight"><b>getInt24</b> () const</td></tr>
+<tr class="memdesc:a8d7653a7d3fa944609b43f57ee6d42d4 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a signed 24 bit integer. <br /></td></tr>
+<tr class="memitem:af7a4efa26e774ddfdf8f8ce6225b098b pub_methods_classBareNetworkString" id="r_af7a4efa26e774ddfdf8f8ce6225b098b"><td class="memItemLeft">
+uint32_t&#160;</td><td class="memItemRight"><b>getTime</b> () const</td></tr>
+<tr class="memdesc:af7a4efa26e774ddfdf8f8ce6225b098b pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a unsigned 32 bit integer. <br /></td></tr>
+<tr class="memitem:aee91275d7829c785d58bfb842f1b7ec5 pub_methods_classBareNetworkString" id="r_aee91275d7829c785d58bfb842f1b7ec5"><td class="memItemLeft">
+uint16_t&#160;</td><td class="memItemRight"><b>getUInt16</b> () const</td></tr>
+<tr class="memdesc:aee91275d7829c785d58bfb842f1b7ec5 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an unsigned 16 bit integer. <br /></td></tr>
+<tr class="memitem:ae8fb7da07ba6ebf3281432b2f70678f7 pub_methods_classBareNetworkString" id="r_ae8fb7da07ba6ebf3281432b2f70678f7"><td class="memItemLeft">
+int16_t&#160;</td><td class="memItemRight"><b>getInt16</b> () const</td></tr>
+<tr class="memdesc:ae8fb7da07ba6ebf3281432b2f70678f7 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an unsigned 16 bit integer. <br /></td></tr>
+<tr class="memitem:a136204f0943c4076914e31f7db7f2bf2 pub_methods_classBareNetworkString" id="r_a136204f0943c4076914e31f7db7f2bf2"><td class="memItemLeft">
+uint8_t&#160;</td><td class="memItemRight"><b>getUInt8</b> () const</td></tr>
+<tr class="memdesc:a136204f0943c4076914e31f7db7f2bf2 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an unsigned 8-bit integer. <br /></td></tr>
+<tr class="memitem:afef75583778352880db65ce38b7171d9 pub_methods_classBareNetworkString" id="r_afef75583778352880db65ce38b7171d9"><td class="memItemLeft">
+int8_t&#160;</td><td class="memItemRight"><b>getInt8</b> () const</td></tr>
+<tr class="memdesc:afef75583778352880db65ce38b7171d9 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an unsigned 8-bit integer. <br /></td></tr>
+<tr class="memitem:a9dd92d1c17fcfb0e2c607a68e466c795 pub_methods_classBareNetworkString" id="r_a9dd92d1c17fcfb0e2c607a68e466c795"><td class="memItemLeft">
+float&#160;</td><td class="memItemRight"><b>getFloat</b> () const</td></tr>
+<tr class="memdesc:a9dd92d1c17fcfb0e2c607a68e466c795 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a 4 byte floating point value. <br /></td></tr>
+<tr class="memitem:aa3c06d5899ae65ee6c9646e4bc097cd8 pub_methods_classBareNetworkString" id="r_aa3c06d5899ae65ee6c9646e4bc097cd8"><td class="memItemLeft">
+<a class="el" href="classVec3.html">Vec3</a>&#160;</td><td class="memItemRight"><b>getVec3</b> () const</td></tr>
+<tr class="memdesc:aa3c06d5899ae65ee6c9646e4bc097cd8 pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classVec3.html" title="A wrapper around bullets btVector3 to include conventient conversion functions (e....">Vec3</a>. <br /></td></tr>
+<tr class="memitem:a108e4fcfe58d40fc23df4bd37086f57c pub_methods_classBareNetworkString" id="r_a108e4fcfe58d40fc23df4bd37086f57c"><td class="memItemLeft">
+btQuaternion&#160;</td><td class="memItemRight"><b>getQuat</b> () const</td></tr>
+<tr class="memdesc:a108e4fcfe58d40fc23df4bd37086f57c pub_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a bullet quaternion. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a3aee223b6f0f6f2f72d4afae620c40a8" id="r_a3aee223b6f0f6f2f72d4afae620c40a8"><td class="memItemLeft"><a id="a3aee223b6f0f6f2f72d4afae620c40a8" name="a3aee223b6f0f6f2f72d4afae620c40a8"></a>
+static void&#160;</td><td class="memItemRight"><b>unitTesting</b> ()</td></tr>
+<tr class="memdesc:a3aee223b6f0f6f2f72d4afae620c40a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit testing function. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+추가로 상속된 멤버들</h2></td></tr>
+<tr class="inherit_header pro_methods_classBareNetworkString"><td colspan="2"><a class="el" href="classBareNetworkString.html">BareNetworkString</a>(으)로부터 상속된 Protected 멤버 함수</td></tr>
+<tr class="memitem:a5cfa29e137188b8ab524a0de4a0ea682 pro_methods_classBareNetworkString" id="r_a5cfa29e137188b8ab524a0de4a0ea682"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="classBareNetworkString.html#a5cfa29e137188b8ab524a0de4a0ea682">getString</a> (int len) const</td></tr>
+<tr class="memdesc:a5cfa29e137188b8ab524a0de4a0ea682 pro_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a part of the network string as a std::string.  <br /></td></tr>
+<tr class="memitem:afe9c5389ed0d2394c31c159612ad44a7 pro_methods_classBareNetworkString" id="r_afe9c5389ed0d2394c31c159612ad44a7"><td class="memItemLeft"><a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="classBareNetworkString.html#afe9c5389ed0d2394c31c159612ad44a7">addString</a> (const std::string &amp;value)</td></tr>
+<tr class="memdesc:afe9c5389ed0d2394c31c159612ad44a7 pro_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a std::string.  <br /></td></tr>
+<tr class="memitem:ae1f68093ef7e26d997123bde3adee1ba pro_methods_classBareNetworkString" id="r_ae1f68093ef7e26d997123bde3adee1ba"><td class="memTemplParams" colspan="2">
+template&lt;typename T, size_t n&gt; </td></tr>
+<tr class="memitem:ae1f68093ef7e26d997123bde3adee1ba pro_methods_classBareNetworkString template"><td class="memItemLeft">T&#160;</td><td class="memItemRight"><b>get</b> () const</td></tr>
+<tr class="memdesc:ae1f68093ef7e26d997123bde3adee1ba pro_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template to get n bytes from a buffer into a single data type. <br /></td></tr>
+<tr class="memitem:acd2556415d94b4f77a7633f75ad94564 pro_methods_classBareNetworkString" id="r_acd2556415d94b4f77a7633f75ad94564"><td class="memTemplParams" colspan="2">
+template&lt;typename T&gt; </td></tr>
+<tr class="memitem:acd2556415d94b4f77a7633f75ad94564 pro_methods_classBareNetworkString template"><td class="memItemLeft">T&#160;</td><td class="memItemRight"><b>get</b> () const</td></tr>
+<tr class="memdesc:acd2556415d94b4f77a7633f75ad94564 pro_methods_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">Another function for n == 1 to surpress warnings in clang. <br /></td></tr>
+<tr class="inherit_header pro_attribs_classBareNetworkString"><td colspan="2"><a class="el" href="classBareNetworkString.html">BareNetworkString</a>(으)로부터 상속된 Protected 속성</td></tr>
+<tr class="memitem:a83c2913f4a54c9f0fe6458bef8c08a6f pro_attribs_classBareNetworkString" id="r_a83c2913f4a54c9f0fe6458bef8c08a6f"><td class="memItemLeft">
+std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight"><b>m_buffer</b></td></tr>
+<tr class="memdesc:a83c2913f4a54c9f0fe6458bef8c08a6f pro_attribs_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual buffer. <br /></td></tr>
+<tr class="memitem:a281bbd6175928bb61575bfe0354ef3cb pro_attribs_classBareNetworkString" id="r_a281bbd6175928bb61575bfe0354ef3cb"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a></td></tr>
+<tr class="memdesc:a281bbd6175928bb61575bfe0354ef3cb pro_attribs_classBareNetworkString"><td class="mdescLeft">&#160;</td><td class="mdescRight">To avoid copying the buffer when bytes are deleted (which only happens at the front), use an offset index.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>A new implementation of <a class="el" href="classNetworkString.html" title="A new implementation of NetworkString, which has a fixed format: Byte 0: The type of the message,...">NetworkString</a>, which has a fixed format: Byte 0: The type of the message, which is actually a bit field: bit 7: if set, the message needs to be handled synchronously, otherwise it can be handled by the separate protocol manager thread. </p>
+<p>bits 6-0: The protocol ID, which identifies the receiving protocol for this message.</p>
+<p>Otherwise this class offers template functions to add arbitrary variables, and retrieve them again. It kept the functionality of 'removing' bytes (e.g. the <a class="el" href="classProtocolManager.html" title="Manages the protocols at runtime.">ProtocolManager</a> would remove the first byte - protocol type - so that the protocols would not see this byte). But this is implemented now by using a base pointer (and not by moving the buffer content). </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">생성자 &amp; 소멸자 문서화</h2>
+<a id="a6eff32a0923cc43ab28ce0d682030dc1" name="a6eff32a0923cc43ab28ce0d682030dc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6eff32a0923cc43ab28ce0d682030dc1">&#9670;&#160;</a></span>NetworkString() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NetworkString::NetworkString </td>
+          <td>(</td>
+          <td class="paramtype">ProtocolType</td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>capacity</em></span><span class="paramdefsep"> = </span><span class="paramdefval">16</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor for a message to be sent. </p>
+<p>It sets the protocol type of this message. It adds 1 byte to the capacity: 1 byte for the protocol type. </p>
+
+</div>
+</div>
+<a id="a645d295e48e718f7768fcd4c8ca50a3d" name="a645d295e48e718f7768fcd4c8ca50a3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a645d295e48e718f7768fcd4c8ca50a3d">&#9670;&#160;</a></span>NetworkString() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NetworkString::NetworkString </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor for a received message. </p>
+<p>It automatically ignored the first 5 bytes which contain the type. Those will be accessed using special functions. </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>network/<a class="el" href="network__string_8hpp_source.html">network_string.hpp</a></li>
+<li>network/<b>network_string.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

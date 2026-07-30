@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: modes/easter_egg_hunt.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>modes</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">easter_egg_hunt.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2012-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef EASTER_EGG_HUNT_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define EASTER_EGG_HUNT_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;modes/linear_world.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;states_screens/race_gui_base.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;utils/cpp2011.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classEasterEggHunt.html">   35</a></span><span class="keyword">class </span><a class="code hl_function" href="classEasterEggHunt.html#ad8c38f4a175b3ff9ed81c55985090b47">EasterEggHunt</a>: <span class="keyword">public</span> <a class="code hl_function" href="classLinearWorld.html#aea800d230081ad49f77b91eca9e344c2">LinearWorld</a></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classEasterEggHunt.html#ab573f013ce9dd72c24621a4dbd6bc006">   39</a></span>    std::vector&lt;int&gt;  <a class="code hl_variable" href="classEasterEggHunt.html#ab573f013ce9dd72c24621a4dbd6bc006">m_eggs_collected</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classEasterEggHunt.html#aab18314b6f9b64c761d91ef0b86280db">   42</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classEasterEggHunt.html#aab18314b6f9b64c761d91ef0b86280db">m_number_of_eggs</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classEasterEggHunt.html#a39b11d1c1be632440f61099dab8ef99e">   45</a></span>    <span class="keywordtype">int</span>   <a class="code hl_variable" href="classEasterEggHunt.html#a39b11d1c1be632440f61099dab8ef99e">m_eggs_found</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">bool</span>  m_only_ghosts;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">float</span> m_finish_time;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>             <a class="code hl_function" href="classEasterEggHunt.html#ad8c38f4a175b3ff9ed81c55985090b47">EasterEggHunt</a>();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classEasterEggHunt.html#a63d33741a6f5fd7c849a8ae174ebce73">~EasterEggHunt</a>();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classEasterEggHunt.html#adf5bfb1f5b3c7e2b1b4df7e8ef53b88d">init</a>() OVERRIDE;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    virtual <span class="keywordtype">bool</span> <a class="code hl_function" href="classEasterEggHunt.html#af81fc5ad6e87cf9201ad5f3b591823b8">isRaceOver</a>() OVERRIDE;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// overriding World methods</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classEasterEggHunt.html#aaf9a6e457547de369e86b014c83285fa">reset</a>(<span class="keywordtype">bool</span> restart=false) OVERRIDE;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classEasterEggHunt.html#a449b2019af03dc16fb71749ed1f57cc7">   61</a></span>    virtual <span class="keywordtype">bool</span> <a class="code hl_function" href="classEasterEggHunt.html#a449b2019af03dc16fb71749ed1f57cc7">raceHasLaps</a>() OVERRIDE { <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classEasterEggHunt.html#adea554cff9d327741a75fe0ecf24ef8e">getIdent</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classEasterEggHunt.html#af7954ebd5d82483c4f7c43c022f2452b">terminateRace</a>() OVERRIDE;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classEasterEggHunt.html#a37aa8eebe5885fcf68c143f698616e56">update</a>(<span class="keywordtype">int</span> ticks) OVERRIDE;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classEasterEggHunt.html#a20c6a30a681b7893913223bd47a1060f">getKartsDisplayInfo</a>(</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                 std::vector&lt;<a class="code hl_class" href="classRaceGUIBase.html">RaceGUIBase</a>::KartIconDisplayInfo&gt; *info) OVERRIDE;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classEasterEggHunt.html#af69b7bf31cec5f619bbbfbee81361dee">collectedItem</a>(const <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                               const <a class="code hl_class" href="classItemState.html">ItemState</a> *item     ) OVERRIDE;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classEasterEggHunt.html#a6565210566e21570989a3b6d2fa51845">collectedEasterEggGhost</a>(<span class="keywordtype">int</span> world_id);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    const <span class="keywordtype">int</span>  numberOfEggsFound() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classEasterEggHunt.html#a39b11d1c1be632440f61099dab8ef99e">m_eggs_found</a>; }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">const</span> <span class="keywordtype">int</span>  numberOfEggsToFind() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classEasterEggHunt.html#aab18314b6f9b64c761d91ef0b86280db">m_number_of_eggs</a>; }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> updateKartRanks();</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classEasterEggHunt.html#ae2a80ef7ccb692cc67f48638e48a13f1">readData</a>(<span class="keyword">const</span> std::string &amp;filename);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classEasterEggHunt.html#af502ef2b1487000d7c0fba5795e1c49b">checkForWrongDirection</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i, <span class="keywordtype">float</span> dt) OVERRIDE;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classEasterEggHunt.html#a62e931ae5a3b71b16066cc480287f194">estimateFinishTimeForKart</a>(AbstractKart* kart) OVERRIDE;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>};   <span class="comment">// EasterEggHunt</span></div>
+</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_a20c6a30a681b7893913223bd47a1060f"><div class="ttname"><a href="classEasterEggHunt.html#a20c6a30a681b7893913223bd47a1060f">EasterEggHunt::getKartsDisplayInfo</a></div><div class="ttdeci">virtual void getKartsDisplayInfo(std::vector&lt; RaceGUIBase::KartIconDisplayInfo &gt; *info) OVERRIDE</div><div class="ttdoc">Returns the data to display in the race gui.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:214</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_a37aa8eebe5885fcf68c143f698616e56"><div class="ttname"><a href="classEasterEggHunt.html#a37aa8eebe5885fcf68c143f698616e56">EasterEggHunt::update</a></div><div class="ttdeci">virtual void update(int ticks) OVERRIDE</div><div class="ttdoc">Update the world and the track.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:168</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_a39b11d1c1be632440f61099dab8ef99e"><div class="ttname"><a href="classEasterEggHunt.html#a39b11d1c1be632440f61099dab8ef99e">EasterEggHunt::m_eggs_found</a></div><div class="ttdeci">int m_eggs_found</div><div class="ttdoc">Number of eggs found so far by players.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.hpp:45</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_a449b2019af03dc16fb71749ed1f57cc7"><div class="ttname"><a href="classEasterEggHunt.html#a449b2019af03dc16fb71749ed1f57cc7">EasterEggHunt::raceHasLaps</a></div><div class="ttdeci">virtual bool raceHasLaps() OVERRIDE</div><div class="ttdoc">Returns if this race mode has laps.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.hpp:61</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_a62e931ae5a3b71b16066cc480287f194"><div class="ttname"><a href="classEasterEggHunt.html#a62e931ae5a3b71b16066cc480287f194">EasterEggHunt::estimateFinishTimeForKart</a></div><div class="ttdeci">virtual float estimateFinishTimeForKart(AbstractKart *kart) OVERRIDE</div><div class="ttdoc">In Easter Egg mode the finish time is just the time the race is over, since there are no AI karts and...</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:248</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_a63d33741a6f5fd7c849a8ae174ebce73"><div class="ttname"><a href="classEasterEggHunt.html#a63d33741a6f5fd7c849a8ae174ebce73">EasterEggHunt::~EasterEggHunt</a></div><div class="ttdeci">virtual ~EasterEggHunt()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:70</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_a6565210566e21570989a3b6d2fa51845"><div class="ttname"><a href="classEasterEggHunt.html#a6565210566e21570989a3b6d2fa51845">EasterEggHunt::collectedEasterEggGhost</a></div><div class="ttdeci">void collectedEasterEggGhost(int world_id)</div><div class="ttdoc">Called when a ghost kart has collected an egg.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:159</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_aab18314b6f9b64c761d91ef0b86280db"><div class="ttname"><a href="classEasterEggHunt.html#aab18314b6f9b64c761d91ef0b86280db">EasterEggHunt::m_number_of_eggs</a></div><div class="ttdeci">int m_number_of_eggs</div><div class="ttdoc">Overall number of easter eggs.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.hpp:42</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_aaf9a6e457547de369e86b014c83285fa"><div class="ttname"><a href="classEasterEggHunt.html#aaf9a6e457547de369e86b014c83285fa">EasterEggHunt::reset</a></div><div class="ttdeci">virtual void reset(bool restart=false) OVERRIDE</div><div class="ttdoc">Called when an egg hunt is restarted.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:201</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_ab573f013ce9dd72c24621a4dbd6bc006"><div class="ttname"><a href="classEasterEggHunt.html#ab573f013ce9dd72c24621a4dbd6bc006">EasterEggHunt::m_eggs_collected</a></div><div class="ttdeci">std::vector&lt; int &gt; m_eggs_collected</div><div class="ttdoc">Keeps track of how many eggs each kart has found.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.hpp:39</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_ad8c38f4a175b3ff9ed81c55985090b47"><div class="ttname"><a href="classEasterEggHunt.html#ad8c38f4a175b3ff9ed81c55985090b47">EasterEggHunt::EasterEggHunt</a></div><div class="ttdeci">EasterEggHunt()</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:32</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_adea554cff9d327741a75fe0ecf24ef8e"><div class="ttname"><a href="classEasterEggHunt.html#adea554cff9d327741a75fe0ecf24ef8e">EasterEggHunt::getIdent</a></div><div class="ttdeci">virtual const std::string &amp; getIdent() const OVERRIDE</div><div class="ttdoc">Returns the internal identifier for this race.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:137</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_adf5bfb1f5b3c7e2b1b4df7e8ef53b88d"><div class="ttname"><a href="classEasterEggHunt.html#adf5bfb1f5b3c7e2b1b4df7e8ef53b88d">EasterEggHunt::init</a></div><div class="ttdeci">virtual void init() OVERRIDE</div><div class="ttdoc">Initialises the easer egg hunt.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:44</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_ae2a80ef7ccb692cc67f48638e48a13f1"><div class="ttname"><a href="classEasterEggHunt.html#ae2a80ef7ccb692cc67f48638e48a13f1">EasterEggHunt::readData</a></div><div class="ttdeci">void readData(const std::string &amp;filename)</div><div class="ttdoc">Check if a file easter_eggs.xml exists in the track directory, and if so loads that file and makes th...</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:78</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_af502ef2b1487000d7c0fba5795e1c49b"><div class="ttname"><a href="classEasterEggHunt.html#af502ef2b1487000d7c0fba5795e1c49b">EasterEggHunt::checkForWrongDirection</a></div><div class="ttdeci">virtual void checkForWrongDirection(unsigned int i, float dt) OVERRIDE</div><div class="ttdoc">Override the base class method to change behavior.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:233</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_af69b7bf31cec5f619bbbfbee81361dee"><div class="ttname"><a href="classEasterEggHunt.html#af69b7bf31cec5f619bbbfbee81361dee">EasterEggHunt::collectedItem</a></div><div class="ttdeci">virtual void collectedItem(const AbstractKart *kart, const ItemState *item) OVERRIDE</div><div class="ttdoc">Called when a kart has collected an egg.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:146</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_af7954ebd5d82483c4f7c43c022f2452b"><div class="ttname"><a href="classEasterEggHunt.html#af7954ebd5d82483c4f7c43c022f2452b">EasterEggHunt::terminateRace</a></div><div class="ttdeci">virtual void terminateRace() OVERRIDE</div><div class="ttdoc">Called at the end of a race.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:239</div></div>
+<div class="ttc" id="aclassEasterEggHunt_html_af81fc5ad6e87cf9201ad5f3b591823b8"><div class="ttname"><a href="classEasterEggHunt.html#af81fc5ad6e87cf9201ad5f3b591823b8">EasterEggHunt::isRaceOver</a></div><div class="ttdeci">virtual bool isRaceOver() OVERRIDE</div><div class="ttdoc">The hunt is over once all eggs are found.</div><div class="ttdef"><b>Definition</b> easter_egg_hunt.cpp:177</div></div>
+<div class="ttc" id="aclassItemState_html"><div class="ttname"><a href="classItemState.html">ItemState</a></div><div class="ttdoc">Contains the state information of an item, i.e.</div><div class="ttdef"><b>Definition</b> item.hpp:53</div></div>
+<div class="ttc" id="aclassLinearWorld_html_aea800d230081ad49f77b91eca9e344c2"><div class="ttname"><a href="classLinearWorld.html#aea800d230081ad49f77b91eca9e344c2">LinearWorld::LinearWorld</a></div><div class="ttdeci">LinearWorld()</div><div class="ttdoc">Constructs the linear world.</div><div class="ttdef"><b>Definition</b> linear_world.cpp:61</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html"><div class="ttname"><a href="classRaceGUIBase.html">RaceGUIBase</a></div><div class="ttdoc">An abstract base class for the two race guis (race_gui and race_result gui)</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:50</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

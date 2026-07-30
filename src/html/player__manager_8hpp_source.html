@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: config/player_manager.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>config</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">player_manager.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2010-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_PLAYER_MANAGER_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_PLAYER_MANAGER_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;achievements/achievement.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;achievements/achievements_status.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;config/player_profile.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;utils/ptr_vector.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;irrString.h&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;cstddef&gt;</span>  <span class="comment">// NULL</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">class </span><a class="code hl_class" href="classAchievementsStatus.html">AchievementsStatus</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">namespace </span>Online</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">class </span>CurrentUser;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">class </span><a class="code hl_class" href="classOnline_1_1HTTPRequest.html">HTTPRequest</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">class </span><a class="code hl_class" href="classOnline_1_1OnlineProfile.html">OnlineProfile</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">class </span><a class="code hl_class" href="classOnline_1_1XMLRequest.html">XMLRequest</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">class </span><a class="code hl_class" href="classPlayerProfile.html">PlayerProfile</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="};">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classPlayerManager.html">   55</a></span><span class="keyword">class </span><a class="code hl_function" href="classPlayerManager.html#ae093e4e4e7eecdf5b46de72f5827d71d">PlayerManager</a> : <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>{</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">static</span> <a class="code hl_function" href="classPlayerManager.html#ae093e4e4e7eecdf5b46de72f5827d71d">PlayerManager</a>* m_player_manager;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <a class="code hl_class" href="classPtrVector.html">PtrVector&lt;PlayerProfile&gt;</a> m_all_players;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classPlayerManager.html#a6b95ff8ae5aef740f2b4be7d358a1610">   63</a></span>    <a class="code hl_class" href="classPlayerProfile.html">PlayerProfile</a>* <a class="code hl_variable" href="classPlayerManager.html#a6b95ff8ae5aef740f2b4be7d358a1610">m_current_player</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classPlayerManager.html#ab047a16b544219f677d6f1aad5c620a9">   67</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> *<a class="code hl_variable" href="classPlayerManager.html#ab047a16b544219f677d6f1aad5c620a9">m_player_data</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#a9bdfbb85fc70c06d1722aa84e86c0c34">load</a>();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>     <a class="code hl_function" href="classPlayerManager.html#ae093e4e4e7eecdf5b46de72f5827d71d">PlayerManager</a>();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <a class="code hl_function" href="classPlayerManager.html#ab53de6b16914b7591fc2bd3038069ac7">~PlayerManager</a>();</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#a65d04c76943322713cd13331fe1867df">create</a>();</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classPlayerManager.html#aabc2feba49406cd2765ae6db8aac4309">   78</a></span>    <span class="keyword">static</span> <a class="code hl_function" href="classPlayerManager.html#ae093e4e4e7eecdf5b46de72f5827d71d">PlayerManager</a>* <a class="code hl_function" href="classPlayerManager.html#aabc2feba49406cd2765ae6db8aac4309">get</a>()</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        assert(m_player_manager);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordflow">return</span> m_player_manager;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }   <span class="comment">// get</span></div>
+</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> destroy()</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keyword">delete</span> m_player_manager;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        m_player_manager = NULL;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }   <span class="comment">// destroy</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#a1a0f0a05fdf925653b58acb4b138bbcd">save</a>();</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#a968f25eda88561c64455300ab998a874">initRemainingData</a>();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classPlayerManager.html#a98beb45e6189a3f65feadb5e96872e93">getUniqueId</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#a0d2e1b7cd7c0baba32c840343af02b03">addDefaultPlayer</a>();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    PlayerProfile* <a class="code hl_function" href="classPlayerManager.html#a455aa99465d7aab1262311e5d6bdf9ab">addNewPlayer</a>(<span class="keyword">const</span> irr::core::stringw&amp; name);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#a95311964f529b1b92f897b02accd6e97">createGuestPlayers</a>(<span class="keywordtype">int</span> n);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#a59ebaca94e3ac4d3190b5a7e3e663643">deletePlayer</a>(PlayerProfile *player);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#a6b15c53bb17699307cba86a10e15588c">setCurrentPlayer</a>(PlayerProfile *player);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">const</span> PlayerProfile *<a class="code hl_function" href="classPlayerManager.html#a218e35b677266255522118e1c6c81156">getPlayerById</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#ae8e4534fbe170ce01880178efcb0842e">enforceCurrentPlayer</a>();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classPlayerManager.html#a600f9d5822550ac101037e5d9b971f15">getNumNonGuestPlayers</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#adbb4e85108cca995afdeb07ebc1f2532">setUserDetails</a>(std::shared_ptr&lt;Online::HTTPRequest&gt; request,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                               <span class="keyword">const</span> std::string &amp;action,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                               <span class="keyword">const</span> std::string &amp;php_name = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classPlayerManager.html#ad9f3d76d9d6e3bdef9558181dc7eff05">getCurrentOnlineId</a>();</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classPlayerManager.html#a0517426fcb87f6a79285f1cb002cf765">isCurrentLoggedIn</a>();</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keyword">static</span> Online::OnlineProfile* <a class="code hl_function" href="classPlayerManager.html#a191d7a43e1c6b299c24c46eb80b33f2d">getCurrentOnlineProfile</a>();</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">static</span> <a class="code hl_enumeration" href="classPlayerProfile.html#aa56094aa8ccfa69f01a60a32e1f5cdf6">PlayerProfile::OnlineState</a> <a class="code hl_function" href="classPlayerManager.html#a4718d8949484329691bfd33699e7058e">getCurrentOnlineState</a>();</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#ac525a88705b7c65e0eb471492475ead3">requestOnlinePoll</a>();</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#af311b9a2f775199eef5aabda91a9d8e6">resumeSavedSession</a>();</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#a6b865b597570d1277c87b2c305b1bd07">onSTKQuit</a>();</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#afc44fce80f9332718cc2e5da603c9e60">requestSignOut</a>();</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#aa47565f94af3e06d638680091e5cb75b">requestSignIn</a>(<span class="keyword">const</span> irr::core::stringw &amp;username,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                              <span class="keyword">const</span> irr::core::stringw &amp;password);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00118" data-start="{" data-end="}">
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classPlayerManager.html#a2947b28309904aaf1ac2b8ae85dd5cc1">  118</a></span>    <span class="keyword">static</span> <a class="code hl_class" href="classPlayerProfile.html">PlayerProfile</a>* <a class="code hl_function" href="classPlayerManager.html#a2947b28309904aaf1ac2b8ae85dd5cc1">getCurrentPlayer</a>()</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classPlayerManager.html#aabc2feba49406cd2765ae6db8aac4309">get</a>()-&gt;<a class="code hl_variable" href="classPlayerManager.html#a6b95ff8ae5aef740f2b4be7d358a1610">m_current_player</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    }   <span class="comment">// getCurrentPlayer</span></div>
+</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <a class="code hl_class" href="classPlayerProfile.html">PlayerProfile</a> *<a class="code hl_function" href="classPlayerManager.html#abc9f1807fe350e69798d76117081aedd">getPlayer</a>(<span class="keyword">const</span> irr::core::stringw &amp;name);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classPlayerManager.html#aad31551336de735867c4d1572ae91a7f">  127</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classPlayerManager.html#aad31551336de735867c4d1572ae91a7f">getNumPlayers</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_all_players.size(); }</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00130" data-start="{" data-end="}">
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classPlayerManager.html#a3c6628f87c603f217f0489d6737b4e88">  130</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classPlayerProfile.html">PlayerProfile</a> *<a class="code hl_function" href="classPlayerManager.html#a3c6628f87c603f217f0489d6737b4e88">getPlayer</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordflow">return</span> &amp;m_all_players[n];</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }   <span class="comment">// getPlayer</span></div>
+</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classPlayerManager.html#a8044dbfcd85b31bf67ca5ccc1a12c42a">  136</a></span>    <a class="code hl_class" href="classPlayerProfile.html">PlayerProfile</a> *<a class="code hl_function" href="classPlayerManager.html#a8044dbfcd85b31bf67ca5ccc1a12c42a">getPlayer</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n)  { <span class="keywordflow">return</span> &amp;m_all_players[n];}</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00139" data-start="{" data-end="}">
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classPlayerManager.html#ad862f325d5966b5064fe0ee72abd704f">  139</a></span>    <span class="keyword">static</span> <a class="code hl_class" href="classAchievementsStatus.html">AchievementsStatus</a>* <a class="code hl_function" href="classPlayerManager.html#ad862f325d5966b5064fe0ee72abd704f">getCurrentAchievementsStatus</a>()</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    {</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classPlayerManager.html#a2947b28309904aaf1ac2b8ae85dd5cc1">PlayerManager::getCurrentPlayer</a>()-&gt;getAchievementsStatus();</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    }   <span class="comment">// getCurrentAchievementsStatus</span></div>
+</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00150" data-start="{" data-end="}">
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="classPlayerManager.html#a41f900546eed66519ff12806cca44571">  150</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#a41f900546eed66519ff12806cca44571">increaseAchievement</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> achievement_data_id,</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                                    <span class="keywordtype">int</span> increase = 1)</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    {</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <a class="code hl_function" href="classPlayerManager.html#ad862f325d5966b5064fe0ee72abd704f">getCurrentAchievementsStatus</a>()</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            -&gt;increaseDataVar(achievement_data_id, increase);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    }   <span class="comment">// increaseAchievement</span></div>
+</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00161" data-start="{" data-end="}">
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classPlayerManager.html#a326f42568e526e42a0d49ee07ec84105">  161</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#a326f42568e526e42a0d49ee07ec84105">resetAchievementData</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> achievement_data_id)</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    {</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <a class="code hl_function" href="classPlayerManager.html#ad862f325d5966b5064fe0ee72abd704f">getCurrentAchievementsStatus</a>()</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            -&gt;resetDataVar(achievement_data_id);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    }   <span class="comment">// resetAchievementData</span></div>
+</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00171" data-start="{" data-end="}">
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="classPlayerManager.html#a06f4f3d61ca23a16f6f873f602a36e17">  171</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#a06f4f3d61ca23a16f6f873f602a36e17">onRaceEnd</a>(<span class="keywordtype">bool</span> restart)</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    {</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <a class="code hl_function" href="classPlayerManager.html#ad862f325d5966b5064fe0ee72abd704f">getCurrentAchievementsStatus</a>()-&gt;onRaceEnd(restart);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    }   <span class="comment">// onRaceEnd</span></div>
+</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="comment">// ----------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00181" data-start="{" data-end="}">
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classPlayerManager.html#a7899f51b1c5a4cfae302bc2377251c90">  181</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerManager.html#a7899f51b1c5a4cfae302bc2377251c90">trackEvent</a>(std::string track_ident, AchievementsStatus::TrackData event)</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    {</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <a class="code hl_function" href="classPlayerManager.html#ad862f325d5966b5064fe0ee72abd704f">getCurrentAchievementsStatus</a>()-&gt;<a class="code hl_function" href="classAchievementsStatus.html#abfd78afeab9eabc0439f7afb4234719d">trackEvent</a>(track_ident, event);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    } <span class="comment">// trackEvent</span></div>
+</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="comment">// ----------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> resetKartHits(<span class="keywordtype">int</span> num_karts)</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        <a class="code hl_function" href="classPlayerManager.html#ad862f325d5966b5064fe0ee72abd704f">getCurrentAchievementsStatus</a>()-&gt;resetKartHits(num_karts);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    } <span class="comment">// resetKartHits</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="comment">// ----------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> addKartHit(<span class="keywordtype">int</span> kart_id)</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    {</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <a class="code hl_function" href="classPlayerManager.html#ad862f325d5966b5064fe0ee72abd704f">getCurrentAchievementsStatus</a>()-&gt;addKartHit(kart_id);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    } <span class="comment">// addKartHit</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>};   <span class="comment">// PlayerManager</span></div>
+</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAchievementsStatus_html"><div class="ttname"><a href="classAchievementsStatus.html">AchievementsStatus</a></div><div class="ttdoc">This class keeps tracks of all achievements of one player.</div><div class="ttdef"><b>Definition</b> achievements_status.hpp:43</div></div>
+<div class="ttc" id="aclassAchievementsStatus_html_abfd78afeab9eabc0439f7afb4234719d"><div class="ttname"><a href="classAchievementsStatus.html#abfd78afeab9eabc0439f7afb4234719d">AchievementsStatus::trackEvent</a></div><div class="ttdeci">void trackEvent(std::string track_ident, AchievementsStatus::TrackData event)</div><div class="ttdoc">Use the event type to increment the correct track event counter</div><div class="ttdef"><b>Definition</b> achievements_status.cpp:601</div></div>
+<div class="ttc" id="aclassOnline_1_1HTTPRequest_html"><div class="ttname"><a href="classOnline_1_1HTTPRequest.html">Online::HTTPRequest</a></div><div class="ttdoc">A http request.</div><div class="ttdef"><b>Definition</b> http_request.hpp:46</div></div>
+<div class="ttc" id="aclassOnline_1_1OnlineProfile_html"><div class="ttname"><a href="classOnline_1_1OnlineProfile.html">Online::OnlineProfile</a></div><div class="ttdoc">Class that represents an online profile.</div><div class="ttdef"><b>Definition</b> online_profile.hpp:42</div></div>
+<div class="ttc" id="aclassOnline_1_1XMLRequest_html"><div class="ttname"><a href="classOnline_1_1XMLRequest.html">Online::XMLRequest</a></div><div class="ttdoc">A http request expecting a xml return value.</div><div class="ttdef"><b>Definition</b> xml_request.hpp:36</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a0517426fcb87f6a79285f1cb002cf765"><div class="ttname"><a href="classPlayerManager.html#a0517426fcb87f6a79285f1cb002cf765">PlayerManager::isCurrentLoggedIn</a></div><div class="ttdeci">static bool isCurrentLoggedIn()</div><div class="ttdoc">Returns whether a user is signed in or not.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:62</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a06f4f3d61ca23a16f6f873f602a36e17"><div class="ttname"><a href="classPlayerManager.html#a06f4f3d61ca23a16f6f873f602a36e17">PlayerManager::onRaceEnd</a></div><div class="ttdeci">static void onRaceEnd(bool restart)</div><div class="ttdoc">Reset achievements which have to be done in one race</div><div class="ttdef"><b>Definition</b> player_manager.hpp:171</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a0d2e1b7cd7c0baba32c840343af02b03"><div class="ttname"><a href="classPlayerManager.html#a0d2e1b7cd7c0baba32c840343af02b03">PlayerManager::addDefaultPlayer</a></div><div class="ttdeci">void addDefaultPlayer()</div><div class="ttdoc">Called when no player profiles exists.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:352</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a191d7a43e1c6b299c24c46eb80b33f2d"><div class="ttname"><a href="classPlayerManager.html#a191d7a43e1c6b299c24c46eb80b33f2d">PlayerManager::getCurrentOnlineProfile</a></div><div class="ttdeci">static Online::OnlineProfile * getCurrentOnlineProfile()</div><div class="ttdoc">Returns the current online profile (which is the list of all achievements and friends).</div><div class="ttdef"><b>Definition</b> player_manager.cpp:140</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a1a0f0a05fdf925653b58acb4b138bbcd"><div class="ttname"><a href="classPlayerManager.html#a1a0f0a05fdf925653b58acb4b138bbcd">PlayerManager::save</a></div><div class="ttdeci">void save()</div><div class="ttdoc">Saves all player profiles to players.xml.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:249</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a218e35b677266255522118e1c6c81156"><div class="ttname"><a href="classPlayerManager.html#a218e35b677266255522118e1c6c81156">PlayerManager::getPlayerById</a></div><div class="ttdeci">const PlayerProfile * getPlayerById(unsigned int id)</div><div class="ttdoc">Returns a PlayerProfile with a given id.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:442</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a2947b28309904aaf1ac2b8ae85dd5cc1"><div class="ttname"><a href="classPlayerManager.html#a2947b28309904aaf1ac2b8ae85dd5cc1">PlayerManager::getCurrentPlayer</a></div><div class="ttdeci">static PlayerProfile * getCurrentPlayer()</div><div class="ttdoc">Returns the current player.</div><div class="ttdef"><b>Definition</b> player_manager.hpp:118</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a326f42568e526e42a0d49ee07ec84105"><div class="ttname"><a href="classPlayerManager.html#a326f42568e526e42a0d49ee07ec84105">PlayerManager::resetAchievementData</a></div><div class="ttdeci">static void resetAchievementData(unsigned int achievement_data_id)</div><div class="ttdoc">Reset an achievement data for current player.</div><div class="ttdef"><b>Definition</b> player_manager.hpp:161</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a3c6628f87c603f217f0489d6737b4e88"><div class="ttname"><a href="classPlayerManager.html#a3c6628f87c603f217f0489d6737b4e88">PlayerManager::getPlayer</a></div><div class="ttdeci">const PlayerProfile * getPlayer(unsigned int n) const</div><div class="ttdoc">Returns a player with a given unique id.</div><div class="ttdef"><b>Definition</b> player_manager.hpp:130</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a41f900546eed66519ff12806cca44571"><div class="ttname"><a href="classPlayerManager.html#a41f900546eed66519ff12806cca44571">PlayerManager::increaseAchievement</a></div><div class="ttdeci">static void increaseAchievement(unsigned int achievement_data_id, int increase=1)</div><div class="ttdoc">A handy shortcut to increase points for an achievement data of the current player.</div><div class="ttdef"><b>Definition</b> player_manager.hpp:150</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a455aa99465d7aab1262311e5d6bdf9ab"><div class="ttname"><a href="classPlayerManager.html#a455aa99465d7aab1262311e5d6bdf9ab">PlayerManager::addNewPlayer</a></div><div class="ttdeci">PlayerProfile * addNewPlayer(const irr::core::stringw &amp;name)</div><div class="ttdoc">Adds a new player to the list of all players.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:290</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a4718d8949484329691bfd33699e7058e"><div class="ttname"><a href="classPlayerManager.html#a4718d8949484329691bfd33699e7058e">PlayerManager::getCurrentOnlineState</a></div><div class="ttdeci">static PlayerProfile::OnlineState getCurrentOnlineState()</div><div class="ttdoc">Returns the online state of the current player.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:80</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a59ebaca94e3ac4d3190b5a7e3e663643"><div class="ttname"><a href="classPlayerManager.html#a59ebaca94e3ac4d3190b5a7e3e663643">PlayerManager::deletePlayer</a></div><div class="ttdeci">void deletePlayer(PlayerProfile *player)</div><div class="ttdoc">Deletes a player profile from the list of all profiles.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:300</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a600f9d5822550ac101037e5d9b971f15"><div class="ttname"><a href="classPlayerManager.html#a600f9d5822550ac101037e5d9b971f15">PlayerManager::getNumNonGuestPlayers</a></div><div class="ttdeci">unsigned int getNumNonGuestPlayers() const</div><div class="ttdoc">Returns the number of &#39;real&#39; (non-guest) players.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:412</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a65d04c76943322713cd13331fe1867df"><div class="ttname"><a href="classPlayerManager.html#a65d04c76943322713cd13331fe1867df">PlayerManager::create</a></div><div class="ttdeci">static void create()</div><div class="ttdoc">Create the instance of the player manager.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:41</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a6b15c53bb17699307cba86a10e15588c"><div class="ttname"><a href="classPlayerManager.html#a6b15c53bb17699307cba86a10e15588c">PlayerManager::setCurrentPlayer</a></div><div class="ttdeci">void setCurrentPlayer(PlayerProfile *player)</div><div class="ttdoc">Sets the current player.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:471</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a6b865b597570d1277c87b2c305b1bd07"><div class="ttname"><a href="classPlayerManager.html#a6b865b597570d1277c87b2c305b1bd07">PlayerManager::onSTKQuit</a></div><div class="ttdeci">static void onSTKQuit()</div><div class="ttdoc">Sends a message to the server that the client has been closed, if a user is signed in.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:106</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a6b95ff8ae5aef740f2b4be7d358a1610"><div class="ttname"><a href="classPlayerManager.html#a6b95ff8ae5aef740f2b4be7d358a1610">PlayerManager::m_current_player</a></div><div class="ttdeci">PlayerProfile * m_current_player</div><div class="ttdoc">A pointer to the current player.</div><div class="ttdef"><b>Definition</b> player_manager.hpp:63</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a7899f51b1c5a4cfae302bc2377251c90"><div class="ttname"><a href="classPlayerManager.html#a7899f51b1c5a4cfae302bc2377251c90">PlayerManager::trackEvent</a></div><div class="ttdeci">static void trackEvent(std::string track_ident, AchievementsStatus::TrackData event)</div><div class="ttdoc">Transmit an incrementation request of one of the track event counters</div><div class="ttdef"><b>Definition</b> player_manager.hpp:181</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a8044dbfcd85b31bf67ca5ccc1a12c42a"><div class="ttname"><a href="classPlayerManager.html#a8044dbfcd85b31bf67ca5ccc1a12c42a">PlayerManager::getPlayer</a></div><div class="ttdeci">PlayerProfile * getPlayer(unsigned int n)</div><div class="ttdoc">Returns a player with a given unique id.</div><div class="ttdef"><b>Definition</b> player_manager.hpp:136</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a95311964f529b1b92f897b02accd6e97"><div class="ttname"><a href="classPlayerManager.html#a95311964f529b1b92f897b02accd6e97">PlayerManager::createGuestPlayers</a></div><div class="ttdeci">void createGuestPlayers(int n)</div><div class="ttdoc">Makes sure at least n guest players exist.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:387</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a968f25eda88561c64455300ab998a874"><div class="ttname"><a href="classPlayerManager.html#a968f25eda88561c64455300ab998a874">PlayerManager::initRemainingData</a></div><div class="ttdeci">void initRemainingData()</div><div class="ttdoc">The 2nd loading stage.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:220</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a98beb45e6189a3f65feadb5e96872e93"><div class="ttname"><a href="classPlayerManager.html#a98beb45e6189a3f65feadb5e96872e93">PlayerManager::getUniqueId</a></div><div class="ttdeci">unsigned int getUniqueId() const</div><div class="ttdoc">This returns a unique id.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:425</div></div>
+<div class="ttc" id="aclassPlayerManager_html_a9bdfbb85fc70c06d1722aa84e86c0c34"><div class="ttname"><a href="classPlayerManager.html#a9bdfbb85fc70c06d1722aa84e86c0c34">PlayerManager::load</a></div><div class="ttdeci">void load()</div><div class="ttdoc">Manages the loading of saved player data from the players.xml file.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:178</div></div>
+<div class="ttc" id="aclassPlayerManager_html_aa47565f94af3e06d638680091e5cb75b"><div class="ttname"><a href="classPlayerManager.html#aa47565f94af3e06d638680091e5cb75b">PlayerManager::requestSignIn</a></div><div class="ttdeci">static void requestSignIn(const irr::core::stringw &amp;username, const irr::core::stringw &amp;password)</div><div class="ttdoc">Create a signin request.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:122</div></div>
+<div class="ttc" id="aclassPlayerManager_html_aabc2feba49406cd2765ae6db8aac4309"><div class="ttname"><a href="classPlayerManager.html#aabc2feba49406cd2765ae6db8aac4309">PlayerManager::get</a></div><div class="ttdeci">static PlayerManager * get()</div><div class="ttdoc">Static singleton get function.</div><div class="ttdef"><b>Definition</b> player_manager.hpp:78</div></div>
+<div class="ttc" id="aclassPlayerManager_html_aad31551336de735867c4d1572ae91a7f"><div class="ttname"><a href="classPlayerManager.html#aad31551336de735867c4d1572ae91a7f">PlayerManager::getNumPlayers</a></div><div class="ttdeci">unsigned int getNumPlayers() const</div><div class="ttdoc">Returns the number of players in the config file.</div><div class="ttdef"><b>Definition</b> player_manager.hpp:127</div></div>
+<div class="ttc" id="aclassPlayerManager_html_ab047a16b544219f677d6f1aad5c620a9"><div class="ttname"><a href="classPlayerManager.html#ab047a16b544219f677d6f1aad5c620a9">PlayerManager::m_player_data</a></div><div class="ttdeci">const XMLNode * m_player_data</div><div class="ttdoc">Saves the XML tree from players.xml for use in the 2nd loading stage (initRemainingData).</div><div class="ttdef"><b>Definition</b> player_manager.hpp:67</div></div>
+<div class="ttc" id="aclassPlayerManager_html_ab53de6b16914b7591fc2bd3038069ac7"><div class="ttname"><a href="classPlayerManager.html#ab53de6b16914b7591fc2bd3038069ac7">PlayerManager::~PlayerManager</a></div><div class="ttdeci">~PlayerManager()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:157</div></div>
+<div class="ttc" id="aclassPlayerManager_html_abc9f1807fe350e69798d76117081aedd"><div class="ttname"><a href="classPlayerManager.html#abc9f1807fe350e69798d76117081aedd">PlayerManager::getPlayer</a></div><div class="ttdeci">PlayerProfile * getPlayer(const irr::core::stringw &amp;name)</div><div class="ttdoc">Returns a player with a given name.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:457</div></div>
+<div class="ttc" id="aclassPlayerManager_html_ac525a88705b7c65e0eb471492475ead3"><div class="ttname"><a href="classPlayerManager.html#ac525a88705b7c65e0eb471492475ead3">PlayerManager::requestOnlinePoll</a></div><div class="ttdeci">static void requestOnlinePoll()</div><div class="ttdoc">Sends a request to the server to see if any new information is available.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:89</div></div>
+<div class="ttc" id="aclassPlayerManager_html_ad862f325d5966b5064fe0ee72abd704f"><div class="ttname"><a href="classPlayerManager.html#ad862f325d5966b5064fe0ee72abd704f">PlayerManager::getCurrentAchievementsStatus</a></div><div class="ttdeci">static AchievementsStatus * getCurrentAchievementsStatus()</div><div class="ttdoc">A handy shortcut funtion.</div><div class="ttdef"><b>Definition</b> player_manager.hpp:139</div></div>
+<div class="ttc" id="aclassPlayerManager_html_ad9f3d76d9d6e3bdef9558181dc7eff05"><div class="ttname"><a href="classPlayerManager.html#ad9f3d76d9d6e3bdef9558181dc7eff05">PlayerManager::getCurrentOnlineId</a></div><div class="ttdeci">static unsigned int getCurrentOnlineId()</div><div class="ttdoc">Returns the online id of the current player.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:71</div></div>
+<div class="ttc" id="aclassPlayerManager_html_adbb4e85108cca995afdeb07ebc1f2532"><div class="ttname"><a href="classPlayerManager.html#adbb4e85108cca995afdeb07ebc1f2532">PlayerManager::setUserDetails</a></div><div class="ttdeci">static void setUserDetails(std::shared_ptr&lt; Online::HTTPRequest &gt; request, const std::string &amp;action, const std::string &amp;php_name=&quot;&quot;)</div><div class="ttdoc">Adds the login credential to a http request.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:53</div></div>
+<div class="ttc" id="aclassPlayerManager_html_ae093e4e4e7eecdf5b46de72f5827d71d"><div class="ttname"><a href="classPlayerManager.html#ae093e4e4e7eecdf5b46de72f5827d71d">PlayerManager::PlayerManager</a></div><div class="ttdeci">PlayerManager()</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:148</div></div>
+<div class="ttc" id="aclassPlayerManager_html_ae8e4534fbe170ce01880178efcb0842e"><div class="ttname"><a href="classPlayerManager.html#ae8e4534fbe170ce01880178efcb0842e">PlayerManager::enforceCurrentPlayer</a></div><div class="ttdeci">void enforceCurrentPlayer()</div><div class="ttdoc">This function makes sure that a current player is defined.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:315</div></div>
+<div class="ttc" id="aclassPlayerManager_html_af311b9a2f775199eef5aabda91a9d8e6"><div class="ttname"><a href="classPlayerManager.html#af311b9a2f775199eef5aabda91a9d8e6">PlayerManager::resumeSavedSession</a></div><div class="ttdeci">static void resumeSavedSession()</div><div class="ttdoc">Reconnect to the server using the saved session data.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:97</div></div>
+<div class="ttc" id="aclassPlayerManager_html_afc44fce80f9332718cc2e5da603c9e60"><div class="ttname"><a href="classPlayerManager.html#afc44fce80f9332718cc2e5da603c9e60">PlayerManager::requestSignOut</a></div><div class="ttdeci">static void requestSignOut()</div><div class="ttdoc">Signs the current user out.</div><div class="ttdef"><b>Definition</b> player_manager.cpp:131</div></div>
+<div class="ttc" id="aclassPlayerProfile_html"><div class="ttname"><a href="classPlayerProfile.html">PlayerProfile</a></div><div class="ttdoc">Class for managing player profiles (name, usage frequency, etc.).</div><div class="ttdef"><b>Definition</b> player_profile.hpp:55</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_aa56094aa8ccfa69f01a60a32e1f5cdf6"><div class="ttname"><a href="classPlayerProfile.html#aa56094aa8ccfa69f01a60a32e1f5cdf6">PlayerProfile::OnlineState</a></div><div class="ttdeci">OnlineState</div><div class="ttdoc">The online state a player can be in.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:59</div></div>
+<div class="ttc" id="aclassPtrVector_html"><div class="ttname"><a href="classPtrVector.html">PtrVector</a></div><div class="ttdef"><b>Definition</b> ptr_vector.hpp:44</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

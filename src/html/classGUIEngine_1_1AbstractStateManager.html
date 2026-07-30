@@ -1,0 +1,493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: GUIEngine::AbstractStateManager 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespaceGUIEngine.html">GUIEngine</a></li><li class="navelem"><a href="classGUIEngine_1_1AbstractStateManager.html">AbstractStateManager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pro-methods">Protected 멤버 함수</a> &#124;
+<a href="#pro-attribs">Protected 속성</a> &#124;
+<a href="classGUIEngine_1_1AbstractStateManager-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">GUIEngine::AbstractStateManager 클래스 참조<span class="mlabels"><span class="mlabel abstract">abstract</span></span><div class="ingroups"><a class="el" href="group__guiengine.html">Guiengine</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Abstract base class you must override from to use the GUI engine  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="abstract__state__manager_8hpp_source.html">abstract_state_manager.hpp</a>&gt;</code></p>
+<div class="dynheader">
+GUIEngine::AbstractStateManager에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classGUIEngine_1_1AbstractStateManager__inherit__graph.png" border="0" usemap="#aGUIEngine_1_1AbstractStateManager_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aGUIEngine_1_1AbstractStateManager_inherit__map" id="aGUIEngine_1_1AbstractStateManager_inherit__map">
+<area shape="rect" title="Abstract base class you must override from to use the GUI engine" alt="" coords="5,5,179,48"/>
+<area shape="rect" href="classStateManager.html" title="A concrete scene manager, derived from GUIEngine&#39;s AbastractSceneManager" alt="" coords="41,96,143,123"/>
+<area shape="poly" title=" " alt="" coords="94,62,94,96,90,94,90,66"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:aeb915bf6dc8604b183fae5b6c4301ac2" id="r_aeb915bf6dc8604b183fae5b6c4301ac2"><td class="memItemLeft"><a id="aeb915bf6dc8604b183fae5b6c4301ac2" name="aeb915bf6dc8604b183fae5b6c4301ac2"></a>
+&#160;</td><td class="memItemRight"><b>AbstractStateManager</b> ()</td></tr>
+<tr class="memdesc:aeb915bf6dc8604b183fae5b6c4301ac2"><td class="mdescLeft">&#160;</td><td class="mdescRight">inits an <a class="el" href="classGUIEngine_1_1AbstractStateManager.html" title="Abstract base class you must override from to use the GUI engine">AbstractStateManager</a> is MENU state <br /></td></tr>
+<tr class="memitem:a4ae938104bbcb2b67ec7a30ed0bdc95d" id="r_a4ae938104bbcb2b67ec7a30ed0bdc95d"><td class="memItemLeft"><a id="a4ae938104bbcb2b67ec7a30ed0bdc95d" name="a4ae938104bbcb2b67ec7a30ed0bdc95d"></a>
+void&#160;</td><td class="memItemRight"><b>pushScreen</b> (<a class="el" href="classGUIEngine_1_1Screen.html">Screen</a> *screen)</td></tr>
+<tr class="memdesc:a4ae938104bbcb2b67ec7a30ed0bdc95d"><td class="mdescLeft">&#160;</td><td class="mdescRight">adds a menu at the top of the screens stack <br /></td></tr>
+<tr class="memitem:a5d1e363e8256cc5557d252476cff31a9" id="r_a5d1e363e8256cc5557d252476cff31a9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5d1e363e8256cc5557d252476cff31a9">replaceTopMostScreen</a> (<a class="el" href="classGUIEngine_1_1Screen.html">Screen</a> *screen, <a class="el" href="group__guiengine.html#ga32b064378dd966a6cfffe38bfa30acbf">GUIEngine::GameState</a> gameState=<a class="el" href="group__guiengine.html#gga32b064378dd966a6cfffe38bfa30acbfa9349e1f62be5a25bfa0b4cf65c8c7484">GUIEngine::CURRENT</a>)</td></tr>
+<tr class="memdesc:a5d1e363e8256cc5557d252476cff31a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">replaces the menu at the top of the screens stack (i.e.  <br /></td></tr>
+<tr class="memitem:af66a16465a40155fd89b77c0d6602cf2" id="r_af66a16465a40155fd89b77c0d6602cf2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af66a16465a40155fd89b77c0d6602cf2">popMenu</a> ()</td></tr>
+<tr class="memdesc:af66a16465a40155fd89b77c0d6602cf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">removes the menu at the top of the screens stack If the stack becomes empty after performing the pop (i.e.  <br /></td></tr>
+<tr class="memitem:a85e1f8464969e6419cffbf07c2660607" id="r_a85e1f8464969e6419cffbf07c2660607"><td class="memItemLeft"><a id="a85e1f8464969e6419cffbf07c2660607" name="a85e1f8464969e6419cffbf07c2660607"></a>
+void&#160;</td><td class="memItemRight"><b>resetAndGoToScreen</b> (<a class="el" href="classGUIEngine_1_1Screen.html">Screen</a> *screen)</td></tr>
+<tr class="memdesc:a85e1f8464969e6419cffbf07c2660607"><td class="mdescLeft">&#160;</td><td class="mdescRight">clears the menu stack and starts afresh with a new stack containing only the given screen <br /></td></tr>
+<tr class="memitem:ac0dabde76a43fe20dc60473845ad1c4b" id="r_ac0dabde76a43fe20dc60473845ad1c4b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac0dabde76a43fe20dc60473845ad1c4b">resetAndSetStack</a> (<a class="el" href="classGUIEngine_1_1Screen.html">Screen</a> *screens[])</td></tr>
+<tr class="memdesc:ac0dabde76a43fe20dc60473845ad1c4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the whole menu stack.  <br /></td></tr>
+<tr class="memitem:a39ba2432d18b5edd91c0e9121d3e3361" id="r_a39ba2432d18b5edd91c0e9121d3e3361"><td class="memItemLeft"><a id="a39ba2432d18b5edd91c0e9121d3e3361" name="a39ba2432d18b5edd91c0e9121d3e3361"></a>
+void&#160;</td><td class="memItemRight"><b>enterMenuState</b> ()</td></tr>
+<tr class="memdesc:a39ba2432d18b5edd91c0e9121d3e3361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used in no graphics STK to enter menu screen (when server is idle state) <br /></td></tr>
+<tr class="memitem:a014e8f8bb94b44d11fecf39436fb5486" id="r_a014e8f8bb94b44d11fecf39436fb5486"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a014e8f8bb94b44d11fecf39436fb5486">enterGameState</a> ()</td></tr>
+<tr class="memdesc:a014e8f8bb94b44d11fecf39436fb5486"><td class="mdescLeft">&#160;</td><td class="mdescRight">call to make the state manager enter game mode.  <br /></td></tr>
+<tr class="memitem:aab3e45407de4c95541d9c2dbdcf64791" id="r_aab3e45407de4c95541d9c2dbdcf64791"><td class="memItemLeft"><a class="el" href="group__guiengine.html#ga32b064378dd966a6cfffe38bfa30acbf">GameState</a>&#160;</td><td class="memItemRight"><a class="el" href="#aab3e45407de4c95541d9c2dbdcf64791">getGameState</a> ()</td></tr>
+<tr class="memitem:a1f928b3d84948b9e2c81af892ee47da6" id="r_a1f928b3d84948b9e2c81af892ee47da6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1f928b3d84948b9e2c81af892ee47da6">reshowTopMostMenu</a> ()</td></tr>
+<tr class="memdesc:a1f928b3d84948b9e2c81af892ee47da6"><td class="mdescLeft">&#160;</td><td class="mdescRight">to be called after e.g.  <br /></td></tr>
+<tr class="memitem:a347973e4f25785c5ceaf534487633fa2" id="r_a347973e4f25785c5ceaf534487633fa2"><td class="memTemplParams" colspan="2"><a id="a347973e4f25785c5ceaf534487633fa2" name="a347973e4f25785c5ceaf534487633fa2"></a>
+template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a347973e4f25785c5ceaf534487633fa2 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><b>hardResetAndGoToScreen</b> ()</td></tr>
+<tr class="memitem:a369ebd831035a9f6361439bd775941e2" id="r_a369ebd831035a9f6361439bd775941e2"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a369ebd831035a9f6361439bd775941e2">escapePressed</a> ()=0</td></tr>
+<tr class="memdesc:a369ebd831035a9f6361439bd775941e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">callback invoked whenever escape was pressed (or any similar cancel operation)  <br /></td></tr>
+<tr class="memitem:aeedc1b36222304e1bd72b0c0aeb32329" id="r_aeedc1b36222304e1bd72b0c0aeb32329"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#aeedc1b36222304e1bd72b0c0aeb32329">onGameStateChange</a> (<a class="el" href="group__guiengine.html#ga32b064378dd966a6cfffe38bfa30acbf">GameState</a> new_state)=0</td></tr>
+<tr class="memdesc:aeedc1b36222304e1bd72b0c0aeb32329"><td class="mdescLeft">&#160;</td><td class="mdescRight">callback invoked when game mode changes (e.g.  <br /></td></tr>
+<tr class="memitem:afe32ca7e7a1bf4748600511c5d9d314a" id="r_afe32ca7e7a1bf4748600511c5d9d314a"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#afe32ca7e7a1bf4748600511c5d9d314a">onStackEmptied</a> ()=0</td></tr>
+<tr class="memdesc:afe32ca7e7a1bf4748600511c5d9d314a"><td class="mdescLeft">&#160;</td><td class="mdescRight">callback invoked when the stack is emptied (all menus are popped out).  <br /></td></tr>
+<tr class="memitem:aceb7852afc81ee492bfb0ca209219a89" id="r_aceb7852afc81ee492bfb0ca209219a89"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#aceb7852afc81ee492bfb0ca209219a89">onTopMostScreenChanged</a> ()=0</td></tr>
+<tr class="memitem:a494f7da667a1c5617130ce5de0ad6d90" id="r_a494f7da667a1c5617130ce5de0ad6d90"><td class="memItemLeft">unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#a494f7da667a1c5617130ce5de0ad6d90">getMenuStackSize</a> () const</td></tr>
+<tr class="memdesc:a494f7da667a1c5617130ce5de0ad6d90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of screens on the stack.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 멤버 함수</h2></td></tr>
+<tr class="memitem:a2788eb7579787eaa0a794bd9ca47a037" id="r_a2788eb7579787eaa0a794bd9ca47a037"><td class="memItemLeft"><a id="a2788eb7579787eaa0a794bd9ca47a037" name="a2788eb7579787eaa0a794bd9ca47a037"></a>
+void&#160;</td><td class="memItemRight"><b>pushMenu</b> (<a class="el" href="classGUIEngine_1_1Screen.html">Screen</a> *screen)</td></tr>
+<tr class="memitem:ab5a4422aa92513c422e741ee8e0d47f2" id="r_ab5a4422aa92513c422e741ee8e0d47f2"><td class="memItemLeft"><a id="ab5a4422aa92513c422e741ee8e0d47f2" name="ab5a4422aa92513c422e741ee8e0d47f2"></a>
+void&#160;</td><td class="memItemRight"><b>setGameState</b> (<a class="el" href="group__guiengine.html#ga32b064378dd966a6cfffe38bfa30acbf">GameState</a> state)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 속성</h2></td></tr>
+<tr class="memitem:ade5c2ddd1489fbae6de3539e414e7540" id="r_ade5c2ddd1489fbae6de3539e414e7540"><td class="memItemLeft"><a id="ade5c2ddd1489fbae6de3539e414e7540" name="ade5c2ddd1489fbae6de3539e414e7540"></a>
+std::atomic&lt; <a class="el" href="group__guiengine.html#ga32b064378dd966a6cfffe38bfa30acbf">GameState</a> &gt;&#160;</td><td class="memItemRight"><b>m_game_mode</b></td></tr>
+<tr class="memdesc:ade5c2ddd1489fbae6de3539e414e7540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether we are in game mode <br /></td></tr>
+<tr class="memitem:a729351ba13e00fcccb6735e07b9d0a4c" id="r_a729351ba13e00fcccb6735e07b9d0a4c"><td class="memItemLeft">std::vector&lt; std::pair&lt; std::string, <a class="el" href="classGUIEngine_1_1Screen.html">Screen</a> * &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a729351ba13e00fcccb6735e07b9d0a4c">m_menu_stack</a></td></tr>
+<tr class="memdesc:a729351ba13e00fcccb6735e07b9d0a4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This stack will contain menu names (e.g.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Abstract base class you must override from to use the GUI engine </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a014e8f8bb94b44d11fecf39436fb5486" name="a014e8f8bb94b44d11fecf39436fb5486"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a014e8f8bb94b44d11fecf39436fb5486">&#9670;&#160;</a></span>enterGameState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractStateManager::enterGameState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>call to make the state manager enter game mode. </p>
+<p>Causes the menu stack to be cleared; all widgets shown on screen are removed </p>
+
+</div>
+</div>
+<a id="a369ebd831035a9f6361439bd775941e2" name="a369ebd831035a9f6361439bd775941e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a369ebd831035a9f6361439bd775941e2">&#9670;&#160;</a></span>escapePressed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void GUIEngine::AbstractStateManager::escapePressed </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>callback invoked whenever escape was pressed (or any similar cancel operation) </p>
+
+<p><a class="el" href="classStateManager.html#a4bf8902334a0d61eba7e1b618ad2883a">StateManager</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="aab3e45407de4c95541d9c2dbdcf64791" name="aab3e45407de4c95541d9c2dbdcf64791"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab3e45407de4c95541d9c2dbdcf64791">&#9670;&#160;</a></span>getGameState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__guiengine.html#ga32b064378dd966a6cfffe38bfa30acbf">GameState</a> AbstractStateManager::getGameState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>반환값</dt><dd>the current state of the game </dd></dl>
+
+</div>
+</div>
+<a id="a494f7da667a1c5617130ce5de0ad6d90" name="a494f7da667a1c5617130ce5de0ad6d90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a494f7da667a1c5617130ce5de0ad6d90">&#9670;&#160;</a></span>getMenuStackSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int GUIEngine::AbstractStateManager::getMenuStackSize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the number of screens on the stack. </p>
+<p>Is used to decide if exiting a screen would cause STK to end or not. </p>
+
+</div>
+</div>
+<a id="aeedc1b36222304e1bd72b0c0aeb32329" name="aeedc1b36222304e1bd72b0c0aeb32329"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeedc1b36222304e1bd72b0c0aeb32329">&#9670;&#160;</a></span>onGameStateChange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void GUIEngine::AbstractStateManager::onGameStateChange </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__guiengine.html#ga32b064378dd966a6cfffe38bfa30acbf">GameState</a></td>          <td class="paramname"><span class="paramname"><em>new_state</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>callback invoked when game mode changes (e.g. </p>
+<p>goes from "menu" to "in-game") </p>
+
+<p><a class="el" href="classStateManager.html#a515ced390600010b3213dcacaa49682c">StateManager</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="afe32ca7e7a1bf4748600511c5d9d314a" name="afe32ca7e7a1bf4748600511c5d9d314a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe32ca7e7a1bf4748600511c5d9d314a">&#9670;&#160;</a></span>onStackEmptied()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void GUIEngine::AbstractStateManager::onStackEmptied </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>callback invoked when the stack is emptied (all menus are popped out). </p>
+<p>This is essentially a request to close the application (since a game can't run without a state) </p>
+
+<p><a class="el" href="classStateManager.html#aa616140edeff5aef19a366cb01d15ba7">StateManager</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="aceb7852afc81ee492bfb0ca209219a89" name="aceb7852afc81ee492bfb0ca209219a89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aceb7852afc81ee492bfb0ca209219a89">&#9670;&#160;</a></span>onTopMostScreenChanged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void GUIEngine::AbstractStateManager::onTopMostScreenChanged </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classStateManager.html#a5dcefb3a4f6efb29bb9d8de10e97db5f">StateManager</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="af66a16465a40155fd89b77c0d6602cf2" name="af66a16465a40155fd89b77c0d6602cf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af66a16465a40155fd89b77c0d6602cf2">&#9670;&#160;</a></span>popMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractStateManager::popMenu </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>removes the menu at the top of the screens stack If the stack becomes empty after performing the pop (i.e. </p>
+<p>if it contained only one item prior to the call), the game is aborted. In other cases, the second-topmost screen is displayed. </p>
+
+</div>
+</div>
+<a id="a5d1e363e8256cc5557d252476cff31a9" name="a5d1e363e8256cc5557d252476cff31a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d1e363e8256cc5557d252476cff31a9">&#9670;&#160;</a></span>replaceTopMostScreen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractStateManager::replaceTopMostScreen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classGUIEngine_1_1Screen.html">Screen</a> *</td>          <td class="paramname"><span class="paramname"><em>screen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__guiengine.html#ga32b064378dd966a6cfffe38bfa30acbf">GUIEngine::GameState</a></td>          <td class="paramname"><span class="paramname"><em>gameState</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__guiengine.html#gga32b064378dd966a6cfffe38bfa30acbfa9349e1f62be5a25bfa0b4cf65c8c7484">GUIEngine::CURRENT</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>replaces the menu at the top of the screens stack (i.e. </p>
+<p>pops the topmost screen and adds this one instead, but without displaying the second-topmost menu of the stack in-between) </p>
+
+</div>
+</div>
+<a id="ac0dabde76a43fe20dc60473845ad1c4b" name="ac0dabde76a43fe20dc60473845ad1c4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0dabde76a43fe20dc60473845ad1c4b">&#9670;&#160;</a></span>resetAndSetStack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractStateManager::resetAndSetStack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classGUIEngine_1_1Screen.html">Screen</a> *</td>          <td class="paramname"><span class="paramname"><em>screens</em></span>[]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the whole menu stack. </p>
+<p>Only the topmost screen will be inited/shown, but others remain under for cases where the user wants to go back. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">screens</td><td>an array containing the menus that should go into stack. The first item will be the bottom item in the stack, the last item will be the stack top. Array must be NULL-terminated. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1f928b3d84948b9e2c81af892ee47da6" name="a1f928b3d84948b9e2c81af892ee47da6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f928b3d84948b9e2c81af892ee47da6">&#9670;&#160;</a></span>reshowTopMostMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractStateManager::reshowTopMostMenu </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>to be called after e.g. </p>
+<p>a resolution switch </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="a729351ba13e00fcccb6735e07b9d0a4c" name="a729351ba13e00fcccb6735e07b9d0a4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a729351ba13e00fcccb6735e07b9d0a4c">&#9670;&#160;</a></span>m_menu_stack</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::pair&lt;std::string, <a class="el" href="classGUIEngine_1_1Screen.html">Screen</a>*&gt; &gt; GUIEngine::AbstractStateManager::m_menu_stack</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This stack will contain menu names (e.g. </p>
+<p>main.stkgui), and/or 'race' with screen instance pointer. </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>guiengine/<a class="el" href="abstract__state__manager_8hpp_source.html">abstract_state_manager.hpp</a></li>
+<li>guiengine/<b>abstract_state_manager.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

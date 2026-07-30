@@ -1,0 +1,539 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: items/item.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>items</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">item.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2004-2015 Steve Baker &lt;sjbaker1@airmail.net&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  Copyright (C) 2006-2015 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef HEADER_ITEM_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HEADER_ITEM_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;utils/cpp2011.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;utils/log.hpp&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;utils/vec3.hpp&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;line3d.h&gt;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">class </span><a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">class </span><a class="code hl_class" href="classLODNode.html">LODNode</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">namespace </span>scene { <span class="keyword">class </span>IMesh; <span class="keyword">class </span>ISceneNode; }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">// ============================================================================</span></div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="};">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classItemState.html">   52</a></span><span class="keyword">class </span><a class="code hl_function" href="classItemState.html#a1ebabd856fb646e8f1070934e7a8162f">ItemState</a></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>{</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    LEAK_CHECK();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="};">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">   61</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        ITEM_FIRST,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        ITEM_BONUS_BOX = ITEM_FIRST,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        ITEM_BANANA,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        ITEM_NITRO_BIG,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        ITEM_NITRO_SMALL,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        ITEM_BUBBLEGUM,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        ITEM_BUBBLEGUM_NOLOK,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classItemState.html#abd8c7a2740237da69f241aad5d81833aa878136ae6a14ef73a18b34db17f8e684">   72</a></span>        <a class="code hl_enumvalue" href="classItemState.html#abd8c7a2740237da69f241aad5d81833aa878136ae6a14ef73a18b34db17f8e684">ITEM_EASTER_EGG</a>,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        ITEM_LAST = <a class="code hl_enumvalue" href="classItemState.html#abd8c7a2740237da69f241aad5d81833aa878136ae6a14ef73a18b34db17f8e684">ITEM_EASTER_EGG</a>,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        ITEM_COUNT,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        ITEM_NONE</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    };</div>
+</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classItemState.html#aa44762e2d9b141e56611281fefa15bb6">   80</a></span>    <a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a> <a class="code hl_variable" href="classItemState.html#aa44762e2d9b141e56611281fefa15bb6">m_type</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classItemState.html#af9cb0610f6c8f751d941ed5c8a6e18b1">   84</a></span>    <a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a> <a class="code hl_variable" href="classItemState.html#af9cb0610f6c8f751d941ed5c8a6e18b1">m_original_type</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classItemState.html#ad1ba1c54b0a94ce9a94f1fef8f544b83">   89</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classItemState.html#ad1ba1c54b0a94ce9a94f1fef8f544b83">m_ticks_till_return</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classItemState.html#ad57ec2f079c702772b6fb6e9f012b9fe">   93</a></span>    <span class="keywordtype">int</span>  <a class="code hl_variable" href="classItemState.html#ad57ec2f079c702772b6fb6e9f012b9fe">m_item_id</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classItemState.html#a24c372ad26643c6bffcaa1e6d1fd0b4e">   97</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classItemState.html#a24c372ad26643c6bffcaa1e6d1fd0b4e">m_deactive_ticks</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classItemState.html#a2e3b6daa2b3d42e1414e1f354c16ba82">  104</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classItemState.html#a2e3b6daa2b3d42e1414e1f354c16ba82">m_used_up_counter</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classItemState.html#a23e3a8467cdc7648e67c22955aaaf04e">  107</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a> <a class="code hl_variable" href="classItemState.html#a23e3a8467cdc7648e67c22955aaaf04e">m_xyz</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classItemState.html#ac8e6ab03cf6e36b368363144c51e48aa">  115</a></span>    btQuaternion <a class="code hl_variable" href="classItemState.html#ac8e6ab03cf6e36b368363144c51e48aa">m_original_rotation</a>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classItemState.html#abfd5f817de450aac566779ecd130753a">  119</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *<a class="code hl_variable" href="classItemState.html#abfd5f817de450aac566779ecd130753a">m_previous_owner</a>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keyword">friend</span> <span class="keyword">class </span>ItemManager;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keyword">friend</span> <span class="keyword">class </span>NetworkItemManager;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setType(<a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a> type) { <a class="code hl_variable" href="classItemState.html#aa44762e2d9b141e56611281fefa15bb6">m_type</a> = type; }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// Some convenient functions for the AI only</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">friend</span> <span class="keyword">class </span>SkiddingAI;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="classTestAI.html">TestAI</a>;</div>
+<div class="foldopen" id="foldopen00136" data-start="{" data-end="}">
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classItemState.html#a2bc9f8e476a90b066da808030eacf4d4">  136</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classItemState.html#a2bc9f8e476a90b066da808030eacf4d4">hitLine</a>(<span class="keyword">const</span> core::line3df &amp;line,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                 <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart = NULL)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classItemState.html#a4572d500a77f62ba2d89e64a5e88016f">getPreviousOwner</a>() == kart &amp;&amp; <a class="code hl_function" href="classItemState.html#aea31846faf4684c2e59d38ab9682edc2">getDeactivatedTicks</a>() &gt; 0)</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <a class="code hl_class" href="classVec3.html">Vec3</a> closest = line.getClosestPoint(<a class="code hl_function" href="classItemState.html#a4d399b62016f80beff9f772d3fbe724f">getXYZ</a>().toIrrVector());</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="keywordflow">return</span> hitKart(closest, kart);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    }   <span class="comment">// hitLine</span></div>
+</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>         <a class="code hl_function" href="classItemState.html#a1ebabd856fb646e8f1070934e7a8162f">ItemState</a>(<a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a> type, <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *owner=NULL, <span class="keywordtype">int</span> <span class="keywordtype">id</span> = -1);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>         <a class="code hl_function" href="classItemState.html#a1ebabd856fb646e8f1070934e7a8162f">ItemState</a>(<span class="keyword">const</span> <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>&amp; buffer);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classItemState.html#adf17d5f0f1dc5a8ed6b39275397bdef6">initItem</a>(<a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a> type, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a>&amp; xyz, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a>&amp; normal);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classItemState.html#a7cd31d22c604b48de46e333339197781">update</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classItemState.html#aea3601f1444a89b3a679ef5bddb1e20c">setDisappearCounter</a>();</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classItemState.html#a0d2b8c395ff63597706d21ea5f2197f5">collected</a>(<span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classItemState.html">~ItemState</a>() {}</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>         </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="comment">// -----------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00162" data-start="{" data-end="}">
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="classItemState.html#a584576d2970812ee661628f45da201b8">  162</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classItemState.html#a584576d2970812ee661628f45da201b8">updateGraphics</a>(<span class="keywordtype">float</span> dt)</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    {</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        Log::fatal(<span class="stringliteral">&quot;ItemState&quot;</span>, <span class="stringliteral">&quot;updateGraphics() called for ItemState.&quot;</span>);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    }   <span class="comment">// updateGraphics</span></div>
+</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="comment">// -----------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> hitKart(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;xyz,</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>                         <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart = NULL)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        Log::fatal(<span class="stringliteral">&quot;ItemState&quot;</span>, <span class="stringliteral">&quot;hitKart() called for ItemState.&quot;</span>);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    }   <span class="comment">// hitKart</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="comment">// -----------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> getGraphNode()<span class="keyword"> const </span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        Log::fatal(<span class="stringliteral">&quot;ItemState&quot;</span>, <span class="stringliteral">&quot;getGraphNode() called for ItemState.&quot;</span>);</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    }   <span class="comment">// getGraphNode</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="comment">// -----------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> Vec3 *getAvoidancePoint(<span class="keywordtype">bool</span> left)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        Log::fatal(<span class="stringliteral">&quot;ItemState&quot;</span>, <span class="stringliteral">&quot;getAvoidancePoint() called for ItemState.&quot;</span>);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <span class="comment">// Return doesn&#39;t matter, fatal aborts</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        <span class="keywordflow">return</span> &amp;<a class="code hl_variable" href="classItemState.html#a23e3a8467cdc7648e67c22955aaaf04e">m_xyz</a>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    }   <span class="comment">// getAvoidancePoint</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="comment">// -----------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keyword">virtual</span> <span class="keywordtype">float</span> getDistanceFromCenter()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        Log::fatal(<span class="stringliteral">&quot;itemState&quot;</span>,</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>                   <span class="stringliteral">&quot;getDistanceFromCentre() called for ItemState.&quot;</span>);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    }   <span class="comment">// getDistanceFromCentre</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="comment">// -----------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00200" data-start="{" data-end="}">
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="classItemState.html#a03245867c6e33654aba0e846d2e8e1cd">  200</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classItemState.html#a03245867c6e33654aba0e846d2e8e1cd">reset</a>()</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        <a class="code hl_variable" href="classItemState.html#a24c372ad26643c6bffcaa1e6d1fd0b4e">m_deactive_ticks</a>    = 0;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        <a class="code hl_variable" href="classItemState.html#ad1ba1c54b0a94ce9a94f1fef8f544b83">m_ticks_till_return</a> = 0;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <a class="code hl_function" href="classItemState.html#aea3601f1444a89b3a679ef5bddb1e20c">setDisappearCounter</a>();</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        <span class="comment">// If the item was switched:</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classItemState.html#af9cb0610f6c8f751d941ed5c8a6e18b1">m_original_type</a> != ITEM_NONE)</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        {</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>            setType(<a class="code hl_variable" href="classItemState.html#af9cb0610f6c8f751d941ed5c8a6e18b1">m_original_type</a>);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>            <a class="code hl_variable" href="classItemState.html#af9cb0610f6c8f751d941ed5c8a6e18b1">m_original_type</a> = ITEM_NONE;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    }   <span class="comment">// reset</span></div>
+</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="comment">// -----------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00218" data-start="{" data-end="}">
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classItemState.html#a435703ec7990e5ba77b02e45488abfc4">  218</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classItemState.html#a435703ec7990e5ba77b02e45488abfc4">switchTo</a>(<a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a> type)</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    {</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <span class="comment">// triggers and easter eggs should not be switched</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classItemState.html#aa44762e2d9b141e56611281fefa15bb6">m_type</a> == <a class="code hl_enumvalue" href="classItemState.html#abd8c7a2740237da69f241aad5d81833aa878136ae6a14ef73a18b34db17f8e684">ITEM_EASTER_EGG</a>) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        <a class="code hl_variable" href="classItemState.html#af9cb0610f6c8f751d941ed5c8a6e18b1">m_original_type</a> = <a class="code hl_variable" href="classItemState.html#aa44762e2d9b141e56611281fefa15bb6">m_type</a>;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        setType(type);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    }   <span class="comment">// switchTo</span></div>
+</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00230" data-start="{" data-end="}">
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="classItemState.html#a5c0ba00f751784d6015cb029de701dbb">  230</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classItemState.html#a5c0ba00f751784d6015cb029de701dbb">switchBack</a>()</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    {</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        <span class="comment">// If the item is not switched, do nothing. This can happen if a bubble</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>        <span class="comment">// gum is dropped while items are switched - when switching back, this</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        <span class="comment">// bubble gum has no original type.</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classItemState.html#af9cb0610f6c8f751d941ed5c8a6e18b1">m_original_type</a> == ITEM_NONE)</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        setType(<a class="code hl_variable" href="classItemState.html#af9cb0610f6c8f751d941ed5c8a6e18b1">m_original_type</a>);</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        <a class="code hl_variable" href="classItemState.html#af9cb0610f6c8f751d941ed5c8a6e18b1">m_original_type</a> = ITEM_NONE;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    }   <span class="comment">// switchBack</span></div>
+</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00244" data-start="{" data-end="}">
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="classItemState.html#af9daadf1f6d87b3fd5319e9532207f0b">  244</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classItemState.html#af9daadf1f6d87b3fd5319e9532207f0b">isNegativeItem</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classItemState.html#aa44762e2d9b141e56611281fefa15bb6">m_type</a> == ITEM_BANANA || <a class="code hl_variable" href="classItemState.html#aa44762e2d9b141e56611281fefa15bb6">m_type</a> == ITEM_BUBBLEGUM ||</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>               <a class="code hl_variable" href="classItemState.html#aa44762e2d9b141e56611281fefa15bb6">m_type</a> == ITEM_BUBBLEGUM_NOLOK;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    }</div>
+</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="classItemState.html#ae6a0c097cde44bd3c80dbc62ac754c1f">  258</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classItemState.html#ae6a0c097cde44bd3c80dbc62ac754c1f">setTicksTillReturn</a>(<span class="keywordtype">int</span> t) { <a class="code hl_variable" href="classItemState.html#ad1ba1c54b0a94ce9a94f1fef8f544b83">m_ticks_till_return</a> = t; }</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="classItemState.html#a18efcf13eb49d478f35bdcdd2e783826">  261</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classItemState.html#a18efcf13eb49d478f35bdcdd2e783826">getTicksTillReturn</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classItemState.html#ad1ba1c54b0a94ce9a94f1fef8f544b83">m_ticks_till_return</a>; }</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="classItemState.html#adcba7e09a45aae1d2ad4ff10d63205c7">  264</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classItemState.html#adcba7e09a45aae1d2ad4ff10d63205c7">isAvailable</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classItemState.html#ad1ba1c54b0a94ce9a94f1fef8f544b83">m_ticks_till_return</a> &lt;= 0; }</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="classItemState.html#a9ed353ee57a4cbfe2d9b4d70b3c64e7c">  267</a></span>    <a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a> <a class="code hl_function" href="classItemState.html#a9ed353ee57a4cbfe2d9b4d70b3c64e7c">getType</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classItemState.html#aa44762e2d9b141e56611281fefa15bb6">m_type</a>; }</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a> <a class="code hl_function" href="classItemState.html#a9dc50873613d5eb05265e9c23ae7cf10">getGrahpicalType</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="classItemState.html#a4da7ba2f90eb31b30ecc501dece6d0d3">  272</a></span>    <a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a> <a class="code hl_function" href="classItemState.html#a4da7ba2f90eb31b30ecc501dece6d0d3">getOriginalType</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classItemState.html#af9cb0610f6c8f751d941ed5c8a6e18b1">m_original_type</a>; }</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="classItemState.html#a09b3d75303299fa378b0bfaefedace87">  275</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classItemState.html#a09b3d75303299fa378b0bfaefedace87">setItemId</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n) { <a class="code hl_variable" href="classItemState.html#ad57ec2f079c702772b6fb6e9f012b9fe">m_item_id</a> = n; }</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="classItemState.html#a8489682294c179f4c06c2bc00653f11a">  278</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classItemState.html#a8489682294c179f4c06c2bc00653f11a">getItemId</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classItemState.html#ad57ec2f079c702772b6fb6e9f012b9fe">m_item_id</a>; }</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="classItemState.html#a48730d896e414fd3677c8c36144295d7">  281</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classItemState.html#a48730d896e414fd3677c8c36144295d7">isUsedUp</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classItemState.html#a2e3b6daa2b3d42e1414e1f354c16ba82">m_used_up_counter</a> == 0; }</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno"><a class="line" href="classItemState.html#a1fa0c69f99b3eeb0eaa7d00fd24a62d5">  285</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classItemState.html#a1fa0c69f99b3eeb0eaa7d00fd24a62d5">canBeUsedUp</a>()<span class="keyword">  const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classItemState.html#a2e3b6daa2b3d42e1414e1f354c16ba82">m_used_up_counter</a>&gt;-1; }</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno"><a class="line" href="classItemState.html#aea31846faf4684c2e59d38ab9682edc2">  289</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classItemState.html#aea31846faf4684c2e59d38ab9682edc2">getDeactivatedTicks</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classItemState.html#a24c372ad26643c6bffcaa1e6d1fd0b4e">m_deactive_ticks</a>; }</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno"><a class="line" href="classItemState.html#a37684d3f65415e0e198ef7bf5ec05e80">  293</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classItemState.html#a37684d3f65415e0e198ef7bf5ec05e80">setDeactivatedTicks</a>(<span class="keywordtype">int</span> ticks) { <a class="code hl_variable" href="classItemState.html#a24c372ad26643c6bffcaa1e6d1fd0b4e">m_deactive_ticks</a> = ticks; }</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno"><a class="line" href="classItemState.html#a4572d500a77f62ba2d89e64a5e88016f">  297</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *<a class="code hl_function" href="classItemState.html#a4572d500a77f62ba2d89e64a5e88016f">getPreviousOwner</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classItemState.html#abfd5f817de450aac566779ecd130753a">m_previous_owner</a>; }</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="keywordtype">void</span> setXYZ(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a>&amp; xyz) { <a class="code hl_variable" href="classItemState.html#a23e3a8467cdc7648e67c22955aaaf04e">m_xyz</a> = xyz; }</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="classItemState.html#a4d399b62016f80beff9f772d3fbe724f">  302</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a>&amp; <a class="code hl_function" href="classItemState.html#a4d399b62016f80beff9f772d3fbe724f">getXYZ</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classItemState.html#a23e3a8467cdc7648e67c22955aaaf04e">m_xyz</a>; }</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00305" data-start="{" data-end="}">
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="classItemState.html#a2a4dc297868c49c134fbfe91b894b2ac">  305</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> <a class="code hl_function" href="classItemState.html#a2a4dc297868c49c134fbfe91b894b2ac">getNormal</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>        <span class="keywordflow">return</span> quatRotate(<a class="code hl_variable" href="classItemState.html#ac8e6ab03cf6e36b368363144c51e48aa">m_original_rotation</a>, <a class="code hl_class" href="classVec3.html">Vec3</a>(0.0f, 1.0f, 0.0f));</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    }</div>
+</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00311" data-start="{" data-end="}">
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno"><a class="line" href="classItemState.html#a9a04a003996b9b82435a5b768192e518">  311</a></span>    <span class="keyword">const</span> btQuaternion&amp; <a class="code hl_function" href="classItemState.html#a9a04a003996b9b82435a5b768192e518">getOriginalRotation</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classItemState.html#ac8e6ab03cf6e36b368363144c51e48aa">m_original_rotation</a>;</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    }</div>
+</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classItemState.html#a3b4e127adabe8757a6d2c44799256d1f">saveCompleteState</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>* buffer) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>};   <span class="comment">// class ItemState</span></div>
+</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="comment">// ============================================================================</span></div>
+<div class="foldopen" id="foldopen00323" data-start="{" data-end="};">
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno"><a class="line" href="classItem.html">  323</a></span><span class="keyword">class </span><a class="code hl_function" href="classItem.html#a873b5b073a23cc44ef17c7d4a82d9837">Item</a> : <span class="keyword">public</span> <a class="code hl_function" href="classItemState.html#a1ebabd856fb646e8f1070934e7a8162f">ItemState</a>, <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>{</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno"><a class="line" href="classItem.html#a4448acf95ed30d2881920bf9f6e89856">  328</a></span>    <a class="code hl_class" href="classLODNode.html">LODNode</a> *<a class="code hl_variable" href="classItem.html#a4448acf95ed30d2881920bf9f6e89856">m_node</a>;</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno"><a class="line" href="classItem.html#a0bdb56d652ab0fb1c44a61bd06ecc59d">  331</a></span>    <a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a> <a class="code hl_variable" href="classItem.html#a0bdb56d652ab0fb1c44a61bd06ecc59d">m_graphical_type</a>;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno"><a class="line" href="classItem.html#ac593c8fe532d79b51e7f90c38bf54031">  334</a></span>    scene::ISceneNode* <a class="code hl_variable" href="classItem.html#ac593c8fe532d79b51e7f90c38bf54031">m_appear_anime_node</a>;</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno"><a class="line" href="classItem.html#aa876d49ee5e6cc9b73a5c97ab9e5cae3">  337</a></span>    std::vector&lt;scene::ISceneNode*&gt; <a class="code hl_variable" href="classItem.html#aa876d49ee5e6cc9b73a5c97ab9e5cae3">m_spark_nodes</a>;</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno"><a class="line" href="classItem.html#a0b33b5648dddc8db73944ac2d216c685">  340</a></span>    scene::ISceneNode* <a class="code hl_variable" href="classItem.html#a0b33b5648dddc8db73944ac2d216c685">m_icon_node</a>;</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno"><a class="line" href="classItem.html#ac1d9406da9c2c8aae6cf0738ffa00837">  343</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classItem.html#ac1d9406da9c2c8aae6cf0738ffa00837">m_was_available_previously</a>;</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno"><a class="line" href="classItem.html#acadc0de6206498885ea9ca4372b5c85a">  346</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classItem.html#acadc0de6206498885ea9ca4372b5c85a">m_distance_2</a>;</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno"><a class="line" href="classItem.html#ab94993956d199f54c5cca0c7fc7d6e89">  349</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classItem.html#ab94993956d199f54c5cca0c7fc7d6e89">m_graph_node</a>;</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno"><a class="line" href="classItem.html#aea4bf76c70239aad081669aca91122f4">  354</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classItem.html#aea4bf76c70239aad081669aca91122f4">m_distance_from_center</a>;</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno"><a class="line" href="classItem.html#a5631cd2979455dd53a4701ef2428b4fc">  357</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classItem.html#a5631cd2979455dd53a4701ef2428b4fc">m_animation_start_ticks</a>;</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno"><a class="line" href="classItem.html#ad4e9f2c6d85ebd1e1238f3fff3f7d5b8">  361</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a> *<a class="code hl_variable" href="classItem.html#ad4e9f2c6d85ebd1e1238f3fff3f7d5b8">m_avoidance_points</a>[2];</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span> </div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="keywordtype">void</span>          <a class="code hl_function" href="classItem.html#a357516458a8c9bc6d1aac84a8405d7fd">initItem</a>(<a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a> type, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;xyz, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;normal);</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="keywordtype">void</span>          setMesh(scene::IMesh* mesh, scene::IMesh* lowres_mesh);</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    <span class="keywordtype">void</span>          handleNewMesh(<a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a> type);</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>                  <a class="code hl_function" href="classItem.html#a873b5b073a23cc44ef17c7d4a82d9837">Item</a>(<a class="code hl_enumeration" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemType</a> type, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a>&amp; xyz, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a>&amp; normal,</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>                       scene::IMesh* mesh, scene::IMesh* lowres_mesh,</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>                       <span class="keyword">const</span> std::string&amp; icon, <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *owner);</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    <span class="keyword">virtual</span>       <a class="code hl_function" href="classItem.html#a11663c84075b78c3ae5e30fdfcd7c458">~Item</a> ();</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>  <a class="code hl_function" href="classItem.html#ad633f7530c26d243760728faf9fad5bd">updateGraphics</a>(<span class="keywordtype">float</span> dt) OVERRIDE;</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>  <a class="code hl_function" href="classItem.html#a26f91384e3b703159e9f5ff393505b03">reset</a>() OVERRIDE;</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span> </div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    <span class="comment">//-------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00380" data-start="{" data-end="}">
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno"><a class="line" href="classItem.html#a53eb27f41802618fee076a1490155c09">  380</a></span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classItem.html#a53eb27f41802618fee076a1490155c09">collected</a>(const <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart)  OVERRIDE</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    {</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>        <a class="code hl_function" href="classItemState.html#a0d2b8c395ff63597706d21ea5f2197f5">ItemState::collected</a>(kart);</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>    }   <span class="comment">// isCollected</span></div>
+</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>    <span class="comment">//-------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00390" data-start="{" data-end="}">
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno"><a class="line" href="classItem.html#a44f34bdabb79763e83a0556bc1fef0a9">  390</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classItem.html#a44f34bdabb79763e83a0556bc1fef0a9">switchBack</a>() OVERRIDE</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    {</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classItemState.html#a5c0ba00f751784d6015cb029de701dbb">ItemState::switchBack</a>())</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    }   <span class="comment">// switchBack</span></div>
+</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00404" data-start="{" data-end="}">
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno"><a class="line" href="classItem.html#a8420f5c0528b8187ec77b53984276f40">  404</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classItem.html#a8420f5c0528b8187ec77b53984276f40">hitKart</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;xyz, <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart=NULL) <span class="keyword">const</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>        OVERRIDE</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    {</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classItemState.html#a4572d500a77f62ba2d89e64a5e88016f">getPreviousOwner</a>() == kart &amp;&amp; <a class="code hl_function" href="classItemState.html#aea31846faf4684c2e59d38ab9682edc2">getDeactivatedTicks</a>() &gt; 0)</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>        <a class="code hl_class" href="classVec3.html">Vec3</a> lc = quatRotate(<a class="code hl_function" href="classItemState.html#a9a04a003996b9b82435a5b768192e518">getOriginalRotation</a>(), xyz - <a class="code hl_function" href="classItemState.html#a4d399b62016f80beff9f772d3fbe724f">getXYZ</a>());</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>        <span class="comment">// Don&#39;t be too strict if the kart is a bit above the item</span></div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>        lc.setY(lc.getY() / 2.0f);</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>        <span class="keywordflow">return</span> lc.length2() &lt; <a class="code hl_variable" href="classItem.html#acadc0de6206498885ea9ca4372b5c85a">m_distance_2</a>;</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>    }   <span class="comment">// hitKart</span></div>
+</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    <span class="keywordtype">bool</span> rotating()<span class="keyword"> const               </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classItemState.html#a9ed353ee57a4cbfe2d9b4d70b3c64e7c">getType</a>() != ITEM_BUBBLEGUM; }</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span> </div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno"><a class="line" href="classItem.html#a21219c12c50232778962cb7c666f5d17">  420</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classItem.html#a21219c12c50232778962cb7c666f5d17">getGraphNode</a>() const OVERRIDE { <span class="keywordflow">return</span> <a class="code hl_variable" href="classItem.html#ab94993956d199f54c5cca0c7fc7d6e89">m_graph_node</a>; }</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00424" data-start="{" data-end="}">
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno"><a class="line" href="classItem.html#a2e0f6a349a7c8d2107f210fbe7318c25">  424</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classItem.html#a2e0f6a349a7c8d2107f210fbe7318c25">getDistanceFromCenter</a>() const OVERRIDE</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>    {</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classItem.html#aea4bf76c70239aad081669aca91122f4">m_distance_from_center</a>;</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    }   <span class="comment">// getDistanceFromCenter</span></div>
+</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00433" data-start="{" data-end="}">
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno"><a class="line" href="classItem.html#a2fb744e780863523b235d655e032e371">  433</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> *<a class="code hl_function" href="classItem.html#a2fb744e780863523b235d655e032e371">getAvoidancePoint</a>(<span class="keywordtype">bool</span> left) <span class="keyword">const</span> OVERRIDE</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>    {</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>        <span class="keywordflow">if</span>(left) <span class="keywordflow">return</span> <a class="code hl_variable" href="classItem.html#ad4e9f2c6d85ebd1e1238f3fff3f7d5b8">m_avoidance_points</a>[0];</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classItem.html#ad4e9f2c6d85ebd1e1238f3fff3f7d5b8">m_avoidance_points</a>[1];</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>    }   <span class="comment">// getAvoidancePoint</span></div>
+</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>    scene::ISceneNode *getSceneNode()</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>    {</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>        <span class="keywordflow">return</span> (scene::ISceneNode *) <a class="code hl_variable" href="classItem.html#a4448acf95ed30d2881920bf9f6e89856">m_node</a>;</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>    }</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>};   <span class="comment">// class Item</span></div>
+</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span> </div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassItemState_html"><div class="ttname"><a href="classItemState.html">ItemState</a></div><div class="ttdoc">Contains the state information of an item, i.e.</div><div class="ttdef"><b>Definition</b> item.hpp:53</div></div>
+<div class="ttc" id="aclassItemState_html_a03245867c6e33654aba0e846d2e8e1cd"><div class="ttname"><a href="classItemState.html#a03245867c6e33654aba0e846d2e8e1cd">ItemState::reset</a></div><div class="ttdeci">virtual void reset()</div><div class="ttdoc">Resets an item to its start state.</div><div class="ttdef"><b>Definition</b> item.hpp:200</div></div>
+<div class="ttc" id="aclassItemState_html_a09b3d75303299fa378b0bfaefedace87"><div class="ttname"><a href="classItemState.html#a09b3d75303299fa378b0bfaefedace87">ItemState::setItemId</a></div><div class="ttdeci">void setItemId(unsigned int n)</div><div class="ttdoc">Sets the index of this item in the item manager list.</div><div class="ttdef"><b>Definition</b> item.hpp:275</div></div>
+<div class="ttc" id="aclassItemState_html_a0d2b8c395ff63597706d21ea5f2197f5"><div class="ttname"><a href="classItemState.html#a0d2b8c395ff63597706d21ea5f2197f5">ItemState::collected</a></div><div class="ttdeci">virtual void collected(const AbstractKart *kart)</div><div class="ttdoc">Called when the item is collected.</div><div class="ttdef"><b>Definition</b> item.cpp:136</div></div>
+<div class="ttc" id="aclassItemState_html_a18efcf13eb49d478f35bdcdd2e783826"><div class="ttname"><a href="classItemState.html#a18efcf13eb49d478f35bdcdd2e783826">ItemState::getTicksTillReturn</a></div><div class="ttdeci">int getTicksTillReturn() const</div><div class="ttdoc">Returns the time the item is disabled for.</div><div class="ttdef"><b>Definition</b> item.hpp:261</div></div>
+<div class="ttc" id="aclassItemState_html_a1ebabd856fb646e8f1070934e7a8162f"><div class="ttname"><a href="classItemState.html#a1ebabd856fb646e8f1070934e7a8162f">ItemState::ItemState</a></div><div class="ttdeci">ItemState(ItemType type, const AbstractKart *owner=NULL, int id=-1)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> item.cpp:55</div></div>
+<div class="ttc" id="aclassItemState_html_a1fa0c69f99b3eeb0eaa7d00fd24a62d5"><div class="ttname"><a href="classItemState.html#a1fa0c69f99b3eeb0eaa7d00fd24a62d5">ItemState::canBeUsedUp</a></div><div class="ttdeci">bool canBeUsedUp() const</div><div class="ttdoc">Returns true if this item can be used up, and therefore needs to be removed when the game is reset.</div><div class="ttdef"><b>Definition</b> item.hpp:285</div></div>
+<div class="ttc" id="aclassItemState_html_a23e3a8467cdc7648e67c22955aaaf04e"><div class="ttname"><a href="classItemState.html#a23e3a8467cdc7648e67c22955aaaf04e">ItemState::m_xyz</a></div><div class="ttdeci">Vec3 m_xyz</div><div class="ttdoc">The position of this ItemState.</div><div class="ttdef"><b>Definition</b> item.hpp:107</div></div>
+<div class="ttc" id="aclassItemState_html_a24c372ad26643c6bffcaa1e6d1fd0b4e"><div class="ttname"><a href="classItemState.html#a24c372ad26643c6bffcaa1e6d1fd0b4e">ItemState::m_deactive_ticks</a></div><div class="ttdeci">int m_deactive_ticks</div><div class="ttdoc">Optionally if item was placed by a kart, a timer can be used to temporarly deactivate collision so a ...</div><div class="ttdef"><b>Definition</b> item.hpp:97</div></div>
+<div class="ttc" id="aclassItemState_html_a2a4dc297868c49c134fbfe91b894b2ac"><div class="ttname"><a href="classItemState.html#a2a4dc297868c49c134fbfe91b894b2ac">ItemState::getNormal</a></div><div class="ttdeci">const Vec3 getNormal() const</div><div class="ttdoc">Returns the normal of the ItemState.</div><div class="ttdef"><b>Definition</b> item.hpp:305</div></div>
+<div class="ttc" id="aclassItemState_html_a2bc9f8e476a90b066da808030eacf4d4"><div class="ttname"><a href="classItemState.html#a2bc9f8e476a90b066da808030eacf4d4">ItemState::hitLine</a></div><div class="ttdeci">bool hitLine(const core::line3df &amp;line, const AbstractKart *kart=NULL) const</div><div class="ttdoc">Returns true if the specified line segment would come close enough to this item so that this item wou...</div><div class="ttdef"><b>Definition</b> item.hpp:136</div></div>
+<div class="ttc" id="aclassItemState_html_a2e3b6daa2b3d42e1414e1f354c16ba82"><div class="ttname"><a href="classItemState.html#a2e3b6daa2b3d42e1414e1f354c16ba82">ItemState::m_used_up_counter</a></div><div class="ttdeci">int m_used_up_counter</div><div class="ttdoc">Counts how often an item is used before it disappears.</div><div class="ttdef"><b>Definition</b> item.hpp:104</div></div>
+<div class="ttc" id="aclassItemState_html_a37684d3f65415e0e198ef7bf5ec05e80"><div class="ttname"><a href="classItemState.html#a37684d3f65415e0e198ef7bf5ec05e80">ItemState::setDeactivatedTicks</a></div><div class="ttdeci">void setDeactivatedTicks(int ticks)</div><div class="ttdoc">Sets the number of ticks during which the item is deactivated (i.e.</div><div class="ttdef"><b>Definition</b> item.hpp:293</div></div>
+<div class="ttc" id="aclassItemState_html_a3b4e127adabe8757a6d2c44799256d1f"><div class="ttname"><a href="classItemState.html#a3b4e127adabe8757a6d2c44799256d1f">ItemState::saveCompleteState</a></div><div class="ttdeci">void saveCompleteState(BareNetworkString *buffer) const</div><div class="ttdoc">Save item state at current ticks in server for live join</div><div class="ttdef"><b>Definition</b> item.cpp:197</div></div>
+<div class="ttc" id="aclassItemState_html_a435703ec7990e5ba77b02e45488abfc4"><div class="ttname"><a href="classItemState.html#a435703ec7990e5ba77b02e45488abfc4">ItemState::switchTo</a></div><div class="ttdeci">virtual void switchTo(ItemType type)</div><div class="ttdoc">Switches an item to be of a different type.</div><div class="ttdef"><b>Definition</b> item.hpp:218</div></div>
+<div class="ttc" id="aclassItemState_html_a4572d500a77f62ba2d89e64a5e88016f"><div class="ttname"><a href="classItemState.html#a4572d500a77f62ba2d89e64a5e88016f">ItemState::getPreviousOwner</a></div><div class="ttdeci">const AbstractKart * getPreviousOwner() const</div><div class="ttdoc">Returns the kart that dropped this item (or NULL if the item was not dropped by a kart.</div><div class="ttdef"><b>Definition</b> item.hpp:297</div></div>
+<div class="ttc" id="aclassItemState_html_a48730d896e414fd3677c8c36144295d7"><div class="ttname"><a href="classItemState.html#a48730d896e414fd3677c8c36144295d7">ItemState::isUsedUp</a></div><div class="ttdeci">bool isUsedUp() const</div><div class="ttdoc">Returns true if this item is used up and can be removed.</div><div class="ttdef"><b>Definition</b> item.hpp:281</div></div>
+<div class="ttc" id="aclassItemState_html_a4d399b62016f80beff9f772d3fbe724f"><div class="ttname"><a href="classItemState.html#a4d399b62016f80beff9f772d3fbe724f">ItemState::getXYZ</a></div><div class="ttdeci">const Vec3 &amp; getXYZ() const</div><div class="ttdoc">Returns the XYZ position of the item.</div><div class="ttdef"><b>Definition</b> item.hpp:302</div></div>
+<div class="ttc" id="aclassItemState_html_a4da7ba2f90eb31b30ecc501dece6d0d3"><div class="ttname"><a href="classItemState.html#a4da7ba2f90eb31b30ecc501dece6d0d3">ItemState::getOriginalType</a></div><div class="ttdeci">ItemType getOriginalType() const</div><div class="ttdoc">Returns the original type of this item.</div><div class="ttdef"><b>Definition</b> item.hpp:272</div></div>
+<div class="ttc" id="aclassItemState_html_a584576d2970812ee661628f45da201b8"><div class="ttname"><a href="classItemState.html#a584576d2970812ee661628f45da201b8">ItemState::updateGraphics</a></div><div class="ttdeci">virtual void updateGraphics(float dt)</div><div class="ttdoc">Dummy implementation, causing an abort if it should be called to catch any errors early.</div><div class="ttdef"><b>Definition</b> item.hpp:162</div></div>
+<div class="ttc" id="aclassItemState_html_a5c0ba00f751784d6015cb029de701dbb"><div class="ttname"><a href="classItemState.html#a5c0ba00f751784d6015cb029de701dbb">ItemState::switchBack</a></div><div class="ttdeci">virtual bool switchBack()</div><div class="ttdoc">Returns true if this item was not actually switched (e.g.</div><div class="ttdef"><b>Definition</b> item.hpp:230</div></div>
+<div class="ttc" id="aclassItemState_html_a7cd31d22c604b48de46e333339197781"><div class="ttname"><a href="classItemState.html#a7cd31d22c604b48de46e333339197781">ItemState::update</a></div><div class="ttdeci">void update(int ticks)</div><div class="ttdoc">Update the state of the item, called once per physics frame.</div><div class="ttdef"><b>Definition</b> item.cpp:122</div></div>
+<div class="ttc" id="aclassItemState_html_a8489682294c179f4c06c2bc00653f11a"><div class="ttname"><a href="classItemState.html#a8489682294c179f4c06c2bc00653f11a">ItemState::getItemId</a></div><div class="ttdeci">unsigned int getItemId() const</div><div class="ttdoc">Returns the index of this item in the item manager list.</div><div class="ttdef"><b>Definition</b> item.hpp:278</div></div>
+<div class="ttc" id="aclassItemState_html_a9a04a003996b9b82435a5b768192e518"><div class="ttname"><a href="classItemState.html#a9a04a003996b9b82435a5b768192e518">ItemState::getOriginalRotation</a></div><div class="ttdeci">const btQuaternion &amp; getOriginalRotation() const</div><div class="ttdoc">Returns the original rotation of the item.</div><div class="ttdef"><b>Definition</b> item.hpp:311</div></div>
+<div class="ttc" id="aclassItemState_html_a9dc50873613d5eb05265e9c23ae7cf10"><div class="ttname"><a href="classItemState.html#a9dc50873613d5eb05265e9c23ae7cf10">ItemState::getGrahpicalType</a></div><div class="ttdeci">ItemType getGrahpicalType() const</div><div class="ttdoc">Returns the graphical type of this item should be using (takes nolok into account).</div><div class="ttdef"><b>Definition</b> item.cpp:187</div></div>
+<div class="ttc" id="aclassItemState_html_a9ed353ee57a4cbfe2d9b4d70b3c64e7c"><div class="ttname"><a href="classItemState.html#a9ed353ee57a4cbfe2d9b4d70b3c64e7c">ItemState::getType</a></div><div class="ttdeci">ItemType getType() const</div><div class="ttdoc">Returns the type of this item.</div><div class="ttdef"><b>Definition</b> item.hpp:267</div></div>
+<div class="ttc" id="aclassItemState_html_aa44762e2d9b141e56611281fefa15bb6"><div class="ttname"><a href="classItemState.html#aa44762e2d9b141e56611281fefa15bb6">ItemState::m_type</a></div><div class="ttdeci">ItemType m_type</div><div class="ttdoc">Item type.</div><div class="ttdef"><b>Definition</b> item.hpp:80</div></div>
+<div class="ttc" id="aclassItemState_html_abd8c7a2740237da69f241aad5d81833a"><div class="ttname"><a href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemState::ItemType</a></div><div class="ttdeci">ItemType</div><div class="ttdoc">The list of all items.</div><div class="ttdef"><b>Definition</b> item.hpp:62</div></div>
+<div class="ttc" id="aclassItemState_html_abd8c7a2740237da69f241aad5d81833aa878136ae6a14ef73a18b34db17f8e684"><div class="ttname"><a href="classItemState.html#abd8c7a2740237da69f241aad5d81833aa878136ae6a14ef73a18b34db17f8e684">ItemState::ITEM_EASTER_EGG</a></div><div class="ttdeci">@ ITEM_EASTER_EGG</div><div class="ttdoc">For easter egg mode only.</div><div class="ttdef"><b>Definition</b> item.hpp:72</div></div>
+<div class="ttc" id="aclassItemState_html_abfd5f817de450aac566779ecd130753a"><div class="ttname"><a href="classItemState.html#abfd5f817de450aac566779ecd130753a">ItemState::m_previous_owner</a></div><div class="ttdeci">const AbstractKart * m_previous_owner</div><div class="ttdoc">The &#39;owner&#39; of the item, i.e.</div><div class="ttdef"><b>Definition</b> item.hpp:119</div></div>
+<div class="ttc" id="aclassItemState_html_ac8e6ab03cf6e36b368363144c51e48aa"><div class="ttname"><a href="classItemState.html#ac8e6ab03cf6e36b368363144c51e48aa">ItemState::m_original_rotation</a></div><div class="ttdeci">btQuaternion m_original_rotation</div><div class="ttdoc">The original rotation of the item.</div><div class="ttdef"><b>Definition</b> item.hpp:115</div></div>
+<div class="ttc" id="aclassItemState_html_ad1ba1c54b0a94ce9a94f1fef8f544b83"><div class="ttname"><a href="classItemState.html#ad1ba1c54b0a94ce9a94f1fef8f544b83">ItemState::m_ticks_till_return</a></div><div class="ttdeci">int m_ticks_till_return</div><div class="ttdoc">Time till a collected item reappears.</div><div class="ttdef"><b>Definition</b> item.hpp:89</div></div>
+<div class="ttc" id="aclassItemState_html_ad57ec2f079c702772b6fb6e9f012b9fe"><div class="ttname"><a href="classItemState.html#ad57ec2f079c702772b6fb6e9f012b9fe">ItemState::m_item_id</a></div><div class="ttdeci">int m_item_id</div><div class="ttdoc">Index in item_manager field.</div><div class="ttdef"><b>Definition</b> item.hpp:93</div></div>
+<div class="ttc" id="aclassItemState_html_adcba7e09a45aae1d2ad4ff10d63205c7"><div class="ttname"><a href="classItemState.html#adcba7e09a45aae1d2ad4ff10d63205c7">ItemState::isAvailable</a></div><div class="ttdeci">bool isAvailable() const</div><div class="ttdoc">Returns true if this item is currently collected.</div><div class="ttdef"><b>Definition</b> item.hpp:264</div></div>
+<div class="ttc" id="aclassItemState_html_adf17d5f0f1dc5a8ed6b39275397bdef6"><div class="ttname"><a href="classItemState.html#adf17d5f0f1dc5a8ed6b39275397bdef6">ItemState::initItem</a></div><div class="ttdeci">void initItem(ItemType type, const Vec3 &amp;xyz, const Vec3 &amp;normal)</div><div class="ttdoc">Initialises an item.</div><div class="ttdef"><b>Definition</b> item.cpp:107</div></div>
+<div class="ttc" id="aclassItemState_html_ae6a0c097cde44bd3c80dbc62ac754c1f"><div class="ttname"><a href="classItemState.html#ae6a0c097cde44bd3c80dbc62ac754c1f">ItemState::setTicksTillReturn</a></div><div class="ttdeci">void setTicksTillReturn(int t)</div><div class="ttdoc">Sets how long an item should be disabled.</div><div class="ttdef"><b>Definition</b> item.hpp:258</div></div>
+<div class="ttc" id="aclassItemState_html_aea31846faf4684c2e59d38ab9682edc2"><div class="ttname"><a href="classItemState.html#aea31846faf4684c2e59d38ab9682edc2">ItemState::getDeactivatedTicks</a></div><div class="ttdeci">int getDeactivatedTicks() const</div><div class="ttdoc">Returns the number of ticks during which the item is deactivated (i.e.</div><div class="ttdef"><b>Definition</b> item.hpp:289</div></div>
+<div class="ttc" id="aclassItemState_html_aea3601f1444a89b3a679ef5bddb1e20c"><div class="ttname"><a href="classItemState.html#aea3601f1444a89b3a679ef5bddb1e20c">ItemState::setDisappearCounter</a></div><div class="ttdeci">void setDisappearCounter()</div><div class="ttdoc">Sets the disappear counter depending on type.</div><div class="ttdef"><b>Definition</b> item.cpp:88</div></div>
+<div class="ttc" id="aclassItemState_html_af9cb0610f6c8f751d941ed5c8a6e18b1"><div class="ttname"><a href="classItemState.html#af9cb0610f6c8f751d941ed5c8a6e18b1">ItemState::m_original_type</a></div><div class="ttdeci">ItemType m_original_type</div><div class="ttdoc">If the item is switched, this contains the original type.</div><div class="ttdef"><b>Definition</b> item.hpp:84</div></div>
+<div class="ttc" id="aclassItemState_html_af9daadf1f6d87b3fd5319e9532207f0b"><div class="ttname"><a href="classItemState.html#af9daadf1f6d87b3fd5319e9532207f0b">ItemState::isNegativeItem</a></div><div class="ttdeci">bool isNegativeItem() const</div><div class="ttdoc">Returns if this item is negative, i.e.</div><div class="ttdef"><b>Definition</b> item.hpp:244</div></div>
+<div class="ttc" id="aclassItem_html_a0b33b5648dddc8db73944ac2d216c685"><div class="ttname"><a href="classItem.html#a0b33b5648dddc8db73944ac2d216c685">Item::m_icon_node</a></div><div class="ttdeci">scene::ISceneNode * m_icon_node</div><div class="ttdoc">Billboard that shows when the item is about to respawn</div><div class="ttdef"><b>Definition</b> item.hpp:340</div></div>
+<div class="ttc" id="aclassItem_html_a0bdb56d652ab0fb1c44a61bd06ecc59d"><div class="ttname"><a href="classItem.html#a0bdb56d652ab0fb1c44a61bd06ecc59d">Item::m_graphical_type</a></div><div class="ttdeci">ItemType m_graphical_type</div><div class="ttdoc">Graphical type of the mesh.</div><div class="ttdef"><b>Definition</b> item.hpp:331</div></div>
+<div class="ttc" id="aclassItem_html_a11663c84075b78c3ae5e30fdfcd7c458"><div class="ttname"><a href="classItem.html#a11663c84075b78c3ae5e30fdfcd7c458">Item::~Item</a></div><div class="ttdeci">virtual ~Item()</div><div class="ttdoc">Removes an item.</div><div class="ttdef"><b>Definition</b> item.cpp:361</div></div>
+<div class="ttc" id="aclassItem_html_a21219c12c50232778962cb7c666f5d17"><div class="ttname"><a href="classItem.html#a21219c12c50232778962cb7c666f5d17">Item::getGraphNode</a></div><div class="ttdeci">virtual int getGraphNode() const OVERRIDE</div><div class="ttdoc">Returns the index of the graph node this item is on.</div><div class="ttdef"><b>Definition</b> item.hpp:420</div></div>
+<div class="ttc" id="aclassItem_html_a26f91384e3b703159e9f5ff393505b03"><div class="ttname"><a href="classItem.html#a26f91384e3b703159e9f5ff393505b03">Item::reset</a></div><div class="ttdeci">virtual void reset() OVERRIDE</div><div class="ttdoc">Resets before a race (esp.</div><div class="ttdef"><b>Definition</b> item.cpp:384</div></div>
+<div class="ttc" id="aclassItem_html_a2e0f6a349a7c8d2107f210fbe7318c25"><div class="ttname"><a href="classItem.html#a2e0f6a349a7c8d2107f210fbe7318c25">Item::getDistanceFromCenter</a></div><div class="ttdeci">virtual float getDistanceFromCenter() const OVERRIDE</div><div class="ttdoc">Returns the distance from center: negative means left of center, positive means right of center.</div><div class="ttdef"><b>Definition</b> item.hpp:424</div></div>
+<div class="ttc" id="aclassItem_html_a2fb744e780863523b235d655e032e371"><div class="ttname"><a href="classItem.html#a2fb744e780863523b235d655e032e371">Item::getAvoidancePoint</a></div><div class="ttdeci">virtual const Vec3 * getAvoidancePoint(bool left) const OVERRIDE</div><div class="ttdoc">Returns a point to the left or right of the item which will not trigger a collection of this item.</div><div class="ttdef"><b>Definition</b> item.hpp:433</div></div>
+<div class="ttc" id="aclassItem_html_a357516458a8c9bc6d1aac84a8405d7fd"><div class="ttname"><a href="classItem.html#a357516458a8c9bc6d1aac84a8405d7fd">Item::initItem</a></div><div class="ttdeci">void initItem(ItemType type, const Vec3 &amp;xyz, const Vec3 &amp;normal)</div><div class="ttdoc">Initialises the item.</div><div class="ttdef"><b>Definition</b> item.cpp:296</div></div>
+<div class="ttc" id="aclassItem_html_a4448acf95ed30d2881920bf9f6e89856"><div class="ttname"><a href="classItem.html#a4448acf95ed30d2881920bf9f6e89856">Item::m_node</a></div><div class="ttdeci">LODNode * m_node</div><div class="ttdoc">Scene node of this item.</div><div class="ttdef"><b>Definition</b> item.hpp:328</div></div>
+<div class="ttc" id="aclassItem_html_a44f34bdabb79763e83a0556bc1fef0a9"><div class="ttname"><a href="classItem.html#a44f34bdabb79763e83a0556bc1fef0a9">Item::switchBack</a></div><div class="ttdeci">virtual bool switchBack() OVERRIDE</div><div class="ttdoc">Switch backs to the original item.</div><div class="ttdef"><b>Definition</b> item.hpp:390</div></div>
+<div class="ttc" id="aclassItem_html_a53eb27f41802618fee076a1490155c09"><div class="ttname"><a href="classItem.html#a53eb27f41802618fee076a1490155c09">Item::collected</a></div><div class="ttdeci">virtual void collected(const AbstractKart *kart) OVERRIDE</div><div class="ttdoc">Is called when the item is hit by a kart.</div><div class="ttdef"><b>Definition</b> item.hpp:380</div></div>
+<div class="ttc" id="aclassItem_html_a5631cd2979455dd53a4701ef2428b4fc"><div class="ttname"><a href="classItem.html#a5631cd2979455dd53a4701ef2428b4fc">Item::m_animation_start_ticks</a></div><div class="ttdeci">int m_animation_start_ticks</div><div class="ttdoc">Time ticks since the item last respawned</div><div class="ttdef"><b>Definition</b> item.hpp:357</div></div>
+<div class="ttc" id="aclassItem_html_a8420f5c0528b8187ec77b53984276f40"><div class="ttname"><a href="classItem.html#a8420f5c0528b8187ec77b53984276f40">Item::hitKart</a></div><div class="ttdeci">virtual bool hitKart(const Vec3 &amp;xyz, const AbstractKart *kart=NULL) const OVERRIDE</div><div class="ttdoc">Returns true if the Kart is close enough to hit this item, the item is not deactivated anymore,...</div><div class="ttdef"><b>Definition</b> item.hpp:404</div></div>
+<div class="ttc" id="aclassItem_html_a873b5b073a23cc44ef17c7d4a82d9837"><div class="ttname"><a href="classItem.html#a873b5b073a23cc44ef17c7d4a82d9837">Item::Item</a></div><div class="ttdeci">Item(ItemType type, const Vec3 &amp;xyz, const Vec3 &amp;normal, scene::IMesh *mesh, scene::IMesh *lowres_mesh, const std::string &amp;icon, const AbstractKart *owner)</div><div class="ttdoc">Constructor for an item.</div><div class="ttdef"><b>Definition</b> item.cpp:219</div></div>
+<div class="ttc" id="aclassItem_html_aa876d49ee5e6cc9b73a5c97ab9e5cae3"><div class="ttname"><a href="classItem.html#aa876d49ee5e6cc9b73a5c97ab9e5cae3">Item::m_spark_nodes</a></div><div class="ttdeci">std::vector&lt; scene::ISceneNode * &gt; m_spark_nodes</div><div class="ttdoc">Vector containing the sparks</div><div class="ttdef"><b>Definition</b> item.hpp:337</div></div>
+<div class="ttc" id="aclassItem_html_ab94993956d199f54c5cca0c7fc7d6e89"><div class="ttname"><a href="classItem.html#ab94993956d199f54c5cca0c7fc7d6e89">Item::m_graph_node</a></div><div class="ttdeci">int m_graph_node</div><div class="ttdoc">The graph node this item is on.</div><div class="ttdef"><b>Definition</b> item.hpp:349</div></div>
+<div class="ttc" id="aclassItem_html_ac1d9406da9c2c8aae6cf0738ffa00837"><div class="ttname"><a href="classItem.html#ac1d9406da9c2c8aae6cf0738ffa00837">Item::m_was_available_previously</a></div><div class="ttdeci">bool m_was_available_previously</div><div class="ttdoc">Stores if the item was available in the previously rendered frame.</div><div class="ttdef"><b>Definition</b> item.hpp:343</div></div>
+<div class="ttc" id="aclassItem_html_ac593c8fe532d79b51e7f90c38bf54031"><div class="ttname"><a href="classItem.html#ac593c8fe532d79b51e7f90c38bf54031">Item::m_appear_anime_node</a></div><div class="ttdeci">scene::ISceneNode * m_appear_anime_node</div><div class="ttdoc">The parent of m_spark_nodes and m_icon_node</div><div class="ttdef"><b>Definition</b> item.hpp:334</div></div>
+<div class="ttc" id="aclassItem_html_acadc0de6206498885ea9ca4372b5c85a"><div class="ttname"><a href="classItem.html#acadc0de6206498885ea9ca4372b5c85a">Item::m_distance_2</a></div><div class="ttdeci">float m_distance_2</div><div class="ttdoc">square distance at which item is collected</div><div class="ttdef"><b>Definition</b> item.hpp:346</div></div>
+<div class="ttc" id="aclassItem_html_ad4e9f2c6d85ebd1e1238f3fff3f7d5b8"><div class="ttname"><a href="classItem.html#ad4e9f2c6d85ebd1e1238f3fff3f7d5b8">Item::m_avoidance_points</a></div><div class="ttdeci">Vec3 * m_avoidance_points[2]</div><div class="ttdoc">The closest point to the left and right of this item at which it would not be collected.</div><div class="ttdef"><b>Definition</b> item.hpp:361</div></div>
+<div class="ttc" id="aclassItem_html_ad633f7530c26d243760728faf9fad5bd"><div class="ttname"><a href="classItem.html#ad633f7530c26d243760728faf9fad5bd">Item::updateGraphics</a></div><div class="ttdeci">virtual void updateGraphics(float dt) OVERRIDE</div><div class="ttdoc">Updated the item - rotates it, takes care of items coming back into the game after it has been collec...</div><div class="ttdef"><b>Definition</b> item.cpp:439</div></div>
+<div class="ttc" id="aclassItem_html_aea4bf76c70239aad081669aca91122f4"><div class="ttname"><a href="classItem.html#aea4bf76c70239aad081669aca91122f4">Item::m_distance_from_center</a></div><div class="ttdeci">float m_distance_from_center</div><div class="ttdoc">Distance from the center of the quad this item is in.</div><div class="ttdef"><b>Definition</b> item.hpp:354</div></div>
+<div class="ttc" id="aclassLODNode_html"><div class="ttname"><a href="classLODNode.html">LODNode</a></div><div class="ttdoc">manages level-of-detail</div><div class="ttdef"><b>Definition</b> lod_node.hpp:50</div></div>
+<div class="ttc" id="aclassTestAI_html"><div class="ttname"><a href="classTestAI.html">TestAI</a></div><div class="ttdoc">This is a test version of the AI, which can be used to create new AIs, and compare them with the curr...</div><div class="ttdef"><b>Definition</b> test_ai.hpp:75</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

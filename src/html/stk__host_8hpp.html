@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: network/stk_host.hpp 파일 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>network</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">클래스</a> &#124;
+<a href="#define-members">매크로</a> &#124;
+<a href="#enum-members">열거형 타입</a>  </div>
+  <div class="headertitle"><div class="title">stk_host.hpp 파일 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Defines an interface to use network low-level functions easily.  
+<a href="#details">더 자세히 ...</a></p>
+<div class="textblock"><code>#include &quot;utils/stk_process.hpp&quot;</code><br />
+<code>#include &quot;utils/synchronised.hpp&quot;</code><br />
+<code>#include &quot;utils/time.hpp&quot;</code><br />
+<code>#include &quot;irrString.h&quot;</code><br />
+<code>#include &lt;enet/enet.h&gt;</code><br />
+<code>#include &lt;atomic&gt;</code><br />
+<code>#include &lt;cassert&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;list&gt;</code><br />
+<code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;map&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;mutex&gt;</code><br />
+<code>#include &lt;set&gt;</code><br />
+<code>#include &lt;thread&gt;</code><br />
+<code>#include &lt;tuple&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+stk_host.hpp에 대한 include 의존 그래프</div>
+<div class="dyncontent">
+<div class="center"><img src="stk__host_8hpp__incl.png" border="0" usemap="#anetwork_2stk__host_8hpp" loading="lazy" alt=""/></div>
+<map name="anetwork_2stk__host_8hpp" id="anetwork_2stk__host_8hpp">
+<area shape="rect" title="Defines an interface to use network low&#45;level functions easily." alt="" coords="912,5,1058,32"/>
+<area shape="rect" href="stk__process_8hpp_source.html" title=" " alt="" coords="5,80,151,107"/>
+<area shape="poly" title=" " alt="" coords="908,25,589,47,170,83,167,83,165,78,170,77,589,42,913,23"/>
+<area shape="rect" title=" " alt="" coords="120,229,177,256"/>
+<area shape="poly" title=" " alt="" coords="909,22,739,31,528,42,340,59,274,70,237,82,206,110,183,146,167,183,157,216,153,212,162,181,179,143,202,107,234,78,272,65,339,54,527,37,739,25,914,21"/>
+<area shape="rect" href="synchronised_8hpp_source.html" title=" " alt="" coords="248,80,399,107"/>
+<area shape="poly" title=" " alt="" coords="910,30,415,85,414,79,912,26"/>
+<area shape="rect" title=" " alt="" coords="227,155,284,181"/>
+<area shape="poly" title=" " alt="" coords="908,26,733,47,627,62,523,83,401,117,300,152,298,147,399,112,521,77,627,57,733,41,914,25"/>
+<area shape="rect" href="time_8hpp_source.html" title=" " alt="" coords="534,80,633,107"/>
+<area shape="poly" title=" " alt="" coords="908,33,649,82,648,77,914,32"/>
+<area shape="rect" title=" " alt="" coords="657,80,734,107"/>
+<area shape="poly" title=" " alt="" coords="937,32,750,81,749,76,932,33"/>
+<area shape="rect" title=" " alt="" coords="758,80,844,107"/>
+<area shape="poly" title=" " alt="" coords="955,32,848,76,846,71,950,33"/>
+<area shape="rect" title=" " alt="" coords="868,80,928,107"/>
+<area shape="poly" title=" " alt="" coords="972,31,926,72,923,68,967,34"/>
+<area shape="rect" title=" " alt="" coords="952,80,1017,107"/>
+<area shape="poly" title=" " alt="" coords="986,31,987,66,983,63,983,35"/>
+<area shape="rect" title=" " alt="" coords="1041,80,1102,107"/>
+<area shape="poly" title=" " alt="" coords="1000,30,1048,71,1042,69,999,35"/>
+<area shape="rect" title=" " alt="" coords="1125,80,1164,107"/>
+<area shape="poly" title=" " alt="" coords="1013,30,1114,77,1109,77,1012,35"/>
+<area shape="rect" title=" " alt="" coords="1187,80,1265,107"/>
+<area shape="poly" title=" " alt="" coords="1027,30,1175,76,1170,76,1026,35"/>
+<area shape="rect" title=" " alt="" coords="1288,80,1334,107"/>
+<area shape="poly" title=" " alt="" coords="1059,30,1158,49,1276,79,1271,79,1157,54,1058,35"/>
+<area shape="rect" title=" " alt="" coords="1358,80,1427,107"/>
+<area shape="poly" title=" " alt="" coords="1058,28,1188,48,1346,80,1340,80,1187,53,1058,33"/>
+<area shape="rect" title=" " alt="" coords="1450,80,1490,107"/>
+<area shape="poly" title=" " alt="" coords="1058,22,1228,39,1331,55,1438,80,1432,80,1330,60,1227,44,1058,27"/>
+<area shape="rect" title=" " alt="" coords="1513,80,1563,107"/>
+<area shape="poly" title=" " alt="" coords="1058,21,1254,38,1375,54,1501,80,1496,80,1374,60,1254,43,1058,26"/>
+<area shape="rect" title=" " alt="" coords="1587,80,1644,107"/>
+<area shape="poly" title=" " alt="" coords="1058,20,1284,37,1426,53,1574,80,1569,80,1426,59,1284,42,1058,26"/>
+<area shape="rect" href="tls_8hpp_source.html" title=" " alt="" coords="48,155,137,181"/>
+<area shape="poly" title=" " alt="" coords="81,105,90,140,84,139,80,110"/>
+<area shape="poly" title=" " alt="" coords="104,179,133,217,127,217,101,184"/>
+<area shape="poly" title=" " alt="" coords="314,106,279,145,276,141,309,109"/>
+<area shape="rect" title=" " alt="" coords="309,155,378,181"/>
+<area shape="poly" title=" " alt="" coords="544,107,394,154,392,149,539,108"/>
+<area shape="rect" title=" " alt="" coords="402,155,463,181"/>
+<area shape="poly" title=" " alt="" coords="560,106,474,150,472,145,555,108"/>
+<area shape="rect" title=" " alt="" coords="487,155,565,181"/>
+<area shape="poly" title=" " alt="" coords="576,106,547,145,544,140,571,109"/>
+<area shape="rect" href="types_8hpp.html" title="Declares the general types that are used by the network." alt="" coords="589,155,695,181"/>
+<area shape="poly" title=" " alt="" coords="595,105,625,143,620,142,593,110"/>
+<area shape="rect" title=" " alt="" coords="655,229,720,256"/>
+<area shape="poly" title=" " alt="" coords="633,103,676,121,694,135,710,153,715,169,715,186,704,218,701,214,710,185,710,170,705,156,691,139,673,126,633,108"/>
+<area shape="rect" title=" " alt="" coords="770,155,852,181"/>
+<area shape="poly" title=" " alt="" coords="623,105,760,149,754,150,623,110"/>
+<area shape="rect" title=" " alt="" coords="876,155,944,181"/>
+<area shape="poly" title=" " alt="" coords="634,102,864,154,859,154,633,107"/>
+<area shape="rect" title=" " alt="" coords="968,155,1025,181"/>
+<area shape="poly" title=" " alt="" coords="633,102,645,104,798,126,866,135,955,154,950,154,865,140,797,131,644,109,634,107"/>
+<area shape="rect" title=" " alt="" coords="1050,155,1103,181"/>
+<area shape="poly" title=" " alt="" coords="633,102,645,104,753,118,839,125,925,133,1037,154,1032,154,925,138,839,130,753,123,644,109,634,107"/>
+<area shape="rect" title=" " alt="" coords="1128,155,1188,181"/>
+<area shape="poly" title=" " alt="" coords="633,102,645,104,775,119,878,125,981,133,1116,155,1110,155,981,138,877,130,774,124,644,109,634,108"/>
+<area shape="poly" title=" " alt="" coords="651,180,674,217,669,215,649,184"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+이 그래프는 이 파일을 직/간접적으로 include 하는 파일들을 보여줍니다.:</div>
+<div class="dyncontent">
+<div class="center"><img src="stk__host_8hpp__dep__incl.png" border="0" usemap="#anetwork_2stk__host_8hppdep" loading="lazy" alt=""/></div>
+<map name="anetwork_2stk__host_8hppdep" id="anetwork_2stk__host_8hppdep">
+<area shape="rect" title="Defines an interface to use network low&#45;level functions easily." alt="" coords="9,5,155,32"/>
+<area shape="rect" href="network__timer__synchronizer_8hpp_source.html" title=" " alt="" coords="5,80,159,123"/>
+<area shape="poly" title=" " alt="" coords="84,46,85,81,79,79,80,50"/>
+</map>
+</div>
+</div>
+<p><a href="stk__host_8hpp_source.html">이 파일의 소스 코드 페이지로 가기</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+클래스</h2></td></tr>
+<tr class="memitem:STKHost" id="r_STKHost"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classSTKHost.html">STKHost</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the local host.  <a href="classSTKHost.html#details">더 자세히 ...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+열거형 타입</h2></td></tr>
+<tr class="memitem:ae7619c1ac4ce0dbe2932a4238ea1db54" id="r_ae7619c1ac4ce0dbe2932a4238ea1db54"><td class="memItemLeft"><a id="ae7619c1ac4ce0dbe2932a4238ea1db54" name="ae7619c1ac4ce0dbe2932a4238ea1db54"></a>enum &#160;</td><td class="memItemRight"><b>ENetCommandType</b> : unsigned int { <b>ECT_SEND_PACKET</b> = 0
+, <b>ECT_DISCONNECT</b> = 1
+, <b>ECT_RESET</b> = 2
+ }</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Defines an interface to use network low-level functions easily. </p>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: network/protocols/game_protocol.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>network</b></li><li class="navelem"><b>protocols</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">game_protocol.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  Copyright (C) 2015  Supertuxkart-Team</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef GAME_PROTOCOL_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define GAME_PROTOCOL_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;network/event_rewinder.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="protocol_8hpp.html">network/protocol.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;input/input.hpp&quot;</span>                <span class="comment">// for PlayerAction</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;utils/cpp2011.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;utils/stk_process.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;tuple&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">class </span><a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">class </span><a class="code hl_class" href="classNetworkItemManager.html">NetworkItemManager</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">class </span><a class="code hl_class" href="classNetworkString.html">NetworkString</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">class </span><a class="code hl_class" href="classSTKPeer.html">STKPeer</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classGameProtocol.html">   39</a></span><span class="keyword">class </span><a class="code hl_function" href="classGameProtocol.html#a23135691d2d65383ada175dc978f7591">GameProtocol</a> : <span class="keyword">public</span> <a class="code hl_function" href="classProtocol.html#a9a9842622d89020b1132e1f533a3494d">Protocol</a></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                   , <span class="keyword">public</span> <a class="code hl_function" href="classEventRewinder.html#a529834085072504eb8c2c7075250a034">EventRewinder</a></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>{</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">/* Used to check if deleting world is doing at the same the for</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">     * asynchronous event update. */</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">mutable</span> std::mutex m_world_deleting_mutex;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">enum</span> { GP_CONTROLLER_ACTION,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>           GP_STATE,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>           GP_ITEM_UPDATE,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>           GP_ITEM_CONFIRMATION,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>           GP_ADJUST_TIME</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    };</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classGameProtocol.html#a08011e256a6d921e6569ec2d063aaf42">   57</a></span>    <a class="code hl_class" href="classNetworkString.html">NetworkString</a> *<a class="code hl_variable" href="classGameProtocol.html#a08011e256a6d921e6569ec2d063aaf42">m_data_to_send</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classGameProtocol.html#a4a799c66068363a89108dfab612124e8">   61</a></span>    std::vector&lt;int8_t&gt; <a class="code hl_variable" href="classGameProtocol.html#a4a799c66068363a89108dfab612124e8">m_adjust_time</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">// Dummy data structure to save all kart actions.</span></div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="};">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structGameProtocol_1_1Action.html">   64</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structGameProtocol_1_1Action.html">Action</a></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordtype">int</span>          m_ticks;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordtype">int</span>          m_kart_id;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <a class="code hl_enumeration" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> m_action;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordtype">int</span>          m_value;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordtype">int</span>          m_value_l;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordtype">int</span>          m_value_r;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    };   <span class="comment">// struct Action</span></div>
+</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// List of all kart actions to send to the server</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    std::vector&lt;Action&gt; m_all_actions;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#a6f8dd16eb7e7b83c7df9089645a9e301">handleControllerAction</a>(<a class="code hl_class" href="classEvent.html">Event</a> *event);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#a293433d401851c1f0c8ca4e9b57bc1af">handleState</a>(<a class="code hl_class" href="classEvent.html">Event</a> *event);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">void</span> handleAdjustTime(<a class="code hl_class" href="classEvent.html">Event</a> *event);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#ad69bad2b179c8215151925a0769696b4">handleItemEventConfirmation</a>(<a class="code hl_class" href="classEvent.html">Event</a> *event);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keyword">static</span> std::weak_ptr&lt;GameProtocol&gt; m_game_protocol[PT_COUNT];</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_class" href="classNetworkItemManager.html">NetworkItemManager</a>* m_network_item_manager;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// Maximum value of values are only 32768</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    std::tuple&lt;uint8_t, uint16_t, uint16_t, uint16_t&gt;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                                                compressAction(<span class="keyword">const</span> <a class="code hl_struct" href="structGameProtocol_1_1Action.html">Action</a>&amp; a)</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        uint8_t w = (uint8_t)(a.m_action &amp; 63) |</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            (a.m_value_l &gt; 0 ? 64 : 0) | (a.m_value_r &gt; 0 ? 128 : 0);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        uint16_t x = (uint16_t)a.m_value;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        uint16_t y = (uint16_t)std::abs(a.m_value_l);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        uint16_t z = (uint16_t)std::abs(a.m_value_r);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">return</span> std::make_tuple(w, x, y, z);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    std::tuple&lt;PlayerAction, int, int, int&gt;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>               decompressAction(uint8_t w, uint16_t x, uint16_t y , uint16_t z)</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <a class="code hl_enumeration" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> a = (<a class="code hl_enumeration" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a>)(w &amp; 63);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordtype">int</span> l_sign = ((w &gt;&gt; 6) &amp; 1) != 0 ? 1 : -1;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordtype">int</span> r_sign = ((w &gt;&gt; 7) &amp; 1) != 0 ? 1 : -1;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keywordtype">int</span> b = x;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordtype">int</span> c = y * l_sign;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keywordtype">int</span> d = z * r_sign;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordflow">return</span> std::make_tuple(a, b, c, d);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>             <a class="code hl_function" href="classGameProtocol.html#a23135691d2d65383ada175dc978f7591">GameProtocol</a>();</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classGameProtocol.html#a23135691d2d65383ada175dc978f7591">~GameProtocol</a>();</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classGameProtocol.html#ab840457c439895388a98debc910cdbb1">notifyEventAsynchronous</a>(Event* event) OVERRIDE;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#acc98aafc9d6e3d465fc6f692bf68aeb5">update</a>(<span class="keywordtype">int</span> ticks) OVERRIDE;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#ab0a05c18a985f1f472ddbdd59afc5a11">sendActions</a>();</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#aef074c349be0d019cfd9d2ef78b37f57">controllerAction</a>(<span class="keywordtype">int</span> kart_id, <a class="code hl_enumeration" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> action,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                          <span class="keywordtype">int</span> value, <span class="keywordtype">int</span> val_l, <span class="keywordtype">int</span> val_r);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#a5e8a76871919ca73eb4c793900b8914a">startNewState</a>();</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#a8b8d2e637a995fab5a7592c9bb374c38">addState</a>(BareNetworkString *buffer);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#ad412fec02284027c974ac70aa16f0283">sendState</a>();</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#a6f6856f95119474c2314722bcf0708ca">finalizeState</a>(std::vector&lt;std::string&gt;&amp; cur_rewinder);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#af2bdf38c6413cfc67ff6f66dacb120d6">sendItemEventConfirmation</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#aa545d2717f642fd3c67bec0ef24ff394">undo</a>(BareNetworkString *buffer) OVERRIDE;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#af16b31caa90cce9a894e09bf5db6b4cc">rewind</a>(BareNetworkString *buffer) OVERRIDE;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classGameProtocol.html#a8d722fde1a32a57513adbbfdf6901b14">  123</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#a8d722fde1a32a57513adbbfdf6901b14">setup</a>() OVERRIDE {};</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classGameProtocol.html#ac652bcdeaca63f3133692bc3f44c6ec6">  125</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGameProtocol.html#ac652bcdeaca63f3133692bc3f44c6ec6">asynchronousUpdate</a>() OVERRIDE {}</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keyword">static</span> std::shared_ptr&lt;GameProtocol&gt; createInstance();</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> emptyInstance()</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        ProcessType pt = STKProcess::getType();</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordflow">return</span> m_game_protocol[pt].expired();</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }   <span class="comment">// emptyInstance</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keyword">static</span> std::shared_ptr&lt;GameProtocol&gt; lock()</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    {</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        ProcessType pt = STKProcess::getType();</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        <span class="keywordflow">return</span> m_game_protocol[pt].lock();</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    }   <span class="comment">// lock</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classGameProtocol.html#afd0518eb229a3f91d6a252bce4240d7b">  142</a></span>    <a class="code hl_class" href="classNetworkString.html">NetworkString</a>* <a class="code hl_function" href="classGameProtocol.html#afd0518eb229a3f91d6a252bce4240d7b">getState</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classGameProtocol.html#a08011e256a6d921e6569ec2d063aaf42">m_data_to_send</a>;  }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    std::unique_lock&lt;std::mutex&gt; acquireWorldDeletingMutex()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keyword">               </span>{ <span class="keywordflow">return</span> std::unique_lock&lt;std::mutex&gt;(m_world_deleting_mutex); }</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>};   <span class="comment">// class GameProtocol</span></div>
+</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">#endif </span><span class="comment">// GAME_PROTOCOL_HPP</span></div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassEventRewinder_html_a529834085072504eb8c2c7075250a034"><div class="ttname"><a href="classEventRewinder.html#a529834085072504eb8c2c7075250a034">EventRewinder::EventRewinder</a></div><div class="ttdeci">EventRewinder()</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> event_rewinder.cpp:26</div></div>
+<div class="ttc" id="aclassEvent_html"><div class="ttname"><a href="classEvent.html">Event</a></div><div class="ttdoc">Class representing an event that need to pass trough the system. This is used to remove ENet dependen...</div><div class="ttdef"><b>Definition</b> event.hpp:73</div></div>
+<div class="ttc" id="aclassGameProtocol_html_a08011e256a6d921e6569ec2d063aaf42"><div class="ttname"><a href="classGameProtocol.html#a08011e256a6d921e6569ec2d063aaf42">GameProtocol::m_data_to_send</a></div><div class="ttdeci">NetworkString * m_data_to_send</div><div class="ttdoc">A network string that collects all information from the server to be sent next.</div><div class="ttdef"><b>Definition</b> game_protocol.hpp:57</div></div>
+<div class="ttc" id="aclassGameProtocol_html_a23135691d2d65383ada175dc978f7591"><div class="ttname"><a href="classGameProtocol.html#a23135691d2d65383ada175dc978f7591">GameProtocol::GameProtocol</a></div><div class="ttdeci">GameProtocol()</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:60</div></div>
+<div class="ttc" id="aclassGameProtocol_html_a293433d401851c1f0c8ca4e9b57bc1af"><div class="ttname"><a href="classGameProtocol.html#a293433d401851c1f0c8ca4e9b57bc1af">GameProtocol::handleState</a></div><div class="ttdeci">void handleState(Event *event)</div><div class="ttdoc">Called when a new full state is received form the server.</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:342</div></div>
+<div class="ttc" id="aclassGameProtocol_html_a4a799c66068363a89108dfab612124e8"><div class="ttname"><a href="classGameProtocol.html#a4a799c66068363a89108dfab612124e8">GameProtocol::m_adjust_time</a></div><div class="ttdeci">std::vector&lt; int8_t &gt; m_adjust_time</div><div class="ttdoc">The server might request that the world clock of a client is adjusted to reduce number of rollbacks.</div><div class="ttdef"><b>Definition</b> game_protocol.hpp:61</div></div>
+<div class="ttc" id="aclassGameProtocol_html_a5e8a76871919ca73eb4c793900b8914a"><div class="ttname"><a href="classGameProtocol.html#a5e8a76871919ca73eb4c793900b8914a">GameProtocol::startNewState</a></div><div class="ttdeci">void startNewState()</div><div class="ttdoc">Called by the server before assembling a new message containing the full state of the race to be sent...</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:285</div></div>
+<div class="ttc" id="aclassGameProtocol_html_a6f6856f95119474c2314722bcf0708ca"><div class="ttname"><a href="classGameProtocol.html#a6f6856f95119474c2314722bcf0708ca">GameProtocol::finalizeState</a></div><div class="ttdeci">void finalizeState(std::vector&lt; std::string &gt; &amp;cur_rewinder)</div><div class="ttdoc">Called by a server to finalize the current state, which add updated names of rewinder using to the be...</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:310</div></div>
+<div class="ttc" id="aclassGameProtocol_html_a6f8dd16eb7e7b83c7df9089645a9e301"><div class="ttname"><a href="classGameProtocol.html#a6f8dd16eb7e7b83c7df9089645a9e301">GameProtocol::handleControllerAction</a></div><div class="ttdeci">void handleControllerAction(Event *event)</div><div class="ttdoc">Called when a controller event is received - either on the server from a client, or on a client from ...</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:185</div></div>
+<div class="ttc" id="aclassGameProtocol_html_a8b8d2e637a995fab5a7592c9bb374c38"><div class="ttname"><a href="classGameProtocol.html#a8b8d2e637a995fab5a7592c9bb374c38">GameProtocol::addState</a></div><div class="ttdeci">void addState(BareNetworkString *buffer)</div><div class="ttdoc">Called by a server to add data to the current state.</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:298</div></div>
+<div class="ttc" id="aclassGameProtocol_html_a8d722fde1a32a57513adbbfdf6901b14"><div class="ttname"><a href="classGameProtocol.html#a8d722fde1a32a57513adbbfdf6901b14">GameProtocol::setup</a></div><div class="ttdeci">virtual void setup() OVERRIDE</div><div class="ttdoc">Called when the protocol is going to start.</div><div class="ttdef"><b>Definition</b> game_protocol.hpp:123</div></div>
+<div class="ttc" id="aclassGameProtocol_html_aa545d2717f642fd3c67bec0ef24ff394"><div class="ttname"><a href="classGameProtocol.html#aa545d2717f642fd3c67bec0ef24ff394">GameProtocol::undo</a></div><div class="ttdeci">virtual void undo(BareNetworkString *buffer) OVERRIDE</div><div class="ttdoc">Called from the RewindManager when rolling back.</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:369</div></div>
+<div class="ttc" id="aclassGameProtocol_html_ab0a05c18a985f1f472ddbdd59afc5a11"><div class="ttname"><a href="classGameProtocol.html#ab0a05c18a985f1f472ddbdd59afc5a11">GameProtocol::sendActions</a></div><div class="ttdeci">void sendActions()</div><div class="ttdoc">Synchronous update - will send all commands collected during the last frame (and could optional only ...</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:78</div></div>
+<div class="ttc" id="aclassGameProtocol_html_ab840457c439895388a98debc910cdbb1"><div class="ttname"><a href="classGameProtocol.html#ab840457c439895388a98debc910cdbb1">GameProtocol::notifyEventAsynchronous</a></div><div class="ttdeci">virtual bool notifyEventAsynchronous(Event *event) OVERRIDE</div><div class="ttdoc">Called when a message from a remote GameProtocol is received.</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:119</div></div>
+<div class="ttc" id="aclassGameProtocol_html_ac652bcdeaca63f3133692bc3f44c6ec6"><div class="ttname"><a href="classGameProtocol.html#ac652bcdeaca63f3133692bc3f44c6ec6">GameProtocol::asynchronousUpdate</a></div><div class="ttdeci">virtual void asynchronousUpdate() OVERRIDE</div><div class="ttdoc">Called by the protocol listener as often as possible.</div><div class="ttdef"><b>Definition</b> game_protocol.hpp:125</div></div>
+<div class="ttc" id="aclassGameProtocol_html_acc98aafc9d6e3d465fc6f692bf68aeb5"><div class="ttname"><a href="classGameProtocol.html#acc98aafc9d6e3d465fc6f692bf68aeb5">GameProtocol::update</a></div><div class="ttdeci">virtual void update(int ticks) OVERRIDE</div><div class="ttdoc">Called by the protocol listener, synchronously with the main loop.</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:398</div></div>
+<div class="ttc" id="aclassGameProtocol_html_ad412fec02284027c974ac70aa16f0283"><div class="ttname"><a href="classGameProtocol.html#ad412fec02284027c974ac70aa16f0283">GameProtocol::sendState</a></div><div class="ttdeci">void sendState()</div><div class="ttdoc">Called when the last state information has been added and the message can be sent to the clients.</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:333</div></div>
+<div class="ttc" id="aclassGameProtocol_html_ad69bad2b179c8215151925a0769696b4"><div class="ttname"><a href="classGameProtocol.html#ad69bad2b179c8215151925a0769696b4">GameProtocol::handleItemEventConfirmation</a></div><div class="ttdeci">void handleItemEventConfirmation(Event *event)</div><div class="ttdoc">Handles an item even confirmation from a client.</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:274</div></div>
+<div class="ttc" id="aclassGameProtocol_html_aef074c349be0d019cfd9d2ef78b37f57"><div class="ttname"><a href="classGameProtocol.html#aef074c349be0d019cfd9d2ef78b37f57">GameProtocol::controllerAction</a></div><div class="ttdeci">void controllerAction(int kart_id, PlayerAction action, int value, int val_l, int val_r)</div><div class="ttdoc">Called from the local kart controller when an action (like steering, acceleration,...</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:153</div></div>
+<div class="ttc" id="aclassGameProtocol_html_af16b31caa90cce9a894e09bf5db6b4cc"><div class="ttname"><a href="classGameProtocol.html#af16b31caa90cce9a894e09bf5db6b4cc">GameProtocol::rewind</a></div><div class="ttdeci">virtual void rewind(BareNetworkString *buffer) OVERRIDE</div><div class="ttdoc">Called from the RewindManager after a rollback to replay the stored events.</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:379</div></div>
+<div class="ttc" id="aclassGameProtocol_html_af2bdf38c6413cfc67ff6f66dacb120d6"><div class="ttname"><a href="classGameProtocol.html#af2bdf38c6413cfc67ff6f66dacb120d6">GameProtocol::sendItemEventConfirmation</a></div><div class="ttdeci">void sendItemEventConfirmation(int ticks)</div><div class="ttdoc">Sends a confirmation to the server that all item events up to &#39;ticks&#39; have been received.</div><div class="ttdef"><b>Definition</b> game_protocol.cpp:257</div></div>
+<div class="ttc" id="aclassGameProtocol_html_afd0518eb229a3f91d6a252bce4240d7b"><div class="ttname"><a href="classGameProtocol.html#afd0518eb229a3f91d6a252bce4240d7b">GameProtocol::getState</a></div><div class="ttdeci">NetworkString * getState() const</div><div class="ttdoc">Returns the NetworkString in which a state was saved.</div><div class="ttdef"><b>Definition</b> game_protocol.hpp:142</div></div>
+<div class="ttc" id="aclassNetworkItemManager_html"><div class="ttname"><a href="classNetworkItemManager.html">NetworkItemManager</a></div><div class="ttdoc">The network item manager is responsible for handling all network related item manager tasks - synchro...</div><div class="ttdef"><b>Definition</b> network_item_manager.hpp:45</div></div>
+<div class="ttc" id="aclassNetworkString_html"><div class="ttname"><a href="classNetworkString.html">NetworkString</a></div><div class="ttdoc">A new implementation of NetworkString, which has a fixed format: Byte 0: The type of the message,...</div><div class="ttdef"><b>Definition</b> network_string.hpp:422</div></div>
+<div class="ttc" id="aclassProtocol_html_a9a9842622d89020b1132e1f533a3494d"><div class="ttname"><a href="classProtocol.html#a9a9842622d89020b1132e1f533a3494d">Protocol::Protocol</a></div><div class="ttdeci">Protocol(ProtocolType type)</div><div class="ttdoc">Constructor Sets the basic protocol parameters, as the callback object and the protocol type.</div><div class="ttdef"><b>Definition</b> protocol.cpp:35</div></div>
+<div class="ttc" id="aclassSTKPeer_html"><div class="ttname"><a href="classSTKPeer.html">STKPeer</a></div><div class="ttdoc">Represents a peer. This class is used to interface the ENetPeer structure.</div><div class="ttdef"><b>Definition</b> stk_peer.hpp:76</div></div>
+<div class="ttc" id="agroup__input_html_gaea132397c26cad8f8637a9422260deca"><div class="ttname"><a href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a></div><div class="ttdeci">PlayerAction</div><div class="ttdoc">types of input events / what actions the players can do</div><div class="ttdef"><b>Definition</b> input.hpp:117</div></div>
+<div class="ttc" id="aprotocol_8hpp_html"><div class="ttname"><a href="protocol_8hpp.html">protocol.hpp</a></div><div class="ttdoc">Generic protocols declarations.</div></div>
+<div class="ttc" id="astructGameProtocol_1_1Action_html"><div class="ttname"><a href="structGameProtocol_1_1Action.html">GameProtocol::Action</a></div><div class="ttdef"><b>Definition</b> game_protocol.hpp:65</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: states_screens/online/tracks_screen.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>states_screens</b></li><li class="navelem"><b>online</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">tracks_screen.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  Copyright (C) 2009-2015 Marianne Gagnon</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifndef HEADER_TRACKS_SCREEN_HPP</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#define HEADER_TRACKS_SCREEN_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;guiengine/screen.hpp&quot;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;guiengine/widgets/text_box_widget.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;deque&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">class </span><a class="code hl_class" href="classPeerVote.html">PeerVote</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">class </span>Track;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceGUIEngine.html">GUIEngine</a></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1CheckBoxWidget.html">CheckBoxWidget</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1CheckBoxWidget.html">CheckBoxWidget</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1ListWidget.html">ListWidget</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1SpinnerWidget.html">SpinnerWidget</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1ProgressBarWidget.html">ProgressBarWidget</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">namespace </span>gui</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keyword">class </span>STKModifiedSpriteBank;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="foldopen" id="foldopen00053" data-start="{" data-end="};">
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classTracksScreen.html">   53</a></span><span class="keyword">class </span>TracksScreen : <span class="keyword">public</span> <a class="code hl_class" href="classGUIEngine_1_1Screen.html">GUIEngine::Screen</a>,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                     <span class="keyword">public</span> <a class="code hl_class" href="classGUIEngine_1_1ScreenSingleton.html">GUIEngine::ScreenSingleton</a>&lt;TracksScreen&gt;,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                     <span class="keyword">public</span> <a class="code hl_class" href="classGUIEngine_1_1ITextBoxWidgetListener.html">GUIEngine::ITextBoxWidgetListener</a></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>{</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1ScreenSingleton.html">GUIEngine::ScreenSingleton</a>&lt;TracksScreen&gt;;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_class" href="classTrack.html">Track</a>* m_selected_track = NULL;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_class" href="classGUIEngine_1_1CheckBoxWidget.html">GUIEngine::CheckBoxWidget</a>* m_reversed;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_class" href="classGUIEngine_1_1SpinnerWidget.html">GUIEngine::SpinnerWidget</a>* m_laps;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <a class="code hl_class" href="classGUIEngine_1_1ListWidget.html">GUIEngine::ListWidget</a>* m_vote_list;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_class" href="classGUIEngine_1_1TextBoxWidget.html">GUIEngine::TextBoxWidget</a>* m_search_track;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classTracksScreen.html#a2719da461339c58c69e940ee6c3d84af">   69</a></span>    <a class="code hl_class" href="classGUIEngine_1_1ProgressBarWidget.html">GUIEngine::ProgressBarWidget</a> *<a class="code hl_variable" href="classTracksScreen.html#a2719da461339c58c69e940ee6c3d84af">m_timer</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    irr::gui::STKModifiedSpriteBank* m_track_icons;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">bool</span> m_network_tracks, m_quit_server;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">int</span> m_bottom_box_height;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classTracksScreen.html#ad5ad635718ff04081cf921fae4bfac40">   78</a></span>    uint32_t <a class="code hl_variable" href="classTracksScreen.html#ad5ad635718ff04081cf921fae4bfac40">m_winning_index</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classTracksScreen.html#a5ca8c22e39a26578d626bcbb8ab94315">   82</a></span>    std::vector&lt;uint32_t&gt; <a class="code hl_variable" href="classTracksScreen.html#a5ca8c22e39a26578d626bcbb8ab94315">m_index_to_hostid</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    std::deque&lt;std::string&gt; m_random_track_list;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTracksScreen.html#a37ca77253fad66e415908ecec7abb5b0">buildTrackList</a>();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">void</span> voteForPlayer();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    TracksScreen() : <a class="code hl_function" href="classGUIEngine_1_1Screen.html#a3e6061fd09f18d80cb5ebf2981e4f391">Screen</a>(<span class="stringliteral">&quot;tracks.stkgui&quot;</span>)</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        m_network_tracks = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        m_quit_server = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        m_bottom_box_height = -1;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        m_track_icons = NULL;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <a class="code hl_variable" href="classTracksScreen.html#a2719da461339c58c69e940ee6c3d84af">m_timer</a> = NULL;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <a class="code hl_variable" href="classTracksScreen.html#ad5ad635718ff04081cf921fae4bfac40">m_winning_index</a> = std::numeric_limits&lt;uint32_t&gt;::max();</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        m_vote_list = NULL;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        m_reversed = NULL;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        m_laps     = NULL;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span> updateProgressBarText();</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTracksScreen.html#aaf71ae10029fffcbd3a21abffe092a9e">addVote</a>(uint32_t host_id, <span class="keyword">const</span> <a class="code hl_class" href="classPeerVote.html">PeerVote</a>&amp; vote);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTracksScreen.html#a07165a4aa503e6d5fc62518fb791287b">removeVote</a>(uint32_t host_id);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTracksScreen.html#a8847d455bc883bc85c2b0a18ffd8638c">setResult</a>(uint32_t winner_host, <span class="keyword">const</span> <a class="code hl_class" href="classPeerVote.html">PeerVote</a>&amp; winner_vote);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classTracksScreen.html#a0562858616617e6395d78fda079cd44b">loadedFromFile</a>() OVERRIDE;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classTracksScreen.html#a4d913d5a3849010e5156fc082f41527b">eventCallback</a>(<a class="code hl_namespace" href="namespaceGUIEngine.html">GUIEngine</a>::Widget* widget,</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                               const std::<span class="keywordtype">string</span>&amp; name,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                               const <span class="keywordtype">int</span> playerID) OVERRIDE;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classTracksScreen.html#ad173281e7da5e2ec805e43ffddc565e8">init</a>() OVERRIDE;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classTracksScreen.html#a87790c6bc2edb221366455982990bd34">beforeAddingWidget</a>() OVERRIDE;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classTracksScreen.html#a1a60cfc30c246e275dab3829938fc29c">tearDown</a>() OVERRIDE;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    virtual <span class="keywordtype">bool</span> <a class="code hl_function" href="classTracksScreen.html#aee65f82b009c1403b8e0e29d217c512b">onEscapePressed</a>() OVERRIDE;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classTracksScreen.html#a5f562f0cd6ffb8edbff54ccaa9d77f76">onUpdate</a>(<span class="keywordtype">float</span> dt) OVERRIDE;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classTracksScreen.html#adf976e2d41b0a42d6138b0880cabd951">unloaded</a>() OVERRIDE;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordtype">void</span> setFocusOnTrack(const std::<span class="keywordtype">string</span>&amp; trackName);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordtype">void</span> setNetworkTracks() { m_network_tracks = <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keywordtype">void</span> setQuitServer() { m_quit_server = <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00146" data-start="{" data-end="}">
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classTracksScreen.html#af37da30ca9964812f4517164b1a37338">  146</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTracksScreen.html#af37da30ca9964812f4517164b1a37338">resetVote</a>()</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <a class="code hl_variable" href="classTracksScreen.html#ad5ad635718ff04081cf921fae4bfac40">m_winning_index</a> = std::numeric_limits&lt;uint32_t&gt;::max();</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <a class="code hl_variable" href="classTracksScreen.html#a5ca8c22e39a26578d626bcbb8ab94315">m_index_to_hostid</a>.clear();</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    }</div>
+</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordtype">void</span> updatePlayerVotes();</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> onTextUpdated() OVERRIDE</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <a class="code hl_function" href="classTracksScreen.html#a4d913d5a3849010e5156fc082f41527b">eventCallback</a>(m_search_track, <span class="stringliteral">&quot;trackgroups&quot;</span>, 0);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    }</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>};</div>
+</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassGUIEngine_1_1CheckBoxWidget_html"><div class="ttname"><a href="classGUIEngine_1_1CheckBoxWidget.html">GUIEngine::CheckBoxWidget</a></div><div class="ttdoc">A checkbox widget.</div><div class="ttdef"><b>Definition</b> check_box_widget.hpp:34</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ITextBoxWidgetListener_html"><div class="ttname"><a href="classGUIEngine_1_1ITextBoxWidgetListener.html">GUIEngine::ITextBoxWidgetListener</a></div><div class="ttdef"><b>Definition</b> text_box_widget.hpp:42</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html">GUIEngine::ListWidget</a></div><div class="ttdoc">A vertical list widget with text entries</div><div class="ttdef"><b>Definition</b> list_widget.hpp:50</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ProgressBarWidget_html"><div class="ttname"><a href="classGUIEngine_1_1ProgressBarWidget.html">GUIEngine::ProgressBarWidget</a></div><div class="ttdoc">A progress bar widget.</div><div class="ttdef"><b>Definition</b> progress_bar_widget.hpp:36</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenSingleton_html"><div class="ttname"><a href="classGUIEngine_1_1ScreenSingleton.html">GUIEngine::ScreenSingleton</a></div><div class="ttdoc">Declares a class to be a singleton.</div><div class="ttdef"><b>Definition</b> screen.hpp:59</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Screen_html"><div class="ttname"><a href="classGUIEngine_1_1Screen.html">GUIEngine::Screen</a></div><div class="ttdoc">Represents a single GUI screen.</div><div class="ttdef"><b>Definition</b> screen.hpp:94</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Screen_html_a3e6061fd09f18d80cb5ebf2981e4f391"><div class="ttname"><a href="classGUIEngine_1_1Screen.html#a3e6061fd09f18d80cb5ebf2981e4f391">GUIEngine::Screen::Screen</a></div><div class="ttdeci">Screen(bool pause_race=true)</div><div class="ttdoc">Creates a dummy incomplete object; only use to override behaviour in sub-class.</div><div class="ttdef"><b>Definition</b> screen.cpp:67</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1SpinnerWidget_html"><div class="ttname"><a href="classGUIEngine_1_1SpinnerWidget.html">GUIEngine::SpinnerWidget</a></div><div class="ttdoc">A spinner or gauge widget (to select numbers / percentages).</div><div class="ttdef"><b>Definition</b> spinner_widget.hpp:44</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1TextBoxWidget_html"><div class="ttname"><a href="classGUIEngine_1_1TextBoxWidget.html">GUIEngine::TextBoxWidget</a></div><div class="ttdoc">A text field widget.</div><div class="ttdef"><b>Definition</b> text_box_widget.hpp:53</div></div>
+<div class="ttc" id="aclassPeerVote_html"><div class="ttname"><a href="classPeerVote.html">PeerVote</a></div><div class="ttdoc">A simple structure to store a vote from a client: track name, number of laps and reverse or not.</div><div class="ttdef"><b>Definition</b> peer_vote.hpp:30</div></div>
+<div class="ttc" id="aclassTrack_html"><div class="ttname"><a href="classTrack.html">Track</a></div><div class="ttdef"><b>Definition</b> track.hpp:115</div></div>
+<div class="ttc" id="aclassTracksScreen_html_a0562858616617e6395d78fda079cd44b"><div class="ttname"><a href="classTracksScreen.html#a0562858616617e6395d78fda079cd44b">TracksScreen::loadedFromFile</a></div><div class="ttdeci">virtual void loadedFromFile() OVERRIDE</div><div class="ttdoc">implement callback from parent class GUIEngine::Screen</div><div class="ttdef"><b>Definition</b> tracks_screen.cpp:198</div></div>
+<div class="ttc" id="aclassTracksScreen_html_a07165a4aa503e6d5fc62518fb791287b"><div class="ttname"><a href="classTracksScreen.html#a07165a4aa503e6d5fc62518fb791287b">TracksScreen::removeVote</a></div><div class="ttdeci">void removeVote(uint32_t host_id)</div><div class="ttdoc">Removes a vote, which is triggered when a client disconnects.</div><div class="ttdef"><b>Definition</b> tracks_screen.cpp:819</div></div>
+<div class="ttc" id="aclassTracksScreen_html_a1a60cfc30c246e275dab3829938fc29c"><div class="ttname"><a href="classTracksScreen.html#a1a60cfc30c246e275dab3829938fc29c">TracksScreen::tearDown</a></div><div class="ttdeci">virtual void tearDown() OVERRIDE</div><div class="ttdoc">implement callback from parent class GUIEngine::Screen</div><div class="ttdef"><b>Definition</b> tracks_screen.cpp:188</div></div>
+<div class="ttc" id="aclassTracksScreen_html_a2719da461339c58c69e940ee6c3d84af"><div class="ttname"><a href="classTracksScreen.html#a2719da461339c58c69e940ee6c3d84af">TracksScreen::m_timer</a></div><div class="ttdeci">GUIEngine::ProgressBarWidget * m_timer</div><div class="ttdoc">Pointer to progress bar widget which is used as a timer (going backwards).</div><div class="ttdef"><b>Definition</b> tracks_screen.hpp:69</div></div>
+<div class="ttc" id="aclassTracksScreen_html_a37ca77253fad66e415908ecec7abb5b0"><div class="ttname"><a href="classTracksScreen.html#a37ca77253fad66e415908ecec7abb5b0">TracksScreen::buildTrackList</a></div><div class="ttdeci">void buildTrackList()</div><div class="ttdoc">adds the tracks from the current track group into the tracks ribbon</div><div class="ttdef"><b>Definition</b> tracks_screen.cpp:571</div></div>
+<div class="ttc" id="aclassTracksScreen_html_a4d913d5a3849010e5156fc082f41527b"><div class="ttname"><a href="classTracksScreen.html#a4d913d5a3849010e5156fc082f41527b">TracksScreen::eventCallback</a></div><div class="ttdeci">virtual void eventCallback(GUIEngine::Widget *widget, const std::string &amp;name, const int playerID) OVERRIDE</div><div class="ttdoc">implement callback from parent class GUIEngine::Screen</div><div class="ttdef"><b>Definition</b> tracks_screen.cpp:60</div></div>
+<div class="ttc" id="aclassTracksScreen_html_a5ca8c22e39a26578d626bcbb8ab94315"><div class="ttname"><a href="classTracksScreen.html#a5ca8c22e39a26578d626bcbb8ab94315">TracksScreen::m_index_to_hostid</a></div><div class="ttdeci">std::vector&lt; uint32_t &gt; m_index_to_hostid</div><div class="ttdoc">This stores which vote (hostid) is shown at which index in the vote overview list.</div><div class="ttdef"><b>Definition</b> tracks_screen.hpp:82</div></div>
+<div class="ttc" id="aclassTracksScreen_html_a5f562f0cd6ffb8edbff54ccaa9d77f76"><div class="ttname"><a href="classTracksScreen.html#a5f562f0cd6ffb8edbff54ccaa9d77f76">TracksScreen::onUpdate</a></div><div class="ttdeci">virtual void onUpdate(float dt) OVERRIDE</div><div class="ttdoc">implement callback from parent class GUIEngine::Screen</div><div class="ttdef"><b>Definition</b> tracks_screen.cpp:765</div></div>
+<div class="ttc" id="aclassTracksScreen_html_a87790c6bc2edb221366455982990bd34"><div class="ttname"><a href="classTracksScreen.html#a87790c6bc2edb221366455982990bd34">TracksScreen::beforeAddingWidget</a></div><div class="ttdeci">virtual void beforeAddingWidget() OVERRIDE</div><div class="ttdoc">implement callback from parent class GUIEngine::Screen</div><div class="ttdef"><b>Definition</b> tracks_screen.cpp:218</div></div>
+<div class="ttc" id="aclassTracksScreen_html_a8847d455bc883bc85c2b0a18ffd8638c"><div class="ttname"><a href="classTracksScreen.html#a8847d455bc883bc85c2b0a18ffd8638c">TracksScreen::setResult</a></div><div class="ttdeci">void setResult(uint32_t winner_host, const PeerVote &amp;winner_vote)</div><div class="ttdoc">Received the winning vote.</div><div class="ttdef"><b>Definition</b> tracks_screen.cpp:838</div></div>
+<div class="ttc" id="aclassTracksScreen_html_aaf71ae10029fffcbd3a21abffe092a9e"><div class="ttname"><a href="classTracksScreen.html#aaf71ae10029fffcbd3a21abffe092a9e">TracksScreen::addVote</a></div><div class="ttdeci">void addVote(uint32_t host_id, const PeerVote &amp;vote)</div><div class="ttdoc">Selects in which part of the vote list the new host is being shown and stores this information in the...</div><div class="ttdef"><b>Definition</b> tracks_screen.cpp:792</div></div>
+<div class="ttc" id="aclassTracksScreen_html_ad173281e7da5e2ec805e43ffddc565e8"><div class="ttname"><a href="classTracksScreen.html#ad173281e7da5e2ec805e43ffddc565e8">TracksScreen::init</a></div><div class="ttdeci">virtual void init() OVERRIDE</div><div class="ttdoc">implement callback from parent class GUIEngine::Screen</div><div class="ttdef"><b>Definition</b> tracks_screen.cpp:388</div></div>
+<div class="ttc" id="aclassTracksScreen_html_ad5ad635718ff04081cf921fae4bfac40"><div class="ttname"><a href="classTracksScreen.html#ad5ad635718ff04081cf921fae4bfac40">TracksScreen::m_winning_index</a></div><div class="ttdeci">uint32_t m_winning_index</div><div class="ttdoc">Id of the winning peer.</div><div class="ttdef"><b>Definition</b> tracks_screen.hpp:78</div></div>
+<div class="ttc" id="aclassTracksScreen_html_adf976e2d41b0a42d6138b0880cabd951"><div class="ttname"><a href="classTracksScreen.html#adf976e2d41b0a42d6138b0880cabd951">TracksScreen::unloaded</a></div><div class="ttdeci">virtual void unloaded() OVERRIDE</div><div class="ttdoc">implement callback from parent class GUIEngine::Screen</div><div class="ttdef"><b>Definition</b> tracks_screen.cpp:206</div></div>
+<div class="ttc" id="aclassTracksScreen_html_aee65f82b009c1403b8e0e29d217c512b"><div class="ttname"><a href="classTracksScreen.html#aee65f82b009c1403b8e0e29d217c512b">TracksScreen::onEscapePressed</a></div><div class="ttdeci">virtual bool onEscapePressed() OVERRIDE</div><div class="ttdoc">implement callback from parent class GUIEngine::Screen</div><div class="ttdef"><b>Definition</b> tracks_screen.cpp:171</div></div>
+<div class="ttc" id="aclassTracksScreen_html_af37da30ca9964812f4517164b1a37338"><div class="ttname"><a href="classTracksScreen.html#af37da30ca9964812f4517164b1a37338">TracksScreen::resetVote</a></div><div class="ttdeci">void resetVote()</div><div class="ttdoc">Called at the beginning of the voting process to reset any previous data fields.</div><div class="ttdef"><b>Definition</b> tracks_screen.hpp:146</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html"><div class="ttname"><a href="namespaceGUIEngine.html">GUIEngine</a></div><div class="ttdoc">Contains all GUI engine related classes and functions</div><div class="ttdef"><b>Definition</b> abstract_state_manager.hpp:33</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

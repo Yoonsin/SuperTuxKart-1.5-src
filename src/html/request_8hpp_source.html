@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: online/request.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>online</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">request.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  Copyright (C) 2011-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//                2013 Glenn De Jonghe</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_ONLINE_REQUEST_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_ONLINE_REQUEST_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;utils/cpp2011.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;utils/synchronised.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">namespace </span>Online</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="};">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html">   56</a></span>    <span class="keyword">class </span><a class="code hl_function" href="classOnline_1_1Request.html#abeb4ad772719f6b653bb8f8456fb77b6">Request</a> : <span class="keyword">public</span> std::enable_shared_from_this&lt;Request&gt;,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                    <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a16da9c6f997159dbc123bdfdfd6a3745">   61</a></span>        <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classOnline_1_1Request.html#a16da9c6f997159dbc123bdfdfd6a3745">m_type</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a3061b056ab3d8648331bbe7511f872d8">   65</a></span>        <span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classOnline_1_1Request.html#a3061b056ab3d8648331bbe7511f872d8">m_priority</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="};">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a8aa4fcb57b462e03df6039f2b04cc064">   82</a></span>        <span class="keyword">enum</span> <a class="code hl_enumeration" href="classOnline_1_1Request.html#a8aa4fcb57b462e03df6039f2b04cc064">State</a></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            S_PREPARING,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            S_BUSY,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            S_EXECUTED,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            S_DONE</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        };</div>
+</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#adc25d7e2469a893f7570fc6353b3d008">   93</a></span>        <a class="code hl_class" href="classSynchronised.html">Synchronised&lt;bool&gt;</a>              <a class="code hl_variable" href="classOnline_1_1Request.html#adc25d7e2469a893f7570fc6353b3d008">m_cancel</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#aa8b2d341f8e3cfd1ce511d805034bf3b">   98</a></span>        <a class="code hl_class" href="classSynchronised.html">Synchronised&lt;bool&gt;</a>              <a class="code hl_variable" href="classOnline_1_1Request.html#aa8b2d341f8e3cfd1ce511d805034bf3b">m_is_abortable</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a4f180d84096263d8c9f1d54e31536bab">  102</a></span>        <a class="code hl_class" href="classSynchronised.html">Synchronised&lt;State&gt;</a>             <a class="code hl_variable" href="classOnline_1_1Request.html#a4f180d84096263d8c9f1d54e31536bab">m_state</a>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a35809a286797b953a2345b395a8c411b">  107</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOnline_1_1Request.html#a35809a286797b953a2345b395a8c411b">operation</a>() {}</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a963c5935bf6af51d0a7ba11975fa2095">  111</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOnline_1_1Request.html#a963c5935bf6af51d0a7ba11975fa2095">prepareOperation</a>() {}</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a6512cae837c841e68dc29643d0de34b7">  115</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOnline_1_1Request.html#a6512cae837c841e68dc29643d0de34b7">afterOperation</a>()   {}</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keyword">enum</span> RequestType</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            RT_QUIT = 1</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        };</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <a class="code hl_function" href="classOnline_1_1Request.html#abeb4ad772719f6b653bb8f8456fb77b6">Request</a>(<span class="keywordtype">int</span> priority, <span class="keywordtype">int</span> type);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keyword">virtual</span> ~Request() {}</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keywordtype">void</span>     <a class="code hl_function" href="classOnline_1_1Request.html#a3bcdee43d89eda020905489a8147fece">execute</a>();</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordtype">void</span>     <a class="code hl_function" href="classOnline_1_1Request.html#aef7419f7e836ce75f334202bd34ddbc4">executeNow</a>();</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="keywordtype">void</span>     <a class="code hl_function" href="classOnline_1_1Request.html#ae0c42454664f6229d517285c9262dea7">queue</a>();</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a1a0f6a27c90e5a18a6095f41b03a4037">  131</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOnline_1_1Request.html#a1a0f6a27c90e5a18a6095f41b03a4037">callback</a>() {}</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a174aef2fc2b19e7d31ae7dbf0c1b2ff3">  135</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classOnline_1_1Request.html#a174aef2fc2b19e7d31ae7dbf0c1b2ff3">getType</a>()<span class="keyword"> const  </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classOnline_1_1Request.html#a16da9c6f997159dbc123bdfdfd6a3745">m_type</a>; }</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#af37b735ee2c4650ebafe35957966c12e">  139</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classOnline_1_1Request.html#af37b735ee2c4650ebafe35957966c12e">getPriority</a>()<span class="keyword"> const   </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classOnline_1_1Request.html#a3061b056ab3d8648331bbe7511f872d8">m_priority</a>; }</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#af561b795cf94b3848f7368269c68d3a7">  143</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classOnline_1_1Request.html#af561b795cf94b3848f7368269c68d3a7">cancel</a>() { <a class="code hl_variable" href="classOnline_1_1Request.html#adc25d7e2469a893f7570fc6353b3d008">m_cancel</a>.setAtomic(<span class="keyword">true</span>); }</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#af2038ca5996915e8a10f7c87ba967d2d">  147</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classOnline_1_1Request.html#af2038ca5996915e8a10f7c87ba967d2d">isCancelled</a>()<span class="keyword"> const   </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classOnline_1_1Request.html#adc25d7e2469a893f7570fc6353b3d008">m_cancel</a>.getAtomic(); }</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a054a57686b52a3520917be82e1933e99">  151</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classOnline_1_1Request.html#a054a57686b52a3520917be82e1933e99">isAbortable</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classOnline_1_1Request.html#aa8b2d341f8e3cfd1ce511d805034bf3b">m_is_abortable</a>.getAtomic(); }</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a077f43ee942610381cee134c5fd83e21">  155</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classOnline_1_1Request.html#a077f43ee942610381cee134c5fd83e21">setAbortable</a>(<span class="keywordtype">bool</span> b) { <a class="code hl_variable" href="classOnline_1_1Request.html#aa8b2d341f8e3cfd1ce511d805034bf3b">m_is_abortable</a>.setAtomic(b); }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00159" data-start="{" data-end="}">
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a8ceedfab30c5774cef2d5ddbc2da374a">  159</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classOnline_1_1Request.html#a8ceedfab30c5774cef2d5ddbc2da374a">setBusy</a>()</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>            assert(<a class="code hl_variable" href="classOnline_1_1Request.html#a4f180d84096263d8c9f1d54e31536bab">m_state</a>.getAtomic() == S_PREPARING);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>            <a class="code hl_variable" href="classOnline_1_1Request.html#a4f180d84096263d8c9f1d54e31536bab">m_state</a>.setAtomic(S_BUSY);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        }   <span class="comment">// setBusy</span></div>
+</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00167" data-start="{" data-end="}">
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#ac2480181d2dfc582265f9621d5216745">  167</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classOnline_1_1Request.html#ac2480181d2dfc582265f9621d5216745">setExecuted</a>()</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        {</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>            assert(<a class="code hl_variable" href="classOnline_1_1Request.html#a4f180d84096263d8c9f1d54e31536bab">m_state</a>.getAtomic() == S_BUSY);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>            <a class="code hl_variable" href="classOnline_1_1Request.html#a4f180d84096263d8c9f1d54e31536bab">m_state</a>.setAtomic(S_EXECUTED);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        }   <span class="comment">// setExecuted</span></div>
+</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00175" data-start="{" data-end="}">
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a3dfa136a4fe6e0624c7ef97f860df13d">  175</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classOnline_1_1Request.html#a3dfa136a4fe6e0624c7ef97f860df13d">setDone</a>()</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        {</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>            assert(<a class="code hl_variable" href="classOnline_1_1Request.html#a4f180d84096263d8c9f1d54e31536bab">m_state</a>.getAtomic() == S_EXECUTED);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>            <a class="code hl_variable" href="classOnline_1_1Request.html#a4f180d84096263d8c9f1d54e31536bab">m_state</a>.setAtomic(S_DONE);</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        }   <span class="comment">// setDone</span></div>
+</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a48a079971549f942980b12cd2ec1a298">  183</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classOnline_1_1Request.html#a48a079971549f942980b12cd2ec1a298">isDone</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classOnline_1_1Request.html#a4f180d84096263d8c9f1d54e31536bab">m_state</a>.getAtomic() == S_DONE; }</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a71dbaa06d589625d2687b89bd7beace5">  187</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classOnline_1_1Request.html#a71dbaa06d589625d2687b89bd7beace5">isPreparing</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classOnline_1_1Request.html#a4f180d84096263d8c9f1d54e31536bab">m_state</a>.getAtomic() == S_PREPARING; }</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#acfc93427ebc691507073304748181f5c">  191</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classOnline_1_1Request.html#acfc93427ebc691507073304748181f5c">isBusy</a>()<span class="keyword"> const   </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classOnline_1_1Request.html#a4f180d84096263d8c9f1d54e31536bab">m_state</a>.getAtomic() == S_BUSY; }</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00197" data-start="{" data-end="}">
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#aceb52aebe54e7146d949616c96ed1a39">  197</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classOnline_1_1Request.html#aceb52aebe54e7146d949616c96ed1a39">hasBeenExecuted</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="keyword">        </span>{</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            <a class="code hl_enumeration" href="classOnline_1_1Request.html#a8aa4fcb57b462e03df6039f2b04cc064">State</a> s = <a class="code hl_variable" href="classOnline_1_1Request.html#a4f180d84096263d8c9f1d54e31536bab">m_state</a>.getAtomic();</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>            <span class="keywordflow">return</span> s == S_EXECUTED || s == S_DONE;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        }   <span class="comment">// hasBeenExecuted</span></div>
+</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="classOnline_1_1Request.html#a714189cd0b04d05fd1f6722964b72e4e">  206</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classOnline_1_1Request.html#a714189cd0b04d05fd1f6722964b72e4e">isAllowedToAdd</a>()<span class="keyword">   const   </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classOnline_1_1Request.html#a71dbaa06d589625d2687b89bd7beace5">isPreparing</a>(); }</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="comment">// ====================================================================</span></div>
+<div class="foldopen" id="foldopen00212" data-start="{" data-end="};">
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="classOnline_1_1Request_1_1Compare.html">  212</a></span>        <span class="keyword">class </span><a class="code hl_class" href="classOnline_1_1Request_1_1Compare.html">Compare</a></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00217" data-start="{" data-end="}">
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="classOnline_1_1Request_1_1Compare.html#a60c9942bda433b5da04a8ef24e0c8c2e">  217</a></span>            <span class="keywordtype">bool</span> <a class="code hl_function" href="classOnline_1_1Request_1_1Compare.html#a60c9942bda433b5da04a8ef24e0c8c2e">operator() </a>(<span class="keyword">const</span> std::shared_ptr&lt;Request&gt;&amp; a,</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                             <span class="keyword">const</span> std::shared_ptr&lt;Request&gt;&amp; b)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="keyword">            </span>{</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>                <span class="keywordflow">return</span> a-&gt;getPriority() &lt; b-&gt;getPriority();</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>            }</div>
+</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        };   <span class="comment">// class Compare</span></div>
+</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    };   <span class="comment">// class Request</span></div>
+</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>} <span class="comment">//namespace Online</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="preprocessor">#endif </span><span class="comment">// HEADER_ONLINE_REQUEST_HPP</span></div>
+<div class="ttc" id="aclassOnline_1_1Request_1_1Compare_html"><div class="ttname"><a href="classOnline_1_1Request_1_1Compare.html">Online::Request::Compare</a></div><div class="ttdoc">This class is used by the priority queue to sort requests by priority.</div><div class="ttdef"><b>Definition</b> request.hpp:213</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_1_1Compare_html_a60c9942bda433b5da04a8ef24e0c8c2e"><div class="ttname"><a href="classOnline_1_1Request_1_1Compare.html#a60c9942bda433b5da04a8ef24e0c8c2e">Online::Request::Compare::operator()</a></div><div class="ttdeci">bool operator()(const std::shared_ptr&lt; Request &gt; &amp;a, const std::shared_ptr&lt; Request &gt; &amp;b) const</div><div class="ttdoc">Compares two requests, returns if the first request has a lower priority than the second one.</div><div class="ttdef"><b>Definition</b> request.hpp:217</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a054a57686b52a3520917be82e1933e99"><div class="ttname"><a href="classOnline_1_1Request.html#a054a57686b52a3520917be82e1933e99">Online::Request::isAbortable</a></div><div class="ttdeci">bool isAbortable() const</div><div class="ttdoc">Returns if this request can be aborted.</div><div class="ttdef"><b>Definition</b> request.hpp:151</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a077f43ee942610381cee134c5fd83e21"><div class="ttname"><a href="classOnline_1_1Request.html#a077f43ee942610381cee134c5fd83e21">Online::Request::setAbortable</a></div><div class="ttdeci">void setAbortable(bool b)</div><div class="ttdoc">Sets if this request is abortable or not.</div><div class="ttdef"><b>Definition</b> request.hpp:155</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a16da9c6f997159dbc123bdfdfd6a3745"><div class="ttname"><a href="classOnline_1_1Request.html#a16da9c6f997159dbc123bdfdfd6a3745">Online::Request::m_type</a></div><div class="ttdeci">const int m_type</div><div class="ttdoc">Type of the request.</div><div class="ttdef"><b>Definition</b> request.hpp:61</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a174aef2fc2b19e7d31ae7dbf0c1b2ff3"><div class="ttname"><a href="classOnline_1_1Request.html#a174aef2fc2b19e7d31ae7dbf0c1b2ff3">Online::Request::getType</a></div><div class="ttdeci">int getType() const</div><div class="ttdoc">Returns the type of the request.</div><div class="ttdef"><b>Definition</b> request.hpp:135</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a1a0f6a27c90e5a18a6095f41b03a4037"><div class="ttname"><a href="classOnline_1_1Request.html#a1a0f6a27c90e5a18a6095f41b03a4037">Online::Request::callback</a></div><div class="ttdeci">virtual void callback()</div><div class="ttdoc">Executed when a request has finished.</div><div class="ttdef"><b>Definition</b> request.hpp:131</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a3061b056ab3d8648331bbe7511f872d8"><div class="ttname"><a href="classOnline_1_1Request.html#a3061b056ab3d8648331bbe7511f872d8">Online::Request::m_priority</a></div><div class="ttdeci">const int m_priority</div><div class="ttdoc">The priority of this request.</div><div class="ttdef"><b>Definition</b> request.hpp:65</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a35809a286797b953a2345b395a8c411b"><div class="ttname"><a href="classOnline_1_1Request.html#a35809a286797b953a2345b395a8c411b">Online::Request::operation</a></div><div class="ttdeci">virtual void operation()</div><div class="ttdoc">The actual operation to be executed.</div><div class="ttdef"><b>Definition</b> request.hpp:107</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a3bcdee43d89eda020905489a8147fece"><div class="ttname"><a href="classOnline_1_1Request.html#a3bcdee43d89eda020905489a8147fece">Online::Request::execute</a></div><div class="ttdeci">void execute()</div><div class="ttdoc">Executes the request.</div><div class="ttdef"><b>Definition</b> request.cpp:54</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a3dfa136a4fe6e0624c7ef97f860df13d"><div class="ttname"><a href="classOnline_1_1Request.html#a3dfa136a4fe6e0624c7ef97f860df13d">Online::Request::setDone</a></div><div class="ttdeci">void setDone()</div><div class="ttdoc">Should only be called by the manager</div><div class="ttdef"><b>Definition</b> request.hpp:175</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a48a079971549f942980b12cd2ec1a298"><div class="ttname"><a href="classOnline_1_1Request.html#a48a079971549f942980b12cd2ec1a298">Online::Request::isDone</a></div><div class="ttdeci">bool isDone() const</div><div class="ttdoc">Returns if this request is done.</div><div class="ttdef"><b>Definition</b> request.hpp:183</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a4f180d84096263d8c9f1d54e31536bab"><div class="ttname"><a href="classOnline_1_1Request.html#a4f180d84096263d8c9f1d54e31536bab">Online::Request::m_state</a></div><div class="ttdeci">Synchronised&lt; State &gt; m_state</div><div class="ttdoc">Set to though if the reply of the request is in and callbacks are executed</div><div class="ttdef"><b>Definition</b> request.hpp:102</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a6512cae837c841e68dc29643d0de34b7"><div class="ttname"><a href="classOnline_1_1Request.html#a6512cae837c841e68dc29643d0de34b7">Online::Request::afterOperation</a></div><div class="ttdeci">virtual void afterOperation()</div><div class="ttdoc">Virtual function to be called after an operation.</div><div class="ttdef"><b>Definition</b> request.hpp:115</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a714189cd0b04d05fd1f6722964b72e4e"><div class="ttname"><a href="classOnline_1_1Request.html#a714189cd0b04d05fd1f6722964b72e4e">Online::Request::isAllowedToAdd</a></div><div class="ttdeci">virtual bool isAllowedToAdd() const</div><div class="ttdoc">Virtual method to check if a request has initialized all needed members to a valid value.</div><div class="ttdef"><b>Definition</b> request.hpp:206</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a71dbaa06d589625d2687b89bd7beace5"><div class="ttname"><a href="classOnline_1_1Request.html#a71dbaa06d589625d2687b89bd7beace5">Online::Request::isPreparing</a></div><div class="ttdeci">bool isPreparing() const</div><div class="ttdoc">Returns if this request is being prepared.</div><div class="ttdef"><b>Definition</b> request.hpp:187</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a8aa4fcb57b462e03df6039f2b04cc064"><div class="ttname"><a href="classOnline_1_1Request.html#a8aa4fcb57b462e03df6039f2b04cc064">Online::Request::State</a></div><div class="ttdeci">State</div><div class="ttdoc">The different state of the requst:</div><div class="ttdef"><b>Definition</b> request.hpp:83</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a8ceedfab30c5774cef2d5ddbc2da374a"><div class="ttname"><a href="classOnline_1_1Request.html#a8ceedfab30c5774cef2d5ddbc2da374a">Online::Request::setBusy</a></div><div class="ttdeci">void setBusy()</div><div class="ttdoc">Sets the request state to busy.</div><div class="ttdef"><b>Definition</b> request.hpp:159</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_a963c5935bf6af51d0a7ba11975fa2095"><div class="ttname"><a href="classOnline_1_1Request.html#a963c5935bf6af51d0a7ba11975fa2095">Online::Request::prepareOperation</a></div><div class="ttdeci">virtual void prepareOperation()</div><div class="ttdoc">Virtual function to be called before an operation.</div><div class="ttdef"><b>Definition</b> request.hpp:111</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_aa8b2d341f8e3cfd1ce511d805034bf3b"><div class="ttname"><a href="classOnline_1_1Request.html#aa8b2d341f8e3cfd1ce511d805034bf3b">Online::Request::m_is_abortable</a></div><div class="ttdeci">Synchronised&lt; bool &gt; m_is_abortable</div><div class="ttdoc">If this request can be aborted (at the end of STK).</div><div class="ttdef"><b>Definition</b> request.hpp:98</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_abeb4ad772719f6b653bb8f8456fb77b6"><div class="ttname"><a href="classOnline_1_1Request.html#abeb4ad772719f6b653bb8f8456fb77b6">Online::Request::Request</a></div><div class="ttdeci">Request(int priority, int type)</div><div class="ttdoc">Creates a request that can be handled by the RequestManager</div><div class="ttdef"><b>Definition</b> request.cpp:34</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_ac2480181d2dfc582265f9621d5216745"><div class="ttname"><a href="classOnline_1_1Request.html#ac2480181d2dfc582265f9621d5216745">Online::Request::setExecuted</a></div><div class="ttdeci">void setExecuted()</div><div class="ttdoc">Sets the request to be completed.</div><div class="ttdef"><b>Definition</b> request.hpp:167</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_aceb52aebe54e7146d949616c96ed1a39"><div class="ttname"><a href="classOnline_1_1Request.html#aceb52aebe54e7146d949616c96ed1a39">Online::Request::hasBeenExecuted</a></div><div class="ttdeci">bool hasBeenExecuted() const</div><div class="ttdoc">Checks if the request has completed or done (i.e.</div><div class="ttdef"><b>Definition</b> request.hpp:197</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_acfc93427ebc691507073304748181f5c"><div class="ttname"><a href="classOnline_1_1Request.html#acfc93427ebc691507073304748181f5c">Online::Request::isBusy</a></div><div class="ttdeci">bool isBusy() const</div><div class="ttdoc">Returns if this request is busy.</div><div class="ttdef"><b>Definition</b> request.hpp:191</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_adc25d7e2469a893f7570fc6353b3d008"><div class="ttname"><a href="classOnline_1_1Request.html#adc25d7e2469a893f7570fc6353b3d008">Online::Request::m_cancel</a></div><div class="ttdeci">Synchronised&lt; bool &gt; m_cancel</div><div class="ttdoc">Cancel this request if it is active.</div><div class="ttdef"><b>Definition</b> request.hpp:93</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_ae0c42454664f6229d517285c9262dea7"><div class="ttname"><a href="classOnline_1_1Request.html#ae0c42454664f6229d517285c9262dea7">Online::Request::queue</a></div><div class="ttdeci">void queue()</div><div class="ttdoc">Inserts this request into the RequestManager&#39;s queue for executing.</div><div class="ttdef"><b>Definition</b> request.cpp:45</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_aef7419f7e836ce75f334202bd34ddbc4"><div class="ttname"><a href="classOnline_1_1Request.html#aef7419f7e836ce75f334202bd34ddbc4">Online::Request::executeNow</a></div><div class="ttdeci">void executeNow()</div><div class="ttdoc">Executes the request now, i.e.</div><div class="ttdef"><b>Definition</b> request.cpp:77</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_af2038ca5996915e8a10f7c87ba967d2d"><div class="ttname"><a href="classOnline_1_1Request.html#af2038ca5996915e8a10f7c87ba967d2d">Online::Request::isCancelled</a></div><div class="ttdeci">bool isCancelled() const</div><div class="ttdoc">Returns if this request is to be canceled.</div><div class="ttdef"><b>Definition</b> request.hpp:147</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_af37b735ee2c4650ebafe35957966c12e"><div class="ttname"><a href="classOnline_1_1Request.html#af37b735ee2c4650ebafe35957966c12e">Online::Request::getPriority</a></div><div class="ttdeci">int getPriority() const</div><div class="ttdoc">Returns the priority of this request.</div><div class="ttdef"><b>Definition</b> request.hpp:139</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html_af561b795cf94b3848f7368269c68d3a7"><div class="ttname"><a href="classOnline_1_1Request.html#af561b795cf94b3848f7368269c68d3a7">Online::Request::cancel</a></div><div class="ttdeci">void cancel()</div><div class="ttdoc">Signals that this request should be canceled.</div><div class="ttdef"><b>Definition</b> request.hpp:143</div></div>
+<div class="ttc" id="aclassSynchronised_html"><div class="ttname"><a href="classSynchronised.html">Synchronised</a></div><div class="ttdoc">A variable that is automatically synchronised using pthreads mutex.</div><div class="ttdef"><b>Definition</b> synchronised.hpp:28</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

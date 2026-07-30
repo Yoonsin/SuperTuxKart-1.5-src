@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: physics/triangle_mesh.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>physics</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">triangle_mesh.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2006-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_TRIANGLE_MESH_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_TRIANGLE_MESH_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;btBulletDynamicsCommon.h&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;physics/user_pointer.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;utils/aligned_array.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">class </span><a class="code hl_class" href="classMaterial.html">Material</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classTriangleMesh.html">   34</a></span><span class="keyword">class </span><a class="code hl_function" href="classTriangleMesh.html#a490a1cafbb25dbc2d670b4d9067c2d91">TriangleMesh</a></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_class" href="classUserPointer.html">UserPointer</a>                  m_user_pointer;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    std::vector&lt;const Material*&gt; m_triangleIndex2Material;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    btRigidBody                 *m_body;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classTriangleMesh.html#a5ad03b68a24233ab3544e8df3c2c4be7">   41</a></span>    <span class="keywordtype">bool</span>                         <a class="code hl_variable" href="classTriangleMesh.html#a5ad03b68a24233ab3544e8df3c2c4be7">m_free_body</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    btCollisionObject           *m_collision_object;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    btTriangleMesh               m_mesh;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    btVector3 dummy1, dummy2;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    btDefaultMotionState        *m_motion_state;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    btCollisionShape            *m_collision_shape;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classTriangleMesh.html#ab66fac1dbc619ee93b59dadb86d65c4f">   50</a></span>    AlignedArray&lt;btVector3&gt;      <a class="code hl_variable" href="classTriangleMesh.html#ab66fac1dbc619ee93b59dadb86d65c4f">m_normals</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classTriangleMesh.html#a7bf8fee16a415fd2315edf1faa814d33">   53</a></span>    AlignedArray&lt;float&gt;          <a class="code hl_variable" href="classTriangleMesh.html#a7bf8fee16a415fd2315edf1faa814d33">m_p1p2p3</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classTriangleMesh.html#a58e7bd5b87ddf06dd3a251b4987bb05c">   58</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classTriangleMesh.html#a58e7bd5b87ddf06dd3a251b4987bb05c">m_can_be_transformed</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="};">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classTriangleMesh_1_1RigidBodyTriangleMesh.html">   61</a></span>    <span class="keyword">class </span>RigidBodyTriangleMesh : <span class="keyword">public</span> btRigidBody</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <a class="code hl_function" href="classTriangleMesh.html#a490a1cafbb25dbc2d670b4d9067c2d91">TriangleMesh</a> *m_triangle_mesh;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        RigidBodyTriangleMesh(<a class="code hl_function" href="classTriangleMesh.html#a490a1cafbb25dbc2d670b4d9067c2d91">TriangleMesh</a> *tm,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            <span class="keyword">const</span> btRigidBody::btRigidBodyConstructionInfo &amp;ci)</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            : btRigidBody(ci),</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            m_triangle_mesh(tm)</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        }   <span class="comment">// RigidBodyTriangleMesh</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    };</div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>         <a class="code hl_function" href="classTriangleMesh.html#a490a1cafbb25dbc2d670b4d9067c2d91">TriangleMesh</a>(<span class="keywordtype">bool</span> can_be_transformed);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <a class="code hl_function" href="classTriangleMesh.html#ad2e6daebfd73b0f3cf832b13a2bf300d">~TriangleMesh</a>();</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTriangleMesh.html#aace0ab4ce1a82ccebaa289c82e9aedd9">addTriangle</a>(<span class="keyword">const</span> btVector3 &amp;t1, <span class="keyword">const</span> btVector3 &amp;t2,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                     <span class="keyword">const</span> btVector3 &amp;t3, <span class="keyword">const</span> btVector3 &amp;n1,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                     <span class="keyword">const</span> btVector3 &amp;n2, <span class="keyword">const</span> btVector3 &amp;n3,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                     <span class="keyword">const</span> <a class="code hl_class" href="classMaterial.html">Material</a>* m);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTriangleMesh.html#a8fceb3039217341251a5a6a6384d5ba6">createCollisionShape</a>(<span class="keywordtype">bool</span> create_collision_object=<span class="keyword">true</span>, <span class="keyword">const</span> <span class="keywordtype">char</span>* serialized_bhv=NULL);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTriangleMesh.html#ab85d52a124ed3da65666f72df771e1b5">createPhysicalBody</a>(<span class="keywordtype">float</span> friction,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                            btCollisionObject::CollisionFlags flags=</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                               (btCollisionObject::CollisionFlags)0,</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                            <span class="keyword">const</span> <span class="keywordtype">char</span>* serializedBhv = NULL);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTriangleMesh.html#a9464d83f8e518589cfb068eb2b618c29">removeAll</a>();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span> removeCollisionObject();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    btVector3 <a class="code hl_function" href="classTriangleMesh.html#ad8edc3c6887882f6acc2fb62d9ba6374">getInterpolatedNormal</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                                    <span class="keyword">const</span> btVector3 &amp;position) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classTriangleMesh.html#ae08d26edd522b7f82761fe19a6359f54">   94</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTriangleMesh.html#ae08d26edd522b7f82761fe19a6359f54">setBody</a>(btRigidBody *body)</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        assert(!m_body);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="comment">// Mark that the body should not be deleted when this object is </span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="comment">// deleted, since the body is managed elsewhere.</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <a class="code hl_variable" href="classTriangleMesh.html#a5ad03b68a24233ab3544e8df3c2c4be7">m_free_body</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        m_body = body;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }</div>
+</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keyword">const</span> btRigidBody *getBody()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_body; }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">const</span> Material* getMaterial(<span class="keywordtype">int</span> n)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">                                          </span>{<span class="keywordflow">return</span> m_triangleIndex2Material[n];}</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keyword">const</span> btCollisionShape &amp;getCollisionShape()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="keyword">                                          </span>{ <span class="keywordflow">return</span> *m_collision_shape; }</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    btCollisionShape &amp;getCollisionShape() { <span class="keywordflow">return</span> *m_collision_shape; }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classTriangleMesh.html#a2213f98c5ea0a1c6edb379f842cc43a8">castRay</a>(<span class="keyword">const</span> btVector3 &amp;from, <span class="keyword">const</span> btVector3 &amp;to,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                 btVector3 *xyz, <span class="keyword">const</span> Material **material,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                 btVector3 *normal=NULL, <span class="keywordtype">bool</span> interpolate_normal=<span class="keyword">false</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00119" data-start="{" data-end="}">
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classTriangleMesh.html#ae351369fd58e7ef48dac3ad7129315fd">  119</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTriangleMesh.html#ae351369fd58e7ef48dac3ad7129315fd">getTriangle</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> indx, btVector3 *p1, btVector3 *p2,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                     btVector3 *p3)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keyword">const</span> IndexedMeshArray &amp;m = m_mesh.getIndexedMeshArray();</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        btVector3 *p = &amp;(((btVector3*)(m[0].m_vertexBase))[3*indx]);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        *p1 = p[0];</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        *p2 = p[1];</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        *p3 = p[2];</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    }   <span class="comment">// getTriangle</span></div>
+</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00132" data-start="{" data-end="}">
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classTriangleMesh.html#a031865637822373a7cf00959f00c4683">  132</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTriangleMesh.html#a031865637822373a7cf00959f00c4683">getNormals</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> indx, btVector3 *n1, </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                    btVector3 *n2, btVector3 *n3)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        assert(indx &lt; m_triangleIndex2Material.size());</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n = indx*3;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        *n1 = <a class="code hl_variable" href="classTriangleMesh.html#ab66fac1dbc619ee93b59dadb86d65c4f">m_normals</a>[n  ];</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        *n2 = <a class="code hl_variable" href="classTriangleMesh.html#ab66fac1dbc619ee93b59dadb86d65c4f">m_normals</a>[n+1];</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        *n3 = <a class="code hl_variable" href="classTriangleMesh.html#ab66fac1dbc619ee93b59dadb86d65c4f">m_normals</a>[n+2];</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    }   <span class="comment">// getNormals</span></div>
+</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classTriangleMesh.html#af1d036a6113f5e9701313d27117c436d">  144</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classTriangleMesh.html#af1d036a6113f5e9701313d27117c436d">getP1P2P3</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> indx)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        assert(indx &lt; <a class="code hl_variable" href="classTriangleMesh.html#a7bf8fee16a415fd2315edf1faa814d33">m_p1p2p3</a>.size());</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classTriangleMesh.html#a7bf8fee16a415fd2315edf1faa814d33">m_p1p2p3</a>[indx];</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
+</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordtype">void</span> copyFrom(<span class="keyword">const</span> <a class="code hl_class" href="classTriangleMesh.html">TriangleMesh</a>&amp; tm)</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    {</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; tm.m_mesh.getNumTriangles(); i++)</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        {</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            btVector3 v[6];</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            tm.<a class="code hl_function" href="classTriangleMesh.html#ae351369fd58e7ef48dac3ad7129315fd">getTriangle</a>(i, v, v + 1, v + 2);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            tm.<a class="code hl_function" href="classTriangleMesh.html#a031865637822373a7cf00959f00c4683">getNormals</a>(i, v + 3, v + 4, v + 5);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            <span class="keyword">const</span> <a class="code hl_class" href="classMaterial.html">Material</a>* m = tm.getMaterial(i);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            <a class="code hl_function" href="classTriangleMesh.html#aace0ab4ce1a82ccebaa289c82e9aedd9">addTriangle</a>(v[0], v[1], v[2], v[3], v[4], v[5], m);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        }</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    }</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>};</div>
+</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment">/* EOF */</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="ttc" id="aclassMaterial_html"><div class="ttname"><a href="classMaterial.html">Material</a></div><div class="ttdef"><b>Definition</b> material.hpp:48</div></div>
+<div class="ttc" id="aclassTriangleMesh_html"><div class="ttname"><a href="classTriangleMesh.html">TriangleMesh</a></div><div class="ttdoc">A special class to store a triangle mesh with a separate material per triangle.</div><div class="ttdef"><b>Definition</b> triangle_mesh.hpp:35</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_a031865637822373a7cf00959f00c4683"><div class="ttname"><a href="classTriangleMesh.html#a031865637822373a7cf00959f00c4683">TriangleMesh::getNormals</a></div><div class="ttdeci">void getNormals(unsigned int indx, btVector3 *n1, btVector3 *n2, btVector3 *n3) const</div><div class="ttdoc">Returns the normals of the triangle with the given index.</div><div class="ttdef"><b>Definition</b> triangle_mesh.hpp:132</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_a2213f98c5ea0a1c6edb379f842cc43a8"><div class="ttname"><a href="classTriangleMesh.html#a2213f98c5ea0a1c6edb379f842cc43a8">TriangleMesh::castRay</a></div><div class="ttdeci">bool castRay(const btVector3 &amp;from, const btVector3 &amp;to, btVector3 *xyz, const Material **material, btVector3 *normal=NULL, bool interpolate_normal=false) const</div><div class="ttdoc">Casts a ray from &#39;from&#39; to &#39;to&#39;.</div><div class="ttdef"><b>Definition</b> triangle_mesh.cpp:321</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_a490a1cafbb25dbc2d670b4d9067c2d91"><div class="ttname"><a href="classTriangleMesh.html#a490a1cafbb25dbc2d670b4d9067c2d91">TriangleMesh::TriangleMesh</a></div><div class="ttdeci">TriangleMesh(bool can_be_transformed)</div><div class="ttdoc">Constructor: Initialises all data structures with zero.</div><div class="ttdef"><b>Definition</b> triangle_mesh.cpp:35</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_a58e7bd5b87ddf06dd3a251b4987bb05c"><div class="ttname"><a href="classTriangleMesh.html#a58e7bd5b87ddf06dd3a251b4987bb05c">TriangleMesh::m_can_be_transformed</a></div><div class="ttdeci">bool m_can_be_transformed</div><div class="ttdoc">If the rigid body can be transformed (which means that normalising the normals need to update the ver...</div><div class="ttdef"><b>Definition</b> triangle_mesh.hpp:58</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_a5ad03b68a24233ab3544e8df3c2c4be7"><div class="ttname"><a href="classTriangleMesh.html#a5ad03b68a24233ab3544e8df3c2c4be7">TriangleMesh::m_free_body</a></div><div class="ttdeci">bool m_free_body</div><div class="ttdoc">Keep track if the physical body was created here or not.</div><div class="ttdef"><b>Definition</b> triangle_mesh.hpp:41</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_a7bf8fee16a415fd2315edf1faa814d33"><div class="ttname"><a href="classTriangleMesh.html#a7bf8fee16a415fd2315edf1faa814d33">TriangleMesh::m_p1p2p3</a></div><div class="ttdeci">AlignedArray&lt; float &gt; m_p1p2p3</div><div class="ttdoc">Pre-compute value used in smoothing.</div><div class="ttdef"><b>Definition</b> triangle_mesh.hpp:53</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_a8fceb3039217341251a5a6a6384d5ba6"><div class="ttname"><a href="classTriangleMesh.html#a8fceb3039217341251a5a6a6384d5ba6">TriangleMesh::createCollisionShape</a></div><div class="ttdeci">void createCollisionShape(bool create_collision_object=true, const char *serialized_bhv=NULL)</div><div class="ttdoc">Creates a collision body only, which can be used for raycasting, but has no physical properties.</div><div class="ttdef"><b>Definition</b> triangle_mesh.cpp:96</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_a9464d83f8e518589cfb068eb2b618c29"><div class="ttname"><a href="classTriangleMesh.html#a9464d83f8e518589cfb068eb2b618c29">TriangleMesh::removeAll</a></div><div class="ttdeci">void removeAll()</div><div class="ttdoc">Removes the created body and/or collision object from the physics world.</div><div class="ttdef"><b>Definition</b> triangle_mesh.cpp:218</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_aace0ab4ce1a82ccebaa289c82e9aedd9"><div class="ttname"><a href="classTriangleMesh.html#aace0ab4ce1a82ccebaa289c82e9aedd9">TriangleMesh::addTriangle</a></div><div class="ttdeci">void addTriangle(const btVector3 &amp;t1, const btVector3 &amp;t2, const btVector3 &amp;t3, const btVector3 &amp;n1, const btVector3 &amp;n2, const btVector3 &amp;n3, const Material *m)</div><div class="ttdoc">Adds a triangle to the bullet mesh.</div><div class="ttdef"><b>Definition</b> triangle_mesh.cpp:66</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_ab66fac1dbc619ee93b59dadb86d65c4f"><div class="ttname"><a href="classTriangleMesh.html#ab66fac1dbc619ee93b59dadb86d65c4f">TriangleMesh::m_normals</a></div><div class="ttdeci">AlignedArray&lt; btVector3 &gt; m_normals</div><div class="ttdoc">The three normals for each triangle.</div><div class="ttdef"><b>Definition</b> triangle_mesh.hpp:50</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_ab85d52a124ed3da65666f72df771e1b5"><div class="ttname"><a href="classTriangleMesh.html#ab85d52a124ed3da65666f72df771e1b5">TriangleMesh::createPhysicalBody</a></div><div class="ttdeci">void createPhysicalBody(float friction, btCollisionObject::CollisionFlags flags=(btCollisionObject::CollisionFlags) 0, const char *serializedBhv=NULL)</div><div class="ttdoc">Creates the physics body for this triangle mesh.</div><div class="ttdef"><b>Definition</b> triangle_mesh.cpp:185</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_ad2e6daebfd73b0f3cf832b13a2bf300d"><div class="ttname"><a href="classTriangleMesh.html#ad2e6daebfd73b0f3cf832b13a2bf300d">TriangleMesh::~TriangleMesh</a></div><div class="ttdeci">~TriangleMesh()</div><div class="ttdoc">Destructor: delete all allocated data structures.</div><div class="ttdef"><b>Definition</b> triangle_mesh.cpp:54</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_ad8edc3c6887882f6acc2fb62d9ba6374"><div class="ttname"><a href="classTriangleMesh.html#ad8edc3c6887882f6acc2fb62d9ba6374">TriangleMesh::getInterpolatedNormal</a></div><div class="ttdeci">btVector3 getInterpolatedNormal(unsigned int index, const btVector3 &amp;position) const</div><div class="ttdoc">Interpolates the normal at the given position for the triangle with a given index.</div><div class="ttdef"><b>Definition</b> triangle_mesh.cpp:244</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_ae08d26edd522b7f82761fe19a6359f54"><div class="ttname"><a href="classTriangleMesh.html#ae08d26edd522b7f82761fe19a6359f54">TriangleMesh::setBody</a></div><div class="ttdeci">void setBody(btRigidBody *body)</div><div class="ttdoc">In case of physical objects of shape &#39;exact&#39;, the physical body is created outside of the mesh.</div><div class="ttdef"><b>Definition</b> triangle_mesh.hpp:94</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_ae351369fd58e7ef48dac3ad7129315fd"><div class="ttname"><a href="classTriangleMesh.html#ae351369fd58e7ef48dac3ad7129315fd">TriangleMesh::getTriangle</a></div><div class="ttdeci">void getTriangle(unsigned int indx, btVector3 *p1, btVector3 *p2, btVector3 *p3) const</div><div class="ttdoc">Returns the points of the &#39;indx&#39; triangle.</div><div class="ttdef"><b>Definition</b> triangle_mesh.hpp:119</div></div>
+<div class="ttc" id="aclassTriangleMesh_html_af1d036a6113f5e9701313d27117c436d"><div class="ttname"><a href="classTriangleMesh.html#af1d036a6113f5e9701313d27117c436d">TriangleMesh::getP1P2P3</a></div><div class="ttdeci">float getP1P2P3(unsigned int indx) const</div><div class="ttdoc">Returns basically the area of the triangle, which is needed when smoothing the normals.</div><div class="ttdef"><b>Definition</b> triangle_mesh.hpp:144</div></div>
+<div class="ttc" id="aclassUserPointer_html"><div class="ttname"><a href="classUserPointer.html">UserPointer</a></div><div class="ttdoc">A UserPointer is stored as a user pointer in all bullet bodies.</div><div class="ttdef"><b>Definition</b> user_pointer.hpp:36</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

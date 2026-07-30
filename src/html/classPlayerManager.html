@@ -1,0 +1,833 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: PlayerManager 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-static-methods">정적 Public 멤버 함수</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="#pri-static-attribs">정적 Private 속성</a> &#124;
+<a href="classPlayerManager-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">PlayerManager 클래스 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>A special class that manages all local player accounts.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="player__manager_8hpp_source.html">player_manager.hpp</a>&gt;</code></p>
+<div class="dynheader">
+PlayerManager에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classPlayerManager__inherit__graph.png" border="0" usemap="#aPlayerManager_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aPlayerManager_inherit__map" id="aPlayerManager_inherit__map">
+<area shape="rect" title="A special class that manages all local player accounts." alt="" coords="5,80,114,107"/>
+<area shape="rect" href="classNoCopy.html" title="Utility class, you can inherit from this class to disallow the assignment operator and copy construct..." alt="" coords="25,5,94,32"/>
+<area shape="poly" title=" " alt="" coords="61,46,62,80,57,79,58,50"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a1a0f0a05fdf925653b58acb4b138bbcd" id="r_a1a0f0a05fdf925653b58acb4b138bbcd"><td class="memItemLeft"><a id="a1a0f0a05fdf925653b58acb4b138bbcd" name="a1a0f0a05fdf925653b58acb4b138bbcd"></a>
+void&#160;</td><td class="memItemRight"><b>save</b> ()</td></tr>
+<tr class="memdesc:a1a0f0a05fdf925653b58acb4b138bbcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all player profiles to players.xml. <br /></td></tr>
+<tr class="memitem:a968f25eda88561c64455300ab998a874" id="r_a968f25eda88561c64455300ab998a874"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a968f25eda88561c64455300ab998a874">initRemainingData</a> ()</td></tr>
+<tr class="memdesc:a968f25eda88561c64455300ab998a874"><td class="mdescLeft">&#160;</td><td class="mdescRight">The 2nd loading stage.  <br /></td></tr>
+<tr class="memitem:a98beb45e6189a3f65feadb5e96872e93" id="r_a98beb45e6189a3f65feadb5e96872e93"><td class="memItemLeft">unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#a98beb45e6189a3f65feadb5e96872e93">getUniqueId</a> () const</td></tr>
+<tr class="memdesc:a98beb45e6189a3f65feadb5e96872e93"><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns a unique id.  <br /></td></tr>
+<tr class="memitem:a0d2e1b7cd7c0baba32c840343af02b03" id="r_a0d2e1b7cd7c0baba32c840343af02b03"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0d2e1b7cd7c0baba32c840343af02b03">addDefaultPlayer</a> ()</td></tr>
+<tr class="memdesc:a0d2e1b7cd7c0baba32c840343af02b03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when no player profiles exists.  <br /></td></tr>
+<tr class="memitem:a455aa99465d7aab1262311e5d6bdf9ab" id="r_a455aa99465d7aab1262311e5d6bdf9ab"><td class="memItemLeft"><a class="el" href="classPlayerProfile.html">PlayerProfile</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a455aa99465d7aab1262311e5d6bdf9ab">addNewPlayer</a> (const irr::core::stringw &amp;name)</td></tr>
+<tr class="memdesc:a455aa99465d7aab1262311e5d6bdf9ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new player to the list of all players.  <br /></td></tr>
+<tr class="memitem:a95311964f529b1b92f897b02accd6e97" id="r_a95311964f529b1b92f897b02accd6e97"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a95311964f529b1b92f897b02accd6e97">createGuestPlayers</a> (int n)</td></tr>
+<tr class="memdesc:a95311964f529b1b92f897b02accd6e97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes sure at least n guest players exist.  <br /></td></tr>
+<tr class="memitem:a59ebaca94e3ac4d3190b5a7e3e663643" id="r_a59ebaca94e3ac4d3190b5a7e3e663643"><td class="memItemLeft"><a id="a59ebaca94e3ac4d3190b5a7e3e663643" name="a59ebaca94e3ac4d3190b5a7e3e663643"></a>
+void&#160;</td><td class="memItemRight"><b>deletePlayer</b> (<a class="el" href="classPlayerProfile.html">PlayerProfile</a> *player)</td></tr>
+<tr class="memdesc:a59ebaca94e3ac4d3190b5a7e3e663643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes a player profile from the list of all profiles. <br /></td></tr>
+<tr class="memitem:a6b15c53bb17699307cba86a10e15588c" id="r_a6b15c53bb17699307cba86a10e15588c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6b15c53bb17699307cba86a10e15588c">setCurrentPlayer</a> (<a class="el" href="classPlayerProfile.html">PlayerProfile</a> *player)</td></tr>
+<tr class="memdesc:a6b15c53bb17699307cba86a10e15588c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current player.  <br /></td></tr>
+<tr class="memitem:a218e35b677266255522118e1c6c81156" id="r_a218e35b677266255522118e1c6c81156"><td class="memItemLeft">const <a class="el" href="classPlayerProfile.html">PlayerProfile</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a218e35b677266255522118e1c6c81156">getPlayerById</a> (unsigned int id)</td></tr>
+<tr class="memdesc:a218e35b677266255522118e1c6c81156"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <a class="el" href="classPlayerProfile.html" title="Class for managing player profiles (name, usage frequency, etc.).">PlayerProfile</a> with a given id.  <br /></td></tr>
+<tr class="memitem:ae8e4534fbe170ce01880178efcb0842e" id="r_ae8e4534fbe170ce01880178efcb0842e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae8e4534fbe170ce01880178efcb0842e">enforceCurrentPlayer</a> ()</td></tr>
+<tr class="memdesc:ae8e4534fbe170ce01880178efcb0842e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function makes sure that a current player is defined.  <br /></td></tr>
+<tr class="memitem:a600f9d5822550ac101037e5d9b971f15" id="r_a600f9d5822550ac101037e5d9b971f15"><td class="memItemLeft"><a id="a600f9d5822550ac101037e5d9b971f15" name="a600f9d5822550ac101037e5d9b971f15"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>getNumNonGuestPlayers</b> () const</td></tr>
+<tr class="memdesc:a600f9d5822550ac101037e5d9b971f15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of 'real' (non-guest) players. <br /></td></tr>
+<tr class="memitem:abc9f1807fe350e69798d76117081aedd" id="r_abc9f1807fe350e69798d76117081aedd"><td class="memItemLeft"><a class="el" href="classPlayerProfile.html">PlayerProfile</a> *&#160;</td><td class="memItemRight"><a class="el" href="#abc9f1807fe350e69798d76117081aedd">getPlayer</a> (const irr::core::stringw &amp;name)</td></tr>
+<tr class="memdesc:abc9f1807fe350e69798d76117081aedd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a player with a given name.  <br /></td></tr>
+<tr class="memitem:aad31551336de735867c4d1572ae91a7f" id="r_aad31551336de735867c4d1572ae91a7f"><td class="memItemLeft"><a id="aad31551336de735867c4d1572ae91a7f" name="aad31551336de735867c4d1572ae91a7f"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>getNumPlayers</b> () const</td></tr>
+<tr class="memdesc:aad31551336de735867c4d1572ae91a7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of players in the config file. <br /></td></tr>
+<tr class="memitem:a3c6628f87c603f217f0489d6737b4e88" id="r_a3c6628f87c603f217f0489d6737b4e88"><td class="memItemLeft"><a id="a3c6628f87c603f217f0489d6737b4e88" name="a3c6628f87c603f217f0489d6737b4e88"></a>
+const <a class="el" href="classPlayerProfile.html">PlayerProfile</a> *&#160;</td><td class="memItemRight"><b>getPlayer</b> (unsigned int n) const</td></tr>
+<tr class="memdesc:a3c6628f87c603f217f0489d6737b4e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a player with a given unique id. <br /></td></tr>
+<tr class="memitem:a8044dbfcd85b31bf67ca5ccc1a12c42a" id="r_a8044dbfcd85b31bf67ca5ccc1a12c42a"><td class="memItemLeft"><a id="a8044dbfcd85b31bf67ca5ccc1a12c42a" name="a8044dbfcd85b31bf67ca5ccc1a12c42a"></a>
+<a class="el" href="classPlayerProfile.html">PlayerProfile</a> *&#160;</td><td class="memItemRight"><b>getPlayer</b> (unsigned int n)</td></tr>
+<tr class="memdesc:a8044dbfcd85b31bf67ca5ccc1a12c42a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a player with a given unique id. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a65d04c76943322713cd13331fe1867df" id="r_a65d04c76943322713cd13331fe1867df"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a65d04c76943322713cd13331fe1867df">create</a> ()</td></tr>
+<tr class="memdesc:a65d04c76943322713cd13331fe1867df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the instance of the player manager.  <br /></td></tr>
+<tr class="memitem:aabc2feba49406cd2765ae6db8aac4309" id="r_aabc2feba49406cd2765ae6db8aac4309"><td class="memItemLeft"><a id="aabc2feba49406cd2765ae6db8aac4309" name="aabc2feba49406cd2765ae6db8aac4309"></a>
+static <a class="el" href="classPlayerManager.html">PlayerManager</a> *&#160;</td><td class="memItemRight"><b>get</b> ()</td></tr>
+<tr class="memdesc:aabc2feba49406cd2765ae6db8aac4309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static singleton get function. <br /></td></tr>
+<tr class="memitem:ab09705088039e980bbb53d114617a26c" id="r_ab09705088039e980bbb53d114617a26c"><td class="memItemLeft"><a id="ab09705088039e980bbb53d114617a26c" name="ab09705088039e980bbb53d114617a26c"></a>
+static void&#160;</td><td class="memItemRight"><b>destroy</b> ()</td></tr>
+<tr class="memitem:adbb4e85108cca995afdeb07ebc1f2532" id="r_adbb4e85108cca995afdeb07ebc1f2532"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#adbb4e85108cca995afdeb07ebc1f2532">setUserDetails</a> (std::shared_ptr&lt; <a class="el" href="classOnline_1_1HTTPRequest.html">Online::HTTPRequest</a> &gt; request, const std::string &amp;action, const std::string &amp;php_name=&quot;&quot;)</td></tr>
+<tr class="memdesc:adbb4e85108cca995afdeb07ebc1f2532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the login credential to a http request.  <br /></td></tr>
+<tr class="memitem:ad9f3d76d9d6e3bdef9558181dc7eff05" id="r_ad9f3d76d9d6e3bdef9558181dc7eff05"><td class="memItemLeft">static unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#ad9f3d76d9d6e3bdef9558181dc7eff05">getCurrentOnlineId</a> ()</td></tr>
+<tr class="memdesc:ad9f3d76d9d6e3bdef9558181dc7eff05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the online id of the current player.  <br /></td></tr>
+<tr class="memitem:a0517426fcb87f6a79285f1cb002cf765" id="r_a0517426fcb87f6a79285f1cb002cf765"><td class="memItemLeft"><a id="a0517426fcb87f6a79285f1cb002cf765" name="a0517426fcb87f6a79285f1cb002cf765"></a>
+static bool&#160;</td><td class="memItemRight"><b>isCurrentLoggedIn</b> ()</td></tr>
+<tr class="memdesc:a0517426fcb87f6a79285f1cb002cf765"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether a user is signed in or not. <br /></td></tr>
+<tr class="memitem:a191d7a43e1c6b299c24c46eb80b33f2d" id="r_a191d7a43e1c6b299c24c46eb80b33f2d"><td class="memItemLeft"><a id="a191d7a43e1c6b299c24c46eb80b33f2d" name="a191d7a43e1c6b299c24c46eb80b33f2d"></a>
+static <a class="el" href="classOnline_1_1OnlineProfile.html">Online::OnlineProfile</a> *&#160;</td><td class="memItemRight"><b>getCurrentOnlineProfile</b> ()</td></tr>
+<tr class="memdesc:a191d7a43e1c6b299c24c46eb80b33f2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current online profile (which is the list of all achievements and friends). <br /></td></tr>
+<tr class="memitem:a4718d8949484329691bfd33699e7058e" id="r_a4718d8949484329691bfd33699e7058e"><td class="memItemLeft">static <a class="el" href="classPlayerProfile.html#aa56094aa8ccfa69f01a60a32e1f5cdf6">PlayerProfile::OnlineState</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4718d8949484329691bfd33699e7058e">getCurrentOnlineState</a> ()</td></tr>
+<tr class="memdesc:a4718d8949484329691bfd33699e7058e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the online state of the current player.  <br /></td></tr>
+<tr class="memitem:ac525a88705b7c65e0eb471492475ead3" id="r_ac525a88705b7c65e0eb471492475ead3"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#ac525a88705b7c65e0eb471492475ead3">requestOnlinePoll</a> ()</td></tr>
+<tr class="memdesc:ac525a88705b7c65e0eb471492475ead3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a request to the server to see if any new information is available.  <br /></td></tr>
+<tr class="memitem:af311b9a2f775199eef5aabda91a9d8e6" id="r_af311b9a2f775199eef5aabda91a9d8e6"><td class="memItemLeft"><a id="af311b9a2f775199eef5aabda91a9d8e6" name="af311b9a2f775199eef5aabda91a9d8e6"></a>
+static void&#160;</td><td class="memItemRight"><b>resumeSavedSession</b> ()</td></tr>
+<tr class="memdesc:af311b9a2f775199eef5aabda91a9d8e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconnect to the server using the saved session data. <br /></td></tr>
+<tr class="memitem:a6b865b597570d1277c87b2c305b1bd07" id="r_a6b865b597570d1277c87b2c305b1bd07"><td class="memItemLeft"><a id="a6b865b597570d1277c87b2c305b1bd07" name="a6b865b597570d1277c87b2c305b1bd07"></a>
+static void&#160;</td><td class="memItemRight"><b>onSTKQuit</b> ()</td></tr>
+<tr class="memdesc:a6b865b597570d1277c87b2c305b1bd07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a message to the server that the client has been closed, if a user is signed in. <br /></td></tr>
+<tr class="memitem:afc44fce80f9332718cc2e5da603c9e60" id="r_afc44fce80f9332718cc2e5da603c9e60"><td class="memItemLeft"><a id="afc44fce80f9332718cc2e5da603c9e60" name="afc44fce80f9332718cc2e5da603c9e60"></a>
+static void&#160;</td><td class="memItemRight"><b>requestSignOut</b> ()</td></tr>
+<tr class="memdesc:afc44fce80f9332718cc2e5da603c9e60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signs the current user out. <br /></td></tr>
+<tr class="memitem:aa47565f94af3e06d638680091e5cb75b" id="r_aa47565f94af3e06d638680091e5cb75b"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#aa47565f94af3e06d638680091e5cb75b">requestSignIn</a> (const irr::core::stringw &amp;username, const irr::core::stringw &amp;password)</td></tr>
+<tr class="memdesc:aa47565f94af3e06d638680091e5cb75b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a signin request.  <br /></td></tr>
+<tr class="memitem:a2947b28309904aaf1ac2b8ae85dd5cc1" id="r_a2947b28309904aaf1ac2b8ae85dd5cc1"><td class="memItemLeft"><a id="a2947b28309904aaf1ac2b8ae85dd5cc1" name="a2947b28309904aaf1ac2b8ae85dd5cc1"></a>
+static <a class="el" href="classPlayerProfile.html">PlayerProfile</a> *&#160;</td><td class="memItemRight"><b>getCurrentPlayer</b> ()</td></tr>
+<tr class="memdesc:a2947b28309904aaf1ac2b8ae85dd5cc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current player. <br /></td></tr>
+<tr class="memitem:ad862f325d5966b5064fe0ee72abd704f" id="r_ad862f325d5966b5064fe0ee72abd704f"><td class="memItemLeft"><a id="ad862f325d5966b5064fe0ee72abd704f" name="ad862f325d5966b5064fe0ee72abd704f"></a>
+static <a class="el" href="classAchievementsStatus.html">AchievementsStatus</a> *&#160;</td><td class="memItemRight"><b>getCurrentAchievementsStatus</b> ()</td></tr>
+<tr class="memdesc:ad862f325d5966b5064fe0ee72abd704f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A handy shortcut funtion. <br /></td></tr>
+<tr class="memitem:a41f900546eed66519ff12806cca44571" id="r_a41f900546eed66519ff12806cca44571"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a41f900546eed66519ff12806cca44571">increaseAchievement</a> (unsigned int achievement_data_id, int increase=1)</td></tr>
+<tr class="memdesc:a41f900546eed66519ff12806cca44571"><td class="mdescLeft">&#160;</td><td class="mdescRight">A handy shortcut to increase points for an achievement data of the current player.  <br /></td></tr>
+<tr class="memitem:a326f42568e526e42a0d49ee07ec84105" id="r_a326f42568e526e42a0d49ee07ec84105"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a326f42568e526e42a0d49ee07ec84105">resetAchievementData</a> (unsigned int achievement_data_id)</td></tr>
+<tr class="memdesc:a326f42568e526e42a0d49ee07ec84105"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset an achievement data for current player.  <br /></td></tr>
+<tr class="memitem:a06f4f3d61ca23a16f6f873f602a36e17" id="r_a06f4f3d61ca23a16f6f873f602a36e17"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a06f4f3d61ca23a16f6f873f602a36e17">onRaceEnd</a> (bool restart)</td></tr>
+<tr class="memdesc:a06f4f3d61ca23a16f6f873f602a36e17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset achievements which have to be done in one race  <br /></td></tr>
+<tr class="memitem:a7899f51b1c5a4cfae302bc2377251c90" id="r_a7899f51b1c5a4cfae302bc2377251c90"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a7899f51b1c5a4cfae302bc2377251c90">trackEvent</a> (std::string track_ident, AchievementsStatus::TrackData event)</td></tr>
+<tr class="memdesc:a7899f51b1c5a4cfae302bc2377251c90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit an incrementation request of one of the track event counters  <br /></td></tr>
+<tr class="memitem:ada6ac26a7dcdfe6782d03bba49ac97e5" id="r_ada6ac26a7dcdfe6782d03bba49ac97e5"><td class="memItemLeft"><a id="ada6ac26a7dcdfe6782d03bba49ac97e5" name="ada6ac26a7dcdfe6782d03bba49ac97e5"></a>
+static void&#160;</td><td class="memItemRight"><b>resetKartHits</b> (int num_karts)</td></tr>
+<tr class="memitem:ac0d72d25dac65c4c58030151f634752c" id="r_ac0d72d25dac65c4c58030151f634752c"><td class="memItemLeft"><a id="ac0d72d25dac65c4c58030151f634752c" name="ac0d72d25dac65c4c58030151f634752c"></a>
+static void&#160;</td><td class="memItemRight"><b>addKartHit</b> (int kart_id)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:a9bdfbb85fc70c06d1722aa84e86c0c34" id="r_a9bdfbb85fc70c06d1722aa84e86c0c34"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9bdfbb85fc70c06d1722aa84e86c0c34">load</a> ()</td></tr>
+<tr class="memdesc:a9bdfbb85fc70c06d1722aa84e86c0c34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages the loading of saved player data from the players.xml file.  <br /></td></tr>
+<tr class="memitem:ae093e4e4e7eecdf5b46de72f5827d71d" id="r_ae093e4e4e7eecdf5b46de72f5827d71d"><td class="memItemLeft"><a id="ae093e4e4e7eecdf5b46de72f5827d71d" name="ae093e4e4e7eecdf5b46de72f5827d71d"></a>
+&#160;</td><td class="memItemRight"><b>PlayerManager</b> ()</td></tr>
+<tr class="memdesc:ae093e4e4e7eecdf5b46de72f5827d71d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. <br /></td></tr>
+<tr class="memitem:ab53de6b16914b7591fc2bd3038069ac7" id="r_ab53de6b16914b7591fc2bd3038069ac7"><td class="memItemLeft"><a id="ab53de6b16914b7591fc2bd3038069ac7" name="ab53de6b16914b7591fc2bd3038069ac7"></a>
+&#160;</td><td class="memItemRight"><b>~PlayerManager</b> ()</td></tr>
+<tr class="memdesc:ab53de6b16914b7591fc2bd3038069ac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:a6796e1f7e326185b6c16b79b96e9a3ab" id="r_a6796e1f7e326185b6c16b79b96e9a3ab"><td class="memItemLeft"><a id="a6796e1f7e326185b6c16b79b96e9a3ab" name="a6796e1f7e326185b6c16b79b96e9a3ab"></a>
+<a class="el" href="classPtrVector.html">PtrVector</a>&lt; <a class="el" href="classPlayerProfile.html">PlayerProfile</a> &gt;&#160;</td><td class="memItemRight"><b>m_all_players</b></td></tr>
+<tr class="memitem:a6b95ff8ae5aef740f2b4be7d358a1610" id="r_a6b95ff8ae5aef740f2b4be7d358a1610"><td class="memItemLeft"><a id="a6b95ff8ae5aef740f2b4be7d358a1610" name="a6b95ff8ae5aef740f2b4be7d358a1610"></a>
+<a class="el" href="classPlayerProfile.html">PlayerProfile</a> *&#160;</td><td class="memItemRight"><b>m_current_player</b></td></tr>
+<tr class="memdesc:a6b95ff8ae5aef740f2b4be7d358a1610"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the current player. <br /></td></tr>
+<tr class="memitem:ab047a16b544219f677d6f1aad5c620a9" id="r_ab047a16b544219f677d6f1aad5c620a9"><td class="memItemLeft"><a id="ab047a16b544219f677d6f1aad5c620a9" name="ab047a16b544219f677d6f1aad5c620a9"></a>
+const <a class="el" href="classXMLNode.html">XMLNode</a> *&#160;</td><td class="memItemRight"><b>m_player_data</b></td></tr>
+<tr class="memdesc:ab047a16b544219f677d6f1aad5c620a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the XML tree from players.xml for use in the 2nd loading stage (initRemainingData). <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+정적 Private 속성</h2></td></tr>
+<tr class="memitem:a18391204278363c929f1dcb60f3ea38e" id="r_a18391204278363c929f1dcb60f3ea38e"><td class="memItemLeft"><a id="a18391204278363c929f1dcb60f3ea38e" name="a18391204278363c929f1dcb60f3ea38e"></a>
+static <a class="el" href="classPlayerManager.html">PlayerManager</a> *&#160;</td><td class="memItemRight"><b>m_player_manager</b> = NULL</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>A special class that manages all local player accounts. </p>
+<p>It reads all player accounts from the players.xml file in the user config directory. For each player an instance of <a class="el" href="classPlayerProfile.html" title="Class for managing player profiles (name, usage frequency, etc.).">PlayerProfile</a> is created, which keeps track of story mode progress, achievements and other data. It also keeps track of the currently logged in player. It includes several handy static functions which avoid long call sequences, e.g.: <a class="el" href="#ad9f3d76d9d6e3bdef9558181dc7eff05" title="Returns the online id of the current player.">PlayerManager::getCurrentOnlineId()</a> which is just: <a class="el" href="#aabc2feba49406cd2765ae6db8aac4309" title="Static singleton get function.">PlayerManager::get()</a>-&gt;getCurrentUser()-&gt;getID(); </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a0d2e1b7cd7c0baba32c840343af02b03" name="a0d2e1b7cd7c0baba32c840343af02b03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d2e1b7cd7c0baba32c840343af02b03">&#9670;&#160;</a></span>addDefaultPlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::addDefaultPlayer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Called when no player profiles exists. </p>
+<p>It creates two players: one guest player, and one non-guest player for which it tries to guess a name based on environment variables. </p>
+
+</div>
+</div>
+<a id="a455aa99465d7aab1262311e5d6bdf9ab" name="a455aa99465d7aab1262311e5d6bdf9ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a455aa99465d7aab1262311e5d6bdf9ab">&#9670;&#160;</a></span>addNewPlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPlayerProfile.html">PlayerProfile</a> * PlayerManager::addNewPlayer </td>
+          <td>(</td>
+          <td class="paramtype">const irr::core::stringw &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a new player to the list of all players. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of the new player. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a65d04c76943322713cd13331fe1867df" name="a65d04c76943322713cd13331fe1867df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65d04c76943322713cd13331fe1867df">&#9670;&#160;</a></span>create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::create </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create the instance of the player manager. </p>
+<p>Also make sure that at least one player is defined (and if not, create a default player and a guest player). </p>
+
+</div>
+</div>
+<a id="a95311964f529b1b92f897b02accd6e97" name="a95311964f529b1b92f897b02accd6e97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95311964f529b1b92f897b02accd6e97">&#9670;&#160;</a></span>createGuestPlayers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::createGuestPlayers </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>n</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Makes sure at least n guest players exist. </p>
+<p>This is used by the multiplayer KartSelection screen to make sure enough guest players can be picked by the players. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>Minimum number of guest players that must exist. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae8e4534fbe170ce01880178efcb0842e" name="ae8e4534fbe170ce01880178efcb0842e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8e4534fbe170ce01880178efcb0842e">&#9670;&#160;</a></span>enforceCurrentPlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::enforceCurrentPlayer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function makes sure that a current player is defined. </p>
+<p>This is called when a screen skipping command line option is given (-N, -R, ...), in which case there might not be a current player (if no default player is set in players.xml, i.e. the 'remember be' option was not picked ). Since a lot of code depends on having a local player, just set the most frequently used non-guest to be the current player. </p>
+
+</div>
+</div>
+<a id="ad9f3d76d9d6e3bdef9558181dc7eff05" name="ad9f3d76d9d6e3bdef9558181dc7eff05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9f3d76d9d6e3bdef9558181dc7eff05">&#9670;&#160;</a></span>getCurrentOnlineId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int PlayerManager::getCurrentOnlineId </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the online id of the current player. </p>
+<dl class="section pre"><dt>전제조건</dt><dd>User logged in (which is asserted in getID()). </dd></dl>
+
+</div>
+</div>
+<a id="a4718d8949484329691bfd33699e7058e" name="a4718d8949484329691bfd33699e7058e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4718d8949484329691bfd33699e7058e">&#9670;&#160;</a></span>getCurrentOnlineState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPlayerProfile.html#aa56094aa8ccfa69f01a60a32e1f5cdf6">PlayerProfile::OnlineState</a> PlayerManager::getCurrentOnlineState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the online state of the current player. </p>
+<p>It can be logged out, logging in, logged in, logging out, logged out, or guest. </p>
+
+</div>
+</div>
+<a id="abc9f1807fe350e69798d76117081aedd" name="abc9f1807fe350e69798d76117081aedd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc9f1807fe350e69798d76117081aedd">&#9670;&#160;</a></span>getPlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPlayerProfile.html">PlayerProfile</a> * PlayerManager::getPlayer </td>
+          <td>(</td>
+          <td class="paramtype">const irr::core::stringw &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a player with a given name. </p>
+<dl class="section return"><dt>반환값</dt><dd>The player profile or NULL if the name was not found. </dd></dl>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name to search for. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a218e35b677266255522118e1c6c81156" name="a218e35b677266255522118e1c6c81156"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a218e35b677266255522118e1c6c81156">&#9670;&#160;</a></span>getPlayerById()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classPlayerProfile.html">PlayerProfile</a> * PlayerManager::getPlayerById </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a <a class="el" href="classPlayerProfile.html" title="Class for managing player profiles (name, usage frequency, etc.).">PlayerProfile</a> with a given id. </p>
+<p>It searches linearly through the list of all players. </p><dl class="section return"><dt>반환값</dt><dd>The profile, or NULL if no such profile exists. </dd></dl>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The id of the player to look for. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a98beb45e6189a3f65feadb5e96872e93" name="a98beb45e6189a3f65feadb5e96872e93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98beb45e6189a3f65feadb5e96872e93">&#9670;&#160;</a></span>getUniqueId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int PlayerManager::getUniqueId </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This returns a unique id. </p>
+<p>This is 1 + largest id used so far. </p>
+
+</div>
+</div>
+<a id="a41f900546eed66519ff12806cca44571" name="a41f900546eed66519ff12806cca44571"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41f900546eed66519ff12806cca44571">&#9670;&#160;</a></span>increaseAchievement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::increaseAchievement </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>achievement_data_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>increase</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A handy shortcut to increase points for an achievement data of the current player. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">achievement_data_id</td><td>The achievement data id </td></tr>
+    <tr><td class="paramname">increase</td><td>How much to increase the current value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a968f25eda88561c64455300ab998a874" name="a968f25eda88561c64455300ab998a874"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a968f25eda88561c64455300ab998a874">&#9670;&#160;</a></span>initRemainingData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::initRemainingData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The 2nd loading stage. </p>
+<p>During this stage achievements and story mode data is initialised for each player. In case of existing player (i.e. not first time start of stk) the data is read from the players.xml file, in case of a first time start new/empty data structures for the players (which were created by default) are created. </p>
+
+</div>
+</div>
+<a id="a9bdfbb85fc70c06d1722aa84e86c0c34" name="a9bdfbb85fc70c06d1722aa84e86c0c34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bdfbb85fc70c06d1722aa84e86c0c34">&#9670;&#160;</a></span>load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::load </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Manages the loading of saved player data from the players.xml file. </p>
+<p>This function create the XML tree from the file, and then creates the instances of <a class="el" href="classPlayerProfile.html" title="Class for managing player profiles (name, usage frequency, etc.).">PlayerProfile</a> which read each node. </p>
+
+</div>
+</div>
+<a id="a06f4f3d61ca23a16f6f873f602a36e17" name="a06f4f3d61ca23a16f6f873f602a36e17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06f4f3d61ca23a16f6f873f602a36e17">&#9670;&#160;</a></span>onRaceEnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::onRaceEnd </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>restart</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset achievements which have to be done in one race </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">restart</td><td>- if the race has been restarted </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac525a88705b7c65e0eb471492475ead3" name="ac525a88705b7c65e0eb471492475ead3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac525a88705b7c65e0eb471492475ead3">&#9670;&#160;</a></span>requestOnlinePoll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::requestOnlinePoll </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sends a request to the server to see if any new information is available. </p>
+<p>(online friends, notifications, etc.). </p>
+
+</div>
+</div>
+<a id="aa47565f94af3e06d638680091e5cb75b" name="aa47565f94af3e06d638680091e5cb75b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa47565f94af3e06d638680091e5cb75b">&#9670;&#160;</a></span>requestSignIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::requestSignIn </td>
+          <td>(</td>
+          <td class="paramtype">const irr::core::stringw &amp;</td>          <td class="paramname"><span class="paramname"><em>username</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const irr::core::stringw &amp;</td>          <td class="paramname"><span class="paramname"><em>password</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create a signin request. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">username</td><td>Name of user. </td></tr>
+    <tr><td class="paramname">password</td><td>Password. </td></tr>
+    <tr><td class="paramname">save_session</td><td>If true, the login credential will be saved to allow a password-less login. </td></tr>
+    <tr><td class="paramname">request_now</td><td>Immediately submit this request to the RequestManager. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a326f42568e526e42a0d49ee07ec84105" name="a326f42568e526e42a0d49ee07ec84105"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a326f42568e526e42a0d49ee07ec84105">&#9670;&#160;</a></span>resetAchievementData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::resetAchievementData </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>achievement_data_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset an achievement data for current player. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">achievement_data_id</td><td>The achievement data id </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6b15c53bb17699307cba86a10e15588c" name="a6b15c53bb17699307cba86a10e15588c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b15c53bb17699307cba86a10e15588c">&#9670;&#160;</a></span>setCurrentPlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::setCurrentPlayer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classPlayerProfile.html">PlayerProfile</a> *</td>          <td class="paramname"><span class="paramname"><em>player</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the current player. </p>
+<p>This is the player that is used for story mode and achievements. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Player</td><td>profile to be the current player. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adbb4e85108cca995afdeb07ebc1f2532" name="adbb4e85108cca995afdeb07ebc1f2532"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbb4e85108cca995afdeb07ebc1f2532">&#9670;&#160;</a></span>setUserDetails()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::setUserDetails </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classOnline_1_1HTTPRequest.html">Online::HTTPRequest</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>request</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>action</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>php_name</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds the login credential to a http request. </p>
+<p>It sets the name of the script to invokce, token, and user id. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>The http request. </td></tr>
+    <tr><td class="paramname">action</td><td>If not empty, the action to be set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7899f51b1c5a4cfae302bc2377251c90" name="a7899f51b1c5a4cfae302bc2377251c90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7899f51b1c5a4cfae302bc2377251c90">&#9670;&#160;</a></span>trackEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerManager::trackEvent </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>track_ident</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">AchievementsStatus::TrackData</td>          <td class="paramname"><span class="paramname"><em>event</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Transmit an incrementation request of one of the track event counters </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">track_ident</td><td>- the internal name of the track </td></tr>
+    <tr><td class="paramname">event</td><td>- the type of counter to increment </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>config/<a class="el" href="player__manager_8hpp_source.html">player_manager.hpp</a></li>
+<li>config/<b>player_manager.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

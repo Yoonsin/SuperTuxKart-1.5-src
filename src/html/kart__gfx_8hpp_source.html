@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: karts/kart_gfx.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>karts</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">kart_gfx.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2012-2015  Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_KART_GFX_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_KART_GFX_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">class </span><a class="code hl_class" href="classParticleKind.html">ParticleKind</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">class </span><a class="code hl_class" href="classVec3.html">Vec3</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#ifndef SERVER_ONLY</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">class </span><a class="code hl_class" href="classParticleEmitter.html">ParticleEmitter</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">namespace </span>irr {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">namespace </span>scene {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keyword">class </span>ISceneNode;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classKartGFX.html">   42</a></span><span class="keyword">class </span>KartGFX</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>{</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classKartGFX.html#adb8bf17fb4fa2bdc120663cdf8dd2fa1">   51</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classKartGFX.html#adb8bf17fb4fa2bdc120663cdf8dd2fa1">KartGFXType</a> { KGFX_NITRO1=0,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                       KGFX_NITRO2,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                       KGFX_NITROSMOKE1,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                       KGFX_NITROSMOKE2,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                       KGFX_ZIPPER,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                       KGFX_TERRAIN,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                       KGFX_SKIDL,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                       KGFX_SKIDR,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                       KGFX_SKID1L = KGFX_SKIDL,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                       KGFX_SKID1R = KGFX_SKIDR,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                       KGFX_SKID2L,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                       KGFX_SKID2R,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                       KGFX_SKID0L,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                       KGFX_SKID0R,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                       KGFX_EXHAUST1,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                       KGFX_EXHAUST2,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                       KGFX_COUNT};</div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classKartGFX.html#a572e816ed320cab9f75fbaa2ddaa106d">   71</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classParticleKind.html">ParticleKind</a> *<a class="code hl_variable" href="classKartGFX.html#a572e816ed320cab9f75fbaa2ddaa106d">m_skid_kind0</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classKartGFX.html#a2b8bc44db2aa0f493eac3c9f4a5f69e7">   74</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classParticleKind.html">ParticleKind</a> *<a class="code hl_variable" href="classKartGFX.html#a2b8bc44db2aa0f493eac3c9f4a5f69e7">m_skid_kind1</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classKartGFX.html#a18c1837c551c74aa5196b2ef5d7bd6f0">   77</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classParticleKind.html">ParticleKind</a> *<a class="code hl_variable" href="classKartGFX.html#a18c1837c551c74aa5196b2ef5d7bd6f0">m_skid_kind2</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">#ifndef SERVER_ONLY</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classKartGFX.html#abf975a07118a8bcfad7a575edef547fb">   81</a></span>    std::vector&lt;ParticleEmitter*&gt; <a class="code hl_variable" href="classKartGFX.html#abf975a07118a8bcfad7a575edef547fb">m_all_emitters</a>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classKartGFX.html#a5519c8cdb3fff13ff772c07c0620b836">   85</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *<a class="code hl_variable" href="classKartGFX.html#a5519c8cdb3fff13ff772c07c0620b836">m_kart</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classKartGFX.html#a0689dd1eab4d613969885c31fcdddd27">   88</a></span>    <span class="keywordtype">int</span>         <a class="code hl_variable" href="classKartGFX.html#a0689dd1eab4d613969885c31fcdddd27">m_wheel_toggle</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classKartGFX.html#a89bbebd7d0ae1e7f8dedd42b8b5c2f46">   91</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classKartGFX.html#a89bbebd7d0ae1e7f8dedd42b8b5c2f46">m_skid_level</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classKartGFX.html#a9e9233e8c3dc1b5ca947a6998ef21a2f">   94</a></span>    irr::scene::ISceneNode* <a class="code hl_variable" href="classKartGFX.html#a9e9233e8c3dc1b5ca947a6998ef21a2f">m_nitro_light</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classKartGFX.html#a7d7728a00ab6e778b7f50d69d2e2c91e">   97</a></span>    irr::scene::ISceneNode* <a class="code hl_variable" href="classKartGFX.html#a7d7728a00ab6e778b7f50d69d2e2c91e">m_skidding_light_1</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classKartGFX.html#a0efce529c8e233811e3718d80337d45b">  100</a></span>    irr::scene::ISceneNode* <a class="code hl_variable" href="classKartGFX.html#a0efce529c8e233811e3718d80337d45b">m_skidding_light_2</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartGFX.html#aaafd2ea0f52a9215af00e88f3e30a836">addEffect</a>(<a class="code hl_enumeration" href="classKartGFX.html#adb8bf17fb4fa2bdc120663cdf8dd2fa1">KartGFXType</a> type, <span class="keyword">const</span> std::string &amp;file_name,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                   <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;position, <span class="keywordtype">bool</span> important);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartGFX.html#a96d70b8dc962a53df6d97bb2f8512c43">resizeBox</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="classKartGFX.html#adb8bf17fb4fa2bdc120663cdf8dd2fa1">KartGFXType</a> type, <span class="keywordtype">float</span> new_size);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">bool</span> supportsLight() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>         KartGFX(<span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart, <span class="keywordtype">bool</span> is_day);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <a class="code hl_function" href="classKartGFX.html#aef8280886e2560d1b21b5e0675852ae4">~KartGFX</a>();</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartGFX.html#aa0993af7209a86179806ace51aaa9505">reset</a>();</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartGFX.html#a0ce138478b549fc28896d6962ebd83a4">setSkidLevel</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> level);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartGFX.html#af56a9077b74a79fa03b1eb8dc07b6611">setParticleKind</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="classKartGFX.html#adb8bf17fb4fa2bdc120663cdf8dd2fa1">KartGFXType</a> type, <span class="keyword">const</span> <a class="code hl_class" href="classParticleKind.html">ParticleKind</a> *pk);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartGFX.html#a9c440b7926ba8676254135ecd36a7fd6">setXYZ</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="classKartGFX.html#adb8bf17fb4fa2bdc120663cdf8dd2fa1">KartGFXType</a> type, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;xyz);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartGFX.html#a76be20898ca0518325c617685ac2d134">setCreationRateAbsolute</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="classKartGFX.html#adb8bf17fb4fa2bdc120663cdf8dd2fa1">KartGFXType</a> type, <span class="keywordtype">float</span> f);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartGFX.html#a58f636988d5dcb782bd0db06165ce5a8">setCreationRateRelative</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="classKartGFX.html#adb8bf17fb4fa2bdc120663cdf8dd2fa1">KartGFXType</a> type, <span class="keywordtype">float</span> f);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartGFX.html#afa39d1550d9422534feb2eea15b45e6b">updateTerrain</a>(<span class="keyword">const</span> <a class="code hl_class" href="classParticleKind.html">ParticleKind</a> *pk);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartGFX.html#a7334a31d3c64077b2e589f839bb9e18e">update</a>(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartGFX.html#a4ee7d81068a5d32b2655d64c2e436270">updateNitroGraphics</a>(<span class="keywordtype">float</span> f);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartGFX.html#a677b174f8a56695f9bc7678a7c0da081">updateSkidLight</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> level);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordtype">void</span> getGFXStatus(<span class="keywordtype">int</span>* nitro, <span class="keywordtype">bool</span>* zipper,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                      <span class="keywordtype">int</span>* skidding, <span class="keywordtype">bool</span>* red_skidding) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordtype">void</span> setGFXFromReplay(<span class="keywordtype">int</span> nitro, <span class="keywordtype">bool</span> zipper,</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                          <span class="keywordtype">int</span> skidding, <span class="keywordtype">bool</span> red_skidding);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">void</span> setGFXInvisible();</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>};   <span class="comment">// KartWGFX</span></div>
+</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassKartGFX_html_a0689dd1eab4d613969885c31fcdddd27"><div class="ttname"><a href="classKartGFX.html#a0689dd1eab4d613969885c31fcdddd27">KartGFX::m_wheel_toggle</a></div><div class="ttdeci">int m_wheel_toggle</div><div class="ttdoc">Used to alternate particle effects from the rear wheels.</div><div class="ttdef"><b>Definition</b> kart_gfx.hpp:88</div></div>
+<div class="ttc" id="aclassKartGFX_html_a0ce138478b549fc28896d6962ebd83a4"><div class="ttname"><a href="classKartGFX.html#a0ce138478b549fc28896d6962ebd83a4">KartGFX::setSkidLevel</a></div><div class="ttdeci">void setSkidLevel(const unsigned int level)</div><div class="ttdoc">Selects the correct skidding particle type depending on skid bonus level.</div><div class="ttdef"><b>Definition</b> kart_gfx.cpp:255</div></div>
+<div class="ttc" id="aclassKartGFX_html_a0efce529c8e233811e3718d80337d45b"><div class="ttname"><a href="classKartGFX.html#a0efce529c8e233811e3718d80337d45b">KartGFX::m_skidding_light_2</a></div><div class="ttdeci">irr::scene::ISceneNode * m_skidding_light_2</div><div class="ttdoc">A light that&#39;s shown on the second skid-level with another color.</div><div class="ttdef"><b>Definition</b> kart_gfx.hpp:100</div></div>
+<div class="ttc" id="aclassKartGFX_html_a18c1837c551c74aa5196b2ef5d7bd6f0"><div class="ttname"><a href="classKartGFX.html#a18c1837c551c74aa5196b2ef5d7bd6f0">KartGFX::m_skid_kind2</a></div><div class="ttdeci">const ParticleKind * m_skid_kind2</div><div class="ttdoc">The particle kind for skidding bonus level 2.</div><div class="ttdef"><b>Definition</b> kart_gfx.hpp:77</div></div>
+<div class="ttc" id="aclassKartGFX_html_a2b8bc44db2aa0f493eac3c9f4a5f69e7"><div class="ttname"><a href="classKartGFX.html#a2b8bc44db2aa0f493eac3c9f4a5f69e7">KartGFX::m_skid_kind1</a></div><div class="ttdeci">const ParticleKind * m_skid_kind1</div><div class="ttdoc">The particle kind for skidding bonus level 1.</div><div class="ttdef"><b>Definition</b> kart_gfx.hpp:74</div></div>
+<div class="ttc" id="aclassKartGFX_html_a4ee7d81068a5d32b2655d64c2e436270"><div class="ttname"><a href="classKartGFX.html#a4ee7d81068a5d32b2655d64c2e436270">KartGFX::updateNitroGraphics</a></div><div class="ttdeci">void updateNitroGraphics(float f)</div><div class="ttdoc">Updates nitro dependent particle effects.</div><div class="ttdef"><b>Definition</b> kart_gfx.cpp:460</div></div>
+<div class="ttc" id="aclassKartGFX_html_a5519c8cdb3fff13ff772c07c0620b836"><div class="ttname"><a href="classKartGFX.html#a5519c8cdb3fff13ff772c07c0620b836">KartGFX::m_kart</a></div><div class="ttdeci">const AbstractKart * m_kart</div><div class="ttdoc">Pointer to the owner of this kart.</div><div class="ttdef"><b>Definition</b> kart_gfx.hpp:85</div></div>
+<div class="ttc" id="aclassKartGFX_html_a572e816ed320cab9f75fbaa2ddaa106d"><div class="ttname"><a href="classKartGFX.html#a572e816ed320cab9f75fbaa2ddaa106d">KartGFX::m_skid_kind0</a></div><div class="ttdeci">const ParticleKind * m_skid_kind0</div><div class="ttdoc">The particle kind for skidding bonus level 0.</div><div class="ttdef"><b>Definition</b> kart_gfx.hpp:71</div></div>
+<div class="ttc" id="aclassKartGFX_html_a58f636988d5dcb782bd0db06165ce5a8"><div class="ttname"><a href="classKartGFX.html#a58f636988d5dcb782bd0db06165ce5a8">KartGFX::setCreationRateRelative</a></div><div class="ttdeci">void setCreationRateRelative(const KartGFXType type, float f)</div><div class="ttdoc">Sets the creation rate for the specified particle type relative to the given minimum and maximum part...</div><div class="ttdef"><b>Definition</b> kart_gfx.cpp:355</div></div>
+<div class="ttc" id="aclassKartGFX_html_a677b174f8a56695f9bc7678a7c0da081"><div class="ttname"><a href="classKartGFX.html#a677b174f8a56695f9bc7678a7c0da081">KartGFX::updateSkidLight</a></div><div class="ttdeci">void updateSkidLight(unsigned int level)</div><div class="ttdoc">Updates the skiddng light (including disabling it).</div><div class="ttdef"><b>Definition</b> kart_gfx.cpp:501</div></div>
+<div class="ttc" id="aclassKartGFX_html_a7334a31d3c64077b2e589f839bb9e18e"><div class="ttname"><a href="classKartGFX.html#a7334a31d3c64077b2e589f839bb9e18e">KartGFX::update</a></div><div class="ttdeci">void update(float dt)</div><div class="ttdoc">Updates all gfx.</div><div class="ttdef"><b>Definition</b> kart_gfx.cpp:442</div></div>
+<div class="ttc" id="aclassKartGFX_html_a76be20898ca0518325c617685ac2d134"><div class="ttname"><a href="classKartGFX.html#a76be20898ca0518325c617685ac2d134">KartGFX::setCreationRateAbsolute</a></div><div class="ttdeci">void setCreationRateAbsolute(const KartGFXType type, float f)</div><div class="ttdoc">Sets the absolute creation rate for the specified particle type.</div><div class="ttdef"><b>Definition</b> kart_gfx.cpp:331</div></div>
+<div class="ttc" id="aclassKartGFX_html_a7d7728a00ab6e778b7f50d69d2e2c91e"><div class="ttname"><a href="classKartGFX.html#a7d7728a00ab6e778b7f50d69d2e2c91e">KartGFX::m_skidding_light_1</a></div><div class="ttdeci">irr::scene::ISceneNode * m_skidding_light_1</div><div class="ttdoc">Light that is shown when the kart is skidding.</div><div class="ttdef"><b>Definition</b> kart_gfx.hpp:97</div></div>
+<div class="ttc" id="aclassKartGFX_html_a89bbebd7d0ae1e7f8dedd42b8b5c2f46"><div class="ttname"><a href="classKartGFX.html#a89bbebd7d0ae1e7f8dedd42b8b5c2f46">KartGFX::m_skid_level</a></div><div class="ttdeci">int m_skid_level</div><div class="ttdoc">A skid level that is currently in use</div><div class="ttdef"><b>Definition</b> kart_gfx.hpp:91</div></div>
+<div class="ttc" id="aclassKartGFX_html_a96d70b8dc962a53df6d97bb2f8512c43"><div class="ttname"><a href="classKartGFX.html#a96d70b8dc962a53df6d97bb2f8512c43">KartGFX::resizeBox</a></div><div class="ttdeci">void resizeBox(const KartGFXType type, float new_size)</div><div class="ttdoc">Resize the area from which the particles are emitted: the emitter box should spread from last frame&#39;s...</div><div class="ttdef"><b>Definition</b> kart_gfx.cpp:379</div></div>
+<div class="ttc" id="aclassKartGFX_html_a9c440b7926ba8676254135ecd36a7fd6"><div class="ttname"><a href="classKartGFX.html#a9c440b7926ba8676254135ecd36a7fd6">KartGFX::setXYZ</a></div><div class="ttdeci">void setXYZ(const KartGFXType type, const Vec3 &amp;xyz)</div><div class="ttdoc">Defines the new position of the specified emitter.</div><div class="ttdef"><b>Definition</b> kart_gfx.cpp:313</div></div>
+<div class="ttc" id="aclassKartGFX_html_a9e9233e8c3dc1b5ca947a6998ef21a2f"><div class="ttname"><a href="classKartGFX.html#a9e9233e8c3dc1b5ca947a6998ef21a2f">KartGFX::m_nitro_light</a></div><div class="ttdeci">irr::scene::ISceneNode * m_nitro_light</div><div class="ttdoc">A light that&#39;s shown when the kart uses nitro.</div><div class="ttdef"><b>Definition</b> kart_gfx.hpp:94</div></div>
+<div class="ttc" id="aclassKartGFX_html_aa0993af7209a86179806ace51aaa9505"><div class="ttname"><a href="classKartGFX.html#aa0993af7209a86179806ace51aaa9505">KartGFX::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Resets all particle emitters.</div><div class="ttdef"><b>Definition</b> kart_gfx.cpp:233</div></div>
+<div class="ttc" id="aclassKartGFX_html_aaafd2ea0f52a9215af00e88f3e30a836"><div class="ttname"><a href="classKartGFX.html#aaafd2ea0f52a9215af00e88f3e30a836">KartGFX::addEffect</a></div><div class="ttdeci">void addEffect(KartGFXType type, const std::string &amp;file_name, const Vec3 &amp;position, bool important)</div><div class="ttdoc">Creates a new particle node with the specified particle kind read from the given file.</div><div class="ttdef"><b>Definition</b> kart_gfx.cpp:169</div></div>
+<div class="ttc" id="aclassKartGFX_html_abf975a07118a8bcfad7a575edef547fb"><div class="ttname"><a href="classKartGFX.html#abf975a07118a8bcfad7a575edef547fb">KartGFX::m_all_emitters</a></div><div class="ttdeci">std::vector&lt; ParticleEmitter * &gt; m_all_emitters</div><div class="ttdoc">Vector of all particle emitters.</div><div class="ttdef"><b>Definition</b> kart_gfx.hpp:81</div></div>
+<div class="ttc" id="aclassKartGFX_html_adb8bf17fb4fa2bdc120663cdf8dd2fa1"><div class="ttname"><a href="classKartGFX.html#adb8bf17fb4fa2bdc120663cdf8dd2fa1">KartGFX::KartGFXType</a></div><div class="ttdeci">KartGFXType</div><div class="ttdoc">All particle effects supported by this object.</div><div class="ttdef"><b>Definition</b> kart_gfx.hpp:51</div></div>
+<div class="ttc" id="aclassKartGFX_html_aef8280886e2560d1b21b5e0675852ae4"><div class="ttname"><a href="classKartGFX.html#aef8280886e2560d1b21b5e0675852ae4">KartGFX::~KartGFX</a></div><div class="ttdeci">~KartGFX()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition</b> kart_gfx.cpp:143</div></div>
+<div class="ttc" id="aclassKartGFX_html_af56a9077b74a79fa03b1eb8dc07b6611"><div class="ttname"><a href="classKartGFX.html#af56a9077b74a79fa03b1eb8dc07b6611">KartGFX::setParticleKind</a></div><div class="ttdeci">void setParticleKind(const KartGFXType type, const ParticleKind *pk)</div><div class="ttdoc">Sets a new particle type to be used.</div><div class="ttdef"><b>Definition</b> kart_gfx.cpp:295</div></div>
+<div class="ttc" id="aclassKartGFX_html_afa39d1550d9422534feb2eea15b45e6b"><div class="ttname"><a href="classKartGFX.html#afa39d1550d9422534feb2eea15b45e6b">KartGFX::updateTerrain</a></div><div class="ttdeci">void updateTerrain(const ParticleKind *pk)</div><div class="ttdoc">If necessary defines a new particle type for the terrain emitter.</div><div class="ttdef"><b>Definition</b> kart_gfx.cpp:397</div></div>
+<div class="ttc" id="aclassParticleEmitter_html"><div class="ttname"><a href="classParticleEmitter.html">ParticleEmitter</a></div><div class="ttdoc">manages smoke particle effects</div><div class="ttdef"><b>Definition</b> particle_emitter.hpp:44</div></div>
+<div class="ttc" id="aclassParticleKind_html"><div class="ttname"><a href="classParticleKind.html">ParticleKind</a></div><div class="ttdoc">type of particles</div><div class="ttdef"><b>Definition</b> particle_kind.hpp:42</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

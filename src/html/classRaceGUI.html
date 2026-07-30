@@ -1,0 +1,931 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: RaceGUI 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pri-types">Private 타입</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="classRaceGUI-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">RaceGUI 클래스 참조<div class="ingroups"><a class="el" href="group__states__screens.html">States_screens</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Handles the in-race GUI (messages, mini-map, rankings, timer, etc...)  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="race__gui_8hpp_source.html">race_gui.hpp</a>&gt;</code></p>
+<div class="dynheader">
+RaceGUI에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classRaceGUI__inherit__graph.png" border="0" usemap="#aRaceGUI_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aRaceGUI_inherit__map" id="aRaceGUI_inherit__map">
+<area shape="rect" title="Handles the in&#45;race GUI (messages, mini&#45;map, rankings, timer, etc...)" alt="" coords="20,80,97,107"/>
+<area shape="rect" href="classRaceGUIBase.html" title="An abstract base class for the two race guis (race_gui and race_result gui)" alt="" coords="5,5,112,32"/>
+<area shape="poly" title=" " alt="" coords="60,46,61,80,56,79,57,50"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:ae026d9653336520dcdc53657da4bde55" id="r_ae026d9653336520dcdc53657da4bde55"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae026d9653336520dcdc53657da4bde55">RaceGUI</a> ()</td></tr>
+<tr class="memdesc:ae026d9653336520dcdc53657da4bde55"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor is called before anything is attached to the scene node.  <br /></td></tr>
+<tr class="memitem:a684baa992fed91db4b68f348270bebc4" id="r_a684baa992fed91db4b68f348270bebc4"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a684baa992fed91db4b68f348270bebc4">init</a> ()</td></tr>
+<tr class="memdesc:a684baa992fed91db4b68f348270bebc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a second initialisation call (after the constructor) for the race gui.  <br /></td></tr>
+<tr class="memitem:a25754b6bf30463b11a282927511234fb" id="r_a25754b6bf30463b11a282927511234fb"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a25754b6bf30463b11a282927511234fb">reset</a> ()</td></tr>
+<tr class="memdesc:a25754b6bf30463b11a282927511234fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the gui before a race.  <br /></td></tr>
+<tr class="memitem:a7b1a45392951c3e0233a453b602c353e" id="r_a7b1a45392951c3e0233a453b602c353e"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a7b1a45392951c3e0233a453b602c353e">renderGlobal</a> (float dt)</td></tr>
+<tr class="memdesc:a7b1a45392951c3e0233a453b602c353e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render all global parts of the race gui, i.e.  <br /></td></tr>
+<tr class="memitem:a3b3b8c1c3741b9971efe0ff360e4b79f" id="r_a3b3b8c1c3741b9971efe0ff360e4b79f"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a3b3b8c1c3741b9971efe0ff360e4b79f">renderPlayerView</a> (const <a class="el" href="classCamera.html">Camera</a> *camera, float dt)</td></tr>
+<tr class="memdesc:a3b3b8c1c3741b9971efe0ff360e4b79f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render the details for a single player, i.e.  <br /></td></tr>
+<tr class="memitem:a152a36329f4050a33d34f6c5ed550cdc" id="r_a152a36329f4050a33d34f6c5ed550cdc"><td class="memItemLeft">virtual const core::dimension2du&#160;</td><td class="memItemRight"><a class="el" href="#a152a36329f4050a33d34f6c5ed550cdc">getMiniMapSize</a> () const</td></tr>
+<tr class="memdesc:a152a36329f4050a33d34f6c5ed550cdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of the texture on which to render the minimap to.  <br /></td></tr>
+<tr class="memitem:a4365f6f2edf87f2d8037ed8d456cc9f8" id="r_a4365f6f2edf87f2d8037ed8d456cc9f8"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a4365f6f2edf87f2d8037ed8d456cc9f8">initSize</a> ()</td></tr>
+<tr class="memdesc:a4365f6f2edf87f2d8037ed8d456cc9f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when loading the race gui or screen resized.  <br /></td></tr>
+<tr class="memitem:a34e609c0b76234e3d9f1c2154593879b" id="r_a34e609c0b76234e3d9f1c2154593879b"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a34e609c0b76234e3d9f1c2154593879b">calculateMinimapSize</a> ()</td></tr>
+<tr class="inherit_header pub_methods_classRaceGUIBase"><td colspan="2"><a class="el" href="classRaceGUIBase.html">RaceGUIBase</a>(으)로부터 상속된 Public 멤버 함수</td></tr>
+<tr class="memitem:a9059a0ca11962a21fd358d4f55424d7b pub_methods_classRaceGUIBase" id="r_a9059a0ca11962a21fd358d4f55424d7b"><td class="memItemLeft">
+virtual&#160;</td><td class="memItemRight"><b>~RaceGUIBase</b> ()</td></tr>
+<tr class="memdesc:a9059a0ca11962a21fd358d4f55424d7b pub_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">The destructor removes the marker texture and the referee scene node. <br /></td></tr>
+<tr class="memitem:a86946f27e38e42b086a2b481270e0a57 pub_methods_classRaceGUIBase" id="r_a86946f27e38e42b086a2b481270e0a57"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classRaceGUIBase.html#a86946f27e38e42b086a2b481270e0a57">addMessage</a> (const irr::core::stringw &amp;m, const <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart, float time, const video::SColor &amp;color=video::SColor(255, 255, 0, 255), bool important=true, bool big_font=false, bool outline=false)</td></tr>
+<tr class="memdesc:a86946f27e38e42b086a2b481270e0a57 pub_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a message to the message queue.  <br /></td></tr>
+<tr class="memitem:a4a1fb6afd78303056649c619c3f83a92 pub_methods_classRaceGUIBase" id="r_a4a1fb6afd78303056649c619c3f83a92"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classRaceGUIBase.html#a4a1fb6afd78303056649c619c3f83a92">update</a> (float dt)</td></tr>
+<tr class="memdesc:a4a1fb6afd78303056649c619c3f83a92 pub_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update, called once per frame.  <br /></td></tr>
+<tr class="memitem:af87f06cd03db8c4c7589f41d1bb2fe40 pub_methods_classRaceGUIBase" id="r_af87f06cd03db8c4c7589f41d1bb2fe40"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classRaceGUIBase.html#af87f06cd03db8c4c7589f41d1bb2fe40">preRenderCallback</a> (const <a class="el" href="classCamera.html">Camera</a> *camera)</td></tr>
+<tr class="memdesc:af87f06cd03db8c4c7589f41d1bb2fe40 pub_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is called just before rendering the view for each kart.  <br /></td></tr>
+<tr class="memitem:ab3b511e87ae362631975cc766a72c0b3 pub_methods_classRaceGUIBase" id="r_ab3b511e87ae362631975cc766a72c0b3"><td class="memItemLeft">
+virtual void&#160;</td><td class="memItemRight"><b>clearAllMessages</b> ()</td></tr>
+<tr class="memitem:a81e312b6e7944fba71d3577fa47e963e pub_methods_classRaceGUIBase" id="r_a81e312b6e7944fba71d3577fa47e963e"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>drawGlobalPlayerIcons</b> (int bottom_margin)</td></tr>
+<tr class="memdesc:a81e312b6e7944fba71d3577fa47e963e pub_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw players icons and, depending on the current mode, their time or their score (battle lives, egg collected, etc.). <br /></td></tr>
+<tr class="memitem:a7fab1bb7380d7bbe20528996b1baeffe pub_methods_classRaceGUIBase" id="r_a7fab1bb7380d7bbe20528996b1baeffe"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>drawPlayerIcon</b> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart, int x, int y, int w, bool is_local)</td></tr>
+<tr class="memdesc:a7fab1bb7380d7bbe20528996b1baeffe pub_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw one player icon Takes care of icon looking different due to plumber, squashing, ... <br /></td></tr>
+<tr class="memitem:a733b537aeb061a8b18ef3c30f9fe4a4d pub_methods_classRaceGUIBase" id="r_a733b537aeb061a8b18ef3c30f9fe4a4d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classRaceGUIBase.html#a733b537aeb061a8b18ef3c30f9fe4a4d">cleanupMessages</a> (const float dt)</td></tr>
+<tr class="memdesc:a733b537aeb061a8b18ef3c30f9fe4a4d pub_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes messages which have been displayed long enough.  <br /></td></tr>
+<tr class="memitem:a3f6d7acff344e53f0e2e36e2bc5d3afc pub_methods_classRaceGUIBase" id="r_a3f6d7acff344e53f0e2e36e2bc5d3afc"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>removeReferee</b> ()</td></tr>
+<tr class="memitem:a95c65126dd0be1da60d6af4c06f74f96 pub_methods_classRaceGUIBase" id="r_a95c65126dd0be1da60d6af4c06f74f96"><td class="memItemLeft">
+<a class="el" href="classRaceGUIMultitouch.html">RaceGUIMultitouch</a> *&#160;</td><td class="memItemRight"><b>getMultitouchGUI</b> ()</td></tr>
+<tr class="memitem:a963249087f8300ed7b21e92298fa70f1 pub_methods_classRaceGUIBase" id="r_a963249087f8300ed7b21e92298fa70f1"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>recreateGUI</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private 타입</h2></td></tr>
+<tr class="memitem:ab8a4f312d1ba3a4dc3c70e7a1d587acd" id="r_ab8a4f312d1ba3a4dc3c70e7a1d587acd"><td class="memItemLeft"><a id="ab8a4f312d1ba3a4dc3c70e7a1d587acd" name="ab8a4f312d1ba3a4dc3c70e7a1d587acd"></a>enum &#160;</td><td class="memItemRight"><a class="el" href="#ab8a4f312d1ba3a4dc3c70e7a1d587acd">AnimationState</a> { <b>AS_NONE</b>
+, <b>AS_SMALLER</b>
+, <b>AS_BIGGER</b>
+ }</td></tr>
+<tr class="memdesc:ab8a4f312d1ba3a4dc3c70e7a1d587acd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Animation state: none, getting smaller (old value), getting bigger (new number). <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:a9a1ce3e9e8dd9c5a45046533038dee25" id="r_a9a1ce3e9e8dd9c5a45046533038dee25"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9a1ce3e9e8dd9c5a45046533038dee25">drawEnergyMeter</a> (int x, int y, const <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart, const core::recti &amp;viewport, const core::vector2df &amp;scaling)</td></tr>
+<tr class="memdesc:a9a1ce3e9e8dd9c5a45046533038dee25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Energy meter that gets filled with nitro.  <br /></td></tr>
+<tr class="memitem:a86e9462840101f9055ebbcbc63904f48" id="r_a86e9462840101f9055ebbcbc63904f48"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a86e9462840101f9055ebbcbc63904f48">drawSpeedEnergyRank</a> (const <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart, const core::recti &amp;viewport, const core::vector2df &amp;scaling, float dt)</td></tr>
+<tr class="memdesc:a86e9462840101f9055ebbcbc63904f48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the speedometer, the display of available nitro, and the rank of the kart (inside the speedometer).  <br /></td></tr>
+<tr class="memitem:a469a9a67111e839e16a2b8f232c0abb1" id="r_a469a9a67111e839e16a2b8f232c0abb1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a469a9a67111e839e16a2b8f232c0abb1">drawLap</a> (const <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart, const core::recti &amp;viewport, const core::vector2df &amp;scaling)</td></tr>
+<tr class="memdesc:a469a9a67111e839e16a2b8f232c0abb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the lap of the kart.  <br /></td></tr>
+<tr class="memitem:a800fe6c7ea0688845aa9820d16527198" id="r_a800fe6c7ea0688845aa9820d16527198"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a800fe6c7ea0688845aa9820d16527198">drawRank</a> (const <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart, const core::vector2df &amp;offset, float min_ratio, int meter_width, int meter_height, float dt)</td></tr>
+<tr class="memdesc:a800fe6c7ea0688845aa9820d16527198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the rank of a player.  <br /></td></tr>
+<tr class="memitem:a27e4d024c941fdf68a5aa84f9277ca69" id="r_a27e4d024c941fdf68a5aa84f9277ca69"><td class="memItemLeft"><a id="a27e4d024c941fdf68a5aa84f9277ca69" name="a27e4d024c941fdf68a5aa84f9277ca69"></a>
+void&#160;</td><td class="memItemRight"><b>drawMeterTexture</b> (video::ITexture *meter_texture, video::S3DVertex vertices[], unsigned int count, bool reverse=false)</td></tr>
+<tr class="memitem:aa9c0d5c124c87bac59b86deda8924c6c" id="r_aa9c0d5c124c87bac59b86deda8924c6c"><td class="memItemLeft">unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#aa9c0d5c124c87bac59b86deda8924c6c">computeVerticesForMeter</a> (core::vector2df position[], float threshold[], video::S3DVertex vertices[], unsigned int vertices_count, float measure, int gauge_width, int gauge_height, core::vector2df offset)</td></tr>
+<tr class="memdesc:aa9c0d5c124c87bac59b86deda8924c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function computes a polygon used for drawing the measure for a meter (speedometer, etc.) The variable measured by the meter is compared to the thresholds, and is then used to compute a point between the two points associated with the lower and upper threshold Then, a polygon is calculated linking all the previous points and the variable point which link back to the first point.  <br /></td></tr>
+<tr class="memitem:ae33b057b35442f5863ca05b08a9853ad" id="r_ae33b057b35442f5863ca05b08a9853ad"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae33b057b35442f5863ca05b08a9853ad">drawGlobalMiniMap</a> ()</td></tr>
+<tr class="memdesc:ae33b057b35442f5863ca05b08a9853ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display items that are shown once only (for all karts).  <br /></td></tr>
+<tr class="memitem:a164de0f893b8bd6d31f17148bc49ef67" id="r_a164de0f893b8bd6d31f17148bc49ef67"><td class="memItemLeft"><a id="a164de0f893b8bd6d31f17148bc49ef67" name="a164de0f893b8bd6d31f17148bc49ef67"></a>
+void&#160;</td><td class="memItemRight"><b>drawGlobalTimer</b> ()</td></tr>
+<tr class="memdesc:a164de0f893b8bd6d31f17148bc49ef67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the racing time on the screen. <br /></td></tr>
+<tr class="memitem:a4907a72fbfd61585f348b81dea4e5e70" id="r_a4907a72fbfd61585f348b81dea4e5e70"><td class="memItemLeft"><a id="a4907a72fbfd61585f348b81dea4e5e70" name="a4907a72fbfd61585f348b81dea4e5e70"></a>
+void&#160;</td><td class="memItemRight"><b>drawLiveDifference</b> ()</td></tr>
+<tr class="memdesc:a4907a72fbfd61585f348b81dea4e5e70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the live difference with a ghost on screen. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:acaa19217a439430694d96ca42c922b18" id="r_acaa19217a439430694d96ca42c922b18"><td class="memItemLeft"><a id="acaa19217a439430694d96ca42c922b18" name="acaa19217a439430694d96ca42c922b18"></a>
+int&#160;</td><td class="memItemRight"><b>m_minimap_ai_size</b></td></tr>
+<tr class="memdesc:acaa19217a439430694d96ca42c922b18"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of a single marker on the screen for AI karts, need not be a power of 2. <br /></td></tr>
+<tr class="memitem:ac4190ff747d6ead0ba60465671e31a10" id="r_ac4190ff747d6ead0ba60465671e31a10"><td class="memItemLeft"><a id="ac4190ff747d6ead0ba60465671e31a10" name="ac4190ff747d6ead0ba60465671e31a10"></a>
+int&#160;</td><td class="memItemRight"><b>m_minimap_player_size</b></td></tr>
+<tr class="memdesc:ac4190ff747d6ead0ba60465671e31a10"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of a single marker on the screen or player karts, need not be a power of 2. <br /></td></tr>
+<tr class="memitem:a3ada3d6e225541e819c03b93ee324088" id="r_a3ada3d6e225541e819c03b93ee324088"><td class="memItemLeft"><a id="a3ada3d6e225541e819c03b93ee324088" name="a3ada3d6e225541e819c03b93ee324088"></a>
+int&#160;</td><td class="memItemRight"><b>m_map_rendered_width</b></td></tr>
+<tr class="memdesc:a3ada3d6e225541e819c03b93ee324088"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width of the rendered mini map in pixels, must be a power of 2. <br /></td></tr>
+<tr class="memitem:ab2d9924f32c0e3565c2474d5c4b75644" id="r_ab2d9924f32c0e3565c2474d5c4b75644"><td class="memItemLeft"><a id="ab2d9924f32c0e3565c2474d5c4b75644" name="ab2d9924f32c0e3565c2474d5c4b75644"></a>
+int&#160;</td><td class="memItemRight"><b>m_map_rendered_height</b></td></tr>
+<tr class="memdesc:ab2d9924f32c0e3565c2474d5c4b75644"><td class="mdescLeft">&#160;</td><td class="mdescRight">The height of the rendered mini map in pixels, must be a power of 2. <br /></td></tr>
+<tr class="memitem:ab9f11b03c62fb2a5b705d7799157e364" id="r_ab9f11b03c62fb2a5b705d7799157e364"><td class="memItemLeft"><a id="ab9f11b03c62fb2a5b705d7799157e364" name="ab9f11b03c62fb2a5b705d7799157e364"></a>
+int&#160;</td><td class="memItemRight"><b>m_map_width</b></td></tr>
+<tr class="memdesc:ab9f11b03c62fb2a5b705d7799157e364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Width of the map in pixels on the screen, need not be a power of 2. <br /></td></tr>
+<tr class="memitem:ad09af52ef3f5c9318de0decf6d9607dc" id="r_ad09af52ef3f5c9318de0decf6d9607dc"><td class="memItemLeft"><a id="ad09af52ef3f5c9318de0decf6d9607dc" name="ad09af52ef3f5c9318de0decf6d9607dc"></a>
+int&#160;</td><td class="memItemRight"><b>m_map_height</b></td></tr>
+<tr class="memdesc:ad09af52ef3f5c9318de0decf6d9607dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Height of the map in pixels on the screen, need not be a power of 2. <br /></td></tr>
+<tr class="memitem:afb63dcfb4d122ee7cf0f34b073295417" id="r_afb63dcfb4d122ee7cf0f34b073295417"><td class="memItemLeft"><a id="afb63dcfb4d122ee7cf0f34b073295417" name="afb63dcfb4d122ee7cf0f34b073295417"></a>
+int&#160;</td><td class="memItemRight"><b>m_map_left</b></td></tr>
+<tr class="memdesc:afb63dcfb4d122ee7cf0f34b073295417"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance of map from left side of screen. <br /></td></tr>
+<tr class="memitem:a35b8121350389a52d3c400455f1938fd" id="r_a35b8121350389a52d3c400455f1938fd"><td class="memItemLeft"><a id="a35b8121350389a52d3c400455f1938fd" name="a35b8121350389a52d3c400455f1938fd"></a>
+int&#160;</td><td class="memItemRight"><b>m_map_bottom</b></td></tr>
+<tr class="memdesc:a35b8121350389a52d3c400455f1938fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance of map from bottom of screen. <br /></td></tr>
+<tr class="memitem:a2f2a46b5610d14e31bdadb3beab42529" id="r_a2f2a46b5610d14e31bdadb3beab42529"><td class="memItemLeft"><a id="a2f2a46b5610d14e31bdadb3beab42529" name="a2f2a46b5610d14e31bdadb3beab42529"></a>
+int&#160;</td><td class="memItemRight"><b>m_lap_width</b></td></tr>
+<tr class="memdesc:a2f2a46b5610d14e31bdadb3beab42529"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum lap display length (either 9/9 or 99/99). <br /></td></tr>
+<tr class="memitem:afd8ad1510aaa0517b9d89756da519509" id="r_afd8ad1510aaa0517b9d89756da519509"><td class="memItemLeft"><a id="afd8ad1510aaa0517b9d89756da519509" name="afd8ad1510aaa0517b9d89756da519509"></a>
+int&#160;</td><td class="memItemRight"><b>m_timer_width</b></td></tr>
+<tr class="memdesc:afd8ad1510aaa0517b9d89756da519509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum string length for the timer <br /></td></tr>
+<tr class="memitem:ac9fee82824d67ba6c3dbed8c0854b291" id="r_ac9fee82824d67ba6c3dbed8c0854b291"><td class="memItemLeft"><a id="ac9fee82824d67ba6c3dbed8c0854b291" name="ac9fee82824d67ba6c3dbed8c0854b291"></a>
+int&#160;</td><td class="memItemRight"><b>m_small_precise_timer_width</b></td></tr>
+<tr class="memdesc:ac9fee82824d67ba6c3dbed8c0854b291"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum string length for a small precise timer (like the live difference timer under a minute) <br /></td></tr>
+<tr class="memitem:a1375c48f0929e337a472627ab2d492a9" id="r_a1375c48f0929e337a472627ab2d492a9"><td class="memItemLeft"><a id="a1375c48f0929e337a472627ab2d492a9" name="a1375c48f0929e337a472627ab2d492a9"></a>
+int&#160;</td><td class="memItemRight"><b>m_big_precise_timer_width</b></td></tr>
+<tr class="memdesc:a1375c48f0929e337a472627ab2d492a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum string length for a big precise timer (like the live difference timer over a minute) <br /></td></tr>
+<tr class="memitem:a5a85ebcb8ec1dd9ed209f4745d151aec" id="r_a5a85ebcb8ec1dd9ed209f4745d151aec"><td class="memItemLeft"><a id="a5a85ebcb8ec1dd9ed209f4745d151aec" name="a5a85ebcb8ec1dd9ed209f4745d151aec"></a>
+int&#160;</td><td class="memItemRight"><b>m_negative_timer_additional_width</b></td></tr>
+<tr class="memitem:a11f2a90baebd3011c09035324e8477f7" id="r_a11f2a90baebd3011c09035324e8477f7"><td class="memItemLeft"><a id="a11f2a90baebd3011c09035324e8477f7" name="a11f2a90baebd3011c09035324e8477f7"></a>
+int&#160;</td><td class="memItemRight"><b>m_font_height</b></td></tr>
+<tr class="memdesc:a11f2a90baebd3011c09035324e8477f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Height of the digit font. <br /></td></tr>
+<tr class="memitem:a1d7c173d83ed4c1c69f85056a28fc653" id="r_a1d7c173d83ed4c1c69f85056a28fc653"><td class="memItemLeft"><a id="a1d7c173d83ed4c1c69f85056a28fc653" name="a1d7c173d83ed4c1c69f85056a28fc653"></a>
+irr::video::ITexture *&#160;</td><td class="memItemRight"><b>m_red_team</b></td></tr>
+<tr class="memdesc:a1d7c173d83ed4c1c69f85056a28fc653"><td class="mdescLeft">&#160;</td><td class="mdescRight">Icon textures (stored as variables to not look up their location on every frame) <br /></td></tr>
+<tr class="memitem:a683d97bdbcc4d407b07fc93c1f29697d" id="r_a683d97bdbcc4d407b07fc93c1f29697d"><td class="memItemLeft"><a id="a683d97bdbcc4d407b07fc93c1f29697d" name="a683d97bdbcc4d407b07fc93c1f29697d"></a>
+irr::video::ITexture *&#160;</td><td class="memItemRight"><b>m_blue_team</b></td></tr>
+<tr class="memitem:a98fc5fdbe98228ae71ad8abfec275e50" id="r_a98fc5fdbe98228ae71ad8abfec275e50"><td class="memItemLeft"><a id="a98fc5fdbe98228ae71ad8abfec275e50" name="a98fc5fdbe98228ae71ad8abfec275e50"></a>
+irr::video::ITexture *&#160;</td><td class="memItemRight"><b>m_red_flag</b></td></tr>
+<tr class="memitem:ac87ba7241383b8ba633baeaf0f8f729c" id="r_ac87ba7241383b8ba633baeaf0f8f729c"><td class="memItemLeft"><a id="ac87ba7241383b8ba633baeaf0f8f729c" name="ac87ba7241383b8ba633baeaf0f8f729c"></a>
+irr::video::ITexture *&#160;</td><td class="memItemRight"><b>m_blue_flag</b></td></tr>
+<tr class="memitem:ad763f80819ee8dcfe3d4da8298cf6382" id="r_ad763f80819ee8dcfe3d4da8298cf6382"><td class="memItemLeft"><a id="ad763f80819ee8dcfe3d4da8298cf6382" name="ad763f80819ee8dcfe3d4da8298cf6382"></a>
+irr::video::ITexture *&#160;</td><td class="memItemRight"><b>m_soccer_ball</b></td></tr>
+<tr class="memitem:a42588502108aa35c3ecea14000d32c89" id="r_a42588502108aa35c3ecea14000d32c89"><td class="memItemLeft"><a id="a42588502108aa35c3ecea14000d32c89" name="a42588502108aa35c3ecea14000d32c89"></a>
+irr::video::ITexture *&#160;</td><td class="memItemRight"><b>m_heart_icon</b></td></tr>
+<tr class="memitem:ab88a1c99bafb29559073de04c15018b4" id="r_ab88a1c99bafb29559073de04c15018b4"><td class="memItemLeft"><a id="ab88a1c99bafb29559073de04c15018b4" name="ab88a1c99bafb29559073de04c15018b4"></a>
+irr::video::ITexture *&#160;</td><td class="memItemRight"><b>m_basket_ball_icon</b></td></tr>
+<tr class="memitem:a79d2b344bc2c5852a6d73980ee9b28ae" id="r_a79d2b344bc2c5852a6d73980ee9b28ae"><td class="memItemLeft"><a id="a79d2b344bc2c5852a6d73980ee9b28ae" name="a79d2b344bc2c5852a6d73980ee9b28ae"></a>
+irr::video::ITexture *&#160;</td><td class="memItemRight"><b>m_champion</b></td></tr>
+<tr class="memdesc:a79d2b344bc2c5852a6d73980ee9b28ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texture for the hit limit icon <br /></td></tr>
+<tr class="memitem:aaeb6da5e8b9a5a084f31a3520593de3a" id="r_aaeb6da5e8b9a5a084f31a3520593de3a"><td class="memItemLeft"><a id="aaeb6da5e8b9a5a084f31a3520593de3a" name="aaeb6da5e8b9a5a084f31a3520593de3a"></a>
+irr::video::ITexture *&#160;</td><td class="memItemRight"><b>m_speed_meter_icon</b></td></tr>
+<tr class="memdesc:aaeb6da5e8b9a5a084f31a3520593de3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texture for speedometer. <br /></td></tr>
+<tr class="memitem:a9e0f9c528c8c366d253700d2875f67f1" id="r_a9e0f9c528c8c366d253700d2875f67f1"><td class="memItemLeft"><a id="a9e0f9c528c8c366d253700d2875f67f1" name="a9e0f9c528c8c366d253700d2875f67f1"></a>
+irr::video::ITexture *&#160;</td><td class="memItemRight"><b>m_speed_bar_icon</b></td></tr>
+<tr class="memitem:aff11d7c49106b57afa83c54d75ab2b05" id="r_aff11d7c49106b57afa83c54d75ab2b05"><td class="memItemLeft"><a id="aff11d7c49106b57afa83c54d75ab2b05" name="aff11d7c49106b57afa83c54d75ab2b05"></a>
+std::map&lt; int, <a class="el" href="#ab8a4f312d1ba3a4dc3c70e7a1d587acd">AnimationState</a> &gt;&#160;</td><td class="memItemRight"><b>m_animation_states</b></td></tr>
+<tr class="memitem:a66b21c65436773839774c0b63af01a7f" id="r_a66b21c65436773839774c0b63af01a7f"><td class="memItemLeft"><a id="a66b21c65436773839774c0b63af01a7f" name="a66b21c65436773839774c0b63af01a7f"></a>
+std::map&lt; int, float &gt;&#160;</td><td class="memItemRight"><b>m_animation_duration</b></td></tr>
+<tr class="memdesc:a66b21c65436773839774c0b63af01a7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">How long the speedometer digit animation has been shown for this number. <br /></td></tr>
+<tr class="memitem:a234cb7b237aad34578bc20dd8931c195" id="r_a234cb7b237aad34578bc20dd8931c195"><td class="memItemLeft"><a id="a234cb7b237aad34578bc20dd8931c195" name="a234cb7b237aad34578bc20dd8931c195"></a>
+std::map&lt; int, int &gt;&#160;</td><td class="memItemRight"><b>m_last_digit</b></td></tr>
+<tr class="memdesc:a234cb7b237aad34578bc20dd8931c195"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the previous digit on the center of the speedometer for each number. <br /></td></tr>
+<tr class="memitem:aa817c3d1db7ecabfc3d566e7906a79dd" id="r_aa817c3d1db7ecabfc3d566e7906a79dd"><td class="memItemLeft"><a id="aa817c3d1db7ecabfc3d566e7906a79dd" name="aa817c3d1db7ecabfc3d566e7906a79dd"></a>
+bool&#160;</td><td class="memItemRight"><b>m_is_tutorial</b></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+추가로 상속된 멤버들</h2></td></tr>
+<tr class="inherit_header pub_attribs_classRaceGUIBase"><td colspan="2"><a class="el" href="classRaceGUIBase.html">RaceGUIBase</a>(으)로부터 상속된 Public 속성</td></tr>
+<tr class="memitem:ade6adfd5195e0e67a6b15534eaacce15 pub_attribs_classRaceGUIBase" id="r_ade6adfd5195e0e67a6b15534eaacce15"><td class="memItemLeft">
+bool&#160;</td><td class="memItemRight"><b>m_enabled</b></td></tr>
+<tr class="inherit_header pro_types_classRaceGUIBase"><td colspan="2"><a class="el" href="classRaceGUIBase.html">RaceGUIBase</a>(으)로부터 상속된 Protected 타입</td></tr>
+<tr class="memitem:a44f1da604eddb172aa02b82e39642a6f pro_types_classRaceGUIBase" id="r_a44f1da604eddb172aa02b82e39642a6f"><td class="memItemLeft"><a id="a44f1da604eddb172aa02b82e39642a6f" name="a44f1da604eddb172aa02b82e39642a6f"></a>enum &#160;</td><td class="memItemRight"><a class="el" href="classRaceGUIBase.html#a44f1da604eddb172aa02b82e39642a6f">PlungerState</a> { <b>PLUNGER_STATE_INIT</b>
+, <b>PLUNGER_STATE_SLOW_1</b>
+, <b>PLUNGER_STATE_SLOW_2</b>
+, <b>PLUNGER_STATE_FAST</b>
+ }</td></tr>
+<tr class="memdesc:a44f1da604eddb172aa02b82e39642a6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">State of the plunger: From the 'init' states the plunger switches between two slow moving states ('shakily moving') till the end of the plunger time is nearly reached, then it goes to a very fast moving state ('plunger blown off'). <br /></td></tr>
+<tr class="inherit_header pro_methods_classRaceGUIBase"><td colspan="2"><a class="el" href="classRaceGUIBase.html">RaceGUIBase</a>(으)로부터 상속된 Protected 멤버 함수</td></tr>
+<tr class="memitem:a46fc4409a4d07a5f1d1563dfdf855cfb pro_methods_classRaceGUIBase" id="r_a46fc4409a4d07a5f1d1563dfdf855cfb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classRaceGUIBase.html#a46fc4409a4d07a5f1d1563dfdf855cfb">createRegularPolygon</a> (unsigned int n, float radius, const core::vector2df &amp;center, const video::SColor &amp;color, video::S3DVertex *v, unsigned short int *index)</td></tr>
+<tr class="memdesc:a46fc4409a4d07a5f1d1563dfdf855cfb pro_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the 2D vertices for a regular polygon.  <br /></td></tr>
+<tr class="memitem:a7dd0a29940e36990eb900eeef4a5ae4b pro_methods_classRaceGUIBase" id="r_a7dd0a29940e36990eb900eeef4a5ae4b"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>drawAllMessages</b> (const <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart, const core::recti &amp;viewport, const core::vector2df &amp;scaling)</td></tr>
+<tr class="memdesc:a7dd0a29940e36990eb900eeef4a5ae4b pro_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays all messages in the message queue <br /></td></tr>
+<tr class="memitem:af12bfb996455a4d4212258027a9e8321 pro_methods_classRaceGUIBase" id="r_af12bfb996455a4d4212258027a9e8321"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classRaceGUIBase.html#af12bfb996455a4d4212258027a9e8321">drawPowerupIcons</a> (const <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart, const core::recti &amp;viewport, const core::vector2df &amp;scaling)</td></tr>
+<tr class="memdesc:af12bfb996455a4d4212258027a9e8321 pro_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the powerup icons on the screen (called once for each player).  <br /></td></tr>
+<tr class="memitem:a985196cad6e2f4031b80828c3d0f9c81 pro_methods_classRaceGUIBase" id="r_a985196cad6e2f4031b80828c3d0f9c81"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classRaceGUIBase.html#a985196cad6e2f4031b80828c3d0f9c81">drawGlobalMusicDescription</a> ()</td></tr>
+<tr class="memdesc:a985196cad6e2f4031b80828c3d0f9c81 pro_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the description given for the music currently being played.  <br /></td></tr>
+<tr class="memitem:a63fd5f29fa2cacf9a462668b5550f546 pro_methods_classRaceGUIBase" id="r_a63fd5f29fa2cacf9a462668b5550f546"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>drawGlobalReadySetGo</b> ()</td></tr>
+<tr class="memdesc:a63fd5f29fa2cacf9a462668b5550f546 pro_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the ready-set-go message on the screen. <br /></td></tr>
+<tr class="memitem:a9214a77d98aca2edc5782157cfbf77ad pro_methods_classRaceGUIBase" id="r_a9214a77d98aca2edc5782157cfbf77ad"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>drawGlobalGoal</b> ()</td></tr>
+<tr class="memitem:a653f2a023365dbe8996620145600fe99 pro_methods_classRaceGUIBase" id="r_a653f2a023365dbe8996620145600fe99"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classRaceGUIBase.html#a653f2a023365dbe8996620145600fe99">drawPlungerInFace</a> (const <a class="el" href="classCamera.html">Camera</a> *camera, float dt)</td></tr>
+<tr class="memdesc:a653f2a023365dbe8996620145600fe99 pro_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the plunger-in-face if necessary.  <br /></td></tr>
+<tr class="memitem:a1a44b18b761de68554e3cd90b9507be4 pro_methods_classRaceGUIBase" id="r_a1a44b18b761de68554e3cd90b9507be4"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>ignoreUnimportantMessages</b> ()</td></tr>
+<tr class="memdesc:a1a44b18b761de68554e3cd90b9507be4 pro_methods_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instructs the base gui to ignore unimportant messages (like item messages). <br /></td></tr>
+<tr class="inherit_header pro_attribs_classRaceGUIBase"><td colspan="2"><a class="el" href="classRaceGUIBase.html">RaceGUIBase</a>(으)로부터 상속된 Protected 속성</td></tr>
+<tr class="memitem:ac19b259e7042e99c8b9ebbe43680f93d pro_attribs_classRaceGUIBase" id="r_ac19b259e7042e99c8b9ebbe43680f93d"><td class="memItemLeft">
+enum <a class="el" href="classRaceGUIBase.html#a44f1da604eddb172aa02b82e39642a6f">RaceGUIBase::PlungerState</a>&#160;</td><td class="memItemRight"><b>m_plunger_state</b></td></tr>
+<tr class="memitem:a52fb9554a24c05dcf1e9df7120316f63 pro_attribs_classRaceGUIBase" id="r_a52fb9554a24c05dcf1e9df7120316f63"><td class="memItemLeft">
+float&#160;</td><td class="memItemRight"><b>m_plunger_move_time</b></td></tr>
+<tr class="memdesc:a52fb9554a24c05dcf1e9df7120316f63 pro_attribs_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">How long the plunger should stay in the current state. <br /></td></tr>
+<tr class="memitem:ae20251983881e8a9ea3e878d7b1c6780 pro_attribs_classRaceGUIBase" id="r_ae20251983881e8a9ea3e878d7b1c6780"><td class="memItemLeft">
+core::vector2di&#160;</td><td class="memItemRight"><b>m_plunger_offset</b></td></tr>
+<tr class="memdesc:ae20251983881e8a9ea3e878d7b1c6780 pro_attribs_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset of the plunger. <br /></td></tr>
+<tr class="memitem:ac96c8cf5a1cd6d8db62f7ac749d5c375 pro_attribs_classRaceGUIBase" id="r_ac96c8cf5a1cd6d8db62f7ac749d5c375"><td class="memItemLeft">
+core::vector2df&#160;</td><td class="memItemRight"><b>m_plunger_speed</b></td></tr>
+<tr class="memitem:a657ffe048009bc3d703e67c3d0cf19ee pro_attribs_classRaceGUIBase" id="r_a657ffe048009bc3d703e67c3d0cf19ee"><td class="memItemLeft">video::ITexture *&#160;</td><td class="memItemRight"><a class="el" href="classRaceGUIBase.html#a657ffe048009bc3d703e67c3d0cf19ee">m_gauge_empty</a></td></tr>
+<tr class="memdesc:a657ffe048009bc3d703e67c3d0cf19ee pro_attribs_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of a single marker in pixels, must be a power of 2.  <br /></td></tr>
+<tr class="memitem:a2b0f3401ee589628f9ee9cd83cf6a617 pro_attribs_classRaceGUIBase" id="r_a2b0f3401ee589628f9ee9cd83cf6a617"><td class="memItemLeft">
+video::ITexture *&#160;</td><td class="memItemRight"><b>m_gauge_full</b></td></tr>
+<tr class="memdesc:a2b0f3401ee589628f9ee9cd83cf6a617 pro_attribs_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default texture for nitro gauge. <br /></td></tr>
+<tr class="memitem:acfa54e25e76836b8b9741b57372ebcbf pro_attribs_classRaceGUIBase" id="r_acfa54e25e76836b8b9741b57372ebcbf"><td class="memItemLeft">
+video::ITexture *&#160;</td><td class="memItemRight"><b>m_gauge_full_bright</b></td></tr>
+<tr class="memdesc:acfa54e25e76836b8b9741b57372ebcbf pro_attribs_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Highlight gauge, used when a kart uses nitro. <br /></td></tr>
+<tr class="memitem:a0f17e6c1844f231a7707fff03b589aa6 pro_attribs_classRaceGUIBase" id="r_a0f17e6c1844f231a7707fff03b589aa6"><td class="memItemLeft">
+video::ITexture *&#160;</td><td class="memItemRight"><b>m_gauge_goal</b></td></tr>
+<tr class="memitem:ad04316512a3fb64066044367b03d1d64 pro_attribs_classRaceGUIBase" id="r_ad04316512a3fb64066044367b03d1d64"><td class="memItemLeft">
+video::ITexture *&#160;</td><td class="memItemRight"><b>m_icons_frame</b></td></tr>
+<tr class="memdesc:ad04316512a3fb64066044367b03d1d64 pro_attribs_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">The frame around player karts in the mini map. <br /></td></tr>
+<tr class="memitem:a6c80fdddc3a16342d9bfb9cfdf4d8c11 pro_attribs_classRaceGUIBase" id="r_a6c80fdddc3a16342d9bfb9cfdf4d8c11"><td class="memItemLeft">
+video::ITexture *&#160;</td><td class="memItemRight"><b>m_icons_kart_list</b></td></tr>
+<tr class="memdesc:a6c80fdddc3a16342d9bfb9cfdf4d8c11 pro_attribs_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">The frame around player karts in the kart list. <br /></td></tr>
+<tr class="memitem:ae1910f242ece85548591be7549462df5 pro_attribs_classRaceGUIBase" id="r_ae1910f242ece85548591be7549462df5"><td class="memItemLeft">
+video::ITexture *&#160;</td><td class="memItemRight"><b>m_lap_flag</b></td></tr>
+<tr class="memdesc:ae1910f242ece85548591be7549462df5 pro_attribs_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texture for the lap icon <br /></td></tr>
+<tr class="memitem:a3d743ca1dc2241fd9601f927ad73b169 pro_attribs_classRaceGUIBase" id="r_a3d743ca1dc2241fd9601f927ad73b169"><td class="memItemLeft">
+<a class="el" href="classRaceGUIMultitouch.html">RaceGUIMultitouch</a> *&#160;</td><td class="memItemRight"><b>m_multitouch_gui</b></td></tr>
+<tr class="memitem:abe6db975202cfb8565c540d0c591c0f8 pro_attribs_classRaceGUIBase" id="r_abe6db975202cfb8565c540d0c591c0f8"><td class="memItemLeft">
+float&#160;</td><td class="memItemRight"><b>m_dist_show_overlap</b></td></tr>
+<tr class="memdesc:abe6db975202cfb8565c540d0c591c0f8 pro_attribs_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance on track to begin showing overlap in drawGlobalPlayerIcons <br /></td></tr>
+<tr class="memitem:a2e89eb79274641a8567bbe9d311aa33e pro_attribs_classRaceGUIBase" id="r_a2e89eb79274641a8567bbe9d311aa33e"><td class="memItemLeft">
+float&#160;</td><td class="memItemRight"><b>m_icons_inertia</b></td></tr>
+<tr class="memdesc:a2e89eb79274641a8567bbe9d311aa33e pro_attribs_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">can be zero <br /></td></tr>
+<tr class="memitem:add9382489c1dd98ccb8752713481c125 pro_attribs_classRaceGUIBase" id="r_add9382489c1dd98ccb8752713481c125"><td class="memItemLeft">std::vector&lt; core::vector2d&lt; s32 &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="classRaceGUIBase.html#add9382489c1dd98ccb8752713481c125">m_previous_icons_position</a></td></tr>
+<tr class="memdesc:add9382489c1dd98ccb8752713481c125 pro_attribs_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">can be zero  <br /></td></tr>
+<tr class="memitem:a10ee354f3144c390390ffd7fdfdd814a pro_attribs_classRaceGUIBase" id="r_a10ee354f3144c390390ffd7fdfdd814a"><td class="memItemLeft">
+std::vector&lt; <a class="el" href="structRaceGUIBase_1_1KartIconDisplayInfo.html">KartIconDisplayInfo</a> &gt;&#160;</td><td class="memItemRight"><b>m_kart_display_infos</b></td></tr>
+<tr class="memdesc:a10ee354f3144c390390ffd7fdfdd814a pro_attribs_classRaceGUIBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">This vector is passed to world to be filled with the current race data information. <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Handles the in-race GUI (messages, mini-map, rankings, timer, etc...) </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">생성자 &amp; 소멸자 문서화</h2>
+<a id="ae026d9653336520dcdc53657da4bde55" name="ae026d9653336520dcdc53657da4bde55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae026d9653336520dcdc53657da4bde55">&#9670;&#160;</a></span>RaceGUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RaceGUI::RaceGUI </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The constructor is called before anything is attached to the scene node. </p>
+<p>So rendering to a texture can be done here. But world is not yet fully created, so only the race manager can be accessed safely. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a34e609c0b76234e3d9f1c2154593879b" name="a34e609c0b76234e3d9f1c2154593879b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34e609c0b76234e3d9f1c2154593879b">&#9670;&#160;</a></span>calculateMinimapSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RaceGUI::calculateMinimapSize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classRaceGUIBase.html">RaceGUIBase</a>(으)로부터 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="aa9c0d5c124c87bac59b86deda8924c6c" name="aa9c0d5c124c87bac59b86deda8924c6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9c0d5c124c87bac59b86deda8924c6c">&#9670;&#160;</a></span>computeVerticesForMeter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int RaceGUI::computeVerticesForMeter </td>
+          <td>(</td>
+          <td class="paramtype">core::vector2df</td>          <td class="paramname"><span class="paramname"><em>position</em></span>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>threshold</em></span>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">video::S3DVertex</td>          <td class="paramname"><span class="paramname"><em>vertices</em></span>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>vertices_count</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>measure</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>gauge_width</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>gauge_height</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">core::vector2df</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function computes a polygon used for drawing the measure for a meter (speedometer, etc.) The variable measured by the meter is compared to the thresholds, and is then used to compute a point between the two points associated with the lower and upper threshold Then, a polygon is calculated linking all the previous points and the variable point which link back to the first point. </p>
+<p>This polygon is used for drawing.</p>
+<p>Consider the following example : </p><pre class="fragment">A                E
+                -|
+                x
+                |
+             -D-|
+          -w-|
+     |-C--|
+</pre><p> -B&ndash;v-|</p>
+<p>If the measure is inferior to the first threshold, the function will create a triangle ABv with the position of v varying proportionally on a line between B and C ; at B with 0 and at C when it reaches the first threshold. If the measure is between the first and second thresholds, the function will create a quad ABCw, with w varying in the same way than v. If the measure exceds the higher threshold, the function will return the poly ABCDE.</p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>The relative positions of the vertices. </td></tr>
+    <tr><td class="paramname">threshold</td><td>The thresholds at which the variable point switch from a segment to the next. The size of this array should be smaller by two than the position array. The last threshold determines the measure over which the meter is full </td></tr>
+    <tr><td class="paramname">vertices</td><td>Where the results of the computation are put, for use by the calling function. </td></tr>
+    <tr><td class="paramname">vertices_count</td><td>The maximum number of vertices to use. Should be superior or equal to the size of the arrays. </td></tr>
+    <tr><td class="paramname">measure</td><td>The value of the variable measured by the meter. </td></tr>
+    <tr><td class="paramname">gauge_width</td><td>The width of the meter </td></tr>
+    <tr><td class="paramname">gauge_height</td><td>The height of the meter </td></tr>
+    <tr><td class="paramname">offset</td><td>The offset to position the meter </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9a1ce3e9e8dd9c5a45046533038dee25" name="a9a1ce3e9e8dd9c5a45046533038dee25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a1ce3e9e8dd9c5a45046533038dee25">&#9670;&#160;</a></span>drawEnergyMeter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RaceGUI::drawEnergyMeter </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>kart</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const core::recti &amp;</td>          <td class="paramname"><span class="paramname"><em>viewport</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const core::vector2df &amp;</td>          <td class="paramname"><span class="paramname"><em>scaling</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Energy meter that gets filled with nitro. </p>
+<p>This function is called from drawSpeedEnergyRank, which defines the correct position of the energy meter. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X position of the meter. </td></tr>
+    <tr><td class="paramname">y</td><td>Y position of the meter. </td></tr>
+    <tr><td class="paramname">kart</td><td><a class="el" href="classKart.html" title="The main kart class.">Kart</a> to display the data for. </td></tr>
+    <tr><td class="paramname">scaling</td><td>Scaling applied (in case of split screen) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classRaceGUIBase.html">RaceGUIBase</a>(으)로부터 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="ae33b057b35442f5863ca05b08a9853ad" name="ae33b057b35442f5863ca05b08a9853ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae33b057b35442f5863ca05b08a9853ad">&#9670;&#160;</a></span>drawGlobalMiniMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RaceGUI::drawGlobalMiniMap </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Display items that are shown once only (for all karts). </p>
+<p>Draws the mini map and the position of all karts on it. </p>
+
+</div>
+</div>
+<a id="a469a9a67111e839e16a2b8f232c0abb1" name="a469a9a67111e839e16a2b8f232c0abb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a469a9a67111e839e16a2b8f232c0abb1">&#9670;&#160;</a></span>drawLap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RaceGUI::drawLap </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>kart</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const core::recti &amp;</td>          <td class="paramname"><span class="paramname"><em>viewport</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const core::vector2df &amp;</td>          <td class="paramname"><span class="paramname"><em>scaling</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Displays the lap of the kart. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">info</td><td>Info object c </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a800fe6c7ea0688845aa9820d16527198" name="a800fe6c7ea0688845aa9820d16527198"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a800fe6c7ea0688845aa9820d16527198">&#9670;&#160;</a></span>drawRank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RaceGUI::drawRank </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>kart</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const core::vector2df &amp;</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>min_ratio</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>meter_width</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>meter_height</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Draws the rank of a player. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kart</td><td>The kart of the player. </td></tr>
+    <tr><td class="paramname">offset</td><td>Offset of top left corner for this display (for splitscreen). </td></tr>
+    <tr><td class="paramname">min_ratio</td><td>Scaling of the screen (for splitscreen). </td></tr>
+    <tr><td class="paramname">meter_width</td><td>Width of the meter (inside which the rank is shown). </td></tr>
+    <tr><td class="paramname">meter_height</td><td>Height of the meter (inside which the rank is shown). </td></tr>
+    <tr><td class="paramname">dt</td><td>Time step size. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a86e9462840101f9055ebbcbc63904f48" name="a86e9462840101f9055ebbcbc63904f48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86e9462840101f9055ebbcbc63904f48">&#9670;&#160;</a></span>drawSpeedEnergyRank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RaceGUI::drawSpeedEnergyRank </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>kart</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const core::recti &amp;</td>          <td class="paramname"><span class="paramname"><em>viewport</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const core::vector2df &amp;</td>          <td class="paramname"><span class="paramname"><em>scaling</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Draws the speedometer, the display of available nitro, and the rank of the kart (inside the speedometer). </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kart</td><td>The kart for which to show the data. </td></tr>
+    <tr><td class="paramname">viewport</td><td>The viewport to use. </td></tr>
+    <tr><td class="paramname">scaling</td><td>Which scaling to apply to the speedometer. </td></tr>
+    <tr><td class="paramname">dt</td><td>Time step size. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a152a36329f4050a33d34f6c5ed550cdc" name="a152a36329f4050a33d34f6c5ed550cdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a152a36329f4050a33d34f6c5ed550cdc">&#9670;&#160;</a></span>getMiniMapSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const core::dimension2du RaceGUI::getMiniMapSize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the size of the texture on which to render the minimap to. </p>
+
+<p><a class="el" href="classRaceGUIBase.html#aa0b2a7b90a718a8e3cfbe72346bf5e33">RaceGUIBase</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a684baa992fed91db4b68f348270bebc4" name="a684baa992fed91db4b68f348270bebc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a684baa992fed91db4b68f348270bebc4">&#9670;&#160;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RaceGUI::init </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This is a second initialisation call (after the constructor) for the race gui. </p>
+<p>This is called after the world has been initialised, e.g. all karts do exist (while the constructor is called before the karts are created). In the base gui this is used to initialise the referee data (which needs the start positions of the karts). Note that this function is (and must be called only once, after its constructor). </p><dl class="section pre"><dt>전제조건</dt><dd>All karts must be created, since this object defines the positions for the referees based on the karts. </dd></dl>
+
+<p><a class="el" href="classRaceGUIBase.html#aabf5cb648311fc9efbe025f81706b187">RaceGUIBase</a>(으)로부터 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a4365f6f2edf87f2d8037ed8d456cc9f8" name="a4365f6f2edf87f2d8037ed8d456cc9f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4365f6f2edf87f2d8037ed8d456cc9f8">&#9670;&#160;</a></span>initSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RaceGUI::initSize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called when loading the race gui or screen resized. </p>
+
+<p><a class="el" href="classRaceGUIBase.html#a8725e489a2435e617547339e4d2bd22e">RaceGUIBase</a>(으)로부터 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a7b1a45392951c3e0233a453b602c353e" name="a7b1a45392951c3e0233a453b602c353e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b1a45392951c3e0233a453b602c353e">&#9670;&#160;</a></span>renderGlobal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RaceGUI::renderGlobal </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Render all global parts of the race gui, i.e. </p>
+<p>things that are only displayed once even in splitscreen. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>Timestep sized. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classRaceGUIBase.html#a68563aed658d3820a1361272596d1baa">RaceGUIBase</a>(으)로부터 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a3b3b8c1c3741b9971efe0ff360e4b79f" name="a3b3b8c1c3741b9971efe0ff360e4b79f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b3b8c1c3741b9971efe0ff360e4b79f">&#9670;&#160;</a></span>renderPlayerView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RaceGUI::renderPlayerView </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classCamera.html">Camera</a> *</td>          <td class="paramname"><span class="paramname"><em>camera</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Render the details for a single player, i.e. </p>
+<p>speed, energy, collectibles, ... </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kart</td><td>Pointer to the kart for which to render the view. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classRaceGUIBase.html">RaceGUIBase</a>(으)로부터 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a25754b6bf30463b11a282927511234fb" name="a25754b6bf30463b11a282927511234fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25754b6bf30463b11a282927511234fb">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RaceGUI::reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset the gui before a race. </p>
+<p>It initialised all rank animation related values back to the default. </p>
+
+<p><a class="el" href="classRaceGUIBase.html#a5057aac150e62911ac9eb61cb012496f">RaceGUIBase</a>(으)로부터 재구현되었습니다.</p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>states_screens/<a class="el" href="race__gui_8hpp_source.html">race_gui.hpp</a></li>
+<li>states_screens/<b>race_gui.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

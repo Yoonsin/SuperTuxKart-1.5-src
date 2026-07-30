@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: graphics/material.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>graphics</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">material.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2004-2015 Steve Baker &lt;sjbaker1@airmail.net&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  Copyright (C) 2010-2015 Steve Baker, Joerg Henrichs</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef HEADER_MATERIAL_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HEADER_MATERIAL_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;utils/random_generator.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">namespace </span>video { <span class="keyword">class </span>ITexture; <span class="keyword">class </span>IImage; <span class="keyword">class </span>SMaterial; }</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">namespace </span>scene { <span class="keyword">class </span>ISceneNode; <span class="keyword">class </span>IMeshBuffer; }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">class </span><a class="code hl_class" href="classXMLNode.html">XMLNode</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">class </span><a class="code hl_class" href="classSFXBase.html">SFXBase</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">class </span><a class="code hl_class" href="classParticleKind.html">ParticleKind</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="};">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classMaterial.html">   47</a></span><span class="keyword">class </span><a class="code hl_function" href="classMaterial.html#ab95ab00d3519aacb0efbda39bf5515c0">Material</a> : <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">enum</span> ParticleConditions</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        EMIT_ON_DRIVE = 0,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        EMIT_ON_SKID,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        EMIT_KINDS_COUNT</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    };</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">enum</span> CollisionReaction</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        NORMAL,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        RESCUE,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        PUSH_BACK,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        PUSH_SOCCER_BALL</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    };</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classMaterial.html#aeb0fca282b173d33fff75bf9886143e0">   69</a></span>    video::ITexture *<a class="code hl_variable" href="classMaterial.html#aeb0fca282b173d33fff75bf9886143e0">m_texture</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    std::array&lt;video::ITexture*, 4&gt; m_vk_textures;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classMaterial.html#a412198d1c5b3a1fee026fc6a6a4f3f08">   74</a></span>    std::string      <a class="code hl_variable" href="classMaterial.html#a412198d1c5b3a1fee026fc6a6a4f3f08">m_texname</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    std::string      m_full_path;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classMaterial.html#a7a145d9a07bdb405b8e794756f6d031d">   80</a></span>    std::string      <a class="code hl_variable" href="classMaterial.html#a7a145d9a07bdb405b8e794756f6d031d">m_sfx_name</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classMaterial.html#a29a3dcad51bc7d1d571bf6d9d7c37c8e">   85</a></span>    <span class="keywordtype">char</span>             <a class="code hl_variable" href="classMaterial.html#a29a3dcad51bc7d1d571bf6d9d7c37c8e">m_mirror_axis_when_reverse</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classMaterial.html#aee1abf9b47d1050a53f39df3e93bdbb0">   91</a></span>    <span class="keywordtype">bool</span>             <a class="code hl_variable" href="classMaterial.html#aee1abf9b47d1050a53f39df3e93bdbb0">m_below_surface</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classMaterial.html#a63260f03081bbce975c32cc808aac07d">   95</a></span>    <span class="keywordtype">bool</span>             <a class="code hl_variable" href="classMaterial.html#a63260f03081bbce975c32cc808aac07d">m_falling_effect</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classMaterial.html#adedb6bd0a060224f013ef0268fca6dd3">  101</a></span>    <span class="keywordtype">bool</span>             <a class="code hl_variable" href="classMaterial.html#adedb6bd0a060224f013ef0268fca6dd3">m_surface</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classMaterial.html#a9cce4b4ac82c424ac12d5ad34f4fa387">  104</a></span>    <span class="keywordtype">bool</span>             <a class="code hl_variable" href="classMaterial.html#a9cce4b4ac82c424ac12d5ad34f4fa387">m_zipper</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classMaterial.html#ac220efa2f3629451d37948c1011b9025">  107</a></span>    <span class="keywordtype">bool</span>             <a class="code hl_variable" href="classMaterial.html#ac220efa2f3629451d37948c1011b9025">m_drive_reset</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classMaterial.html#a39d608be9764e86f33e265538282337b">  111</a></span>    <span class="keywordtype">bool</span>             <a class="code hl_variable" href="classMaterial.html#a39d608be9764e86f33e265538282337b">m_is_jump_texture</a>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classMaterial.html#ae2095ef0e35463dceb2055ee76bc4f20">  116</a></span>    <span class="keywordtype">bool</span>             <a class="code hl_variable" href="classMaterial.html#ae2095ef0e35463dceb2055ee76bc4f20">m_has_gravity</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classMaterial.html#a472c3e22b4baa1cf037b52474b7f2318">  120</a></span>    <span class="keywordtype">bool</span>             <a class="code hl_variable" href="classMaterial.html#a472c3e22b4baa1cf037b52474b7f2318">m_ignore</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classMaterial.html#a4268a4c251a027c695df0a4e9097d91a">  123</a></span>    <span class="keywordtype">bool</span>             <a class="code hl_variable" href="classMaterial.html#a4268a4c251a027c695df0a4e9097d91a">m_high_tire_adhesion</a>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordtype">bool</span>  m_complain_if_not_found;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordtype">bool</span>  m_deprecated;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordtype">bool</span>  m_installed;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classMaterial.html#ad0dcf6f6756dd4aa7db015ff553313f1">  132</a></span>    <span class="keywordtype">bool</span>             <a class="code hl_variable" href="classMaterial.html#ad0dcf6f6756dd4aa7db015ff553313f1">m_colorizable</a>;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classMaterial.html#a8842b945418d06c3f272cfe96c802942">  135</a></span>    <span class="keywordtype">bool</span>             <a class="code hl_variable" href="classMaterial.html#a8842b945418d06c3f272cfe96c802942">m_tex_compression</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classMaterial.html#a871285b1f806cb0bcd7cb4bcda6ac308">  138</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classMaterial.html#a871285b1f806cb0bcd7cb4bcda6ac308">m_colorization_factor</a>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="classMaterial.html#a6828e2fe92adc02619659a9a41dc9526">  141</a></span>    CollisionReaction <a class="code hl_variable" href="classMaterial.html#a6828e2fe92adc02619659a9a41dc9526">m_collision_reaction</a>;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classMaterial.html#af9d150ceab372e95d08422169a138fc6">  144</a></span>    std::string      <a class="code hl_variable" href="classMaterial.html#af9d150ceab372e95d08422169a138fc6">m_collision_particles</a>;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="classMaterial.html#a6d63be44ea25d2fca6697d3e2aeb2fb4">  150</a></span>    std::map&lt;void*, bool&gt; <a class="code hl_variable" href="classMaterial.html#a6d63be44ea25d2fca6697d3e2aeb2fb4">m_mirrorred_mesh_buffers</a>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <a class="code hl_class" href="classParticleKind.html">ParticleKind</a>*    m_particles_effects[EMIT_KINDS_COUNT];</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classMaterial.html#aa34ee7f9f736a0a6e4135907ed3240a7">  155</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>     <a class="code hl_variable" href="classMaterial.html#aa34ee7f9f736a0a6e4135907ed3240a7">m_clamp_tex</a>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="classMaterial.html#a72e768d752005df6d10366f3f4b36285">  158</a></span>    std::vector&lt;float&gt; <a class="code hl_variable" href="classMaterial.html#a72e768d752005df6d10366f3f4b36285">m_hue_settings</a>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classMaterial.html#ab770b47b6bf388d634750b7cdb3072eb">  161</a></span>    <a class="code hl_class" href="classRandomGenerator.html">RandomGenerator</a> <a class="code hl_variable" href="classMaterial.html#ab770b47b6bf388d634750b7cdb3072eb">m_random_hue</a>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="classMaterial.html#ab018620baf4f5a9fa0548016c1141e9f">  164</a></span>    <span class="keywordtype">int</span>              <a class="code hl_variable" href="classMaterial.html#ab018620baf4f5a9fa0548016c1141e9f">m_slowdown_ticks</a>;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="classMaterial.html#a9586834a02ec2d3c8d1d8b15799481bb">  167</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classMaterial.html#a9586834a02ec2d3c8d1d8b15799481bb">m_max_speed_fraction</a>;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="classMaterial.html#a9c518c41d62fdfee03cc523658a8d48f">  172</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classMaterial.html#a9c518c41d62fdfee03cc523658a8d48f">m_zipper_min_speed</a>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="classMaterial.html#a8c42344bb544b38d3859fe3b8cf7871c">  174</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classMaterial.html#a8c42344bb544b38d3859fe3b8cf7871c">m_sfx_min_speed</a>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="classMaterial.html#a6d849364a5f247a10bbbff53d17dc811">  176</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classMaterial.html#a6d849364a5f247a10bbbff53d17dc811">m_sfx_max_speed</a>;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="classMaterial.html#a4603fa519a289ff1a689b842fd5cb573">  178</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classMaterial.html#a4603fa519a289ff1a689b842fd5cb573">m_sfx_min_pitch</a>;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="classMaterial.html#a6d04f95bf22462c6ea8950ee81d60de7">  180</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classMaterial.html#a6d04f95bf22462c6ea8950ee81d60de7">m_sfx_max_pitch</a>;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="classMaterial.html#a0ad57d4ebe201a3e7a3a1303336178b8">  184</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classMaterial.html#a0ad57d4ebe201a3e7a3a1303336178b8">m_sfx_pitch_per_speed</a>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classMaterial.html#a3e0f32607b646dbc0d44ccbd00a28c85">  188</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classMaterial.html#a3e0f32607b646dbc0d44ccbd00a28c85">m_zipper_max_speed_increase</a>;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classMaterial.html#a18e410c80eebfc12a795d5982f713191">  191</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classMaterial.html#a18e410c80eebfc12a795d5982f713191">m_zipper_duration</a>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classMaterial.html#a63b5d24d7ee01bfd85e3a3ce87e74a15">  195</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classMaterial.html#a63b5d24d7ee01bfd85e3a3ce87e74a15">m_zipper_speed_gain</a>;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="classMaterial.html#a353c9297950062299d8e707046e4472c">  198</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classMaterial.html#a353c9297950062299d8e707046e4472c">m_zipper_fade_out_time</a>;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="classMaterial.html#a4042e056a02f0bb3d4af16b43e4938d7">  200</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classMaterial.html#a4042e056a02f0bb3d4af16b43e4938d7">m_zipper_engine_force</a>;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    std::string      m_mask;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    std::string      m_colorization_mask;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classMaterial.html#a2a28042cd2ff2593324ea5e576292e2a">init</a>    ();</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordtype">void</span>  install (std::function&lt;<span class="keywordtype">void</span>(video::IImage*)&gt; image_mani = <span class="keyword">nullptr</span>,</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>                   video::SMaterial* m = NULL);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classMaterial.html#a7187a4fe041cc18355f3457c0efa54da">initCustomSFX</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> *sfx);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordtype">void</span>  initParticlesEffect(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> *node);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="comment">// SP usage</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    std::string      m_shader_name;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    std::string      m_uv_two_tex;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="comment">// Full path for textures in sp shader</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    std::array&lt;std::string, 6&gt; m_sampler_path;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    std::string      m_container_id;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordtype">void</span> loadContainerId();</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>          <a class="code hl_function" href="classMaterial.html#ab95ab00d3519aacb0efbda39bf5515c0">Material</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> *node, <span class="keywordtype">bool</span> deprecated);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>          <a class="code hl_function" href="classMaterial.html#ab95ab00d3519aacb0efbda39bf5515c0">Material</a>(<span class="keyword">const</span> std::string&amp; fname,</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>                   <span class="keywordtype">bool</span> is_full_path=<span class="keyword">false</span>,</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                   <span class="keywordtype">bool</span> complain_if_not_found=<span class="keyword">true</span>,</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>                   <span class="keywordtype">bool</span> load_texture = <span class="keyword">true</span>,</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>                   <span class="keyword">const</span> std::string&amp; shader_name = <span class="stringliteral">&quot;solid&quot;</span>);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>         <a class="code hl_function" href="classMaterial.html#ab95ab00d3519aacb0efbda39bf5515c0">~Material</a> ();</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keywordtype">void</span> unloadTexture();</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classMaterial.html#a73b517b3df0fb0de0e3bacf06c8cd632">setSFXSpeed</a>(<a class="code hl_class" href="classSFXBase.html">SFXBase</a> *sfx, <span class="keywordtype">float</span> speed, <span class="keywordtype">bool</span> should_be_paused) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classMaterial.html#a6b7a455ec261ad5104e5f49caea5c626">setMaterialProperties</a>(video::SMaterial *m, scene::IMeshBuffer* mb);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    video::ITexture *<a class="code hl_function" href="classMaterial.html#a04052278569985aff0939f0e4bb98df0">getTexture</a>(<span class="keywordtype">bool</span> srgb = <span class="keyword">true</span>, <span class="keywordtype">bool</span> premul_alpha = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordtype">bool</span>  isIgnore           ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#a472c3e22b4baa1cf037b52474b7f2318">m_ignore</a>;             }</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="classMaterial.html#abb2e1fd8bd437fa3694948be299b7a90">  240</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_function" href="classMaterial.html#abb2e1fd8bd437fa3694948be299b7a90">isZipper</a>           ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#a9cce4b4ac82c424ac12d5ad34f4fa387">m_zipper</a>;             }</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="classMaterial.html#a4d37d6a7dc616727858bed80b2bb9112">  244</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_function" href="classMaterial.html#a4d37d6a7dc616727858bed80b2bb9112">isDriveReset</a>       ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#ac220efa2f3629451d37948c1011b9025">m_drive_reset</a>;        }</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno"><a class="line" href="classMaterial.html#abbc04f7d62a77d2040cd898d3dfdb52d">  248</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_function" href="classMaterial.html#abbc04f7d62a77d2040cd898d3dfdb52d">isColorizable</a>      ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#ad0dcf6f6756dd4aa7db015ff553313f1">m_colorizable</a>;        }</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="classMaterial.html#a509b066a6983e9f86d63decda539cefa">  252</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classMaterial.html#a509b066a6983e9f86d63decda539cefa">getColorizationFactor</a> ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#a871285b1f806cb0bcd7cb4bcda6ac308">m_colorization_factor</a>;   }</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="keywordtype">bool</span> hasRandomHue()<span class="keyword"> const            </span>{ <span class="keywordflow">return</span> !<a class="code hl_variable" href="classMaterial.html#a72e768d752005df6d10366f3f4b36285">m_hue_settings</a>.empty(); }</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00258" data-start="{" data-end="}">
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="classMaterial.html#a8f5b11f3a19cb5fc48f86edc2f81abd2">  258</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classMaterial.html#a8f5b11f3a19cb5fc48f86edc2f81abd2">getRandomHue</a>()</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    {</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classMaterial.html#a72e768d752005df6d10366f3f4b36285">m_hue_settings</a>.empty())</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>            <span class="keywordflow">return</span> 0.0f;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> hue = <a class="code hl_variable" href="classMaterial.html#ab770b47b6bf388d634750b7cdb3072eb">m_random_hue</a>.get((<span class="keywordtype">int</span>)<a class="code hl_variable" href="classMaterial.html#a72e768d752005df6d10366f3f4b36285">m_hue_settings</a>.size());</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        assert(hue &lt; <a class="code hl_variable" href="classMaterial.html#a72e768d752005df6d10366f3f4b36285">m_hue_settings</a>.size());</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#a72e768d752005df6d10366f3f4b36285">m_hue_settings</a>[hue];</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    }</div>
+</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="classMaterial.html#a12c47634dc2ba5952218238c93c26cb4">  269</a></span>    CollisionReaction  <a class="code hl_function" href="classMaterial.html#a12c47634dc2ba5952218238c93c26cb4">getCollisionReaction</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#a6828e2fe92adc02619659a9a41dc9526">m_collision_reaction</a>; }</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    std::string getCrashResetParticles()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#af9d150ceab372e95d08422169a138fc6">m_collision_particles</a>; }</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordtype">bool</span>  highTireAdhesion   ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#a4268a4c251a027c695df0a4e9097d91a">m_high_tire_adhesion</a>; }</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keyword">const</span> std::string&amp;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>          getTexFname        ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#a412198d1c5b3a1fee026fc6a6a4f3f08">m_texname</a>;            }</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keyword">const</span> std::string&amp;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>          getTexFullPath     ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_full_path;          }</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <span class="keywordtype">bool</span>  isTransparent      ()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>        <span class="keywordflow">return</span> m_shader_name == <span class="stringliteral">&quot;additive&quot;</span> || m_shader_name == <span class="stringliteral">&quot;alphablend&quot;</span> ||</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>               m_shader_name == <span class="stringliteral">&quot;displace&quot;</span>;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    }</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keywordtype">bool</span>  useAlphaChannel    ()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>        <span class="keywordflow">return</span> isTransparent() || m_shader_name == <span class="stringliteral">&quot;alphatest&quot;</span> ||</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>               m_shader_name == <span class="stringliteral">&quot;unlit&quot;</span> || m_shader_name == <span class="stringliteral">&quot;grass&quot;</span>;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    }</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="classMaterial.html#a0d91e4dd4cfba273c592ecf71a483f8a">  299</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classMaterial.html#a0d91e4dd4cfba273c592ecf71a483f8a">getMaxSpeedFraction</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#a9586834a02ec2d3c8d1d8b15799481bb">m_max_speed_fraction</a>; }</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno"><a class="line" href="classMaterial.html#aed039c060a92f46cc23ece5a904ab73a">  304</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classMaterial.html#aed039c060a92f46cc23ece5a904ab73a">getSlowDownTicks</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#ab018620baf4f5a9fa0548016c1141e9f">m_slowdown_ticks</a>;          }</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno"><a class="line" href="classMaterial.html#a8436c4e57b5cb18d738562bd55f75979">  310</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classMaterial.html#a8436c4e57b5cb18d738562bd55f75979">isBelowSurface</a>      ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#aee1abf9b47d1050a53f39df3e93bdbb0">m_below_surface</a>; }</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno"><a class="line" href="classMaterial.html#ad8ad688cd9f3dbcfb69792f04e804fb5">  315</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classMaterial.html#ad8ad688cd9f3dbcfb69792f04e804fb5">isSurface</a>          ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#adedb6bd0a060224f013ef0268fca6dd3">m_surface</a>; }</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="classMaterial.html#a8619b9b6bd2d5c44288657e8b3e77e63">  319</a></span>    <span class="keyword">const</span> std::string &amp;<a class="code hl_function" href="classMaterial.html#a8619b9b6bd2d5c44288657e8b3e77e63">getSFXName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#a7a145d9a07bdb405b8e794756f6d031d">m_sfx_name</a>; }</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00324" data-start="{" data-end="}">
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno"><a class="line" href="classMaterial.html#a6367e6c387d7353bf88b9b0c6375c5ec">  324</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classParticleKind.html">ParticleKind</a>* <a class="code hl_function" href="classMaterial.html#a6367e6c387d7353bf88b9b0c6375c5ec">getParticlesWhen</a>(ParticleConditions cond)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        <span class="keywordflow">return</span> m_particles_effects[cond]; </div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    }   <span class="comment">// getParticlesWhen</span></div>
+</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno"><a class="line" href="classMaterial.html#aa6324539843a4ea76eb6779a411acab3">  331</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classMaterial.html#aa6324539843a4ea76eb6779a411acab3">hasFallingEffect</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#a63260f03081bbce975c32cc808aac07d">m_falling_effect</a>; }</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="classMaterial.html#ac2d129bc23b7192b29367947b2cdee62">  335</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classMaterial.html#ac2d129bc23b7192b29367947b2cdee62">isJumpTexture</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#a39d608be9764e86f33e265538282337b">m_is_jump_texture</a>; }</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno"><a class="line" href="classMaterial.html#a183de2253e3db68a161b1c5c8ab329c0">  340</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classMaterial.html#a183de2253e3db68a161b1c5c8ab329c0">hasGravity</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#ae2095ef0e35463dceb2055ee76bc4f20">m_has_gravity</a>; }</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00343" data-start="{" data-end="}">
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno"><a class="line" href="classMaterial.html#a095c65aa0d2edb4e40cfe350f7b9efe8">  343</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMaterial.html#a095c65aa0d2edb4e40cfe350f7b9efe8">getZipperParameter</a>(<span class="keywordtype">float</span> *zipper_max_speed_increase,</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>                             <span class="keywordtype">float</span> *zipper_duration,</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>                             <span class="keywordtype">float</span> *zipper_speed_gain,</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>                             <span class="keywordtype">float</span> *zipper_fade_out_time,</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>                             <span class="keywordtype">float</span> *zipper_engine_force)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>        *zipper_max_speed_increase = <a class="code hl_variable" href="classMaterial.html#a3e0f32607b646dbc0d44ccbd00a28c85">m_zipper_max_speed_increase</a>;</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>        *zipper_duration           = <a class="code hl_variable" href="classMaterial.html#a18e410c80eebfc12a795d5982f713191">m_zipper_duration</a>;</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        *zipper_speed_gain         = <a class="code hl_variable" href="classMaterial.html#a63b5d24d7ee01bfd85e3a3ce87e74a15">m_zipper_speed_gain</a>;</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>        *zipper_fade_out_time      = <a class="code hl_variable" href="classMaterial.html#a353c9297950062299d8e707046e4472c">m_zipper_fade_out_time</a>;</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        *zipper_engine_force       = <a class="code hl_variable" href="classMaterial.html#a4042e056a02f0bb3d4af16b43e4938d7">m_zipper_engine_force</a>;</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    }   <span class="comment">// getZipperParameter</span></div>
+</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno"><a class="line" href="classMaterial.html#a0158a49bb30e0350d4151378053a5041">  359</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classMaterial.html#a0158a49bb30e0350d4151378053a5041">getZipperMinSpeed</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#a9c518c41d62fdfee03cc523658a8d48f">m_zipper_min_speed</a>; }</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno"><a class="line" href="classMaterial.html#a9af1cc4115d0a8bf7c8d09fa64b95bc7">  362</a></span>    <span class="keywordtype">char</span> <a class="code hl_function" href="classMaterial.html#a9af1cc4115d0a8bf7c8d09fa64b95bc7">getMirrorAxisInReverse</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaterial.html#a29a3dcad51bc7d1d571bf6d9d7c37c8e">m_mirror_axis_when_reverse</a>; }</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="keyword">const</span> std::string&amp; getAlphaMask()<span class="keyword"> const                 </span>{ <span class="keywordflow">return</span> m_mask; }</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    <span class="keyword">const</span> std::string&amp; getColorizationMask()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="keyword">                                               </span>{ <span class="keywordflow">return</span> m_colorization_mask; }</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    <span class="keywordtype">void</span> setShaderName(<span class="keyword">const</span> std::string&amp; name)      { m_shader_name = name; }</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    <span class="keyword">const</span> std::string&amp; getShaderName()<span class="keyword"> const         </span>{ <span class="keywordflow">return</span> m_shader_name; }</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    <span class="comment">/* This is used for finding correct material for spm*/</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>    <span class="keyword">const</span> std::string&amp; getUVTwoTexture()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="keyword">                                                      </span>{ <span class="keywordflow">return</span> m_uv_two_tex; }</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    <span class="keywordtype">bool</span> use2UV()<span class="keyword"> const                      </span>{ <span class="keywordflow">return</span> !m_uv_two_tex.empty(); }</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>    <span class="keyword">const</span> std::string&amp; getSamplerPath(<span class="keywordtype">unsigned</span> layer)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>        assert(layer &lt; 6);</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>        <span class="keywordflow">return</span> m_sampler_path[layer];</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>    }</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    <span class="comment">/* Return the container id used by texture compression to cache texture in</span></div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span><span class="comment">     * cache folder with unique name, if no texture compression is used for</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span><span class="comment">     * this material, then it will always return empty. */</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>    <span class="keyword">const</span> std::string&amp; getContainerId()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>        <span class="keyword">static</span> std::string empty;</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classMaterial.html#a8842b945418d06c3f272cfe96c802942">m_tex_compression</a>)</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>            <span class="keywordflow">return</span> empty;</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>        <span class="keywordflow">return</span> m_container_id;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    }</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    std::function&lt;void(irr::video::IImage*)&gt; getMaskImageMani() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>};</div>
+</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> </div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span> </div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span><span class="comment">/* EOF */</span></div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
+<div class="ttc" id="aclassMaterial_html_a0158a49bb30e0350d4151378053a5041"><div class="ttname"><a href="classMaterial.html#a0158a49bb30e0350d4151378053a5041">Material::getZipperMinSpeed</a></div><div class="ttdeci">float getZipperMinSpeed() const</div><div class="ttdoc">Returns the minimum speed of a kart on this material.</div><div class="ttdef"><b>Definition</b> material.hpp:359</div></div>
+<div class="ttc" id="aclassMaterial_html_a04052278569985aff0939f0e4bb98df0"><div class="ttname"><a href="classMaterial.html#a04052278569985aff0939f0e4bb98df0">Material::getTexture</a></div><div class="ttdeci">video::ITexture * getTexture(bool srgb=true, bool premul_alpha=false)</div><div class="ttdoc">Returns the ITexture associated with this material.</div><div class="ttdef"><b>Definition</b> material.cpp:402</div></div>
+<div class="ttc" id="aclassMaterial_html_a095c65aa0d2edb4e40cfe350f7b9efe8"><div class="ttname"><a href="classMaterial.html#a095c65aa0d2edb4e40cfe350f7b9efe8">Material::getZipperParameter</a></div><div class="ttdeci">void getZipperParameter(float *zipper_max_speed_increase, float *zipper_duration, float *zipper_speed_gain, float *zipper_fade_out_time, float *zipper_engine_force) const</div><div class="ttdoc">Returns the zipper parametersfor the current material.</div><div class="ttdef"><b>Definition</b> material.hpp:343</div></div>
+<div class="ttc" id="aclassMaterial_html_a0ad57d4ebe201a3e7a3a1303336178b8"><div class="ttname"><a href="classMaterial.html#a0ad57d4ebe201a3e7a3a1303336178b8">Material::m_sfx_pitch_per_speed</a></div><div class="ttdeci">float m_sfx_pitch_per_speed</div><div class="ttdoc">(max_pitch-min_pitch) / (max_speed - min_speed).</div><div class="ttdef"><b>Definition</b> material.hpp:184</div></div>
+<div class="ttc" id="aclassMaterial_html_a0d91e4dd4cfba273c592ecf71a483f8a"><div class="ttname"><a href="classMaterial.html#a0d91e4dd4cfba273c592ecf71a483f8a">Material::getMaxSpeedFraction</a></div><div class="ttdeci">float getMaxSpeedFraction() const</div><div class="ttdoc">Returns the fraction of maximum speed on this material.</div><div class="ttdef"><b>Definition</b> material.hpp:299</div></div>
+<div class="ttc" id="aclassMaterial_html_a12c47634dc2ba5952218238c93c26cb4"><div class="ttname"><a href="classMaterial.html#a12c47634dc2ba5952218238c93c26cb4">Material::getCollisionReaction</a></div><div class="ttdeci">CollisionReaction getCollisionReaction() const</div><div class="ttdoc">Returns if this material should trigger a rescue if a kart crashes against it.</div><div class="ttdef"><b>Definition</b> material.hpp:269</div></div>
+<div class="ttc" id="aclassMaterial_html_a183de2253e3db68a161b1c5c8ab329c0"><div class="ttname"><a href="classMaterial.html#a183de2253e3db68a161b1c5c8ab329c0">Material::hasGravity</a></div><div class="ttdeci">bool hasGravity() const</div><div class="ttdoc">Returns true if this texture adjusts the gravity vector of the kart to be parallel to the normal of t...</div><div class="ttdef"><b>Definition</b> material.hpp:340</div></div>
+<div class="ttc" id="aclassMaterial_html_a18e410c80eebfc12a795d5982f713191"><div class="ttname"><a href="classMaterial.html#a18e410c80eebfc12a795d5982f713191">Material::m_zipper_duration</a></div><div class="ttdeci">float m_zipper_duration</div><div class="ttdoc">Time a zipper stays activated.</div><div class="ttdef"><b>Definition</b> material.hpp:191</div></div>
+<div class="ttc" id="aclassMaterial_html_a29a3dcad51bc7d1d571bf6d9d7c37c8e"><div class="ttname"><a href="classMaterial.html#a29a3dcad51bc7d1d571bf6d9d7c37c8e">Material::m_mirror_axis_when_reverse</a></div><div class="ttdeci">char m_mirror_axis_when_reverse</div><div class="ttdoc">Either &#39; &#39; (no mirroring), &#39;U&#39; or &#39;V&#39; if a texture needs to be mirrored when driving in reverse.</div><div class="ttdef"><b>Definition</b> material.hpp:85</div></div>
+<div class="ttc" id="aclassMaterial_html_a2a28042cd2ff2593324ea5e576292e2a"><div class="ttname"><a href="classMaterial.html#a2a28042cd2ff2593324ea5e576292e2a">Material::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Inits all material data with the default settings.</div><div class="ttdef"><b>Definition</b> material.cpp:502</div></div>
+<div class="ttc" id="aclassMaterial_html_a353c9297950062299d8e707046e4472c"><div class="ttname"><a href="classMaterial.html#a353c9297950062299d8e707046e4472c">Material::m_zipper_fade_out_time</a></div><div class="ttdeci">float m_zipper_fade_out_time</div><div class="ttdoc">Time it takes for the zipper advantage to fade out.</div><div class="ttdef"><b>Definition</b> material.hpp:198</div></div>
+<div class="ttc" id="aclassMaterial_html_a39d608be9764e86f33e265538282337b"><div class="ttname"><a href="classMaterial.html#a39d608be9764e86f33e265538282337b">Material::m_is_jump_texture</a></div><div class="ttdeci">bool m_is_jump_texture</div><div class="ttdoc">True if this is a texture that will start the jump animation when leaving it and being in the air.</div><div class="ttdef"><b>Definition</b> material.hpp:111</div></div>
+<div class="ttc" id="aclassMaterial_html_a3e0f32607b646dbc0d44ccbd00a28c85"><div class="ttname"><a href="classMaterial.html#a3e0f32607b646dbc0d44ccbd00a28c85">Material::m_zipper_max_speed_increase</a></div><div class="ttdeci">float m_zipper_max_speed_increase</div><div class="ttdoc">Additional speed allowed on top of the kart-specific maximum kart speed if a zipper is used.</div><div class="ttdef"><b>Definition</b> material.hpp:188</div></div>
+<div class="ttc" id="aclassMaterial_html_a4042e056a02f0bb3d4af16b43e4938d7"><div class="ttname"><a href="classMaterial.html#a4042e056a02f0bb3d4af16b43e4938d7">Material::m_zipper_engine_force</a></div><div class="ttdeci">float m_zipper_engine_force</div><div class="ttdoc">Additional engine force.</div><div class="ttdef"><b>Definition</b> material.hpp:200</div></div>
+<div class="ttc" id="aclassMaterial_html_a412198d1c5b3a1fee026fc6a6a4f3f08"><div class="ttname"><a href="classMaterial.html#a412198d1c5b3a1fee026fc6a6a4f3f08">Material::m_texname</a></div><div class="ttdeci">std::string m_texname</div><div class="ttdoc">Name of the texture.</div><div class="ttdef"><b>Definition</b> material.hpp:74</div></div>
+<div class="ttc" id="aclassMaterial_html_a4268a4c251a027c695df0a4e9097d91a"><div class="ttname"><a href="classMaterial.html#a4268a4c251a027c695df0a4e9097d91a">Material::m_high_tire_adhesion</a></div><div class="ttdeci">bool m_high_tire_adhesion</div><div class="ttdoc">True if the material shouldn&#39;t be &quot;slippy&quot; at an angle</div><div class="ttdef"><b>Definition</b> material.hpp:123</div></div>
+<div class="ttc" id="aclassMaterial_html_a4603fa519a289ff1a689b842fd5cb573"><div class="ttname"><a href="classMaterial.html#a4603fa519a289ff1a689b842fd5cb573">Material::m_sfx_min_pitch</a></div><div class="ttdeci">float m_sfx_min_pitch</div><div class="ttdoc">The minimum pitch to be used (at minimum speed).</div><div class="ttdef"><b>Definition</b> material.hpp:178</div></div>
+<div class="ttc" id="aclassMaterial_html_a472c3e22b4baa1cf037b52474b7f2318"><div class="ttname"><a href="classMaterial.html#a472c3e22b4baa1cf037b52474b7f2318">Material::m_ignore</a></div><div class="ttdeci">bool m_ignore</div><div class="ttdoc">If the property should be ignored in the physics.</div><div class="ttdef"><b>Definition</b> material.hpp:120</div></div>
+<div class="ttc" id="aclassMaterial_html_a4d37d6a7dc616727858bed80b2bb9112"><div class="ttname"><a href="classMaterial.html#a4d37d6a7dc616727858bed80b2bb9112">Material::isDriveReset</a></div><div class="ttdeci">bool isDriveReset() const</div><div class="ttdoc">Returns if this material should trigger a rescue if a kart is driving on it.</div><div class="ttdef"><b>Definition</b> material.hpp:244</div></div>
+<div class="ttc" id="aclassMaterial_html_a509b066a6983e9f86d63decda539cefa"><div class="ttname"><a href="classMaterial.html#a509b066a6983e9f86d63decda539cefa">Material::getColorizationFactor</a></div><div class="ttdeci">float getColorizationFactor() const</div><div class="ttdoc">Returns the minimum resulting saturation when colorized.</div><div class="ttdef"><b>Definition</b> material.hpp:252</div></div>
+<div class="ttc" id="aclassMaterial_html_a63260f03081bbce975c32cc808aac07d"><div class="ttname"><a href="classMaterial.html#a63260f03081bbce975c32cc808aac07d">Material::m_falling_effect</a></div><div class="ttdeci">bool m_falling_effect</div><div class="ttdoc">If a kart is falling over a material with this flag set, it will trigger the special camera fall effe...</div><div class="ttdef"><b>Definition</b> material.hpp:95</div></div>
+<div class="ttc" id="aclassMaterial_html_a6367e6c387d7353bf88b9b0c6375c5ec"><div class="ttname"><a href="classMaterial.html#a6367e6c387d7353bf88b9b0c6375c5ec">Material::getParticlesWhen</a></div><div class="ttdeci">const ParticleKind * getParticlesWhen(ParticleConditions cond) const</div><div class="ttdoc">Get the kind of particles that are to be used on this material, in the given conditions.</div><div class="ttdef"><b>Definition</b> material.hpp:324</div></div>
+<div class="ttc" id="aclassMaterial_html_a63b5d24d7ee01bfd85e3a3ce87e74a15"><div class="ttname"><a href="classMaterial.html#a63b5d24d7ee01bfd85e3a3ce87e74a15">Material::m_zipper_speed_gain</a></div><div class="ttdeci">float m_zipper_speed_gain</div><div class="ttdoc">A one time additional speed gain - the kart will instantly add this amount of speed to its current sp...</div><div class="ttdef"><b>Definition</b> material.hpp:195</div></div>
+<div class="ttc" id="aclassMaterial_html_a6828e2fe92adc02619659a9a41dc9526"><div class="ttname"><a href="classMaterial.html#a6828e2fe92adc02619659a9a41dc9526">Material::m_collision_reaction</a></div><div class="ttdeci">CollisionReaction m_collision_reaction</div><div class="ttdoc">If a kart is rescued when crashing into this surface.</div><div class="ttdef"><b>Definition</b> material.hpp:141</div></div>
+<div class="ttc" id="aclassMaterial_html_a6b7a455ec261ad5104e5f49caea5c626"><div class="ttname"><a href="classMaterial.html#a6b7a455ec261ad5104e5f49caea5c626">Material::setMaterialProperties</a></div><div class="ttdeci">void setMaterialProperties(video::SMaterial *m, scene::IMeshBuffer *mb)</div><div class="ttdoc">Sets the appropriate flags in an irrlicht SMaterial.</div><div class="ttdef"><b>Definition</b> material.cpp:824</div></div>
+<div class="ttc" id="aclassMaterial_html_a6d04f95bf22462c6ea8950ee81d60de7"><div class="ttname"><a href="classMaterial.html#a6d04f95bf22462c6ea8950ee81d60de7">Material::m_sfx_max_pitch</a></div><div class="ttdeci">float m_sfx_max_pitch</div><div class="ttdoc">The maximum pitch to be used (at maximum speed).</div><div class="ttdef"><b>Definition</b> material.hpp:180</div></div>
+<div class="ttc" id="aclassMaterial_html_a6d63be44ea25d2fca6697d3e2aeb2fb4"><div class="ttname"><a href="classMaterial.html#a6d63be44ea25d2fca6697d3e2aeb2fb4">Material::m_mirrorred_mesh_buffers</a></div><div class="ttdeci">std::map&lt; void *, bool &gt; m_mirrorred_mesh_buffers</div><div class="ttdoc">Associated with m_mirror_axis_when_reverse, to avoid mirroring the same material twice (setAllMateria...</div><div class="ttdef"><b>Definition</b> material.hpp:150</div></div>
+<div class="ttc" id="aclassMaterial_html_a6d849364a5f247a10bbbff53d17dc811"><div class="ttname"><a href="classMaterial.html#a6d849364a5f247a10bbbff53d17dc811">Material::m_sfx_max_speed</a></div><div class="ttdeci">float m_sfx_max_speed</div><div class="ttdoc">The speed at which the maximum pitch is used.</div><div class="ttdef"><b>Definition</b> material.hpp:176</div></div>
+<div class="ttc" id="aclassMaterial_html_a7187a4fe041cc18355f3457c0efa54da"><div class="ttname"><a href="classMaterial.html#a7187a4fe041cc18355f3457c0efa54da">Material::initCustomSFX</a></div><div class="ttdeci">void initCustomSFX(const XMLNode *sfx)</div><div class="ttdoc">Initialise the data structures for a custom sfx to be played when a kart is driving on that particula...</div><div class="ttdef"><b>Definition</b> material.cpp:658</div></div>
+<div class="ttc" id="aclassMaterial_html_a72e768d752005df6d10366f3f4b36285"><div class="ttname"><a href="classMaterial.html#a72e768d752005df6d10366f3f4b36285">Material::m_hue_settings</a></div><div class="ttdeci">std::vector&lt; float &gt; m_hue_settings</div><div class="ttdoc">List of hue pre-defined for colorization (from 0 to 1)</div><div class="ttdef"><b>Definition</b> material.hpp:158</div></div>
+<div class="ttc" id="aclassMaterial_html_a73b517b3df0fb0de0e3bacf06c8cd632"><div class="ttname"><a href="classMaterial.html#a73b517b3df0fb0de0e3bacf06c8cd632">Material::setSFXSpeed</a></div><div class="ttdeci">void setSFXSpeed(SFXBase *sfx, float speed, bool should_be_paused) const</div><div class="ttdoc">Adjusts the pitch of the given sfx depending on the given speed.</div><div class="ttdef"><b>Definition</b> material.cpp:784</div></div>
+<div class="ttc" id="aclassMaterial_html_a7a145d9a07bdb405b8e794756f6d031d"><div class="ttname"><a href="classMaterial.html#a7a145d9a07bdb405b8e794756f6d031d">Material::m_sfx_name</a></div><div class="ttdeci">std::string m_sfx_name</div><div class="ttdoc">Name of a special sfx to play when a kart is on this terrain, or &quot;&quot; if no special sfx exists.</div><div class="ttdef"><b>Definition</b> material.hpp:80</div></div>
+<div class="ttc" id="aclassMaterial_html_a8436c4e57b5cb18d738562bd55f75979"><div class="ttname"><a href="classMaterial.html#a8436c4e57b5cb18d738562bd55f75979">Material::isBelowSurface</a></div><div class="ttdeci">bool isBelowSurface() const</div><div class="ttdoc">Returns true if this material is under some other mesh and therefore requires another raycast to find...</div><div class="ttdef"><b>Definition</b> material.hpp:310</div></div>
+<div class="ttc" id="aclassMaterial_html_a8619b9b6bd2d5c44288657e8b3e77e63"><div class="ttname"><a href="classMaterial.html#a8619b9b6bd2d5c44288657e8b3e77e63">Material::getSFXName</a></div><div class="ttdeci">const std::string &amp; getSFXName() const</div><div class="ttdoc">Returns the name of a special sfx to play while a kart is on this terrain.</div><div class="ttdef"><b>Definition</b> material.hpp:319</div></div>
+<div class="ttc" id="aclassMaterial_html_a871285b1f806cb0bcd7cb4bcda6ac308"><div class="ttname"><a href="classMaterial.html#a871285b1f806cb0bcd7cb4bcda6ac308">Material::m_colorization_factor</a></div><div class="ttdeci">float m_colorization_factor</div><div class="ttdoc">Minimum resulting saturation when colorized (from 0 to 1)</div><div class="ttdef"><b>Definition</b> material.hpp:138</div></div>
+<div class="ttc" id="aclassMaterial_html_a8842b945418d06c3f272cfe96c802942"><div class="ttname"><a href="classMaterial.html#a8842b945418d06c3f272cfe96c802942">Material::m_tex_compression</a></div><div class="ttdeci">bool m_tex_compression</div><div class="ttdoc">True if this material should use texture compression.</div><div class="ttdef"><b>Definition</b> material.hpp:135</div></div>
+<div class="ttc" id="aclassMaterial_html_a8c42344bb544b38d3859fe3b8cf7871c"><div class="ttname"><a href="classMaterial.html#a8c42344bb544b38d3859fe3b8cf7871c">Material::m_sfx_min_speed</a></div><div class="ttdeci">float m_sfx_min_speed</div><div class="ttdoc">The minimum speed at which a special sfx is started to be played.</div><div class="ttdef"><b>Definition</b> material.hpp:174</div></div>
+<div class="ttc" id="aclassMaterial_html_a8f5b11f3a19cb5fc48f86edc2f81abd2"><div class="ttname"><a href="classMaterial.html#a8f5b11f3a19cb5fc48f86edc2f81abd2">Material::getRandomHue</a></div><div class="ttdeci">float getRandomHue()</div><div class="ttdoc">Returns a random hue when colorized.</div><div class="ttdef"><b>Definition</b> material.hpp:258</div></div>
+<div class="ttc" id="aclassMaterial_html_a9586834a02ec2d3c8d1d8b15799481bb"><div class="ttname"><a href="classMaterial.html#a9586834a02ec2d3c8d1d8b15799481bb">Material::m_max_speed_fraction</a></div><div class="ttdeci">float m_max_speed_fraction</div><div class="ttdoc">Maximum speed at which no more slow down occurs.</div><div class="ttdef"><b>Definition</b> material.hpp:167</div></div>
+<div class="ttc" id="aclassMaterial_html_a9af1cc4115d0a8bf7c8d09fa64b95bc7"><div class="ttname"><a href="classMaterial.html#a9af1cc4115d0a8bf7c8d09fa64b95bc7">Material::getMirrorAxisInReverse</a></div><div class="ttdeci">char getMirrorAxisInReverse() const</div><div class="ttdoc">True if this texture should have the U coordinates mirrored.</div><div class="ttdef"><b>Definition</b> material.hpp:362</div></div>
+<div class="ttc" id="aclassMaterial_html_a9c518c41d62fdfee03cc523658a8d48f"><div class="ttname"><a href="classMaterial.html#a9c518c41d62fdfee03cc523658a8d48f">Material::m_zipper_min_speed</a></div><div class="ttdeci">float m_zipper_min_speed</div><div class="ttdoc">Minimum speed on this terrain.</div><div class="ttdef"><b>Definition</b> material.hpp:172</div></div>
+<div class="ttc" id="aclassMaterial_html_a9cce4b4ac82c424ac12d5ad34f4fa387"><div class="ttname"><a href="classMaterial.html#a9cce4b4ac82c424ac12d5ad34f4fa387">Material::m_zipper</a></div><div class="ttdeci">bool m_zipper</div><div class="ttdoc">If the material is a zipper, i.e.</div><div class="ttdef"><b>Definition</b> material.hpp:104</div></div>
+<div class="ttc" id="aclassMaterial_html_aa34ee7f9f736a0a6e4135907ed3240a7"><div class="ttname"><a href="classMaterial.html#aa34ee7f9f736a0a6e4135907ed3240a7">Material::m_clamp_tex</a></div><div class="ttdeci">unsigned int m_clamp_tex</div><div class="ttdoc">Texture clamp bitmask</div><div class="ttdef"><b>Definition</b> material.hpp:155</div></div>
+<div class="ttc" id="aclassMaterial_html_aa6324539843a4ea76eb6779a411acab3"><div class="ttname"><a href="classMaterial.html#aa6324539843a4ea76eb6779a411acab3">Material::hasFallingEffect</a></div><div class="ttdeci">bool hasFallingEffect() const</div><div class="ttdoc">Returns true if a kart falling over this kind of material triggers the special falling camera.</div><div class="ttdef"><b>Definition</b> material.hpp:331</div></div>
+<div class="ttc" id="aclassMaterial_html_ab018620baf4f5a9fa0548016c1141e9f"><div class="ttname"><a href="classMaterial.html#ab018620baf4f5a9fa0548016c1141e9f">Material::m_slowdown_ticks</a></div><div class="ttdeci">int m_slowdown_ticks</div><div class="ttdoc">How much the top speed is reduced per second.</div><div class="ttdef"><b>Definition</b> material.hpp:164</div></div>
+<div class="ttc" id="aclassMaterial_html_ab770b47b6bf388d634750b7cdb3072eb"><div class="ttname"><a href="classMaterial.html#ab770b47b6bf388d634750b7cdb3072eb">Material::m_random_hue</a></div><div class="ttdeci">RandomGenerator m_random_hue</div><div class="ttdoc">Random generator for getting pre-defined hue</div><div class="ttdef"><b>Definition</b> material.hpp:161</div></div>
+<div class="ttc" id="aclassMaterial_html_ab95ab00d3519aacb0efbda39bf5515c0"><div class="ttname"><a href="classMaterial.html#ab95ab00d3519aacb0efbda39bf5515c0">Material::Material</a></div><div class="ttdeci">Material(const XMLNode *node, bool deprecated)</div><div class="ttdoc">Create a new material using the parameters specified in the xml file.</div><div class="ttdef"><b>Definition</b> material.cpp:65</div></div>
+<div class="ttc" id="aclassMaterial_html_abb2e1fd8bd437fa3694948be299b7a90"><div class="ttname"><a href="classMaterial.html#abb2e1fd8bd437fa3694948be299b7a90">Material::isZipper</a></div><div class="ttdeci">bool isZipper() const</div><div class="ttdoc">Returns true if this material is a zipper.</div><div class="ttdef"><b>Definition</b> material.hpp:240</div></div>
+<div class="ttc" id="aclassMaterial_html_abbc04f7d62a77d2040cd898d3dfdb52d"><div class="ttname"><a href="classMaterial.html#abbc04f7d62a77d2040cd898d3dfdb52d">Material::isColorizable</a></div><div class="ttdeci">bool isColorizable() const</div><div class="ttdoc">Returns if this material can be colorized.</div><div class="ttdef"><b>Definition</b> material.hpp:248</div></div>
+<div class="ttc" id="aclassMaterial_html_ac220efa2f3629451d37948c1011b9025"><div class="ttname"><a href="classMaterial.html#ac220efa2f3629451d37948c1011b9025">Material::m_drive_reset</a></div><div class="ttdeci">bool m_drive_reset</div><div class="ttdoc">If a kart is rescued when driving on this surface.</div><div class="ttdef"><b>Definition</b> material.hpp:107</div></div>
+<div class="ttc" id="aclassMaterial_html_ac2d129bc23b7192b29367947b2cdee62"><div class="ttname"><a href="classMaterial.html#ac2d129bc23b7192b29367947b2cdee62">Material::isJumpTexture</a></div><div class="ttdeci">bool isJumpTexture() const</div><div class="ttdoc">Returns if being in the air after this texture should start the jump animation.</div><div class="ttdef"><b>Definition</b> material.hpp:335</div></div>
+<div class="ttc" id="aclassMaterial_html_ad0dcf6f6756dd4aa7db015ff553313f1"><div class="ttname"><a href="classMaterial.html#ad0dcf6f6756dd4aa7db015ff553313f1">Material::m_colorizable</a></div><div class="ttdeci">bool m_colorizable</div><div class="ttdoc">True if this material can be colorized (like red/blue in team game).</div><div class="ttdef"><b>Definition</b> material.hpp:132</div></div>
+<div class="ttc" id="aclassMaterial_html_ad8ad688cd9f3dbcfb69792f04e804fb5"><div class="ttname"><a href="classMaterial.html#ad8ad688cd9f3dbcfb69792f04e804fb5">Material::isSurface</a></div><div class="ttdeci">bool isSurface() const</div><div class="ttdoc">Returns true if this material is a surface, i.e.</div><div class="ttdef"><b>Definition</b> material.hpp:315</div></div>
+<div class="ttc" id="aclassMaterial_html_adedb6bd0a060224f013ef0268fca6dd3"><div class="ttname"><a href="classMaterial.html#adedb6bd0a060224f013ef0268fca6dd3">Material::m_surface</a></div><div class="ttdeci">bool m_surface</div><div class="ttdoc">A material that is a surface only, i.e.</div><div class="ttdef"><b>Definition</b> material.hpp:101</div></div>
+<div class="ttc" id="aclassMaterial_html_ae2095ef0e35463dceb2055ee76bc4f20"><div class="ttname"><a href="classMaterial.html#ae2095ef0e35463dceb2055ee76bc4f20">Material::m_has_gravity</a></div><div class="ttdeci">bool m_has_gravity</div><div class="ttdoc">True if driving on this texture should adjust the gravity of the kart to be along the normal of the t...</div><div class="ttdef"><b>Definition</b> material.hpp:116</div></div>
+<div class="ttc" id="aclassMaterial_html_aeb0fca282b173d33fff75bf9886143e0"><div class="ttname"><a href="classMaterial.html#aeb0fca282b173d33fff75bf9886143e0">Material::m_texture</a></div><div class="ttdeci">video::ITexture * m_texture</div><div class="ttdoc">Pointer to the texture.</div><div class="ttdef"><b>Definition</b> material.hpp:69</div></div>
+<div class="ttc" id="aclassMaterial_html_aed039c060a92f46cc23ece5a904ab73a"><div class="ttname"><a href="classMaterial.html#aed039c060a92f46cc23ece5a904ab73a">Material::getSlowDownTicks</a></div><div class="ttdeci">int getSlowDownTicks() const</div><div class="ttdoc">Returns how long it will take for a slowdown to take effect.</div><div class="ttdef"><b>Definition</b> material.hpp:304</div></div>
+<div class="ttc" id="aclassMaterial_html_aee1abf9b47d1050a53f39df3e93bdbb0"><div class="ttname"><a href="classMaterial.html#aee1abf9b47d1050a53f39df3e93bdbb0">Material::m_below_surface</a></div><div class="ttdeci">bool m_below_surface</div><div class="ttdoc">Set if being on this surface means being under some other mesh.</div><div class="ttdef"><b>Definition</b> material.hpp:91</div></div>
+<div class="ttc" id="aclassMaterial_html_af9d150ceab372e95d08422169a138fc6"><div class="ttname"><a href="classMaterial.html#af9d150ceab372e95d08422169a138fc6">Material::m_collision_particles</a></div><div class="ttdeci">std::string m_collision_particles</div><div class="ttdoc">Particles to show on touch</div><div class="ttdef"><b>Definition</b> material.hpp:144</div></div>
+<div class="ttc" id="aclassParticleKind_html"><div class="ttname"><a href="classParticleKind.html">ParticleKind</a></div><div class="ttdoc">type of particles</div><div class="ttdef"><b>Definition</b> particle_kind.hpp:42</div></div>
+<div class="ttc" id="aclassRandomGenerator_html"><div class="ttname"><a href="classRandomGenerator.html">RandomGenerator</a></div><div class="ttdoc">A random number generator.</div><div class="ttdef"><b>Definition</b> random_generator.hpp:33</div></div>
+<div class="ttc" id="aclassSFXBase_html"><div class="ttname"><a href="classSFXBase.html">SFXBase</a></div><div class="ttdoc">The base class for sound effects.</div><div class="ttdef"><b>Definition</b> sfx_base.hpp:43</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

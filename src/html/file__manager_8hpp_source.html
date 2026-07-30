@@ -1,0 +1,419 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: io/file_manager.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>io</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">file_manager.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2004-2015 Steve Baker &lt;sjbaker1@airmail.net&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  Copyright (C) 2008-2015 Steve Baker, Joerg Henrichs</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef HEADER_FILE_MANAGER_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HEADER_FILE_MANAGER_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;irrString.h&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">class </span>IrrlichtDevice;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">namespace </span>io { <span class="keyword">class </span>IFileSystem; }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &quot;io/xml_node.hpp&quot;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structTextureSearchPath.html">   43</a></span><span class="keyword">struct </span>TextureSearchPath</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    std::string m_texture_search_path;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    std::string m_container_id;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    TextureSearchPath(std::string path, std::string container_id) :</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        m_texture_search_path(path), m_container_id(container_id)</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="foldopen" id="foldopen00058" data-start="{" data-end="};">
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classFileManager.html">   58</a></span><span class="keyword">class </span><a class="code hl_function" href="classFileManager.html#a8afd512c06be9daf140cc19d71f9b391">FileManager</a> : <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classFileManager.html#acb73b7203fb4939d40ce771bcf7972e0">   63</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classFileManager.html#acb73b7203fb4939d40ce771bcf7972e0">AssetType</a> {ASSET_MIN,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                    CHALLENGE=ASSET_MIN,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                    GFX, GRANDPRIX, GUI_ICON, GUI_SCREEN, GUI_DIALOG,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                    REPLAY, SHADER, SKIN,  TTF, TRANSLATION, BUILTIN_ASSETS=TRANSLATION,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                    LIBRARY, MODEL, MUSIC, SFX, TEXTURE, SCRIPT, ASSET_MAX = SCRIPT,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                    ASSET_COUNT};</div>
+</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classFileManager.html#a3b196fc67bac87989cc8a1a078083e33">   72</a></span>    std::vector&lt; std::string &gt; <a class="code hl_variable" href="classFileManager.html#a3b196fc67bac87989cc8a1a078083e33">m_subdir_name</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classFileManager.html#a2876c9d2a8beb2c4140a4dc9c5aa4520">   75</a></span>    io::IFileSystem  *<a class="code hl_variable" href="classFileManager.html#a2876c9d2a8beb2c4140a4dc9c5aa4520">m_file_system</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classFileManager.html#a8c84ea6727735c88a647121614390ff3">   78</a></span>    std::string       <a class="code hl_variable" href="classFileManager.html#a8c84ea6727735c88a647121614390ff3">m_user_config_dir</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classFileManager.html#a5875b89c4e3f8fced506507d93c5702e">   81</a></span>    std::string       <a class="code hl_variable" href="classFileManager.html#a5875b89c4e3f8fced506507d93c5702e">m_addons_dir</a>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classFileManager.html#afdaa2dfa22a651fcdaafc2dcf3ad36c5">   84</a></span>    <span class="keyword">static</span> std::vector&lt;std::string&gt; <a class="code hl_variable" href="classFileManager.html#afdaa2dfa22a651fcdaafc2dcf3ad36c5">m_root_dirs</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classFileManager.html#a64ef50630d26ab48ebd1fa65bbb5afc5">   87</a></span>    <span class="keyword">static</span> std::string <a class="code hl_variable" href="classFileManager.html#a64ef50630d26ab48ebd1fa65bbb5afc5">m_stdout_filename</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classFileManager.html#a67752f92a458dd3250b97037b2ec25c7">   90</a></span>    <span class="keyword">static</span> std::string <a class="code hl_variable" href="classFileManager.html#a67752f92a458dd3250b97037b2ec25c7">m_stdout_dir</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classFileManager.html#a93ca757b1faae1d5bded3aa1586141c1">   93</a></span>    std::string       <a class="code hl_variable" href="classFileManager.html#a93ca757b1faae1d5bded3aa1586141c1">m_screenshot_dir</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classFileManager.html#abf8d92868ed68cef51c6b410497a98ca">   96</a></span>    std::string       <a class="code hl_variable" href="classFileManager.html#abf8d92868ed68cef51c6b410497a98ca">m_replay_dir</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classFileManager.html#a8de77cfc77bd584f7c9ec6838d4ba76d">   99</a></span>    std::string       <a class="code hl_variable" href="classFileManager.html#a8de77cfc77bd584f7c9ec6838d4ba76d">m_cached_textures_dir</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classFileManager.html#a969449711b33facabcc61f9faf30e460">  102</a></span>    std::string       <a class="code hl_variable" href="classFileManager.html#a969449711b33facabcc61f9faf30e460">m_gp_dir</a>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classFileManager.html#add994d2b4f8bf3027ed98ea6081bea41">  105</a></span>    std::string       <a class="code hl_variable" href="classFileManager.html#add994d2b4f8bf3027ed98ea6081bea41">m_cert_bundle_location</a>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classFileManager.html#ade591e5462e4d32b7387568218e83b59">  108</a></span>    std::string       <a class="code hl_variable" href="classFileManager.html#ade591e5462e4d32b7387568218e83b59">m_stk_assets_download_dir</a>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    std::vector&lt;TextureSearchPath&gt; m_texture_search_path;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    std::vector&lt;std::string&gt;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                      m_model_search_path,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                      m_music_search_path;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordtype">bool</span>              <a class="code hl_function" href="classFileManager.html#afe2f11888841b647e2750a8e1eecb7c9">findFile</a>(std::string&amp; full_path,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                               <span class="keyword">const</span> std::string&amp; fname,</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                               <span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; search_path)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                               <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">bool</span>              <a class="code hl_function" href="classFileManager.html#afe2f11888841b647e2750a8e1eecb7c9">findFile</a>(std::string&amp; full_path,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                               <span class="keyword">const</span> std::string&amp; fname,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                               <span class="keyword">const</span> std::vector&lt;TextureSearchPath&gt;&amp; search_path)</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                               <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordtype">void</span>              makePath(std::string&amp; path, <span class="keyword">const</span> std::string&amp; dir,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                               <span class="keyword">const</span> std::string&amp; fname) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    io::path          <a class="code hl_function" href="classFileManager.html#af5bb546d931efd19f4e2ac57857e77cc">createAbsoluteFilename</a>(<span class="keyword">const</span> std::string &amp;f);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordtype">void</span>              <a class="code hl_function" href="classFileManager.html#adfd8e7379646fb5e94b4fe44f0cf3c4a">checkAndCreateConfigDir</a>();</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordtype">void</span>              <a class="code hl_function" href="classFileManager.html#a79d11682fe4b11d6804b525e84b4193a">checkAndCreateAddonsDir</a>();</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordtype">void</span>              <a class="code hl_function" href="classFileManager.html#acaca658d03092d1123ddc8a7d04a800c">checkAndCreateScreenshotDir</a>();</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordtype">void</span>              <a class="code hl_function" href="classFileManager.html#a0d5489a367456a636127d0ec2040e9fc">checkAndCreateReplayDir</a>();</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">void</span>              <a class="code hl_function" href="classFileManager.html#ac0e3a4f8591397c0f878c7b23e608202">checkAndCreateCachedTexturesDir</a>();</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">void</span>              <a class="code hl_function" href="classFileManager.html#a9cdb261cdb0ec104dedd1cd622e5899b">checkAndCreateGPDir</a>();</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">void</span>              <a class="code hl_function" href="classFileManager.html#a89cba835d27ee26baff744188bc75d91">discoverPaths</a>();</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordtype">void</span>              addAssetsSearchPath();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordtype">void</span>              <a class="code hl_function" href="classFileManager.html#a1662f38e05ec308819f5420a20e80da7">resetSubdir</a>();</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">#if !defined(WIN32) &amp;&amp; !defined(__APPLE__)</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    std::string       <a class="code hl_function" href="classFileManager.html#a554635450510615dd990793e48647f8a">checkAndCreateLinuxDir</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *env_name,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                                             <span class="keyword">const</span> <span class="keywordtype">char</span> *dir_name,</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                                             <span class="keyword">const</span> <span class="keywordtype">char</span> *fallback1,</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                                             <span class="keyword">const</span> <span class="keywordtype">char</span> *fallback2=NULL);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>                      <a class="code hl_function" href="classFileManager.html#a8afd512c06be9daf140cc19d71f9b391">FileManager</a>();</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                     <a class="code hl_function" href="classFileManager.html#a8afd512c06be9daf140cc19d71f9b391">~FileManager</a>();</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordtype">void</span>              <a class="code hl_function" href="classFileManager.html#afb716419f0e65717e90917a232fdbb99">init</a>();</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">void</span>              reinitAfterDownloadAssets();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keyword">static</span> <span class="keywordtype">void</span>       <a class="code hl_function" href="classFileManager.html#a04e217c5d82aed26302d1f0ff59fb18c">addRootDirs</a>(<span class="keyword">const</span> std::string &amp;roots);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keyword">static</span> <span class="keywordtype">void</span>       <a class="code hl_function" href="classFileManager.html#acd56da63796757ba36a28c24b463111f">setStdoutName</a>(<span class="keyword">const</span> std::string &amp;name);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keyword">static</span> <span class="keywordtype">void</span>       <a class="code hl_function" href="classFileManager.html#a638b8f25722793f03c352b84a883d3d2">setStdoutDir</a>(<span class="keyword">const</span> std::string &amp;dir);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    io::IXMLReader   *createXMLReader(<span class="keyword">const</span> std::string &amp;filename);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <a class="code hl_class" href="classXMLNode.html">XMLNode</a>          *<a class="code hl_function" href="classFileManager.html#a9ac56e965f73d4251a4512f49c5b5457">createXMLTree</a>(<span class="keyword">const</span> std::string &amp;filename);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <a class="code hl_class" href="classXMLNode.html">XMLNode</a>          *<a class="code hl_function" href="classFileManager.html#afb8cd37737c3067b7898e665c9e883a0">createXMLTreeFromString</a>(<span class="keyword">const</span> std::string &amp; content);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    std::string       <a class="code hl_function" href="classFileManager.html#ab13bc553de067d68ff255dfd14b216be">getScreenshotDir</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    std::string       <a class="code hl_function" href="classFileManager.html#abdf0cb92a7b4ce539df4c882b9f9840f">getReplayDir</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    std::string       <a class="code hl_function" href="classFileManager.html#abc8409de4c2f5887cf5cf5b5d1fcb02b">getCachedTexturesDir</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    std::string       <a class="code hl_function" href="classFileManager.html#aeada5ec825e96d5c16e5565d92366efc">getGPDir</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    std::string       <a class="code hl_function" href="classFileManager.html#a48e897afdfe4ec99769747ad60752650">getStdoutDir</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordtype">bool</span>              <a class="code hl_function" href="classFileManager.html#aa6c8a0749d7bbf006d2cff9639b23968">checkAndCreateDirectory</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordtype">bool</span>              <a class="code hl_function" href="classFileManager.html#a7f6d662d35b0035c27a8cd3da4b95483">checkAndCreateDirectoryP</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keyword">const</span> std::string &amp;<a class="code hl_function" href="classFileManager.html#aeb5d0668548cdc1d4f579d0e581b6085">getAddonsDir</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    std::string        <a class="code hl_function" href="classFileManager.html#a94437b7440add6e5a8a4ce9a4f2f4926">getAddonsFile</a>(<span class="keyword">const</span> std::string &amp;name);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFileManager.html#af57c4c7c1babf2aeb02d04ff04651f8b">checkAndCreateDirForAddons</a>(<span class="keyword">const</span> std::string &amp;dir);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classFileManager.html#ae6e7f8e8347c8c3929d1461baa55dd34">isDirectory</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classFileManager.html#a214d2cbdddd645af5566f35570f814ce">removeFile</a>(<span class="keyword">const</span> std::string &amp;name) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classFileManager.html#a3bdf4a240acaece3b0216720e7be24b2">removeDirectory</a>(<span class="keyword">const</span> std::string &amp;name) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classFileManager.html#a1169cdc971f2e7bc76ad420f984ce71d">moveDirectoryInto</a>(std::string source, std::string target);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classFileManager.html#a64f589662444a37c092ca8af677cd3f5">copyFile</a>(<span class="keyword">const</span> std::string &amp;source, <span class="keyword">const</span> std::string &amp;dest);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    std::vector&lt;std::string&gt;<a class="code hl_function" href="classFileManager.html#ad26978c2ada16f594d0b79478a4dd4d5">getMusicDirs</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    std::string getAssetChecked(<a class="code hl_enumeration" href="classFileManager.html#acb73b7203fb4939d40ce771bcf7972e0">AssetType</a> type, <span class="keyword">const</span> std::string&amp; name,</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>                                <span class="keywordtype">bool</span> abort_on_error=<span class="keyword">false</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    std::string <a class="code hl_function" href="classFileManager.html#a56344caa019dcc80e38754efc91a0866">getAsset</a>(<a class="code hl_enumeration" href="classFileManager.html#acb73b7203fb4939d40ce771bcf7972e0">AssetType</a> type, <span class="keyword">const</span> std::string &amp;name) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    std::string <a class="code hl_function" href="classFileManager.html#a56344caa019dcc80e38754efc91a0866">getAsset</a>(<span class="keyword">const</span> std::string &amp;name) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00178" data-start="{" data-end="}">
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="classFileManager.html#a19b18d8133a9588d305aef48eecc650b">  178</a></span>    std::string <a class="code hl_function" href="classFileManager.html#a19b18d8133a9588d305aef48eecc650b">getAssetDirectory</a>(<a class="code hl_enumeration" href="classFileManager.html#acb73b7203fb4939d40ce771bcf7972e0">AssetType</a> type)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classFileManager.html#a3b196fc67bac87989cc8a1a078083e33">m_subdir_name</a>[type];</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    }</div>
+</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    std::string <a class="code hl_function" href="classFileManager.html#a6b0640c7f9a3ae513052d7ca46bc2736">searchMusic</a>(<span class="keyword">const</span> std::string&amp; file_name) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    std::string <a class="code hl_function" href="classFileManager.html#a9717dfeb2f45342ffae3a1dd88f5a1f7">searchModel</a>(<span class="keyword">const</span> std::string&amp; file_name) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    std::string <a class="code hl_function" href="classFileManager.html#a663700f030fd479de9365e4baf1a31c1">searchTexture</a>(<span class="keyword">const</span> std::string&amp; fname) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    std::string <a class="code hl_function" href="classFileManager.html#aea6793dfe3f130106e5fc243add4f78d">getUserConfigFile</a>(<span class="keyword">const</span> std::string&amp; fname) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordtype">bool</span>        <a class="code hl_function" href="classFileManager.html#a05d7e574c289b16007b0ddc544d46f75">fileExists</a>(<span class="keyword">const</span> std::string&amp; path) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00192" data-start="{" data-end="}">
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="classFileManager.html#af7c0ca781d1564c03290f9edbf359718">  192</a></span>    <span class="keywordtype">bool</span>        <a class="code hl_function" href="classFileManager.html#af7c0ca781d1564c03290f9edbf359718">fileExists</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *prefix, <span class="keyword">const</span> std::string&amp; path)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classFileManager.html#a05d7e574c289b16007b0ddc544d46f75">fileExists</a>(std::string(prefix) + path);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    }</div>
+</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordtype">bool</span> searchTextureContainerId(std::string&amp; container_id,</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keyword">const</span> std::string&amp; file_name) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="classFileManager.html#adf4300cfb58a62d8a027b36eed83fcf3">  201</a></span>    <span class="keyword">static</span> <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classFileManager.html#adf4300cfb58a62d8a027b36eed83fcf3">getStdoutName</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classFileManager.html#a64ef50630d26ab48ebd1fa65bbb5afc5">m_stdout_filename</a>; }</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordtype">void</span>        <a class="code hl_function" href="classFileManager.html#a1ca861aea616aecd4c465b68ef0bc3b6">listFiles</a>        (std::set&lt;std::string&gt;&amp; result,</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                                  <span class="keyword">const</span> std::string&amp; dir,</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>                                  <span class="keywordtype">bool</span> make_full_path=<span class="keyword">false</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordtype">void</span>       <a class="code hl_function" href="classFileManager.html#a76b3a5f0db377efa247fe6a9cb02baae">pushTextureSearchPath</a>(<span class="keyword">const</span> std::string&amp; path, <span class="keyword">const</span> std::string&amp; container_id);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordtype">void</span>       <a class="code hl_function" href="classFileManager.html#a755fd510b8ea72710574cc345f056971">pushModelSearchPath</a>(<span class="keyword">const</span> std::string&amp; path);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordtype">void</span>       <a class="code hl_function" href="classFileManager.html#a3adc52a9915b6b8a0210963d983e2a17">popTextureSearchPath</a>();</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordtype">void</span>       <a class="code hl_function" href="classFileManager.html#a71247dacb68b725740d4741c8e5a7cc3">popModelSearchPath</a>();</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordtype">void</span>       <a class="code hl_function" href="classFileManager.html#ace1dae22760f1c5b4fb2af21d85e6a44">popMusicSearchPath</a>();</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordtype">void</span>       <a class="code hl_function" href="classFileManager.html#ab83483d32d7a6f6478501e6fc7400008">redirectOutput</a>();</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordtype">bool</span>       <a class="code hl_function" href="classFileManager.html#a8644587c8be385302dc785609b1b8625">fileIsNewer</a>(<span class="keyword">const</span> std::string&amp; f1, <span class="keyword">const</span> std::string&amp; f2) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keyword">const</span> std::string&amp; getUserConfigDir()<span class="keyword"> const   </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFileManager.html#a8c84ea6727735c88a647121614390ff3">m_user_config_dir</a>; }</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="classFileManager.html#a73046ae06da4b4f2d68d13247a0c88ce">  220</a></span>    irr::io::IFileSystem* <a class="code hl_function" href="classFileManager.html#a73046ae06da4b4f2d68d13247a0c88ce">getFileSystem</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classFileManager.html#a2876c9d2a8beb2c4140a4dc9c5aa4520">m_file_system</a>; }</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00224" data-start="{" data-end="}">
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="classFileManager.html#acd38b9f39bc2bb0ed3d5d887c32cc6a4">  224</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFileManager.html#acd38b9f39bc2bb0ed3d5d887c32cc6a4">pushMusicSearchPath</a>(<span class="keyword">const</span> std::string&amp; path)</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    {</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        m_music_search_path.push_back(path);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    }   <span class="comment">// pushMusicSearchPath</span></div>
+</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00233" data-start="{" data-end="}">
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="classFileManager.html#adff5a4461aa156dbd1f331f55ef63b5f">  233</a></span>    std::string <a class="code hl_function" href="classFileManager.html#adff5a4461aa156dbd1f331f55ef63b5f">getShader</a>(<span class="keyword">const</span> std::string &amp;name)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classFileManager.html#a56344caa019dcc80e38754efc91a0866">getAsset</a>(SHADER, name);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    }   <span class="comment">// getShader</span></div>
+</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    std::string getShadersDir()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classFileManager.html#a3b196fc67bac87989cc8a1a078083e33">m_subdir_name</a>[SHADER];</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    }</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keyword">const</span> std::string&amp; getSTKAssetsDownloadDir()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="keyword">                                          </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFileManager.html#ade591e5462e4d32b7387568218e83b59">m_stk_assets_download_dir</a>; }</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keyword">const</span> std::string&amp; getCertBundleLocation()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="keyword">                                             </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFileManager.html#add994d2b4f8bf3027ed98ea6081bea41">m_cert_bundle_location</a>; }</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>};   <span class="comment">// FileManager</span></div>
+</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="keyword">extern</span> <a class="code hl_class" href="classFileManager.html">FileManager</a>* file_manager;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassFileManager_html"><div class="ttname"><a href="classFileManager.html">FileManager</a></div><div class="ttdoc">class handling files and paths</div><div class="ttdef"><b>Definition</b> file_manager.hpp:59</div></div>
+<div class="ttc" id="aclassFileManager_html_a04e217c5d82aed26302d1f0ff59fb18c"><div class="ttname"><a href="classFileManager.html#a04e217c5d82aed26302d1f0ff59fb18c">FileManager::addRootDirs</a></div><div class="ttdeci">static void addRootDirs(const std::string &amp;roots)</div><div class="ttdoc">Adds paths to the list of stk root directories.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:553</div></div>
+<div class="ttc" id="aclassFileManager_html_a05d7e574c289b16007b0ddc544d46f75"><div class="ttname"><a href="classFileManager.html#a05d7e574c289b16007b0ddc544d46f75">FileManager::fileExists</a></div><div class="ttdeci">bool fileExists(const std::string &amp;path) const</div><div class="ttdoc">Returns true if the specified file exists.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:533</div></div>
+<div class="ttc" id="aclassFileManager_html_a0d5489a367456a636127d0ec2040e9fc"><div class="ttname"><a href="classFileManager.html#a0d5489a367456a636127d0ec2040e9fc">FileManager::checkAndCreateReplayDir</a></div><div class="ttdeci">void checkAndCreateReplayDir()</div><div class="ttdoc">Creates the directories for replay recorded.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1165</div></div>
+<div class="ttc" id="aclassFileManager_html_a1169cdc971f2e7bc76ad420f984ce71d"><div class="ttname"><a href="classFileManager.html#a1169cdc971f2e7bc76ad420f984ce71d">FileManager::moveDirectoryInto</a></div><div class="ttdeci">bool moveDirectoryInto(std::string source, std::string target)</div><div class="ttdoc">Move the source directory into the target directory location.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1636</div></div>
+<div class="ttc" id="aclassFileManager_html_a1662f38e05ec308819f5420a20e80da7"><div class="ttname"><a href="classFileManager.html#a1662f38e05ec308819f5420a20e80da7">FileManager::resetSubdir</a></div><div class="ttdeci">void resetSubdir()</div><div class="ttdoc">Reset subdirectories to initial state, for example after download assets</div><div class="ttdef"><b>Definition</b> file_manager.cpp:277</div></div>
+<div class="ttc" id="aclassFileManager_html_a19b18d8133a9588d305aef48eecc650b"><div class="ttname"><a href="classFileManager.html#a19b18d8133a9588d305aef48eecc650b">FileManager::getAssetDirectory</a></div><div class="ttdeci">std::string getAssetDirectory(AssetType type) const</div><div class="ttdoc">Returns the directory of an asset.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:178</div></div>
+<div class="ttc" id="aclassFileManager_html_a1ca861aea616aecd4c465b68ef0bc3b6"><div class="ttname"><a href="classFileManager.html#a1ca861aea616aecd4c465b68ef0bc3b6">FileManager::listFiles</a></div><div class="ttdeci">void listFiles(std::set&lt; std::string &gt; &amp;result, const std::string &amp;dir, bool make_full_path=false) const</div><div class="ttdoc">Returns a list of files in a given directory.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1474</div></div>
+<div class="ttc" id="aclassFileManager_html_a214d2cbdddd645af5566f35570f814ce"><div class="ttname"><a href="classFileManager.html#a214d2cbdddd645af5566f35570f814ce">FileManager::removeFile</a></div><div class="ttdeci">bool removeFile(const std::string &amp;name) const</div><div class="ttdoc">Removes the specified file.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1516</div></div>
+<div class="ttc" id="aclassFileManager_html_a2876c9d2a8beb2c4140a4dc9c5aa4520"><div class="ttname"><a href="classFileManager.html#a2876c9d2a8beb2c4140a4dc9c5aa4520">FileManager::m_file_system</a></div><div class="ttdeci">io::IFileSystem * m_file_system</div><div class="ttdoc">Handle to irrlicht&#39;s file systems.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:75</div></div>
+<div class="ttc" id="aclassFileManager_html_a3adc52a9915b6b8a0210963d983e2a17"><div class="ttname"><a href="classFileManager.html#a3adc52a9915b6b8a0210963d983e2a17">FileManager::popTextureSearchPath</a></div><div class="ttdeci">void popTextureSearchPath()</div><div class="ttdoc">Removes the last added texture search path from the list of paths.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:693</div></div>
+<div class="ttc" id="aclassFileManager_html_a3b196fc67bac87989cc8a1a078083e33"><div class="ttname"><a href="classFileManager.html#a3b196fc67bac87989cc8a1a078083e33">FileManager::m_subdir_name</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_subdir_name</div><div class="ttdoc">The names of the various subdirectories of the asset types.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:72</div></div>
+<div class="ttc" id="aclassFileManager_html_a3bdf4a240acaece3b0216720e7be24b2"><div class="ttname"><a href="classFileManager.html#a3bdf4a240acaece3b0216720e7be24b2">FileManager::removeDirectory</a></div><div class="ttdeci">bool removeDirectory(const std::string &amp;name) const</div><div class="ttdoc">Removes a directory (including all files contained).</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1542</div></div>
+<div class="ttc" id="aclassFileManager_html_a48e897afdfe4ec99769747ad60752650"><div class="ttname"><a href="classFileManager.html#a48e897afdfe4ec99769747ad60752650">FileManager::getStdoutDir</a></div><div class="ttdeci">std::string getStdoutDir() const</div><div class="ttdoc">Returns the directory in which the stdout file should be stored.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:855</div></div>
+<div class="ttc" id="aclassFileManager_html_a554635450510615dd990793e48647f8a"><div class="ttname"><a href="classFileManager.html#a554635450510615dd990793e48647f8a">FileManager::checkAndCreateLinuxDir</a></div><div class="ttdeci">std::string checkAndCreateLinuxDir(const char *env_name, const char *dir_name, const char *fallback1, const char *fallback2=NULL)</div><div class="ttdoc">Find a directory to use for remaining unix variants.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1253</div></div>
+<div class="ttc" id="aclassFileManager_html_a56344caa019dcc80e38754efc91a0866"><div class="ttname"><a href="classFileManager.html#a56344caa019dcc80e38754efc91a0866">FileManager::getAsset</a></div><div class="ttdeci">std::string getAsset(AssetType type, const std::string &amp;name) const</div><div class="ttdoc">Returns the full path of a file of the given asset class.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:798</div></div>
+<div class="ttc" id="aclassFileManager_html_a5875b89c4e3f8fced506507d93c5702e"><div class="ttname"><a href="classFileManager.html#a5875b89c4e3f8fced506507d93c5702e">FileManager::m_addons_dir</a></div><div class="ttdeci">std::string m_addons_dir</div><div class="ttdoc">Directory where addons are stored.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:81</div></div>
+<div class="ttc" id="aclassFileManager_html_a638b8f25722793f03c352b84a883d3d2"><div class="ttname"><a href="classFileManager.html#a638b8f25722793f03c352b84a883d3d2">FileManager::setStdoutDir</a></div><div class="ttdeci">static void setStdoutDir(const std::string &amp;dir)</div><div class="ttdoc">Sets the directory for the stdout log file.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1336</div></div>
+<div class="ttc" id="aclassFileManager_html_a64ef50630d26ab48ebd1fa65bbb5afc5"><div class="ttname"><a href="classFileManager.html#a64ef50630d26ab48ebd1fa65bbb5afc5">FileManager::m_stdout_filename</a></div><div class="ttdeci">static std::string m_stdout_filename</div><div class="ttdoc">Name of stdout file.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:87</div></div>
+<div class="ttc" id="aclassFileManager_html_a64f589662444a37c092ca8af677cd3f5"><div class="ttname"><a href="classFileManager.html#a64f589662444a37c092ca8af677cd3f5">FileManager::copyFile</a></div><div class="ttdeci">bool copyFile(const std::string &amp;source, const std::string &amp;dest)</div><div class="ttdoc">Copies the file source to dest.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1591</div></div>
+<div class="ttc" id="aclassFileManager_html_a663700f030fd479de9365e4baf1a31c1"><div class="ttname"><a href="classFileManager.html#a663700f030fd479de9365e4baf1a31c1">FileManager::searchTexture</a></div><div class="ttdeci">std::string searchTexture(const std::string &amp;fname) const</div><div class="ttdoc">Returns the full path of a texture file name by searching in all directories currently in the texture...</div><div class="ttdef"><b>Definition</b> file_manager.cpp:870</div></div>
+<div class="ttc" id="aclassFileManager_html_a67752f92a458dd3250b97037b2ec25c7"><div class="ttname"><a href="classFileManager.html#a67752f92a458dd3250b97037b2ec25c7">FileManager::m_stdout_dir</a></div><div class="ttdeci">static std::string m_stdout_dir</div><div class="ttdoc">Directory of stdout file.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:90</div></div>
+<div class="ttc" id="aclassFileManager_html_a6b0640c7f9a3ae513052d7ca46bc2736"><div class="ttname"><a href="classFileManager.html#a6b0640c7f9a3ae513052d7ca46bc2736">FileManager::searchMusic</a></div><div class="ttdeci">std::string searchMusic(const std::string &amp;file_name) const</div><div class="ttdoc">Returns the full path of a music file by searching all music search paths.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1412</div></div>
+<div class="ttc" id="aclassFileManager_html_a71247dacb68b725740d4741c8e5a7cc3"><div class="ttname"><a href="classFileManager.html#a71247dacb68b725740d4741c8e5a7cc3">FileManager::popModelSearchPath</a></div><div class="ttdeci">void popModelSearchPath()</div><div class="ttdoc">Removes the last added model search path from the list of paths.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:706</div></div>
+<div class="ttc" id="aclassFileManager_html_a73046ae06da4b4f2d68d13247a0c88ce"><div class="ttname"><a href="classFileManager.html#a73046ae06da4b4f2d68d13247a0c88ce">FileManager::getFileSystem</a></div><div class="ttdeci">irr::io::IFileSystem * getFileSystem()</div><div class="ttdoc">Returns the irrlicht file system.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:220</div></div>
+<div class="ttc" id="aclassFileManager_html_a755fd510b8ea72710574cc345f056971"><div class="ttname"><a href="classFileManager.html#a755fd510b8ea72710574cc345f056971">FileManager::pushModelSearchPath</a></div><div class="ttdeci">void pushModelSearchPath(const std::string &amp;path)</div><div class="ttdoc">Adds a model search path to the list of model search paths.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:635</div></div>
+<div class="ttc" id="aclassFileManager_html_a76b3a5f0db377efa247fe6a9cb02baae"><div class="ttname"><a href="classFileManager.html#a76b3a5f0db377efa247fe6a9cb02baae">FileManager::pushTextureSearchPath</a></div><div class="ttdeci">void pushTextureSearchPath(const std::string &amp;path, const std::string &amp;container_id)</div><div class="ttdoc">Adds a texture search path to the list of texture search paths.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:664</div></div>
+<div class="ttc" id="aclassFileManager_html_a79d11682fe4b11d6804b525e84b4193a"><div class="ttname"><a href="classFileManager.html#a79d11682fe4b11d6804b525e84b4193a">FileManager::checkAndCreateAddonsDir</a></div><div class="ttdeci">void checkAndCreateAddonsDir()</div><div class="ttdoc">Creates the directories for the addons data.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1098</div></div>
+<div class="ttc" id="aclassFileManager_html_a7f6d662d35b0035c27a8cd3da4b95483"><div class="ttname"><a href="classFileManager.html#a7f6d662d35b0035c27a8cd3da4b95483">FileManager::checkAndCreateDirectoryP</a></div><div class="ttdeci">bool checkAndCreateDirectoryP(const std::string &amp;path)</div><div class="ttdoc">If the directory specified in path does not exist, it is created recursively (mkdir -p style).</div><div class="ttdef"><b>Definition</b> file_manager.cpp:938</div></div>
+<div class="ttc" id="aclassFileManager_html_a8644587c8be385302dc785609b1b8625"><div class="ttname"><a href="classFileManager.html#a8644587c8be385302dc785609b1b8625">FileManager::fileIsNewer</a></div><div class="ttdeci">bool fileIsNewer(const std::string &amp;f1, const std::string &amp;f2) const</div><div class="ttdoc">Returns true if the first file is newer than the second.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1623</div></div>
+<div class="ttc" id="aclassFileManager_html_a89cba835d27ee26baff744188bc75d91"><div class="ttname"><a href="classFileManager.html#a89cba835d27ee26baff744188bc75d91">FileManager::discoverPaths</a></div><div class="ttdeci">void discoverPaths()</div><div class="ttdoc">Detects where the assets are stored.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:303</div></div>
+<div class="ttc" id="aclassFileManager_html_a8afd512c06be9daf140cc19d71f9b391"><div class="ttname"><a href="classFileManager.html#a8afd512c06be9daf140cc19d71f9b391">FileManager::FileManager</a></div><div class="ttdeci">FileManager()</div><div class="ttdoc">The constructor of the file manager creates an irrlicht file system and detects paths for the user co...</div><div class="ttdef"><b>Definition</b> file_manager.cpp:140</div></div>
+<div class="ttc" id="aclassFileManager_html_a8c84ea6727735c88a647121614390ff3"><div class="ttname"><a href="classFileManager.html#a8c84ea6727735c88a647121614390ff3">FileManager::m_user_config_dir</a></div><div class="ttdeci">std::string m_user_config_dir</div><div class="ttdoc">Directory where user config files are stored.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:78</div></div>
+<div class="ttc" id="aclassFileManager_html_a8de77cfc77bd584f7c9ec6838d4ba76d"><div class="ttname"><a href="classFileManager.html#a8de77cfc77bd584f7c9ec6838d4ba76d">FileManager::m_cached_textures_dir</a></div><div class="ttdeci">std::string m_cached_textures_dir</div><div class="ttdoc">Directory where resized textures are cached.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:99</div></div>
+<div class="ttc" id="aclassFileManager_html_a93ca757b1faae1d5bded3aa1586141c1"><div class="ttname"><a href="classFileManager.html#a93ca757b1faae1d5bded3aa1586141c1">FileManager::m_screenshot_dir</a></div><div class="ttdeci">std::string m_screenshot_dir</div><div class="ttdoc">Directory to store screenshots in.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:93</div></div>
+<div class="ttc" id="aclassFileManager_html_a94437b7440add6e5a8a4ce9a4f2f4926"><div class="ttname"><a href="classFileManager.html#a94437b7440add6e5a8a4ce9a4f2f4926">FileManager::getAddonsFile</a></div><div class="ttdeci">std::string getAddonsFile(const std::string &amp;name)</div><div class="ttdoc">Returns the full path of a file in the addons directory.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1394</div></div>
+<div class="ttc" id="aclassFileManager_html_a969449711b33facabcc61f9faf30e460"><div class="ttname"><a href="classFileManager.html#a969449711b33facabcc61f9faf30e460">FileManager::m_gp_dir</a></div><div class="ttdeci">std::string m_gp_dir</div><div class="ttdoc">Directory where user-defined grand prix are stored.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:102</div></div>
+<div class="ttc" id="aclassFileManager_html_a9717dfeb2f45342ffae3a1dd88f5a1f7"><div class="ttname"><a href="classFileManager.html#a9717dfeb2f45342ffae3a1dd88f5a1f7">FileManager::searchModel</a></div><div class="ttdeci">std::string searchModel(const std::string &amp;file_name) const</div><div class="ttdoc">Returns the full path of a model file by searching all model search paths.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1438</div></div>
+<div class="ttc" id="aclassFileManager_html_a9ac56e965f73d4251a4512f49c5b5457"><div class="ttname"><a href="classFileManager.html#a9ac56e965f73d4251a4512f49c5b5457">FileManager::createXMLTree</a></div><div class="ttdeci">XMLNode * createXMLTree(const std::string &amp;filename)</div><div class="ttdoc">Reads in a XML file and converts it into a XMLNode tree.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:573</div></div>
+<div class="ttc" id="aclassFileManager_html_a9cdb261cdb0ec104dedd1cd622e5899b"><div class="ttname"><a href="classFileManager.html#a9cdb261cdb0ec104dedd1cd622e5899b">FileManager::checkAndCreateGPDir</a></div><div class="ttdeci">void checkAndCreateGPDir()</div><div class="ttdoc">Creates the directories for user-defined grand prix.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1216</div></div>
+<div class="ttc" id="aclassFileManager_html_aa6c8a0749d7bbf006d2cff9639b23968"><div class="ttname"><a href="classFileManager.html#aa6c8a0749d7bbf006d2cff9639b23968">FileManager::checkAndCreateDirectory</a></div><div class="ttdeci">bool checkAndCreateDirectory(const std::string &amp;path)</div><div class="ttdoc">If the directory specified in path does not exist, it is created.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:914</div></div>
+<div class="ttc" id="aclassFileManager_html_ab13bc553de067d68ff255dfd14b216be"><div class="ttname"><a href="classFileManager.html#ab13bc553de067d68ff255dfd14b216be">FileManager::getScreenshotDir</a></div><div class="ttdeci">std::string getScreenshotDir() const</div><div class="ttdoc">Returns the directory in which screenshots should be stored.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:823</div></div>
+<div class="ttc" id="aclassFileManager_html_ab83483d32d7a6f6478501e6fc7400008"><div class="ttname"><a href="classFileManager.html#ab83483d32d7a6f6478501e6fc7400008">FileManager::redirectOutput</a></div><div class="ttdeci">void redirectOutput()</div><div class="ttdoc">Redirects output to go into files in the user&#39;s config directory instead of to the console.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1351</div></div>
+<div class="ttc" id="aclassFileManager_html_abc8409de4c2f5887cf5cf5b5d1fcb02b"><div class="ttname"><a href="classFileManager.html#abc8409de4c2f5887cf5cf5b5d1fcb02b">FileManager::getCachedTexturesDir</a></div><div class="ttdeci">std::string getCachedTexturesDir() const</div><div class="ttdoc">Returns the directory in which resized textures should be cached.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:839</div></div>
+<div class="ttc" id="aclassFileManager_html_abdf0cb92a7b4ce539df4c882b9f9840f"><div class="ttname"><a href="classFileManager.html#abdf0cb92a7b4ce539df4c882b9f9840f">FileManager::getReplayDir</a></div><div class="ttdeci">std::string getReplayDir() const</div><div class="ttdoc">Returns the directory in which replay file should be stored.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:831</div></div>
+<div class="ttc" id="aclassFileManager_html_abf8d92868ed68cef51c6b410497a98ca"><div class="ttname"><a href="classFileManager.html#abf8d92868ed68cef51c6b410497a98ca">FileManager::m_replay_dir</a></div><div class="ttdeci">std::string m_replay_dir</div><div class="ttdoc">Directory to store replays in.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:96</div></div>
+<div class="ttc" id="aclassFileManager_html_ac0e3a4f8591397c0f878c7b23e608202"><div class="ttname"><a href="classFileManager.html#ac0e3a4f8591397c0f878c7b23e608202">FileManager::checkAndCreateCachedTexturesDir</a></div><div class="ttdeci">void checkAndCreateCachedTexturesDir()</div><div class="ttdoc">Creates the directories for cached textures.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1191</div></div>
+<div class="ttc" id="aclassFileManager_html_acaca658d03092d1123ddc8a7d04a800c"><div class="ttname"><a href="classFileManager.html#acaca658d03092d1123ddc8a7d04a800c">FileManager::checkAndCreateScreenshotDir</a></div><div class="ttdeci">void checkAndCreateScreenshotDir()</div><div class="ttdoc">Creates the directories for screenshots.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1139</div></div>
+<div class="ttc" id="aclassFileManager_html_acb73b7203fb4939d40ce771bcf7972e0"><div class="ttname"><a href="classFileManager.html#acb73b7203fb4939d40ce771bcf7972e0">FileManager::AssetType</a></div><div class="ttdeci">AssetType</div><div class="ttdoc">The various asset types (and directories) STK might request.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:63</div></div>
+<div class="ttc" id="aclassFileManager_html_acd38b9f39bc2bb0ed3d5d887c32cc6a4"><div class="ttname"><a href="classFileManager.html#acd38b9f39bc2bb0ed3d5d887c32cc6a4">FileManager::pushMusicSearchPath</a></div><div class="ttdeci">void pushMusicSearchPath(const std::string &amp;path)</div><div class="ttdoc">Adds a directory to the music search path (or stack).</div><div class="ttdef"><b>Definition</b> file_manager.hpp:224</div></div>
+<div class="ttc" id="aclassFileManager_html_acd56da63796757ba36a28c24b463111f"><div class="ttname"><a href="classFileManager.html#acd56da63796757ba36a28c24b463111f">FileManager::setStdoutName</a></div><div class="ttdeci">static void setStdoutName(const std::string &amp;name)</div><div class="ttdoc">Sets the name for the stdout log file.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1327</div></div>
+<div class="ttc" id="aclassFileManager_html_ace1dae22760f1c5b4fb2af21d85e6a44"><div class="ttname"><a href="classFileManager.html#ace1dae22760f1c5b4fb2af21d85e6a44">FileManager::popMusicSearchPath</a></div><div class="ttdeci">void popMusicSearchPath()</div><div class="ttdoc">Removes the last added directory from the music search path.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:719</div></div>
+<div class="ttc" id="aclassFileManager_html_ad26978c2ada16f594d0b79478a4dd4d5"><div class="ttname"><a href="classFileManager.html#ad26978c2ada16f594d0b79478a4dd4d5">FileManager::getMusicDirs</a></div><div class="ttdeci">std::vector&lt; std::string &gt; getMusicDirs() const</div><div class="ttdoc">Returns the list of all directories in which music files are searched.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:901</div></div>
+<div class="ttc" id="aclassFileManager_html_add994d2b4f8bf3027ed98ea6081bea41"><div class="ttname"><a href="classFileManager.html#add994d2b4f8bf3027ed98ea6081bea41">FileManager::m_cert_bundle_location</a></div><div class="ttdeci">std::string m_cert_bundle_location</div><div class="ttdoc">Location of the certificate bundle.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:105</div></div>
+<div class="ttc" id="aclassFileManager_html_ade591e5462e4d32b7387568218e83b59"><div class="ttname"><a href="classFileManager.html#ade591e5462e4d32b7387568218e83b59">FileManager::m_stk_assets_download_dir</a></div><div class="ttdeci">std::string m_stk_assets_download_dir</div><div class="ttdoc">Mobile stk specific to download stk-assets in the first.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:108</div></div>
+<div class="ttc" id="aclassFileManager_html_adf4300cfb58a62d8a027b36eed83fcf3"><div class="ttname"><a href="classFileManager.html#adf4300cfb58a62d8a027b36eed83fcf3">FileManager::getStdoutName</a></div><div class="ttdeci">static const std::string &amp; getStdoutName()</div><div class="ttdoc">Returns the name of the stdout file for log messages.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:201</div></div>
+<div class="ttc" id="aclassFileManager_html_adfd8e7379646fb5e94b4fe44f0cf3c4a"><div class="ttname"><a href="classFileManager.html#adfd8e7379646fb5e94b4fe44f0cf3c4a">FileManager::checkAndCreateConfigDir</a></div><div class="ttdeci">void checkAndCreateConfigDir()</div><div class="ttdoc">Checks if the config directory exists, and it not, tries to create it.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:972</div></div>
+<div class="ttc" id="aclassFileManager_html_adff5a4461aa156dbd1f331f55ef63b5f"><div class="ttname"><a href="classFileManager.html#adff5a4461aa156dbd1f331f55ef63b5f">FileManager::getShader</a></div><div class="ttdeci">std::string getShader(const std::string &amp;name) const</div><div class="ttdoc">Returns the full path to a shader (this function could be modified later to allow track-specific shad...</div><div class="ttdef"><b>Definition</b> file_manager.hpp:233</div></div>
+<div class="ttc" id="aclassFileManager_html_ae6e7f8e8347c8c3929d1461baa55dd34"><div class="ttname"><a href="classFileManager.html#ae6e7f8e8347c8c3929d1461baa55dd34">FileManager::isDirectory</a></div><div class="ttdeci">static bool isDirectory(const std::string &amp;path)</div><div class="ttdoc">Returns true if the given name is a directory.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1455</div></div>
+<div class="ttc" id="aclassFileManager_html_aea6793dfe3f130106e5fc243add4f78d"><div class="ttname"><a href="classFileManager.html#aea6793dfe3f130106e5fc243add4f78d">FileManager::getUserConfigFile</a></div><div class="ttdeci">std::string getUserConfigFile(const std::string &amp;fname) const</div><div class="ttdoc">Returns the full path of the config directory.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1402</div></div>
+<div class="ttc" id="aclassFileManager_html_aeada5ec825e96d5c16e5565d92366efc"><div class="ttname"><a href="classFileManager.html#aeada5ec825e96d5c16e5565d92366efc">FileManager::getGPDir</a></div><div class="ttdeci">std::string getGPDir() const</div><div class="ttdoc">Returns the directory in which user-defined grand prix should be stored.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:847</div></div>
+<div class="ttc" id="aclassFileManager_html_aeb5d0668548cdc1d4f579d0e581b6085"><div class="ttname"><a href="classFileManager.html#aeb5d0668548cdc1d4f579d0e581b6085">FileManager::getAddonsDir</a></div><div class="ttdeci">const std::string &amp; getAddonsDir() const</div><div class="ttdoc">Returns the directory for addon files.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1385</div></div>
+<div class="ttc" id="aclassFileManager_html_af57c4c7c1babf2aeb02d04ff04651f8b"><div class="ttname"><a href="classFileManager.html#af57c4c7c1babf2aeb02d04ff04651f8b">FileManager::checkAndCreateDirForAddons</a></div><div class="ttdeci">void checkAndCreateDirForAddons(const std::string &amp;dir)</div><div class="ttdoc">Creates a directory for an addon.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:1500</div></div>
+<div class="ttc" id="aclassFileManager_html_af5bb546d931efd19f4e2ac57857e77cc"><div class="ttname"><a href="classFileManager.html#af5bb546d931efd19f4e2ac57857e77cc">FileManager::createAbsoluteFilename</a></div><div class="ttdeci">io::path createAbsoluteFilename(const std::string &amp;f)</div><div class="ttdoc">In order to add and later remove paths we have to specify the absolute filename (and replace &#39;\&#39; with...</div><div class="ttdef"><b>Definition</b> file_manager.cpp:624</div></div>
+<div class="ttc" id="aclassFileManager_html_af7c0ca781d1564c03290f9edbf359718"><div class="ttname"><a href="classFileManager.html#af7c0ca781d1564c03290f9edbf359718">FileManager::fileExists</a></div><div class="ttdeci">bool fileExists(const char *prefix, const std::string &amp;path) const</div><div class="ttdoc">Convenience function to save some typing in the file manager constructor.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:192</div></div>
+<div class="ttc" id="aclassFileManager_html_afb716419f0e65717e90917a232fdbb99"><div class="ttname"><a href="classFileManager.html#afb716419f0e65717e90917a232fdbb99">FileManager::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">This function is used to initialise the file-manager after reading in the user configuration data.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:419</div></div>
+<div class="ttc" id="aclassFileManager_html_afb8cd37737c3067b7898e665c9e883a0"><div class="ttname"><a href="classFileManager.html#afb8cd37737c3067b7898e665c9e883a0">FileManager::createXMLTreeFromString</a></div><div class="ttdeci">XMLNode * createXMLTreeFromString(const std::string &amp;content)</div><div class="ttdoc">Reads in XML from a string and converts it into a XMLNode tree.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:594</div></div>
+<div class="ttc" id="aclassFileManager_html_afdaa2dfa22a651fcdaafc2dcf3ad36c5"><div class="ttname"><a href="classFileManager.html#afdaa2dfa22a651fcdaafc2dcf3ad36c5">FileManager::m_root_dirs</a></div><div class="ttdeci">static std::vector&lt; std::string &gt; m_root_dirs</div><div class="ttdoc">The list of all root directories.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:84</div></div>
+<div class="ttc" id="aclassFileManager_html_afe2f11888841b647e2750a8e1eecb7c9"><div class="ttname"><a href="classFileManager.html#afe2f11888841b647e2750a8e1eecb7c9">FileManager::findFile</a></div><div class="ttdeci">bool findFile(std::string &amp;full_path, const std::string &amp;fname, const std::vector&lt; std::string &gt; &amp;search_path) const</div><div class="ttdoc">Tries to find the specified file in any of the given search paths.</div><div class="ttdef"><b>Definition</b> file_manager.cpp:735</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

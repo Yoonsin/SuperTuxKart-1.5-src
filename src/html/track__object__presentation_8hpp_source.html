@@ -1,0 +1,557 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: tracks/track_object_presentation.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>tracks</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">track_object_presentation.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2013-2015 Joerg Henrichs, Marianne Gagnon</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef HEADER_TRACK_OBJECT_PRESENTATION_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HEADER_TRACK_OBJECT_PRESENTATION_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;graphics/lod_node.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;utils/cpp2011.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;utils/log.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;utils/time.hpp&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;utils/vec3.hpp&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;vector3d.h&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">class </span><a class="code hl_class" href="classSFXBase.html">SFXBase</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">class </span><a class="code hl_class" href="classPhysicalObject.html">PhysicalObject</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">class </span><a class="code hl_class" href="classThreeDAnimation.html">ThreeDAnimation</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">class </span><a class="code hl_class" href="classModelDefinitionLoader.html">ModelDefinitionLoader</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">namespace </span>GE { <span class="keyword">class </span>GERenderInfo; }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">class </span>STKInstancedSceneNode;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">class </span><a class="code hl_class" href="classXMLNode.html">XMLNode</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">class </span>TrackObject;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#ifndef SERVER_ONLY</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">class </span><a class="code hl_class" href="classParticleEmitter.html">ParticleEmitter</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>{</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">namespace </span>scene { <span class="keyword">class </span>IAnimatedMesh; <span class="keyword">class </span>IMesh; <span class="keyword">class </span>IMeshSceneNode; <span class="keyword">class </span>ISceneNode; }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="};">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classTrackObjectPresentation.html">   59</a></span><span class="keyword">class </span>TrackObjectPresentation</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>{</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classTrackObjectPresentation.html#a0e1226aeb7d56b3e7ac1277e6cc6d11d">   63</a></span>    core::vector3df                <a class="code hl_variable" href="classTrackObjectPresentation.html#a0e1226aeb7d56b3e7ac1277e6cc6d11d">m_init_xyz</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classTrackObjectPresentation.html#a1a81f4e6010f6ce5a12ed8ec410dab52">   66</a></span>    core::vector3df                <a class="code hl_variable" href="classTrackObjectPresentation.html#a1a81f4e6010f6ce5a12ed8ec410dab52">m_init_hpr</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classTrackObjectPresentation.html#a2f4609ed905b7b6044dc8d6744bf1f63">   69</a></span>    core::vector3df                <a class="code hl_variable" href="classTrackObjectPresentation.html#a2f4609ed905b7b6044dc8d6744bf1f63">m_init_scale</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    TrackObjectPresentation(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a>&amp; xml_node);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    TrackObjectPresentation(<span class="keyword">const</span> core::vector3df&amp; xyz,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                            <span class="keyword">const</span> core::vector3df&amp; hpr = core::vector3df(0,0,0),</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                            <span class="keyword">const</span> core::vector3df&amp; scale = core::vector3df(0,0,0))</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <a class="code hl_variable" href="classTrackObjectPresentation.html#a0e1226aeb7d56b3e7ac1277e6cc6d11d">m_init_xyz</a> = xyz;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <a class="code hl_variable" href="classTrackObjectPresentation.html#a1a81f4e6010f6ce5a12ed8ec410dab52">m_init_hpr</a> = hpr;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <a class="code hl_variable" href="classTrackObjectPresentation.html#a2f4609ed905b7b6044dc8d6744bf1f63">m_init_scale</a> = scale;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }   <span class="comment">// TrackObjectPresentation</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classTrackObjectPresentation.html">~TrackObjectPresentation</a>() {}</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> reset() {}</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setEnable(<span class="keywordtype">bool</span> enabled)</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        Log::warn(<span class="stringliteral">&quot;TrackObjectPresentation&quot;</span>, <span class="stringliteral">&quot;setEnable unimplemented for this presentation type&quot;</span>);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> updateGraphics(<span class="keywordtype">float</span> dt) {}</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> update(<span class="keywordtype">float</span> dt) {}</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> move(<span class="keyword">const</span> core::vector3df&amp; xyz, <span class="keyword">const</span> core::vector3df&amp; hpr,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keyword">const</span> core::vector3df&amp; scale, <span class="keywordtype">bool</span> isAbsoluteCoord) {}</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classTrackObjectPresentation.html#a59553243ae70533b224d78b868f8fe44">  101</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> core::vector3df&amp; <a class="code hl_function" href="classTrackObjectPresentation.html#a59553243ae70533b224d78b868f8fe44">getPosition</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classTrackObjectPresentation.html#a0e1226aeb7d56b3e7ac1277e6cc6d11d">m_init_xyz</a>; }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00105" data-start="{" data-end="}">
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classTrackObjectPresentation.html#a78e4ab36bd8bfcd05991816f7428e8a6">  105</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> core::vector3df <a class="code hl_function" href="classTrackObjectPresentation.html#a78e4ab36bd8bfcd05991816f7428e8a6">getAbsolutePosition</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="keyword">    </span>{ </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classTrackObjectPresentation.html#a0e1226aeb7d56b3e7ac1277e6cc6d11d">m_init_xyz</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    }   <span class="comment">// getAbsolutePosition</span></div>
+</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> core::vector3df getAbsoluteCenterPosition()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classTrackObjectPresentation.html#a0e1226aeb7d56b3e7ac1277e6cc6d11d">m_init_xyz</a>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    }</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classTrackObjectPresentation.html#a7a76447966c46299e923b55e2a1c23bb">  116</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> core::vector3df&amp; <a class="code hl_function" href="classTrackObjectPresentation.html#a7a76447966c46299e923b55e2a1c23bb">getRotation</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classTrackObjectPresentation.html#a1a81f4e6010f6ce5a12ed8ec410dab52">m_init_hpr</a>; }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classTrackObjectPresentation.html#a99e320b95df9f6245cf28f67477a73b7">  119</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> core::vector3df&amp; <a class="code hl_function" href="classTrackObjectPresentation.html#a99e320b95df9f6245cf28f67477a73b7">getScale</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classTrackObjectPresentation.html#a2f4609ed905b7b6044dc8d6744bf1f63">m_init_scale</a>; }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    LEAK_CHECK()</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>};</div>
+</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment">// ============================================================================</span></div>
+<div class="foldopen" id="foldopen00129" data-start="{" data-end="};">
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationSceneNode.html">  129</a></span><span class="keyword">class </span><a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#aa0c26e954cebf16c68c3401865af2777">TrackObjectPresentationSceneNode</a> : <span class="keyword">public</span> TrackObjectPresentation</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>{</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationSceneNode.html#afc3dd098a74e6c83fe8285561418e878">  133</a></span>    scene::ISceneNode* <a class="code hl_variable" href="classTrackObjectPresentationSceneNode.html#afc3dd098a74e6c83fe8285561418e878">m_node</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordtype">bool</span> m_force_always_hidden;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span></div>
+<div class="foldopen" id="foldopen00139" data-start="{" data-end="}">
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationSceneNode.html#aa0c26e954cebf16c68c3401865af2777">  139</a></span>    <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#aa0c26e954cebf16c68c3401865af2777">TrackObjectPresentationSceneNode</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a>&amp; xml_node) :</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        TrackObjectPresentation(xml_node)</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    {</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <a class="code hl_variable" href="classTrackObjectPresentationSceneNode.html#afc3dd098a74e6c83fe8285561418e878">m_node</a> = NULL;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        m_force_always_hidden = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    }   <span class="comment">// TrackObjectPresentationSceneNode</span></div>
+</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00147" data-start="{" data-end="}">
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationSceneNode.html#abc8faa5af846a59f89315f3dcad99828">  147</a></span>    <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#abc8faa5af846a59f89315f3dcad99828">TrackObjectPresentationSceneNode</a>(<span class="keyword">const</span> core::vector3df&amp; xyz,</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                                     <span class="keyword">const</span> core::vector3df&amp; hpr,</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                                     <span class="keyword">const</span> core::vector3df&amp; scale,</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                                     scene::ISceneNode* node = NULL) :</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        TrackObjectPresentation(xyz, hpr, scale)</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    {</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <a class="code hl_variable" href="classTrackObjectPresentationSceneNode.html#afc3dd098a74e6c83fe8285561418e878">m_node</a> = node;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        m_force_always_hidden = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    }   <span class="comment">// TrackObjectPresentationSceneNode</span></div>
+</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> core::vector3df&amp; <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#ab5d54f1b54a40ddecb031cccde33c702">getPosition</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    virtual const core::vector3df  <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#a2f0d31437be1222f859e329e418ff8dc">getAbsolutePosition</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    virtual const core::vector3df getAbsoluteCenterPosition() const OVERRIDE;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    virtual const core::vector3df&amp; <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#aa240482402849b7f8930e619229ba518">getRotation</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    virtual const core::vector3df&amp; <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#a4d1812bd49790ca28394121227b03660">getScale</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    virtual <span class="keywordtype">void</span> move(const core::vector3df&amp; xyz, const core::vector3df&amp; hpr,</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        const core::vector3df&amp; scale, <span class="keywordtype">bool</span> isAbsoluteCoord) OVERRIDE;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    virtual <span class="keywordtype">void</span> setEnable(<span class="keywordtype">bool</span> enabled) OVERRIDE;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    virtual <span class="keywordtype">void</span> reset() OVERRIDE;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationSceneNode.html#a42a9336f903dd3fddfa6aaa71ffdcf78">  170</a></span>    scene::ISceneNode* <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#a42a9336f903dd3fddfa6aaa71ffdcf78">getNode</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classTrackObjectPresentationSceneNode.html#afc3dd098a74e6c83fe8285561418e878">m_node</a>; }</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationSceneNode.html#ab27cc3f47601f359612947aea124fa3c">  173</a></span>    <span class="keyword">const</span> scene::ISceneNode* <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#ab27cc3f47601f359612947aea124fa3c">getNode</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classTrackObjectPresentationSceneNode.html#afc3dd098a74e6c83fe8285561418e878">m_node</a>; }</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordtype">bool</span> isAlwaysHidden()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_force_always_hidden; }</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>};   <span class="comment">// class TrackObjectPresentationSceneNode</span></div>
+</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment">// ============================================================================</span></div>
+<div class="foldopen" id="foldopen00183" data-start="{" data-end="};">
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationEmpty.html">  183</a></span><span class="keyword">class </span>TrackObjectPresentationEmpty : <span class="keyword">public</span> <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#aa0c26e954cebf16c68c3401865af2777">TrackObjectPresentationSceneNode</a></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>{</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    TrackObjectPresentationEmpty(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a>&amp; xml_node);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keyword">virtual</span> ~TrackObjectPresentationEmpty();</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>};   <span class="comment">// class TrackObjectPresentationEmpty</span></div>
+</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="comment">// ============================================================================</span></div>
+<div class="foldopen" id="foldopen00194" data-start="{" data-end="};">
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationLibraryNode.html">  194</a></span><span class="keyword">class </span>TrackObjectPresentationLibraryNode : <span class="keyword">public</span> <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#aa0c26e954cebf16c68c3401865af2777">TrackObjectPresentationSceneNode</a></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>{</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <a class="code hl_class" href="classTrackObject.html">TrackObject</a>* m_parent;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keyword">using </span>TrackObjectPresentationSceneNode::move;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    std::string m_name;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordtype">bool</span> m_start_executed, m_reset_executed;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    TrackObjectPresentationLibraryNode(<a class="code hl_class" href="classTrackObject.html">TrackObject</a>* parent,</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        <span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a>&amp; xml_node,</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        <a class="code hl_class" href="classModelDefinitionLoader.html">ModelDefinitionLoader</a>&amp; model_def_loader);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keyword">virtual</span> ~TrackObjectPresentationLibraryNode();</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> update(<span class="keywordtype">float</span> dt) OVERRIDE;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> reset() OVERRIDE</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    {</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        m_reset_executed = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        TrackObjectPresentationSceneNode::reset();</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> move(<span class="keyword">const</span> core::vector3df&amp; xyz, <span class="keyword">const</span> core::vector3df&amp; hpr,</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        <span class="keyword">const</span> core::vector3df&amp; scale, <span class="keywordtype">bool</span> isAbsoluteCoord) OVERRIDE;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>};   <span class="comment">// TrackObjectPresentationLibraryNode</span></div>
+</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment">// ============================================================================</span></div>
+<div class="foldopen" id="foldopen00219" data-start="{" data-end="};">
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationLOD.html">  219</a></span><span class="keyword">class </span>TrackObjectPresentationLOD : <span class="keyword">public</span> <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#aa0c26e954cebf16c68c3401865af2777">TrackObjectPresentationSceneNode</a></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>{</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    TrackObjectPresentationLOD(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a>&amp; xml_node,</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                               scene::ISceneNode* parent,</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>                               <a class="code hl_class" href="classModelDefinitionLoader.html">ModelDefinitionLoader</a>&amp; model_def_loader,</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>                               std::shared_ptr&lt;GE::GERenderInfo&gt; ri);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keyword">virtual</span> ~TrackObjectPresentationLOD();</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> reset() OVERRIDE;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>};</div>
+</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="comment">// ============================================================================</span></div>
+<div class="foldopen" id="foldopen00235" data-start="{" data-end="};">
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationMesh.html">  235</a></span><span class="keyword">class </span>TrackObjectPresentationMesh : <span class="keyword">public</span> <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#aa0c26e954cebf16c68c3401865af2777">TrackObjectPresentationSceneNode</a></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>{</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationMesh.html#aab5a60bee22c462f566c3c39bdcb5fe1">  240</a></span>    scene::IMesh                  *<a class="code hl_variable" href="classTrackObjectPresentationMesh.html#aab5a60bee22c462f566c3c39bdcb5fe1">m_mesh</a>;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationMesh.html#ad85f1e485759c7eda47fe9c2a860e085">  243</a></span>    <span class="keywordtype">bool</span>                    <a class="code hl_variable" href="classTrackObjectPresentationMesh.html#ad85f1e485759c7eda47fe9c2a860e085">m_is_looped</a>;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationMesh.html#a42142c886c294a285a8d0354f64b3791">  246</a></span>    <span class="keywordtype">bool</span>                    <a class="code hl_variable" href="classTrackObjectPresentationMesh.html#a42142c886c294a285a8d0354f64b3791">m_is_in_skybox</a>;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    std::string             m_model_file;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    std::shared_ptr&lt;GE::GERenderInfo&gt; m_render_info;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordtype">void</span> init(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a>* xml_node, scene::ISceneNode* parent, <span class="keywordtype">bool</span> enabled);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    TrackObjectPresentationMesh(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a>&amp; xml_node, <span class="keywordtype">bool</span> enabled,</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                                scene::ISceneNode* parent,</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                                std::shared_ptr&lt;GE::GERenderInfo&gt; render_info);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    TrackObjectPresentationMesh(<span class="keyword">const</span> std::string&amp; model_file,</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>                                <span class="keyword">const</span> core::vector3df&amp; xyz,</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>                                <span class="keyword">const</span> core::vector3df&amp; hpr, </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>                                <span class="keyword">const</span> core::vector3df&amp; scale);</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    TrackObjectPresentationMesh(scene::IAnimatedMesh* mesh, </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                                <span class="keyword">const</span> core::vector3df&amp; xyz,</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                                <span class="keyword">const</span> core::vector3df&amp; hpr,</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                                <span class="keyword">const</span> core::vector3df&amp; scale);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keyword">virtual</span> ~TrackObjectPresentationMesh();</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> reset() OVERRIDE;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationMesh.html#aa054dabacb3e4d5d294d76de559af9ea">  271</a></span>    const std::<span class="keywordtype">string</span>&amp; <a class="code hl_function" href="classTrackObjectPresentationMesh.html#aa054dabacb3e4d5d294d76de559af9ea">getModelFile</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_model_file; }</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>};   <span class="comment">// class TrackObjectPresentationMesh</span></div>
+</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="comment">// ============================================================================</span></div>
+<div class="foldopen" id="foldopen00278" data-start="{" data-end="};">
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationSound.html">  278</a></span><span class="keyword">class </span>TrackObjectPresentationSound : <span class="keyword">public</span> TrackObjectPresentation</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>{</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationSound.html#a1d50268174b6511d0427d342525b8787">  284</a></span>    <a class="code hl_class" href="classSFXBase.html">SFXBase</a>* <a class="code hl_variable" href="classTrackObjectPresentationSound.html#a1d50268174b6511d0427d342525b8787">m_sound</a>;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationSound.html#ac688547fa68092e6aff09ac4979459da">  287</a></span>    std::string  <a class="code hl_variable" href="classTrackObjectPresentationSound.html#ac688547fa68092e6aff09ac4979459da">m_trigger_condition</a>;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    core::vector3df m_xyz;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keywordtype">bool</span> m_enabled;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    TrackObjectPresentationSound(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a>&amp; xml_node,</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>                                 scene::ISceneNode* parent,</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>                                 <span class="keywordtype">bool</span> disable_for_multiplayer);</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="keyword">virtual</span> ~TrackObjectPresentationSound();</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="keywordtype">void</span> onTriggerItemApproached(<span class="keywordtype">int</span> kart_id);</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> updateGraphics(<span class="keywordtype">float</span> dt) OVERRIDE;</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> move(<span class="keyword">const</span> core::vector3df&amp; xyz, <span class="keyword">const</span> core::vector3df&amp; hpr,</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        <span class="keyword">const</span> core::vector3df&amp; scale, <span class="keywordtype">bool</span> isAbsoluteCoord) OVERRIDE;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <span class="keywordtype">void</span> triggerSound(<span class="keywordtype">bool</span> loop);</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <span class="keywordtype">void</span> stopSound();</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setEnable(<span class="keywordtype">bool</span> enabled) OVERRIDE;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationSound.html#a12eca4ddd7d82eae0ab1bee14970d02a">  310</a></span>    <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classTrackObjectPresentationSound.html#a12eca4ddd7d82eae0ab1bee14970d02a">getTriggerCondition</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classTrackObjectPresentationSound.html#ac688547fa68092e6aff09ac4979459da">m_trigger_condition</a>; }</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>};   <span class="comment">// TrackObjectPresentationSound</span></div>
+</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="comment">// ============================================================================</span></div>
+<div class="foldopen" id="foldopen00317" data-start="{" data-end="};">
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationBillboard.html">  317</a></span><span class="keyword">class </span>TrackObjectPresentationBillboard : <span class="keyword">public</span> <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#aa0c26e954cebf16c68c3401865af2777">TrackObjectPresentationSceneNode</a></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>{</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationBillboard.html#a6c39507e91f4a500645efbd4dd379a1c">  323</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classTrackObjectPresentationBillboard.html#a6c39507e91f4a500645efbd4dd379a1c">m_fade_out_when_close</a>;</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keywordtype">float</span> m_fade_out_start;</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    <span class="keywordtype">float</span> m_fade_out_end;</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    TrackObjectPresentationBillboard(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a>&amp; xml_node,</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>                                     scene::ISceneNode* parent);</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    <span class="keyword">virtual</span> ~TrackObjectPresentationBillboard();</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> updateGraphics(<span class="keywordtype">float</span> dt) OVERRIDE;</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>};   <span class="comment">// TrackObjectPresentationBillboard</span></div>
+</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="comment">// ============================================================================</span></div>
+<div class="foldopen" id="foldopen00338" data-start="{" data-end="};">
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationParticles.html">  338</a></span><span class="keyword">class </span>TrackObjectPresentationParticles : <span class="keyword">public</span> <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#aa0c26e954cebf16c68c3401865af2777">TrackObjectPresentationSceneNode</a></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>{</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="preprocessor">#ifndef SERVER_ONLY</span></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    <a class="code hl_class" href="classParticleEmitter.html">ParticleEmitter</a>* m_emitter;</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    <a class="code hl_class" href="classLODNode.html">LODNode</a>* m_lod_emitter_node;</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    std::string m_trigger_condition;</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    <span class="keywordtype">bool</span> m_delayed_stop;</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    <span class="keywordtype">double</span> m_delayed_stop_time;</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    TrackObjectPresentationParticles(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a>&amp; xml_node,</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>                                     scene::ISceneNode* parent);</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    <span class="keyword">virtual</span> ~TrackObjectPresentationParticles();</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> updateGraphics(<span class="keywordtype">float</span> dt) OVERRIDE;</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    <span class="keywordtype">void</span> triggerParticles();</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    <span class="keywordtype">void</span> stop();</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    <span class="keywordtype">void</span> stopIn(<span class="keywordtype">double</span> delay);</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    <span class="keywordtype">void</span> setRate(<span class="keywordtype">float</span> rate);</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationParticles.html#a7685d2a72195e72c0ba577536035b025">  361</a></span>    std::string&amp; <a class="code hl_function" href="classTrackObjectPresentationParticles.html#a7685d2a72195e72c0ba577536035b025">getTriggerCondition</a>() { <span class="keywordflow">return</span> m_trigger_condition; }</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>};   <span class="comment">// TrackObjectPresentationParticles</span></div>
+</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span> </div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="comment">// ============================================================================</span></div>
+<div class="foldopen" id="foldopen00368" data-start="{" data-end="};">
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationLight.html">  368</a></span><span class="keyword">class </span>TrackObjectPresentationLight : <span class="keyword">public</span> <a class="code hl_function" href="classTrackObjectPresentationSceneNode.html#aa0c26e954cebf16c68c3401865af2777">TrackObjectPresentationSceneNode</a></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>{</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    video::SColor m_color;</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    <span class="keywordtype">float</span> m_distance;</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    <span class="keywordtype">float</span> m_energy;</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    TrackObjectPresentationLight(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a>&amp; xml_node,</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>                                 scene::ISceneNode* parent);</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    <span class="keyword">virtual</span> ~TrackObjectPresentationLight();</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    <span class="keywordtype">float</span> getEnergy()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_energy; }</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setEnable(<span class="keywordtype">bool</span> enabled) OVERRIDE;</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>    <span class="keywordtype">void</span> setEnergy(<span class="keywordtype">float</span> energy);</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>};   <span class="comment">// TrackObjectPresentationLight</span></div>
+</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> </div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span><span class="keyword">enum</span> ActionTriggerType</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>{</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    TRIGGER_TYPE_POINT = 0,</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>    TRIGGER_TYPE_CYLINDER = 1</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>};</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span></div>
+<div class="foldopen" id="foldopen00394" data-start="{" data-end="};">
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationActionTrigger.html">  394</a></span><span class="keyword">class </span>TrackObjectPresentationActionTrigger : <span class="keyword">public</span> TrackObjectPresentation</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>{</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationActionTrigger.html#a9a1c0a281a22a86542f8dff8ffc99c93">  398</a></span>    std::string <a class="code hl_variable" href="classTrackObjectPresentationActionTrigger.html#a9a1c0a281a22a86542f8dff8ffc99c93">m_action</a>, m_library_id, m_triggered_object, m_library_name;</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span> </div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    <span class="keywordtype">float</span> m_xml_reenable_timeout;</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    uint64_t m_reenable_timeout;</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    ActionTriggerType m_type;</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>    TrackObjectPresentationActionTrigger(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a>&amp; xml_node,</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>                                         <a class="code hl_class" href="classTrackObject.html">TrackObject</a>* parent);</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    TrackObjectPresentationActionTrigger(<span class="keyword">const</span> core::vector3df&amp; xyz,</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>                                         <span class="keyword">const</span> std::string&amp; scriptname,</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>                                         <span class="keywordtype">float</span> distance);</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span> </div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>    <span class="keyword">virtual</span> ~TrackObjectPresentationActionTrigger() {}</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    <span class="keywordtype">void</span> onTriggerItemApproached(<span class="keywordtype">int</span> kart_id);</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00418" data-start="{" data-end="}">
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationActionTrigger.html#a43ad18c1fec17c58f413f216dd7fad98">  418</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classTrackObjectPresentationActionTrigger.html#a43ad18c1fec17c58f413f216dd7fad98">reset</a>() OVERRIDE </div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>                             { m_reenable_timeout = <a class="code hl_function" href="classStkTime.html#a216a8bfe77f82bf1fd5ab96f78e99e65">StkTime::getMonoTimeMs</a>(); }</div>
+</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00423" data-start="{" data-end="}">
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno"><a class="line" href="classTrackObjectPresentationActionTrigger.html#a32a1dcb10f8097ddb5e19db8f894dcdf">  423</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classTrackObjectPresentationActionTrigger.html#a32a1dcb10f8097ddb5e19db8f894dcdf">setEnable</a>(<span class="keywordtype">bool</span> status) OVERRIDE</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>    {</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>        m_reenable_timeout = status ? <a class="code hl_function" href="classStkTime.html#a216a8bfe77f82bf1fd5ab96f78e99e65">StkTime::getMonoTimeMs</a>() :</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>            std::numeric_limits&lt;uint64_t&gt;::max();</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    }</div>
+</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    <span class="keywordtype">void</span> setReenableTimeout(<span class="keywordtype">float</span> time)</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>    {</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>        m_reenable_timeout =</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>            <a class="code hl_function" href="classStkTime.html#a216a8bfe77f82bf1fd5ab96f78e99e65">StkTime::getMonoTimeMs</a>() + (uint64_t)(time * 1000.0f);</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>    }</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>};   <span class="comment">// class TrackObjectPresentationActionTrigger</span></div>
+</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span> </div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span><span class="preprocessor">#endif </span><span class="comment">// TRACKOBJECTPRESENTATION_HPP</span></div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span> </div>
+<div class="ttc" id="aclassLODNode_html"><div class="ttname"><a href="classLODNode.html">LODNode</a></div><div class="ttdoc">manages level-of-detail</div><div class="ttdef"><b>Definition</b> lod_node.hpp:50</div></div>
+<div class="ttc" id="aclassModelDefinitionLoader_html"><div class="ttname"><a href="classModelDefinitionLoader.html">ModelDefinitionLoader</a></div><div class="ttdoc">Utility class to load level-of-detail nodes and library nodes</div><div class="ttdef"><b>Definition</b> model_definition_loader.hpp:81</div></div>
+<div class="ttc" id="aclassParticleEmitter_html"><div class="ttname"><a href="classParticleEmitter.html">ParticleEmitter</a></div><div class="ttdoc">manages smoke particle effects</div><div class="ttdef"><b>Definition</b> particle_emitter.hpp:44</div></div>
+<div class="ttc" id="aclassPhysicalObject_html"><div class="ttname"><a href="classPhysicalObject.html">PhysicalObject</a></div><div class="ttdef"><b>Definition</b> physical_object.hpp:40</div></div>
+<div class="ttc" id="aclassSFXBase_html"><div class="ttname"><a href="classSFXBase.html">SFXBase</a></div><div class="ttdoc">The base class for sound effects.</div><div class="ttdef"><b>Definition</b> sfx_base.hpp:43</div></div>
+<div class="ttc" id="aclassStkTime_html_a216a8bfe77f82bf1fd5ab96f78e99e65"><div class="ttname"><a href="classStkTime.html#a216a8bfe77f82bf1fd5ab96f78e99e65">StkTime::getMonoTimeMs</a></div><div class="ttdeci">static uint64_t getMonoTimeMs()</div><div class="ttdoc">Returns a time based since the starting of stk (monotonic clock).</div><div class="ttdef"><b>Definition</b> time.hpp:113</div></div>
+<div class="ttc" id="aclassThreeDAnimation_html"><div class="ttname"><a href="classThreeDAnimation.html">ThreeDAnimation</a></div><div class="ttdoc">A virtual base class for all animations.</div><div class="ttdef"><b>Definition</b> three_d_animation.hpp:45</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationActionTrigger_html_a32a1dcb10f8097ddb5e19db8f894dcdf"><div class="ttname"><a href="classTrackObjectPresentationActionTrigger.html#a32a1dcb10f8097ddb5e19db8f894dcdf">TrackObjectPresentationActionTrigger::setEnable</a></div><div class="ttdeci">virtual void setEnable(bool status) OVERRIDE</div><div class="ttdoc">Sets the trigger to be enabled or disabled.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:423</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationActionTrigger_html_a43ad18c1fec17c58f413f216dd7fad98"><div class="ttname"><a href="classTrackObjectPresentationActionTrigger.html#a43ad18c1fec17c58f413f216dd7fad98">TrackObjectPresentationActionTrigger::reset</a></div><div class="ttdeci">virtual void reset() OVERRIDE</div><div class="ttdoc">Reset the trigger (i.e.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:418</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationActionTrigger_html_a9a1c0a281a22a86542f8dff8ffc99c93"><div class="ttname"><a href="classTrackObjectPresentationActionTrigger.html#a9a1c0a281a22a86542f8dff8ffc99c93">TrackObjectPresentationActionTrigger::m_action</a></div><div class="ttdeci">std::string m_action</div><div class="ttdoc">For action trigger objects</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:398</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationBillboard_html_a6c39507e91f4a500645efbd4dd379a1c"><div class="ttname"><a href="classTrackObjectPresentationBillboard.html#a6c39507e91f4a500645efbd4dd379a1c">TrackObjectPresentationBillboard::m_fade_out_when_close</a></div><div class="ttdeci">bool m_fade_out_when_close</div><div class="ttdoc">To make the billboard disappear when close to the camera.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:323</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationMesh_html_a42142c886c294a285a8d0354f64b3791"><div class="ttname"><a href="classTrackObjectPresentationMesh.html#a42142c886c294a285a8d0354f64b3791">TrackObjectPresentationMesh::m_is_in_skybox</a></div><div class="ttdeci">bool m_is_in_skybox</div><div class="ttdoc">True if the object is in the skybox</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:246</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationMesh_html_aa054dabacb3e4d5d294d76de559af9ea"><div class="ttname"><a href="classTrackObjectPresentationMesh.html#aa054dabacb3e4d5d294d76de559af9ea">TrackObjectPresentationMesh::getModelFile</a></div><div class="ttdeci">const std::string &amp; getModelFile() const</div><div class="ttdoc">Returns the mode file name.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:271</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationMesh_html_aab5a60bee22c462f566c3c39bdcb5fe1"><div class="ttname"><a href="classTrackObjectPresentationMesh.html#aab5a60bee22c462f566c3c39bdcb5fe1">TrackObjectPresentationMesh::m_mesh</a></div><div class="ttdeci">scene::IMesh * m_mesh</div><div class="ttdoc">The mesh used here.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:240</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationMesh_html_ad85f1e485759c7eda47fe9c2a860e085"><div class="ttname"><a href="classTrackObjectPresentationMesh.html#ad85f1e485759c7eda47fe9c2a860e085">TrackObjectPresentationMesh::m_is_looped</a></div><div class="ttdeci">bool m_is_looped</div><div class="ttdoc">True if it is a looped animation.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:243</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationParticles_html_a7685d2a72195e72c0ba577536035b025"><div class="ttname"><a href="classTrackObjectPresentationParticles.html#a7685d2a72195e72c0ba577536035b025">TrackObjectPresentationParticles::getTriggerCondition</a></div><div class="ttdeci">std::string &amp; getTriggerCondition()</div><div class="ttdoc">Returns the trigger condition for this object.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:361</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationSceneNode_html_a2f0d31437be1222f859e329e418ff8dc"><div class="ttname"><a href="classTrackObjectPresentationSceneNode.html#a2f0d31437be1222f859e329e418ff8dc">TrackObjectPresentationSceneNode::getAbsolutePosition</a></div><div class="ttdeci">virtual const core::vector3df getAbsolutePosition() const OVERRIDE</div><div class="ttdoc">Returns a copy of the initial position.</div><div class="ttdef"><b>Definition</b> track_object_presentation.cpp:88</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationSceneNode_html_a42a9336f903dd3fddfa6aaa71ffdcf78"><div class="ttname"><a href="classTrackObjectPresentationSceneNode.html#a42a9336f903dd3fddfa6aaa71ffdcf78">TrackObjectPresentationSceneNode::getNode</a></div><div class="ttdeci">scene::ISceneNode * getNode()</div><div class="ttdoc">Returns a pointer to the scene node.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:170</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationSceneNode_html_a4d1812bd49790ca28394121227b03660"><div class="ttname"><a href="classTrackObjectPresentationSceneNode.html#a4d1812bd49790ca28394121227b03660">TrackObjectPresentationSceneNode::getScale</a></div><div class="ttdeci">virtual const core::vector3df &amp; getScale() const OVERRIDE</div><div class="ttdoc">Returns the initial scale.</div><div class="ttdef"><b>Definition</b> track_object_presentation.cpp:113</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationSceneNode_html_aa0c26e954cebf16c68c3401865af2777"><div class="ttname"><a href="classTrackObjectPresentationSceneNode.html#aa0c26e954cebf16c68c3401865af2777">TrackObjectPresentationSceneNode::TrackObjectPresentationSceneNode</a></div><div class="ttdeci">TrackObjectPresentationSceneNode(const XMLNode &amp;xml_node)</div><div class="ttdoc">Constructor based on data from xml.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:139</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationSceneNode_html_aa240482402849b7f8930e619229ba518"><div class="ttname"><a href="classTrackObjectPresentationSceneNode.html#aa240482402849b7f8930e619229ba518">TrackObjectPresentationSceneNode::getRotation</a></div><div class="ttdeci">virtual const core::vector3df &amp; getRotation() const OVERRIDE</div><div class="ttdoc">Returns the initial rotation.</div><div class="ttdef"><b>Definition</b> track_object_presentation.cpp:106</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationSceneNode_html_ab27cc3f47601f359612947aea124fa3c"><div class="ttname"><a href="classTrackObjectPresentationSceneNode.html#ab27cc3f47601f359612947aea124fa3c">TrackObjectPresentationSceneNode::getNode</a></div><div class="ttdeci">const scene::ISceneNode * getNode() const</div><div class="ttdoc">Returns a pointer to the scene node, const version.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:173</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationSceneNode_html_ab5d54f1b54a40ddecb031cccde33c702"><div class="ttname"><a href="classTrackObjectPresentationSceneNode.html#ab5d54f1b54a40ddecb031cccde33c702">TrackObjectPresentationSceneNode::getPosition</a></div><div class="ttdeci">virtual const core::vector3df &amp; getPosition() const OVERRIDE</div><div class="ttdoc">Returns the position of this TrackObjectPresentation.</div><div class="ttdef"><b>Definition</b> track_object_presentation.cpp:81</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationSceneNode_html_abc8faa5af846a59f89315f3dcad99828"><div class="ttname"><a href="classTrackObjectPresentationSceneNode.html#abc8faa5af846a59f89315f3dcad99828">TrackObjectPresentationSceneNode::TrackObjectPresentationSceneNode</a></div><div class="ttdeci">TrackObjectPresentationSceneNode(const core::vector3df &amp;xyz, const core::vector3df &amp;hpr, const core::vector3df &amp;scale, scene::ISceneNode *node=NULL)</div><div class="ttdoc">Constructor based on a transform.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:147</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationSceneNode_html_afc3dd098a74e6c83fe8285561418e878"><div class="ttname"><a href="classTrackObjectPresentationSceneNode.html#afc3dd098a74e6c83fe8285561418e878">TrackObjectPresentationSceneNode::m_node</a></div><div class="ttdeci">scene::ISceneNode * m_node</div><div class="ttdoc">A pointer to the scene node of this object.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:133</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationSound_html_a12eca4ddd7d82eae0ab1bee14970d02a"><div class="ttname"><a href="classTrackObjectPresentationSound.html#a12eca4ddd7d82eae0ab1bee14970d02a">TrackObjectPresentationSound::getTriggerCondition</a></div><div class="ttdeci">const std::string &amp; getTriggerCondition() const</div><div class="ttdoc">Currently used for sound effects only, in cutscenes only atm</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:310</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationSound_html_a1d50268174b6511d0427d342525b8787"><div class="ttname"><a href="classTrackObjectPresentationSound.html#a1d50268174b6511d0427d342525b8787">TrackObjectPresentationSound::m_sound</a></div><div class="ttdeci">SFXBase * m_sound</div><div class="ttdoc">If a sound is attached to this object and/or this is a sound emitter object</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:284</div></div>
+<div class="ttc" id="aclassTrackObjectPresentationSound_html_ac688547fa68092e6aff09ac4979459da"><div class="ttname"><a href="classTrackObjectPresentationSound.html#ac688547fa68092e6aff09ac4979459da">TrackObjectPresentationSound::m_trigger_condition</a></div><div class="ttdeci">std::string m_trigger_condition</div><div class="ttdoc">Currently used for sound effects only, in cutscenes only atm</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:287</div></div>
+<div class="ttc" id="aclassTrackObjectPresentation_html"><div class="ttname"><a href="classTrackObjectPresentation.html">TrackObjectPresentation</a></div><div class="ttdoc">Base class for all track object presentation classes.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:60</div></div>
+<div class="ttc" id="aclassTrackObjectPresentation_html_a0e1226aeb7d56b3e7ac1277e6cc6d11d"><div class="ttname"><a href="classTrackObjectPresentation.html#a0e1226aeb7d56b3e7ac1277e6cc6d11d">TrackObjectPresentation::m_init_xyz</a></div><div class="ttdeci">core::vector3df m_init_xyz</div><div class="ttdoc">The initial XYZ position of the object.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:63</div></div>
+<div class="ttc" id="aclassTrackObjectPresentation_html_a1a81f4e6010f6ce5a12ed8ec410dab52"><div class="ttname"><a href="classTrackObjectPresentation.html#a1a81f4e6010f6ce5a12ed8ec410dab52">TrackObjectPresentation::m_init_hpr</a></div><div class="ttdeci">core::vector3df m_init_hpr</div><div class="ttdoc">The initial hpr of the object.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:66</div></div>
+<div class="ttc" id="aclassTrackObjectPresentation_html_a2f4609ed905b7b6044dc8d6744bf1f63"><div class="ttname"><a href="classTrackObjectPresentation.html#a2f4609ed905b7b6044dc8d6744bf1f63">TrackObjectPresentation::m_init_scale</a></div><div class="ttdeci">core::vector3df m_init_scale</div><div class="ttdoc">The initial scale of the object.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:69</div></div>
+<div class="ttc" id="aclassTrackObjectPresentation_html_a59553243ae70533b224d78b868f8fe44"><div class="ttname"><a href="classTrackObjectPresentation.html#a59553243ae70533b224d78b868f8fe44">TrackObjectPresentation::getPosition</a></div><div class="ttdeci">virtual const core::vector3df &amp; getPosition() const</div><div class="ttdoc">Returns the position of this TrackObjectPresentation.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:101</div></div>
+<div class="ttc" id="aclassTrackObjectPresentation_html_a78e4ab36bd8bfcd05991816f7428e8a6"><div class="ttname"><a href="classTrackObjectPresentation.html#a78e4ab36bd8bfcd05991816f7428e8a6">TrackObjectPresentation::getAbsolutePosition</a></div><div class="ttdeci">virtual const core::vector3df getAbsolutePosition() const</div><div class="ttdoc">Returns a copy of the initial position.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:105</div></div>
+<div class="ttc" id="aclassTrackObjectPresentation_html_a7a76447966c46299e923b55e2a1c23bb"><div class="ttname"><a href="classTrackObjectPresentation.html#a7a76447966c46299e923b55e2a1c23bb">TrackObjectPresentation::getRotation</a></div><div class="ttdeci">virtual const core::vector3df &amp; getRotation() const</div><div class="ttdoc">Returns the initial rotation.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:116</div></div>
+<div class="ttc" id="aclassTrackObjectPresentation_html_a99e320b95df9f6245cf28f67477a73b7"><div class="ttname"><a href="classTrackObjectPresentation.html#a99e320b95df9f6245cf28f67477a73b7">TrackObjectPresentation::getScale</a></div><div class="ttdeci">virtual const core::vector3df &amp; getScale() const</div><div class="ttdoc">Returns the initial scale.</div><div class="ttdef"><b>Definition</b> track_object_presentation.hpp:119</div></div>
+<div class="ttc" id="aclassTrackObject_html"><div class="ttname"><a href="classTrackObject.html">TrackObject</a></div><div class="ttdoc">This is a base object for any separate object on the track, which might also have a skeletal animatio...</div><div class="ttdef"><b>Definition</b> track_object.hpp:56</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

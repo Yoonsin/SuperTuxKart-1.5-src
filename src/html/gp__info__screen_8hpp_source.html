@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: states_screens/gp_info_screen.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>states_screens</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">gp_info_screen.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  Copyright (C) 2009-2015 Marianne Gagnon</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//            (C) 2014-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef HEADER_GP_INFO_SCREEN_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HEADER_GP_INFO_SCREEN_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;guiengine/screen.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;race/grand_prix_data.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;guiengine/CGUISpriteBank.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">class </span><a class="code hl_class" href="classGrandPrixData.html">GrandPrixData</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceGUIEngine.html">GUIEngine</a></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1IconButtonWidget.html">IconButtonWidget</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1SpinnerWidget.html">SpinnerWidget</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1ListWidget.html">ListWidget</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classGPInfoScreen.html">   42</a></span><span class="keyword">class </span><a class="code hl_function" href="classGPInfoScreen.html#a0f1da86612dd44038612d1bb15e07394">GPInfoScreen</a> : <span class="keyword">public</span> <a class="code hl_class" href="classGUIEngine_1_1Screen.html">GUIEngine::Screen</a>,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                     <span class="keyword">public</span> <a class="code hl_class" href="classGUIEngine_1_1ScreenSingleton.html">GUIEngine::ScreenSingleton</a>&lt;GPInfoScreen&gt;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classGPInfoScreen.html#af038a6c285af970cb87c0443a5713b07">   47</a></span>    <a class="code hl_class" href="classGUIEngine_1_1SpinnerWidget.html">GUIEngine::SpinnerWidget</a> *<a class="code hl_variable" href="classGPInfoScreen.html#af038a6c285af970cb87c0443a5713b07">m_group_spinner</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classGPInfoScreen.html#a862d5962283c0b67450919669833af33">   50</a></span>    <a class="code hl_class" href="classGUIEngine_1_1SpinnerWidget.html">GUIEngine::SpinnerWidget</a> *<a class="code hl_variable" href="classGPInfoScreen.html#a862d5962283c0b67450919669833af33">m_reverse_spinner</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classGPInfoScreen.html#ae8ad97e407e4e043c89757b522ba56a7">   53</a></span>    <a class="code hl_class" href="classGUIEngine_1_1SpinnerWidget.html">GUIEngine::SpinnerWidget</a> *<a class="code hl_variable" href="classGPInfoScreen.html#ae8ad97e407e4e043c89757b522ba56a7">m_num_tracks_spinner</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classGPInfoScreen.html#ad01b830af90fe3968b532af91ddf4f23">   56</a></span>    <a class="code hl_class" href="classGUIEngine_1_1SpinnerWidget.html">GUIEngine::SpinnerWidget</a>* <a class="code hl_variable" href="classGPInfoScreen.html#ad01b830af90fe3968b532af91ddf4f23">m_ai_kart_spinner</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classGPInfoScreen.html#a92824d054bfeddfaefef5b3aad55e773">   59</a></span>    <a class="code hl_class" href="classGUIEngine_1_1SpinnerWidget.html">GUIEngine::SpinnerWidget</a>* <a class="code hl_variable" href="classGPInfoScreen.html#a92824d054bfeddfaefef5b3aad55e773">m_time_target_spinner</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classGPInfoScreen.html#aea4b7ee469d17a1d72a3d8dd4a1654f5">   62</a></span>    <a class="code hl_class" href="classGUIEngine_1_1ListWidget.html">GUIEngine::ListWidget</a>* <a class="code hl_variable" href="classGPInfoScreen.html#aea4b7ee469d17a1d72a3d8dd4a1654f5">m_highscore_list</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classGPInfoScreen.html#a9060698ebbc737e7be13ea67f0a9b58e">   65</a></span>    std::string <a class="code hl_variable" href="classGPInfoScreen.html#a9060698ebbc737e7be13ea67f0a9b58e">m_group_name</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classGPInfoScreen.html#abb09cff287ecf7bdaa31c6f3d47480d0">   68</a></span>    std::vector&lt;std::string&gt; <a class="code hl_variable" href="classGPInfoScreen.html#abb09cff287ecf7bdaa31c6f3d47480d0">m_group_names</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classGPInfoScreen.html#acce206a5f6126efa8740c8f7ed70be73">   71</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classGPInfoScreen.html#acce206a5f6126efa8740c8f7ed70be73">m_max_num_tracks</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    irr::gui::STKModifiedSpriteBank* m_icon_bank;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classGPInfoScreen.html#ae6c6a08f06c74451639c8231e2605167">   75</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classGPInfoScreen.html#ae6c6a08f06c74451639c8231e2605167">m_unknown_kart_icon</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classGPInfoScreen.html#a14f410390baf9499c6bcbeb998f02e59">getMaxNumTracks</a>(std::string group);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGPInfoScreen.html#ab202badb247b2596fb8c21eb61513ce3">updateHighscores</a>();</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">protected</span>: <span class="comment">// Necessary for RandomGPInfoScreen</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">float</span> m_curr_time;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classGPInfoScreen.html#a73c7e2e16444cf5935d0866fdb38c88f">   87</a></span>    <a class="code hl_class" href="classGrandPrixData.html">GrandPrixData</a> <a class="code hl_variable" href="classGPInfoScreen.html#a73c7e2e16444cf5935d0866fdb38c88f">m_gp</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGPInfoScreen.html#af43a841db50579b5175dd7c31b9060b0">addTracks</a>();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGPInfoScreen.html#afd5512461faf1982a840ac9574702bd6">addScreenshot</a>();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">void</span> updateRandomGP();</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <a class="code hl_enumeration" href="classGrandPrixData.html#a39cf3bbdf6bb3af3d4001d4658fa2bfd">GrandPrixData::GPReverseType</a> <a class="code hl_function" href="classGPInfoScreen.html#ada818a11918380d261351bd1ee55444f">getReverse</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <a class="code hl_function" href="classGPInfoScreen.html#a0f1da86612dd44038612d1bb15e07394">GPInfoScreen</a>();</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classGPInfoScreen.html#a479888d4bfc91a2a3fb5d397e06ff8f5">  102</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classGPInfoScreen.html#a479888d4bfc91a2a3fb5d397e06ff8f5">~GPInfoScreen</a>() {}</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span> onEnterPressedInternal();</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGPInfoScreen.html#a418ad8b769922b4d616e041ccbd0af81">eventCallback</a>(<a class="code hl_class" href="classGUIEngine_1_1Widget.html">GUIEngine::Widget</a> *, <span class="keyword">const</span> std::string &amp;name,</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                               <span class="keyword">const</span> <span class="keywordtype">int</span> player_id) OVERRIDE;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGPInfoScreen.html#ab0c917797c41583c4dfa9e18c196fc50">loadedFromFile</a>() OVERRIDE;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classGPInfoScreen.html#a38784595b1dfe7b512dce3329301052e">init</a>() OVERRIDE;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classGPInfoScreen.html#adb81056cd5e79062710b51a8d45c662d">beforeAddingWidget</a>() OVERRIDE;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classGPInfoScreen.html#a18a83fe727674daac8e9fc1f12f85a1d">onUpdate</a>(<span class="keywordtype">float</span> dt) OVERRIDE;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGPInfoScreen.html#ae45eba9041558b1dd486958de190f8a1">setGP</a>(const std::<span class="keywordtype">string</span> &amp;gp_ident);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classGPInfoScreen.html#aa5293de1bc8de8f9be635920fe63d5a7">unloaded</a>() OVERRIDE;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>};   <span class="comment">// GPInfoScreen</span></div>
+</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassGPInfoScreen_html_a0f1da86612dd44038612d1bb15e07394"><div class="ttname"><a href="classGPInfoScreen.html#a0f1da86612dd44038612d1bb15e07394">GPInfoScreen::GPInfoScreen</a></div><div class="ttdeci">GPInfoScreen()</div><div class="ttdoc">Constructor, initialised some variables which might be used before loadedFromFile is called.</div><div class="ttdef"><b>Definition</b> gp_info_screen.cpp:59</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_a14f410390baf9499c6bcbeb998f02e59"><div class="ttname"><a href="classGPInfoScreen.html#a14f410390baf9499c6bcbeb998f02e59">GPInfoScreen::getMaxNumTracks</a></div><div class="ttdeci">int getMaxNumTracks(std::string group)</div><div class="ttdoc">Get number of available tracks for random GPs</div><div class="ttdef"><b>Definition</b> gp_info_screen.cpp:466</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_a18a83fe727674daac8e9fc1f12f85a1d"><div class="ttname"><a href="classGPInfoScreen.html#a18a83fe727674daac8e9fc1f12f85a1d">GPInfoScreen::onUpdate</a></div><div class="ttdeci">virtual void onUpdate(float dt) OVERRIDE</div><div class="ttdoc">Called every update.</div><div class="ttdef"><b>Definition</b> gp_info_screen.cpp:442</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_a38784595b1dfe7b512dce3329301052e"><div class="ttname"><a href="classGPInfoScreen.html#a38784595b1dfe7b512dce3329301052e">GPInfoScreen::init</a></div><div class="ttdeci">virtual void init() OVERRIDE</div><div class="ttdoc">Called before the screen is shown.</div><div class="ttdef"><b>Definition</b> gp_info_screen.cpp:182</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_a418ad8b769922b4d616e041ccbd0af81"><div class="ttname"><a href="classGPInfoScreen.html#a418ad8b769922b4d616e041ccbd0af81">GPInfoScreen::eventCallback</a></div><div class="ttdeci">virtual void eventCallback(GUIEngine::Widget *, const std::string &amp;name, const int player_id) OVERRIDE</div><div class="ttdoc">Handle user input.</div><div class="ttdef"><b>Definition</b> gp_info_screen.cpp:348</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_a479888d4bfc91a2a3fb5d397e06ff8f5"><div class="ttname"><a href="classGPInfoScreen.html#a479888d4bfc91a2a3fb5d397e06ff8f5">GPInfoScreen::~GPInfoScreen</a></div><div class="ttdeci">virtual ~GPInfoScreen()</div><div class="ttdoc">Places the focus back on the selected GP, in the case that the dialog was cancelled and we&#39;re returni...</div><div class="ttdef"><b>Definition</b> gp_info_screen.hpp:102</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_a73c7e2e16444cf5935d0866fdb38c88f"><div class="ttname"><a href="classGPInfoScreen.html#a73c7e2e16444cf5935d0866fdb38c88f">GPInfoScreen::m_gp</a></div><div class="ttdeci">GrandPrixData m_gp</div><div class="ttdoc">The grand prix data.</div><div class="ttdef"><b>Definition</b> gp_info_screen.hpp:87</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_a862d5962283c0b67450919669833af33"><div class="ttname"><a href="classGPInfoScreen.html#a862d5962283c0b67450919669833af33">GPInfoScreen::m_reverse_spinner</a></div><div class="ttdeci">GUIEngine::SpinnerWidget * m_reverse_spinner</div><div class="ttdoc">Spinner for reverse mode.</div><div class="ttdef"><b>Definition</b> gp_info_screen.hpp:50</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_a9060698ebbc737e7be13ea67f0a9b58e"><div class="ttname"><a href="classGPInfoScreen.html#a9060698ebbc737e7be13ea67f0a9b58e">GPInfoScreen::m_group_name</a></div><div class="ttdeci">std::string m_group_name</div><div class="ttdoc">The currently selected group name.</div><div class="ttdef"><b>Definition</b> gp_info_screen.hpp:65</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_a92824d054bfeddfaefef5b3aad55e773"><div class="ttname"><a href="classGPInfoScreen.html#a92824d054bfeddfaefef5b3aad55e773">GPInfoScreen::m_time_target_spinner</a></div><div class="ttdeci">GUIEngine::SpinnerWidget * m_time_target_spinner</div><div class="ttdoc">Spinner for time target in Lap Trial</div><div class="ttdef"><b>Definition</b> gp_info_screen.hpp:59</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_aa5293de1bc8de8f9be635920fe63d5a7"><div class="ttname"><a href="classGPInfoScreen.html#aa5293de1bc8de8f9be635920fe63d5a7">GPInfoScreen::unloaded</a></div><div class="ttdeci">virtual void unloaded() OVERRIDE</div><div class="ttdoc">Callback invoked when this screen is being unloaded.</div><div class="ttdef"><b>Definition</b> gp_info_screen.cpp:560</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_ab0c917797c41583c4dfa9e18c196fc50"><div class="ttname"><a href="classGPInfoScreen.html#ab0c917797c41583c4dfa9e18c196fc50">GPInfoScreen::loadedFromFile</a></div><div class="ttdeci">virtual void loadedFromFile() OVERRIDE</div><div class="ttdoc">Called when the stkgui file is read.</div><div class="ttdef"><b>Definition</b> gp_info_screen.cpp:71</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_ab202badb247b2596fb8c21eb61513ce3"><div class="ttname"><a href="classGPInfoScreen.html#ab202badb247b2596fb8c21eb61513ce3">GPInfoScreen::updateHighscores</a></div><div class="ttdeci">void updateHighscores()</div><div class="ttdoc">Load highscores for grandprix</div><div class="ttdef"><b>Definition</b> gp_info_screen.cpp:503</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_abb09cff287ecf7bdaa31c6f3d47480d0"><div class="ttname"><a href="classGPInfoScreen.html#abb09cff287ecf7bdaa31c6f3d47480d0">GPInfoScreen::m_group_names</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_group_names</div><div class="ttdoc">The untranslated group names, used as internal IDs</div><div class="ttdef"><b>Definition</b> gp_info_screen.hpp:68</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_acce206a5f6126efa8740c8f7ed70be73"><div class="ttname"><a href="classGPInfoScreen.html#acce206a5f6126efa8740c8f7ed70be73">GPInfoScreen::m_max_num_tracks</a></div><div class="ttdeci">int m_max_num_tracks</div><div class="ttdoc">Number of available tracks</div><div class="ttdef"><b>Definition</b> gp_info_screen.hpp:71</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_ad01b830af90fe3968b532af91ddf4f23"><div class="ttname"><a href="classGPInfoScreen.html#ad01b830af90fe3968b532af91ddf4f23">GPInfoScreen::m_ai_kart_spinner</a></div><div class="ttdeci">GUIEngine::SpinnerWidget * m_ai_kart_spinner</div><div class="ttdoc">Spinner for number of AI karts.</div><div class="ttdef"><b>Definition</b> gp_info_screen.hpp:56</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_ada818a11918380d261351bd1ee55444f"><div class="ttname"><a href="classGPInfoScreen.html#ada818a11918380d261351bd1ee55444f">GPInfoScreen::getReverse</a></div><div class="ttdeci">GrandPrixData::GPReverseType getReverse() const</div><div class="ttdoc">Converts the currently selected reverse status into a value of type GPReverseType .</div><div class="ttdef"><b>Definition</b> gp_info_screen.cpp:131</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_adb81056cd5e79062710b51a8d45c662d"><div class="ttname"><a href="classGPInfoScreen.html#adb81056cd5e79062710b51a8d45c662d">GPInfoScreen::beforeAddingWidget</a></div><div class="ttdeci">virtual void beforeAddingWidget() OVERRIDE</div><div class="ttdoc">Optional callback invoked very early, before widgets have been added (contrast with init(),...</div><div class="ttdef"><b>Definition</b> gp_info_screen.cpp:145</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_ae45eba9041558b1dd486958de190f8a1"><div class="ttname"><a href="classGPInfoScreen.html#ae45eba9041558b1dd486958de190f8a1">GPInfoScreen::setGP</a></div><div class="ttdeci">void setGP(const std::string &amp;gp_ident)</div><div class="ttdoc">Sets the GP to be displayed.</div><div class="ttdef"><b>Definition</b> gp_info_screen.cpp:112</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_ae6c6a08f06c74451639c8231e2605167"><div class="ttname"><a href="classGPInfoScreen.html#ae6c6a08f06c74451639c8231e2605167">GPInfoScreen::m_unknown_kart_icon</a></div><div class="ttdeci">int m_unknown_kart_icon</div><div class="ttdoc">Icon for unknown kart in highscore list</div><div class="ttdef"><b>Definition</b> gp_info_screen.hpp:75</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_ae8ad97e407e4e043c89757b522ba56a7"><div class="ttname"><a href="classGPInfoScreen.html#ae8ad97e407e4e043c89757b522ba56a7">GPInfoScreen::m_num_tracks_spinner</a></div><div class="ttdeci">GUIEngine::SpinnerWidget * m_num_tracks_spinner</div><div class="ttdoc">Spinner for number of tracks (in case of random GP).</div><div class="ttdef"><b>Definition</b> gp_info_screen.hpp:53</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_aea4b7ee469d17a1d72a3d8dd4a1654f5"><div class="ttname"><a href="classGPInfoScreen.html#aea4b7ee469d17a1d72a3d8dd4a1654f5">GPInfoScreen::m_highscore_list</a></div><div class="ttdeci">GUIEngine::ListWidget * m_highscore_list</div><div class="ttdoc">List with last 5 highscores</div><div class="ttdef"><b>Definition</b> gp_info_screen.hpp:62</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_af038a6c285af970cb87c0443a5713b07"><div class="ttname"><a href="classGPInfoScreen.html#af038a6c285af970cb87c0443a5713b07">GPInfoScreen::m_group_spinner</a></div><div class="ttdeci">GUIEngine::SpinnerWidget * m_group_spinner</div><div class="ttdoc">Spinner for the different track groups.</div><div class="ttdef"><b>Definition</b> gp_info_screen.hpp:47</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_af43a841db50579b5175dd7c31b9060b0"><div class="ttname"><a href="classGPInfoScreen.html#af43a841db50579b5175dd7c31b9060b0">GPInfoScreen::addTracks</a></div><div class="ttdeci">void addTracks()</div><div class="ttdoc">display all the tracks according to the current gp For a normal gp info dialog, it just creates a lab...</div><div class="ttdef"><b>Definition</b> gp_info_screen.cpp:312</div></div>
+<div class="ttc" id="aclassGPInfoScreen_html_afd5512461faf1982a840ac9574702bd6"><div class="ttname"><a href="classGPInfoScreen.html#afd5512461faf1982a840ac9574702bd6">GPInfoScreen::addScreenshot</a></div><div class="ttdeci">void addScreenshot()</div><div class="ttdoc">Creates a screenshot widget in the placeholder of the GUI.</div><div class="ttdef"><b>Definition</b> gp_info_screen.cpp:329</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1IconButtonWidget_html"><div class="ttname"><a href="classGUIEngine_1_1IconButtonWidget.html">GUIEngine::IconButtonWidget</a></div><div class="ttdoc">A button widget with an icon and optionnaly a label beneath</div><div class="ttdef"><b>Definition</b> icon_button_widget.hpp:44</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html">GUIEngine::ListWidget</a></div><div class="ttdoc">A vertical list widget with text entries</div><div class="ttdef"><b>Definition</b> list_widget.hpp:50</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenSingleton_html"><div class="ttname"><a href="classGUIEngine_1_1ScreenSingleton.html">GUIEngine::ScreenSingleton</a></div><div class="ttdoc">Declares a class to be a singleton.</div><div class="ttdef"><b>Definition</b> screen.hpp:59</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Screen_html"><div class="ttname"><a href="classGUIEngine_1_1Screen.html">GUIEngine::Screen</a></div><div class="ttdoc">Represents a single GUI screen.</div><div class="ttdef"><b>Definition</b> screen.hpp:94</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1SpinnerWidget_html"><div class="ttname"><a href="classGUIEngine_1_1SpinnerWidget.html">GUIEngine::SpinnerWidget</a></div><div class="ttdoc">A spinner or gauge widget (to select numbers / percentages).</div><div class="ttdef"><b>Definition</b> spinner_widget.hpp:44</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html"><div class="ttname"><a href="classGUIEngine_1_1Widget.html">GUIEngine::Widget</a></div><div class="ttdoc">The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...</div><div class="ttdef"><b>Definition</b> widget.hpp:147</div></div>
+<div class="ttc" id="aclassGrandPrixData_html"><div class="ttname"><a href="classGrandPrixData.html">GrandPrixData</a></div><div class="ttdoc">Simple class that hold the data relevant to a &#39;grand_prix&#39;, aka.</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:37</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a39cf3bbdf6bb3af3d4001d4658fa2bfd"><div class="ttname"><a href="classGrandPrixData.html#a39cf3bbdf6bb3af3d4001d4658fa2bfd">GrandPrixData::GPReverseType</a></div><div class="ttdeci">GPReverseType</div><div class="ttdoc">Used to define the reverse setting when creating a random GP: No reverse, all reverse (if available o...</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:91</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html"><div class="ttname"><a href="namespaceGUIEngine.html">GUIEngine</a></div><div class="ttdoc">Contains all GUI engine related classes and functions</div><div class="ttdef"><b>Definition</b> abstract_state_manager.hpp:33</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

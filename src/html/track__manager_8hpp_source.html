@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: tracks/track_manager.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>tracks</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">track_manager.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2006-2015 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_TRACK_MANAGER_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_TRACK_MANAGER_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;config/favorite_status.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">class </span>Track;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classTrackManager.html">   34</a></span><span class="keyword">class </span><a class="code hl_function" href="classTrackManager.html#a43aca74674a5da410fc46c9e015a9b05">TrackManager</a></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">enum</span> TrackGroupType</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        RACING_TRACK = 0,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        BATTLE_ARENA,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        SOCCER_ARENA</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    };</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classTrackManager.html#afc5febe1398b5c76bbfc8626af52244c">   45</a></span>    <span class="keyword">static</span> std::vector&lt;std::string&gt;          <a class="code hl_variable" href="classTrackManager.html#afc5febe1398b5c76bbfc8626af52244c">m_track_search_path</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classTrackManager.html#a0f00f512818fbf584473e3333418e082">   48</a></span>    std::vector&lt;std::string&gt;                 <a class="code hl_variable" href="classTrackManager.html#a0f00f512818fbf584473e3333418e082">m_all_track_dirs</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">typedef</span> std::vector&lt;Track*&gt;              Tracks;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classTrackManager.html#a60c25512f98cb9431126350f9605db1b">   53</a></span>    Tracks                                   <a class="code hl_variable" href="classTrackManager.html#a60c25512f98cb9431126350f9605db1b">m_tracks</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">typedef</span> std::map&lt;std::string, std::vector&lt;int&gt; &gt; Group2Indices;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classTrackManager.html#a6e9f80f2a4d3d3102be3956d8f43f94b">   57</a></span>    Group2Indices                            <a class="code hl_variable" href="classTrackManager.html#a6e9f80f2a4d3d3102be3956d8f43f94b">m_track_groups</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classTrackManager.html#a857e05603c11f08a6476e0c7c3ecb2bf">   60</a></span>    Group2Indices                            <a class="code hl_variable" href="classTrackManager.html#a857e05603c11f08a6476e0c7c3ecb2bf">m_arena_groups</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classTrackManager.html#abd9cdc85b3a2377def8be18dcda109ba">   63</a></span>    Group2Indices                            <a class="code hl_variable" href="classTrackManager.html#abd9cdc85b3a2377def8be18dcda109ba">m_soccer_arena_groups</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classTrackManager.html#a5c5fdf73e0f32fc0f0517f4bf01ce94b">   66</a></span>    std::vector&lt;std::string&gt;                 <a class="code hl_variable" href="classTrackManager.html#a5c5fdf73e0f32fc0f0517f4bf01ce94b">m_track_group_names</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classTrackManager.html#aab98383455eb2f1b500846fb3bb1745c">   69</a></span>    std::vector&lt;std::string&gt;                 <a class="code hl_variable" href="classTrackManager.html#aab98383455eb2f1b500846fb3bb1745c">m_arena_group_names</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classTrackManager.html#a1d8bf6f7a8c5b0b635223ce8e4ea8764">   72</a></span>    std::vector&lt;std::string&gt;                 <a class="code hl_variable" href="classTrackManager.html#a1d8bf6f7a8c5b0b635223ce8e4ea8764">m_soccer_arena_group_names</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classTrackManager.html#a57c825e9c63ad7250f27d561a3d6feaf">   75</a></span>    Group2Indices                            <a class="code hl_variable" href="classTrackManager.html#a57c825e9c63ad7250f27d561a3d6feaf">m_track_groups_no_custom</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    Group2Indices                            m_arena_groups_no_custom;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    Group2Indices                            m_soccer_arena_groups_no_custom;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classTrackManager.html#a42e26590939edbc004a10886c068be89">   82</a></span>    std::vector&lt;bool&gt;                        <a class="code hl_variable" href="classTrackManager.html#a42e26590939edbc004a10886c068be89">m_track_avail</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <a class="code hl_class" href="classFavoriteStatus.html">FavoriteStatus</a>                     *m_current_favorite_status;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTrackManager.html#a0c6f23bc180c97c52af6a3008e8de076">updateAllGroups</a>(<span class="keyword">const</span> <a class="code hl_class" href="classTrack.html">Track</a>* track);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">void</span> updateGroups(TrackGroupType type, <span class="keyword">const</span> <a class="code hl_class" href="classTrack.html">Track</a>* track);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTrackManager.html#ab119723841c4834aef66d35fcca97a9f">removeTrackFromGroups</a>(TrackGroupType type, <span class="keyword">const</span> <a class="code hl_class" href="classTrack.html">Track</a>* track);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                <a class="code hl_function" href="classTrackManager.html#a43aca74674a5da410fc46c9e015a9b05">TrackManager</a>();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>               <a class="code hl_function" href="classTrackManager.html#a0f8faecb1f3186ff616cad592c62779b">~TrackManager</a>();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> removeTrackSearchDirs();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classTrackManager.html#afd66a1f79334f8e0b40f120a66f22b27">addTrackSearchDir</a>(<span class="keyword">const</span> std::string &amp;dir);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTrackManager.html#a25146885e5e43f74b751ed6491c86435">setFavoriteTrackStatus</a>(<a class="code hl_class" href="classFavoriteStatus.html">FavoriteStatus</a> *status);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTrackManager.html#a403e47f5c75016afac23ac7c06f0360e">clearFavoriteTrackStatus</a>();</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    std::vector&lt;std::string&gt; <a class="code hl_function" href="classTrackManager.html#a278caf8e22110b39d34d5df46d0c7a81">getAllTrackIdentifiers</a>();</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classTrackManager.html#ad28870fdf263fbf95917579d102f3bc4">loadTrackList</a>();</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classTrackManager.html#a917509e961198bee407e91fd949bd5e5">removeTrack</a>(<span class="keyword">const</span> std::string &amp;ident);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordtype">bool</span>  <a class="code hl_function" href="classTrackManager.html#ab8aadac48ca33770bc5a17fdd84ad6e8">loadTrack</a>(<span class="keyword">const</span> std::string&amp; dirname);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classTrackManager.html#a9a01e4444abbc76debf8b6586a798c4a">removeAllCachedData</a>();</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">int</span>   <a class="code hl_function" href="classTrackManager.html#acb5a9bc69d7126e6ad94f9aaec086221">getNumberOfRaceTracks</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <a class="code hl_class" href="classTrack.html">Track</a>* <a class="code hl_function" href="classTrackManager.html#a2c1b4bc7a368b0927b397c247b9ead35">getTrack</a>(<span class="keyword">const</span> std::string&amp; ident) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classTrackManager.html#a5f54784ce63825c9b263ddb9903f928e">setUnavailableTracks</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;tracks);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00120" data-start="{" data-end="}">
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classTrackManager.html#a414af52926b400705c72e320f6d2e00a">  120</a></span>    <span class="keyword">const</span> std::vector&lt;std::string&gt;* <a class="code hl_function" href="classTrackManager.html#a414af52926b400705c72e320f6d2e00a">getAllTrackDirs</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keywordflow">return</span> &amp;<a class="code hl_variable" href="classTrackManager.html#a0f00f512818fbf584473e3333418e082">m_all_track_dirs</a>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    }   <span class="comment">// getAllTrackDirs</span></div>
+</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00126" data-start="{" data-end="}">
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="classTrackManager.html#aa813559a52fab8801e3129eea025a483">  126</a></span>    <span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; <a class="code hl_function" href="classTrackManager.html#aa813559a52fab8801e3129eea025a483">getAllTrackGroups</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classTrackManager.html#a5c5fdf73e0f32fc0f0517f4bf01ce94b">m_track_group_names</a>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    }   <span class="comment">// getAllTrackGroups</span></div>
+</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keyword">const</span> std::vector&lt;std::string&gt;&amp;</div>
+<div class="foldopen" id="foldopen00133" data-start="{" data-end="}">
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classTrackManager.html#aa828c3c10f1b8032ee8eb2eed633bfcc">  133</a></span>                  <a class="code hl_function" href="classTrackManager.html#aa828c3c10f1b8032ee8eb2eed633bfcc">getAllArenaGroups</a>(<span class="keywordtype">bool</span> soccer_arena=<span class="keyword">false</span>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keywordflow">return</span> soccer_arena ? <a class="code hl_variable" href="classTrackManager.html#a1d8bf6f7a8c5b0b635223ce8e4ea8764">m_soccer_arena_group_names</a> : <a class="code hl_variable" href="classTrackManager.html#aab98383455eb2f1b500846fb3bb1745c">m_arena_group_names</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    }   <span class="comment">// getAllArenaGroups</span></div>
+</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classTrackManager.html#aac8b7200dd8c5a45982f44d7d55b9eaa">  139</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="classTrackManager.html#aac8b7200dd8c5a45982f44d7d55b9eaa">getNumberOfTracks</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classTrackManager.html#a60c25512f98cb9431126350f9605db1b">m_tracks</a>.size(); }</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classTrackManager.html#ac7ced67aabae269027f1186f2b4d10f0">  143</a></span>    <a class="code hl_class" href="classTrack.html">Track</a>* <a class="code hl_function" href="classTrackManager.html#ac7ced67aabae269027f1186f2b4d10f0">getTrack</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classTrackManager.html#a60c25512f98cb9431126350f9605db1b">m_tracks</a>[index];}</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordtype">int</span> getTrackIndexByIdent(<span class="keyword">const</span> std::string&amp; ident) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="classTrackManager.html#ac1dca1767192435c38dabe49c707361b">  149</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classTrackManager.html#ac1dca1767192435c38dabe49c707361b">isAvailable</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n)<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classTrackManager.html#a42e26590939edbc004a10886c068be89">m_track_avail</a>[n];}</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00153" data-start="{" data-end="}">
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classTrackManager.html#aaccc0aa8175b99e3786ce1723ddfb033">  153</a></span>    <span class="keyword">const</span> std::vector&lt;int&gt;&amp; <a class="code hl_function" href="classTrackManager.html#aaccc0aa8175b99e3786ce1723ddfb033">getTracksInGroup</a>(<span class="keyword">const</span> std::string&amp; g)</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classTrackManager.html#a6e9f80f2a4d3d3102be3956d8f43f94b">m_track_groups</a>[g];</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }   <span class="comment">// getTracksInGroup</span></div>
+</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keyword">const</span> std::vector&lt;int&gt;&amp;</div>
+<div class="foldopen" id="foldopen00161" data-start="{" data-end="}">
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classTrackManager.html#aad7ee02944ddfdab412545fb7ba64e1c">  161</a></span>        <a class="code hl_function" href="classTrackManager.html#aad7ee02944ddfdab412545fb7ba64e1c">getArenasInGroup</a>(<span class="keyword">const</span> std::string&amp; g, <span class="keywordtype">bool</span> soccer_arena=<span class="keyword">false</span>)</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    {</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <span class="keywordflow">return</span> soccer_arena ? <a class="code hl_variable" href="classTrackManager.html#abd9cdc85b3a2377def8be18dcda109ba">m_soccer_arena_groups</a>[g] : <a class="code hl_variable" href="classTrackManager.html#a857e05603c11f08a6476e0c7c3ecb2bf">m_arena_groups</a>[g];</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    }   <span class="comment">// getArenasInGroup</span></div>
+</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordtype">void</span> onDemandLoadTrackScreenshots();</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">void</span> updateScreenshotCache();</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>};   <span class="comment">// TrackManager</span></div>
+</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="keyword">extern</span> <a class="code hl_class" href="classTrackManager.html">TrackManager</a>* track_manager;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="preprocessor">#endif   </span><span class="comment">// HEADER_TRACK_MANAGER_HPP</span></div>
+<div class="ttc" id="aclassFavoriteStatus_html"><div class="ttname"><a href="classFavoriteStatus.html">FavoriteStatus</a></div><div class="ttdoc">Class for storing the current favorites/custom groups of karts and tracks.</div><div class="ttdef"><b>Definition</b> favorite_status.hpp:43</div></div>
+<div class="ttc" id="aclassTrackManager_html"><div class="ttname"><a href="classTrackManager.html">TrackManager</a></div><div class="ttdoc">Simple class to load and manage track data, track names and such</div><div class="ttdef"><b>Definition</b> track_manager.hpp:35</div></div>
+<div class="ttc" id="aclassTrackManager_html_a0c6f23bc180c97c52af6a3008e8de076"><div class="ttname"><a href="classTrackManager.html#a0c6f23bc180c97c52af6a3008e8de076">TrackManager::updateAllGroups</a></div><div class="ttdeci">void updateAllGroups(const Track *track)</div><div class="ttdoc">Updates the groups after a track was read in.</div><div class="ttdef"><b>Definition</b> track_manager.cpp:372</div></div>
+<div class="ttc" id="aclassTrackManager_html_a0f00f512818fbf584473e3333418e082"><div class="ttname"><a href="classTrackManager.html#a0f00f512818fbf584473e3333418e082">TrackManager::m_all_track_dirs</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_all_track_dirs</div><div class="ttdoc">All directories in which tracks were found.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:48</div></div>
+<div class="ttc" id="aclassTrackManager_html_a0f8faecb1f3186ff616cad592c62779b"><div class="ttname"><a href="classTrackManager.html#a0f8faecb1f3186ff616cad592c62779b">TrackManager::~TrackManager</a></div><div class="ttdeci">~TrackManager()</div><div class="ttdoc">Delete all tracks.</div><div class="ttdef"><b>Definition</b> track_manager.cpp:53</div></div>
+<div class="ttc" id="aclassTrackManager_html_a1d8bf6f7a8c5b0b635223ce8e4ea8764"><div class="ttname"><a href="classTrackManager.html#a1d8bf6f7a8c5b0b635223ce8e4ea8764">TrackManager::m_soccer_arena_group_names</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_soccer_arena_group_names</div><div class="ttdoc">List of the names of all groups containing soccer arenas</div><div class="ttdef"><b>Definition</b> track_manager.hpp:72</div></div>
+<div class="ttc" id="aclassTrackManager_html_a25146885e5e43f74b751ed6491c86435"><div class="ttname"><a href="classTrackManager.html#a25146885e5e43f74b751ed6491c86435">TrackManager::setFavoriteTrackStatus</a></div><div class="ttdeci">void setFavoriteTrackStatus(FavoriteStatus *status)</div><div class="ttdoc">Adds a track to the special group of favorite tracks.</div><div class="ttdef"><b>Definition</b> track_manager.cpp:436</div></div>
+<div class="ttc" id="aclassTrackManager_html_a278caf8e22110b39d34d5df46d0c7a81"><div class="ttname"><a href="classTrackManager.html#a278caf8e22110b39d34d5df46d0c7a81">TrackManager::getAllTrackIdentifiers</a></div><div class="ttdeci">std::vector&lt; std::string &gt; getAllTrackIdentifiers()</div><div class="ttdoc">Returns a list of all track identifiers.</div><div class="ttdef"><b>Definition</b> track_manager.cpp:140</div></div>
+<div class="ttc" id="aclassTrackManager_html_a2c1b4bc7a368b0927b397c247b9ead35"><div class="ttname"><a href="classTrackManager.html#a2c1b4bc7a368b0927b397c247b9ead35">TrackManager::getTrack</a></div><div class="ttdeci">Track * getTrack(const std::string &amp;ident) const</div><div class="ttdoc">Get TrackData by the track identifier.</div><div class="ttdef"><b>Definition</b> track_manager.cpp:94</div></div>
+<div class="ttc" id="aclassTrackManager_html_a403e47f5c75016afac23ac7c06f0360e"><div class="ttname"><a href="classTrackManager.html#a403e47f5c75016afac23ac7c06f0360e">TrackManager::clearFavoriteTrackStatus</a></div><div class="ttdeci">void clearFavoriteTrackStatus()</div><div class="ttdoc">Clears the list of active favorite tracks, used e.g.</div><div class="ttdef"><b>Definition</b> track_manager.cpp:495</div></div>
+<div class="ttc" id="aclassTrackManager_html_a414af52926b400705c72e320f6d2e00a"><div class="ttname"><a href="classTrackManager.html#a414af52926b400705c72e320f6d2e00a">TrackManager::getAllTrackDirs</a></div><div class="ttdeci">const std::vector&lt; std::string &gt; * getAllTrackDirs() const</div><div class="ttdoc">Returns a list of all directories that contain a track.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:120</div></div>
+<div class="ttc" id="aclassTrackManager_html_a42e26590939edbc004a10886c068be89"><div class="ttname"><a href="classTrackManager.html#a42e26590939edbc004a10886c068be89">TrackManager::m_track_avail</a></div><div class="ttdeci">std::vector&lt; bool &gt; m_track_avail</div><div class="ttdoc">Flag if this track is available or not.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:82</div></div>
+<div class="ttc" id="aclassTrackManager_html_a43aca74674a5da410fc46c9e015a9b05"><div class="ttname"><a href="classTrackManager.html#a43aca74674a5da410fc46c9e015a9b05">TrackManager::TrackManager</a></div><div class="ttdeci">TrackManager()</div><div class="ttdoc">Constructor (currently empty).</div><div class="ttdef"><b>Definition</b> track_manager.cpp:45</div></div>
+<div class="ttc" id="aclassTrackManager_html_a57c825e9c63ad7250f27d561a3d6feaf"><div class="ttname"><a href="classTrackManager.html#a57c825e9c63ad7250f27d561a3d6feaf">TrackManager::m_track_groups_no_custom</a></div><div class="ttdeci">Group2Indices m_track_groups_no_custom</div><div class="ttdoc">Same as above but without user-defined groups.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:75</div></div>
+<div class="ttc" id="aclassTrackManager_html_a5c5fdf73e0f32fc0f0517f4bf01ce94b"><div class="ttname"><a href="classTrackManager.html#a5c5fdf73e0f32fc0f0517f4bf01ce94b">TrackManager::m_track_group_names</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_track_group_names</div><div class="ttdoc">List of the names of all groups containing tracks</div><div class="ttdef"><b>Definition</b> track_manager.hpp:66</div></div>
+<div class="ttc" id="aclassTrackManager_html_a5f54784ce63825c9b263ddb9903f928e"><div class="ttname"><a href="classTrackManager.html#a5f54784ce63825c9b263ddb9903f928e">TrackManager::setUnavailableTracks</a></div><div class="ttdeci">void setUnavailableTracks(const std::vector&lt; std::string &gt; &amp;tracks)</div><div class="ttdoc">Sets a list of track as being unavailable (e.g.</div><div class="ttdef"><b>Definition</b> track_manager.cpp:121</div></div>
+<div class="ttc" id="aclassTrackManager_html_a60c25512f98cb9431126350f9605db1b"><div class="ttname"><a href="classTrackManager.html#a60c25512f98cb9431126350f9605db1b">TrackManager::m_tracks</a></div><div class="ttdeci">Tracks m_tracks</div><div class="ttdoc">All track objects.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:53</div></div>
+<div class="ttc" id="aclassTrackManager_html_a6e9f80f2a4d3d3102be3956d8f43f94b"><div class="ttname"><a href="classTrackManager.html#a6e9f80f2a4d3d3102be3956d8f43f94b">TrackManager::m_track_groups</a></div><div class="ttdeci">Group2Indices m_track_groups</div><div class="ttdoc">List of all track indexes for each racing track group.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:57</div></div>
+<div class="ttc" id="aclassTrackManager_html_a857e05603c11f08a6476e0c7c3ecb2bf"><div class="ttname"><a href="classTrackManager.html#a857e05603c11f08a6476e0c7c3ecb2bf">TrackManager::m_arena_groups</a></div><div class="ttdeci">Group2Indices m_arena_groups</div><div class="ttdoc">List of all arena indexes for each arena group.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:60</div></div>
+<div class="ttc" id="aclassTrackManager_html_a917509e961198bee407e91fd949bd5e5"><div class="ttname"><a href="classTrackManager.html#a917509e961198bee407e91fd949bd5e5">TrackManager::removeTrack</a></div><div class="ttdeci">void removeTrack(const std::string &amp;ident)</div><div class="ttdoc">Removes a track.</div><div class="ttdef"><b>Definition</b> track_manager.cpp:245</div></div>
+<div class="ttc" id="aclassTrackManager_html_a9a01e4444abbc76debf8b6586a798c4a"><div class="ttname"><a href="classTrackManager.html#a9a01e4444abbc76debf8b6586a798c4a">TrackManager::removeAllCachedData</a></div><div class="ttdeci">void removeAllCachedData()</div><div class="ttdoc">Removes all cached data from all tracks.</div><div class="ttdef"><b>Definition</b> track_manager.cpp:110</div></div>
+<div class="ttc" id="aclassTrackManager_html_aa813559a52fab8801e3129eea025a483"><div class="ttname"><a href="classTrackManager.html#aa813559a52fab8801e3129eea025a483">TrackManager::getAllTrackGroups</a></div><div class="ttdeci">const std::vector&lt; std::string &gt; &amp; getAllTrackGroups() const</div><div class="ttdoc">Returns a list of the names of all used track groups.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:126</div></div>
+<div class="ttc" id="aclassTrackManager_html_aa828c3c10f1b8032ee8eb2eed633bfcc"><div class="ttname"><a href="classTrackManager.html#aa828c3c10f1b8032ee8eb2eed633bfcc">TrackManager::getAllArenaGroups</a></div><div class="ttdeci">const std::vector&lt; std::string &gt; &amp; getAllArenaGroups(bool soccer_arena=false) const</div><div class="ttdoc">Returns a list of the names of all used arena groups.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:133</div></div>
+<div class="ttc" id="aclassTrackManager_html_aab98383455eb2f1b500846fb3bb1745c"><div class="ttname"><a href="classTrackManager.html#aab98383455eb2f1b500846fb3bb1745c">TrackManager::m_arena_group_names</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_arena_group_names</div><div class="ttdoc">List of the names of all groups containing arenas</div><div class="ttdef"><b>Definition</b> track_manager.hpp:69</div></div>
+<div class="ttc" id="aclassTrackManager_html_aac8b7200dd8c5a45982f44d7d55b9eaa"><div class="ttname"><a href="classTrackManager.html#aac8b7200dd8c5a45982f44d7d55b9eaa">TrackManager::getNumberOfTracks</a></div><div class="ttdeci">size_t getNumberOfTracks() const</div><div class="ttdoc">Returns the number of tracks.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:139</div></div>
+<div class="ttc" id="aclassTrackManager_html_aaccc0aa8175b99e3786ce1723ddfb033"><div class="ttname"><a href="classTrackManager.html#aaccc0aa8175b99e3786ce1723ddfb033">TrackManager::getTracksInGroup</a></div><div class="ttdeci">const std::vector&lt; int &gt; &amp; getTracksInGroup(const std::string &amp;g)</div><div class="ttdoc">Returns a list of all tracks in a given group.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:153</div></div>
+<div class="ttc" id="aclassTrackManager_html_aad7ee02944ddfdab412545fb7ba64e1c"><div class="ttname"><a href="classTrackManager.html#aad7ee02944ddfdab412545fb7ba64e1c">TrackManager::getArenasInGroup</a></div><div class="ttdeci">const std::vector&lt; int &gt; &amp; getArenasInGroup(const std::string &amp;g, bool soccer_arena=false)</div><div class="ttdoc">Returns a list of all arenas in a given group.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:161</div></div>
+<div class="ttc" id="aclassTrackManager_html_ab119723841c4834aef66d35fcca97a9f"><div class="ttname"><a href="classTrackManager.html#ab119723841c4834aef66d35fcca97a9f">TrackManager::removeTrackFromGroups</a></div><div class="ttdeci">void removeTrackFromGroups(TrackGroupType type, const Track *track)</div><div class="ttdoc">Remove the track from all groups it belongs to in a group type.</div><div class="ttdef"><b>Definition</b> track_manager.cpp:304</div></div>
+<div class="ttc" id="aclassTrackManager_html_ab8aadac48ca33770bc5a17fdd84ad6e8"><div class="ttname"><a href="classTrackManager.html#ab8aadac48ca33770bc5a17fdd84ad6e8">TrackManager::loadTrack</a></div><div class="ttdeci">bool loadTrack(const std::string &amp;dirname)</div><div class="ttdoc">Tries to load a track from a single directory.</div><div class="ttdef"><b>Definition</b> track_manager.cpp:203</div></div>
+<div class="ttc" id="aclassTrackManager_html_abd9cdc85b3a2377def8be18dcda109ba"><div class="ttname"><a href="classTrackManager.html#abd9cdc85b3a2377def8be18dcda109ba">TrackManager::m_soccer_arena_groups</a></div><div class="ttdeci">Group2Indices m_soccer_arena_groups</div><div class="ttdoc">List of all soccer arena indexes for each soccer arena group.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:63</div></div>
+<div class="ttc" id="aclassTrackManager_html_ac1dca1767192435c38dabe49c707361b"><div class="ttname"><a href="classTrackManager.html#ac1dca1767192435c38dabe49c707361b">TrackManager::isAvailable</a></div><div class="ttdeci">bool isAvailable(unsigned int n) const</div><div class="ttdoc">Checks if a certain track is available.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:149</div></div>
+<div class="ttc" id="aclassTrackManager_html_ac7ced67aabae269027f1186f2b4d10f0"><div class="ttname"><a href="classTrackManager.html#ac7ced67aabae269027f1186f2b4d10f0">TrackManager::getTrack</a></div><div class="ttdeci">Track * getTrack(unsigned int index) const</div><div class="ttdoc">Returns the track with a given index number.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:143</div></div>
+<div class="ttc" id="aclassTrackManager_html_acb5a9bc69d7126e6ad94f9aaec086221"><div class="ttname"><a href="classTrackManager.html#acb5a9bc69d7126e6ad94f9aaec086221">TrackManager::getNumberOfRaceTracks</a></div><div class="ttdeci">int getNumberOfRaceTracks() const</div><div class="ttdoc">Returns the number of racing tracks.</div><div class="ttdef"><b>Definition</b> track_manager.cpp:80</div></div>
+<div class="ttc" id="aclassTrackManager_html_ad28870fdf263fbf95917579d102f3bc4"><div class="ttname"><a href="classTrackManager.html#ad28870fdf263fbf95917579d102f3bc4">TrackManager::loadTrackList</a></div><div class="ttdeci">void loadTrackList()</div><div class="ttdoc">Load all .track files from all directories</div><div class="ttdef"><b>Definition</b> track_manager.cpp:153</div></div>
+<div class="ttc" id="aclassTrackManager_html_afc5febe1398b5c76bbfc8626af52244c"><div class="ttname"><a href="classTrackManager.html#afc5febe1398b5c76bbfc8626af52244c">TrackManager::m_track_search_path</a></div><div class="ttdeci">static std::vector&lt; std::string &gt; m_track_search_path</div><div class="ttdoc">All directories in which tracks are searched.</div><div class="ttdef"><b>Definition</b> track_manager.hpp:45</div></div>
+<div class="ttc" id="aclassTrackManager_html_afd66a1f79334f8e0b40f120a66f22b27"><div class="ttname"><a href="classTrackManager.html#afd66a1f79334f8e0b40f120a66f22b27">TrackManager::addTrackSearchDir</a></div><div class="ttdeci">static void addTrackSearchDir(const std::string &amp;dir)</div><div class="ttdoc">Adds a directory from which tracks are loaded.</div><div class="ttdef"><b>Definition</b> track_manager.cpp:71</div></div>
+<div class="ttc" id="aclassTrack_html"><div class="ttname"><a href="classTrack.html">Track</a></div><div class="ttdef"><b>Definition</b> track.hpp:115</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

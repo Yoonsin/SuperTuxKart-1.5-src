@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: network/rewind_queue.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>network</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">rewind_queue.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2017 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_REWIND_QUEUE_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_REWIND_QUEUE_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;utils/synchronised.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;list&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">class </span><a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">class </span><a class="code hl_class" href="classEventRewinder.html">EventRewinder</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">class </span><a class="code hl_class" href="classRewindInfo.html">RewindInfo</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">class </span>TimeStepInfo;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classRewindQueue.html">   36</a></span><span class="keyword">class </span><a class="code hl_function" href="classRewindQueue.html#a499db799b50cf9f9b70a24256c3d9ed4">RewindQueue</a></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">typedef</span> std::list&lt;RewindInfo*&gt; AllRewindInfo;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    AllRewindInfo m_all_rewind_info;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classRewindQueue.html#a3cbbe5b4b460cf796ad3b5658f319033">   49</a></span>    <span class="keyword">typedef</span> std::vector&lt;RewindInfo*&gt; <a class="code hl_typedef" href="classRewindQueue.html#a3cbbe5b4b460cf796ad3b5658f319033">AllNetworkRewindInfo</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_class" href="classSynchronised.html">Synchronised&lt;AllNetworkRewindInfo&gt;</a> m_network_events;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classRewindQueue.html#a94826c69005bdec261c1ebbba2f2fa96">   53</a></span>    AllRewindInfo::iterator <a class="code hl_variable" href="classRewindQueue.html#a94826c69005bdec261c1ebbba2f2fa96">m_current</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classRewindQueue.html#ad41d336a61c77bd1b4e6beaab6028153">   56</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classRewindQueue.html#ad41d336a61c77bd1b4e6beaab6028153">m_latest_confirmed_state_time</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRewindQueue.html#a664bf1d00d51eddaf914f144c6b49109">cleanupOldRewindInfo</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRewindQueue.html#a1251974146f0f25ebceb8f923aadcf7d">unitTesting</a>();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>         <a class="code hl_function" href="classRewindQueue.html#a499db799b50cf9f9b70a24256c3d9ed4">RewindQueue</a>();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <a class="code hl_function" href="classRewindQueue.html#af8c100198019849ce6200959149c01d7">~RewindQueue</a>();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRewindQueue.html#a3c5239909169b37a27c38dccebdd27a7">reset</a>();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRewindQueue.html#a127187d8ecaeb5f9a171a5fb0940fe65">addLocalEvent</a>(<a class="code hl_class" href="classEventRewinder.html">EventRewinder</a> *event_rewinder, <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                       <span class="keywordtype">bool</span> confirmed, <span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRewindQueue.html#a105d5c19737151a88c101fa09e42bcd6">addLocalState</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer, <span class="keywordtype">bool</span> confirmed, <span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRewindQueue.html#ac0a4a5e457541705ab867fb0a543b3c1">addNetworkEvent</a>(<a class="code hl_class" href="classEventRewinder.html">EventRewinder</a> *event_rewinder,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                         <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer, <span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRewindQueue.html#a9a10bad3fb5060f6478eb9558398a906">addNetworkState</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer, <span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span> addNetworkRewindInfo(<a class="code hl_class" href="classRewindInfo.html">RewindInfo</a>* ri)</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        m_network_events.lock();</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        m_network_events.getData().push_back(ri);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        m_network_events.unlock();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRewindQueue.html#a42b98b2f75e3d0dc68e7df0c72fa8865">mergeNetworkData</a>(<span class="keywordtype">int</span> world_ticks,  <span class="keywordtype">bool</span> *needs_rewind, </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                          <span class="keywordtype">int</span> *rewind_ticks);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRewindQueue.html#ad64303e8353364280013df1d994526e3">replayAllEvents</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">bool</span> isEmpty() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classRewindQueue.html#a9eaaeee615522095a0f6e058900f7e34">hasMoreRewindInfo</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">int</span>  <a class="code hl_function" href="classRewindQueue.html#a7f284b7627349329a1cd727904e78f02">undoUntil</a>(<span class="keywordtype">int</span> undo_ticks);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRewindQueue.html#a0432d892bd45d8fc08a5b095ef542014">insertRewindInfo</a>(<a class="code hl_class" href="classRewindInfo.html">RewindInfo</a> *ri);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="}">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classRewindQueue.html#a6032ab64c0f2f6f387ba3f4201481b53">   89</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classRewindQueue.html#a6032ab64c0f2f6f387ba3f4201481b53">getLatestConfirmedState</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classRewindQueue.html#ad41d336a61c77bd1b4e6beaab6028153">m_latest_confirmed_state_time</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
+</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00096" data-start="{" data-end="}">
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classRewindQueue.html#ad2051f53fa3812469ee28b913279414d">   96</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRewindQueue.html#ad2051f53fa3812469ee28b913279414d">next</a>()</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        assert(<a class="code hl_variable" href="classRewindQueue.html#a94826c69005bdec261c1ebbba2f2fa96">m_current</a> != m_all_rewind_info.end());</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <a class="code hl_variable" href="classRewindQueue.html#a94826c69005bdec261c1ebbba2f2fa96">m_current</a>++;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }   <span class="comment">// operator++</span></div>
+</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classRewindQueue.html#a6c81c4914caedd0f75548993dc0bb83b">  106</a></span>    <a class="code hl_class" href="classRewindInfo.html">RewindInfo</a>* <a class="code hl_function" href="classRewindQueue.html#a6c81c4914caedd0f75548993dc0bb83b">getCurrent</a>()</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">return</span> (<a class="code hl_variable" href="classRewindQueue.html#a94826c69005bdec261c1ebbba2f2fa96">m_current</a> != m_all_rewind_info.end() ) ? *<a class="code hl_variable" href="classRewindQueue.html#a94826c69005bdec261c1ebbba2f2fa96">m_current</a> : NULL;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    }   <span class="comment">// getNext</span></div>
+</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>};   <span class="comment">// RewindQueue</span></div>
+</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassEventRewinder_html"><div class="ttname"><a href="classEventRewinder.html">EventRewinder</a></div><div class="ttdoc">A simple class that defines an interface to event rewinding: an undo() function when going back in ti...</div><div class="ttdef"><b>Definition</b> event_rewinder.hpp:29</div></div>
+<div class="ttc" id="aclassRewindInfo_html"><div class="ttname"><a href="classRewindInfo.html">RewindInfo</a></div><div class="ttdoc">Used to store rewind information for a given time for all rewind instances.</div><div class="ttdef"><b>Definition</b> rewind_info.hpp:45</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a0432d892bd45d8fc08a5b095ef542014"><div class="ttname"><a href="classRewindQueue.html#a0432d892bd45d8fc08a5b095ef542014">RewindQueue::insertRewindInfo</a></div><div class="ttdeci">void insertRewindInfo(RewindInfo *ri)</div><div class="ttdoc">Inserts a RewindInfo object in the list of all events at the correct time.</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:95</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a105d5c19737151a88c101fa09e42bcd6"><div class="ttname"><a href="classRewindQueue.html#a105d5c19737151a88c101fa09e42bcd6">RewindQueue::addLocalState</a></div><div class="ttdeci">void addLocalState(BareNetworkString *buffer, bool confirmed, int ticks)</div><div class="ttdoc">Adds a state from the local simulation to the last created TimeStepInfo container with the current wo...</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:142</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a1251974146f0f25ebceb8f923aadcf7d"><div class="ttname"><a href="classRewindQueue.html#a1251974146f0f25ebceb8f923aadcf7d">RewindQueue::unitTesting</a></div><div class="ttdeci">static void unitTesting()</div><div class="ttdoc">Unit tests for RewindQueue.</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:417</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a127187d8ecaeb5f9a171a5fb0940fe65"><div class="ttname"><a href="classRewindQueue.html#a127187d8ecaeb5f9a171a5fb0940fe65">RewindQueue::addLocalEvent</a></div><div class="ttdeci">void addLocalEvent(EventRewinder *event_rewinder, BareNetworkString *buffer, bool confirmed, int ticks)</div><div class="ttdoc">Adds an event to the rewind data.</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:122</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a3c5239909169b37a27c38dccebdd27a7"><div class="ttname"><a href="classRewindQueue.html#a3c5239909169b37a27c38dccebdd27a7">RewindQueue::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Frees all saved state information and all destroyable rewinder.</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:64</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a3cbbe5b4b460cf796ad3b5658f319033"><div class="ttname"><a href="classRewindQueue.html#a3cbbe5b4b460cf796ad3b5658f319033">RewindQueue::AllNetworkRewindInfo</a></div><div class="ttdeci">std::vector&lt; RewindInfo * &gt; AllNetworkRewindInfo</div><div class="ttdoc">The list of all events received from the network.</div><div class="ttdef"><b>Definition</b> rewind_queue.hpp:49</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a42b98b2f75e3d0dc68e7df0c72fa8865"><div class="ttname"><a href="classRewindQueue.html#a42b98b2f75e3d0dc68e7df0c72fa8865">RewindQueue::mergeNetworkData</a></div><div class="ttdeci">void mergeNetworkData(int world_ticks, bool *needs_rewind, int *rewind_ticks)</div><div class="ttdoc">Merges thread-safe all data received from the network up to and including the current time (tick) wit...</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:201</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a499db799b50cf9f9b70a24256c3d9ed4"><div class="ttname"><a href="classRewindQueue.html#a499db799b50cf9f9b70a24256c3d9ed4">RewindQueue::RewindQueue</a></div><div class="ttdeci">RewindQueue()</div><div class="ttdoc">The RewindQueue stores one TimeStepInfo for each time step done.</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:46</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a6032ab64c0f2f6f387ba3f4201481b53"><div class="ttname"><a href="classRewindQueue.html#a6032ab64c0f2f6f387ba3f4201481b53">RewindQueue::getLatestConfirmedState</a></div><div class="ttdeci">int getLatestConfirmedState() const</div><div class="ttdoc">Returns the time of the latest confirmed state.</div><div class="ttdef"><b>Definition</b> rewind_queue.hpp:89</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a664bf1d00d51eddaf914f144c6b49109"><div class="ttname"><a href="classRewindQueue.html#a664bf1d00d51eddaf914f144c6b49109">RewindQueue::cleanupOldRewindInfo</a></div><div class="ttdeci">void cleanupOldRewindInfo(int ticks)</div><div class="ttdoc">Deletes all states and event before the given time.</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:328</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a6c81c4914caedd0f75548993dc0bb83b"><div class="ttname"><a href="classRewindQueue.html#a6c81c4914caedd0f75548993dc0bb83b">RewindQueue::getCurrent</a></div><div class="ttdeci">RewindInfo * getCurrent()</div><div class="ttdoc">Returns the current RewindInfo.</div><div class="ttdef"><b>Definition</b> rewind_queue.hpp:106</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a7f284b7627349329a1cd727904e78f02"><div class="ttname"><a href="classRewindQueue.html#a7f284b7627349329a1cd727904e78f02">RewindQueue::undoUntil</a></div><div class="ttdeci">int undoUntil(int undo_ticks)</div><div class="ttdoc">Rewinds the rewind queue and undos all events/states stored.</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:366</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a94826c69005bdec261c1ebbba2f2fa96"><div class="ttname"><a href="classRewindQueue.html#a94826c69005bdec261c1ebbba2f2fa96">RewindQueue::m_current</a></div><div class="ttdeci">AllRewindInfo::iterator m_current</div><div class="ttdoc">Iterator to the curren time step info to be handled.</div><div class="ttdef"><b>Definition</b> rewind_queue.hpp:53</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a9a10bad3fb5060f6478eb9558398a906"><div class="ttname"><a href="classRewindQueue.html#a9a10bad3fb5060f6478eb9558398a906">RewindQueue::addNetworkState</a></div><div class="ttdeci">void addNetworkState(BareNetworkString *buffer, int ticks)</div><div class="ttdoc">Adds a state to the list of network rewind data.</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:181</div></div>
+<div class="ttc" id="aclassRewindQueue_html_a9eaaeee615522095a0f6e058900f7e34"><div class="ttname"><a href="classRewindQueue.html#a9eaaeee615522095a0f6e058900f7e34">RewindQueue::hasMoreRewindInfo</a></div><div class="ttdeci">bool hasMoreRewindInfo() const</div><div class="ttdoc">Returns true if there is at least one more RewindInfo available.</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:354</div></div>
+<div class="ttc" id="aclassRewindQueue_html_ac0a4a5e457541705ab867fb0a543b3c1"><div class="ttname"><a href="classRewindQueue.html#ac0a4a5e457541705ab867fb0a543b3c1">RewindQueue::addNetworkEvent</a></div><div class="ttdeci">void addNetworkEvent(EventRewinder *event_rewinder, BareNetworkString *buffer, int ticks)</div><div class="ttdoc">Adds an event to the list of network rewind data.</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:162</div></div>
+<div class="ttc" id="aclassRewindQueue_html_ad2051f53fa3812469ee28b913279414d"><div class="ttname"><a href="classRewindQueue.html#ad2051f53fa3812469ee28b913279414d">RewindQueue::next</a></div><div class="ttdeci">void next()</div><div class="ttdoc">Sets the current element to be the next one and returns the next RewindInfo element.</div><div class="ttdef"><b>Definition</b> rewind_queue.hpp:96</div></div>
+<div class="ttc" id="aclassRewindQueue_html_ad41d336a61c77bd1b4e6beaab6028153"><div class="ttname"><a href="classRewindQueue.html#ad41d336a61c77bd1b4e6beaab6028153">RewindQueue::m_latest_confirmed_state_time</a></div><div class="ttdeci">int m_latest_confirmed_state_time</div><div class="ttdoc">Time at which the latest confirmed state is at.</div><div class="ttdef"><b>Definition</b> rewind_queue.hpp:56</div></div>
+<div class="ttc" id="aclassRewindQueue_html_ad64303e8353364280013df1d994526e3"><div class="ttname"><a href="classRewindQueue.html#ad64303e8353364280013df1d994526e3">RewindQueue::replayAllEvents</a></div><div class="ttdeci">void replayAllEvents(int ticks)</div><div class="ttdoc">Replays all events (not states) that happened at the specified time.</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:397</div></div>
+<div class="ttc" id="aclassRewindQueue_html_af8c100198019849ce6200959149c01d7"><div class="ttname"><a href="classRewindQueue.html#af8c100198019849ce6200959149c01d7">RewindQueue::~RewindQueue</a></div><div class="ttdeci">~RewindQueue()</div><div class="ttdoc">Frees all saved state information.</div><div class="ttdef"><b>Definition</b> rewind_queue.cpp:55</div></div>
+<div class="ttc" id="aclassSynchronised_html"><div class="ttname"><a href="classSynchronised.html">Synchronised</a></div><div class="ttdoc">A variable that is automatically synchronised using pthreads mutex.</div><div class="ttdef"><b>Definition</b> synchronised.hpp:28</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

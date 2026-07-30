@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: network/network_player_profile.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>network</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">network_player_profile.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2013-2015 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef HEADER_NETWORK_PLAYER_PROFILE</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define HEADER_NETWORK_PLAYER_PROFILE</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;network/kart_data.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">utils/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;irrString.h&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">class </span><a class="code hl_class" href="classSTKPeer.html">STKPeer</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">enum</span> KartTeam : int8_t;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">enum</span> <a class="code hl_enumeration" href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a> : uint8_t;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html">   41</a></span><span class="keyword">class </span>NetworkPlayerProfile</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    std::weak_ptr&lt;STKPeer&gt; m_peer;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#a48a9c97fe7204b9003aeee76eba9cc91">   47</a></span>    irr::core::stringw <a class="code hl_variable" href="classNetworkPlayerProfile.html#a48a9c97fe7204b9003aeee76eba9cc91">m_player_name</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#afe478ea82a4acc45ca08aa05533614e2">   50</a></span>    uint32_t <a class="code hl_variable" href="classNetworkPlayerProfile.html#afe478ea82a4acc45ca08aa05533614e2">m_host_id</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">float</span> m_default_kart_color;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    uint32_t m_online_id;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#afa015df7dcba7fc473baacb8ebc7196f">   57</a></span>    std::atomic&lt;HandicapLevel&gt; <a class="code hl_variable" href="classNetworkPlayerProfile.html#afa015df7dcba7fc473baacb8ebc7196f">m_handicap</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#a8cdea1e0e20d8de6bb0aa938c6ab3f65">   60</a></span>    std::string <a class="code hl_variable" href="classNetworkPlayerProfile.html#a8cdea1e0e20d8de6bb0aa938c6ab3f65">m_kart_name</a>; </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#a0b5eb37fa9c63d76d4995129a6852592">   63</a></span>    uint8_t <a class="code hl_variable" href="classNetworkPlayerProfile.html#a0b5eb37fa9c63d76d4995129a6852592">m_local_player_id</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#a8ae2a2692e1c6c5af53bc8be10c481d3">   66</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classNetworkPlayerProfile.html#a8ae2a2692e1c6c5af53bc8be10c481d3">m_score</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#ae5af7a16f981eb1922996d5408a62dcf">   69</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classNetworkPlayerProfile.html#ae5af7a16f981eb1922996d5408a62dcf">m_overall_time</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    std::atomic&lt;KartTeam&gt; m_team;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#a7e0b5163ef93be2a9c27a5e3ba59532e">   74</a></span>    std::string <a class="code hl_variable" href="classNetworkPlayerProfile.html#a7e0b5163ef93be2a9c27a5e3ba59532e">m_country_code</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <a class="code hl_class" href="classKartData.html">KartData</a> m_kart_data;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">static</span> std::shared_ptr&lt;NetworkPlayerProfile&gt;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        getReservedProfile(KartTeam team)</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">return</span> std::make_shared&lt;NetworkPlayerProfile&gt;(team);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">/* Placeholder profile for reserved player in live join, which its host id</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">     * is uint32_t max. */</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <a class="code hl_class" href="classNetworkPlayerProfile.html">NetworkPlayerProfile</a>(KartTeam team)</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <a class="code hl_variable" href="classNetworkPlayerProfile.html#a8cdea1e0e20d8de6bb0aa938c6ab3f65">m_kart_name</a>             = <span class="stringliteral">&quot;tux&quot;</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <a class="code hl_variable" href="classNetworkPlayerProfile.html#afe478ea82a4acc45ca08aa05533614e2">m_host_id</a>               = std::numeric_limits&lt;uint32_t&gt;::max();</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        m_default_kart_color    = 0.0f;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        m_online_id             = 0;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <a class="code hl_variable" href="classNetworkPlayerProfile.html#afa015df7dcba7fc473baacb8ebc7196f">m_handicap</a>.store((<a class="code hl_enumeration" href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a>)0);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <a class="code hl_variable" href="classNetworkPlayerProfile.html#a0b5eb37fa9c63d76d4995129a6852592">m_local_player_id</a>       = 0;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        m_team.store(team);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        resetGrandPrixData();</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    NetworkPlayerProfile(std::shared_ptr&lt;STKPeer&gt; peer,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                         <span class="keyword">const</span> irr::core::stringw &amp;name, uint32_t host_id,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                         <span class="keywordtype">float</span> default_kart_color, uint32_t online_id,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                         <a class="code hl_enumeration" href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a> handicap,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                         uint8_t local_player_id, KartTeam team,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                         <span class="keyword">const</span> std::string&amp; country_code)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        m_peer                  = peer;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <a class="code hl_variable" href="classNetworkPlayerProfile.html#a48a9c97fe7204b9003aeee76eba9cc91">m_player_name</a>           = name;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <a class="code hl_variable" href="classNetworkPlayerProfile.html#afe478ea82a4acc45ca08aa05533614e2">m_host_id</a>               = host_id;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        m_default_kart_color    = default_kart_color;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        m_online_id             = online_id;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <a class="code hl_variable" href="classNetworkPlayerProfile.html#afa015df7dcba7fc473baacb8ebc7196f">m_handicap</a>.store(handicap);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <a class="code hl_variable" href="classNetworkPlayerProfile.html#a0b5eb37fa9c63d76d4995129a6852592">m_local_player_id</a>       = local_player_id;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        m_team.store(team);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <a class="code hl_variable" href="classNetworkPlayerProfile.html#a7e0b5163ef93be2a9c27a5e3ba59532e">m_country_code</a>          = country_code;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        resetGrandPrixData();</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    ~NetworkPlayerProfile() {}</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNetworkPlayerProfile.html#ae88f33a03f220ec73d854e93a8cd490d">isLocalPlayer</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#ad09b67b040859fab884ad31957b6439c">  123</a></span>    uint32_t <a class="code hl_function" href="classNetworkPlayerProfile.html#ad09b67b040859fab884ad31957b6439c">getHostId</a>()<span class="keyword"> const                            </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkPlayerProfile.html#afe478ea82a4acc45ca08aa05533614e2">m_host_id</a>; }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00126" data-start="{" data-end="}">
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#a80bf528389ccd6860e50dec38df8f0ce">  126</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkPlayerProfile.html#a80bf528389ccd6860e50dec38df8f0ce">setKartName</a>(<span class="keyword">const</span> std::string &amp;kart_name)</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <a class="code hl_variable" href="classNetworkPlayerProfile.html#a8cdea1e0e20d8de6bb0aa938c6ab3f65">m_kart_name</a> = kart_name;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        m_kart_data = <a class="code hl_class" href="classKartData.html">KartData</a>();</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
+</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#a17055a95206a86ad9023529cf6938b55">  133</a></span>    <span class="keyword">const</span> std::string &amp;<a class="code hl_function" href="classNetworkPlayerProfile.html#a17055a95206a86ad9023529cf6938b55">getKartName</a>()<span class="keyword"> const              </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkPlayerProfile.html#a8cdea1e0e20d8de6bb0aa938c6ab3f65">m_kart_name</a>; }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#a464074e7c5e66fb81077508ae862804b">  136</a></span>    uint8_t <a class="code hl_function" href="classNetworkPlayerProfile.html#a464074e7c5e66fb81077508ae862804b">getLocalPlayerId</a>()<span class="keyword"> const              </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkPlayerProfile.html#a0b5eb37fa9c63d76d4995129a6852592">m_local_player_id</a>; }</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#ab9f345176af75c8a4e2454b5d6e9bd29">  139</a></span>    <a class="code hl_enumeration" href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a> <a class="code hl_function" href="classNetworkPlayerProfile.html#ab9f345176af75c8a4e2454b5d6e9bd29">getHandicap</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkPlayerProfile.html#afa015df7dcba7fc473baacb8ebc7196f">m_handicap</a>.load(); }</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordtype">void</span> setHandicap(<a class="code hl_enumeration" href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a> h) { <a class="code hl_variable" href="classNetworkPlayerProfile.html#afa015df7dcba7fc473baacb8ebc7196f">m_handicap</a>.store(h); }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classNetworkPlayerProfile.html#a04443213b2c3ef4989e711cc358d4b4d">  144</a></span>    <span class="keyword">const</span> irr::core::stringw&amp; <a class="code hl_function" href="classNetworkPlayerProfile.html#a04443213b2c3ef4989e711cc358d4b4d">getName</a>()<span class="keyword"> const         </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkPlayerProfile.html#a48a9c97fe7204b9003aeee76eba9cc91">m_player_name</a>; }</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">float</span> getDefaultKartColor()<span class="keyword"> const          </span>{ <span class="keywordflow">return</span> m_default_kart_color; }</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    uint32_t getOnlineId()<span class="keyword"> const                        </span>{ <span class="keywordflow">return</span> m_online_id; }</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordtype">bool</span> isOfflineAccount()<span class="keyword"> const                  </span>{ <span class="keywordflow">return</span> m_online_id == 0; }</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    std::shared_ptr&lt;STKPeer&gt; getPeer()<span class="keyword"> const          </span>{ <span class="keywordflow">return</span> m_peer.lock(); }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordtype">int</span> getScore()<span class="keyword"> const                                    </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkPlayerProfile.html#a8ae2a2692e1c6c5af53bc8be10c481d3">m_score</a>; }</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordtype">float</span> getOverallTime()<span class="keyword"> const                     </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkPlayerProfile.html#ae5af7a16f981eb1922996d5408a62dcf">m_overall_time</a>; }</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordtype">void</span> setScore(<span class="keywordtype">int</span> score)                               { <a class="code hl_variable" href="classNetworkPlayerProfile.html#a8ae2a2692e1c6c5af53bc8be10c481d3">m_score</a> = score; }</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordtype">void</span> setOverallTime(<span class="keywordtype">float</span> time)                  { <a class="code hl_variable" href="classNetworkPlayerProfile.html#ae5af7a16f981eb1922996d5408a62dcf">m_overall_time</a> = time; }</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordtype">void</span> resetGrandPrixData()</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    {</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <a class="code hl_variable" href="classNetworkPlayerProfile.html#a8ae2a2692e1c6c5af53bc8be10c481d3">m_score</a> = 0;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <a class="code hl_variable" href="classNetworkPlayerProfile.html#ae5af7a16f981eb1922996d5408a62dcf">m_overall_time</a> = 0.0f;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    }</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">void</span> setTeam(KartTeam team)                         { m_team.store(team); }</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    KartTeam getTeam()<span class="keyword"> const                          </span>{ <span class="keywordflow">return</span> m_team.load(); }</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keyword">const</span> std::string&amp; getCountryCode()<span class="keyword"> const        </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkPlayerProfile.html#a7e0b5163ef93be2a9c27a5e3ba59532e">m_country_code</a>; }</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keywordtype">void</span> setKartData(<span class="keyword">const</span> KartData&amp; data)              { m_kart_data = data; }</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keyword">const</span> KartData&amp; getKartData()<span class="keyword"> const                 </span>{ <span class="keywordflow">return</span> m_kart_data; }</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>};   <span class="comment">// class NetworkPlayerProfile</span></div>
+</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">#endif </span><span class="comment">// HEADER_NETWORK_PLAYER_PROFILE</span></div>
+<div class="ttc" id="aclassKartData_html"><div class="ttname"><a href="classKartData.html">KartData</a></div><div class="ttdef"><b>Definition</b> kart_data.hpp:12</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html"><div class="ttname"><a href="classNetworkPlayerProfile.html">NetworkPlayerProfile</a></div><div class="ttdoc">Contains the profile of a player.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:42</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_a04443213b2c3ef4989e711cc358d4b4d"><div class="ttname"><a href="classNetworkPlayerProfile.html#a04443213b2c3ef4989e711cc358d4b4d">NetworkPlayerProfile::getName</a></div><div class="ttdeci">const irr::core::stringw &amp; getName() const</div><div class="ttdoc">Returns the name of this player.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:144</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_a0b5eb37fa9c63d76d4995129a6852592"><div class="ttname"><a href="classNetworkPlayerProfile.html#a0b5eb37fa9c63d76d4995129a6852592">NetworkPlayerProfile::m_local_player_id</a></div><div class="ttdeci">uint8_t m_local_player_id</div><div class="ttdoc">The local player id relative to each peer.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:63</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_a17055a95206a86ad9023529cf6938b55"><div class="ttname"><a href="classNetworkPlayerProfile.html#a17055a95206a86ad9023529cf6938b55">NetworkPlayerProfile::getKartName</a></div><div class="ttdeci">const std::string &amp; getKartName() const</div><div class="ttdoc">Returns the name of the kart this player has selected.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:133</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_a464074e7c5e66fb81077508ae862804b"><div class="ttname"><a href="classNetworkPlayerProfile.html#a464074e7c5e66fb81077508ae862804b">NetworkPlayerProfile::getLocalPlayerId</a></div><div class="ttdeci">uint8_t getLocalPlayerId() const</div><div class="ttdoc">Retuens the local player id for this player.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:136</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_a48a9c97fe7204b9003aeee76eba9cc91"><div class="ttname"><a href="classNetworkPlayerProfile.html#a48a9c97fe7204b9003aeee76eba9cc91">NetworkPlayerProfile::m_player_name</a></div><div class="ttdeci">irr::core::stringw m_player_name</div><div class="ttdoc">The name of the player.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:47</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_a7e0b5163ef93be2a9c27a5e3ba59532e"><div class="ttname"><a href="classNetworkPlayerProfile.html#a7e0b5163ef93be2a9c27a5e3ba59532e">NetworkPlayerProfile::m_country_code</a></div><div class="ttdeci">std::string m_country_code</div><div class="ttdoc">2-letter country code of player.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:74</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_a80bf528389ccd6860e50dec38df8f0ce"><div class="ttname"><a href="classNetworkPlayerProfile.html#a80bf528389ccd6860e50dec38df8f0ce">NetworkPlayerProfile::setKartName</a></div><div class="ttdeci">void setKartName(const std::string &amp;kart_name)</div><div class="ttdoc">Sets the kart name for this player.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:126</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_a8ae2a2692e1c6c5af53bc8be10c481d3"><div class="ttname"><a href="classNetworkPlayerProfile.html#a8ae2a2692e1c6c5af53bc8be10c481d3">NetworkPlayerProfile::m_score</a></div><div class="ttdeci">int m_score</div><div class="ttdoc">Score if grand prix.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:66</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_a8cdea1e0e20d8de6bb0aa938c6ab3f65"><div class="ttname"><a href="classNetworkPlayerProfile.html#a8cdea1e0e20d8de6bb0aa938c6ab3f65">NetworkPlayerProfile::m_kart_name</a></div><div class="ttdeci">std::string m_kart_name</div><div class="ttdoc">The selected kart id.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:60</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_ab9f345176af75c8a4e2454b5d6e9bd29"><div class="ttname"><a href="classNetworkPlayerProfile.html#ab9f345176af75c8a4e2454b5d6e9bd29">NetworkPlayerProfile::getHandicap</a></div><div class="ttdeci">HandicapLevel getHandicap() const</div><div class="ttdoc">Returns the player&#39;s handicap.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:139</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_ad09b67b040859fab884ad31957b6439c"><div class="ttname"><a href="classNetworkPlayerProfile.html#ad09b67b040859fab884ad31957b6439c">NetworkPlayerProfile::getHostId</a></div><div class="ttdeci">uint32_t getHostId() const</div><div class="ttdoc">Returns the host id of this player.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:123</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_ae5af7a16f981eb1922996d5408a62dcf"><div class="ttname"><a href="classNetworkPlayerProfile.html#ae5af7a16f981eb1922996d5408a62dcf">NetworkPlayerProfile::m_overall_time</a></div><div class="ttdeci">float m_overall_time</div><div class="ttdoc">Overall time if grand prix.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:69</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_ae88f33a03f220ec73d854e93a8cd490d"><div class="ttname"><a href="classNetworkPlayerProfile.html#ae88f33a03f220ec73d854e93a8cd490d">NetworkPlayerProfile::isLocalPlayer</a></div><div class="ttdeci">bool isLocalPlayer() const</div><div class="ttdoc">Returns true if this player is local, i.e.</div><div class="ttdef"><b>Definition</b> network_player_profile.cpp:28</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_afa015df7dcba7fc473baacb8ebc7196f"><div class="ttname"><a href="classNetworkPlayerProfile.html#afa015df7dcba7fc473baacb8ebc7196f">NetworkPlayerProfile::m_handicap</a></div><div class="ttdeci">std::atomic&lt; HandicapLevel &gt; m_handicap</div><div class="ttdoc">Handicap level of this player.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:57</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html_afe478ea82a4acc45ca08aa05533614e2"><div class="ttname"><a href="classNetworkPlayerProfile.html#afe478ea82a4acc45ca08aa05533614e2">NetworkPlayerProfile::m_host_id</a></div><div class="ttdeci">uint32_t m_host_id</div><div class="ttdoc">Host id of this player.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:50</div></div>
+<div class="ttc" id="aclassSTKPeer_html"><div class="ttname"><a href="classSTKPeer.html">STKPeer</a></div><div class="ttdoc">Represents a peer. This class is used to interface the ENetPeer structure.</div><div class="ttdef"><b>Definition</b> stk_peer.hpp:76</div></div>
+<div class="ttc" id="aremote__kart__info_8hpp_html_a2fd442f27ee994082c435f49c9410f55"><div class="ttname"><a href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a></div><div class="ttdeci">HandicapLevel</div><div class="ttdoc">Handicap per player.</div><div class="ttdef"><b>Definition</b> remote_kart_info.hpp:43</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Declares the general types that are used by the network.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

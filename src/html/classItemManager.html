@@ -1,0 +1,853 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: ItemManager 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-static-methods">정적 Public 멤버 함수</a> &#124;
+<a href="#pro-types">Protected 타입</a> &#124;
+<a href="#pro-methods">Protected 멤버 함수</a> &#124;
+<a href="#pro-attribs">Protected 속성</a> &#124;
+<a href="#pri-static-methods">정적 Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="#pri-static-attribs">정적 Private 속성</a> &#124;
+<a href="classItemManager-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">ItemManager 클래스 참조<div class="ingroups"><a class="el" href="group__items.html">Items</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+ItemManager에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classItemManager__inherit__graph.png" border="0" usemap="#aItemManager_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aItemManager_inherit__map" id="aItemManager_inherit__map">
+<area shape="rect" title=" " alt="" coords="30,80,127,107"/>
+<area shape="rect" href="classNetworkItemManager.html" title="The network item manager is responsible for handling all network related item manager tasks &#45; synchro..." alt="" coords="5,155,152,181"/>
+<area shape="poly" title=" " alt="" coords="80,121,81,155,76,153,77,124"/>
+<area shape="rect" href="classNoCopy.html" title="Utility class, you can inherit from this class to disallow the assignment operator and copy construct..." alt="" coords="44,5,113,32"/>
+<area shape="poly" title=" " alt="" coords="80,45,81,80,76,79,77,50"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a1eab68c1b49e695ba96330da469b23cc" id="r_a1eab68c1b49e695ba96330da469b23cc"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1eab68c1b49e695ba96330da469b23cc">ItemManager</a> ()</td></tr>
+<tr class="memdesc:a1eab68c1b49e695ba96330da469b23cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new instance of the item manager.  <br /></td></tr>
+<tr class="memitem:aa1f280c99f977a355f1143b11694bade" id="r_aa1f280c99f977a355f1143b11694bade"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="#aa1f280c99f977a355f1143b11694bade">~ItemManager</a> ()</td></tr>
+<tr class="memdesc:aa1f280c99f977a355f1143b11694bade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
+<tr class="memitem:a92ca18085f774a46ea4d4a9fed3f1d4d" id="r_a92ca18085f774a46ea4d4a9fed3f1d4d"><td class="memItemLeft">virtual <a class="el" href="classItem.html">Item</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a92ca18085f774a46ea4d4a9fed3f1d4d">placeItem</a> (<a class="el" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemState::ItemType</a> type, const <a class="el" href="classVec3.html">Vec3</a> &amp;xyz, const <a class="el" href="classVec3.html">Vec3</a> &amp;normal)</td></tr>
+<tr class="memdesc:a92ca18085f774a46ea4d4a9fed3f1d4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Places a new item on the track/arena.  <br /></td></tr>
+<tr class="memitem:a9304df661a2e747bb1f94bbc7d89d04e" id="r_a9304df661a2e747bb1f94bbc7d89d04e"><td class="memItemLeft">virtual <a class="el" href="classItem.html">Item</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a9304df661a2e747bb1f94bbc7d89d04e">dropNewItem</a> (<a class="el" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemState::ItemType</a> type, const <a class="el" href="classAbstractKart.html">AbstractKart</a> *parent, const <a class="el" href="classVec3.html">Vec3</a> *server_xyz=NULL, const <a class="el" href="classVec3.html">Vec3</a> *normal=NULL)</td></tr>
+<tr class="memdesc:a9304df661a2e747bb1f94bbc7d89d04e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new item at the location of the kart (e.g.  <br /></td></tr>
+<tr class="memitem:a4554d142e4f6eb72a66aa14b0c761f21" id="r_a4554d142e4f6eb72a66aa14b0c761f21"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4554d142e4f6eb72a66aa14b0c761f21">update</a> (int ticks)</td></tr>
+<tr class="memdesc:a4554d142e4f6eb72a66aa14b0c761f21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates all items, and handles switching items back if the switch time is over.  <br /></td></tr>
+<tr class="memitem:a03aee070af9d922b9cdcd122d0139d4a" id="r_a03aee070af9d922b9cdcd122d0139d4a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a03aee070af9d922b9cdcd122d0139d4a">updateGraphics</a> (float dt)</td></tr>
+<tr class="memdesc:a03aee070af9d922b9cdcd122d0139d4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the graphics, called once per rendered frame.  <br /></td></tr>
+<tr class="memitem:a2b80a6ff02180122fea90ac2b81863ee" id="r_a2b80a6ff02180122fea90ac2b81863ee"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2b80a6ff02180122fea90ac2b81863ee">checkItemHit</a> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memdesc:a2b80a6ff02180122fea90ac2b81863ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if any item was collected by the given kart.  <br /></td></tr>
+<tr class="memitem:a1ed5f593b58f442131dc16f13bbff03f" id="r_a1ed5f593b58f442131dc16f13bbff03f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1ed5f593b58f442131dc16f13bbff03f">reset</a> ()</td></tr>
+<tr class="memdesc:a1ed5f593b58f442131dc16f13bbff03f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets all items and removes bubble gum that is stuck on the track.  <br /></td></tr>
+<tr class="memitem:a689147511031c2a334855b8ca4248cd0" id="r_a689147511031c2a334855b8ca4248cd0"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a689147511031c2a334855b8ca4248cd0">collectedItem</a> (<a class="el" href="classItemState.html">ItemState</a> *item, <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memdesc:a689147511031c2a334855b8ca4248cd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set an item as collected.  <br /></td></tr>
+<tr class="memitem:afa3bdf736edaf368b32299ede40d4631" id="r_afa3bdf736edaf368b32299ede40d4631"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#afa3bdf736edaf368b32299ede40d4631">switchItems</a> ()</td></tr>
+<tr class="memdesc:afa3bdf736edaf368b32299ede40d4631"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switches all items: boxes become bananas and vice versa for a certain amount of time (as defined in stk_config.xml).  <br /></td></tr>
+<tr class="memitem:a35caeb1c03b2fdc2ba5c8da73cec1dae" id="r_a35caeb1c03b2fdc2ba5c8da73cec1dae"><td class="memItemLeft"><a id="a35caeb1c03b2fdc2ba5c8da73cec1dae" name="a35caeb1c03b2fdc2ba5c8da73cec1dae"></a>
+bool&#160;</td><td class="memItemRight"><b>randomItemsForArena</b> (const AlignedArray&lt; btTransform &gt; &amp;pos)</td></tr>
+<tr class="memitem:a7ee9f7f48d8ab83589e0616c8b96d7c2" id="r_a7ee9f7f48d8ab83589e0616c8b96d7c2"><td class="memItemLeft"><a id="a7ee9f7f48d8ab83589e0616c8b96d7c2" name="a7ee9f7f48d8ab83589e0616c8b96d7c2"></a>
+bool&#160;</td><td class="memItemRight"><b>areItemsSwitched</b> ()</td></tr>
+<tr class="memdesc:a7ee9f7f48d8ab83589e0616c8b96d7c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the items are switched atm. <br /></td></tr>
+<tr class="memitem:a5ab8c6fb9adc3729b7d2acf5c63fe2d4" id="r_a5ab8c6fb9adc3729b7d2acf5c63fe2d4"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a5ab8c6fb9adc3729b7d2acf5c63fe2d4">setItemConfirmationTime</a> (std::weak_ptr&lt; <a class="el" href="classSTKPeer.html">STKPeer</a> &gt; peer, int ticks)</td></tr>
+<tr class="memdesc:a5ab8c6fb9adc3729b7d2acf5c63fe2d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Only used in the <a class="el" href="classNetworkItemManager.html" title="The network item manager is responsible for handling all network related item manager tasks - synchro...">NetworkItemManager</a>.  <br /></td></tr>
+<tr class="memitem:a875820151076197ab97ab2427457f18a" id="r_a875820151076197ab97ab2427457f18a"><td class="memItemLeft"><a id="a875820151076197ab97ab2427457f18a" name="a875820151076197ab97ab2427457f18a"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>getNumberOfItems</b> () const</td></tr>
+<tr class="memdesc:a875820151076197ab97ab2427457f18a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of items. <br /></td></tr>
+<tr class="memitem:a99223e30fca3d0a30602af92265f530c" id="r_a99223e30fca3d0a30602af92265f530c"><td class="memItemLeft"><a id="a99223e30fca3d0a30602af92265f530c" name="a99223e30fca3d0a30602af92265f530c"></a>
+const <a class="el" href="classItemState.html">ItemState</a> *&#160;</td><td class="memItemRight"><b>getItem</b> (unsigned int n) const</td></tr>
+<tr class="memdesc:a99223e30fca3d0a30602af92265f530c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the n-th item. <br /></td></tr>
+<tr class="memitem:ab59f2c27ddf147b1836310551472d321" id="r_ab59f2c27ddf147b1836310551472d321"><td class="memItemLeft"><a id="ab59f2c27ddf147b1836310551472d321" name="ab59f2c27ddf147b1836310551472d321"></a>
+<a class="el" href="classItemState.html">ItemState</a> *&#160;</td><td class="memItemRight"><b>getItem</b> (unsigned int n)</td></tr>
+<tr class="memdesc:ab59f2c27ddf147b1836310551472d321"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the n-th item. <br /></td></tr>
+<tr class="memitem:a6036e5b52cc34d93bc1d9a2001548c03" id="r_a6036e5b52cc34d93bc1d9a2001548c03"><td class="memItemLeft"><a id="a6036e5b52cc34d93bc1d9a2001548c03" name="a6036e5b52cc34d93bc1d9a2001548c03"></a>
+bool&#160;</td><td class="memItemRight"><b>itemExists</b> (const <a class="el" href="classItemState.html">ItemState</a> *is) const</td></tr>
+<tr class="memitem:a65b4832b0a7c6a39117a2bde7ebd9494" id="r_a65b4832b0a7c6a39117a2bde7ebd9494"><td class="memItemLeft"><a id="a65b4832b0a7c6a39117a2bde7ebd9494" name="a65b4832b0a7c6a39117a2bde7ebd9494"></a>
+const <a class="el" href="#a0009619b3e77b228448b3fb1c1bfb93e">AllItemTypes</a> &amp;&#160;</td><td class="memItemRight"><b>getItemsInQuads</b> (unsigned int n) const</td></tr>
+<tr class="memdesc:a65b4832b0a7c6a39117a2bde7ebd9494"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the array of all items on the specified quad. <br /></td></tr>
+<tr class="memitem:af3e4748a18e3050f79cdcc4f5c9bf07c" id="r_af3e4748a18e3050f79cdcc4f5c9bf07c"><td class="memItemLeft"><a id="af3e4748a18e3050f79cdcc4f5c9bf07c" name="af3e4748a18e3050f79cdcc4f5c9bf07c"></a>
+<a class="el" href="classItem.html">Item</a> *&#160;</td><td class="memItemRight"><b>getFirstItemInQuad</b> (unsigned int n) const</td></tr>
+<tr class="memdesc:af3e4748a18e3050f79cdcc4f5c9bf07c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the first item (NULL if none) on the specified quad <br /></td></tr>
+<tr class="memitem:a09937ec21e0ef5b7547f8a8df4d8148a" id="r_a09937ec21e0ef5b7547f8a8df4d8148a"><td class="memItemLeft">unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#a09937ec21e0ef5b7547f8a8df4d8148a">insertItem</a> (<a class="el" href="classItem.html">Item</a> *item)</td></tr>
+<tr class="memdesc:a09937ec21e0ef5b7547f8a8df4d8148a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts the new item into the items management data structures, if possible reusing an existing, unused entry (e.g.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:aeb81b8b89e0a69876091ca2c658bbe52" id="r_aeb81b8b89e0a69876091ca2c658bbe52"><td class="memItemLeft"><a id="aeb81b8b89e0a69876091ca2c658bbe52" name="aeb81b8b89e0a69876091ca2c658bbe52"></a>
+static void&#160;</td><td class="memItemRight"><b>loadDefaultItemMeshes</b> ()</td></tr>
+<tr class="memdesc:aeb81b8b89e0a69876091ca2c658bbe52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the default item meshes (high- and low-resolution). <br /></td></tr>
+<tr class="memitem:a080fbb686e446507a6352d36c44a513a" id="r_a080fbb686e446507a6352d36c44a513a"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a080fbb686e446507a6352d36c44a513a">removeTextures</a> ()</td></tr>
+<tr class="memdesc:a080fbb686e446507a6352d36c44a513a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean up all textures.  <br /></td></tr>
+<tr class="memitem:a66f01357e8ca85ef0e78131951d4b596" id="r_a66f01357e8ca85ef0e78131951d4b596"><td class="memItemLeft"><a id="a66f01357e8ca85ef0e78131951d4b596" name="a66f01357e8ca85ef0e78131951d4b596"></a>
+static void&#160;</td><td class="memItemRight"><b>updateRandomSeed</b> (uint32_t seed_number)</td></tr>
+<tr class="memitem:a056a8a22f96cb3e58457e6541ea3daab" id="r_a056a8a22f96cb3e58457e6541ea3daab"><td class="memItemLeft"><a id="a056a8a22f96cb3e58457e6541ea3daab" name="a056a8a22f96cb3e58457e6541ea3daab"></a>
+static uint32_t&#160;</td><td class="memItemRight"><b>getRandomSeed</b> ()</td></tr>
+<tr class="memitem:a44e34f2d7b285a01ec9581462a356d1d" id="r_a44e34f2d7b285a01ec9581462a356d1d"><td class="memItemLeft"><a id="a44e34f2d7b285a01ec9581462a356d1d" name="a44e34f2d7b285a01ec9581462a356d1d"></a>
+static void&#160;</td><td class="memItemRight"><b>disableItemCollection</b> ()</td></tr>
+<tr class="memdesc:a44e34f2d7b285a01ec9581462a356d1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable item collection, useful to test client mispreditions or client/server disagreements. <br /></td></tr>
+<tr class="memitem:ad21bfaef70cc1de4a5bb8705349ebada" id="r_ad21bfaef70cc1de4a5bb8705349ebada"><td class="memItemLeft"><a id="ad21bfaef70cc1de4a5bb8705349ebada" name="ad21bfaef70cc1de4a5bb8705349ebada"></a>
+static scene::IMesh *&#160;</td><td class="memItemRight"><b>getItemModel</b> (<a class="el" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemState::ItemType</a> type)</td></tr>
+<tr class="memdesc:ad21bfaef70cc1de4a5bb8705349ebada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the mesh for a certain item. <br /></td></tr>
+<tr class="memitem:abef92c58190b580046add75ab2fe6d2d" id="r_abef92c58190b580046add75ab2fe6d2d"><td class="memItemLeft"><a id="abef92c58190b580046add75ab2fe6d2d" name="abef92c58190b580046add75ab2fe6d2d"></a>
+static scene::IMesh *&#160;</td><td class="memItemRight"><b>getItemLowResolutionModel</b> (<a class="el" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemState::ItemType</a> type)</td></tr>
+<tr class="memdesc:abef92c58190b580046add75ab2fe6d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the low resolution mesh for a certain item. <br /></td></tr>
+<tr class="memitem:a9c2ed7dc32b059fdec29d2bbd9410310" id="r_a9c2ed7dc32b059fdec29d2bbd9410310"><td class="memItemLeft"><a id="a9c2ed7dc32b059fdec29d2bbd9410310" name="a9c2ed7dc32b059fdec29d2bbd9410310"></a>
+static std::string&#160;</td><td class="memItemRight"><b>getIcon</b> (<a class="el" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemState::ItemType</a> type)</td></tr>
+<tr class="memdesc:a9c2ed7dc32b059fdec29d2bbd9410310"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the mesh for a certain item. <br /></td></tr>
+<tr class="memitem:aa1a94ab1fc48ad848506aec5b2193459" id="r_aa1a94ab1fc48ad848506aec5b2193459"><td class="memItemLeft"><a id="aa1a94ab1fc48ad848506aec5b2193459" name="aa1a94ab1fc48ad848506aec5b2193459"></a>
+static video::SColorf &amp;&#160;</td><td class="memItemRight"><b>getGlowColor</b> (<a class="el" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemState::ItemType</a> type)</td></tr>
+<tr class="memdesc:aa1a94ab1fc48ad848506aec5b2193459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the glow color for an item. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-types" class="groupheader"><a id="pro-types" name="pro-types"></a>
+Protected 타입</h2></td></tr>
+<tr class="memitem:a0009619b3e77b228448b3fb1c1bfb93e" id="r_a0009619b3e77b228448b3fb1c1bfb93e"><td class="memItemLeft"><a id="a0009619b3e77b228448b3fb1c1bfb93e" name="a0009619b3e77b228448b3fb1c1bfb93e"></a>
+typedef std::vector&lt; <a class="el" href="classItemState.html">ItemState</a> * &gt;&#160;</td><td class="memItemRight"><b>AllItemTypes</b></td></tr>
+<tr class="memdesc:a0009619b3e77b228448b3fb1c1bfb93e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The vector of all items of the current track. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 멤버 함수</h2></td></tr>
+<tr class="memitem:a8ccefe2037201bd3ea3c71df577e3263" id="r_a8ccefe2037201bd3ea3c71df577e3263"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8ccefe2037201bd3ea3c71df577e3263">deleteItem</a> (<a class="el" href="classItemState.html">ItemState</a> *item)</td></tr>
+<tr class="memdesc:a8ccefe2037201bd3ea3c71df577e3263"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an items from the items-in-quad list, from the list of all items, and then frees the item itself.  <br /></td></tr>
+<tr class="memitem:aaccbd3df069b509b357a91de57e9016c" id="r_aaccbd3df069b509b357a91de57e9016c"><td class="memItemLeft"><a id="aaccbd3df069b509b357a91de57e9016c" name="aaccbd3df069b509b357a91de57e9016c"></a>
+void&#160;</td><td class="memItemRight"><b>switchItemsInternal</b> (std::vector&lt; <a class="el" href="classItemState.html">ItemState</a> * &gt; &amp;all_items)</td></tr>
+<tr class="memdesc:aaccbd3df069b509b357a91de57e9016c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switches all items: boxes become bananas and vice versa for a certain amount of time (as defined in stk_config.xml). <br /></td></tr>
+<tr class="memitem:a3de3902624e956b34f601cc242a0ee8e" id="r_a3de3902624e956b34f601cc242a0ee8e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3de3902624e956b34f601cc242a0ee8e">setSwitchItems</a> (const std::vector&lt; int &gt; &amp;switch_items)</td></tr>
+<tr class="memdesc:a3de3902624e956b34f601cc242a0ee8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets which objects is getting switched to what.  <br /></td></tr>
+<tr class="memitem:a726d6bc2f81d7b7648b33f2f9d304ad0" id="r_a726d6bc2f81d7b7648b33f2f9d304ad0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a726d6bc2f81d7b7648b33f2f9d304ad0">insertItemInQuad</a> (<a class="el" href="classItem.html">Item</a> *item)</td></tr>
+<tr class="memdesc:a726d6bc2f81d7b7648b33f2f9d304ad0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert into the appropriate quad list, if there is a quad list (i.e.  <br /></td></tr>
+<tr class="memitem:a56688bb05c6f60d109a5777cc7e5b0ae" id="r_a56688bb05c6f60d109a5777cc7e5b0ae"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a56688bb05c6f60d109a5777cc7e5b0ae">deleteItemInQuad</a> (<a class="el" href="classItemState.html">ItemState</a> *item)</td></tr>
+<tr class="memdesc:a56688bb05c6f60d109a5777cc7e5b0ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an items from the items-in-quad list only  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 속성</h2></td></tr>
+<tr class="memitem:a8c688a496372f9c013b7d2456f9aa55e" id="r_a8c688a496372f9c013b7d2456f9aa55e"><td class="memItemLeft"><a id="a8c688a496372f9c013b7d2456f9aa55e" name="a8c688a496372f9c013b7d2456f9aa55e"></a>
+<a class="el" href="#a0009619b3e77b228448b3fb1c1bfb93e">AllItemTypes</a>&#160;</td><td class="memItemRight"><b>m_all_items</b></td></tr>
+<tr class="memitem:ac82b3772c763a9161c10851df72e825c" id="r_ac82b3772c763a9161c10851df72e825c"><td class="memItemLeft"><a id="ac82b3772c763a9161c10851df72e825c" name="ac82b3772c763a9161c10851df72e825c"></a>
+std::vector&lt; <a class="el" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemState::ItemType</a> &gt;&#160;</td><td class="memItemRight"><b>m_switch_to</b></td></tr>
+<tr class="memdesc:ac82b3772c763a9161c10851df72e825c"><td class="mdescLeft">&#160;</td><td class="mdescRight">What item this item is switched to. <br /></td></tr>
+<tr class="memitem:afc56cb281740f7dcd62686a43e4e1515" id="r_afc56cb281740f7dcd62686a43e4e1515"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#afc56cb281740f7dcd62686a43e4e1515">m_switch_ticks</a></td></tr>
+<tr class="memdesc:afc56cb281740f7dcd62686a43e4e1515"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remaining time that items should remain switched.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-methods" class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+정적 Private 멤버 함수</h2></td></tr>
+<tr class="memitem:a38c9aa450a9fc7ea0d1f9621842a834b" id="r_a38c9aa450a9fc7ea0d1f9621842a834b"><td class="memItemLeft"><a id="a38c9aa450a9fc7ea0d1f9621842a834b" name="a38c9aa450a9fc7ea0d1f9621842a834b"></a>
+static bool&#160;</td><td class="memItemRight"><b>preloadIcon</b> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:a38c9aa450a9fc7ea0d1f9621842a834b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Preload icon materials to avoid hangs when firstly insert item <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:a1f6a289f0d7125abc15318f483579ca9" id="r_a1f6a289f0d7125abc15318f483579ca9"><td class="memItemLeft">std::vector&lt; <a class="el" href="#a0009619b3e77b228448b3fb1c1bfb93e">AllItemTypes</a> &gt; *&#160;</td><td class="memItemRight"><a class="el" href="#a1f6a289f0d7125abc15318f483579ca9">m_items_in_quads</a></td></tr>
+<tr class="memdesc:a1f6a289f0d7125abc15318f483579ca9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores which items are on which quad.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+정적 Private 속성</h2></td></tr>
+<tr class="memitem:a5e46f342a340a5075b9c6ab86ea19623" id="r_a5e46f342a340a5075b9c6ab86ea19623"><td class="memItemLeft"><a id="a5e46f342a340a5075b9c6ab86ea19623" name="a5e46f342a340a5075b9c6ab86ea19623"></a>
+static std::vector&lt; video::SColorf &gt;&#160;</td><td class="memItemRight"><b>m_glow_color</b></td></tr>
+<tr class="memdesc:a5e46f342a340a5075b9c6ab86ea19623"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the glow color for all items. <br /></td></tr>
+<tr class="memitem:a9287bee27ea3e98dec0ced0a29b3ea51" id="r_a9287bee27ea3e98dec0ced0a29b3ea51"><td class="memItemLeft"><a id="a9287bee27ea3e98dec0ced0a29b3ea51" name="a9287bee27ea3e98dec0ced0a29b3ea51"></a>
+static bool&#160;</td><td class="memItemRight"><b>m_disable_item_collection</b> = false</td></tr>
+<tr class="memdesc:a9287bee27ea3e98dec0ced0a29b3ea51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable item collection (for debugging purposes). <br /></td></tr>
+<tr class="memitem:aff60c36bba9d538ae0016e1a8889c492" id="r_aff60c36bba9d538ae0016e1a8889c492"><td class="memItemLeft"><a id="aff60c36bba9d538ae0016e1a8889c492" name="aff60c36bba9d538ae0016e1a8889c492"></a>
+static std::mt19937&#160;</td><td class="memItemRight"><b>m_random_engine</b></td></tr>
+<tr class="memitem:a30372dfa15666b4bb667a682fb6a2565" id="r_a30372dfa15666b4bb667a682fb6a2565"><td class="memItemLeft"><a id="a30372dfa15666b4bb667a682fb6a2565" name="a30372dfa15666b4bb667a682fb6a2565"></a>
+static uint32_t&#160;</td><td class="memItemRight"><b>m_random_seed</b> = 0</td></tr>
+<tr class="memitem:af2fab027ff24767dcfc8d1414ea337cf" id="r_af2fab027ff24767dcfc8d1414ea337cf"><td class="memItemLeft"><a id="af2fab027ff24767dcfc8d1414ea337cf" name="af2fab027ff24767dcfc8d1414ea337cf"></a>
+static std::vector&lt; scene::IMesh * &gt;&#160;</td><td class="memItemRight"><b>m_item_mesh</b></td></tr>
+<tr class="memdesc:af2fab027ff24767dcfc8d1414ea337cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores all item models. <br /></td></tr>
+<tr class="memitem:a1c25c04408943d8bc34393dc25b78c47" id="r_a1c25c04408943d8bc34393dc25b78c47"><td class="memItemLeft"><a id="a1c25c04408943d8bc34393dc25b78c47" name="a1c25c04408943d8bc34393dc25b78c47"></a>
+static std::vector&lt; scene::IMesh * &gt;&#160;</td><td class="memItemRight"><b>m_item_lowres_mesh</b></td></tr>
+<tr class="memdesc:a1c25c04408943d8bc34393dc25b78c47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores all low-resolution item models. <br /></td></tr>
+<tr class="memitem:add36a1a8dabe3a1c859ab8d576cd692a" id="r_add36a1a8dabe3a1c859ab8d576cd692a"><td class="memItemLeft"><a id="add36a1a8dabe3a1c859ab8d576cd692a" name="add36a1a8dabe3a1c859ab8d576cd692a"></a>
+static std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><b>m_icon</b></td></tr>
+<tr class="memdesc:add36a1a8dabe3a1c859ab8d576cd692a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores all item models. <br /></td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">생성자 &amp; 소멸자 문서화</h2>
+<a id="a1eab68c1b49e695ba96330da469b23cc" name="a1eab68c1b49e695ba96330da469b23cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1eab68c1b49e695ba96330da469b23cc">&#9670;&#160;</a></span>ItemManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ItemManager::ItemManager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new instance of the item manager. </p>
+<p>This is done at startup of each race. </p>
+
+</div>
+</div>
+<a id="aa1f280c99f977a355f1143b11694bade" name="aa1f280c99f977a355f1143b11694bade"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1f280c99f977a355f1143b11694bade">&#9670;&#160;</a></span>~ItemManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ItemManager::~ItemManager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
+<p>Cleans up all items and meshes stored. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a2b80a6ff02180122fea90ac2b81863ee" name="a2b80a6ff02180122fea90ac2b81863ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b80a6ff02180122fea90ac2b81863ee">&#9670;&#160;</a></span>checkItemHit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemManager::checkItemHit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>kart</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if any item was collected by the given kart. </p>
+<p>This function calls collectedItem if an item was collected. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kart</td><td>Pointer to the kart. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Disable item collection detection for debug purposes.</p>
+
+</div>
+</div>
+<a id="a689147511031c2a334855b8ca4248cd0" name="a689147511031c2a334855b8ca4248cd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a689147511031c2a334855b8ca4248cd0">&#9670;&#160;</a></span>collectedItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemManager::collectedItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classItemState.html">ItemState</a> *</td>          <td class="paramname"><span class="paramname"><em>item</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>kart</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set an item as collected. </p>
+<p>This function is called on the server when an item is collected, or on the client upon receiving information about collected items. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>The item that was collected. </td></tr>
+    <tr><td class="paramname">kart</td><td>The kart that collected the item. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classNetworkItemManager.html#af7293f935e344a5f540fef7fe2d7d4ec">NetworkItemManager</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a8ccefe2037201bd3ea3c71df577e3263" name="a8ccefe2037201bd3ea3c71df577e3263"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ccefe2037201bd3ea3c71df577e3263">&#9670;&#160;</a></span>deleteItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemManager::deleteItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classItemState.html">ItemState</a> *</td>          <td class="paramname"><span class="paramname"><em>item</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Removes an items from the items-in-quad list, from the list of all items, and then frees the item itself. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">The</td><td>item to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a56688bb05c6f60d109a5777cc7e5b0ae" name="a56688bb05c6f60d109a5777cc7e5b0ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56688bb05c6f60d109a5777cc7e5b0ae">&#9670;&#160;</a></span>deleteItemInQuad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemManager::deleteItemInQuad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classItemState.html">ItemState</a> *</td>          <td class="paramname"><span class="paramname"><em>item</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Removes an items from the items-in-quad list only </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">The</td><td>item to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9304df661a2e747bb1f94bbc7d89d04e" name="a9304df661a2e747bb1f94bbc7d89d04e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9304df661a2e747bb1f94bbc7d89d04e">&#9670;&#160;</a></span>dropNewItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classItem.html">Item</a> * ItemManager::dropNewItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemState::ItemType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>kart</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> *</td>          <td class="paramname"><span class="paramname"><em>server_xyz</em></span><span class="paramdefsep"> = </span><span class="paramdefval">NULL</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> *</td>          <td class="paramname"><span class="paramname"><em>server_normal</em></span><span class="paramdefsep"> = </span><span class="paramdefval">NULL</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new item at the location of the kart (e.g. </p>
+<p>kart drops a bubblegum). </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>Type of the item. </td></tr>
+    <tr><td class="paramname">kart</td><td>The kart that drops the new item. </td></tr>
+    <tr><td class="paramname">server_xyz</td><td>Can be used to overwrite the item location. </td></tr>
+    <tr><td class="paramname">server_normal</td><td>The normal as seen on the server. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classNetworkItemManager.html#a77a27b843bcb38147ecfb4588d329d0f">NetworkItemManager</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a09937ec21e0ef5b7547f8a8df4d8148a" name="a09937ec21e0ef5b7547f8a8df4d8148a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09937ec21e0ef5b7547f8a8df4d8148a">&#9670;&#160;</a></span>insertItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int ItemManager::insertItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classItem.html">Item</a> *</td>          <td class="paramname"><span class="paramname"><em>item</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inserts the new item into the items management data structures, if possible reusing an existing, unused entry (e.g. </p>
+<p>due to a removed bubble gum). Then the item is also added to the quad-wise list of items. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>The item to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>Index of the newly added item in the list of all items. </dd></dl>
+
+</div>
+</div>
+<a id="a726d6bc2f81d7b7648b33f2f9d304ad0" name="a726d6bc2f81d7b7648b33f2f9d304ad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a726d6bc2f81d7b7648b33f2f9d304ad0">&#9670;&#160;</a></span>insertItemInQuad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemManager::insertItemInQuad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classItem.html">Item</a> *</td>          <td class="paramname"><span class="paramname"><em>item</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Insert into the appropriate quad list, if there is a quad list (i.e. </p>
+<p>race mode has a quad graph). </p>
+
+</div>
+</div>
+<a id="a92ca18085f774a46ea4d4a9fed3f1d4d" name="a92ca18085f774a46ea4d4a9fed3f1d4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92ca18085f774a46ea4d4a9fed3f1d4d">&#9670;&#160;</a></span>placeItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classItem.html">Item</a> * ItemManager::placeItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classItemState.html#abd8c7a2740237da69f241aad5d81833a">ItemState::ItemType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>xyz</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>normal</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Places a new item on the track/arena. </p>
+<p>It is used for the initial placement of the items - either according to the scene.xml file, or random item placement. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>Type of the item. </td></tr>
+    <tr><td class="paramname">xyz</td><td>Position of the item. </td></tr>
+    <tr><td class="paramname">normal</td><td>The normal of the terrain to set roll and pitch. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a080fbb686e446507a6352d36c44a513a" name="a080fbb686e446507a6352d36c44a513a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a080fbb686e446507a6352d36c44a513a">&#9670;&#160;</a></span>removeTextures()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemManager::removeTextures </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clean up all textures. </p>
+<p>This is necessary when switching resolution etc. </p>
+
+</div>
+</div>
+<a id="a1ed5f593b58f442131dc16f13bbff03f" name="a1ed5f593b58f442131dc16f13bbff03f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ed5f593b58f442131dc16f13bbff03f">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemManager::reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resets all items and removes bubble gum that is stuck on the track. </p>
+<p>This is done when a race is (re)started. </p>
+
+</div>
+</div>
+<a id="a5ab8c6fb9adc3729b7d2acf5c63fe2d4" name="a5ab8c6fb9adc3729b7d2acf5c63fe2d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ab8c6fb9adc3729b7d2acf5c63fe2d4">&#9670;&#160;</a></span>setItemConfirmationTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ItemManager::setItemConfirmationTime </td>
+          <td>(</td>
+          <td class="paramtype">std::weak_ptr&lt; <a class="el" href="classSTKPeer.html">STKPeer</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>peer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Only used in the <a class="el" href="classNetworkItemManager.html" title="The network item manager is responsible for handling all network related item manager tasks - synchro...">NetworkItemManager</a>. </p>
+
+<p><a class="el" href="classNetworkItemManager.html#a3edcc0898aab48741ab143862a188f43">NetworkItemManager</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a3de3902624e956b34f601cc242a0ee8e" name="a3de3902624e956b34f601cc242a0ee8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3de3902624e956b34f601cc242a0ee8e">&#9670;&#160;</a></span>setSwitchItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemManager::setSwitchItems </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>switch_items</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets which objects is getting switched to what. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">switch</td><td>A mapping of items types to item types for the mapping. must contain one entry for each item. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afa3bdf736edaf368b32299ede40d4631" name="afa3bdf736edaf368b32299ede40d4631"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa3bdf736edaf368b32299ede40d4631">&#9670;&#160;</a></span>switchItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemManager::switchItems </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Switches all items: boxes become bananas and vice versa for a certain amount of time (as defined in stk_config.xml). </p>
+
+<p><a class="el" href="classNetworkItemManager.html#a3c9a945c8811b92f74a48b34af417364">NetworkItemManager</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a4554d142e4f6eb72a66aa14b0c761f21" name="a4554d142e4f6eb72a66aa14b0c761f21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4554d142e4f6eb72a66aa14b0c761f21">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemManager::update </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates all items, and handles switching items back if the switch time is over. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks</td><td>Number of physics time steps - should be 1. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a03aee070af9d922b9cdcd122d0139d4a" name="a03aee070af9d922b9cdcd122d0139d4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03aee070af9d922b9cdcd122d0139d4a">&#9670;&#160;</a></span>updateGraphics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemManager::updateGraphics </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates the graphics, called once per rendered frame. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>Time based on frame rate. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="a1f6a289f0d7125abc15318f483579ca9" name="a1f6a289f0d7125abc15318f483579ca9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f6a289f0d7125abc15318f483579ca9">&#9670;&#160;</a></span>m_items_in_quads</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="#a0009619b3e77b228448b3fb1c1bfb93e">AllItemTypes</a> &gt;* ItemManager::m_items_in_quads</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stores which items are on which quad. </p>
+<p>m_items_in_quads[#quads] contains all items that are not on a quad. Note that this field is undefined if no <a class="el" href="classGraph.html" title="This class stores a graph of quads.">Graph</a> exist, e.g. arena without navmesh. </p>
+
+</div>
+</div>
+<a id="afc56cb281740f7dcd62686a43e4e1515" name="afc56cb281740f7dcd62686a43e4e1515"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc56cb281740f7dcd62686a43e4e1515">&#9670;&#160;</a></span>m_switch_ticks</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ItemManager::m_switch_ticks</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remaining time that items should remain switched. </p>
+<p>If the value is &lt;0, it indicates that the items are not switched atm. </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>items/<a class="el" href="item__manager_8hpp_source.html">item_manager.hpp</a></li>
+<li>items/<b>item_manager.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

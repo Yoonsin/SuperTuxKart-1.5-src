@@ -1,0 +1,626 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: network/network_string.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>network</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">network_string.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="network__string_8hpp.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2013-2015 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#ifndef NETWORK_STRING_HPP</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#define NETWORK_STRING_HPP</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;network/protocol_enum.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">utils/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;utils/vec3.hpp&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;LinearMath/btQuaternion.h&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;irrString.h&quot;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;stdarg.h&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> uchar;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="};">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classBareNetworkString.html">   52</a></span><span class="keyword">class </span><a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>{</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">friend</span> <span class="keyword">class </span>Crypto;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    LEAK_CHECK();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">   60</a></span>    std::vector&lt;uint8_t&gt; <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">   68</a></span>    <span class="keyword">mutable</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a5cfa29e137188b8ab524a0de4a0ea682">   76</a></span>    std::string <a class="code hl_function" href="classBareNetworkString.html#a5cfa29e137188b8ab524a0de4a0ea682">getString</a>(<span class="keywordtype">int</span> len)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> &gt; (<span class="keywordtype">int</span>)<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.size() ||</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> + len &gt; (<span class="keywordtype">int</span>)<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.size())</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keywordflow">throw</span> std::out_of_range(<span class="stringliteral">&quot;getString out of range.&quot;</span>);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        std::string a(<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.begin() + (<a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a>      ),</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                      <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.begin() + (<a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> + len));</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> += len;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">return</span> a;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }   <span class="comment">// getString</span></div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="}">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#afe9c5389ed0d2394c31c159612ad44a7">   89</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#afe9c5389ed0d2394c31c159612ad44a7">addString</a>(<span class="keyword">const</span> std::string&amp; value)</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; value.size(); i++)</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((uint8_t)(value[i]));</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }   <span class="comment">// addString</span></div>
+</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> n&gt;</div>
+<div class="foldopen" id="foldopen00099" data-start="{" data-end="}">
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#ae1f68093ef7e26d997123bde3adee1ba">   99</a></span>    T <a class="code hl_function" href="classBareNetworkString.html#ae1f68093ef7e26d997123bde3adee1ba">get</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordtype">int</span> a = n;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        T result = 0;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> += n;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keywordtype">int</span> offset = <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> -1;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordflow">while</span> (a--)</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            result &lt;&lt;= 8; <span class="comment">// offset one byte</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                          <span class="comment">// add the data to result</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            result += <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.at(offset - a);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    }   <span class="comment">// get(int pos)</span></div>
+</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00116" data-start="{" data-end="}">
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#acd2556415d94b4f77a7633f75ad94564">  116</a></span>    T <a class="code hl_function" href="classBareNetworkString.html#acd2556415d94b4f77a7633f75ad94564">get</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.at(<a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a>++);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }   <span class="comment">// get</span></div>
+</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span></div>
+<div class="foldopen" id="foldopen00124" data-start="{" data-end="}">
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">  124</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>(<span class="keywordtype">int</span> capacity=16)</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.reserve(capacity);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> = 0;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    }   <span class="comment">// BareNetworkString</span></div>
+</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>(<span class="keyword">const</span> std::string &amp;s)</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> = 0;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <a class="code hl_function" href="classBareNetworkString.html#a4530e52c221f60d090247f073f70f37f">encodeString</a>(s);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    }   <span class="comment">// BareNetworkString</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00138" data-start="{" data-end="}">
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a9373b34fb5d5d99d8cf51ba5ce78c594">  138</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a9373b34fb5d5d99d8cf51ba5ce78c594">BareNetworkString</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *data, <span class="keywordtype">int</span> len)</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> = 0;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.resize(len);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        memcpy(<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.data(), data, len);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    }   <span class="comment">// BareNetworkString</span></div>
+</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#ab16baad366a3c67e03b718755600f3b0">  147</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classBareNetworkString.html#ab16baad366a3c67e03b718755600f3b0">reset</a>() { <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> = 0; }</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#a2256471d79bb13a837d44d9658bcaacd">encodeString16</a>(<span class="keyword">const</span> irr::core::stringw&amp; value,</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                                      uint16_t max_len = 65535);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordtype">int</span> decodeString16(irr::core::stringw* out,</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                       uint16_t max_len = 65535);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#a4530e52c221f60d090247f073f70f37f">encodeString</a>(<span class="keyword">const</span> std::string &amp;value);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#a4530e52c221f60d090247f073f70f37f">encodeString</a>(<span class="keyword">const</span> irr::core::stringw &amp;value);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classBareNetworkString.html#a25217a0af8c37b839a134148f6f26e6c">decodeString</a>(std::string *out) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classBareNetworkString.html#aa871947496269c52dbd67597440af440">decodeStringW</a>(irr::core::stringw *out) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    std::string <a class="code hl_function" href="classBareNetworkString.html#afade27224174f6f4624db975a7743929">getLogMessage</a>(<span class="keyword">const</span> std::string &amp;indent=<span class="stringliteral">&quot;&quot;</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a4213d60425d1e19372aa4f1a060363bc">  162</a></span>    std::vector&lt;uint8_t&gt;&amp; <a class="code hl_function" href="classBareNetworkString.html#a4213d60425d1e19372aa4f1a060363bc">getBuffer</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>; }</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#adeca77bfc67a5bd0ef2fab0a221af96b">  166</a></span>    <span class="keywordtype">char</span>* <a class="code hl_function" href="classBareNetworkString.html#adeca77bfc67a5bd0ef2fab0a221af96b">getData</a>() { <span class="keywordflow">return</span> (<span class="keywordtype">char</span>*)(<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.data()); };</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a2ace1e73aef15c5aa3ac1db51afa3d1b">  170</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classBareNetworkString.html#a2ace1e73aef15c5aa3ac1db51afa3d1b">getData</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<span class="keywordtype">char</span>*)(<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.data()); };</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00175" data-start="{" data-end="}">
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a6234be13111482385f2625689e1e9df1">  175</a></span>    <span class="keywordtype">char</span>* <a class="code hl_function" href="classBareNetworkString.html#a6234be13111482385f2625689e1e9df1">getCurrentData</a>()</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    {</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        <span class="keywordflow">return</span> (<span class="keywordtype">char</span>*)(<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.data()+<a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a>);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    }   <span class="comment">// getCurrentData</span></div>
+</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00183" data-start="{" data-end="}">
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#abdd5ddf668a034c31e0af488574a15ac">  183</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classBareNetworkString.html#abdd5ddf668a034c31e0af488574a15ac">getCurrentData</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <span class="keywordflow">return</span> (<span class="keywordtype">char</span>*)(<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.data()+<a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a>); </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    }   <span class="comment">// getCurrentData</span></div>
+</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordtype">int</span> getCurrentOffset()<span class="keyword"> const                   </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a>; }</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a16da16cb3f947c49c61821990c286627">  191</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classBareNetworkString.html#a16da16cb3f947c49c61821990c286627">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<span class="keywordtype">int</span>)<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.size()-<a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a>; }</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00195" data-start="{" data-end="}">
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a81f43a81d0750d5f321f3ea6b19e7f5b">  195</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classBareNetworkString.html#a81f43a81d0750d5f321f3ea6b19e7f5b">skip</a>(<span class="keywordtype">int</span> n)</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> += n;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        assert(<a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> &gt;=0 &amp;&amp;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>               <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> &lt;= (<span class="keywordtype">int</span>)<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.size());</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    }   <span class="comment">// skip</span></div>
+</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#aac1488d6b8d8261f6b02cfb00f17ca41">  206</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classBareNetworkString.html#aac1488d6b8d8261f6b02cfb00f17ca41">getTotalSize</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.size(); }</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="comment">// All functions related to adding data to a network string</span></div>
+<div class="foldopen" id="foldopen00210" data-start="{" data-end="}">
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a2b1b7d26aa34a6347bf731fcd7708ebd">  210</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#a2b1b7d26aa34a6347bf731fcd7708ebd">addUInt8</a>(<span class="keyword">const</span> uint8_t value)</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back(value);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    }   <span class="comment">// addUInt8</span></div>
+</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00218" data-start="{" data-end="}">
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#aaa3496d9b13f527342aea10c721653dc">  218</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#aaa3496d9b13f527342aea10c721653dc">addChar</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> value)</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    {</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((uint8_t)(value));</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    }   <span class="comment">// addChar</span></div>
+</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00225" data-start="{" data-end="}">
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#acab15fabfdb4e74758057d3473548b4f">  225</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#acab15fabfdb4e74758057d3473548b4f">addUInt16</a>(<span class="keyword">const</span> uint16_t value)</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    {</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((value &gt;&gt; 8) &amp; 0xff);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back(value &amp; 0xff);</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    }   <span class="comment">// addUInt16</span></div>
+</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00234" data-start="{" data-end="}">
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a4ca12cde66cd4b32a6bb24d32ffec296">  234</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#a4ca12cde66cd4b32a6bb24d32ffec296">addInt24</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> value)</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    {</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        uint32_t combined = (uint32_t)value &amp; 0xffffff;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((combined &gt;&gt; 16) &amp; 0xff);</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((combined &gt;&gt; 8) &amp; 0xff);</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back(combined &amp; 0xff);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    }   <span class="comment">// addInt24</span></div>
+</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00245" data-start="{" data-end="}">
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#ac597fc45dddb57c572f1c818ce148f7c">  245</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#ac597fc45dddb57c572f1c818ce148f7c">addUInt32</a>(<span class="keyword">const</span> uint32_t&amp; value)</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    {</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((value &gt;&gt; 24) &amp; 0xff);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((value &gt;&gt; 16) &amp; 0xff);</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((value &gt;&gt;  8) &amp; 0xff);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back( value        &amp; 0xff);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    }   <span class="comment">// addUInt32</span></div>
+</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00256" data-start="{" data-end="}">
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a6b9c5e03aa1150026dcf518ba46a282c">  256</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#a6b9c5e03aa1150026dcf518ba46a282c">addUInt64</a>(<span class="keyword">const</span> uint64_t&amp; value)</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    {</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((value &gt;&gt; 56) &amp; 0xff);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((value &gt;&gt; 48) &amp; 0xff);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((value &gt;&gt; 40) &amp; 0xff);</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((value &gt;&gt; 32) &amp; 0xff);</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((value &gt;&gt; 24) &amp; 0xff);</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((value &gt;&gt; 16) &amp; 0xff);</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back((value &gt;&gt;  8) &amp; 0xff);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back( value        &amp; 0xff);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    }   <span class="comment">// addUInt64</span></div>
+</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00271" data-start="{" data-end="}">
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a6efe00981903ad540b9b16f0fdf57ebf">  271</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#a6efe00981903ad540b9b16f0fdf57ebf">addFloat</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> value)</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    {</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        uint32_t *p = (uint32_t*)&amp;value;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classBareNetworkString.html#ac597fc45dddb57c572f1c818ce148f7c">addUInt32</a>(*p);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    }   <span class="comment">// addFloat</span></div>
+</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00280" data-start="{" data-end="}">
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#ac0d3dbaa81c661733527005c69f917db">  280</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#ac0d3dbaa81c661733527005c69f917db">operator+=</a>(<a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a> <span class="keyword">const</span>&amp; value)</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    {</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.insert(<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.end(),</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                       value.<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.begin()+value.<a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a>,</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>                       value.<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.end()   );</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    }   <span class="comment">// operator+=</span></div>
+</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00290" data-start="{" data-end="}">
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a0dc36809138db2b8616466bb565953a4">  290</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#a0dc36809138db2b8616466bb565953a4">add</a>(<span class="keywordtype">float</span> f)</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    {</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classBareNetworkString.html#a6efe00981903ad540b9b16f0fdf57ebf">addFloat</a>(f);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    }   <span class="comment">// add</span></div>
+</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00296" data-start="{" data-end="}">
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a959229847df2e733e69feab387acd369">  296</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#a959229847df2e733e69feab387acd369">add</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;xyz)</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    {</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classBareNetworkString.html#a6efe00981903ad540b9b16f0fdf57ebf">addFloat</a>(xyz.getX()).<a class="code hl_function" href="classBareNetworkString.html#a6efe00981903ad540b9b16f0fdf57ebf">addFloat</a>(xyz.getY()).<a class="code hl_function" href="classBareNetworkString.html#a6efe00981903ad540b9b16f0fdf57ebf">addFloat</a>(xyz.getZ());</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    }   <span class="comment">// add</span></div>
+</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00303" data-start="{" data-end="}">
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a933122807e89605b5576838a42a20dae">  303</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#a933122807e89605b5576838a42a20dae">add</a>(<span class="keyword">const</span> btQuaternion &amp;quat)</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    {</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classBareNetworkString.html#a6efe00981903ad540b9b16f0fdf57ebf">addFloat</a>(quat.getX()).<a class="code hl_function" href="classBareNetworkString.html#a6efe00981903ad540b9b16f0fdf57ebf">addFloat</a>(quat.getY())</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>              .<a class="code hl_function" href="classBareNetworkString.html#a6efe00981903ad540b9b16f0fdf57ebf">addFloat</a>(quat.getZ()).<a class="code hl_function" href="classBareNetworkString.html#a6efe00981903ad540b9b16f0fdf57ebf">addFloat</a>(quat.getW());</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    }   <span class="comment">// add</span></div>
+</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00313" data-start="{" data-end="}">
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#aaeea132ac4dd64694e4f5b023085f38e">  313</a></span>    <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>&amp; <a class="code hl_function" href="classBareNetworkString.html#aaeea132ac4dd64694e4f5b023085f38e">addTime</a>(<span class="keywordtype">int</span> ticks)</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    {</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classBareNetworkString.html#ac597fc45dddb57c572f1c818ce148f7c">addUInt32</a>(ticks);</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    }   <span class="comment">// addTime</span></div>
+</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="comment">// Functions related to getting data from a network string</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a100a6f43564f31938faac01f17d944e3">  321</a></span>    <span class="keyword">inline</span> uint64_t <a class="code hl_function" href="classBareNetworkString.html#a100a6f43564f31938faac01f17d944e3">getUInt64</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classBareNetworkString.html#ae1f68093ef7e26d997123bde3adee1ba">get&lt;uint64_t, 8&gt;</a>(); }</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#ad207f98707f7043ca81acc4d43758dfe">  324</a></span>    <span class="keyword">inline</span> uint32_t <a class="code hl_function" href="classBareNetworkString.html#ad207f98707f7043ca81acc4d43758dfe">getUInt32</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classBareNetworkString.html#ae1f68093ef7e26d997123bde3adee1ba">get&lt;uint32_t, 4&gt;</a>(); }</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00327" data-start="{" data-end="}">
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a8d7653a7d3fa944609b43f57ee6d42d4">  327</a></span>    <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classBareNetworkString.html#a8d7653a7d3fa944609b43f57ee6d42d4">getInt24</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        uint32_t combined = <a class="code hl_function" href="classBareNetworkString.html#ae1f68093ef7e26d997123bde3adee1ba">get&lt;uint32_t, 3&gt;</a>();</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>        <span class="keywordflow">if</span> (combined &amp; 0x800000)</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>            <span class="keywordflow">return</span> (0x1000000 - (<span class="keywordtype">int</span>)combined) * -1;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>            <span class="keywordflow">return</span> (<span class="keywordtype">int</span>)combined;</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    }</div>
+</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#af7a4efa26e774ddfdf8f8ce6225b098b">  337</a></span>    <span class="keyword">inline</span> uint32_t <a class="code hl_function" href="classBareNetworkString.html#af7a4efa26e774ddfdf8f8ce6225b098b">getTime</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classBareNetworkString.html#ae1f68093ef7e26d997123bde3adee1ba">get&lt;uint32_t, 4&gt;</a>(); }</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#aee91275d7829c785d58bfb842f1b7ec5">  340</a></span>    <span class="keyword">inline</span> uint16_t <a class="code hl_function" href="classBareNetworkString.html#aee91275d7829c785d58bfb842f1b7ec5">getUInt16</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classBareNetworkString.html#ae1f68093ef7e26d997123bde3adee1ba">get&lt;uint16_t, 2&gt;</a>(); }</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#ae8fb7da07ba6ebf3281432b2f70678f7">  343</a></span>    <span class="keyword">inline</span> int16_t <a class="code hl_function" href="classBareNetworkString.html#ae8fb7da07ba6ebf3281432b2f70678f7">getInt16</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classBareNetworkString.html#ae1f68093ef7e26d997123bde3adee1ba">get&lt;int16_t, 2&gt;</a>(); }</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00346" data-start="{" data-end="}">
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a136204f0943c4076914e31f7db7f2bf2">  346</a></span>    <span class="keyword">inline</span> uint8_t <a class="code hl_function" href="classBareNetworkString.html#a136204f0943c4076914e31f7db7f2bf2">getUInt8</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.at(<a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a>++);</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    }   <span class="comment">// getUInt8</span></div>
+</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00352" data-start="{" data-end="}">
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#afef75583778352880db65ce38b7171d9">  352</a></span>    <span class="keyword">inline</span> int8_t <a class="code hl_function" href="classBareNetworkString.html#afef75583778352880db65ce38b7171d9">getInt8</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.at(<a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a>++);</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    }   <span class="comment">// getInt8</span></div>
+</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00358" data-start="{" data-end="}">
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a9dd92d1c17fcfb0e2c607a68e466c795">  358</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classBareNetworkString.html#a9dd92d1c17fcfb0e2c607a68e466c795">getFloat</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>        uint32_t u = <a class="code hl_function" href="classBareNetworkString.html#ad207f98707f7043ca81acc4d43758dfe">getUInt32</a>();</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>        <span class="keywordtype">float</span> f;</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>        <span class="comment">// Doig a &quot;return *(float*)&amp;u;&quot; appears to be more efficient,</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>        <span class="comment">// but it can create incorrect code on higher optimisation: c++</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>        <span class="comment">// makes the assumption that pointer of different types never</span></div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>        <span class="comment">// overlap. So the compiler can assume that the int pointer (&amp;u)</span></div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>        <span class="comment">// and float pointer do point to different aras, so there read</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>        <span class="comment">// (*(float*) can be done before the write to u (and then the</span></div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>        <span class="comment">// write to u is basically a no-op and can be removed, too).</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>        <span class="comment">// Using a union of int and float is not valid either, there</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        <span class="comment">// is no guarantee that writing to the int part of the union</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>        <span class="comment">// will affect the float part. So, an explicit memcpy is the</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>        <span class="comment">// more or less only portable guaranteed to be correct way of</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>        <span class="comment">// converting the int to a float.</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>        memcpy(&amp;f, &amp;u, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>        <span class="keywordflow">return</span> f;</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>    }   <span class="comment">// getFloat</span></div>
+</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00380" data-start="{" data-end="}">
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#aa3c06d5899ae65ee6c9646e4bc097cd8">  380</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a> <a class="code hl_function" href="classBareNetworkString.html#aa3c06d5899ae65ee6c9646e4bc097cd8">getVec3</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>        <a class="code hl_class" href="classVec3.html">Vec3</a> r;</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>        r.setX(<a class="code hl_function" href="classBareNetworkString.html#a9dd92d1c17fcfb0e2c607a68e466c795">getFloat</a>());</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>        r.setY(<a class="code hl_function" href="classBareNetworkString.html#a9dd92d1c17fcfb0e2c607a68e466c795">getFloat</a>());</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>        r.setZ(<a class="code hl_function" href="classBareNetworkString.html#a9dd92d1c17fcfb0e2c607a68e466c795">getFloat</a>());</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>        <span class="keywordflow">return</span> r;</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    }   <span class="comment">// getVec3</span></div>
+</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span> </div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00391" data-start="{" data-end="}">
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno"><a class="line" href="classBareNetworkString.html#a108e4fcfe58d40fc23df4bd37086f57c">  391</a></span>    btQuaternion <a class="code hl_function" href="classBareNetworkString.html#a108e4fcfe58d40fc23df4bd37086f57c">getQuat</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>        btQuaternion q;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>        q.setX(<a class="code hl_function" href="classBareNetworkString.html#a9dd92d1c17fcfb0e2c607a68e466c795">getFloat</a>());</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>        q.setY(<a class="code hl_function" href="classBareNetworkString.html#a9dd92d1c17fcfb0e2c607a68e466c795">getFloat</a>());</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>        q.setZ(<a class="code hl_function" href="classBareNetworkString.html#a9dd92d1c17fcfb0e2c607a68e466c795">getFloat</a>());</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>        q.setW(<a class="code hl_function" href="classBareNetworkString.html#a9dd92d1c17fcfb0e2c607a68e466c795">getFloat</a>());</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>        <span class="keywordflow">return</span> q;</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    }   <span class="comment">// getQuat</span></div>
+</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>};   <span class="comment">// class BareNetworkString</span></div>
+</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span> </div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span></div>
+<div class="foldopen" id="foldopen00421" data-start="{" data-end="};">
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno"><a class="line" href="classNetworkString.html">  421</a></span><span class="keyword">class </span><a class="code hl_function" href="classNetworkString.html#a6eff32a0923cc43ab28ce0d682030dc1">NetworkString</a> : <span class="keyword">public</span> <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a></div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>{</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkString.html#a3aee223b6f0f6f2f72d4afae620c40a8">unitTesting</a>();</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>        </div>
+<div class="foldopen" id="foldopen00429" data-start="{" data-end="}">
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno"><a class="line" href="classNetworkString.html#a6eff32a0923cc43ab28ce0d682030dc1">  429</a></span>    <a class="code hl_function" href="classNetworkString.html#a6eff32a0923cc43ab28ce0d682030dc1">NetworkString</a>(ProtocolType type,  <span class="keywordtype">int</span> capacity=16)</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>        : <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>(capacity+1)</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>    {</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.push_back(type);</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>    }   <span class="comment">// NetworkString</span></div>
+</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span> </div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00439" data-start="{" data-end="}">
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno"><a class="line" href="classNetworkString.html#a645d295e48e718f7768fcd4c8ca50a3d">  439</a></span>    <a class="code hl_function" href="classNetworkString.html#a645d295e48e718f7768fcd4c8ca50a3d">NetworkString</a>(<span class="keyword">const</span> uint8_t *data, <span class="keywordtype">int</span> len) </div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>        : <a class="code hl_function" href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString</a>((char*)data, len)</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>    {</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>        <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> = 1;   <span class="comment">// ignore type</span></div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>    }   <span class="comment">// NetworkString</span></div>
+</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span> </div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00447" data-start="{" data-end="}">
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno"><a class="line" href="classNetworkString.html#a777a55ddc14f8943cafe2e08e3bca126">  447</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkString.html#a777a55ddc14f8943cafe2e08e3bca126">clear</a>()</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>    {</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>        <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.erase(<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.begin() + 1, <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.end());</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>        <a class="code hl_variable" href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">m_current_offset</a> = 1;</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>    }   <span class="comment">// clear</span></div>
+</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00454" data-start="{" data-end="}">
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno"><a class="line" href="classNetworkString.html#aa8c7d901a033c6cc70af0f0813e3553a">  454</a></span>    ProtocolType <a class="code hl_function" href="classNetworkString.html#aa8c7d901a033c6cc70af0f0813e3553a">getProtocolType</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>        <span class="keywordflow">return</span> (ProtocolType)(<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>.at(0) &amp; ~PROTOCOL_SYNCHRONOUS);</div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>    }   <span class="comment">// getProtocolType</span></div>
+</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span> </div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00461" data-start="{" data-end="}">
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno"><a class="line" href="classNetworkString.html#a78692f293d65ff07af410300903a4c94">  461</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkString.html#a78692f293d65ff07af410300903a4c94">setSynchronous</a>(<span class="keywordtype">bool</span> b)</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>    {</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>        <span class="keywordflow">if</span>(b)</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>            <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>[0] |= PROTOCOL_SYNCHRONOUS;</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>            <a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>[0] &amp;= ~PROTOCOL_SYNCHRONOUS;</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>    }   <span class="comment">// setSynchronous</span></div>
+</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00470" data-start="{" data-end="}">
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno"><a class="line" href="classNetworkString.html#ad4a2622658d897482d13536b86504ae0">  470</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNetworkString.html#ad4a2622658d897482d13536b86504ae0">isSynchronous</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>        <span class="keywordflow">return</span> (<a class="code hl_variable" href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">m_buffer</a>[0] &amp; PROTOCOL_SYNCHRONOUS) == PROTOCOL_SYNCHRONOUS;</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>    }   <span class="comment">// isSynchronous</span></div>
+</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span> </div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>};   <span class="comment">// class NetworkString</span></div>
+</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span> </div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span> </div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span><span class="preprocessor">#endif </span><span class="comment">// NETWORK_STRING_HPP</span></div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a0dc36809138db2b8616466bb565953a4"><div class="ttname"><a href="classBareNetworkString.html#a0dc36809138db2b8616466bb565953a4">BareNetworkString::add</a></div><div class="ttdeci">BareNetworkString &amp; add(float f)</div><div class="ttdoc">Adds a floating point number</div><div class="ttdef"><b>Definition</b> network_string.hpp:290</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a100a6f43564f31938faac01f17d944e3"><div class="ttname"><a href="classBareNetworkString.html#a100a6f43564f31938faac01f17d944e3">BareNetworkString::getUInt64</a></div><div class="ttdeci">uint64_t getUInt64() const</div><div class="ttdoc">Returns a unsigned 64 bit integer.</div><div class="ttdef"><b>Definition</b> network_string.hpp:321</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a108e4fcfe58d40fc23df4bd37086f57c"><div class="ttname"><a href="classBareNetworkString.html#a108e4fcfe58d40fc23df4bd37086f57c">BareNetworkString::getQuat</a></div><div class="ttdeci">btQuaternion getQuat() const</div><div class="ttdoc">Gets a bullet quaternion.</div><div class="ttdef"><b>Definition</b> network_string.hpp:391</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a136204f0943c4076914e31f7db7f2bf2"><div class="ttname"><a href="classBareNetworkString.html#a136204f0943c4076914e31f7db7f2bf2">BareNetworkString::getUInt8</a></div><div class="ttdeci">uint8_t getUInt8() const</div><div class="ttdoc">Returns an unsigned 8-bit integer.</div><div class="ttdef"><b>Definition</b> network_string.hpp:346</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a16da16cb3f947c49c61821990c286627"><div class="ttname"><a href="classBareNetworkString.html#a16da16cb3f947c49c61821990c286627">BareNetworkString::size</a></div><div class="ttdeci">unsigned int size() const</div><div class="ttdoc">Returns the remaining length of the network string.</div><div class="ttdef"><b>Definition</b> network_string.hpp:191</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a1ddc208de2668001616db15b176b309b"><div class="ttname"><a href="classBareNetworkString.html#a1ddc208de2668001616db15b176b309b">BareNetworkString::BareNetworkString</a></div><div class="ttdeci">BareNetworkString(int capacity=16)</div><div class="ttdoc">Constructor, sets the protocol type of this message.</div><div class="ttdef"><b>Definition</b> network_string.hpp:124</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a2256471d79bb13a837d44d9658bcaacd"><div class="ttname"><a href="classBareNetworkString.html#a2256471d79bb13a837d44d9658bcaacd">BareNetworkString::encodeString16</a></div><div class="ttdeci">BareNetworkString &amp; encodeString16(const irr::core::stringw &amp;value, uint16_t max_len=65535)</div><div class="ttdoc">Encode string with max length of 16bit and utf32, used in motd or chat.</div><div class="ttdef"><b>Definition</b> network_string.cpp:131</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a25217a0af8c37b839a134148f6f26e6c"><div class="ttname"><a href="classBareNetworkString.html#a25217a0af8c37b839a134148f6f26e6c">BareNetworkString::decodeString</a></div><div class="ttdeci">int decodeString(std::string *out) const</div><div class="ttdoc">Returns a string at the given position.</div><div class="ttdef"><b>Definition</b> network_string.cpp:104</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a281bbd6175928bb61575bfe0354ef3cb"><div class="ttname"><a href="classBareNetworkString.html#a281bbd6175928bb61575bfe0354ef3cb">BareNetworkString::m_current_offset</a></div><div class="ttdeci">int m_current_offset</div><div class="ttdoc">To avoid copying the buffer when bytes are deleted (which only happens at the front),...</div><div class="ttdef"><b>Definition</b> network_string.hpp:68</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a2ace1e73aef15c5aa3ac1db51afa3d1b"><div class="ttname"><a href="classBareNetworkString.html#a2ace1e73aef15c5aa3ac1db51afa3d1b">BareNetworkString::getData</a></div><div class="ttdeci">const char * getData() const</div><div class="ttdoc">Returns a byte pointer to the content of the network string.</div><div class="ttdef"><b>Definition</b> network_string.hpp:170</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a2b1b7d26aa34a6347bf731fcd7708ebd"><div class="ttname"><a href="classBareNetworkString.html#a2b1b7d26aa34a6347bf731fcd7708ebd">BareNetworkString::addUInt8</a></div><div class="ttdeci">BareNetworkString &amp; addUInt8(const uint8_t value)</div><div class="ttdoc">Add 8 bit unsigned int.</div><div class="ttdef"><b>Definition</b> network_string.hpp:210</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a4213d60425d1e19372aa4f1a060363bc"><div class="ttname"><a href="classBareNetworkString.html#a4213d60425d1e19372aa4f1a060363bc">BareNetworkString::getBuffer</a></div><div class="ttdeci">std::vector&lt; uint8_t &gt; &amp; getBuffer()</div><div class="ttdoc">Returns the internal buffer of the network string.</div><div class="ttdef"><b>Definition</b> network_string.hpp:162</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a4530e52c221f60d090247f073f70f37f"><div class="ttname"><a href="classBareNetworkString.html#a4530e52c221f60d090247f073f70f37f">BareNetworkString::encodeString</a></div><div class="ttdeci">BareNetworkString &amp; encodeString(const std::string &amp;value)</div><div class="ttdoc">Adds one byte for the length of the string, and then (up to 255 of) the characters of the given strin...</div><div class="ttdef"><b>Definition</b> network_string.cpp:79</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a4ca12cde66cd4b32a6bb24d32ffec296"><div class="ttname"><a href="classBareNetworkString.html#a4ca12cde66cd4b32a6bb24d32ffec296">BareNetworkString::addInt24</a></div><div class="ttdeci">BareNetworkString &amp; addInt24(const int value)</div><div class="ttdoc">Adds signed 24 bit integer.</div><div class="ttdef"><b>Definition</b> network_string.hpp:234</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a5cfa29e137188b8ab524a0de4a0ea682"><div class="ttname"><a href="classBareNetworkString.html#a5cfa29e137188b8ab524a0de4a0ea682">BareNetworkString::getString</a></div><div class="ttdeci">std::string getString(int len) const</div><div class="ttdoc">Returns a part of the network string as a std::string.</div><div class="ttdef"><b>Definition</b> network_string.hpp:76</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a6234be13111482385f2625689e1e9df1"><div class="ttname"><a href="classBareNetworkString.html#a6234be13111482385f2625689e1e9df1">BareNetworkString::getCurrentData</a></div><div class="ttdeci">char * getCurrentData()</div><div class="ttdoc">Returns a byte pointer to the unread remaining content of the network string.</div><div class="ttdef"><b>Definition</b> network_string.hpp:175</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a6b9c5e03aa1150026dcf518ba46a282c"><div class="ttname"><a href="classBareNetworkString.html#a6b9c5e03aa1150026dcf518ba46a282c">BareNetworkString::addUInt64</a></div><div class="ttdeci">BareNetworkString &amp; addUInt64(const uint64_t &amp;value)</div><div class="ttdoc">Adds unsigned 64 bit integer.</div><div class="ttdef"><b>Definition</b> network_string.hpp:256</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a6efe00981903ad540b9b16f0fdf57ebf"><div class="ttname"><a href="classBareNetworkString.html#a6efe00981903ad540b9b16f0fdf57ebf">BareNetworkString::addFloat</a></div><div class="ttdeci">BareNetworkString &amp; addFloat(const float value)</div><div class="ttdoc">Adds a 4 byte floating point value.</div><div class="ttdef"><b>Definition</b> network_string.hpp:271</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a81f43a81d0750d5f321f3ea6b19e7f5b"><div class="ttname"><a href="classBareNetworkString.html#a81f43a81d0750d5f321f3ea6b19e7f5b">BareNetworkString::skip</a></div><div class="ttdeci">void skip(int n)</div><div class="ttdoc">Skips the specified number of bytes when reading.</div><div class="ttdef"><b>Definition</b> network_string.hpp:195</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a83c2913f4a54c9f0fe6458bef8c08a6f"><div class="ttname"><a href="classBareNetworkString.html#a83c2913f4a54c9f0fe6458bef8c08a6f">BareNetworkString::m_buffer</a></div><div class="ttdeci">std::vector&lt; uint8_t &gt; m_buffer</div><div class="ttdoc">The actual buffer.</div><div class="ttdef"><b>Definition</b> network_string.hpp:60</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a8d7653a7d3fa944609b43f57ee6d42d4"><div class="ttname"><a href="classBareNetworkString.html#a8d7653a7d3fa944609b43f57ee6d42d4">BareNetworkString::getInt24</a></div><div class="ttdeci">int getInt24() const</div><div class="ttdoc">Returns a signed 24 bit integer.</div><div class="ttdef"><b>Definition</b> network_string.hpp:327</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a933122807e89605b5576838a42a20dae"><div class="ttname"><a href="classBareNetworkString.html#a933122807e89605b5576838a42a20dae">BareNetworkString::add</a></div><div class="ttdeci">BareNetworkString &amp; add(const btQuaternion &amp;quat)</div><div class="ttdoc">Adds the four components of a quaternion.</div><div class="ttdef"><b>Definition</b> network_string.hpp:303</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a9373b34fb5d5d99d8cf51ba5ce78c594"><div class="ttname"><a href="classBareNetworkString.html#a9373b34fb5d5d99d8cf51ba5ce78c594">BareNetworkString::BareNetworkString</a></div><div class="ttdeci">BareNetworkString(const char *data, int len)</div><div class="ttdoc">Initialises the string with a sequence of characters.</div><div class="ttdef"><b>Definition</b> network_string.hpp:138</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a959229847df2e733e69feab387acd369"><div class="ttname"><a href="classBareNetworkString.html#a959229847df2e733e69feab387acd369">BareNetworkString::add</a></div><div class="ttdeci">BareNetworkString &amp; add(const Vec3 &amp;xyz)</div><div class="ttdoc">Adds the xyz components of a Vec3 to the string.</div><div class="ttdef"><b>Definition</b> network_string.hpp:296</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_a9dd92d1c17fcfb0e2c607a68e466c795"><div class="ttname"><a href="classBareNetworkString.html#a9dd92d1c17fcfb0e2c607a68e466c795">BareNetworkString::getFloat</a></div><div class="ttdeci">float getFloat() const</div><div class="ttdoc">Gets a 4 byte floating point value.</div><div class="ttdef"><b>Definition</b> network_string.hpp:358</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_aa3c06d5899ae65ee6c9646e4bc097cd8"><div class="ttname"><a href="classBareNetworkString.html#aa3c06d5899ae65ee6c9646e4bc097cd8">BareNetworkString::getVec3</a></div><div class="ttdeci">Vec3 getVec3() const</div><div class="ttdoc">Gets a Vec3.</div><div class="ttdef"><b>Definition</b> network_string.hpp:380</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_aa871947496269c52dbd67597440af440"><div class="ttname"><a href="classBareNetworkString.html#aa871947496269c52dbd67597440af440">BareNetworkString::decodeStringW</a></div><div class="ttdeci">int decodeStringW(irr::core::stringw *out) const</div><div class="ttdoc">Returns an irrlicht wide string from the utf8 encoded string at the given position.</div><div class="ttdef"><b>Definition</b> network_string.cpp:120</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_aaa3496d9b13f527342aea10c721653dc"><div class="ttname"><a href="classBareNetworkString.html#aaa3496d9b13f527342aea10c721653dc">BareNetworkString::addChar</a></div><div class="ttdeci">BareNetworkString &amp; addChar(const char value)</div><div class="ttdoc">Adds a single character to the string.</div><div class="ttdef"><b>Definition</b> network_string.hpp:218</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_aac1488d6b8d8261f6b02cfb00f17ca41"><div class="ttname"><a href="classBareNetworkString.html#aac1488d6b8d8261f6b02cfb00f17ca41">BareNetworkString::getTotalSize</a></div><div class="ttdeci">unsigned int getTotalSize() const</div><div class="ttdoc">Returns the send size, which is the full length of the buffer.</div><div class="ttdef"><b>Definition</b> network_string.hpp:206</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_aaeea132ac4dd64694e4f5b023085f38e"><div class="ttname"><a href="classBareNetworkString.html#aaeea132ac4dd64694e4f5b023085f38e">BareNetworkString::addTime</a></div><div class="ttdeci">BareNetworkString &amp; addTime(int ticks)</div><div class="ttdoc">Adds a function to add a time ticks value.</div><div class="ttdef"><b>Definition</b> network_string.hpp:313</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_ab16baad366a3c67e03b718755600f3b0"><div class="ttname"><a href="classBareNetworkString.html#ab16baad366a3c67e03b718755600f3b0">BareNetworkString::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Allows one to read a buffer from the beginning again.</div><div class="ttdef"><b>Definition</b> network_string.hpp:147</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_abdd5ddf668a034c31e0af488574a15ac"><div class="ttname"><a href="classBareNetworkString.html#abdd5ddf668a034c31e0af488574a15ac">BareNetworkString::getCurrentData</a></div><div class="ttdeci">const char * getCurrentData() const</div><div class="ttdoc">Returns a byte pointer to the unread remaining content of the network string.</div><div class="ttdef"><b>Definition</b> network_string.hpp:183</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_ac0d3dbaa81c661733527005c69f917db"><div class="ttname"><a href="classBareNetworkString.html#ac0d3dbaa81c661733527005c69f917db">BareNetworkString::operator+=</a></div><div class="ttdeci">BareNetworkString &amp; operator+=(BareNetworkString const &amp;value)</div><div class="ttdoc">Adds the content of another network string.</div><div class="ttdef"><b>Definition</b> network_string.hpp:280</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_ac597fc45dddb57c572f1c818ce148f7c"><div class="ttname"><a href="classBareNetworkString.html#ac597fc45dddb57c572f1c818ce148f7c">BareNetworkString::addUInt32</a></div><div class="ttdeci">BareNetworkString &amp; addUInt32(const uint32_t &amp;value)</div><div class="ttdoc">Adds unsigned 32 bit integer.</div><div class="ttdef"><b>Definition</b> network_string.hpp:245</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_acab15fabfdb4e74758057d3473548b4f"><div class="ttname"><a href="classBareNetworkString.html#acab15fabfdb4e74758057d3473548b4f">BareNetworkString::addUInt16</a></div><div class="ttdeci">BareNetworkString &amp; addUInt16(const uint16_t value)</div><div class="ttdoc">Adds 16 bit unsigned int.</div><div class="ttdef"><b>Definition</b> network_string.hpp:225</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_acd2556415d94b4f77a7633f75ad94564"><div class="ttname"><a href="classBareNetworkString.html#acd2556415d94b4f77a7633f75ad94564">BareNetworkString::get</a></div><div class="ttdeci">T get() const</div><div class="ttdoc">Another function for n == 1 to surpress warnings in clang.</div><div class="ttdef"><b>Definition</b> network_string.hpp:116</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_ad207f98707f7043ca81acc4d43758dfe"><div class="ttname"><a href="classBareNetworkString.html#ad207f98707f7043ca81acc4d43758dfe">BareNetworkString::getUInt32</a></div><div class="ttdeci">uint32_t getUInt32() const</div><div class="ttdoc">Returns a unsigned 32 bit integer.</div><div class="ttdef"><b>Definition</b> network_string.hpp:324</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_adeca77bfc67a5bd0ef2fab0a221af96b"><div class="ttname"><a href="classBareNetworkString.html#adeca77bfc67a5bd0ef2fab0a221af96b">BareNetworkString::getData</a></div><div class="ttdeci">char * getData()</div><div class="ttdoc">Returns a byte pointer to the content of the network string.</div><div class="ttdef"><b>Definition</b> network_string.hpp:166</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_ae1f68093ef7e26d997123bde3adee1ba"><div class="ttname"><a href="classBareNetworkString.html#ae1f68093ef7e26d997123bde3adee1ba">BareNetworkString::get</a></div><div class="ttdeci">T get() const</div><div class="ttdoc">Template to get n bytes from a buffer into a single data type.</div><div class="ttdef"><b>Definition</b> network_string.hpp:99</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_ae8fb7da07ba6ebf3281432b2f70678f7"><div class="ttname"><a href="classBareNetworkString.html#ae8fb7da07ba6ebf3281432b2f70678f7">BareNetworkString::getInt16</a></div><div class="ttdeci">int16_t getInt16() const</div><div class="ttdoc">Returns an unsigned 16 bit integer.</div><div class="ttdef"><b>Definition</b> network_string.hpp:343</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_aee91275d7829c785d58bfb842f1b7ec5"><div class="ttname"><a href="classBareNetworkString.html#aee91275d7829c785d58bfb842f1b7ec5">BareNetworkString::getUInt16</a></div><div class="ttdeci">uint16_t getUInt16() const</div><div class="ttdoc">Returns an unsigned 16 bit integer.</div><div class="ttdef"><b>Definition</b> network_string.hpp:340</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_af7a4efa26e774ddfdf8f8ce6225b098b"><div class="ttname"><a href="classBareNetworkString.html#af7a4efa26e774ddfdf8f8ce6225b098b">BareNetworkString::getTime</a></div><div class="ttdeci">uint32_t getTime() const</div><div class="ttdoc">Returns a unsigned 32 bit integer.</div><div class="ttdef"><b>Definition</b> network_string.hpp:337</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_afade27224174f6f4624db975a7743929"><div class="ttname"><a href="classBareNetworkString.html#afade27224174f6f4624db975a7743929">BareNetworkString::getLogMessage</a></div><div class="ttdeci">std::string getLogMessage(const std::string &amp;indent=&quot;&quot;) const</div><div class="ttdoc">Returns a string representing this message suitable to be printed to stdout or via the Log mechanism.</div><div class="ttdef"><b>Definition</b> network_string.cpp:202</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_afe9c5389ed0d2394c31c159612ad44a7"><div class="ttname"><a href="classBareNetworkString.html#afe9c5389ed0d2394c31c159612ad44a7">BareNetworkString::addString</a></div><div class="ttdeci">BareNetworkString &amp; addString(const std::string &amp;value)</div><div class="ttdoc">Adds a std::string.</div><div class="ttdef"><b>Definition</b> network_string.hpp:89</div></div>
+<div class="ttc" id="aclassBareNetworkString_html_afef75583778352880db65ce38b7171d9"><div class="ttname"><a href="classBareNetworkString.html#afef75583778352880db65ce38b7171d9">BareNetworkString::getInt8</a></div><div class="ttdeci">int8_t getInt8() const</div><div class="ttdoc">Returns an unsigned 8-bit integer.</div><div class="ttdef"><b>Definition</b> network_string.hpp:352</div></div>
+<div class="ttc" id="aclassNetworkString_html_a3aee223b6f0f6f2f72d4afae620c40a8"><div class="ttname"><a href="classNetworkString.html#a3aee223b6f0f6f2f72d4afae620c40a8">NetworkString::unitTesting</a></div><div class="ttdeci">static void unitTesting()</div><div class="ttdoc">Unit testing function.</div><div class="ttdef"><b>Definition</b> network_string.cpp:30</div></div>
+<div class="ttc" id="aclassNetworkString_html_a645d295e48e718f7768fcd4c8ca50a3d"><div class="ttname"><a href="classNetworkString.html#a645d295e48e718f7768fcd4c8ca50a3d">NetworkString::NetworkString</a></div><div class="ttdeci">NetworkString(const uint8_t *data, int len)</div><div class="ttdoc">Constructor for a received message.</div><div class="ttdef"><b>Definition</b> network_string.hpp:439</div></div>
+<div class="ttc" id="aclassNetworkString_html_a6eff32a0923cc43ab28ce0d682030dc1"><div class="ttname"><a href="classNetworkString.html#a6eff32a0923cc43ab28ce0d682030dc1">NetworkString::NetworkString</a></div><div class="ttdeci">NetworkString(ProtocolType type, int capacity=16)</div><div class="ttdoc">Constructor for a message to be sent.</div><div class="ttdef"><b>Definition</b> network_string.hpp:429</div></div>
+<div class="ttc" id="aclassNetworkString_html_a777a55ddc14f8943cafe2e08e3bca126"><div class="ttname"><a href="classNetworkString.html#a777a55ddc14f8943cafe2e08e3bca126">NetworkString::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Empties the string, but does not reset the pre-allocated size.</div><div class="ttdef"><b>Definition</b> network_string.hpp:447</div></div>
+<div class="ttc" id="aclassNetworkString_html_a78692f293d65ff07af410300903a4c94"><div class="ttname"><a href="classNetworkString.html#a78692f293d65ff07af410300903a4c94">NetworkString::setSynchronous</a></div><div class="ttdeci">void setSynchronous(bool b)</div><div class="ttdoc">Sets if this message is to be sent synchronous or asynchronous.</div><div class="ttdef"><b>Definition</b> network_string.hpp:461</div></div>
+<div class="ttc" id="aclassNetworkString_html_aa8c7d901a033c6cc70af0f0813e3553a"><div class="ttname"><a href="classNetworkString.html#aa8c7d901a033c6cc70af0f0813e3553a">NetworkString::getProtocolType</a></div><div class="ttdeci">ProtocolType getProtocolType() const</div><div class="ttdoc">Returns the protocol type of this message.</div><div class="ttdef"><b>Definition</b> network_string.hpp:454</div></div>
+<div class="ttc" id="aclassNetworkString_html_ad4a2622658d897482d13536b86504ae0"><div class="ttname"><a href="classNetworkString.html#ad4a2622658d897482d13536b86504ae0">NetworkString::isSynchronous</a></div><div class="ttdeci">bool isSynchronous() const</div><div class="ttdoc">Returns if this message is synchronous or not.</div><div class="ttdef"><b>Definition</b> network_string.hpp:470</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Declares the general types that are used by the network.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

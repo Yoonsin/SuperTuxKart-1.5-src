@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: achievements/achievements_status.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>achievements</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">achievements_status.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2013-2015 Glenn De Jonghe</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//            (C) 2014-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef HEADER_ACHIEVEMENTS_SLOT_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HEADER_ACHIEVEMENTS_SLOT_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">utils/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;irrString.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">class </span><a class="code hl_class" href="classAchievement.html">Achievement</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">class </span><a class="code hl_class" href="classUTFWriter.html">UTFWriter</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">class </span><a class="code hl_class" href="classXMLNode.html">XMLNode</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classAchievementsStatus.html">   42</a></span><span class="keyword">class </span><a class="code hl_function" href="classAchievementsStatus.html#a14e551058b9b1d0c2cca3694108db566">AchievementsStatus</a></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>{</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>public :</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// Warning : changing what an existing id does breaks</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">// save-game compatibility. Bump version number if doing so.</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">enum</span> AchievementData {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>           <span class="comment">// Won races values share the following properties :</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>           <span class="comment">// 1. Only races with at least 3 AI count unless otherwise specified.</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>           WON_RACES                     = 0, <span class="comment">// Normal, time-trial and FTL</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>           WON_NORMAL_RACES              = 1, <span class="comment">// Normal race only</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>           WON_TT_RACES                  = 2, <span class="comment">// Time-trial race only</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>           WON_FTL_RACES                 = 3, <span class="comment">// Follow-the-leader race only</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>           <span class="comment">// Consecutive won race values :</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>           <span class="comment">// 1. Ignore races with not enough AIs for incrementation</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>           <span class="comment">// 2. Reset the counter in case of loss against any number of AIs</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>           CONS_WON_RACES                = 4,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>           CONS_WON_RACES_MAX            = 5,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>           <span class="comment">// Won races in (at least) hard requires at least 5 AI opponents</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>           CONS_WON_RACES_HARD           = 6,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>           CONS_WON_RACES_HARD_MAX       = 7,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>           <span class="comment">// Count how many normal, TT &amp; FTL races were started and finished by difficulty</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>           EASY_STARTED                  = 8,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>           EASY_FINISHED                 = 9,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>           MEDIUM_STARTED                = 10,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>           MEDIUM_FINISHED               = 11,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>           HARD_STARTED                  = 12,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>           HARD_FINISHED                 = 13,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>           BEST_STARTED                  = 14,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>           BEST_FINISHED                 = 15,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>           <span class="comment">// Count how many time a race/match was started and finished by game mode.</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>           <span class="comment">// Races with ghost replays technically belong to TT or egg hunt race mode,</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>           <span class="comment">// they increment both the with_ghost counter and the relevant mode counter.</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>           NORMAL_STARTED                = 16,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>           NORMAL_FINISHED               = 17,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>           TT_STARTED                    = 18,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>           TT_FINISHED                   = 19,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>           FTL_STARTED                   = 20,</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>           FTL_FINISHED                  = 21,</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>           THREE_STRIKES_STARTED         = 22,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>           THREE_STRIKES_FINISHED        = 23,</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>           SOCCER_STARTED                = 24,</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>           SOCCER_FINISHED               = 25,</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>           EGG_HUNT_STARTED              = 26,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>           EGG_HUNT_FINISHED             = 27,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>           WITH_GHOST_STARTED            = 28,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>           WITH_GHOST_FINISHED           = 29,</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>           CTF_STARTED                   = 30,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>           CTF_FINISHED                  = 31,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>           FFA_STARTED                   = 32,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>           FFA_FINISHED                  = 33,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>           <span class="comment">// Count the number of powerups used by the player.</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>           POWERUP_USED                  = 34,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>           POWERUP_USED_1RACE            = 35,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>           POWERUP_USED_1RACE_MAX        = 36,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>           <span class="comment">// Count how many times a bowling ball from the player hit a kart</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>           BOWLING_HIT                   = 37,</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>           BOWLING_HIT_1RACE             = 38,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>           BOWLING_HIT_1RACE_MAX         = 39,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>           <span class="comment">// Count how many times a swatter from the player hit a kart</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>           SWATTER_HIT                   = 40,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>           SWATTER_HIT_1RACE             = 41,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>           SWATTER_HIT_1RACE_MAX         = 42,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>           <span class="comment">// Count how many times a swatter, bowling ball or cake from</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>           <span class="comment">// the player hit a kart (excluding the player&#39;s own kart)</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>           ALL_HITS                      = 43,</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>           ALL_HITS_1RACE                = 44,</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>           ALL_HITS_1RACE_MAX            = 45,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>           <span class="comment">// Count the number of bananas hit</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>           BANANA                        = 46,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>           BANANA_1RACE                  = 47,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>           BANANA_1RACE_MAX              = 48,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>           <span class="comment">// Count how many times the player skidded</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>           SKIDDING                      = 49,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>           SKIDDING_1RACE                = 50,</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>           SKIDDING_1RACE_MAX            = 51,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>           SKIDDING_1LAP                 = 52,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>           SKIDDING_1LAP_MAX             = 53,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>           ACHIEVE_DATA_NUM              = 54</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    };</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    std::map&lt;uint32_t, Achievement *&gt; m_achievements;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// Variables used to track achievements progress,</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">// one variable may be used by several achievements.</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment">// TODO</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="comment">// Currently this only uses an int counter.</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">// Evaluate if additional data keeping (max achived ?) can be useful,</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">// and either expand the struct or remove it.</span></div>
+<div class="foldopen" id="foldopen00134" data-start="{" data-end="};">
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="structAchievementsStatus_1_1AchievementVariable.html">  134</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structAchievementsStatus_1_1AchievementVariable.html">AchievementVariable</a></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    {</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordtype">int</span> counter;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    };</div>
+</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> DATA_VERSION = 4;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="comment">// The tracked values are defined at compile time</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <a class="code hl_struct" href="structAchievementsStatus_1_1AchievementVariable.html">AchievementVariable</a> m_variables[ACHIEVE_DATA_NUM];</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">// We store the enum name and matching goalTree type</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="comment">// in this table for faster lookup.</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    std::string m_ach_enum_to_xml[ACHIEVE_DATA_NUM];</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="comment">// Switching a few times from public to private</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="comment">// helps here to keep related things next to each other</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keyword">enum</span> TrackData {</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="comment">// counters for standard, TT &amp; FTL races</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        TR_STARTED           = 0,</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        TR_FINISHED          = 1,</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="comment">// doesn&#39;t count race without any other AI/player</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        TR_WON               = 2,</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        TR_FINISHED_REVERSE  = 3,</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="comment">// races against replays are counted, too</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        TR_FINISHED_ALONE    = 4,</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="comment">// counters for standard &amp; TT races, apply to finished races only,</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="comment">// lap number compared to track default.</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        TR_LESS_LAPS         = 5,</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        TR_MORE_LAPS         = 6,</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        TR_MIN_TWICE_LAPS    = 7, <span class="comment">// at least twice the track&#39;s default lap count</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="comment">// counters for egg hunts</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        TR_EGG_HUNT_STARTED  = 8,</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        TR_EGG_HUNT_FINISHED = 9,</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        TR_DATA_NUM          = 10</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    };    </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="comment">// To keep track of track-specific data without hardcoding</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="comment">// a list of tracks, we use a special structure.</span></div>
+<div class="foldopen" id="foldopen00175" data-start="{" data-end="};">
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="structAchievementsStatus_1_1TrackStats.html">  175</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structAchievementsStatus_1_1TrackStats.html">TrackStats</a></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    {</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        std::string ident;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        <span class="keywordtype">int</span> track_data[TR_DATA_NUM];</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    };</div>
+</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    std::vector&lt;TrackStats&gt; m_track_stats;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="comment">// We store the enum name and matching goalTree type</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="comment">// in this table for faster lookup.</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="comment">// Each track data value matches 2 xml command</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    std::string m_tr_enum_to_xml[2*TR_DATA_NUM];</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="comment">// TODO : keep track of battle/soccer arenas</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="comment">// Keeps track of hits inflicted to other karts,</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="comment">// identified by their world id.</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="comment">// Reset at the beginning of a race</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    std::vector&lt;int&gt; m_kart_hits;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="comment">// To avoid updating achievement progress being</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="comment">// too computationally wasteful, we restrain</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="comment">// what is checked on an update</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keyword">enum</span> UpdateType</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    {</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        UP_ACHIEVEMENT_DATA = 0,</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        UP_TRACK_DATA = 1,</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        UP_KART_HITS = 2,</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    };</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordtype">bool</span>                m_online;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordtype">bool</span>                m_valid;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAchievementsStatus.html#ae57ee85763bcabe8a50fdcf43ea17475">setEnumToString</a>();</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordtype">void</span> updateAchievementsProgress(UpdateType type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> enum_id);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>public :</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <a class="code hl_function" href="classAchievementsStatus.html#a14e551058b9b1d0c2cca3694108db566">AchievementsStatus</a>();</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <a class="code hl_function" href="classAchievementsStatus.html#ad0ddf2b4b096307f973a3f8bdef82a09">~AchievementsStatus</a>();</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <a class="code hl_class" href="classAchievement.html">Achievement</a> * getAchievement(uint32_t <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAchievementsStatus.html#a180e5a5ba934ecd0e99999c9d5e9bb95">load</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> * input);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAchievementsStatus.html#a2e997d9fa424b06e67bf32ea681e96b4">save</a>(<a class="code hl_class" href="classUTFWriter.html">UTFWriter</a> &amp;out);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordtype">void</span> add(<a class="code hl_class" href="classAchievement.html">Achievement</a> *achievement);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAchievementsStatus.html#a966fd4a6126e22ba1fa1f4feb15fd23b">sync</a>(<span class="keyword">const</span> std::vector&lt;uint32_t&gt; &amp; achieved_ids);</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keywordtype">void</span> increaseDataVar(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> achieve_data_id, <span class="keywordtype">int</span> increase);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordtype">void</span> resetDataVar(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> achieve_data_id);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="keywordtype">void</span> onRaceEnd(<span class="keywordtype">bool</span> aborted=<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="keywordtype">void</span> onLapEnd();</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAchievementsStatus.html#abfd78afeab9eabc0439f7afb4234719d">trackEvent</a>(std::string track_ident, AchievementsStatus::TrackData event);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keywordtype">void</span> resetKartHits(<span class="keywordtype">int</span> num_karts);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="keywordtype">void</span> addKartHit(<span class="keywordtype">int</span> kart_id);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordtype">void</span> updateAllAchievementsProgress();</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordtype">int</span> getNumTracksAboveValue(<span class="keywordtype">int</span> value, std::string goal_string);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordtype">int</span> getNumAchieveTracks();</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    std::map&lt;uint32_t, Achievement *&gt;&amp; getAllAchievements()</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    {</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        <span class="keywordflow">return</span> m_achievements;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    }</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordtype">bool</span> isOnline()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_online; }</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordtype">bool</span> isValid()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_valid; }</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>};   <span class="comment">// class AchievementsStatus</span></div>
+</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment">/*EOF*/</span></div>
+<div class="ttc" id="aclassAchievement_html"><div class="ttname"><a href="classAchievement.html">Achievement</a></div><div class="ttdef"><b>Definition</b> achievement.hpp:42</div></div>
+<div class="ttc" id="aclassAchievementsStatus_html_a14e551058b9b1d0c2cca3694108db566"><div class="ttname"><a href="classAchievementsStatus.html#a14e551058b9b1d0c2cca3694108db566">AchievementsStatus::AchievementsStatus</a></div><div class="ttdeci">AchievementsStatus()</div><div class="ttdoc">Constructor for an Achievement.</div><div class="ttdef"><b>Definition</b> achievements_status.cpp:44</div></div>
+<div class="ttc" id="aclassAchievementsStatus_html_a180e5a5ba934ecd0e99999c9d5e9bb95"><div class="ttname"><a href="classAchievementsStatus.html#a180e5a5ba934ecd0e99999c9d5e9bb95">AchievementsStatus::load</a></div><div class="ttdeci">void load(const XMLNode *input)</div><div class="ttdoc">Loads the saved state of all achievements from an XML file.</div><div class="ttdef"><b>Definition</b> achievements_status.cpp:175</div></div>
+<div class="ttc" id="aclassAchievementsStatus_html_a2e997d9fa424b06e67bf32ea681e96b4"><div class="ttname"><a href="classAchievementsStatus.html#a2e997d9fa424b06e67bf32ea681e96b4">AchievementsStatus::save</a></div><div class="ttdeci">void save(UTFWriter &amp;out)</div><div class="ttdoc">Saves the achievement status to a file.</div><div class="ttdef"><b>Definition</b> achievements_status.cpp:295</div></div>
+<div class="ttc" id="aclassAchievementsStatus_html_a966fd4a6126e22ba1fa1f4feb15fd23b"><div class="ttname"><a href="classAchievementsStatus.html#a966fd4a6126e22ba1fa1f4feb15fd23b">AchievementsStatus::sync</a></div><div class="ttdeci">void sync(const std::vector&lt; uint32_t &gt; &amp;achieved_ids)</div><div class="ttdoc">Synchronises the achievements between local and online usage.</div><div class="ttdef"><b>Definition</b> achievements_status.cpp:341</div></div>
+<div class="ttc" id="aclassAchievementsStatus_html_abfd78afeab9eabc0439f7afb4234719d"><div class="ttname"><a href="classAchievementsStatus.html#abfd78afeab9eabc0439f7afb4234719d">AchievementsStatus::trackEvent</a></div><div class="ttdeci">void trackEvent(std::string track_ident, AchievementsStatus::TrackData event)</div><div class="ttdoc">Use the event type to increment the correct track event counter</div><div class="ttdef"><b>Definition</b> achievements_status.cpp:601</div></div>
+<div class="ttc" id="aclassAchievementsStatus_html_ad0ddf2b4b096307f973a3f8bdef82a09"><div class="ttname"><a href="classAchievementsStatus.html#ad0ddf2b4b096307f973a3f8bdef82a09">AchievementsStatus::~AchievementsStatus</a></div><div class="ttdeci">~AchievementsStatus()</div><div class="ttdoc">Removes all achievements.</div><div class="ttdef"><b>Definition</b> achievements_status.cpp:78</div></div>
+<div class="ttc" id="aclassAchievementsStatus_html_ae57ee85763bcabe8a50fdcf43ea17475"><div class="ttname"><a href="classAchievementsStatus.html#ae57ee85763bcabe8a50fdcf43ea17475">AchievementsStatus::setEnumToString</a></div><div class="ttdeci">void setEnumToString()</div><div class="ttdoc">This function loads a table associating an enum identifier with the matching command in achievements....</div><div class="ttdef"><b>Definition</b> achievements_status.cpp:91</div></div>
+<div class="ttc" id="aclassUTFWriter_html"><div class="ttname"><a href="classUTFWriter.html">UTFWriter</a></div><div class="ttdoc">utility class used to write wide (UTF-16 or UTF-32, depending of size of wchar_t) XML files</div><div class="ttdef"><b>Definition</b> utf_writer.hpp:35</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+<div class="ttc" id="astructAchievementsStatus_1_1AchievementVariable_html"><div class="ttname"><a href="structAchievementsStatus_1_1AchievementVariable.html">AchievementsStatus::AchievementVariable</a></div><div class="ttdef"><b>Definition</b> achievements_status.hpp:135</div></div>
+<div class="ttc" id="astructAchievementsStatus_1_1TrackStats_html"><div class="ttname"><a href="structAchievementsStatus_1_1TrackStats.html">AchievementsStatus::TrackStats</a></div><div class="ttdef"><b>Definition</b> achievements_status.hpp:176</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Declares the general types that are used by the network.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

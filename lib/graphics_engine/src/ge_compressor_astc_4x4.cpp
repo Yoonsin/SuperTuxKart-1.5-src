@@ -24,6 +24,30 @@ extern bool g_supports_astc_4x4;
 }
 
 std::vector<astcenc_context*> g_astc_contexts;
+
+namespace
+{
+inline astcenc_error allocAstcContext(
+    astcenc_error (*alloc_fn)(
+        const astcenc_config*, unsigned int, astcenc_context**),
+    const astcenc_config* config,
+    unsigned int thread_count,
+    astcenc_context** context)
+{
+    return alloc_fn(config, thread_count, context);
+}
+
+inline astcenc_error allocAstcContext(
+    astcenc_error (*alloc_fn)(
+        const astcenc_config*, unsigned int, astcenc_context**,
+        const astcenc_context*),
+    const astcenc_config* config,
+    unsigned int thread_count,
+    astcenc_context** context)
+{
+    return alloc_fn(config, thread_count, context, nullptr);
+}
+}
 #endif
 // ============================================================================
 void GECompressorASTC4x4::init()
@@ -50,7 +74,8 @@ void GECompressorASTC4x4::init()
     for (unsigned i = 0; i < GEVulkanCommandLoader::getLoaderCount(); i++)
     {
         astcenc_context* context = NULL;
-        if (astcenc_context_alloc(&cfg, 1, &context, nullptr) != ASTCENC_SUCCESS)
+        if (allocAstcContext(&astcenc_context_alloc, &cfg, 1, &context) !=
+            ASTCENC_SUCCESS)
         {
             destroy();
             return;

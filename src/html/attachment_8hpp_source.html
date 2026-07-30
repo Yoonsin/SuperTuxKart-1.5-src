@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: items/attachment.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>items</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">attachment.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2006-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_ATTACHMENT_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_ATTACHMENT_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;items/attachment_plugin.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">utils/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">namespace </span>scene { <span class="keyword">class </span>IAnimatedMeshSceneNode; }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">class </span><a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">class </span><a class="code hl_class" href="classItemState.html">ItemState</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">class </span><a class="code hl_class" href="classSFXBase.html">SFXBase</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classAttachment.html">   51</a></span><span class="keyword">class </span><a class="code hl_function" href="classAttachment.html#a5d77c43dc308cd9d1695050fc78f351b">Attachment</a>: <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// Some loop in attachment.cpp depend on ATTACH_FIRST and ATTACH_MAX.</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="comment">// So if new elements are added, make sure to add them in between those values.</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// Also, please note that Attachment::Attachment relies on ATTACH_FIRST being 0.</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">enum</span> AttachmentType</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        ATTACH_FIRST = 0,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="comment">// It is important that parachute, bomb and anvil stay in this order,</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="comment">// since the attachment type is mapped to a random integer (and bomb</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="comment">// must be last, since a bomb will not be given in battle mode).</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        ATTACH_PARACHUTE = 0,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        ATTACH_ANVIL = 1,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        ATTACH_BOMB = 2,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="comment">// End of fixed order attachments, the rest can be changed.</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        ATTACH_SWATTER,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="comment">// Note that the next 2 symbols are only used as an index into the mesh</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="comment">// array; it will NEVER be actually assigned as an attachment type</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        ATTACH_NOLOKS_SWATTER,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        ATTACH_SWATTER_ANIM,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        ATTACH_BUBBLEGUM_SHIELD,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        ATTACH_NOLOK_BUBBLEGUM_SHIELD,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        ATTACH_MAX,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        ATTACH_NOTHING</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    };</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classAttachment.html#a8cf1bc1da535fc09edadfb6818dbc3e6">   80</a></span>    AttachmentType  <a class="code hl_variable" href="classAttachment.html#a8cf1bc1da535fc09edadfb6818dbc3e6">m_type</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classAttachment.html#a6a0d2230c96de3b2253622b51e30cdfb">   83</a></span>    AttachmentType <a class="code hl_variable" href="classAttachment.html#a6a0d2230c96de3b2253622b51e30cdfb">m_graphical_type</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classAttachment.html#aebc466e585024a28eda1e3bb0bc55d39">   86</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>   *<a class="code hl_variable" href="classAttachment.html#aebc466e585024a28eda1e3bb0bc55d39">m_kart</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classAttachment.html#afeff7addc70fd8eb47fdc124fdc83e25">   89</a></span>    int16_t         <a class="code hl_variable" href="classAttachment.html#afeff7addc70fd8eb47fdc124fdc83e25">m_ticks_left</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classAttachment.html#a719432870e4f873e969f0c09dc58b29d">   92</a></span>    int16_t         <a class="code hl_variable" href="classAttachment.html#a719432870e4f873e969f0c09dc58b29d">m_initial_speed</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classAttachment.html#aa465f1848515db225e0afb2126ef449f">   95</a></span>    <span class="keywordtype">int</span>             <a class="code hl_variable" href="classAttachment.html#aa465f1848515db225e0afb2126ef449f">m_scaling_end_ticks</a>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    scene::IAnimatedMeshSceneNode</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classAttachment.html#a0d78352e71c8d1162e74030a899e9bec">  100</a></span>                     *<a class="code hl_variable" href="classAttachment.html#a0d78352e71c8d1162e74030a899e9bec">m_node</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classAttachment.html#a1b0d95a5ef1ffd79aff0aa1b0b0790dd">  103</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>     *<a class="code hl_variable" href="classAttachment.html#a1b0d95a5ef1ffd79aff0aa1b0b0790dd">m_previous_owner</a>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classAttachment.html#ae0c9ed578a4b8b2eb8d9f424a5e00a30">  107</a></span>    <a class="code hl_class" href="classAttachmentPlugin.html">AttachmentPlugin</a> *<a class="code hl_variable" href="classAttachment.html#ae0c9ed578a4b8b2eb8d9f424a5e00a30">m_plugin</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classAttachment.html#a4b5c947d8d17115a7a210f8e537f1559">  110</a></span>    <a class="code hl_class" href="classSFXBase.html">SFXBase</a>          *<a class="code hl_variable" href="classAttachment.html#a4b5c947d8d17115a7a210f8e537f1559">m_bomb_sound</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classAttachment.html#a9b249eb2fa57ea56e5dc349ba3dd1a36">  113</a></span>    <a class="code hl_class" href="classSFXBase.html">SFXBase</a>          *<a class="code hl_variable" href="classAttachment.html#a9b249eb2fa57ea56e5dc349ba3dd1a36">m_bubble_explode_sound</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>          <a class="code hl_function" href="classAttachment.html#a5d77c43dc308cd9d1695050fc78f351b">Attachment</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>         <a class="code hl_function" href="classAttachment.html#a9bc2ebc1f73966042ff403bdc4319e24">~Attachment</a>();</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classAttachment.html#a20c52b9b112e70939a521377fac19ffc">clear</a>();</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classAttachment.html#aac67630a269899e0629acb6c6b4d0650">hitBanana</a>(<a class="code hl_class" href="classItemState.html">ItemState</a> *item);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordtype">void</span>  updateGraphics(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordtype">void</span>  update(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classAttachment.html#ab14fcde31cbe5656f0d4660180621269">handleCollisionWithKart</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *other);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classAttachment.html#a3ac3d10576353e09f033a486f6f16a78">set</a> (AttachmentType type, <span class="keywordtype">int</span> ticks,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>               <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *previous_kart=NULL,</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>               <span class="keywordtype">bool</span> set_by_rewind_parachute = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAttachment.html#a29954c16963e9947a305c0128bb2ce03">rewindTo</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAttachment.html#a3b072dc5ae1f37649d39804a3b6e5b09">saveState</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classAttachment.html#a12d76924acf49822f80d184153b77d29">  132</a></span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classAttachment.html#a12d76924acf49822f80d184153b77d29">set</a> (AttachmentType type) { <a class="code hl_function" href="classAttachment.html#a12d76924acf49822f80d184153b77d29">set</a>(type, <a class="code hl_variable" href="classAttachment.html#afeff7addc70fd8eb47fdc124fdc83e25">m_ticks_left</a>); }</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classAttachment.html#a5a92e22982169aec712e5c706b7b746f">  135</a></span>    AttachmentType <a class="code hl_function" href="classAttachment.html#a5a92e22982169aec712e5c706b7b746f">getType</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAttachment.html#a8cf1bc1da535fc09edadfb6818dbc3e6">m_type</a>; }</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classAttachment.html#af916a84eebeec485cef9d1779210a103">  139</a></span>    int16_t <a class="code hl_function" href="classAttachment.html#af916a84eebeec485cef9d1779210a103">getTicksLeft</a>()<span class="keyword"> const                       </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAttachment.html#afeff7addc70fd8eb47fdc124fdc83e25">m_ticks_left</a>; }</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classAttachment.html#ac4d887df89d66e6ae7169cbfca123cd3">  142</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAttachment.html#ac4d887df89d66e6ae7169cbfca123cd3">setTicksLeft</a>(int16_t t)                          { <a class="code hl_variable" href="classAttachment.html#afeff7addc70fd8eb47fdc124fdc83e25">m_ticks_left</a> = t; }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classAttachment.html#aae8152660299bb9df7e34e525f12d541">  146</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* <a class="code hl_function" href="classAttachment.html#aae8152660299bb9df7e34e525f12d541">getPreviousOwner</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAttachment.html#a1b0d95a5ef1ffd79aff0aa1b0b0790dd">m_previous_owner</a>; }</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classAttachment.html#aead729798a69dd99b597d73a2856fed2">weightAdjust</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="classAttachment.html#a2273d3d2c0aec461b798ae1c54f0845c">  152</a></span>    scene::IAnimatedMeshSceneNode* <a class="code hl_function" href="classAttachment.html#a2273d3d2c0aec461b798ae1c54f0845c">getNode</a>() {<span class="keywordflow">return</span> <a class="code hl_variable" href="classAttachment.html#a0d78352e71c8d1162e74030a899e9bec">m_node</a>;}</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordtype">void</span> reset()</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <a class="code hl_function" href="classAttachment.html#a20c52b9b112e70939a521377fac19ffc">clear</a>();</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <a class="code hl_variable" href="classAttachment.html#aa465f1848515db225e0afb2126ef449f">m_scaling_end_ticks</a> = -1;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    }</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>};   <span class="comment">// Attachment</span></div>
+</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassAttachmentPlugin_html"><div class="ttname"><a href="classAttachmentPlugin.html">AttachmentPlugin</a></div><div class="ttdoc">This is the base class for a plugin into an attachment.</div><div class="ttdef"><b>Definition</b> attachment_plugin.hpp:39</div></div>
+<div class="ttc" id="aclassAttachment_html_a0d78352e71c8d1162e74030a899e9bec"><div class="ttname"><a href="classAttachment.html#a0d78352e71c8d1162e74030a899e9bec">Attachment::m_node</a></div><div class="ttdeci">scene::IAnimatedMeshSceneNode * m_node</div><div class="ttdoc">Scene node of the attachment, which will be attached to the kart&#39;s scene node.</div><div class="ttdef"><b>Definition</b> attachment.hpp:100</div></div>
+<div class="ttc" id="aclassAttachment_html_a12d76924acf49822f80d184153b77d29"><div class="ttname"><a href="classAttachment.html#a12d76924acf49822f80d184153b77d29">Attachment::set</a></div><div class="ttdeci">void set(AttachmentType type)</div><div class="ttdoc">Sets the type of the attachment, but keeps the old time left value.</div><div class="ttdef"><b>Definition</b> attachment.hpp:132</div></div>
+<div class="ttc" id="aclassAttachment_html_a1b0d95a5ef1ffd79aff0aa1b0b0790dd"><div class="ttname"><a href="classAttachment.html#a1b0d95a5ef1ffd79aff0aa1b0b0790dd">Attachment::m_previous_owner</a></div><div class="ttdeci">AbstractKart * m_previous_owner</div><div class="ttdoc">Used by bombs so that it&#39;s not passed back to previous owner.</div><div class="ttdef"><b>Definition</b> attachment.hpp:103</div></div>
+<div class="ttc" id="aclassAttachment_html_a20c52b9b112e70939a521377fac19ffc"><div class="ttname"><a href="classAttachment.html#a20c52b9b112e70939a521377fac19ffc">Attachment::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Removes any attachement currently on the kart.</div><div class="ttdef"><b>Definition</b> attachment.cpp:179</div></div>
+<div class="ttc" id="aclassAttachment_html_a2273d3d2c0aec461b798ae1c54f0845c"><div class="ttname"><a href="classAttachment.html#a2273d3d2c0aec461b798ae1c54f0845c">Attachment::getNode</a></div><div class="ttdeci">scene::IAnimatedMeshSceneNode * getNode()</div><div class="ttdoc">Return the currently associated scene node (used by e.g the swatter)</div><div class="ttdef"><b>Definition</b> attachment.hpp:152</div></div>
+<div class="ttc" id="aclassAttachment_html_a29954c16963e9947a305c0128bb2ce03"><div class="ttname"><a href="classAttachment.html#a29954c16963e9947a305c0128bb2ce03">Attachment::rewindTo</a></div><div class="ttdeci">void rewindTo(BareNetworkString *buffer)</div><div class="ttdoc">Called from the kart rewinder when resetting to a certain state.</div><div class="ttdef"><b>Definition</b> attachment.cpp:222</div></div>
+<div class="ttc" id="aclassAttachment_html_a3ac3d10576353e09f033a486f6f16a78"><div class="ttname"><a href="classAttachment.html#a3ac3d10576353e09f033a486f6f16a78">Attachment::set</a></div><div class="ttdeci">void set(AttachmentType type, int ticks, AbstractKart *previous_kart=NULL, bool set_by_rewind_parachute=false)</div><div class="ttdoc">Sets the attachment a kart has.</div><div class="ttdef"><b>Definition</b> attachment.cpp:116</div></div>
+<div class="ttc" id="aclassAttachment_html_a3b072dc5ae1f37649d39804a3b6e5b09"><div class="ttname"><a href="classAttachment.html#a3b072dc5ae1f37649d39804a3b6e5b09">Attachment::saveState</a></div><div class="ttdeci">void saveState(BareNetworkString *buffer) const</div><div class="ttdoc">Saves the attachment state.</div><div class="ttdef"><b>Definition</b> attachment.cpp:196</div></div>
+<div class="ttc" id="aclassAttachment_html_a4b5c947d8d17115a7a210f8e537f1559"><div class="ttname"><a href="classAttachment.html#a4b5c947d8d17115a7a210f8e537f1559">Attachment::m_bomb_sound</a></div><div class="ttdeci">SFXBase * m_bomb_sound</div><div class="ttdoc">Ticking sound for the bomb</div><div class="ttdef"><b>Definition</b> attachment.hpp:110</div></div>
+<div class="ttc" id="aclassAttachment_html_a5a92e22982169aec712e5c706b7b746f"><div class="ttname"><a href="classAttachment.html#a5a92e22982169aec712e5c706b7b746f">Attachment::getType</a></div><div class="ttdeci">AttachmentType getType() const</div><div class="ttdoc">Returns the type of this attachment.</div><div class="ttdef"><b>Definition</b> attachment.hpp:135</div></div>
+<div class="ttc" id="aclassAttachment_html_a5d77c43dc308cd9d1695050fc78f351b"><div class="ttname"><a href="classAttachment.html#a5d77c43dc308cd9d1695050fc78f351b">Attachment::Attachment</a></div><div class="ttdeci">Attachment(AbstractKart *kart)</div><div class="ttdoc">Initialises the attachment each kart has.</div><div class="ttdef"><b>Definition</b> attachment.cpp:51</div></div>
+<div class="ttc" id="aclassAttachment_html_a6a0d2230c96de3b2253622b51e30cdfb"><div class="ttname"><a href="classAttachment.html#a6a0d2230c96de3b2253622b51e30cdfb">Attachment::m_graphical_type</a></div><div class="ttdeci">AttachmentType m_graphical_type</div><div class="ttdoc">Graphical Attachment type (comparing in updateGraphics).</div><div class="ttdef"><b>Definition</b> attachment.hpp:83</div></div>
+<div class="ttc" id="aclassAttachment_html_a719432870e4f873e969f0c09dc58b29d"><div class="ttname"><a href="classAttachment.html#a719432870e4f873e969f0c09dc58b29d">Attachment::m_initial_speed</a></div><div class="ttdeci">int16_t m_initial_speed</div><div class="ttdoc">For parachutes only, stored in cm/s for networking.</div><div class="ttdef"><b>Definition</b> attachment.hpp:92</div></div>
+<div class="ttc" id="aclassAttachment_html_a8cf1bc1da535fc09edadfb6818dbc3e6"><div class="ttname"><a href="classAttachment.html#a8cf1bc1da535fc09edadfb6818dbc3e6">Attachment::m_type</a></div><div class="ttdeci">AttachmentType m_type</div><div class="ttdoc">Attachment type.</div><div class="ttdef"><b>Definition</b> attachment.hpp:80</div></div>
+<div class="ttc" id="aclassAttachment_html_a9b249eb2fa57ea56e5dc349ba3dd1a36"><div class="ttname"><a href="classAttachment.html#a9b249eb2fa57ea56e5dc349ba3dd1a36">Attachment::m_bubble_explode_sound</a></div><div class="ttdeci">SFXBase * m_bubble_explode_sound</div><div class="ttdoc">Sound for exploding bubble gum shield</div><div class="ttdef"><b>Definition</b> attachment.hpp:113</div></div>
+<div class="ttc" id="aclassAttachment_html_a9bc2ebc1f73966042ff403bdc4319e24"><div class="ttname"><a href="classAttachment.html#a9bc2ebc1f73966042ff403bdc4319e24">Attachment::~Attachment</a></div><div class="ttdeci">~Attachment()</div><div class="ttdoc">Removes the attachment object.</div><div class="ttdef"><b>Definition</b> attachment.cpp:87</div></div>
+<div class="ttc" id="aclassAttachment_html_aa465f1848515db225e0afb2126ef449f"><div class="ttname"><a href="classAttachment.html#aa465f1848515db225e0afb2126ef449f">Attachment::m_scaling_end_ticks</a></div><div class="ttdeci">int m_scaling_end_ticks</div><div class="ttdoc">For zoom-in animation</div><div class="ttdef"><b>Definition</b> attachment.hpp:95</div></div>
+<div class="ttc" id="aclassAttachment_html_aac67630a269899e0629acb6c6b4d0650"><div class="ttname"><a href="classAttachment.html#aac67630a269899e0629acb6c6b4d0650">Attachment::hitBanana</a></div><div class="ttdeci">void hitBanana(ItemState *item)</div><div class="ttdoc">Selects the new attachment.</div><div class="ttdef"><b>Definition</b> attachment.cpp:270</div></div>
+<div class="ttc" id="aclassAttachment_html_aae8152660299bb9df7e34e525f12d541"><div class="ttname"><a href="classAttachment.html#aae8152660299bb9df7e34e525f12d541">Attachment::getPreviousOwner</a></div><div class="ttdeci">AbstractKart * getPreviousOwner() const</div><div class="ttdoc">Returns the previous owner of this attachment, used in bombs that are being passed between karts.</div><div class="ttdef"><b>Definition</b> attachment.hpp:146</div></div>
+<div class="ttc" id="aclassAttachment_html_ab14fcde31cbe5656f0d4660180621269"><div class="ttname"><a href="classAttachment.html#ab14fcde31cbe5656f0d4660180621269">Attachment::handleCollisionWithKart</a></div><div class="ttdeci">void handleCollisionWithKart(AbstractKart *other)</div><div class="ttdoc">Updates the attachments in case of a kart-kart collision.</div><div class="ttdef"><b>Definition</b> attachment.cpp:401</div></div>
+<div class="ttc" id="aclassAttachment_html_ac4d887df89d66e6ae7169cbfca123cd3"><div class="ttname"><a href="classAttachment.html#ac4d887df89d66e6ae7169cbfca123cd3">Attachment::setTicksLeft</a></div><div class="ttdeci">void setTicksLeft(int16_t t)</div><div class="ttdoc">Sets how long this attachment will remain attached.</div><div class="ttdef"><b>Definition</b> attachment.hpp:142</div></div>
+<div class="ttc" id="aclassAttachment_html_ae0c9ed578a4b8b2eb8d9f424a5e00a30"><div class="ttname"><a href="classAttachment.html#ae0c9ed578a4b8b2eb8d9f424a5e00a30">Attachment::m_plugin</a></div><div class="ttdeci">AttachmentPlugin * m_plugin</div><div class="ttdoc">An optional attachment - additional functionality can be implemented for certain attachments.</div><div class="ttdef"><b>Definition</b> attachment.hpp:107</div></div>
+<div class="ttc" id="aclassAttachment_html_aead729798a69dd99b597d73a2856fed2"><div class="ttname"><a href="classAttachment.html#aead729798a69dd99b597d73a2856fed2">Attachment::weightAdjust</a></div><div class="ttdeci">float weightAdjust() const</div><div class="ttdoc">Returns additional weight for the kart.</div><div class="ttdef"><b>Definition</b> attachment.cpp:710</div></div>
+<div class="ttc" id="aclassAttachment_html_aebc466e585024a28eda1e3bb0bc55d39"><div class="ttname"><a href="classAttachment.html#aebc466e585024a28eda1e3bb0bc55d39">Attachment::m_kart</a></div><div class="ttdeci">AbstractKart * m_kart</div><div class="ttdoc">Kart the attachment is attached to.</div><div class="ttdef"><b>Definition</b> attachment.hpp:86</div></div>
+<div class="ttc" id="aclassAttachment_html_af916a84eebeec485cef9d1779210a103"><div class="ttname"><a href="classAttachment.html#af916a84eebeec485cef9d1779210a103">Attachment::getTicksLeft</a></div><div class="ttdeci">int16_t getTicksLeft() const</div><div class="ttdoc">Returns how much time (in ticks) is left before this attachment is removed.</div><div class="ttdef"><b>Definition</b> attachment.hpp:139</div></div>
+<div class="ttc" id="aclassAttachment_html_afeff7addc70fd8eb47fdc124fdc83e25"><div class="ttname"><a href="classAttachment.html#afeff7addc70fd8eb47fdc124fdc83e25">Attachment::m_ticks_left</a></div><div class="ttdeci">int16_t m_ticks_left</div><div class="ttdoc">Time left till attachment expires.</div><div class="ttdef"><b>Definition</b> attachment.hpp:89</div></div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassItemState_html"><div class="ttname"><a href="classItemState.html">ItemState</a></div><div class="ttdoc">Contains the state information of an item, i.e.</div><div class="ttdef"><b>Definition</b> item.hpp:53</div></div>
+<div class="ttc" id="aclassSFXBase_html"><div class="ttname"><a href="classSFXBase.html">SFXBase</a></div><div class="ttdoc">The base class for sound effects.</div><div class="ttdef"><b>Definition</b> sfx_base.hpp:43</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Declares the general types that are used by the network.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

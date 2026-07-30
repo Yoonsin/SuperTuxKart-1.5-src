@@ -1,0 +1,451 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: font/font_with_face.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>font</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">font_with_face.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2016 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_FONT_WITH_FACE_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_FONT_WITH_FACE_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;utils/cpp2011.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;cassert&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#ifndef SERVER_ONLY</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;ft2build.h&gt;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include FT_FREETYPE_H</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include FT_OUTLINE_H</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;GlyphLayout.h&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &lt;dimension2d.h&gt;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;irrString.h&gt;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#include &lt;rect.h&gt;</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">const</span> <span class="keywordtype">int</span> BEARING = 64;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">class </span><a class="code hl_class" href="classFaceTTF.html">FaceTTF</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">class </span><a class="code hl_class" href="classFontSettings.html">FontSettings</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">struct </span><a class="code hl_struct" href="structFontArea.html">FontArea</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">namespace </span>video</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keyword">class </span>ITexture;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keyword">class </span>SColor;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">namespace </span>gui</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keyword">class </span>IGUISpriteBank;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span></div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="};">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classFontWithFace.html">   71</a></span><span class="keyword">class </span><a class="code hl_function" href="classFontWithFace.html#ad993420d45e843789e67bbc4a4d4a6fb">FontWithFace</a> : <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>{</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="};">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classFontWithFace_1_1FontCharCollector.html">   76</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classFontWithFace_1_1FontCharCollector.html">FontCharCollector</a></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classFontWithFace_1_1FontCharCollector.html#ab030c38bc0222ebb0912257dd3c2fd62">   84</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace_1_1FontCharCollector.html#ab030c38bc0222ebb0912257dd3c2fd62">collectChar</a>(video::ITexture* texture,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                                 <span class="keyword">const</span> core::rect&lt;float&gt;&amp; destRect,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                                 <span class="keyword">const</span> core::rect&lt;s32&gt;&amp; sourceRect,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                                 <span class="keyword">const</span> video::SColor* <span class="keyword">const</span> colors) = 0;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    };</div>
+</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a0aa7989e15c3f4c2c05aa7fcaa7e6124">   92</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classFontWithFace.html#a0aa7989e15c3f4c2c05aa7fcaa7e6124">m_font_max_height</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a6a79f7aa1fc8502da7cc3b21061a3414">   95</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classFontWithFace.html#a6a79f7aa1fc8502da7cc3b21061a3414">m_glyph_max_height</a>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a9dbe118e2d31e9ee03b9e196c8b3a85e">  103</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#a9dbe118e2d31e9ee03b9e196c8b3a85e">insertCharacters</a>(<span class="keyword">const</span> <span class="keywordtype">wchar_t</span>* in_ptr, <span class="keywordtype">bool</span> first_load = <span class="keyword">false</span>)</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFontWithFace.html#a0e772aac72db8f49b4fde5aa141d00bd">supportLazyLoadChar</a>() &amp;&amp; !first_load) <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keywordtype">wchar_t</span>* p = in_ptr; *p; ++p)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            <span class="keywordflow">if</span> (*p == L<span class="charliteral">&#39;\r&#39;</span> ||  *p == L<span class="charliteral">&#39;\n&#39;</span> || *p &lt; (<span class="keywordtype">wchar_t</span>)32)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>            <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFontWithFace.html#aba55d1d5928baffeeafefa76a3209c43">loadedChar</a>(*p))</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                <a class="code hl_function" href="classFontWithFace.html#a309e909b0e1f7c767a20bf9b8ac913db">loadGlyphInfo</a>(*p);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                <span class="keywordflow">if</span> (<a class="code hl_function" href="classFontWithFace.html#adde5f465c8f76e3a709f2caca565b2c7">supportChar</a>(*p))</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                    <a class="code hl_function" href="classFontWithFace.html#a92d19c39e3fd18dc0531daebddeae8f8">addLazyLoadChar</a>(*p);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFontWithFace.html#ae1fdccdcfa86d05d70365f4064c5dc81">m_fallback_font</a> != NULL)</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFontWithFace.html#ae1fdccdcfa86d05d70365f4064c5dc81">m_fallback_font</a>-&gt;loadedChar(*p))</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                    {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                        <a class="code hl_variable" href="classFontWithFace.html#ae1fdccdcfa86d05d70365f4064c5dc81">m_fallback_font</a>-&gt;loadGlyphInfo(*p);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFontWithFace.html#ae1fdccdcfa86d05d70365f4064c5dc81">m_fallback_font</a>-&gt;supportChar(*p))</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                            <a class="code hl_variable" href="classFontWithFace.html#ae1fdccdcfa86d05d70365f4064c5dc81">m_fallback_font</a>-&gt;addLazyLoadChar(*p);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                    }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            }</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    }</div>
+</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#ae5b2ec82ca7a7095feefbaa0ce1b90d0">updateCharactersList</a>();</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a94bcb8226b17d0cdacfda3dd0694527e">  134</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#a94bcb8226b17d0cdacfda3dd0694527e">setFallbackFont</a>(<a class="code hl_function" href="classFontWithFace.html#ad993420d45e843789e67bbc4a4d4a6fb">FontWithFace</a>* face)        { <a class="code hl_variable" href="classFontWithFace.html#ae1fdccdcfa86d05d70365f4064c5dc81">m_fallback_font</a> = face; }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a0afd99f688311198406bd8f34a968e99">  138</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#a0afd99f688311198406bd8f34a968e99">setFallbackFontScale</a>(<span class="keywordtype">float</span> scale)   { <a class="code hl_variable" href="classFontWithFace.html#a5bed42851732ab7fd544a4e4d81e759c">m_fallback_font_scale</a> = scale; }</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="keyword">private</span>:</div>
+<div class="foldopen" id="foldopen00142" data-start="{" data-end="};">
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="structFontWithFace_1_1GlyphInfo.html">  142</a></span>    <span class="keyword">struct </span>GlyphInfo</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    {</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        GlyphInfo(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> font_num = 0, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> glyph_idx = 0) :</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            <a class="code hl_variable" href="structFontWithFace_1_1GlyphInfo.html#a987e03214b8d7fc5b90e9b9194214a13">font_number</a>(font_num), <a class="code hl_variable" href="structFontWithFace_1_1GlyphInfo.html#a44740898cf39d70f9500a71a2802a3c2">glyph_index</a>(glyph_idx) {}</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="structFontWithFace_1_1GlyphInfo.html#a987e03214b8d7fc5b90e9b9194214a13">  147</a></span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structFontWithFace_1_1GlyphInfo.html#a987e03214b8d7fc5b90e9b9194214a13">font_number</a>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="structFontWithFace_1_1GlyphInfo.html#a44740898cf39d70f9500a71a2802a3c2">  149</a></span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structFontWithFace_1_1GlyphInfo.html#a44740898cf39d70f9500a71a2802a3c2">glyph_index</a>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    };</div>
+</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classFontWithFace.html#afeb271259189c7333070a9a9e6d69f53">  153</a></span>    <a class="code hl_class" href="classFaceTTF.html">FaceTTF</a>*                     <a class="code hl_variable" href="classFontWithFace.html#afeb271259189c7333070a9a9e6d69f53">m_face_ttf</a>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="classFontWithFace.html#ae1fdccdcfa86d05d70365f4064c5dc81">  156</a></span>    <a class="code hl_function" href="classFontWithFace.html#ad993420d45e843789e67bbc4a4d4a6fb">FontWithFace</a>*                <a class="code hl_variable" href="classFontWithFace.html#ae1fdccdcfa86d05d70365f4064c5dc81">m_fallback_font</a>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a5bed42851732ab7fd544a4e4d81e759c">  159</a></span>    <span class="keywordtype">float</span>                        <a class="code hl_variable" href="classFontWithFace.html#a5bed42851732ab7fd544a4e4d81e759c">m_fallback_font_scale</a>;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a6d2aadd5c17a595558f099d51f3a984c">  162</a></span>    std::set&lt;wchar_t&gt;            <a class="code hl_variable" href="classFontWithFace.html#a6d2aadd5c17a595558f099d51f3a984c">m_new_char_holder</a>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="classFontWithFace.html#af68e792be4072750cab8cc7670cbb439">  165</a></span>    gui::IGUISpriteBank*         <a class="code hl_variable" href="classFontWithFace.html#af68e792be4072750cab8cc7670cbb439">m_spritebank</a>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="classFontWithFace.html#ab95d1938b7dd2d124ab209dd29aba68f">  168</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                 <a class="code hl_variable" href="classFontWithFace.html#ab95d1938b7dd2d124ab209dd29aba68f">m_current_height</a>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a6962107a773d20061f4319ad6b844568">  171</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                 <a class="code hl_variable" href="classFontWithFace.html#a6962107a773d20061f4319ad6b844568">m_used_width</a>;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="classFontWithFace.html#abc0d1f2c96fcc7d2ea2e31ccd6b8fed2">  174</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                 <a class="code hl_variable" href="classFontWithFace.html#abc0d1f2c96fcc7d2ea2e31ccd6b8fed2">m_used_height</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="classFontWithFace.html#aa7edd488c10dab86253cdc9ad71abd3e">  177</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                 <a class="code hl_variable" href="classFontWithFace.html#aa7edd488c10dab86253cdc9ad71abd3e">m_face_dpi</a>;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a36a32674a0bae89162581fbd688fd5d6">  181</a></span>    <span class="keywordtype">float</span>                        <a class="code hl_variable" href="classFontWithFace.html#a36a32674a0bae89162581fbd688fd5d6">m_inverse_shaping</a>;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="classFontWithFace.html#afdbc53746eb8aa8509027956f68ec745">  183</a></span>    std::map&lt;wchar_t, GlyphInfo&gt; <a class="code hl_variable" href="classFontWithFace.html#afdbc53746eb8aa8509027956f68ec745">m_character_glyph_info_map</a>;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classFontWithFace.html#aa3d5a584df9874c8b2e89c8d27ba072c">getCharWidth</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structFontArea.html">FontArea</a>&amp; area, <span class="keywordtype">bool</span> fallback, <span class="keywordtype">float</span> scale) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00191" data-start="{" data-end="}">
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classFontWithFace.html#aba55d1d5928baffeeafefa76a3209c43">  191</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classFontWithFace.html#aba55d1d5928baffeeafefa76a3209c43">loadedChar</a>(<span class="keywordtype">wchar_t</span> c)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        std::map&lt;wchar_t, GlyphInfo&gt;::const_iterator n =</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>            <a class="code hl_variable" href="classFontWithFace.html#afdbc53746eb8aa8509027956f68ec745">m_character_glyph_info_map</a>.find(c);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keywordflow">if</span> (n != <a class="code hl_variable" href="classFontWithFace.html#afdbc53746eb8aa8509027956f68ec745">m_character_glyph_info_map</a>.end())</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    }</div>
+</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00204" data-start="{" data-end="}">
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a24c8f6e0de346b11a0fc7d5ca9ef1ffb">  204</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="structFontWithFace_1_1GlyphInfo.html">GlyphInfo</a>&amp; <a class="code hl_function" href="classFontWithFace.html#a24c8f6e0de346b11a0fc7d5ca9ef1ffb">getGlyphInfo</a>(<span class="keywordtype">wchar_t</span> c)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        std::map&lt;wchar_t, GlyphInfo&gt;::const_iterator n =</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>            <a class="code hl_variable" href="classFontWithFace.html#afdbc53746eb8aa8509027956f68ec745">m_character_glyph_info_map</a>.find(c);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="comment">// Make sure we always find GlyphInfo</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        assert(n != <a class="code hl_variable" href="classFontWithFace.html#afdbc53746eb8aa8509027956f68ec745">m_character_glyph_info_map</a>.end());</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        <span class="keywordflow">return</span> n-&gt;second;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    }</div>
+</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00217" data-start="{" data-end="}">
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="classFontWithFace.html#adde5f465c8f76e3a709f2caca565b2c7">  217</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classFontWithFace.html#adde5f465c8f76e3a709f2caca565b2c7">supportChar</a>(<span class="keywordtype">wchar_t</span> c)</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    {</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        std::map&lt;wchar_t, GlyphInfo&gt;::const_iterator n =</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            <a class="code hl_variable" href="classFontWithFace.html#afdbc53746eb8aa8509027956f68ec745">m_character_glyph_info_map</a>.find(c);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <span class="keywordflow">if</span> (n != <a class="code hl_variable" href="classFontWithFace.html#afdbc53746eb8aa8509027956f68ec745">m_character_glyph_info_map</a>.end())</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        {</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>            <span class="keywordflow">return</span> n-&gt;second.glyph_index &gt; 0;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        }</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    }</div>
+</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#a309e909b0e1f7c767a20bf9b8ac913db">loadGlyphInfo</a>(<span class="keywordtype">wchar_t</span> c);</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#a3ceb17398a1827832a7eedbb2f9c8479">createNewGlyphPage</a>();</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a92d19c39e3fd18dc0531daebddeae8f8">  233</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#a92d19c39e3fd18dc0531daebddeae8f8">addLazyLoadChar</a>(<span class="keywordtype">wchar_t</span> c)            { <a class="code hl_variable" href="classFontWithFace.html#a6d2aadd5c17a595558f099d51f3a984c">m_new_char_holder</a>.insert(c); }</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a0e772aac72db8f49b4fde5aa141d00bd">  236</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classFontWithFace.html#a0e772aac72db8f49b4fde5aa141d00bd">supportLazyLoadChar</a>()<span class="keyword"> const                   </span>{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="classFontWithFace.html#ac7278ddbb051dd920b93fc0bddfe19fd">  240</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classFontWithFace.html#ac7278ddbb051dd920b93fc0bddfe19fd">getGlyphPageSize</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a96e700d48497684e81bc6474c588b685">  243</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classFontWithFace.html#a96e700d48497684e81bc6474c588b685">getScalingFactorOne</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a5df5609a1df0fe251b043d1186729daa">  246</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classFontWithFace.html#a5df5609a1df0fe251b043d1186729daa">getScalingFactorTwo</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a6f34add227b3e53c1195123bb7664fce">  249</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classFontWithFace.html#a6f34add227b3e53c1195123bb7664fce">isBold</a>()<span class="keyword"> const                               </span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structFontArea.html">FontArea</a>* getUnknownFontArea() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    std::vector&lt;gui::GlyphLayout&gt; <a class="code hl_function" href="classFontWithFace.html#a198a63d391a290fbcf94cf84aa71b289">text2GlyphsWithoutShaping</a>(</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                                                       <span class="keyword">const</span> core::stringw&amp; t);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="preprocessor">#ifndef SERVER_ONLY</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a7885acbfcb89431cd72313c51eac9323">  260</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classFontWithFace.html#a7885acbfcb89431cd72313c51eac9323">shapeOutline</a>(FT_Outline* outline)<span class="keyword"> const           </span>{ <span class="keywordflow">return</span> 0; }</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    LEAK_CHECK()</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <a class="code hl_class" href="classFontWithFace.html">FontWithFace</a>(const std::<span class="keywordtype">string</span>&amp; name);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    virtual ~<a class="code hl_class" href="classFontWithFace.html">FontWithFace</a>();</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#a2a9e98d7ef31b98aa02f64e4b2abe52f">init</a>();</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#a09e40a5fd5db7b5013b670dd224a56c4">reset</a>();</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    virtual core::dimension2d&lt;u32&gt; <a class="code hl_function" href="classFontWithFace.html#a860ec5a3b2790303e3da4f6a645fbf2d">getDimension</a>(const core::stringw&amp; text,</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                                           <a class="code hl_class" href="classFontSettings.html">FontSettings</a>* font_settings = NULL);</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classFontWithFace.html#a09f9d79d8b2c5ce9be1c1e9255425042">getCharacterFromPos</a>(const <span class="keywordtype">wchar_t</span>* text, <span class="keywordtype">int</span> pixel_x,</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                            <a class="code hl_class" href="classFontSettings.html">FontSettings</a>* font_settings = NULL) const;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#ad536bd364b0d3a07ddd66f0ec3344943">render</a>(const std::vector&lt;gui::GlyphLayout&gt;&amp; gl,</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>                const core::rect&lt;s32&gt;&amp; position, const video::SColor&amp; color,</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>                <span class="keywordtype">bool</span> hcenter, <span class="keywordtype">bool</span> vcenter, const core::rect&lt;s32&gt;* clip,</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                <a class="code hl_class" href="classFontSettings.html">FontSettings</a>* font_settings,</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>                FontCharCollector* char_collector = NULL);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    virtual <span class="keywordtype">void</span> drawText(const core::stringw&amp; text,</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                          const core::rect&lt;s32&gt;&amp; position,</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>                          const video::SColor&amp; color, <span class="keywordtype">bool</span> hcenter,</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>                          <span class="keywordtype">bool</span> vcenter, const core::rect&lt;s32&gt;* clip,</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>                          <a class="code hl_class" href="classFontSettings.html">FontSettings</a>* font_settings,</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>                          FontCharCollector* char_collector = NULL);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <span class="keywordtype">void</span> drawTextQuick(const core::stringw&amp; text,</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>                       const core::rect&lt;s32&gt;&amp; position,</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>                       const video::SColor&amp; color, <span class="keywordtype">bool</span> hcenter, <span class="keywordtype">bool</span> vcenter,</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>                       const core::rect&lt;s32&gt;* clip,</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>                       <a class="code hl_class" href="classFontSettings.html">FontSettings</a>* font_settings,</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>                       FontCharCollector* char_collector = NULL);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#a6b5087b7e4cced2c04e0096b59cfbe9d">dumpGlyphPage</a>(const std::<span class="keywordtype">string</span>&amp; name);</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#a6b5087b7e4cced2c04e0096b59cfbe9d">dumpGlyphPage</a>();</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="classFontWithFace.html#a1ca9085326ddebd81f00dfe46680d317">  305</a></span>    gui::IGUISpriteBank* <a class="code hl_function" href="classFontWithFace.html#a1ca9085326ddebd81f00dfe46680d317">getSpriteBank</a>()<span class="keyword"> const         </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFontWithFace.html#af68e792be4072750cab8cc7670cbb439">m_spritebank</a>; }</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structFontArea.html">FontArea</a>&amp; <a class="code hl_function" href="classFontWithFace.html#a0750f3594cd399e7c8bfaffb97a7caa3">getAreaFromCharacter</a>(<span class="keyword">const</span> <span class="keywordtype">wchar_t</span> c,</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>                                         <span class="keywordtype">bool</span>* fallback_font) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno"><a class="line" href="classFontWithFace.html#abdc5ab8fb5a3df8843aa62b177c5eeb8">  311</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classFontWithFace.html#abdc5ab8fb5a3df8843aa62b177c5eeb8">getDPI</a>()<span class="keyword"> const                          </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFontWithFace.html#aa7edd488c10dab86253cdc9ad71abd3e">m_face_dpi</a>; }</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <a class="code hl_class" href="classFaceTTF.html">FaceTTF</a>* getFaceTTF()<span class="keyword"> const                          </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFontWithFace.html#afeb271259189c7333070a9a9e6d69f53">m_face_ttf</a>; }</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#a999a5e4eb5e3ecaf25831d7cbafc6f16">insertGlyph</a>(<span class="keywordtype">unsigned</span> font_number, <span class="keywordtype">unsigned</span> glyph_index);</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="keywordtype">int</span> getFontMaxHeight()<span class="keyword"> const                  </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFontWithFace.html#a0aa7989e15c3f4c2c05aa7fcaa7e6124">m_font_max_height</a>; }</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="keywordtype">int</span> getGlyphMaxHeight()<span class="keyword"> const                </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFontWithFace.html#a6a79f7aa1fc8502da7cc3b21061a3414">m_glyph_max_height</a>; }</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> disableTextShaping()<span class="keyword"> const                   </span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="keywordtype">float</span> getInverseShaping()<span class="keyword"> const               </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFontWithFace.html#a36a32674a0bae89162581fbd688fd5d6">m_inverse_shaping</a>; }</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> useColorGlyphPage()<span class="keyword"> const                    </span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno"><a class="line" href="classFontWithFace.html#af132ef71597cc07a7648045251545e0a">  329</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classFontWithFace.html#af132ef71597cc07a7648045251545e0a">getNativeScalingFactor</a>()<span class="keyword"> const               </span>{ <span class="keywordflow">return</span> 1.0f; }</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontWithFace.html#a42386151129ff01acac81e7d8963d268">setDPI</a>();</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>};   <span class="comment">// FontWithFace</span></div>
+</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="comment">/* EOF */</span></div>
+<div class="ttc" id="aclassFaceTTF_html"><div class="ttname"><a href="classFaceTTF.html">FaceTTF</a></div><div class="ttdoc">This class will load a list of TTF files from FontManager, and save them inside m_ft_faces for FontWi...</div><div class="ttdef"><b>Definition</b> face_ttf.hpp:57</div></div>
+<div class="ttc" id="aclassFontSettings_html"><div class="ttname"><a href="classFontSettings.html">FontSettings</a></div><div class="ttdoc">This class stores settings when rendering fonts, used when instantiating irr::gui::ScalableFont.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:33</div></div>
+<div class="ttc" id="aclassFontWithFace_1_1FontCharCollector_html"><div class="ttname"><a href="classFontWithFace_1_1FontCharCollector.html">FontWithFace::FontCharCollector</a></div><div class="ttdoc">A class for STKTextBillboard to get font info to render billboard text.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:77</div></div>
+<div class="ttc" id="aclassFontWithFace_1_1FontCharCollector_html_ab030c38bc0222ebb0912257dd3c2fd62"><div class="ttname"><a href="classFontWithFace_1_1FontCharCollector.html#ab030c38bc0222ebb0912257dd3c2fd62">FontWithFace::FontCharCollector::collectChar</a></div><div class="ttdeci">virtual void collectChar(video::ITexture *texture, const core::rect&lt; float &gt; &amp;destRect, const core::rect&lt; s32 &gt; &amp;sourceRect, const video::SColor *const colors)=0</div><div class="ttdoc">Collect the character info for billboard text.</div></div>
+<div class="ttc" id="aclassFontWithFace_html"><div class="ttname"><a href="classFontWithFace.html">FontWithFace</a></div><div class="ttdoc">An abstract class which contains functions which convert vector fonts into bitmap and render them in ...</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:72</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a0750f3594cd399e7c8bfaffb97a7caa3"><div class="ttname"><a href="classFontWithFace.html#a0750f3594cd399e7c8bfaffb97a7caa3">FontWithFace::getAreaFromCharacter</a></div><div class="ttdeci">const FontArea &amp; getAreaFromCharacter(const wchar_t c, bool *fallback_font) const</div><div class="ttdoc">Return the FontArea about a character.</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:456</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a09e40a5fd5db7b5013b670dd224a56c4"><div class="ttname"><a href="classFontWithFace.html#a09e40a5fd5db7b5013b670dd224a56c4">FontWithFace::reset</a></div><div class="ttdeci">virtual void reset()</div><div class="ttdoc">Clear all the loaded characters, sub-class can do pre-loading of characters after this.</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:123</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a09f9d79d8b2c5ce9be1c1e9255425042"><div class="ttname"><a href="classFontWithFace.html#a09f9d79d8b2c5ce9be1c1e9255425042">FontWithFace::getCharacterFromPos</a></div><div class="ttdeci">int getCharacterFromPos(const wchar_t *text, int pixel_x, FontSettings *font_settings=NULL) const</div><div class="ttdoc">Calculate the index of the character in the text on a specific position.</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:528</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a0aa7989e15c3f4c2c05aa7fcaa7e6124"><div class="ttname"><a href="classFontWithFace.html#a0aa7989e15c3f4c2c05aa7fcaa7e6124">FontWithFace::m_font_max_height</a></div><div class="ttdeci">int m_font_max_height</div><div class="ttdoc">Used in vertical dimension calculation.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:92</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a0afd99f688311198406bd8f34a968e99"><div class="ttname"><a href="classFontWithFace.html#a0afd99f688311198406bd8f34a968e99">FontWithFace::setFallbackFontScale</a></div><div class="ttdeci">void setFallbackFontScale(float scale)</div><div class="ttdoc">Set the scaling of fallback font.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:138</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a0e772aac72db8f49b4fde5aa141d00bd"><div class="ttname"><a href="classFontWithFace.html#a0e772aac72db8f49b4fde5aa141d00bd">FontWithFace::supportLazyLoadChar</a></div><div class="ttdeci">virtual bool supportLazyLoadChar() const</div><div class="ttdoc">Override it if sub-class should not do lazy loading characters.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:236</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a198a63d391a290fbcf94cf84aa71b289"><div class="ttname"><a href="classFontWithFace.html#a198a63d391a290fbcf94cf84aa71b289">FontWithFace::text2GlyphsWithoutShaping</a></div><div class="ttdeci">std::vector&lt; gui::GlyphLayout &gt; text2GlyphsWithoutShaping(const core::stringw &amp;t)</div><div class="ttdoc">Convert text to drawable GlyphLayout without text shaping, used in digit font or debugging message.</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:1011</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a1ca9085326ddebd81f00dfe46680d317"><div class="ttname"><a href="classFontWithFace.html#a1ca9085326ddebd81f00dfe46680d317">FontWithFace::getSpriteBank</a></div><div class="ttdeci">gui::IGUISpriteBank * getSpriteBank() const</div><div class="ttdoc">Return the sprite bank.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:305</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a24c8f6e0de346b11a0fc7d5ca9ef1ffb"><div class="ttname"><a href="classFontWithFace.html#a24c8f6e0de346b11a0fc7d5ca9ef1ffb">FontWithFace::getGlyphInfo</a></div><div class="ttdeci">const GlyphInfo &amp; getGlyphInfo(wchar_t c) const</div><div class="ttdoc">Get the GlyphInfo from m_character_glyph_info_map about a character.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:204</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a2a9e98d7ef31b98aa02f64e4b2abe52f"><div class="ttname"><a href="classFontWithFace.html#a2a9e98d7ef31b98aa02f64e4b2abe52f">FontWithFace::init</a></div><div class="ttdeci">virtual void init()</div><div class="ttdoc">Initialize the font structure, but don&#39;t load glyph here.</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:86</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a309e909b0e1f7c767a20bf9b8ac913db"><div class="ttname"><a href="classFontWithFace.html#a309e909b0e1f7c767a20bf9b8ac913db">FontWithFace::loadGlyphInfo</a></div><div class="ttdeci">void loadGlyphInfo(wchar_t c)</div><div class="ttdoc">Convert a character to a glyph index in one of the font in m_face_ttf, it will find the first TTF tha...</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:144</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a36a32674a0bae89162581fbd688fd5d6"><div class="ttname"><a href="classFontWithFace.html#a36a32674a0bae89162581fbd688fd5d6">FontWithFace::m_inverse_shaping</a></div><div class="ttdeci">float m_inverse_shaping</div><div class="ttdoc">Used to undo the scale on text shaping, only need to take care of width.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:181</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a3ceb17398a1827832a7eedbb2f9c8479"><div class="ttname"><a href="classFontWithFace.html#a3ceb17398a1827832a7eedbb2f9c8479">FontWithFace::createNewGlyphPage</a></div><div class="ttdeci">void createNewGlyphPage()</div><div class="ttdoc">Create a new glyph page by filling it with transparent content.</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:160</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a42386151129ff01acac81e7d8963d268"><div class="ttname"><a href="classFontWithFace.html#a42386151129ff01acac81e7d8963d268">FontWithFace::setDPI</a></div><div class="ttdeci">void setDPI()</div><div class="ttdoc">Set the face size which is resolution-dependent.</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:400</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a5bed42851732ab7fd544a4e4d81e759c"><div class="ttname"><a href="classFontWithFace.html#a5bed42851732ab7fd544a4e4d81e759c">FontWithFace::m_fallback_font_scale</a></div><div class="ttdeci">float m_fallback_font_scale</div><div class="ttdoc">Scaling for fallback font.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:159</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a5df5609a1df0fe251b043d1186729daa"><div class="ttname"><a href="classFontWithFace.html#a5df5609a1df0fe251b043d1186729daa">FontWithFace::getScalingFactorTwo</a></div><div class="ttdeci">virtual unsigned int getScalingFactorTwo() const =0</div><div class="ttdoc">Defined by sub-class about the scaling factor 2.</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a6962107a773d20061f4319ad6b844568"><div class="ttname"><a href="classFontWithFace.html#a6962107a773d20061f4319ad6b844568">FontWithFace::m_used_width</a></div><div class="ttdeci">unsigned int m_used_width</div><div class="ttdoc">The used width in glyph page.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:171</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a6a79f7aa1fc8502da7cc3b21061a3414"><div class="ttname"><a href="classFontWithFace.html#a6a79f7aa1fc8502da7cc3b21061a3414">FontWithFace::m_glyph_max_height</a></div><div class="ttdeci">int m_glyph_max_height</div><div class="ttdoc">Used in top side bearing calculation.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:95</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a6b5087b7e4cced2c04e0096b59cfbe9d"><div class="ttname"><a href="classFontWithFace.html#a6b5087b7e4cced2c04e0096b59cfbe9d">FontWithFace::dumpGlyphPage</a></div><div class="ttdeci">void dumpGlyphPage()</div><div class="ttdoc">Write the current glyph page in png inside current running directory.</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:392</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a6d2aadd5c17a595558f099d51f3a984c"><div class="ttname"><a href="classFontWithFace.html#a6d2aadd5c17a595558f099d51f3a984c">FontWithFace::m_new_char_holder</a></div><div class="ttdeci">std::set&lt; wchar_t &gt; m_new_char_holder</div><div class="ttdoc">A temporary holder to store new characters to be inserted.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:162</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a6f34add227b3e53c1195123bb7664fce"><div class="ttname"><a href="classFontWithFace.html#a6f34add227b3e53c1195123bb7664fce">FontWithFace::isBold</a></div><div class="ttdeci">virtual bool isBold() const</div><div class="ttdoc">Override it if sub-class has bold outline.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:249</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a7885acbfcb89431cd72313c51eac9323"><div class="ttname"><a href="classFontWithFace.html#a7885acbfcb89431cd72313c51eac9323">FontWithFace::shapeOutline</a></div><div class="ttdeci">virtual int shapeOutline(FT_Outline *outline) const</div><div class="ttdoc">Override it if any outline shaping is needed to be done before rendering the glyph into bitmap.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:260</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a860ec5a3b2790303e3da4f6a645fbf2d"><div class="ttname"><a href="classFontWithFace.html#a860ec5a3b2790303e3da4f6a645fbf2d">FontWithFace::getDimension</a></div><div class="ttdeci">virtual core::dimension2d&lt; u32 &gt; getDimension(const core::stringw &amp;text, FontSettings *font_settings=NULL)</div><div class="ttdoc">Get the dimension of text with support to different FontSettings, it will also do checking for missin...</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:495</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a92d19c39e3fd18dc0531daebddeae8f8"><div class="ttname"><a href="classFontWithFace.html#a92d19c39e3fd18dc0531daebddeae8f8">FontWithFace::addLazyLoadChar</a></div><div class="ttdeci">void addLazyLoadChar(wchar_t c)</div><div class="ttdoc">Add a character into m_new_char_holder for lazy loading later.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:233</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a94bcb8226b17d0cdacfda3dd0694527e"><div class="ttname"><a href="classFontWithFace.html#a94bcb8226b17d0cdacfda3dd0694527e">FontWithFace::setFallbackFont</a></div><div class="ttdeci">void setFallbackFont(FontWithFace *face)</div><div class="ttdoc">Set the fallback font for this font, so if some character is missing in this font,...</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:134</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a96e700d48497684e81bc6474c588b685"><div class="ttname"><a href="classFontWithFace.html#a96e700d48497684e81bc6474c588b685">FontWithFace::getScalingFactorOne</a></div><div class="ttdeci">virtual float getScalingFactorOne() const =0</div><div class="ttdoc">Defined by sub-class about the scaling factor 1.</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a999a5e4eb5e3ecaf25831d7cbafc6f16"><div class="ttname"><a href="classFontWithFace.html#a999a5e4eb5e3ecaf25831d7cbafc6f16">FontWithFace::insertGlyph</a></div><div class="ttdeci">void insertGlyph(unsigned font_number, unsigned glyph_index)</div><div class="ttdoc">Render a glyph for a character into bitmap and save it into the glyph page.</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:181</div></div>
+<div class="ttc" id="aclassFontWithFace_html_a9dbe118e2d31e9ee03b9e196c8b3a85e"><div class="ttname"><a href="classFontWithFace.html#a9dbe118e2d31e9ee03b9e196c8b3a85e">FontWithFace::insertCharacters</a></div><div class="ttdeci">void insertCharacters(const wchar_t *in_ptr, bool first_load=false)</div><div class="ttdoc">Check characters to see if they are loaded in font, if not load them.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:103</div></div>
+<div class="ttc" id="aclassFontWithFace_html_aa3d5a584df9874c8b2e89c8d27ba072c"><div class="ttname"><a href="classFontWithFace.html#aa3d5a584df9874c8b2e89c8d27ba072c">FontWithFace::getCharWidth</a></div><div class="ttdeci">float getCharWidth(const FontArea &amp;area, bool fallback, float scale) const</div><div class="ttdoc">Return a character width.</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:950</div></div>
+<div class="ttc" id="aclassFontWithFace_html_aa7edd488c10dab86253cdc9ad71abd3e"><div class="ttname"><a href="classFontWithFace.html#aa7edd488c10dab86253cdc9ad71abd3e">FontWithFace::m_face_dpi</a></div><div class="ttdeci">unsigned int m_face_dpi</div><div class="ttdoc">The dpi of this font.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:177</div></div>
+<div class="ttc" id="aclassFontWithFace_html_ab95d1938b7dd2d124ab209dd29aba68f"><div class="ttname"><a href="classFontWithFace.html#ab95d1938b7dd2d124ab209dd29aba68f">FontWithFace::m_current_height</a></div><div class="ttdeci">unsigned int m_current_height</div><div class="ttdoc">The current max height at current drawing line in glyph page.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:168</div></div>
+<div class="ttc" id="aclassFontWithFace_html_aba55d1d5928baffeeafefa76a3209c43"><div class="ttname"><a href="classFontWithFace.html#aba55d1d5928baffeeafefa76a3209c43">FontWithFace::loadedChar</a></div><div class="ttdeci">bool loadedChar(wchar_t c) const</div><div class="ttdoc">Test if a character has already been tried to be loaded.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:191</div></div>
+<div class="ttc" id="aclassFontWithFace_html_abc0d1f2c96fcc7d2ea2e31ccd6b8fed2"><div class="ttname"><a href="classFontWithFace.html#abc0d1f2c96fcc7d2ea2e31ccd6b8fed2">FontWithFace::m_used_height</a></div><div class="ttdeci">unsigned int m_used_height</div><div class="ttdoc">The used height in glyph page.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:174</div></div>
+<div class="ttc" id="aclassFontWithFace_html_abdc5ab8fb5a3df8843aa62b177c5eeb8"><div class="ttname"><a href="classFontWithFace.html#abdc5ab8fb5a3df8843aa62b177c5eeb8">FontWithFace::getDPI</a></div><div class="ttdeci">unsigned int getDPI() const</div><div class="ttdoc">Return the dpi of this face.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:311</div></div>
+<div class="ttc" id="aclassFontWithFace_html_ac7278ddbb051dd920b93fc0bddfe19fd"><div class="ttname"><a href="classFontWithFace.html#ac7278ddbb051dd920b93fc0bddfe19fd">FontWithFace::getGlyphPageSize</a></div><div class="ttdeci">virtual unsigned int getGlyphPageSize() const =0</div><div class="ttdoc">Defined by sub-class about the texture size of glyph page, it should be a power of two.</div></div>
+<div class="ttc" id="aclassFontWithFace_html_ad536bd364b0d3a07ddd66f0ec3344943"><div class="ttname"><a href="classFontWithFace.html#ad536bd364b0d3a07ddd66f0ec3344943">FontWithFace::render</a></div><div class="ttdeci">void render(const std::vector&lt; gui::GlyphLayout &gt; &amp;gl, const core::rect&lt; s32 &gt; &amp;position, const video::SColor &amp;color, bool hcenter, bool vcenter, const core::rect&lt; s32 &gt; *clip, FontSettings *font_settings, FontCharCollector *char_collector=NULL)</div><div class="ttdoc">Render text and clip it to the specified rectangle if wanted, it will also do checking for missing ch...</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:567</div></div>
+<div class="ttc" id="aclassFontWithFace_html_ad993420d45e843789e67bbc4a4d4a6fb"><div class="ttname"><a href="classFontWithFace.html#ad993420d45e843789e67bbc4a4d4a6fb">FontWithFace::FontWithFace</a></div><div class="ttdeci">FontWithFace(const std::string &amp;name)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:57</div></div>
+<div class="ttc" id="aclassFontWithFace_html_adde5f465c8f76e3a709f2caca565b2c7"><div class="ttname"><a href="classFontWithFace.html#adde5f465c8f76e3a709f2caca565b2c7">FontWithFace::supportChar</a></div><div class="ttdeci">bool supportChar(wchar_t c)</div><div class="ttdoc">Tells whether a character is supported by all TTFs in m_face_ttf which is determined by GlyphInfo of ...</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:217</div></div>
+<div class="ttc" id="aclassFontWithFace_html_ae1fdccdcfa86d05d70365f4064c5dc81"><div class="ttname"><a href="classFontWithFace.html#ae1fdccdcfa86d05d70365f4064c5dc81">FontWithFace::m_fallback_font</a></div><div class="ttdeci">FontWithFace * m_fallback_font</div><div class="ttdoc">Fallback font to use if some character isn&#39;t supported by this font.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:156</div></div>
+<div class="ttc" id="aclassFontWithFace_html_ae5b2ec82ca7a7095feefbaa0ce1b90d0"><div class="ttname"><a href="classFontWithFace.html#ae5b2ec82ca7a7095feefbaa0ce1b90d0">FontWithFace::updateCharactersList</a></div><div class="ttdeci">void updateCharactersList()</div><div class="ttdoc">Update the supported characters for this font if required.</div><div class="ttdef"><b>Definition</b> font_with_face.cpp:346</div></div>
+<div class="ttc" id="aclassFontWithFace_html_af132ef71597cc07a7648045251545e0a"><div class="ttname"><a href="classFontWithFace.html#af132ef71597cc07a7648045251545e0a">FontWithFace::getNativeScalingFactor</a></div><div class="ttdeci">virtual float getNativeScalingFactor() const</div><div class="ttdoc">Defined by sub-class about the native scaling factor, to provide</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:329</div></div>
+<div class="ttc" id="aclassFontWithFace_html_af68e792be4072750cab8cc7670cbb439"><div class="ttname"><a href="classFontWithFace.html#af68e792be4072750cab8cc7670cbb439">FontWithFace::m_spritebank</a></div><div class="ttdeci">gui::IGUISpriteBank * m_spritebank</div><div class="ttdoc">Sprite bank to store each glyph.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:165</div></div>
+<div class="ttc" id="aclassFontWithFace_html_afdbc53746eb8aa8509027956f68ec745"><div class="ttname"><a href="classFontWithFace.html#afdbc53746eb8aa8509027956f68ec745">FontWithFace::m_character_glyph_info_map</a></div><div class="ttdeci">std::map&lt; wchar_t, GlyphInfo &gt; m_character_glyph_info_map</div><div class="ttdoc">Store a list of loaded and tested character to a GlyphInfo.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:183</div></div>
+<div class="ttc" id="aclassFontWithFace_html_afeb271259189c7333070a9a9e6d69f53"><div class="ttname"><a href="classFontWithFace.html#afeb271259189c7333070a9a9e6d69f53">FontWithFace::m_face_ttf</a></div><div class="ttdeci">FaceTTF * m_face_ttf</div><div class="ttdoc">FaceTTF to load glyph from.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:153</div></div>
+<div class="ttc" id="astructFontArea_html"><div class="ttname"><a href="structFontArea.html">FontArea</a></div><div class="ttdoc">Glyph metrics for each glyph loaded.</div><div class="ttdef"><b>Definition</b> face_ttf.hpp:37</div></div>
+<div class="ttc" id="astructFontWithFace_1_1GlyphInfo_html"><div class="ttname"><a href="structFontWithFace_1_1GlyphInfo.html">FontWithFace::GlyphInfo</a></div><div class="ttdoc">Mapping of glyph index to a TTF in FaceTTF.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:143</div></div>
+<div class="ttc" id="astructFontWithFace_1_1GlyphInfo_html_a44740898cf39d70f9500a71a2802a3c2"><div class="ttname"><a href="structFontWithFace_1_1GlyphInfo.html#a44740898cf39d70f9500a71a2802a3c2">FontWithFace::GlyphInfo::glyph_index</a></div><div class="ttdeci">unsigned int glyph_index</div><div class="ttdoc">Glyph index in the TTF, 0 means no such glyph.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:149</div></div>
+<div class="ttc" id="astructFontWithFace_1_1GlyphInfo_html_a987e03214b8d7fc5b90e9b9194214a13"><div class="ttname"><a href="structFontWithFace_1_1GlyphInfo.html#a987e03214b8d7fc5b90e9b9194214a13">FontWithFace::GlyphInfo::font_number</a></div><div class="ttdeci">unsigned int font_number</div><div class="ttdoc">Index to a TTF in FaceTTF.</div><div class="ttdef"><b>Definition</b> font_with_face.hpp:147</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,615 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: guiengine/widget.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>guiengine</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">widget.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2009-2015 Marianne Gagnon</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef HEADER_WIDGET_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HEADER_WIDGET_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;irrString.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">namespace </span>gui { <span class="keyword">class </span>IGUIElement; }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;bitset&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;guiengine/event_handler.hpp&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &quot;guiengine/skin.hpp&quot;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;utils/constants.hpp&quot;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;utils/ptr_vector.hpp&quot;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceGUIEngine.html">GUIEngine</a></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1DynamicRibbonWidget.html">DynamicRibbonWidget</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1Screen.html">Screen</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">enum</span> WidgetType</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        WTYPE_NONE = -1,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        WTYPE_RIBBON,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        WTYPE_SPINNER,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        WTYPE_BUTTON,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        WTYPE_ICON_BUTTON,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        WTYPE_CHECKBOX,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        WTYPE_LABEL,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        WTYPE_BUBBLE,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        WTYPE_SPACER,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        WTYPE_DIV,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        WTYPE_DYNAMIC_RIBBON,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        WTYPE_MODEL_VIEW,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        WTYPE_LIST,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        WTYPE_TEXTBOX,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        WTYPE_PROGRESS,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        WTYPE_RATINGBAR</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    };</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="};">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885">   62</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885">BadgeType</a></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885aac67c79c273c1bb4b42d52a556e26cca">   65</a></span>        <a class="code hl_enumvalue" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885aac67c79c273c1bb4b42d52a556e26cca">LOCKED_BADGE</a>   = 1,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a5c329ee8786c63e714e16fe9890a8896">   67</a></span>        <a class="code hl_enumvalue" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a5c329ee8786c63e714e16fe9890a8896">OK_BADGE</a>       = 2,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a2c0f3a231561e581060af1c421892094">   69</a></span>        <a class="code hl_enumvalue" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a2c0f3a231561e581060af1c421892094">BAD_BADGE</a>      = 4,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a9c1d2172898898e611368cd453d4baaa">   71</a></span>        <a class="code hl_enumvalue" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a9c1d2172898898e611368cd453d4baaa">TROPHY_BADGE</a>   = 8,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a0bfb8eb3598092076bf2d8ceb237577e">   73</a></span>        <a class="code hl_enumvalue" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a0bfb8eb3598092076bf2d8ceb237577e">GAMEPAD_BADGE</a>  = 16,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a498e7e4cf6cef5cc552bf7371db21dd7">   75</a></span>        <a class="code hl_enumvalue" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a498e7e4cf6cef5cc552bf7371db21dd7">KEYBOARD_BADGE</a> = 32,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885af88cc32b080b17c2fd8a548312e3fbb0">   77</a></span>        <a class="code hl_enumvalue" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885af88cc32b080b17c2fd8a548312e3fbb0">LOADING_BADGE</a>  = 64,</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885af537680f0b002b34091e677ecfb25fa0">   79</a></span>        <a class="code hl_enumvalue" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885af537680f0b002b34091e677ecfb25fa0">ZIPPER_BADGE</a>   = 128,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885ab57c24690d30c19ab32beae751dc5e95">   81</a></span>        <a class="code hl_enumvalue" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885ab57c24690d30c19ab32beae751dc5e95">ANCHOR_BADGE</a>   = 256,</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885ab3e248b9b5be082fb5c34348dfad71b2">   83</a></span>        <a class="code hl_enumvalue" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885ab3e248b9b5be082fb5c34348dfad71b2">DOWN_BADGE</a>     = 512,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a0121bf8fa25820e1777750fa5b8ad71a">   85</a></span>        <a class="code hl_enumvalue" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a0121bf8fa25820e1777750fa5b8ad71a">HEART_BADGE</a>    = 1024,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a8d1817120e95d83b4b4b93c86cae41af">   87</a></span>        <a class="code hl_enumvalue" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a8d1817120e95d83b4b4b93c86cae41af">REDDOT_BADGE</a>   = 2048</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    };</div>
+</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">enum</span> Property</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        PROP_ID = 100,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        PROP_PROPORTION,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        PROP_WIDTH,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        PROP_HEIGHT,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        PROP_CHILD_WIDTH,</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        PROP_CHILD_HEIGHT,</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        PROP_WORD_WRAP,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        PROP_ALTERNATE_BG,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        PROP_LINE_HEIGHT,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="comment">//PROP_GROW_WITH_TEXT, // yet unused</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        PROP_X,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        PROP_Y,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        PROP_LAYOUT,</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        PROP_ALIGN,</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="comment">// PROP_TEXT, // this one is a bit special, can&#39;t go along others since it&#39;s wide strings</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        PROP_ICON,</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        PROP_FOCUS_ICON,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        PROP_TEXT_ALIGN,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        PROP_TEXT_VALIGN,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        PROP_MIN_VALUE,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        PROP_MAX_VALUE,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        PROP_MAX_WIDTH,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        PROP_MAX_HEIGHT,</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        PROP_SQUARE,</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        PROP_EXTEND_LABEL,</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        PROP_LABELS_LOCATION,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        PROP_MAX_ROWS,</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        PROP_WRAP_AROUND,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        PROP_DIV_PADDING,</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        PROP_KEEP_SELECTION,</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        PROP_CUSTOM_RATIO,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        PROP_ICON_ALIGN,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        PROP_COLOR_SLIDER, <span class="comment">// this one is used to identify if a gauge is used as the color slider</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    };</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordtype">bool</span> isWithinATextBox();</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordtype">void</span> setWithinATextBox(<span class="keywordtype">bool</span> in);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span></div>
+<div class="foldopen" id="foldopen00146" data-start="{" data-end="};">
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html">  146</a></span>    <span class="keyword">class </span>Widget : <span class="keyword">public</span> SkinWidgetContainer</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_magic_number;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="comment">// Used to limit event callback on this widget based on input type</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="comment">// At the moment used for continue button in kart selection</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        std::bitset&lt;Input::IT_LAST + 1&gt; m_active_event_callback;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="comment">// FIXME: find better ways than hackish &quot;friend&quot;?</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keyword">friend</span> <span class="keyword">class </span>EventHandler;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="keyword">friend</span> <span class="keyword">class </span>Screen;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keyword">friend</span> <span class="keyword">class </span>Skin;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <span class="keyword">friend</span> <span class="keyword">class </span>RibbonWidget;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keyword">friend</span> <span class="keyword">class </span>SpinnerWidget;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keyword">friend</span> <span class="keyword">class </span>ProgressBarWidget;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keyword">friend</span> <span class="keyword">class </span>DynamicRibbonWidget;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <span class="keyword">friend</span> <span class="keyword">class </span>LayoutManager;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <span class="keyword">friend</span> <span class="keyword">class </span>ModalDialog;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="keyword">friend</span> <span class="keyword">class </span>AbstractTopLevelContainer;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a095ec662b1e75c15a04a745c5b8397b9">  168</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a095ec662b1e75c15a04a745c5b8397b9">m_absolute_x</a>, m_absolute_y, m_absolute_w, m_absolute_h;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        <span class="keywordtype">int</span> m_absolute_reverse_x, m_absolute_reverse_y;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        <span class="keywordtype">float</span> m_relative_x, m_relative_y, m_relative_w, m_relative_h;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a77a736b365249ea7d7dcfdc8a8f291c4">  174</a></span>        irr::core::stringw <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a77a736b365249ea7d7dcfdc8a8f291c4">m_text</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a7d97b9428ea7bf2b72599ff4406677ed">  177</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a7d97b9428ea7bf2b72599ff4406677ed">m_title_font</a>;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a8d559fb18a74c95a058cdc14b6ea98d4">  184</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a8d559fb18a74c95a058cdc14b6ea98d4">m_selected</a>[MAX_PLAYER_COUNT];</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#aedc2637fdcc0c2c2b5afa89346b6a966">  190</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aedc2637fdcc0c2c2b5afa89346b6a966">m_check_inside_me</a>;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a46d17658419e1ce3efa551f3721e1660">  198</a></span>        <span class="keyword">virtual</span> EventPropagation <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a46d17658419e1ce3efa551f3721e1660">rightPressed</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID) { <span class="keywordflow">return</span> EVENT_BLOCK; }</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a19c84e63f5f675178a3d3c57d8402402">  206</a></span>        <span class="keyword">virtual</span> EventPropagation <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a19c84e63f5f675178a3d3c57d8402402">leftPressed</a> (<span class="keyword">const</span> <span class="keywordtype">int</span> playerID) { <span class="keywordflow">return</span> EVENT_BLOCK; }</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#ae1f97ae96217641c1dab031bf7817ee0">  214</a></span>        <span class="keyword">virtual</span> EventPropagation <a class="code hl_function" href="classGUIEngine_1_1Widget.html#ae1f97ae96217641c1dab031bf7817ee0">upPressed</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID) { <span class="keywordflow">return</span> EVENT_BLOCK; }</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#ad1be001290813abee51eaa7930c9a03e">  222</a></span>        <span class="keyword">virtual</span> EventPropagation <a class="code hl_function" href="classGUIEngine_1_1Widget.html#ad1be001290813abee51eaa7930c9a03e">downPressed</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID) { <span class="keywordflow">return</span> EVENT_BLOCK; }</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a91bf18bd184a5d0d1956a6239a580d9c">  227</a></span>        <span class="keyword">virtual</span> EventPropagation <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a91bf18bd184a5d0d1956a6239a580d9c">mouseHovered</a>(Widget* child, <span class="keyword">const</span> <span class="keywordtype">int</span> playerID) { <span class="keywordflow">return</span> EVENT_BLOCK; }</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a87859789fd9ae5273a513e0765d0d0d0">  231</a></span>        <span class="keyword">virtual</span> EventPropagation <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a87859789fd9ae5273a513e0765d0d0d0">focused</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID) { setWithinATextBox(<span class="keyword">false</span>); <span class="keywordflow">return</span> EVENT_LET; }</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a074af109ba4a9ef88b6be60d5b59dbe3">  234</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a074af109ba4a9ef88b6be60d5b59dbe3">unfocused</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID, Widget* new_focus) { }</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a70abf0412de127333ab03100ff6d9b7d">  239</a></span>        irr::gui::IGUIElement* <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a70abf0412de127333ab03100ff6d9b7d">m_parent</a>;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#aaf90c807ab389f2e6650647d0dc2645c">  244</a></span>        irr::gui::IGUIElement* <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aaf90c807ab389f2e6650647d0dc2645c">m_element</a>;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a7811258844b3854835c90803365a2122">  250</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a7811258844b3854835c90803365a2122">m_id</a>;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#aa63f77bf4853213f4ba3c8982cdbe37b">  255</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aa63f77bf4853213f4ba3c8982cdbe37b">m_player_focus</a>[MAX_PLAYER_COUNT];</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a9e6f97b12664ee43ad4901d4ce1a2bd4">  258</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a9e6f97b12664ee43ad4901d4ce1a2bd4">m_reserve_id</a>;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#aa9be0e720fc7cd226df202921ae1ad8d">  261</a></span>        WidgetType <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aa9be0e720fc7cd226df202921ae1ad8d">m_type</a>;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a3d796c477f6f7b456addd2b7c7447603">  269</a></span>        <a class="code hl_class" href="classPtrVector.html">PtrVector&lt;Widget&gt;</a> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a3d796c477f6f7b456addd2b7c7447603">m_children</a>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a8cc118e08128e25d92b0207a3d3887f7">  272</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a8cc118e08128e25d92b0207a3d3887f7">m_badges</a>;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a4001297b6c9e9626cfa95c67ba684489">  275</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a4001297b6c9e9626cfa95c67ba684489">m_deactivated</a>;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a0f33290315f08fb857d9151fd807a023">  278</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a0f33290315f08fb857d9151fd807a023">m_is_visible</a>;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a42ad62992334919df67994619a489dcf">  281</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a42ad62992334919df67994619a489dcf">m_focusable</a>;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        <span class="keywordtype">bool</span> m_bottom_bar;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>        <span class="keywordtype">bool</span> m_top_bar;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a62b1a8e4bdc7832a3db49e45464661a4">  287</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a62b1a8e4bdc7832a3db49e45464661a4">m_badge_x_shift</a>;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        <span class="keywordtype">bool</span> m_has_tooltip;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>        irr::core::stringw m_tooltip_text;</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a9261531c96aeb3820d57fdc1191ecaf4">  293</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a9261531c96aeb3820d57fdc1191ecaf4">m_uncollapsed_height</a>;</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a6a68689c034a0c2e259ecd7defccdaff">  296</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a6a68689c034a0c2e259ecd7defccdaff">m_is_collapsed</a>;</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a6ca4b9c2201a67c9319dcdfcd2b7a19e">  307</a></span>        Widget* <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a6ca4b9c2201a67c9319dcdfcd2b7a19e">m_event_handler</a>;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a6c7e282643664c0c8c27471c345f427f">  313</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a6c7e282643664c0c8c27471c345f427f">m_supports_multiplayer</a>;</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a2243603144b933d0067ad7ed1a3d040b">  317</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a2243603144b933d0067ad7ed1a3d040b">m_tab_down_root</a>;</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a18ff0e0c552db410a35d2f4ad3db262a">  321</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a18ff0e0c552db410a35d2f4ad3db262a">m_tab_up_root</a>;</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#ac69b583d0a8b832c3e4d9626433cd7ab">  326</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#ac69b583d0a8b832c3e4d9626433cd7ab">m_x</a>, m_y, m_w, m_h;</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a8d05ef2baa05dd6c0ab17e2872593e66">  329</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a8d05ef2baa05dd6c0ab17e2872593e66">m_show_bounding_box</a>;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#abe042084e1feb5718f35192106f683c1">  332</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#abe042084e1feb5718f35192106f683c1">m_is_bounding_box_round</a>;</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a4d427aec26db7fdbda752960338af3d2">  340</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a4d427aec26db7fdbda752960338af3d2">m_reserved_id</a>;</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#aa3f034f686794c916328f66b3a0360a2">  350</a></span>        std::map&lt;Property, std::string&gt; <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aa3f034f686794c916328f66b3a0360a2">m_properties</a>;</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span> </div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>        Widget(WidgetType type, <span class="keywordtype">bool</span> reserve_id = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        <span class="keyword">virtual</span> ~Widget();</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#ac1771290f935697438dbec27d993cc0d">setEventCallbackActive</a>(Input::InputType type, <span class="keywordtype">bool</span> active);</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a25b6db2cde74e884b610f2a163490413">isEventCallbackActive</a>(Input::InputType type) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a1ff953f307f8dd40ea620cf2dcd7bfda">setParent</a>(irr::gui::IGUIElement* parent);</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a66088a03691f9c643ff335fa826576ba">setVisible</a>(<span class="keywordtype">bool</span> visible);</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a733bae735f2a548f0944a7503f901270">setCollapsed</a>(<span class="keywordtype">bool</span> collapsed, Screen* calling_screen = NULL);</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span></div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a733bae735f2a548f0944a7503f901270">setCollapsed</a>(<span class="keywordtype">bool</span> collapsed, <span class="keywordtype">int</span> uncollapsed_height, Screen* calling_screen = NULL);</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span></div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#ae469bb315299916388d717225e71a802">isVisible</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#ad32290509ab5b103c35d6d74cf4619c2">  405</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#ad32290509ab5b103c35d6d74cf4619c2">isCollapsed</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span>  <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a6a68689c034a0c2e259ecd7defccdaff">m_is_collapsed</a>; }</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span> </div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>        <span class="keywordtype">bool</span> isActivated() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span> </div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>        <span class="keyword">virtual</span> EventPropagation onActivationInput(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID) { <span class="keywordflow">return</span> EVENT_LET; }</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span></div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#ab552ce1057ba7a1c3b54411fed7d2a31">resetCoordinates</a>();</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span></div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#ab06e6e3da873dc9a4d45c4c48ad441e5">resize</a>();</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span></div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a2caa91817075d261fa5521573a6dbcbd">move</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> x, <span class="keyword">const</span> <span class="keywordtype">int</span> y, <span class="keyword">const</span> <span class="keywordtype">int</span> w, <span class="keyword">const</span> <span class="keywordtype">int</span> h);</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span></div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#ab1d41ae2d539ca1d5845f65655a5c57b">  431</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#ab1d41ae2d539ca1d5845f65655a5c57b">isSelected</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a8d559fb18a74c95a058cdc14b6ea98d4">m_selected</a>[playerID]; }</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>        <span class="keywordtype">void</span> setSelected(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID, <span class="keywordtype">bool</span> state) { <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a8d559fb18a74c95a058cdc14b6ea98d4">m_selected</a>[playerID] = state;}</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> </div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>        <span class="keywordtype">bool</span> isBottomBar()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_bottom_bar; }</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>        <span class="keywordtype">bool</span> isTopBar   ()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_top_bar;    }</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span></div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span></div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#ad167d2346082f0f16fb3a8500e288ecb">setActive</a>(<span class="keywordtype">bool</span> active=<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span></div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span></div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span></div>
+<div class="foldopen" id="foldopen00460" data-start="{" data-end="}">
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#ae020f24e5fe29f9da566fa0423a98865">  460</a></span>        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; T* <a class="code hl_function" href="classGUIEngine_1_1Widget.html#ae020f24e5fe29f9da566fa0423a98865">getIrrlichtElement</a>()</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>        {</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span><span class="preprocessor">        #if HAVE_RTT</span></div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>            T* out = <span class="keyword">dynamic_cast&lt;</span>T*<span class="keyword">&gt;</span>(<a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aaf90c807ab389f2e6650647d0dc2645c">m_element</a>);</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>            <span class="keywordflow">return</span> out;</div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span><span class="preprocessor">        #else</span></div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>T*<span class="keyword">&gt;</span>(<a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aaf90c807ab389f2e6650647d0dc2645c">m_element</a>);</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span><span class="preprocessor">        #endif</span></div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>        }</div>
+</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span></div>
+<div class="foldopen" id="foldopen00473" data-start="{" data-end="}">
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a1b6fb151ef3a5f180b8546b1ca180ecf">  473</a></span>        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">const</span> T* <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a1b6fb151ef3a5f180b8546b1ca180ecf">getIrrlichtElement</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span><span class="keyword">        </span>{</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span><span class="preprocessor">            #if HAVE_RTT</span></div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>                T* out = <span class="keyword">dynamic_cast&lt;</span>T*<span class="keyword">&gt;</span>(<a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aaf90c807ab389f2e6650647d0dc2645c">m_element</a>);</div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span>                <span class="keywordflow">return</span> out;</div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span><span class="preprocessor">            #else</span></div>
+<div class="line"><a id="l00479" name="l00479"></a><span class="lineno">  479</span>                <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>T*<span class="keyword">&gt;</span>(<a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aaf90c807ab389f2e6650647d0dc2645c">m_element</a>);</div>
+<div class="line"><a id="l00480" name="l00480"></a><span class="lineno">  480</span><span class="preprocessor">            #endif</span></div>
+<div class="line"><a id="l00481" name="l00481"></a><span class="lineno">  481</span>        }</div>
+</div>
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span></div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a7ad596589bb4c19954c0315ad615f41e">  486</a></span>        irr::gui::IGUIElement* <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a7ad596589bb4c19954c0315ad615f41e">getIrrlichtElement</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aaf90c807ab389f2e6650647d0dc2645c">m_element</a>; }</div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span> </div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>        <span class="keywordtype">void</span> moveIrrlichtElement();</div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span>        <span class="keywordtype">bool</span> isSameIrrlichtWidgetAs(<span class="keyword">const</span> <a class="code hl_class" href="classGUIEngine_1_1Widget.html">Widget</a>* ref)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aaf90c807ab389f2e6650647d0dc2645c">m_element</a> == ref-&gt;<a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aaf90c807ab389f2e6650647d0dc2645c">m_element</a>; }</div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span></div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span></div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span></div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a7fea3806dc7d54d8184c409e0b652766">setText</a>(<span class="keyword">const</span> irr::core::stringw &amp;s);</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span></div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#aa6ac650767da0e20e77845a07b0c29fd">  514</a></span>        <span class="keyword">const</span> irr::core::stringw &amp;<a class="code hl_function" href="classGUIEngine_1_1Widget.html#aa6ac650767da0e20e77845a07b0c29fd">getText</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a77a736b365249ea7d7dcfdc8a8f291c4">m_text</a>; }</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span></div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#af09d1caa70328a61e7ffa601082ad8b1">  517</a></span>        WidgetType <a class="code hl_function" href="classGUIEngine_1_1Widget.html#af09d1caa70328a61e7ffa601082ad8b1">getType</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aa9be0e720fc7cd226df202921ae1ad8d">m_type</a>; }</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span></div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a5d324a81aedd9f92f9cdd323bff55e0e">  523</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a5d324a81aedd9f92f9cdd323bff55e0e">getID</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a7811258844b3854835c90803365a2122">m_id</a>; }</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span></div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a83fe9dd1408d20cbe582a3fbec7cda8a">  527</a></span>        std::string <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a83fe9dd1408d20cbe582a3fbec7cda8a">getName</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aa3f034f686794c916328f66b3a0360a2">m_properties</a>[PROP_ID]; }</div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span></div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#aeff2b63efde393285bea66885e27760e">  530</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#aeff2b63efde393285bea66885e27760e">isFocusable</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a42ad62992334919df67994619a489dcf">m_focusable</a>; }</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span> </div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>        <span class="keywordtype">void</span> setFocusable(<span class="keywordtype">bool</span> f) { <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a42ad62992334919df67994619a489dcf">m_focusable</a> = f; }</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span></div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span></div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span></div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a2356308449d7b25f927fc7373d7b2a9b">setFocusForPlayer</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID);</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span></div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#ad550431cf473e4723f0634d0c549870d">isFocusedForPlayer</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID);</div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span></div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#ad469993a4136d742b1795fbfe086c094">unsetFocusForPlayer</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID);</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span></div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span></div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span> </div>
+<div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a39a370f91e6111c01865ff54afe319d0">resetIDCounters</a>();</div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span></div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>        <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#aaba5b5bffe351e79a4d704f29f018f35">getNewID</a>();</div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span></div>
+<div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>        <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a8946e265c92b7c37d826ede143a031ff">getNewNoFocusID</a>();</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span></div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>        <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a09a5711691a4053450cc384964ef628c">isFocusableId</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span></div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span></div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span></div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a00db6ea8277d13ba74303b7d3decf0be">  606</a></span>        <span class="keyword">const</span> <a class="code hl_class" href="classPtrVector.html">PtrVector&lt;Widget&gt;</a>&amp; <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a00db6ea8277d13ba74303b7d3decf0be">getChildren</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a3d796c477f6f7b456addd2b7c7447603">m_children</a>; }</div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span> </div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>        <a class="code hl_class" href="classPtrVector.html">PtrVector&lt;Widget&gt;</a>&amp;       <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a00db6ea8277d13ba74303b7d3decf0be">getChildren</a>()       { <span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a3d796c477f6f7b456addd2b7c7447603">m_children</a>; }</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span></div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a3159cf2aa988aa759d757f201eb0ea5c">deleteChild</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span></div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span></div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span></div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a3d2dcecde4f1ebecc2052c3d14cd91a1">  637</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a3d2dcecde4f1ebecc2052c3d14cd91a1">update</a>(<span class="keywordtype">float</span> delta) { }</div>
+<div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span></div>
+<div class="foldopen" id="foldopen00643" data-start="{" data-end="}">
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a2769458b6094bdd103f2ef10e8133092">  643</a></span>        <span class="keyword">virtual</span> EventPropagation <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a2769458b6094bdd103f2ef10e8133092">transmitEvent</a>(Widget* w,</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>                                               <span class="keyword">const</span> std::string&amp; originator,</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>                                               <span class="keyword">const</span> <span class="keywordtype">int</span> playerID)</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>                { <span class="keywordflow">return</span> EVENT_LET; }</div>
+</div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span></div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a1cc1f99cf35adaf40576cda1c98762c6">add</a>();</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span></div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a83c8513a55f472e6704083feeff89289">elementRemoved</a>();</div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> </div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>        <span class="keywordtype">bool</span> searchInsideMe()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#aedc2637fdcc0c2c2b5afa89346b6a966">m_check_inside_me</a>; }</div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span></div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a839702b475e18b9b1673ae6921cfce5b">  663</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a839702b475e18b9b1673ae6921cfce5b">getWidthNeededAroundLabel</a>()<span class="keyword">  const </span>{ <span class="keywordflow">return</span> 0; }</div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span></div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a8c37600991202d6e8bb1899fdf67b5d6">  667</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a8c37600991202d6e8bb1899fdf67b5d6">getHeightNeededAroundLabel</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> 0; }</div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span></div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span></div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span></div>
+<div class="foldopen" id="foldopen00684" data-start="{" data-end="}">
+<div class="line"><a id="l00684" name="l00684"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a9095d88e0bffcbd187e2a4b4f2609c3f">  684</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a9095d88e0bffcbd187e2a4b4f2609c3f">setBadge</a>(<a class="code hl_enumeration" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885">BadgeType</a> badge_bit)</div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>        {</div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>            <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a8cc118e08128e25d92b0207a3d3887f7">m_badges</a> |= int(badge_bit);</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>        }</div>
+</div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span></div>
+<div class="foldopen" id="foldopen00693" data-start="{" data-end="}">
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a537f231adf8cbaa1b61465d2198d5d38">  693</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a537f231adf8cbaa1b61465d2198d5d38">unsetBadge</a>(<a class="code hl_enumeration" href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885">BadgeType</a> badge_bit)</div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span>        {</div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>            <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a8cc118e08128e25d92b0207a3d3887f7">m_badges</a> &amp;= (~int(badge_bit));</div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span>        }</div>
+</div>
+<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span></div>
+<div class="foldopen" id="foldopen00701" data-start="{" data-end="}">
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a60ea47f530bf370ade59d28e8e5ead9a">  701</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a60ea47f530bf370ade59d28e8e5ead9a">resetAllBadges</a>()</div>
+<div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span>        {</div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span>            <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a8cc118e08128e25d92b0207a3d3887f7">m_badges</a> = 0;</div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span>        }</div>
+</div>
+<div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span></div>
+<div class="foldopen" id="foldopen00710" data-start="{" data-end="}">
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a24d54b73ee2614ac876e45abb5f69d71">  710</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a24d54b73ee2614ac876e45abb5f69d71">getBadges</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span><span class="keyword">        </span>{</div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1Widget.html#a8cc118e08128e25d92b0207a3d3887f7">m_badges</a>;</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span>        }</div>
+</div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span></div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span></div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span> </div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span> </div>
+<div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span>        <span class="keywordtype">bool</span> hasTooltip()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_has_tooltip; }</div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span></div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a987643e7988cf79f72115663ac2ed468">  728</a></span>        irr::core::stringw <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a987643e7988cf79f72115663ac2ed468">getTooltipText</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_tooltip_text; }</div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span> </div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>        <span class="keywordtype">void</span> setTooltip(irr::core::stringw s) { m_tooltip_text = s; m_has_tooltip = <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span></div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span> </div>
+<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>        <span class="keywordtype">bool</span> ok()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (m_magic_number == 0xCAFEC001); }</div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span></div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1Widget.html#a4724aa7865467443e073c102298ca90a">  739</a></span>        <span class="keyword">virtual</span> EventPropagation <a class="code hl_function" href="classGUIEngine_1_1Widget.html#a4724aa7865467443e073c102298ca90a">onClick</a>()  { <span class="keywordflow">return</span> EVENT_LET; }</div>
+<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>        <span class="keyword">virtual</span> irr::core::dimension2di getDimension()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> irr::core::dimension2di(m_w, m_h); }</div>
+<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span>    };</div>
+</div>
+<div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span> </div>
+<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span> </div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span>}</div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassGUIEngine_1_1DynamicRibbonWidget_html"><div class="ttname"><a href="classGUIEngine_1_1DynamicRibbonWidget.html">GUIEngine::DynamicRibbonWidget</a></div><div class="ttdoc">An extended version of RibbonWidget, with more capabilities.</div><div class="ttdef"><b>Definition</b> dynamic_ribbon_widget.hpp:82</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Screen_html"><div class="ttname"><a href="classGUIEngine_1_1Screen.html">GUIEngine::Screen</a></div><div class="ttdoc">Represents a single GUI screen.</div><div class="ttdef"><b>Definition</b> screen.hpp:94</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html"><div class="ttname"><a href="classGUIEngine_1_1Widget.html">GUIEngine::Widget</a></div><div class="ttdoc">The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...</div><div class="ttdef"><b>Definition</b> widget.hpp:147</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a00db6ea8277d13ba74303b7d3decf0be"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a00db6ea8277d13ba74303b7d3decf0be">GUIEngine::Widget::getChildren</a></div><div class="ttdeci">const PtrVector&lt; Widget &gt; &amp; getChildren() const</div><div class="ttdef"><b>Definition</b> widget.hpp:606</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a074af109ba4a9ef88b6be60d5b59dbe3"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a074af109ba4a9ef88b6be60d5b59dbe3">GUIEngine::Widget::unfocused</a></div><div class="ttdeci">virtual void unfocused(const int playerID, Widget *new_focus)</div><div class="ttdoc">override in children if you need to know when the widget is unfocused.</div><div class="ttdef"><b>Definition</b> widget.hpp:234</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a095ec662b1e75c15a04a745c5b8397b9"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a095ec662b1e75c15a04a745c5b8397b9">GUIEngine::Widget::m_absolute_x</a></div><div class="ttdeci">int m_absolute_x</div><div class="ttdoc">Used during loading, by the layout engine.</div><div class="ttdef"><b>Definition</b> widget.hpp:168</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a09a5711691a4053450cc384964ef628c"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a09a5711691a4053450cc384964ef628c">GUIEngine::Widget::isFocusableId</a></div><div class="ttdeci">static bool isFocusableId(const int id)</div><div class="ttdoc">get whether the given ID represents an ID of a widget that can be focused</div><div class="ttdef"><b>Definition</b> widget.cpp:224</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a0f33290315f08fb857d9151fd807a023"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a0f33290315f08fb857d9151fd807a023">GUIEngine::Widget::m_is_visible</a></div><div class="ttdeci">bool m_is_visible</div><div class="ttdoc">A flag to indicate whether this widget should be visible or not.</div><div class="ttdef"><b>Definition</b> widget.hpp:278</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a18ff0e0c552db410a35d2f4ad3db262a"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a18ff0e0c552db410a35d2f4ad3db262a">GUIEngine::Widget::m_tab_up_root</a></div><div class="ttdeci">int m_tab_up_root</div><div class="ttdoc">Instead of searching for widget IDs smaller/greater than that of this object, navigation through widg...</div><div class="ttdef"><b>Definition</b> widget.hpp:321</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a19c84e63f5f675178a3d3c57d8402402"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a19c84e63f5f675178a3d3c57d8402402">GUIEngine::Widget::leftPressed</a></div><div class="ttdeci">virtual EventPropagation leftPressed(const int playerID)</div><div class="ttdoc">called when left key is pressed and focus is on widget.</div><div class="ttdef"><b>Definition</b> widget.hpp:206</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a1b6fb151ef3a5f180b8546b1ca180ecf"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a1b6fb151ef3a5f180b8546b1ca180ecf">GUIEngine::Widget::getIrrlichtElement</a></div><div class="ttdeci">const T * getIrrlichtElement() const</div><div class="ttdoc">Get the underlying irrLicht GUI element, casted to the right type; const version.</div><div class="ttdef"><b>Definition</b> widget.hpp:473</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a1cc1f99cf35adaf40576cda1c98762c6"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a1cc1f99cf35adaf40576cda1c98762c6">GUIEngine::Widget::add</a></div><div class="ttdeci">virtual void add()</div><div class="ttdoc">Create and add the irrLicht widget(s) associated with this object.</div><div class="ttdef"><b>Definition</b> widget.cpp:244</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a1ff953f307f8dd40ea620cf2dcd7bfda"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a1ff953f307f8dd40ea620cf2dcd7bfda">GUIEngine::Widget::setParent</a></div><div class="ttdeci">void setParent(irr::gui::IGUIElement *parent)</div><div class="ttdoc">Set the irrlicht widget to be used as parent of this widget next time Widget::add() is invoked on thi...</div><div class="ttdef"><b>Definition</b> widget.cpp:328</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a2243603144b933d0067ad7ed1a3d040b"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a2243603144b933d0067ad7ed1a3d040b">GUIEngine::Widget::m_tab_down_root</a></div><div class="ttdeci">int m_tab_down_root</div><div class="ttdoc">Instead of searching for widget IDs smaller/greater than that of this object, navigation through widg...</div><div class="ttdef"><b>Definition</b> widget.hpp:317</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a2356308449d7b25f927fc7373d7b2a9b"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a2356308449d7b25f927fc7373d7b2a9b">GUIEngine::Widget::setFocusForPlayer</a></div><div class="ttdeci">void setFocusForPlayer(const int playerID)</div><div class="ttdoc">Focus the widget for the given player.</div><div class="ttdef"><b>Definition</b> widget.cpp:259</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a24d54b73ee2614ac876e45abb5f69d71"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a24d54b73ee2614ac876e45abb5f69d71">GUIEngine::Widget::getBadges</a></div><div class="ttdeci">int getBadges() const</div><div class="ttdoc">Get which badges are currently on this widget</div><div class="ttdef"><b>Definition</b> widget.hpp:710</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a25b6db2cde74e884b610f2a163490413"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a25b6db2cde74e884b610f2a163490413">GUIEngine::Widget::isEventCallbackActive</a></div><div class="ttdeci">virtual bool isEventCallbackActive(Input::InputType type) const</div><div class="ttdoc">Return if there should be an event callback for this widget based on input type.</div><div class="ttdef"><b>Definition</b> widget.cpp:137</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a2769458b6094bdd103f2ef10e8133092"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a2769458b6094bdd103f2ef10e8133092">GUIEngine::Widget::transmitEvent</a></div><div class="ttdeci">virtual EventPropagation transmitEvent(Widget *w, const std::string &amp;originator, const int playerID)</div><div class="ttdoc">All widgets, including their parents (m_event_handler) will be notified on event through this call.</div><div class="ttdef"><b>Definition</b> widget.hpp:643</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a2caa91817075d261fa5521573a6dbcbd"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a2caa91817075d261fa5521573a6dbcbd">GUIEngine::Widget::move</a></div><div class="ttdeci">virtual void move(const int x, const int y, const int w, const int h)</div><div class="ttdoc">Move the widget to the given position.</div><div class="ttdef"><b>Definition</b> widget.cpp:315</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a3159cf2aa988aa759d757f201eb0ea5c"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a3159cf2aa988aa759d757f201eb0ea5c">GUIEngine::Widget::deleteChild</a></div><div class="ttdeci">bool deleteChild(const char *id)</div><div class="ttdoc">removes and deletes the child with the given PROP_ID</div><div class="ttdef"><b>Definition</b> widget.cpp:186</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a39a370f91e6111c01865ff54afe319d0"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a39a370f91e6111c01865ff54afe319d0">GUIEngine::Widget::resetIDCounters</a></div><div class="ttdeci">static void resetIDCounters()</div><div class="ttdoc">When switching to a new screen, this function will be called to reset ID counters (so we start again ...</div><div class="ttdef"><b>Definition</b> widget.cpp:236</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a3d2dcecde4f1ebecc2052c3d14cd91a1"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a3d2dcecde4f1ebecc2052c3d14cd91a1">GUIEngine::Widget::update</a></div><div class="ttdeci">virtual void update(float delta)</div><div class="ttdoc">Override in children to possibly receive updates (you may need to register to them first)</div><div class="ttdef"><b>Definition</b> widget.hpp:637</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a3d796c477f6f7b456addd2b7c7447603"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a3d796c477f6f7b456addd2b7c7447603">GUIEngine::Widget::m_children</a></div><div class="ttdeci">PtrVector&lt; Widget &gt; m_children</div><div class="ttdoc">If this widget has any children, they go here.</div><div class="ttdef"><b>Definition</b> widget.hpp:269</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a4001297b6c9e9626cfa95c67ba684489"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a4001297b6c9e9626cfa95c67ba684489">GUIEngine::Widget::m_deactivated</a></div><div class="ttdeci">bool m_deactivated</div><div class="ttdoc">A simple flag that can be raised to deactivate this widget</div><div class="ttdef"><b>Definition</b> widget.hpp:275</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a42ad62992334919df67994619a489dcf"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a42ad62992334919df67994619a489dcf">GUIEngine::Widget::m_focusable</a></div><div class="ttdeci">bool m_focusable</div><div class="ttdoc">Set to false if widget is something that should not receive focus</div><div class="ttdef"><b>Definition</b> widget.hpp:281</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a46d17658419e1ce3efa551f3721e1660"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a46d17658419e1ce3efa551f3721e1660">GUIEngine::Widget::rightPressed</a></div><div class="ttdeci">virtual EventPropagation rightPressed(const int playerID)</div><div class="ttdoc">called when right key is pressed and focus is on widget.</div><div class="ttdef"><b>Definition</b> widget.hpp:198</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a4724aa7865467443e073c102298ca90a"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a4724aa7865467443e073c102298ca90a">GUIEngine::Widget::onClick</a></div><div class="ttdeci">virtual EventPropagation onClick()</div><div class="ttdoc">Gets called when the widget is active and got clicked.</div><div class="ttdef"><b>Definition</b> widget.hpp:739</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a4d427aec26db7fdbda752960338af3d2"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a4d427aec26db7fdbda752960338af3d2">GUIEngine::Widget::m_reserved_id</a></div><div class="ttdeci">int m_reserved_id</div><div class="ttdoc">Used in two cases : 1) For &#39;placeholder&#39; divisions; at the time the layout is created,...</div><div class="ttdef"><b>Definition</b> widget.hpp:340</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a537f231adf8cbaa1b61465d2198d5d38"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a537f231adf8cbaa1b61465d2198d5d38">GUIEngine::Widget::unsetBadge</a></div><div class="ttdeci">void unsetBadge(BadgeType badge_bit)</div><div class="ttdoc">removes a particular bade from this widget, if it had it.</div><div class="ttdef"><b>Definition</b> widget.hpp:693</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a5d324a81aedd9f92f9cdd323bff55e0e"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a5d324a81aedd9f92f9cdd323bff55e0e">GUIEngine::Widget::getID</a></div><div class="ttdeci">int getID() const</div><div class="ttdoc">Get the irrlicht widget ID attributed to this widget</div><div class="ttdef"><b>Definition</b> widget.hpp:523</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a60ea47f530bf370ade59d28e8e5ead9a"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a60ea47f530bf370ade59d28e8e5ead9a">GUIEngine::Widget::resetAllBadges</a></div><div class="ttdeci">void resetAllBadges()</div><div class="ttdoc">sets this widget to have no badge</div><div class="ttdef"><b>Definition</b> widget.hpp:701</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a62b1a8e4bdc7832a3db49e45464661a4"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a62b1a8e4bdc7832a3db49e45464661a4">GUIEngine::Widget::m_badge_x_shift</a></div><div class="ttdeci">int m_badge_x_shift</div><div class="ttdoc">If a badge wouldn&#39;t look too pretty on the very side of the widget</div><div class="ttdef"><b>Definition</b> widget.hpp:287</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a66088a03691f9c643ff335fa826576ba"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a66088a03691f9c643ff335fa826576ba">GUIEngine::Widget::setVisible</a></div><div class="ttdeci">virtual void setVisible(bool visible)</div><div class="ttdoc">Sets the widget (and its children, if any) visible or not.</div><div class="ttdef"><b>Definition</b> widget.cpp:358</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a6a68689c034a0c2e259ecd7defccdaff"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a6a68689c034a0c2e259ecd7defccdaff">GUIEngine::Widget::m_is_collapsed</a></div><div class="ttdeci">bool m_is_collapsed</div><div class="ttdoc">A flag to indicate whether this widget got collapsed.</div><div class="ttdef"><b>Definition</b> widget.hpp:296</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a6c7e282643664c0c8c27471c345f427f"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a6c7e282643664c0c8c27471c345f427f">GUIEngine::Widget::m_supports_multiplayer</a></div><div class="ttdeci">bool m_supports_multiplayer</div><div class="ttdoc">Whether this widget supports multiplayer interaction (i.e.</div><div class="ttdef"><b>Definition</b> widget.hpp:313</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a6ca4b9c2201a67c9319dcdfcd2b7a19e"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a6ca4b9c2201a67c9319dcdfcd2b7a19e">GUIEngine::Widget::m_event_handler</a></div><div class="ttdeci">Widget * m_event_handler</div><div class="ttdoc">This is set to NULL by default; set to something else in a widget to mean that events happening on th...</div><div class="ttdef"><b>Definition</b> widget.hpp:307</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a70abf0412de127333ab03100ff6d9b7d"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a70abf0412de127333ab03100ff6d9b7d">GUIEngine::Widget::m_parent</a></div><div class="ttdeci">irr::gui::IGUIElement * m_parent</div><div class="ttdoc">An irrlicht parent (most often used to put widgets in dialogs)</div><div class="ttdef"><b>Definition</b> widget.hpp:239</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a733bae735f2a548f0944a7503f901270"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a733bae735f2a548f0944a7503f901270">GUIEngine::Widget::setCollapsed</a></div><div class="ttdeci">virtual void setCollapsed(bool collapsed, Screen *calling_screen=NULL)</div><div class="ttdoc">Sets the widget (and its children, if any) collapsed or not.</div><div class="ttdef"><b>Definition</b> widget.cpp:375</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a77a736b365249ea7d7dcfdc8a8f291c4"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a77a736b365249ea7d7dcfdc8a8f291c4">GUIEngine::Widget::m_text</a></div><div class="ttdeci">irr::core::stringw m_text</div><div class="ttdoc">PROP_TEXT is a special case : since it can be translated it can&#39;t go in the map above,...</div><div class="ttdef"><b>Definition</b> widget.hpp:174</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a7811258844b3854835c90803365a2122"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a7811258844b3854835c90803365a2122">GUIEngine::Widget::m_id</a></div><div class="ttdeci">int m_id</div><div class="ttdoc">numerical ID used by irrLicht to identify this widget (not the same as the string identificator speci...</div><div class="ttdef"><b>Definition</b> widget.hpp:250</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a7ad596589bb4c19954c0315ad615f41e"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a7ad596589bb4c19954c0315ad615f41e">GUIEngine::Widget::getIrrlichtElement</a></div><div class="ttdeci">irr::gui::IGUIElement * getIrrlichtElement()</div><div class="ttdoc">Get the underlying irrLicht GUI element</div><div class="ttdef"><b>Definition</b> widget.hpp:486</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a7d97b9428ea7bf2b72599ff4406677ed"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a7d97b9428ea7bf2b72599ff4406677ed">GUIEngine::Widget::m_title_font</a></div><div class="ttdeci">bool m_title_font</div><div class="ttdoc">When true, this widget shall use a bigger and more colourful font</div><div class="ttdef"><b>Definition</b> widget.hpp:177</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a7fea3806dc7d54d8184c409e0b652766"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a7fea3806dc7d54d8184c409e0b652766">GUIEngine::Widget::setText</a></div><div class="ttdeci">virtual void setText(const irr::core::stringw &amp;s)</div><div class="ttdoc">Sets the text of a widget from a wchar_t.</div><div class="ttdef"><b>Definition</b> widget.cpp:143</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a839702b475e18b9b1673ae6921cfce5b"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a839702b475e18b9b1673ae6921cfce5b">GUIEngine::Widget::getWidthNeededAroundLabel</a></div><div class="ttdeci">virtual int getWidthNeededAroundLabel() const</div><div class="ttdoc">When inferring widget size from its label length, this method will be called to if/how much space mus...</div><div class="ttdef"><b>Definition</b> widget.hpp:663</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a83c8513a55f472e6704083feeff89289"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a83c8513a55f472e6704083feeff89289">GUIEngine::Widget::elementRemoved</a></div><div class="ttdeci">virtual void elementRemoved()</div><div class="ttdoc">Called when irrLicht widgets cleared.</div><div class="ttdef"><b>Definition</b> widget.cpp:152</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a83fe9dd1408d20cbe582a3fbec7cda8a"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a83fe9dd1408d20cbe582a3fbec7cda8a">GUIEngine::Widget::getName</a></div><div class="ttdeci">std::string getName()</div><div class="ttdoc">Get the name used for this widget in the GUI files or set in the code Use only for debugging.</div><div class="ttdef"><b>Definition</b> widget.hpp:527</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a87859789fd9ae5273a513e0765d0d0d0"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a87859789fd9ae5273a513e0765d0d0d0">GUIEngine::Widget::focused</a></div><div class="ttdeci">virtual EventPropagation focused(const int playerID)</div><div class="ttdoc">override in children if you need to know when the widget is focused.</div><div class="ttdef"><b>Definition</b> widget.hpp:231</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a8946e265c92b7c37d826ede143a031ff"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a8946e265c92b7c37d826ede143a031ff">GUIEngine::Widget::getNewNoFocusID</a></div><div class="ttdeci">static int getNewNoFocusID()</div><div class="ttdoc">Provides a new unique ID on each call, for widgets that can not be focused.</div><div class="ttdef"><b>Definition</b> widget.cpp:218</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a8c37600991202d6e8bb1899fdf67b5d6"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a8c37600991202d6e8bb1899fdf67b5d6">GUIEngine::Widget::getHeightNeededAroundLabel</a></div><div class="ttdeci">virtual int getHeightNeededAroundLabel() const</div><div class="ttdoc">When inferring widget size from its label length, this method will be called to if/how much space mus...</div><div class="ttdef"><b>Definition</b> widget.hpp:667</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a8cc118e08128e25d92b0207a3d3887f7"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a8cc118e08128e25d92b0207a3d3887f7">GUIEngine::Widget::m_badges</a></div><div class="ttdeci">int m_badges</div><div class="ttdoc">A bitmask of which badges to show, if any; choices are *_BADGE, defined above</div><div class="ttdef"><b>Definition</b> widget.hpp:272</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a8d05ef2baa05dd6c0ab17e2872593e66"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a8d05ef2baa05dd6c0ab17e2872593e66">GUIEngine::Widget::m_show_bounding_box</a></div><div class="ttdeci">bool m_show_bounding_box</div><div class="ttdoc">Whether to show a bounding box around this widget (used for sections)</div><div class="ttdef"><b>Definition</b> widget.hpp:329</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a8d559fb18a74c95a058cdc14b6ea98d4"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a8d559fb18a74c95a058cdc14b6ea98d4">GUIEngine::Widget::m_selected</a></div><div class="ttdeci">bool m_selected[MAX_PLAYER_COUNT]</div><div class="ttdoc">Can be used in children to indicate whether a widget is selected or not</div><div class="ttdef"><b>Definition</b> widget.hpp:184</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a9095d88e0bffcbd187e2a4b4f2609c3f"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a9095d88e0bffcbd187e2a4b4f2609c3f">GUIEngine::Widget::setBadge</a></div><div class="ttdeci">void setBadge(BadgeType badge_bit)</div><div class="ttdoc">adds a particular badge to this widget.</div><div class="ttdef"><b>Definition</b> widget.hpp:684</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a91bf18bd184a5d0d1956a6239a580d9c"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a91bf18bd184a5d0d1956a6239a580d9c">GUIEngine::Widget::mouseHovered</a></div><div class="ttdeci">virtual EventPropagation mouseHovered(Widget *child, const int playerID)</div><div class="ttdoc">used when you set eventSupervisors - see m_event_handler explainations below called when one of a wid...</div><div class="ttdef"><b>Definition</b> widget.hpp:227</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a9261531c96aeb3820d57fdc1191ecaf4"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a9261531c96aeb3820d57fdc1191ecaf4">GUIEngine::Widget::m_uncollapsed_height</a></div><div class="ttdeci">int m_uncollapsed_height</div><div class="ttdoc">height of the widget before it was collapsed (only set if widget got collapsed)</div><div class="ttdef"><b>Definition</b> widget.hpp:293</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a987643e7988cf79f72115663ac2ed468"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a987643e7988cf79f72115663ac2ed468">GUIEngine::Widget::getTooltipText</a></div><div class="ttdeci">irr::core::stringw getTooltipText() const</div><div class="ttdoc">Only call if hasTooltip() returned true</div><div class="ttdef"><b>Definition</b> widget.hpp:728</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_a9e6f97b12664ee43ad4901d4ce1a2bd4"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#a9e6f97b12664ee43ad4901d4ce1a2bd4">GUIEngine::Widget::m_reserve_id</a></div><div class="ttdeci">bool m_reserve_id</div><div class="ttdoc">Whether to reserve an ID in &#39;m_reserved_id&#39; when widget is added</div><div class="ttdef"><b>Definition</b> widget.hpp:258</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_aa3f034f686794c916328f66b3a0360a2"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#aa3f034f686794c916328f66b3a0360a2">GUIEngine::Widget::m_properties</a></div><div class="ttdeci">std::map&lt; Property, std::string &gt; m_properties</div><div class="ttdoc">A map that holds values for all specified widget properties (in the XML file)</div><div class="ttdef"><b>Definition</b> widget.hpp:350</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_aa63f77bf4853213f4ba3c8982cdbe37b"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#aa63f77bf4853213f4ba3c8982cdbe37b">GUIEngine::Widget::m_player_focus</a></div><div class="ttdeci">bool m_player_focus[MAX_PLAYER_COUNT]</div><div class="ttdoc">Usually, only one widget at a time can be focused.</div><div class="ttdef"><b>Definition</b> widget.hpp:255</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_aa6ac650767da0e20e77845a07b0c29fd"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#aa6ac650767da0e20e77845a07b0c29fd">GUIEngine::Widget::getText</a></div><div class="ttdeci">const irr::core::stringw &amp; getText() const</div><div class="ttdoc">Returns the text of a widget.</div><div class="ttdef"><b>Definition</b> widget.hpp:514</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_aa9be0e720fc7cd226df202921ae1ad8d"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#aa9be0e720fc7cd226df202921ae1ad8d">GUIEngine::Widget::m_type</a></div><div class="ttdeci">WidgetType m_type</div><div class="ttdoc">Type of this widget</div><div class="ttdef"><b>Definition</b> widget.hpp:261</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_aaba5b5bffe351e79a4d704f29f018f35"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#aaba5b5bffe351e79a4d704f29f018f35">GUIEngine::Widget::getNewID</a></div><div class="ttdeci">static int getNewID()</div><div class="ttdoc">Provides a new unique ID on each call, for widgets that can be focused.</div><div class="ttdef"><b>Definition</b> widget.cpp:214</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_aaf90c807ab389f2e6650647d0dc2645c"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#aaf90c807ab389f2e6650647d0dc2645c">GUIEngine::Widget::m_element</a></div><div class="ttdeci">irr::gui::IGUIElement * m_element</div><div class="ttdoc">IrrLicht widget created to represent this object.</div><div class="ttdef"><b>Definition</b> widget.hpp:244</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_ab06e6e3da873dc9a4d45c4c48ad441e5"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#ab06e6e3da873dc9a4d45c4c48ad441e5">GUIEngine::Widget::resize</a></div><div class="ttdeci">virtual void resize()</div><div class="ttdoc">Call to resize the widget after its coordinates are updated.</div><div class="ttdef"><b>Definition</b> widget.cpp:306</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_ab1d41ae2d539ca1d5845f65655a5c57b"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#ab1d41ae2d539ca1d5845f65655a5c57b">GUIEngine::Widget::isSelected</a></div><div class="ttdeci">bool isSelected(const int playerID) const</div><div class="ttdoc">Get whether this widget is selected (only makes sense in some cases where a widget is part of a bigge...</div><div class="ttdef"><b>Definition</b> widget.hpp:431</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_ab552ce1057ba7a1c3b54411fed7d2a31"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#ab552ce1057ba7a1c3b54411fed7d2a31">GUIEngine::Widget::resetCoordinates</a></div><div class="ttdeci">void resetCoordinates()</div><div class="ttdoc">Call to reset its coordinates before they are updated by layout manager.</div><div class="ttdef"><b>Definition</b> widget.cpp:119</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_abe042084e1feb5718f35192106f683c1"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#abe042084e1feb5718f35192106f683c1">GUIEngine::Widget::m_is_bounding_box_round</a></div><div class="ttdeci">bool m_is_bounding_box_round</div><div class="ttdoc">Only used if m_show_bounding_box is true</div><div class="ttdef"><b>Definition</b> widget.hpp:332</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_ac1771290f935697438dbec27d993cc0d"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#ac1771290f935697438dbec27d993cc0d">GUIEngine::Widget::setEventCallbackActive</a></div><div class="ttdeci">virtual void setEventCallbackActive(Input::InputType type, bool active)</div><div class="ttdoc">Allow (or not) an event callback for this widget based on input type.</div><div class="ttdef"><b>Definition</b> widget.cpp:131</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_ac69b583d0a8b832c3e4d9626433cd7ab"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#ac69b583d0a8b832c3e4d9626433cd7ab">GUIEngine::Widget::m_x</a></div><div class="ttdeci">int m_x</div><div class="ttdoc">Coordinates of the widget once added (the difference between those x/h and PROP_WIDTH/PROP_HEIGHT is ...</div><div class="ttdef"><b>Definition</b> widget.hpp:326</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_ad167d2346082f0f16fb3a8500e288ecb"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#ad167d2346082f0f16fb3a8500e288ecb">GUIEngine::Widget::setActive</a></div><div class="ttdeci">virtual void setActive(bool active=true)</div><div class="ttdoc">Sets an widget to be either activated or deactivated (i.e.</div><div class="ttdef"><b>Definition</b> widget.cpp:172</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_ad1be001290813abee51eaa7930c9a03e"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#ad1be001290813abee51eaa7930c9a03e">GUIEngine::Widget::downPressed</a></div><div class="ttdeci">virtual EventPropagation downPressed(const int playerID)</div><div class="ttdoc">called when down key is pressed and focus is on widget.</div><div class="ttdef"><b>Definition</b> widget.hpp:222</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_ad32290509ab5b103c35d6d74cf4619c2"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#ad32290509ab5b103c35d6d74cf4619c2">GUIEngine::Widget::isCollapsed</a></div><div class="ttdeci">bool isCollapsed() const</div><div class="ttdoc">Returns whether the element is collapsed (through setCollapsed).</div><div class="ttdef"><b>Definition</b> widget.hpp:405</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_ad469993a4136d742b1795fbfe086c094"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#ad469993a4136d742b1795fbfe086c094">GUIEngine::Widget::unsetFocusForPlayer</a></div><div class="ttdeci">void unsetFocusForPlayer(const int playerID)</div><div class="ttdoc">Internal method, do not call it.</div><div class="ttdef"><b>Definition</b> widget.cpp:284</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_ad550431cf473e4723f0634d0c549870d"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#ad550431cf473e4723f0634d0c549870d">GUIEngine::Widget::isFocusedForPlayer</a></div><div class="ttdeci">bool isFocusedForPlayer(const int playerID)</div><div class="ttdoc">Find whether this widget is focused by a given player.</div><div class="ttdef"><b>Definition</b> widget.cpp:297</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_ae020f24e5fe29f9da566fa0423a98865"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#ae020f24e5fe29f9da566fa0423a98865">GUIEngine::Widget::getIrrlichtElement</a></div><div class="ttdeci">T * getIrrlichtElement()</div><div class="ttdoc">Get the underlying irrLicht GUI element, casted to the right type.</div><div class="ttdef"><b>Definition</b> widget.hpp:460</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_ae1f97ae96217641c1dab031bf7817ee0"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#ae1f97ae96217641c1dab031bf7817ee0">GUIEngine::Widget::upPressed</a></div><div class="ttdeci">virtual EventPropagation upPressed(const int playerID)</div><div class="ttdoc">called when up key is pressed and focus is on widget.</div><div class="ttdef"><b>Definition</b> widget.hpp:214</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_ae469bb315299916388d717225e71a802"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#ae469bb315299916388d717225e71a802">GUIEngine::Widget::isVisible</a></div><div class="ttdeci">bool isVisible() const</div><div class="ttdoc">Returns if the element is visible.</div><div class="ttdef"><b>Definition</b> widget.cpp:336</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_aedc2637fdcc0c2c2b5afa89346b6a966"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#aedc2637fdcc0c2c2b5afa89346b6a966">GUIEngine::Widget::m_check_inside_me</a></div><div class="ttdeci">bool m_check_inside_me</div><div class="ttdoc">Whether to descend in the children of this widget when searching a widget from its ID or name.</div><div class="ttdef"><b>Definition</b> widget.hpp:190</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_aeff2b63efde393285bea66885e27760e"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#aeff2b63efde393285bea66885e27760e">GUIEngine::Widget::isFocusable</a></div><div class="ttdeci">bool isFocusable() const</div><div class="ttdoc">Get whether this object is allowed to receive focus</div><div class="ttdef"><b>Definition</b> widget.hpp:530</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html_af09d1caa70328a61e7ffa601082ad8b1"><div class="ttname"><a href="classGUIEngine_1_1Widget.html#af09d1caa70328a61e7ffa601082ad8b1">GUIEngine::Widget::getType</a></div><div class="ttdeci">WidgetType getType() const</div><div class="ttdef"><b>Definition</b> widget.hpp:517</div></div>
+<div class="ttc" id="aclassPtrVector_html"><div class="ttname"><a href="classPtrVector.html">PtrVector</a></div><div class="ttdef"><b>Definition</b> ptr_vector.hpp:44</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html"><div class="ttname"><a href="namespaceGUIEngine.html">GUIEngine</a></div><div class="ttdoc">Contains all GUI engine related classes and functions</div><div class="ttdef"><b>Definition</b> abstract_state_manager.hpp:33</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_af6229cf842ea2c50dc2a22cf75154885"><div class="ttname"><a href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885">GUIEngine::BadgeType</a></div><div class="ttdeci">BadgeType</div><div class="ttdef"><b>Definition</b> widget.hpp:63</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_af6229cf842ea2c50dc2a22cf75154885a0121bf8fa25820e1777750fa5b8ad71a"><div class="ttname"><a href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a0121bf8fa25820e1777750fa5b8ad71a">GUIEngine::HEART_BADGE</a></div><div class="ttdeci">@ HEART_BADGE</div><div class="ttdoc">A heart badge, to indicate e.g.</div><div class="ttdef"><b>Definition</b> widget.hpp:85</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_af6229cf842ea2c50dc2a22cf75154885a0bfb8eb3598092076bf2d8ceb237577e"><div class="ttname"><a href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a0bfb8eb3598092076bf2d8ceb237577e">GUIEngine::GAMEPAD_BADGE</a></div><div class="ttdeci">@ GAMEPAD_BADGE</div><div class="ttdoc">A gamepad icon</div><div class="ttdef"><b>Definition</b> widget.hpp:73</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_af6229cf842ea2c50dc2a22cf75154885a2c0f3a231561e581060af1c421892094"><div class="ttname"><a href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a2c0f3a231561e581060af1c421892094">GUIEngine::BAD_BADGE</a></div><div class="ttdeci">@ BAD_BADGE</div><div class="ttdoc">display a red mark badge on the widget, useful e.g.</div><div class="ttdef"><b>Definition</b> widget.hpp:69</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_af6229cf842ea2c50dc2a22cf75154885a498e7e4cf6cef5cc552bf7371db21dd7"><div class="ttname"><a href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a498e7e4cf6cef5cc552bf7371db21dd7">GUIEngine::KEYBOARD_BADGE</a></div><div class="ttdeci">@ KEYBOARD_BADGE</div><div class="ttdoc">A keyboard icon</div><div class="ttdef"><b>Definition</b> widget.hpp:75</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_af6229cf842ea2c50dc2a22cf75154885a5c329ee8786c63e714e16fe9890a8896"><div class="ttname"><a href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a5c329ee8786c63e714e16fe9890a8896">GUIEngine::OK_BADGE</a></div><div class="ttdeci">@ OK_BADGE</div><div class="ttdoc">display a green check on a widget, useful e.g.</div><div class="ttdef"><b>Definition</b> widget.hpp:67</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_af6229cf842ea2c50dc2a22cf75154885a8d1817120e95d83b4b4b93c86cae41af"><div class="ttname"><a href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a8d1817120e95d83b4b4b93c86cae41af">GUIEngine::REDDOT_BADGE</a></div><div class="ttdeci">@ REDDOT_BADGE</div><div class="ttdoc">A red dot badge, to indicate there&#39;s something new inside</div><div class="ttdef"><b>Definition</b> widget.hpp:87</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_af6229cf842ea2c50dc2a22cf75154885a9c1d2172898898e611368cd453d4baaa"><div class="ttname"><a href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885a9c1d2172898898e611368cd453d4baaa">GUIEngine::TROPHY_BADGE</a></div><div class="ttdeci">@ TROPHY_BADGE</div><div class="ttdoc">display a trophy badge on the widget, useful e.g.</div><div class="ttdef"><b>Definition</b> widget.hpp:71</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_af6229cf842ea2c50dc2a22cf75154885aac67c79c273c1bb4b42d52a556e26cca"><div class="ttname"><a href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885aac67c79c273c1bb4b42d52a556e26cca">GUIEngine::LOCKED_BADGE</a></div><div class="ttdeci">@ LOCKED_BADGE</div><div class="ttdoc">display a lock on the widget, to mean a certain game feature is locked</div><div class="ttdef"><b>Definition</b> widget.hpp:65</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_af6229cf842ea2c50dc2a22cf75154885ab3e248b9b5be082fb5c34348dfad71b2"><div class="ttname"><a href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885ab3e248b9b5be082fb5c34348dfad71b2">GUIEngine::DOWN_BADGE</a></div><div class="ttdeci">@ DOWN_BADGE</div><div class="ttdoc">A down arrow badge to indicate new addons for downloading</div><div class="ttdef"><b>Definition</b> widget.hpp:83</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_af6229cf842ea2c50dc2a22cf75154885ab57c24690d30c19ab32beae751dc5e95"><div class="ttname"><a href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885ab57c24690d30c19ab32beae751dc5e95">GUIEngine::ANCHOR_BADGE</a></div><div class="ttdeci">@ ANCHOR_BADGE</div><div class="ttdoc">A anchor badge to indicate that this player receives a handicap</div><div class="ttdef"><b>Definition</b> widget.hpp:81</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_af6229cf842ea2c50dc2a22cf75154885af537680f0b002b34091e677ecfb25fa0"><div class="ttname"><a href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885af537680f0b002b34091e677ecfb25fa0">GUIEngine::ZIPPER_BADGE</a></div><div class="ttdeci">@ ZIPPER_BADGE</div><div class="ttdoc">A zipper badge to indicate that this player receives a boost</div><div class="ttdef"><b>Definition</b> widget.hpp:79</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_af6229cf842ea2c50dc2a22cf75154885af88cc32b080b17c2fd8a548312e3fbb0"><div class="ttname"><a href="namespaceGUIEngine.html#af6229cf842ea2c50dc2a22cf75154885af88cc32b080b17c2fd8a548312e3fbb0">GUIEngine::LOADING_BADGE</a></div><div class="ttdeci">@ LOADING_BADGE</div><div class="ttdoc">An hourglass badge to indicate loading</div><div class="ttdef"><b>Definition</b> widget.hpp:77</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

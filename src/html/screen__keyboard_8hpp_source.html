@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: guiengine/screen_keyboard.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>guiengine</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">screen_keyboard.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2013-2015 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License: or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_SCREEN_KEYBOARD_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_SCREEN_KEYBOARD_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;IGUIButton.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;IGUIWindow.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;guiengine/abstract_top_level_container.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;guiengine/skin.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;input/input_manager.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">class </span><a class="code hl_class" href="classCGUIEditBox.html">CGUIEditBox</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceGUIEngine.html">GUIEngine</a></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1ButtonWidget.html">ButtonWidget</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="};">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html">   47</a></span>    <span class="keyword">class </span><a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#a8163fa2020c3a7946d0e1fddb38dae35">ScreenKeyboard</a> : <span class="keyword">public</span> SkinWidgetContainer, </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                           <span class="keyword">public</span> AbstractTopLevelContainer</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">typedef</span> std::vector&lt;std::vector&lt;std::string&gt; &gt; KeyboardLayout;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">typedef</span> std::vector&lt;std::vector&lt;int&gt; &gt; KeyboardLayoutProportions;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keyword">enum</span> ButtonsType</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            BUTTONS_NONE,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            BUTTONS_LOWER,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            BUTTONS_UPPER,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            BUTTONS_DIGITS,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            BUTTONS_DIGITS2,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            BUTTONS_EMOJI</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        };</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#afdd2bb93d24420571975eb241eca2c0b">   64</a></span>        <span class="keyword">static</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#a8163fa2020c3a7946d0e1fddb38dae35">ScreenKeyboard</a>* <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#afdd2bb93d24420571975eb241eca2c0b">m_screen_keyboard</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#a8c91d8add3c8068b9c69500c7bf11628">   68</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#a8c91d8add3c8068b9c69500c7bf11628">m_percent_width</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#ade2958205a217dcc67b049692e6fd277">   72</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#ade2958205a217dcc67b049692e6fd277">m_percent_height</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#a74c4cf8716947f4d827ae6edd8ae7e88">   75</a></span>        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#a74c4cf8716947f4d827ae6edd8ae7e88">m_repeat_time</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#a43717a604b12b9644f62337d20b1e92b">   78</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#a43717a604b12b9644f62337d20b1e92b">m_back_button_pressed</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#aeca6674d4f6d3ee2d9fd148143619db8">   81</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#aeca6674d4f6d3ee2d9fd148143619db8">m_schedule_close</a>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#a56eb73dd21225d36e8dd141ca6228b6c">   84</a></span>        <a class="code hl_class" href="classCGUIEditBox.html">CGUIEditBox</a>* <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#a56eb73dd21225d36e8dd141ca6228b6c">m_edit_box</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#a96eb742c7bd6f26e25700efb2ae62f1b">   87</a></span>        irr::gui::IGUIButton* <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#a96eb742c7bd6f26e25700efb2ae62f1b">m_back_button</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#a0c0cb5ad801a6646d122f991fb9d8dda">   90</a></span>        ButtonsType <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#a0c0cb5ad801a6646d122f991fb9d8dda">m_buttons_type</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#aa9d6b9c0fd154eb3af35c28d36507833">   93</a></span>        irr::gui::IGUIWindow* <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#aa9d6b9c0fd154eb3af35c28d36507833">m_irrlicht_window</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#abf7d1f4676a24fcd1c37f2a891c71cc1">   96</a></span>        irr::core::rect&lt;irr::s32&gt; <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#abf7d1f4676a24fcd1c37f2a891c71cc1">m_area</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#a8c30362b5ffbaadcc7149c150e56f396">   99</a></span>        std::vector&lt;ButtonWidget*&gt; <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#a8c30362b5ffbaadcc7149c150e56f396">m_buttons</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#a480b6f2207c0d57efd86acbf87f29a2b">  102</a></span>        InputManager::InputDriverMode <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#a480b6f2207c0d57efd86acbf87f29a2b">m_previous_mode</a>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#ae630c4eb15e50249147c8c7012585671">initButtons</a>();</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#aece00f4a6befb7eb9ee8fb3c8f377b41">assignButtons</a>(ButtonsType buttons_type);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        core::stringw getKeyName(std::string key_id);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        LEAK_CHECK()</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#a8163fa2020c3a7946d0e1fddb38dae35">ScreenKeyboard</a>(<span class="keywordtype">float</span> percent_width, <span class="keywordtype">float</span> percent_height, </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                       <a class="code hl_class" href="classCGUIEditBox.html">CGUIEditBox</a>* edit_box);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        ~<a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#a8163fa2020c3a7946d0e1fddb38dae35">ScreenKeyboard</a>();</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordtype">void</span> setArea();</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#af4b44cbfb08e4f943a2d0ae6a94c9e90">init</a>();</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        virtual EventPropagation <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#ae30152537424c85862b78a6addf4ef9d">processEvent</a>(const std::<span class="keywordtype">string</span>&amp; eventSource);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        static <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#ac66ed53ae599072e7456642a6f9c8fd9">dismiss</a>();</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        static <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#aa0d4ff7c7f503b4d6f9cf42b1632dfd6">onEscapePressed</a>();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#a7190bbdbc0e849ba25c1423e006640f1">  124</a></span>        static <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#a8163fa2020c3a7946d0e1fddb38dae35">ScreenKeyboard</a>* <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#a7190bbdbc0e849ba25c1423e006640f1">getCurrent</a>() {<span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#afdd2bb93d24420571975eb241eca2c0b">m_screen_keyboard</a>;}</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#a13451d009cfa9cce281d4c2e2e38bb8e">  127</a></span>        <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#a13451d009cfa9cce281d4c2e2e38bb8e">isActive</a>() {<span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#afdd2bb93d24420571975eb241eca2c0b">m_screen_keyboard</a> != NULL;}</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#a524875ec7eebc7944c033dd5aace86ed">shouldUseScreenKeyboard</a>();</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#a789d467c92af0df800e3e3fd9b8b31d6">hasSystemScreenKeyboard</a>();</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#a2983b675b6fd86b46af9cd70fb1ef2d8">onUpdate</a>(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#afe6bfa87d2106bf4d6f0d22db28505e9">onEvent</a>(<span class="keyword">const</span> SEvent &amp;event);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#ac6948811b8204cebc8a5259f2d2e859e">  138</a></span>        irr::gui::IGUIWindow* <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#ac6948811b8204cebc8a5259f2d2e859e">getIrrlichtElement</a>() {<span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#aa9d6b9c0fd154eb3af35c28d36507833">m_irrlicht_window</a>;}</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span></div>
+<div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#ac663427372726c75a97bff039ce05d35">  144</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#ac663427372726c75a97bff039ce05d35">isMyIrrChild</a>(irr::gui::IGUIElement* widget)<span class="keyword"> const </span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keyword">                                </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#aa9d6b9c0fd154eb3af35c28d36507833">m_irrlicht_window</a>-&gt;isMyChild(widget);}</div>
+</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#ad09e07c96ff4bca2af295f221cbd9fdd">  148</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#ad09e07c96ff4bca2af295f221cbd9fdd">getWidth</a>()  {<span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#abf7d1f4676a24fcd1c37f2a891c71cc1">m_area</a>.getWidth();}</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#acfe282626c18b467279f661ff6a16908">  151</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#acfe282626c18b467279f661ff6a16908">getHeight</a>() {<span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#abf7d1f4676a24fcd1c37f2a891c71cc1">m_area</a>.getHeight();}</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ScreenKeyboard.html#ad559e6c7e8a51e9cb1562c62cab60fba">  154</a></span>        <a class="code hl_class" href="classCGUIEditBox.html">CGUIEditBox</a>* <a class="code hl_function" href="classGUIEngine_1_1ScreenKeyboard.html#ad559e6c7e8a51e9cb1562c62cab60fba">getEditBox</a>() {<span class="keywordflow">return</span> <a class="code hl_variable" href="classGUIEngine_1_1ScreenKeyboard.html#a56eb73dd21225d36e8dd141ca6228b6c">m_edit_box</a>;}</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keyword">virtual</span> KeyboardLayoutProportions getKeyboardLayoutProportions() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keyword">virtual</span> KeyboardLayout* getKeyboardLayout(ButtonsType bt) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keyword">virtual</span> ButtonsType getDefaultButtonsType()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="keyword">        </span>{</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>            <span class="keywordflow">return</span> BUTTONS_LOWER;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> onResize();</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    };</div>
+</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>}</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassCGUIEditBox_html"><div class="ttname"><a href="classCGUIEditBox.html">CGUIEditBox</a></div><div class="ttdef"><b>Definition</b> CGUIEditBox.hpp:33</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ButtonWidget_html"><div class="ttname"><a href="classGUIEngine_1_1ButtonWidget.html">GUIEngine::ButtonWidget</a></div><div class="ttdoc">A text button widget.</div><div class="ttdef"><b>Definition</b> button_widget.hpp:41</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a0c0cb5ad801a6646d122f991fb9d8dda"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a0c0cb5ad801a6646d122f991fb9d8dda">GUIEngine::ScreenKeyboard::m_buttons_type</a></div><div class="ttdeci">ButtonsType m_buttons_type</div><div class="ttdoc">Remembers currently selected button type</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:90</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a13451d009cfa9cce281d4c2e2e38bb8e"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a13451d009cfa9cce281d4c2e2e38bb8e">GUIEngine::ScreenKeyboard::isActive</a></div><div class="ttdeci">static bool isActive()</div><div class="ttdoc">Returns true if keyboard is created</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:127</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a2983b675b6fd86b46af9cd70fb1ef2d8"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a2983b675b6fd86b46af9cd70fb1ef2d8">GUIEngine::ScreenKeyboard::onUpdate</a></div><div class="ttdeci">virtual void onUpdate(float dt)</div><div class="ttdoc">Override to be notified of updates</div><div class="ttdef"><b>Definition</b> screen_keyboard.cpp:363</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a43717a604b12b9644f62337d20b1e92b"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a43717a604b12b9644f62337d20b1e92b">GUIEngine::ScreenKeyboard::m_back_button_pressed</a></div><div class="ttdeci">bool m_back_button_pressed</div><div class="ttdoc">True if backspace button was pressed</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:78</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a480b6f2207c0d57efd86acbf87f29a2b"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a480b6f2207c0d57efd86acbf87f29a2b">GUIEngine::ScreenKeyboard::m_previous_mode</a></div><div class="ttdeci">InputManager::InputDriverMode m_previous_mode</div><div class="ttdoc">Remembered input mode that was used before keyboard creation</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:102</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a524875ec7eebc7944c033dd5aace86ed"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a524875ec7eebc7944c033dd5aace86ed">GUIEngine::ScreenKeyboard::shouldUseScreenKeyboard</a></div><div class="ttdeci">static bool shouldUseScreenKeyboard()</div><div class="ttdoc">A function that determines if (native) screen keyboard should be activated</div><div class="ttdef"><b>Definition</b> screen_keyboard.cpp:559</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a56eb73dd21225d36e8dd141ca6228b6c"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a56eb73dd21225d36e8dd141ca6228b6c">GUIEngine::ScreenKeyboard::m_edit_box</a></div><div class="ttdeci">CGUIEditBox * m_edit_box</div><div class="ttdoc">The edit box that is assigned to the keyboard</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:84</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a7190bbdbc0e849ba25c1423e006640f1"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a7190bbdbc0e849ba25c1423e006640f1">GUIEngine::ScreenKeyboard::getCurrent</a></div><div class="ttdeci">static ScreenKeyboard * getCurrent()</div><div class="ttdoc">Returns pointer to the created keyboard or NULL if keyboard was not created</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:124</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a74c4cf8716947f4d827ae6edd8ae7e88"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a74c4cf8716947f4d827ae6edd8ae7e88">GUIEngine::ScreenKeyboard::m_repeat_time</a></div><div class="ttdeci">unsigned int m_repeat_time</div><div class="ttdoc">A time for repeat key feature</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:75</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a789d467c92af0df800e3e3fd9b8b31d6"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a789d467c92af0df800e3e3fd9b8b31d6">GUIEngine::ScreenKeyboard::hasSystemScreenKeyboard</a></div><div class="ttdeci">static bool hasSystemScreenKeyboard()</div><div class="ttdoc">Returns true if system screen keyboard is available</div><div class="ttdef"><b>Definition</b> screen_keyboard.cpp:567</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a8163fa2020c3a7946d0e1fddb38dae35"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a8163fa2020c3a7946d0e1fddb38dae35">GUIEngine::ScreenKeyboard::ScreenKeyboard</a></div><div class="ttdeci">ScreenKeyboard(float percent_width, float percent_height, CGUIEditBox *edit_box)</div><div class="ttdoc">The screen keyboard constructor</div><div class="ttdef"><b>Definition</b> screen_keyboard.cpp:111</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a8c30362b5ffbaadcc7149c150e56f396"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a8c30362b5ffbaadcc7149c150e56f396">GUIEngine::ScreenKeyboard::m_buttons</a></div><div class="ttdeci">std::vector&lt; ButtonWidget * &gt; m_buttons</div><div class="ttdoc">Contans the pointers to all button widgets</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:99</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a8c91d8add3c8068b9c69500c7bf11628"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a8c91d8add3c8068b9c69500c7bf11628">GUIEngine::ScreenKeyboard::m_percent_width</a></div><div class="ttdeci">float m_percent_width</div><div class="ttdoc">A value in range of 0.0 to 1.0 that determines width of the screen that is used by the keyboard</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:68</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_a96eb742c7bd6f26e25700efb2ae62f1b"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#a96eb742c7bd6f26e25700efb2ae62f1b">GUIEngine::ScreenKeyboard::m_back_button</a></div><div class="ttdeci">irr::gui::IGUIButton * m_back_button</div><div class="ttdoc">A button that is used as backspace key</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:87</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_aa0d4ff7c7f503b4d6f9cf42b1632dfd6"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#aa0d4ff7c7f503b4d6f9cf42b1632dfd6">GUIEngine::ScreenKeyboard::onEscapePressed</a></div><div class="ttdeci">static bool onEscapePressed()</div><div class="ttdoc">A function that handles escape pressed event</div><div class="ttdef"><b>Definition</b> screen_keyboard.cpp:550</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_aa9d6b9c0fd154eb3af35c28d36507833"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#aa9d6b9c0fd154eb3af35c28d36507833">GUIEngine::ScreenKeyboard::m_irrlicht_window</a></div><div class="ttdeci">irr::gui::IGUIWindow * m_irrlicht_window</div><div class="ttdoc">Irrlicht window used by the keyboard widget</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:93</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_abf7d1f4676a24fcd1c37f2a891c71cc1"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#abf7d1f4676a24fcd1c37f2a891c71cc1">GUIEngine::ScreenKeyboard::m_area</a></div><div class="ttdeci">irr::core::rect&lt; irr::s32 &gt; m_area</div><div class="ttdoc">Contains position and dimensions of the keyboard</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:96</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_ac663427372726c75a97bff039ce05d35"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#ac663427372726c75a97bff039ce05d35">GUIEngine::ScreenKeyboard::isMyIrrChild</a></div><div class="ttdeci">bool isMyIrrChild(irr::gui::IGUIElement *widget) const</div><div class="ttdoc">Checks if the screen keyboard is a parent of the selected item</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:144</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_ac66ed53ae599072e7456642a6f9c8fd9"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#ac66ed53ae599072e7456642a6f9c8fd9">GUIEngine::ScreenKeyboard::dismiss</a></div><div class="ttdeci">static void dismiss()</div><div class="ttdoc">A function that closes the keyboard</div><div class="ttdef"><b>Definition</b> screen_keyboard.cpp:541</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_ac6948811b8204cebc8a5259f2d2e859e"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#ac6948811b8204cebc8a5259f2d2e859e">GUIEngine::ScreenKeyboard::getIrrlichtElement</a></div><div class="ttdeci">irr::gui::IGUIWindow * getIrrlichtElement()</div><div class="ttdoc">Get irrlicht window used by the keyboard widget</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:138</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_acfe282626c18b467279f661ff6a16908"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#acfe282626c18b467279f661ff6a16908">GUIEngine::ScreenKeyboard::getHeight</a></div><div class="ttdeci">int getHeight()</div><div class="ttdoc">Returns height of the screen keyboard</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:151</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_ad09e07c96ff4bca2af295f221cbd9fdd"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#ad09e07c96ff4bca2af295f221cbd9fdd">GUIEngine::ScreenKeyboard::getWidth</a></div><div class="ttdeci">int getWidth()</div><div class="ttdoc">Returns width of the screen keyboard</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:148</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_ad559e6c7e8a51e9cb1562c62cab60fba"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#ad559e6c7e8a51e9cb1562c62cab60fba">GUIEngine::ScreenKeyboard::getEditBox</a></div><div class="ttdeci">CGUIEditBox * getEditBox()</div><div class="ttdoc">Returns assigned edit box</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:154</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_ade2958205a217dcc67b049692e6fd277"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#ade2958205a217dcc67b049692e6fd277">GUIEngine::ScreenKeyboard::m_percent_height</a></div><div class="ttdeci">float m_percent_height</div><div class="ttdoc">A value in range of 0.0 to 1.0 that determines height of the screen that is used by the keyboard</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:72</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_ae30152537424c85862b78a6addf4ef9d"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#ae30152537424c85862b78a6addf4ef9d">GUIEngine::ScreenKeyboard::processEvent</a></div><div class="ttdeci">virtual EventPropagation processEvent(const std::string &amp;eventSource)</div><div class="ttdoc">A function that handles buttons events</div><div class="ttdef"><b>Definition</b> screen_keyboard.cpp:451</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_ae630c4eb15e50249147c8c7012585671"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#ae630c4eb15e50249147c8c7012585671">GUIEngine::ScreenKeyboard::initButtons</a></div><div class="ttdeci">void initButtons()</div><div class="ttdoc">Initializes all button widgets</div><div class="ttdef"><b>Definition</b> screen_keyboard.cpp:209</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_aeca6674d4f6d3ee2d9fd148143619db8"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#aeca6674d4f6d3ee2d9fd148143619db8">GUIEngine::ScreenKeyboard::m_schedule_close</a></div><div class="ttdeci">bool m_schedule_close</div><div class="ttdoc">True if screen keyboard is going to be closed</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:81</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_aece00f4a6befb7eb9ee8fb3c8f377b41"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#aece00f4a6befb7eb9ee8fb3c8f377b41">GUIEngine::ScreenKeyboard::assignButtons</a></div><div class="ttdeci">void assignButtons(ButtonsType buttons_type)</div><div class="ttdoc">A function that allows to select one of the available buttons layout</div><div class="ttdef"><b>Definition</b> screen_keyboard.cpp:323</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_af4b44cbfb08e4f943a2d0ae6a94c9e90"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#af4b44cbfb08e4f943a2d0ae6a94c9e90">GUIEngine::ScreenKeyboard::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Screen keyboard initialization, needs to be called after new to take into account for runtime polymor...</div><div class="ttdef"><b>Definition</b> screen_keyboard.cpp:182</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_afdd2bb93d24420571975eb241eca2c0b"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#afdd2bb93d24420571975eb241eca2c0b">GUIEngine::ScreenKeyboard::m_screen_keyboard</a></div><div class="ttdeci">static ScreenKeyboard * m_screen_keyboard</div><div class="ttdoc">Global instance of the current screen keyboard</div><div class="ttdef"><b>Definition</b> screen_keyboard.hpp:64</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenKeyboard_html_afe6bfa87d2106bf4d6f0d22db28505e9"><div class="ttname"><a href="classGUIEngine_1_1ScreenKeyboard.html#afe6bfa87d2106bf4d6f0d22db28505e9">GUIEngine::ScreenKeyboard::onEvent</a></div><div class="ttdeci">bool onEvent(const SEvent &amp;event)</div><div class="ttdoc">A function that handles irrlicht events</div><div class="ttdef"><b>Definition</b> screen_keyboard.cpp:404</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html"><div class="ttname"><a href="namespaceGUIEngine.html">GUIEngine</a></div><div class="ttdoc">Contains all GUI engine related classes and functions</div><div class="ttdef"><b>Definition</b> abstract_state_manager.hpp:33</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

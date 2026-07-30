@@ -1,0 +1,694 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: graphics/irr_driver.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>graphics</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">irr_driver.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2009-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_IRR_DRIVER_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_IRR_DRIVER_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;graphics/abstract_renderer.hpp&quot;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;graphics/gl_headers.hpp&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &quot;graphics/wind.hpp&quot;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;io/file_manager.hpp&quot;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;utils/aligned_array.hpp&quot;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;utils/ptr_vector.hpp&quot;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &quot;utils/vec3.hpp&quot;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#include &lt;irrArray.h&gt;</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#include &lt;dimension2d.h&gt;</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#include &lt;position2d.h&gt;</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#include &lt;matrix4.h&gt;</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#include &lt;vector2d.h&gt;</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#include &lt;IEventReceiver.h&gt;</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#include &lt;SColor.h&gt;</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">namespace </span>SP</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>{</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">class </span><a class="code hl_class" href="classSP_1_1SPDynamicDrawCall.html">SPDynamicDrawCall</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>{</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">namespace </span>scene { <span class="keyword">class </span>ISceneManager; <span class="keyword">class </span>IMesh; <span class="keyword">class </span>IAnimatedMeshSceneNode; <span class="keyword">class </span>IAnimatedMesh;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keyword">class </span>IMeshSceneNode; <span class="keyword">class </span>IParticleSystemSceneNode; <span class="keyword">class </span>ICameraSceneNode; <span class="keyword">class </span>ILightSceneNode;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keyword">class </span>CLensFlareSceneNode; }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">namespace </span>gui   { <span class="keyword">class </span>IGUIEnvironment; <span class="keyword">class </span>IGUIFont; }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">namespace </span>video { <span class="keyword">struct </span>IRenderTarget; <span class="keyword">class </span>ITexture; <span class="keyword">class </span>IVideoDriver;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                      <span class="keyword">class </span>SMaterial; }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">class </span>IrrlichtDevice;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">enum</span> TypeRTT : <span class="keywordtype">unsigned</span> int;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractRenderer.html">AbstractRenderer</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">class </span><a class="code hl_class" href="classCamera.html">Camera</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">class </span><a class="code hl_class" href="classFrameBuffer.html">FrameBuffer</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">class </span><a class="code hl_class" href="classLightNode.html">LightNode</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">class </span><a class="code hl_class" href="classPerCameraNode.html">PerCameraNode</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">namespace </span>GE { <span class="keyword">class </span>GERenderInfo; }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">class </span><a class="code hl_class" href="classRenderTarget.html">RenderTarget</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keyword">struct </span><a class="code hl_struct" href="structSHCoefficients.html">SHCoefficients</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="foldopen" id="foldopen00085" data-start="{" data-end="};">
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classIrrDriver.html">   85</a></span><span class="keyword">class </span><a class="code hl_function" href="classIrrDriver.html#a2dba3dee392bae5fdd5465910c970f4c">IrrDriver</a> : <span class="keyword">public</span> IEventReceiver, <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>{    </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classIrrDriver.html#afe59a67a74ce16e3a65c2800c909a7e6">   89</a></span>    IrrlichtDevice             *<a class="code hl_variable" href="classIrrDriver.html#afe59a67a74ce16e3a65c2800c909a7e6">m_device</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a97def89d2b65f050ea8293f50aa3bcdf">   91</a></span>    scene::ISceneManager       *<a class="code hl_variable" href="classIrrDriver.html#a97def89d2b65f050ea8293f50aa3bcdf">m_scene_manager</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a66330805ab711369b28d6604027adcfd">   93</a></span>    gui::IGUIEnvironment       *<a class="code hl_variable" href="classIrrDriver.html#a66330805ab711369b28d6604027adcfd">m_gui_env</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a8a45a361a91b26a019a33e62292ac9fc">   95</a></span>    video::IVideoDriver        *<a class="code hl_variable" href="classIrrDriver.html#a8a45a361a91b26a019a33e62292ac9fc">m_video_driver</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a72a26613be4c2776e89f6c22db9f0bc0">   97</a></span>    gui::IGUIFont              *<a class="code hl_variable" href="classIrrDriver.html#a72a26613be4c2776e89f6c22db9f0bc0">m_race_font</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a0fd779ccb630c72fbc399c3ff71d10de">   99</a></span>    <a class="code hl_class" href="classAbstractRenderer.html">AbstractRenderer</a>           *<a class="code hl_variable" href="classIrrDriver.html#a0fd779ccb630c72fbc399c3ff71d10de">m_renderer</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a1d29f782bbcf3962781a9c78a9457ec5">  102</a></span>    <a class="code hl_class" href="classWind.html">Wind</a>                 *<a class="code hl_variable" href="classIrrDriver.html#a1d29f782bbcf3962781a9c78a9457ec5">m_wind</a>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    core::dimension2du m_actual_screen_size;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a30a505f7e4bd1f625a2f1b91fac81a73">  107</a></span>    core::array&lt;video::IRenderTarget&gt; <a class="code hl_variable" href="classIrrDriver.html#a30a505f7e4bd1f625a2f1b91fac81a73">m_mrt</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a5ee7d9e2b23ee4134ef419f81aabe383">  110</a></span>    core::matrix4 <a class="code hl_variable" href="classIrrDriver.html#a5ee7d9e2b23ee4134ef419f81aabe383">m_ViewMatrix</a>, m_InvViewMatrix, m_ProjMatrix, m_InvProjMatrix, m_ProjViewMatrix, m_InvProjViewMatrix;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">enum</span> {RES_CHANGE_NONE, RES_CHANGE_YES, RES_CHANGE_CANCEL,</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classIrrDriver.html#abea7afcc4138b4ed9a42cc64c7c6a6e0">  122</a></span>          RES_CHANGE_SAME, RES_CHANGE_YES_WARN, RES_CHANGE_SAME_FULL} <a class="code hl_variable" href="classIrrDriver.html#abea7afcc4138b4ed9a42cc64c7c6a6e0">m_resolution_changing</a>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00127" data-start="{" data-end="};">
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classIrrDriver_1_1VideoMode.html">  127</a></span>    <span class="keyword">class </span>VideoMode</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    {</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keywordtype">int</span> m_width;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordtype">int</span> m_height;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        VideoMode(<span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h) {m_width=w; m_height=h; }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keywordtype">int</span> getWidth()<span class="keyword"> const  </span>{<span class="keywordflow">return</span> m_width;  }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keywordtype">int</span> getHeight()<span class="keyword"> const </span>{<span class="keywordflow">return</span> m_height; }</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    };   <span class="comment">// VideoMode</span></div>
+</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="foldopen" id="foldopen00138" data-start="{" data-end="};">
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="structIrrDriver_1_1BloomData.html">  138</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structIrrDriver_1_1BloomData.html">BloomData</a> {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        scene::ISceneNode * node;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <span class="keywordtype">float</span> power;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    };</div>
+</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    video::SColorf getAmbientLight() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordtype">int</span>                   m_screen_orientation;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    std::vector&lt;VideoMode&gt; m_modes;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordtype">void</span>                  setupViewports();</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="classIrrDriver.html#ae3b4eb12e2bc9a2ee13954728578958e">  154</a></span>    <span class="keywordtype">bool</span>                  <a class="code hl_variable" href="classIrrDriver.html#ae3b4eb12e2bc9a2ee13954728578958e">m_pointer_shown</a>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a1cf20670147c84269d8fec3e2375cec8">  157</a></span>    <span class="keywordtype">int</span>                  <a class="code hl_variable" href="classIrrDriver.html#a1cf20670147c84269d8fec3e2375cec8">m_scene_complexity</a>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classIrrDriver.html#ad19e265d1c430b01b0607865aa664a1c">  159</a></span>    <span class="keywordtype">float</span>                <a class="code hl_variable" href="classIrrDriver.html#ad19e265d1c430b01b0607865aa664a1c">m_lod_multiplier</a>;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordtype">void</span>                 <a class="code hl_function" href="classIrrDriver.html#abd3e4f6a4216f972c9dea5f2ef710586">applyResolutionSettings</a>(<span class="keywordtype">bool</span> recreate_device);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">void</span>                 <a class="code hl_function" href="classIrrDriver.html#aa72af528924788c0e78fe786ee01635f">createListOfVideoModes</a>();</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordtype">bool</span>                 m_request_screenshot;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keywordtype">bool</span>                 m_ssaoviz;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">bool</span>                 m_shadowviz;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keywordtype">bool</span>                 m_lightviz;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordtype">bool</span>                 m_boundingboxesviz;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keywordtype">bool</span>                 m_recording;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordtype">bool</span>                 m_render_nw_debug;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a50feeda34259ddeef573bda241111b88">  175</a></span>    irr::video::SColor <a class="code hl_variable" href="classIrrDriver.html#a50feeda34259ddeef573bda241111b88">m_clear_color</a>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordtype">unsigned</span>             m_last_light_bucket_distance;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keywordtype">unsigned</span>             m_skinning_joint;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <a class="code hl_class" href="classSP_1_1SPDynamicDrawCall.html">SP::SPDynamicDrawCall</a>* m_sun_interposer;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    core::vector3df m_sun_direction;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    video::SColorf m_suncolor;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    std::vector&lt;LightNode *&gt; m_lights;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    std::vector&lt;BloomData&gt; m_forcedbloom;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    std::vector&lt;scene::ISceneNode *&gt; m_background;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keywordtype">float</span> m_ssao_radius;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordtype">float</span> m_ssao_k;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keywordtype">float</span> m_ssao_sigma;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    irr::ELOG_LEVEL m_logger_level;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">#ifdef DEBUG</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    std::vector&lt;irr::scene::IAnimatedMeshSceneNode*&gt; m_debug_meshes;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordtype">void</span> updateDisplace(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordtype">void</span> resizeWindow();</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classIrrDriver.html#ab7c325dfeba998a91ebfc7d0999d1cc2">doScreenShot</a>();    </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>         <a class="code hl_function" href="classIrrDriver.html#a2dba3dee392bae5fdd5465910c970f4c">IrrDriver</a>();</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <a class="code hl_function" href="classIrrDriver.html#aa5dba7a7bc317c4311f4493e4df25c6f">~IrrDriver</a>();</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classIrrDriver.html#ab8ab8290d67f4825ccd0de9de3e0a50a">initDevice</a>();</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classIrrDriver.html#a18e4789d01acabe6b3755e24553dde72">reset</a>();</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordtype">void</span> setMaxTextureSize();</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordtype">void</span> unsetMaxTextureSize();</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordtype">void</span> getOpenGLData(std::string *vendor, std::string *renderer,</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                       std::string *version);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordtype">void</span> increaseObjectCount();</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    core::array&lt;video::IRenderTarget&gt; &amp;getMainSetup();</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classIrrDriver.html#a1cbce9031421f37bb7bc917e8ff71ed3">updateConfigIfRelevant</a>();</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    core::recti getSplitscreenWindow(<span class="keywordtype">int</span> window_num);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classIrrDriver.html#a5e825b82911a1c543237ae9376ec04b5">setAllMaterialFlags</a>(scene::IMesh *mesh) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    scene::IAnimatedMesh *<a class="code hl_function" href="classIrrDriver.html#a68f6750c4504a3c5fd50da162c6ed708">getAnimatedMesh</a>(<span class="keyword">const</span> std::string &amp;name);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    scene::IMesh         *<a class="code hl_function" href="classIrrDriver.html#a64f380c4cea7b3a442e8b6dfea19b58e">getMesh</a>(<span class="keyword">const</span> std::string &amp;name);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classIrrDriver.html#aa41b8e1aea86e6ac4a9bf95aa11fe90d">displayFPS</a>();</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classIrrDriver.html#abcba86a0079c1022a4a46ef24640d001">displayStoryModeTimer</a>();</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="keywordtype">bool</span>                  <a class="code hl_function" href="classIrrDriver.html#a24c68e54121c45398df5be506cf67a42">OnEvent</a>(<span class="keyword">const</span> irr::SEvent &amp;event);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordtype">void</span>                  <a class="code hl_function" href="classIrrDriver.html#ad2c7d3a58f40e6a7459e0fbc7195cb73">setAmbientLight</a>(<span class="keyword">const</span> video::SColorf &amp;light,</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>                                          <span class="keywordtype">bool</span> force_SH_computation = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    video::ITexture      *<a class="code hl_function" href="classIrrDriver.html#aa7108057e5abadddc79b82c324af25e3">getTexture</a>(<a class="code hl_enumeration" href="classFileManager.html#acb73b7203fb4939d40ce771bcf7972e0">FileManager::AssetType</a> type,</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                                     <span class="keyword">const</span> std::string &amp;filename);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    video::ITexture      *<a class="code hl_function" href="classIrrDriver.html#aa7108057e5abadddc79b82c324af25e3">getTexture</a>(<span class="keyword">const</span> std::string &amp;filename);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keywordtype">void</span>                  <a class="code hl_function" href="classIrrDriver.html#aaa9d5850e52aaebb5b7d6ef75c8c4306">grabAllTextures</a>(<span class="keyword">const</span> scene::IMesh *mesh);</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keywordtype">void</span>                  <a class="code hl_function" href="classIrrDriver.html#ad3876ccdb08ff21e4b99677cad3d3d4c">dropAllTextures</a>(<span class="keyword">const</span> scene::IMesh *mesh);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    scene::IMesh         *<a class="code hl_function" href="classIrrDriver.html#ad45f655e41ef15c5fcd1d0175a61f88d">createQuadMesh</a>(<span class="keyword">const</span> video::SMaterial *material=NULL,</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>                                         <span class="keywordtype">bool</span> create_one_quad=<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    scene::IMesh         *<a class="code hl_function" href="classIrrDriver.html#a2b39d6c2d0eb158c03ab938b48ed467a">createTexturedQuadMesh</a>(<span class="keyword">const</span> video::SMaterial *material,</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                                                 <span class="keyword">const</span> <span class="keywordtype">double</span> w, <span class="keyword">const</span> <span class="keywordtype">double</span> h);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    scene::ISceneNode    *<a class="code hl_function" href="classIrrDriver.html#a269b9e1a37c1be13c646a55e027990bc">addWaterNode</a>(scene::IMesh *mesh, scene::IMesh **welded,</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>                                       <span class="keywordtype">float</span> wave_height,</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                                       <span class="keywordtype">float</span> wave_speed, <span class="keywordtype">float</span> wave_length);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    scene::IMeshSceneNode*<a class="code hl_function" href="classIrrDriver.html#a859ebfbbcbcec44b6a3613af4be3a855">addOctTree</a>(scene::IMesh *mesh);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    scene::ISceneNode* <a class="code hl_function" href="classIrrDriver.html#a8ff8245685802b85e2ffbbde6b443c6c">addSphere</a>(<span class="keywordtype">float</span> radius,</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                 <span class="keyword">const</span> video::SColor &amp;color=video::SColor(128, 255, 255, 255));</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    scene::ISceneNode* <a class="code hl_function" href="classIrrDriver.html#af5be8703cbd7cae0265bf16fe1849c35">addMesh</a>(scene::IMesh *mesh,</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                               <span class="keyword">const</span> std::string&amp; debug_name,</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                               scene::ISceneNode *parent = NULL,</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                               std::shared_ptr&lt;GE::GERenderInfo&gt; render_info = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <a class="code hl_class" href="classPerCameraNode.html">PerCameraNode</a>        *addPerCameraNode(scene::ISceneNode* node,</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                                           scene::ICameraSceneNode* cam,</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                                           scene::ISceneNode *parent = NULL);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    scene::ISceneNode    *<a class="code hl_function" href="classIrrDriver.html#a3d1a7d14af4b10d43fd7f66e2ea45c31">addBillboard</a>(<span class="keyword">const</span> core::dimension2d&lt; f32 &gt; size,</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>                                       <span class="keyword">const</span> std::string&amp; tex_name,</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                                       scene::ISceneNode* parent=NULL);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    scene::IParticleSystemSceneNode</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                         *<a class="code hl_function" href="classIrrDriver.html#a2e979e3e9e278cd6483855a476df310b">addParticleNode</a>(<span class="keywordtype">bool</span> default_emitter=<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    scene::ISceneNode    *<a class="code hl_function" href="classIrrDriver.html#acc5883e79408b8fdc5957f5275e4fc51">addSkyBox</a>(<span class="keyword">const</span> std::vector&lt;video::ITexture*&gt; &amp;texture_names,</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                                    <span class="keyword">const</span> std::vector&lt;video::ITexture*&gt; &amp;spherical_harmonics_textures);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordtype">void</span> suppressSkyBox();</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keywordtype">void</span>                  <a class="code hl_function" href="classIrrDriver.html#af5c6b72c94296bf1bd043e2f0652533c">removeNode</a>(scene::ISceneNode *node);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keywordtype">void</span>                  <a class="code hl_function" href="classIrrDriver.html#a49269af976fccddc95e2ae695f5e73b9">removeMeshFromCache</a>(scene::IMesh *mesh);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keywordtype">void</span>                  <a class="code hl_function" href="classIrrDriver.html#a3be26adf270e1dca668dc9b2e3eadb45">removeTexture</a>(video::ITexture *t);</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    scene::IAnimatedMeshSceneNode</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        *<a class="code hl_function" href="classIrrDriver.html#af5458d4d41896dc3d54ef085eb0d9a39">addAnimatedMesh</a>(scene::IAnimatedMesh *mesh,</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                         <span class="keyword">const</span> std::string&amp; debug_name,</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                         scene::ISceneNode* parent = NULL,</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                         std::shared_ptr&lt;GE::GERenderInfo&gt; render_info = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    scene::ICameraSceneNode</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>                         *<a class="code hl_function" href="classIrrDriver.html#ae18c1cd05d54248ff5a1cd9001b1d36f">addCameraSceneNode</a>();</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <a class="code hl_class" href="classCamera.html">Camera</a>               *addCamera(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index, <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart);</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="keywordtype">void</span>                  <a class="code hl_function" href="classIrrDriver.html#adab9c035fb8d9cb5f2d8c1498acaeddf">removeCameraSceneNode</a>(scene::ICameraSceneNode *camera);</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keywordtype">void</span>                  removeCamera(<a class="code hl_class" href="classCamera.html">Camera</a> *camera);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="keywordtype">void</span>                  <a class="code hl_function" href="classIrrDriver.html#a84b1e6de4d01545b697be085fde0a8d2">update</a>(<span class="keywordtype">float</span> dt, <span class="keywordtype">bool</span> loading=<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keywordtype">void</span>                  <a class="code hl_function" href="classIrrDriver.html#ab8d2e23cc9e46e0b3e3291972c37c0dc">changeResolution</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> w, <span class="keyword">const</span> <span class="keywordtype">int</span> h, <span class="keyword">const</span> <span class="keywordtype">bool</span> fullscreen);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordtype">void</span>                  <a class="code hl_function" href="classIrrDriver.html#ab6ce94a52ba1246f969352fa380ae26d">cancelResChange</a>();</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keywordtype">bool</span>                  <a class="code hl_function" href="classIrrDriver.html#a3bff3c27ebf1d32094a60f7110b31119">moveWindow</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="keywordtype">void</span>                  showPointer();</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordtype">void</span>                  hidePointer();</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keywordtype">void</span>                  setLastLightBucketDistance(<span class="keywordtype">unsigned</span> d) { m_last_light_bucket_distance = d; }</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="keywordtype">void</span>                  setSkinningJoint(<span class="keywordtype">unsigned</span> d) { m_skinning_joint = d; }</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordtype">bool</span>                  isPointerShown()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classIrrDriver.html#ae3b4eb12e2bc9a2ee13954728578958e">m_pointer_shown</a>; }</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    core::position2di     getMouseLocation();</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="keywordtype">void</span>                  <a class="code hl_function" href="classIrrDriver.html#ae10efdf90e40b3ed36780c590afd0a44">printRenderStats</a>();</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <span class="keywordtype">void</span>                  requestScreenshot();</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="keyword">class </span>GPUTimer        &amp;getGPUTimer(<span class="keywordtype">unsigned</span>);</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="keyword">const</span> <span class="keywordtype">char</span>*           getGPUQueryPhaseName(<span class="keywordtype">unsigned</span>);</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="preprocessor">#ifndef SERVER_ONLY</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    std::unique_ptr&lt;RenderTarget&gt; createRenderTarget(<span class="keyword">const</span> irr::core::dimension2du &amp;dimension,</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>                                                     <span class="keyword">const</span> std::string &amp;name);</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a28a8bf812795019598096bab9b9edde7">  297</a></span>    <span class="keyword">const</span> irr::video::SColor&amp; <a class="code hl_function" href="classIrrDriver.html#a28a8bf812795019598096bab9b9edde7">getClearColor</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classIrrDriver.html#a50feeda34259ddeef573bda241111b88">m_clear_color</a>; }</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00300" data-start="{" data-end="}">
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a34abe4a1d4dad25210c51a6cc6ccd6b1">  300</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classIrrDriver.html#a34abe4a1d4dad25210c51a6cc6ccd6b1">setClearbackBufferColor</a>(irr::video::SColor color)</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    {</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        <a class="code hl_variable" href="classIrrDriver.html#a50feeda34259ddeef573bda241111b88">m_clear_color</a> = color;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    }   <span class="comment">// setClearbackBufferColor</span></div>
+</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="classIrrDriver.html#aa7f459c3b64ec90247030967dcb90026">  307</a></span>    <span class="keyword">const</span> std::vector&lt;VideoMode&gt;&amp; <a class="code hl_function" href="classIrrDriver.html#aa7f459c3b64ec90247030967dcb90026">getVideoModes</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_modes; }</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <span class="keyword">const</span> core::dimension2d&lt;u32&gt;&amp; <a class="code hl_function" href="classIrrDriver.html#a80c20983177c5e6aec767b5ff66a86ed">getFrameSize</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno"><a class="line" href="classIrrDriver.html#ac85361a632758958be0ee09807b3d2f0">  313</a></span>    IrrlichtDevice       *<a class="code hl_function" href="classIrrDriver.html#ac85361a632758958be0ee09807b3d2f0">getDevice</a>()<span class="keyword">       const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classIrrDriver.html#afe59a67a74ce16e3a65c2800c909a7e6">m_device</a>;        }</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a8b8c82d9f53a0e7738e85e41b43a460c">  316</a></span>    video::IVideoDriver  *<a class="code hl_function" href="classIrrDriver.html#a8b8c82d9f53a0e7738e85e41b43a460c">getVideoDriver</a>()<span class="keyword">  const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classIrrDriver.html#a8a45a361a91b26a019a33e62292ac9fc">m_video_driver</a>;  }</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="classIrrDriver.html#ae22563fc42394503f95001de1b105563">  319</a></span>    scene::ISceneManager *<a class="code hl_function" href="classIrrDriver.html#ae22563fc42394503f95001de1b105563">getSceneManager</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classIrrDriver.html#a97def89d2b65f050ea8293f50aa3bcdf">m_scene_manager</a>; }</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno"><a class="line" href="classIrrDriver.html#adf726bd8f563a2ed60ef0e27848e9499">  322</a></span>    gui::IGUIEnvironment *<a class="code hl_function" href="classIrrDriver.html#adf726bd8f563a2ed60ef0e27848e9499">getGUI</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classIrrDriver.html#a66330805ab711369b28d6604027adcfd">m_gui_env</a>; }</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classIrrDriver.html#a3f95fe73e073ac45360f569e1823575f">getRealTime</a>();</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a78526f388f7f6b54182f9248f9043e02">  329</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classIrrDriver.html#a78526f388f7f6b54182f9248f9043e02">giveBoost</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> cam_index) { <a class="code hl_variable" href="classIrrDriver.html#a0fd779ccb630c72fbc399c3ff71d10de">m_renderer</a>-&gt;giveBoost(cam_index);}</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keyword">inline</span> core::vector3df getWind()  {<span class="keywordflow">return</span> <a class="code hl_variable" href="classIrrDriver.html#a1d29f782bbcf3962781a9c78a9457ec5">m_wind</a>-&gt;getWind();}</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="comment">// -----------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="classIrrDriver.html#abe9a1a86de445f00a15b1ff1424d137e">  335</a></span>    <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code hl_struct" href="structSHCoefficients.html">SHCoefficients</a>* <a class="code hl_function" href="classIrrDriver.html#abe9a1a86de445f00a15b1ff1424d137e">getSHCoefficients</a>()  {<span class="keywordflow">return</span> <a class="code hl_variable" href="classIrrDriver.html#a0fd779ccb630c72fbc399c3ff71d10de">m_renderer</a>-&gt;getSHCoefficients();}</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    <span class="comment">// -----------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    <span class="keyword">const</span> core::vector3df&amp; getSunDirection()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_sun_direction; };</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <span class="comment">// -----------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    <span class="keywordtype">void</span> setSunDirection(<span class="keyword">const</span> core::vector3df &amp;SunPos)</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    {</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>        m_sun_direction = SunPos;</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    }</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    <span class="comment">// -----------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    video::SColorf getSunColor()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_suncolor; }</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    <span class="comment">// -----------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    <span class="keywordtype">void</span> setSunColor(<span class="keyword">const</span> video::SColorf &amp;col)</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    {</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        m_suncolor = col;</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    }</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    GLuint getRenderTargetTexture(TypeRTT which);</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    GLuint getDepthStencilTexture();</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    <span class="keywordtype">void</span> resetDebugModes();</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    <span class="keywordtype">void</span> toggleSSAOViz()          { m_ssaoviz = !m_ssaoviz;         }</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    <span class="keywordtype">bool</span> getSSAOViz()             { <span class="keywordflow">return</span> m_ssaoviz;               }</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    <span class="keywordtype">void</span> toggleShadowViz()        { m_shadowviz = !m_shadowviz;     }</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    <span class="keywordtype">bool</span> getShadowViz()           { <span class="keywordflow">return</span> m_shadowviz;             }</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="keywordtype">void</span> toggleBoundingBoxesViz() { m_boundingboxesviz = !m_boundingboxesviz; }</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    <span class="keywordtype">void</span> toggleRenderNetworkDebug() { m_render_nw_debug = !m_render_nw_debug; }</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    <span class="keywordtype">bool</span> getRenderNetworkDebug()<span class="keyword"> const            </span>{ <span class="keywordflow">return</span> m_render_nw_debug; }</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    <span class="keywordtype">void</span> renderNetworkDebug();</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    <span class="keywordtype">bool</span> getBoundingBoxesViz()    { <span class="keywordflow">return</span> m_boundingboxesviz;      }</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>    <span class="keywordtype">int</span> getSceneComplexity() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classIrrDriver.html#a1cf20670147c84269d8fec3e2375cec8">m_scene_complexity</a>;           }</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>    <span class="keywordtype">void</span> resetSceneComplexity() { <a class="code hl_variable" href="classIrrDriver.html#a1cf20670147c84269d8fec3e2375cec8">m_scene_complexity</a> = 0;           }</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    <span class="keywordtype">void</span> addSceneComplexity(<span class="keywordtype">int</span> complexity)</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>    {</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        <span class="keywordflow">if</span> (complexity &gt; 1) <a class="code hl_variable" href="classIrrDriver.html#a1cf20670147c84269d8fec3e2375cec8">m_scene_complexity</a> += (complexity - 1);</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    }</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>    <span class="keywordtype">float</span> getLODMultiplier() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classIrrDriver.html#ad19e265d1c430b01b0607865aa664a1c">m_lod_multiplier</a>;             }</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    <span class="keywordtype">void</span>  setLODMultiplier(<span class="keywordtype">float</span> multiplier) { <a class="code hl_variable" href="classIrrDriver.html#ad19e265d1c430b01b0607865aa664a1c">m_lod_multiplier</a> = multiplier; }</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    <span class="keywordtype">bool</span> isRecording()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_recording; }</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>    <span class="keywordtype">void</span> setRecording(<span class="keywordtype">bool</span> val);</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    std::vector&lt;LightNode *&gt; getLights() { <span class="keywordflow">return</span> m_lights; }</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    <span class="keywordtype">void</span> addGlowingNode(scene::ISceneNode *n, <span class="keywordtype">float</span> r = 1.0f, <span class="keywordtype">float</span> g = 1.0f,</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>                        <span class="keywordtype">float</span> b = 1.0f)</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    {</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>        <a class="code hl_variable" href="classIrrDriver.html#a0fd779ccb630c72fbc399c3ff71d10de">m_renderer</a>-&gt;addGlowingNode(n, r, g, b);</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>    }</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    <span class="keywordtype">void</span> clearGlowingNodes() { <a class="code hl_variable" href="classIrrDriver.html#a0fd779ccb630c72fbc399c3ff71d10de">m_renderer</a>-&gt;clearGlowingNodes(); }</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>    <span class="keywordtype">void</span> addForcedBloomNode(scene::ISceneNode *n, <span class="keywordtype">float</span> power = 1)</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    {</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>        <a class="code hl_struct" href="structIrrDriver_1_1BloomData.html">BloomData</a> dat;</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>        dat.node = n;</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>        dat.power = power;</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span> </div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>        m_forcedbloom.push_back(dat);</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>    }</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>    <span class="keywordtype">void</span> clearForcedBloom() { m_forcedbloom.clear(); }</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    <span class="keyword">const</span> std::vector&lt;BloomData&gt; &amp;getForcedBloom()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span><span class="keyword">    </span>{ </div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>        <span class="keywordflow">return</span> m_forcedbloom;</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    }</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>    <span class="keywordtype">void</span> clearBackgroundNodes() { m_background.clear(); }</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>    <span class="keywordtype">void</span> addBackgroundNode(scene::ISceneNode * <span class="keyword">const</span> n) </div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>    {</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>        m_background.push_back(n);</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>    }</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>    scene::ISceneNode *addLight(<span class="keyword">const</span> core::vector3df &amp;pos, <span class="keywordtype">float</span> energy,</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>                                <span class="keywordtype">float</span> radius, <span class="keywordtype">float</span> r, <span class="keywordtype">float</span> g, <span class="keywordtype">float</span> b,</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>                                <span class="keywordtype">bool</span> sun_ = <span class="keyword">false</span>, </div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>                                scene::ISceneNode* parent = NULL);</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    <span class="keywordtype">void</span> clearLights();</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>    SP::SPDynamicDrawCall* getSunInterposer() { <span class="keywordflow">return</span> m_sun_interposer; }</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>    </div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>    <span class="keywordtype">void</span> cleanSunInterposer();</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>    <span class="keywordtype">void</span> createSunInterposer();</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>    <span class="keywordtype">void</span> setViewMatrix(core::matrix4 matrix)</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>    {</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>        <a class="code hl_variable" href="classIrrDriver.html#a5ee7d9e2b23ee4134ef419f81aabe383">m_ViewMatrix</a> = matrix; matrix.getInverse(m_InvViewMatrix);</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>    }</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>    <span class="keyword">const</span> core::matrix4 &amp;getViewMatrix()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classIrrDriver.html#a5ee7d9e2b23ee4134ef419f81aabe383">m_ViewMatrix</a>; }</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>    <span class="keyword">const</span> core::matrix4 &amp;getInvViewMatrix()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_InvViewMatrix; }</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>    <span class="keywordtype">void</span> setProjMatrix(core::matrix4 matrix)</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>    {</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>        m_ProjMatrix = matrix; matrix.getInverse(m_InvProjMatrix);</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>    }</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>    <span class="keyword">const</span> core::matrix4 &amp;getProjMatrix()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_ProjMatrix; }</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>    <span class="keyword">const</span> core::matrix4 &amp;getInvProjMatrix()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_InvProjMatrix; }</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>    <span class="keywordtype">void</span> genProjViewMatrix() </div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>    {</div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>        m_ProjViewMatrix = m_ProjMatrix * <a class="code hl_variable" href="classIrrDriver.html#a5ee7d9e2b23ee4134ef419f81aabe383">m_ViewMatrix</a>; </div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>        m_InvProjViewMatrix = m_ProjViewMatrix; </div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>        m_InvProjViewMatrix.makeInverse(); </div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>    }</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>    <span class="keyword">const</span> core::matrix4 &amp;getProjViewMatrix()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_ProjViewMatrix; }</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>    <span class="keyword">const</span> core::matrix4 &amp;getInvProjViewMatrix()<span class="keyword"> const </span></div>
+<div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>        <span class="keywordflow">return</span> m_InvProjViewMatrix;</div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>    }</div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>    <span class="keyword">const</span> core::vector2df &amp;getCurrentScreenSize()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classIrrDriver.html#a0fd779ccb630c72fbc399c3ff71d10de">m_renderer</a>-&gt;getCurrentScreenSize();</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>    }</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>    <span class="keyword">const</span> core::dimension2du getActualScreenSize()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span><span class="keyword">    </span>{ </div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>        <span class="keywordflow">return</span> m_actual_screen_size;</div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span>    }</div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00479" name="l00479"></a><span class="lineno">  479</span>    <span class="keywordtype">float</span> getSSAORadius()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00480" name="l00480"></a><span class="lineno">  480</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00481" name="l00481"></a><span class="lineno">  481</span>        <span class="keywordflow">return</span> m_ssao_radius;</div>
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span>    }</div>
+<div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span> </div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>    <span class="keywordtype">void</span> setSSAORadius(<span class="keywordtype">float</span> v)</div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span>    {</div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>        m_ssao_radius = v;</div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>    }</div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span> </div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>    <span class="keywordtype">float</span> getSSAOK()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span>        <span class="keywordflow">return</span> m_ssao_k;</div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>    }</div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span> </div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>    <span class="keywordtype">void</span> setSSAOK(<span class="keywordtype">float</span> v)</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>    {</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span>        m_ssao_k = v;</div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span>    }</div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span> </div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>    <span class="keywordtype">float</span> getSSAOSigma()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>        <span class="keywordflow">return</span> m_ssao_sigma;</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>    }</div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span> </div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span>    <span class="keywordtype">void</span> setSSAOSigma(<span class="keywordtype">float</span> v)</div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span>    {</div>
+<div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>        m_ssao_sigma = v;</div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>    }</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span><span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span>    std::vector&lt;scene::IAnimatedMeshSceneNode*&gt; getDebugMeshes()</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span>    {</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>        <span class="keywordflow">return</span> m_debug_meshes;</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>    }</div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>    <span class="keywordtype">void</span> clearDebugMesh() { m_debug_meshes.clear(); }</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>    <span class="keywordtype">void</span> addDebugMesh(scene::IAnimatedMeshSceneNode *node)</div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>    {</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>        m_debug_meshes.push_back(node);</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>    }   <span class="comment">// addDebugMesh</span></div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span> </div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span>    <span class="keywordtype">void</span> onLoadWorld();</div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>    <span class="keywordtype">void</span> onUnloadWorld();</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span> </div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>    <span class="keywordtype">void</span> updateSplitAndLightcoordRangeFromComputeShaders(<span class="keywordtype">size_t</span> width,</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>                                                         <span class="keywordtype">size_t</span> height);</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span> </div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>    <span class="keywordtype">void</span> uploadLightingData();</div>
+<div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>    <span class="keywordtype">void</span> sameRestart()             { <a class="code hl_variable" href="classIrrDriver.html#abea7afcc4138b4ed9a42cc64c7c6a6e0">m_resolution_changing</a> = RES_CHANGE_SAME; }</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno"><a class="line" href="classIrrDriver.html#a59a75c9d78216eee110d7b26d2715222">  538</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classIrrDriver.html#a59a75c9d78216eee110d7b26d2715222">fullRestart</a>()             { <a class="code hl_variable" href="classIrrDriver.html#abea7afcc4138b4ed9a42cc64c7c6a6e0">m_resolution_changing</a> = RES_CHANGE_SAME_FULL; }</div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>    u32 getDefaultFramebuffer() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>    <span class="keywordtype">void</span> handleWindowResize();</div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>};   <span class="comment">// IrrDriver</span></div>
+</div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span> </div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span><span class="keyword">extern</span> <a class="code hl_class" href="classIrrDriver.html">IrrDriver</a> *irr_driver;</div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span> </div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span><span class="preprocessor">#endif   </span><span class="comment">// HEADER_IRR_DRIVER_HPP</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassAbstractRenderer_html"><div class="ttname"><a href="classAbstractRenderer.html">AbstractRenderer</a></div><div class="ttdoc">Virtual base class for the renderer</div><div class="ttdef"><b>Definition</b> abstract_renderer.hpp:60</div></div>
+<div class="ttc" id="aclassCamera_html"><div class="ttname"><a href="classCamera.html">Camera</a></div><div class="ttdoc">This is the base class for all cameras.</div><div class="ttdef"><b>Definition</b> camera.hpp:49</div></div>
+<div class="ttc" id="aclassFileManager_html_acb73b7203fb4939d40ce771bcf7972e0"><div class="ttname"><a href="classFileManager.html#acb73b7203fb4939d40ce771bcf7972e0">FileManager::AssetType</a></div><div class="ttdeci">AssetType</div><div class="ttdoc">The various asset types (and directories) STK might request.</div><div class="ttdef"><b>Definition</b> file_manager.hpp:63</div></div>
+<div class="ttc" id="aclassFrameBuffer_html"><div class="ttname"><a href="classFrameBuffer.html">FrameBuffer</a></div><div class="ttdef"><b>Definition</b> frame_buffer.hpp:33</div></div>
+<div class="ttc" id="aclassIrrDriver_html"><div class="ttname"><a href="classIrrDriver.html">IrrDriver</a></div><div class="ttdoc">class that creates the irrLicht device and offers higher-level ways to manage the 3D scene</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:86</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a0fd779ccb630c72fbc399c3ff71d10de"><div class="ttname"><a href="classIrrDriver.html#a0fd779ccb630c72fbc399c3ff71d10de">IrrDriver::m_renderer</a></div><div class="ttdeci">AbstractRenderer * m_renderer</div><div class="ttdoc">Renderer.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:99</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a18e4789d01acabe6b3755e24553dde72"><div class="ttname"><a href="classIrrDriver.html#a18e4789d01acabe6b3755e24553dde72">IrrDriver::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Called before a race is started, after all cameras are set up.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:272</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a1cbce9031421f37bb7bc917e8ff71ed3"><div class="ttname"><a href="classIrrDriver.html#a1cbce9031421f37bb7bc917e8ff71ed3">IrrDriver::updateConfigIfRelevant</a></div><div class="ttdeci">void updateConfigIfRelevant()</div><div class="ttdoc">If the position of the window should be remembered, store it in the config file.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:309</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a1cf20670147c84269d8fec3e2375cec8"><div class="ttname"><a href="classIrrDriver.html#a1cf20670147c84269d8fec3e2375cec8">IrrDriver::m_scene_complexity</a></div><div class="ttdeci">int m_scene_complexity</div><div class="ttdoc">Store if the scene is complex (based on polycount, etc)</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:157</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a1d29f782bbcf3962781a9c78a9457ec5"><div class="ttname"><a href="classIrrDriver.html#a1d29f782bbcf3962781a9c78a9457ec5">IrrDriver::m_wind</a></div><div class="ttdeci">Wind * m_wind</div><div class="ttdoc">Wind.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:102</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a24c68e54121c45398df5be506cf67a42"><div class="ttname"><a href="classIrrDriver.html#a24c68e54121c45398df5be506cf67a42">IrrDriver::OnEvent</a></div><div class="ttdeci">bool OnEvent(const irr::SEvent &amp;event)</div><div class="ttdoc">This is not really used to process events, it&#39;s only used to shut down irrLicht&#39;s chatty logging unti...</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:2389</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a269b9e1a37c1be13c646a55e027990bc"><div class="ttname"><a href="classIrrDriver.html#a269b9e1a37c1be13c646a55e027990bc">IrrDriver::addWaterNode</a></div><div class="ttdeci">scene::ISceneNode * addWaterNode(scene::IMesh *mesh, scene::IMesh **welded, float wave_height, float wave_speed, float wave_length)</div><div class="ttdoc">Converts the mesh into a water scene node.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1354</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a28a8bf812795019598096bab9b9edde7"><div class="ttname"><a href="classIrrDriver.html#a28a8bf812795019598096bab9b9edde7">IrrDriver::getClearColor</a></div><div class="ttdeci">const irr::video::SColor &amp; getClearColor() const</div><div class="ttdoc">Returns the color to clear the back buffer.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:297</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a2b39d6c2d0eb158c03ab938b48ed467a"><div class="ttname"><a href="classIrrDriver.html#a2b39d6c2d0eb158c03ab938b48ed467a">IrrDriver::createTexturedQuadMesh</a></div><div class="ttdeci">scene::IMesh * createTexturedQuadMesh(const video::SMaterial *material, const double w, const double h)</div><div class="ttdoc">Creates a quad mesh buffer with a given width and height (z coordinate is 0).</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1587</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a2dba3dee392bae5fdd5465910c970f4c"><div class="ttname"><a href="classIrrDriver.html#a2dba3dee392bae5fdd5465910c970f4c">IrrDriver::IrrDriver</a></div><div class="ttdeci">IrrDriver()</div><div class="ttdoc">The constructor creates the irrlicht device.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:181</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a2e979e3e9e278cd6483855a476df310b"><div class="ttname"><a href="classIrrDriver.html#a2e979e3e9e278cd6483855a476df310b">IrrDriver::addParticleNode</a></div><div class="ttdeci">scene::IParticleSystemSceneNode * addParticleNode(bool default_emitter=true)</div><div class="ttdoc">Adds a particle scene node.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1445</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a30a505f7e4bd1f625a2f1b91fac81a73"><div class="ttname"><a href="classIrrDriver.html#a30a505f7e4bd1f625a2f1b91fac81a73">IrrDriver::m_mrt</a></div><div class="ttdeci">core::array&lt; video::IRenderTarget &gt; m_mrt</div><div class="ttdoc">The main MRT setup.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:107</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a34abe4a1d4dad25210c51a6cc6ccd6b1"><div class="ttname"><a href="classIrrDriver.html#a34abe4a1d4dad25210c51a6cc6ccd6b1">IrrDriver::setClearbackBufferColor</a></div><div class="ttdeci">void setClearbackBufferColor(irr::video::SColor color)</div><div class="ttdoc">Sets the color to use when clearing the back buffer.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:300</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a3be26adf270e1dca668dc9b2e3eadb45"><div class="ttname"><a href="classIrrDriver.html#a3be26adf270e1dca668dc9b2e3eadb45">IrrDriver::removeTexture</a></div><div class="ttdeci">void removeTexture(video::ITexture *t)</div><div class="ttdoc">Removes a texture from irrlicht&#39;s texture cache.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1666</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a3bff3c27ebf1d32094a60f7110b31119"><div class="ttname"><a href="classIrrDriver.html#a3bff3c27ebf1d32094a60f7110b31119">IrrDriver::moveWindow</a></div><div class="ttdeci">bool moveWindow(int x, int y)</div><div class="ttdoc">Moves the STK main window to coordinates (x,y)</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1036</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a3d1a7d14af4b10d43fd7f66e2ea45c31"><div class="ttname"><a href="classIrrDriver.html#a3d1a7d14af4b10d43fd7f66e2ea45c31">IrrDriver::addBillboard</a></div><div class="ttdeci">scene::ISceneNode * addBillboard(const core::dimension2d&lt; f32 &gt; size, const std::string &amp;tex_name, scene::ISceneNode *parent=NULL)</div><div class="ttdoc">Adds a billboard node to scene.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1509</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a3f95fe73e073ac45360f569e1823575f"><div class="ttname"><a href="classIrrDriver.html#a3f95fe73e073ac45360f569e1823575f">IrrDriver::getRealTime</a></div><div class="ttdeci">unsigned int getRealTime()</div><div class="ttdoc">Returns the current real time, which might not be 0 at start of the application.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:2575</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a49269af976fccddc95e2ae695f5e73b9"><div class="ttname"><a href="classIrrDriver.html#a49269af976fccddc95e2ae695f5e73b9">IrrDriver::removeMeshFromCache</a></div><div class="ttdeci">void removeMeshFromCache(scene::IMesh *mesh)</div><div class="ttdoc">Removes a mesh from the mesh cache, freeing the memory.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1657</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a50feeda34259ddeef573bda241111b88"><div class="ttname"><a href="classIrrDriver.html#a50feeda34259ddeef573bda241111b88">IrrDriver::m_clear_color</a></div><div class="ttdeci">irr::video::SColor m_clear_color</div><div class="ttdoc">Background colour to reset a buffer.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:175</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a59a75c9d78216eee110d7b26d2715222"><div class="ttname"><a href="classIrrDriver.html#a59a75c9d78216eee110d7b26d2715222">IrrDriver::fullRestart</a></div><div class="ttdeci">void fullRestart()</div><div class="ttdoc">Used when we don&#39;t want a changed resolution prompt but need to reinit things that sameRestart doesn&#39;...</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:538</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a5e825b82911a1c543237ae9376ec04b5"><div class="ttname"><a href="classIrrDriver.html#a5e825b82911a1c543237ae9376ec04b5">IrrDriver::setAllMaterialFlags</a></div><div class="ttdeci">void setAllMaterialFlags(scene::IMesh *mesh) const</div><div class="ttdoc">Sets the material flags in this mesh depending on the settings in material_manager.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1322</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a5ee7d9e2b23ee4134ef419f81aabe383"><div class="ttname"><a href="classIrrDriver.html#a5ee7d9e2b23ee4134ef419f81aabe383">IrrDriver::m_ViewMatrix</a></div><div class="ttdeci">core::matrix4 m_ViewMatrix</div><div class="ttdoc">Matrixes used in several places stored here to avoid recomputation.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:110</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a64f380c4cea7b3a442e8b6dfea19b58e"><div class="ttname"><a href="classIrrDriver.html#a64f380c4cea7b3a442e8b6dfea19b58e">IrrDriver::getMesh</a></div><div class="ttdeci">scene::IMesh * getMesh(const std::string &amp;name)</div><div class="ttdoc">Loads a non-animated mesh and returns a pointer to it.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1305</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a66330805ab711369b28d6604027adcfd"><div class="ttname"><a href="classIrrDriver.html#a66330805ab711369b28d6604027adcfd">IrrDriver::m_gui_env</a></div><div class="ttdeci">gui::IGUIEnvironment * m_gui_env</div><div class="ttdoc">Irrlicht gui environment.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:93</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a68f6750c4504a3c5fd50da162c6ed708"><div class="ttname"><a href="classIrrDriver.html#a68f6750c4504a3c5fd50da162c6ed708">IrrDriver::getAnimatedMesh</a></div><div class="ttdeci">scene::IAnimatedMesh * getAnimatedMesh(const std::string &amp;name)</div><div class="ttdoc">Loads an animated mesh and returns a pointer to it.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1261</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a72a26613be4c2776e89f6c22db9f0bc0"><div class="ttname"><a href="classIrrDriver.html#a72a26613be4c2776e89f6c22db9f0bc0">IrrDriver::m_race_font</a></div><div class="ttdeci">gui::IGUIFont * m_race_font</div><div class="ttdoc">Irrlicht race font.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:97</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a78526f388f7f6b54182f9248f9043e02"><div class="ttname"><a href="classIrrDriver.html#a78526f388f7f6b54182f9248f9043e02">IrrDriver::giveBoost</a></div><div class="ttdeci">void giveBoost(unsigned int cam_index)</div><div class="ttdoc">Use motion blur for a short time</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:329</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a80c20983177c5e6aec767b5ff66a86ed"><div class="ttname"><a href="classIrrDriver.html#a80c20983177c5e6aec767b5ff66a86ed">IrrDriver::getFrameSize</a></div><div class="ttdeci">const core::dimension2d&lt; u32 &gt; &amp; getFrameSize() const</div><div class="ttdoc">Returns the frame size.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:2569</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a84b1e6de4d01545b697be085fde0a8d2"><div class="ttname"><a href="classIrrDriver.html#a84b1e6de4d01545b697be085fde0a8d2">IrrDriver::update</a></div><div class="ttdeci">void update(float dt, bool loading=false)</div><div class="ttdoc">Update, called once per frame.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:2178</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a859ebfbbcbcec44b6a3613af4be3a855"><div class="ttname"><a href="classIrrDriver.html#a859ebfbbcbcec44b6a3613af4be3a855">IrrDriver::addOctTree</a></div><div class="ttdeci">scene::IMeshSceneNode * addOctTree(scene::IMesh *mesh)</div><div class="ttdoc">Adds a mesh that will be optimised using an oct tree.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1390</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a8a45a361a91b26a019a33e62292ac9fc"><div class="ttname"><a href="classIrrDriver.html#a8a45a361a91b26a019a33e62292ac9fc">IrrDriver::m_video_driver</a></div><div class="ttdeci">video::IVideoDriver * m_video_driver</div><div class="ttdoc">Irrlicht video driver.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:95</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a8b8c82d9f53a0e7738e85e41b43a460c"><div class="ttname"><a href="classIrrDriver.html#a8b8c82d9f53a0e7738e85e41b43a460c">IrrDriver::getVideoDriver</a></div><div class="ttdeci">video::IVideoDriver * getVideoDriver() const</div><div class="ttdoc">Returns the irrlicht video driver.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:316</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a8ff8245685802b85e2ffbbde6b443c6c"><div class="ttname"><a href="classIrrDriver.html#a8ff8245685802b85e2ffbbde6b443c6c">IrrDriver::addSphere</a></div><div class="ttdeci">scene::ISceneNode * addSphere(float radius, const video::SColor &amp;color=video::SColor(128, 255, 255, 255))</div><div class="ttdoc">Adds a sphere with a given radius and color.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1400</div></div>
+<div class="ttc" id="aclassIrrDriver_html_a97def89d2b65f050ea8293f50aa3bcdf"><div class="ttname"><a href="classIrrDriver.html#a97def89d2b65f050ea8293f50aa3bcdf">IrrDriver::m_scene_manager</a></div><div class="ttdeci">scene::ISceneManager * m_scene_manager</div><div class="ttdoc">Irrlicht scene manager.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:91</div></div>
+<div class="ttc" id="aclassIrrDriver_html_aa41b8e1aea86e6ac4a9bf95aa11fe90d"><div class="ttname"><a href="classIrrDriver.html#aa41b8e1aea86e6ac4a9bf95aa11fe90d">IrrDriver::displayFPS</a></div><div class="ttdeci">void displayFPS()</div><div class="ttdoc">Displays the FPS on the screen.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1892</div></div>
+<div class="ttc" id="aclassIrrDriver_html_aa5dba7a7bc317c4311f4493e4df25c6f"><div class="ttname"><a href="classIrrDriver.html#aa5dba7a7bc317c4311f4493e4df25c6f">IrrDriver::~IrrDriver</a></div><div class="ttdeci">~IrrDriver()</div><div class="ttdoc">Destructor - removes the irrlicht device.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:234</div></div>
+<div class="ttc" id="aclassIrrDriver_html_aa7108057e5abadddc79b82c324af25e3"><div class="ttname"><a href="classIrrDriver.html#aa7108057e5abadddc79b82c324af25e3">IrrDriver::getTexture</a></div><div class="ttdeci">video::ITexture * getTexture(FileManager::AssetType type, const std::string &amp;filename)</div><div class="ttdoc">Loads a texture from a file and returns the texture object.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1768</div></div>
+<div class="ttc" id="aclassIrrDriver_html_aa72af528924788c0e78fe786ee01635f"><div class="ttname"><a href="classIrrDriver.html#aa72af528924788c0e78fe786ee01635f">IrrDriver::createListOfVideoModes</a></div><div class="ttdeci">void createListOfVideoModes()</div><div class="ttdoc">Gets a list of supported video modes from the irrlicht device.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:378</div></div>
+<div class="ttc" id="aclassIrrDriver_html_aa7f459c3b64ec90247030967dcb90026"><div class="ttname"><a href="classIrrDriver.html#aa7f459c3b64ec90247030967dcb90026">IrrDriver::getVideoModes</a></div><div class="ttdeci">const std::vector&lt; VideoMode &gt; &amp; getVideoModes() const</div><div class="ttdoc">Returns a list of all video modes supports by the graphics card.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:307</div></div>
+<div class="ttc" id="aclassIrrDriver_html_aaa9d5850e52aaebb5b7d6ef75c8c4306"><div class="ttname"><a href="classIrrDriver.html#aaa9d5850e52aaebb5b7d6ef75c8c4306">IrrDriver::grabAllTextures</a></div><div class="ttdeci">void grabAllTextures(const scene::IMesh *mesh)</div><div class="ttdoc">Appends a pointer to each texture used in this mesh to the vector.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1789</div></div>
+<div class="ttc" id="aclassIrrDriver_html_ab6ce94a52ba1246f969352fa380ae26d"><div class="ttname"><a href="classIrrDriver.html#ab6ce94a52ba1246f969352fa380ae26d">IrrDriver::cancelResChange</a></div><div class="ttdeci">void cancelResChange()</div><div class="ttdoc">Call this to roll back to the previous resolution if a resolution switch attempt goes bad</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1216</div></div>
+<div class="ttc" id="aclassIrrDriver_html_ab7c325dfeba998a91ebfc7d0999d1cc2"><div class="ttname"><a href="classIrrDriver.html#ab7c325dfeba998a91ebfc7d0999d1cc2">IrrDriver::doScreenShot</a></div><div class="ttdeci">void doScreenShot()</div><div class="ttdoc">Requess a screenshot from irrlicht, and save it in a file.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:2054</div></div>
+<div class="ttc" id="aclassIrrDriver_html_ab8ab8290d67f4825ccd0de9de3e0a50a"><div class="ttname"><a href="classIrrDriver.html#ab8ab8290d67f4825ccd0de9de3e0a50a">IrrDriver::initDevice</a></div><div class="ttdeci">void initDevice()</div><div class="ttdoc">This creates the actualy OpenGL device.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:409</div></div>
+<div class="ttc" id="aclassIrrDriver_html_ab8d2e23cc9e46e0b3e3291972c37c0dc"><div class="ttname"><a href="classIrrDriver.html#ab8d2e23cc9e46e0b3e3291972c37c0dc">IrrDriver::changeResolution</a></div><div class="ttdeci">void changeResolution(const int w, const int h, const bool fullscreen)</div><div class="ttdoc">Call to change resolution</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1051</div></div>
+<div class="ttc" id="aclassIrrDriver_html_abcba86a0079c1022a4a46ef24640d001"><div class="ttname"><a href="classIrrDriver.html#abcba86a0079c1022a4a46ef24640d001">IrrDriver::displayStoryModeTimer</a></div><div class="ttdeci">void displayStoryModeTimer()</div><div class="ttdoc">Displays the timer for Story Mode on the screen.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:2012</div></div>
+<div class="ttc" id="aclassIrrDriver_html_abd3e4f6a4216f972c9dea5f2ef710586"><div class="ttname"><a href="classIrrDriver.html#abd3e4f6a4216f972c9dea5f2ef710586">IrrDriver::applyResolutionSettings</a></div><div class="ttdeci">void applyResolutionSettings(bool recreate_device)</div><div class="ttdoc">Internal method that applies the resolution in user settings.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1075</div></div>
+<div class="ttc" id="aclassIrrDriver_html_abe9a1a86de445f00a15b1ff1424d137e"><div class="ttname"><a href="classIrrDriver.html#abe9a1a86de445f00a15b1ff1424d137e">IrrDriver::getSHCoefficients</a></div><div class="ttdeci">const SHCoefficients * getSHCoefficients()</div><div class="ttdoc">Returns a pointer to the spherical harmonics coefficients.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:335</div></div>
+<div class="ttc" id="aclassIrrDriver_html_abea7afcc4138b4ed9a42cc64c7c6a6e0"><div class="ttname"><a href="classIrrDriver.html#abea7afcc4138b4ed9a42cc64c7c6a6e0">IrrDriver::m_resolution_changing</a></div><div class="ttdeci">enum IrrDriver::@233033123344214125164065017017231311124000063040 m_resolution_changing</div><div class="ttdoc">Flag to indicate if a resolution change is pending (which will be acted upon in the next update).</div></div>
+<div class="ttc" id="aclassIrrDriver_html_ac85361a632758958be0ee09807b3d2f0"><div class="ttname"><a href="classIrrDriver.html#ac85361a632758958be0ee09807b3d2f0">IrrDriver::getDevice</a></div><div class="ttdeci">IrrlichtDevice * getDevice() const</div><div class="ttdoc">Returns the irrlicht device.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:313</div></div>
+<div class="ttc" id="aclassIrrDriver_html_acc5883e79408b8fdc5957f5275e4fc51"><div class="ttname"><a href="classIrrDriver.html#acc5883e79408b8fdc5957f5275e4fc51">IrrDriver::addSkyBox</a></div><div class="ttdeci">scene::ISceneNode * addSkyBox(const std::vector&lt; video::ITexture * &gt; &amp;texture_names, const std::vector&lt; video::ITexture * &gt; &amp;spherical_harmonics_textures)</div><div class="ttdoc">Adds a skybox using.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1722</div></div>
+<div class="ttc" id="aclassIrrDriver_html_ad19e265d1c430b01b0607865aa664a1c"><div class="ttname"><a href="classIrrDriver.html#ad19e265d1c430b01b0607865aa664a1c">IrrDriver::m_lod_multiplier</a></div><div class="ttdeci">float m_lod_multiplier</div><div class="ttdoc">Used for auto-LoD adjustment in low-complexity scenes</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:159</div></div>
+<div class="ttc" id="aclassIrrDriver_html_ad2c7d3a58f40e6a7459e0fbc7195cb73"><div class="ttname"><a href="classIrrDriver.html#ad2c7d3a58f40e6a7459e0fbc7195cb73">IrrDriver::setAmbientLight</a></div><div class="ttdeci">void setAmbientLight(const video::SColorf &amp;light, bool force_SH_computation=true)</div><div class="ttdoc">Sets the ambient light.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1868</div></div>
+<div class="ttc" id="aclassIrrDriver_html_ad3876ccdb08ff21e4b99677cad3d3d4c"><div class="ttname"><a href="classIrrDriver.html#ad3876ccdb08ff21e4b99677cad3d3d4c">IrrDriver::dropAllTextures</a></div><div class="ttdeci">void dropAllTextures(const scene::IMesh *mesh)</div><div class="ttdoc">Appends a pointer to each texture used in this mesh to the vector.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1818</div></div>
+<div class="ttc" id="aclassIrrDriver_html_ad45f655e41ef15c5fcd1d0175a61f88d"><div class="ttname"><a href="classIrrDriver.html#ad45f655e41ef15c5fcd1d0175a61f88d">IrrDriver::createQuadMesh</a></div><div class="ttdeci">scene::IMesh * createQuadMesh(const video::SMaterial *material=NULL, bool create_one_quad=false)</div><div class="ttdoc">Creates a quad mesh with a given material.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1544</div></div>
+<div class="ttc" id="aclassIrrDriver_html_adab9c035fb8d9cb5f2d8c1498acaeddf"><div class="ttname"><a href="classIrrDriver.html#adab9c035fb8d9cb5f2d8c1498acaeddf">IrrDriver::removeCameraSceneNode</a></div><div class="ttdeci">void removeCameraSceneNode(scene::ICameraSceneNode *camera)</div><div class="ttdoc">Removes a camera.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1753</div></div>
+<div class="ttc" id="aclassIrrDriver_html_adf726bd8f563a2ed60ef0e27848e9499"><div class="ttname"><a href="classIrrDriver.html#adf726bd8f563a2ed60ef0e27848e9499">IrrDriver::getGUI</a></div><div class="ttdeci">gui::IGUIEnvironment * getGUI() const</div><div class="ttdoc">Returns the gui environment, used to add widgets to a screen.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:322</div></div>
+<div class="ttc" id="aclassIrrDriver_html_ae10efdf90e40b3ed36780c590afd0a44"><div class="ttname"><a href="classIrrDriver.html#ae10efdf90e40b3ed36780c590afd0a44">IrrDriver::printRenderStats</a></div><div class="ttdeci">void printRenderStats()</div><div class="ttdoc">Prints statistics about rendering, e.g.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1240</div></div>
+<div class="ttc" id="aclassIrrDriver_html_ae18c1cd05d54248ff5a1cd9001b1d36f"><div class="ttname"><a href="classIrrDriver.html#ae18c1cd05d54248ff5a1cd9001b1d36f">IrrDriver::addCameraSceneNode</a></div><div class="ttdeci">scene::ICameraSceneNode * addCameraSceneNode()</div><div class="ttdoc">Adds a camera to the scene.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1741</div></div>
+<div class="ttc" id="aclassIrrDriver_html_ae22563fc42394503f95001de1b105563"><div class="ttname"><a href="classIrrDriver.html#ae22563fc42394503f95001de1b105563">IrrDriver::getSceneManager</a></div><div class="ttdeci">scene::ISceneManager * getSceneManager() const</div><div class="ttdoc">Returns the irrlicht scene manager.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:319</div></div>
+<div class="ttc" id="aclassIrrDriver_html_ae3b4eb12e2bc9a2ee13954728578958e"><div class="ttname"><a href="classIrrDriver.html#ae3b4eb12e2bc9a2ee13954728578958e">IrrDriver::m_pointer_shown</a></div><div class="ttdeci">bool m_pointer_shown</div><div class="ttdoc">Whether the mouse cursor is currently shown</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:154</div></div>
+<div class="ttc" id="aclassIrrDriver_html_af5458d4d41896dc3d54ef085eb0d9a39"><div class="ttname"><a href="classIrrDriver.html#af5458d4d41896dc3d54ef085eb0d9a39">IrrDriver::addAnimatedMesh</a></div><div class="ttdeci">scene::IAnimatedMeshSceneNode * addAnimatedMesh(scene::IAnimatedMesh *mesh, const std::string &amp;debug_name, scene::ISceneNode *parent=NULL, std::shared_ptr&lt; GE::GERenderInfo &gt; render_info=nullptr)</div><div class="ttdoc">Adds an animated mesh to the scene.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1677</div></div>
+<div class="ttc" id="aclassIrrDriver_html_af5be8703cbd7cae0265bf16fe1849c35"><div class="ttname"><a href="classIrrDriver.html#af5be8703cbd7cae0265bf16fe1849c35">IrrDriver::addMesh</a></div><div class="ttdeci">scene::ISceneNode * addMesh(scene::IMesh *mesh, const std::string &amp;debug_name, scene::ISceneNode *parent=NULL, std::shared_ptr&lt; GE::GERenderInfo &gt; render_info=nullptr)</div><div class="ttdoc">Adds a static mesh to scene.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1455</div></div>
+<div class="ttc" id="aclassIrrDriver_html_af5c6b72c94296bf1bd043e2f0652533c"><div class="ttname"><a href="classIrrDriver.html#af5c6b72c94296bf1bd043e2f0652533c">IrrDriver::removeNode</a></div><div class="ttdeci">void removeNode(scene::ISceneNode *node)</div><div class="ttdoc">Removes a scene node from the scene.</div><div class="ttdef"><b>Definition</b> irr_driver.cpp:1648</div></div>
+<div class="ttc" id="aclassIrrDriver_html_afe59a67a74ce16e3a65c2800c909a7e6"><div class="ttname"><a href="classIrrDriver.html#afe59a67a74ce16e3a65c2800c909a7e6">IrrDriver::m_device</a></div><div class="ttdeci">IrrlichtDevice * m_device</div><div class="ttdoc">The irrlicht device.</div><div class="ttdef"><b>Definition</b> irr_driver.hpp:89</div></div>
+<div class="ttc" id="aclassLightNode_html"><div class="ttname"><a href="classLightNode.html">LightNode</a></div><div class="ttdef"><b>Definition</b> light.hpp:44</div></div>
+<div class="ttc" id="aclassPerCameraNode_html"><div class="ttname"><a href="classPerCameraNode.html">PerCameraNode</a></div><div class="ttdoc">manages smoke particle effects</div><div class="ttdef"><b>Definition</b> per_camera_node.hpp:46</div></div>
+<div class="ttc" id="aclassRenderTarget_html"><div class="ttname"><a href="classRenderTarget.html">RenderTarget</a></div><div class="ttdef"><b>Definition</b> render_target.hpp:42</div></div>
+<div class="ttc" id="aclassSP_1_1SPDynamicDrawCall_html"><div class="ttname"><a href="classSP_1_1SPDynamicDrawCall.html">SP::SPDynamicDrawCall</a></div><div class="ttdef"><b>Definition</b> sp_dynamic_draw_call.hpp:42</div></div>
+<div class="ttc" id="aclassWind_html"><div class="ttname"><a href="classWind.html">Wind</a></div><div class="ttdef"><b>Definition</b> wind.hpp:26</div></div>
+<div class="ttc" id="astructIrrDriver_1_1BloomData_html"><div class="ttname"><a href="structIrrDriver_1_1BloomData.html">IrrDriver::BloomData</a></div><div class="ttdef"><b>Definition</b> irr_driver.hpp:138</div></div>
+<div class="ttc" id="astructSHCoefficients_html"><div class="ttname"><a href="structSHCoefficients.html">SHCoefficients</a></div><div class="ttdef"><b>Definition</b> spherical_harmonics.hpp:33</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

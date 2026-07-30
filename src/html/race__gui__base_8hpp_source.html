@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: states_screens/race_gui_base.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>states_screens</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">race_gui_base.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2010-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_RACE_GUI_BASE_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_RACE_GUI_BASE_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;irrString.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;vector2d.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;rect.h&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;dimension2d.h&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;SColor.h&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">namespace </span>video { <span class="keyword">class </span>ITexture; <span class="keyword">struct </span>S3DVertex; }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">namespace </span>scene { <span class="keyword">class </span>IAnimatedMeshSceneNode; }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;utils/vec3.hpp&quot;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">class </span><a class="code hl_class" href="classCamera.html">Camera</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">class </span><a class="code hl_class" href="classMaterial.html">Material</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">class </span><a class="code hl_class" href="classReferee.html">Referee</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">class </span><a class="code hl_class" href="classRaceGUIMultitouch.html">RaceGUIMultitouch</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="};">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html">   49</a></span><span class="keyword">class </span>RaceGUIBase</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="};">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structRaceGUIBase_1_1KartIconDisplayInfo.html">   56</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structRaceGUIBase_1_1KartIconDisplayInfo.html">KartIconDisplayInfo</a></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structRaceGUIBase_1_1KartIconDisplayInfo.html#a6ee97e7e1b48713668dce6e17f28fd80">   59</a></span>        core::stringw <a class="code hl_variable" href="structRaceGUIBase_1_1KartIconDisplayInfo.html#a6ee97e7e1b48713668dce6e17f28fd80">m_text</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structRaceGUIBase_1_1KartIconDisplayInfo.html#a67e6fd957380508cbbc7706d6c0e2585">   62</a></span>        video::SColor <a class="code hl_variable" href="structRaceGUIBase_1_1KartIconDisplayInfo.html#a67e6fd957380508cbbc7706d6c0e2585">m_color</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structRaceGUIBase_1_1KartIconDisplayInfo.html#a6373b27a21fe15c2883e854cf31243d8">   65</a></span>        core::stringw <a class="code hl_variable" href="structRaceGUIBase_1_1KartIconDisplayInfo.html#a6373b27a21fe15c2883e854cf31243d8">special_title</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structRaceGUIBase_1_1KartIconDisplayInfo.html#af32c49829e97d6d50abc14b499806051">   68</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="structRaceGUIBase_1_1KartIconDisplayInfo.html#af32c49829e97d6d50abc14b499806051">lap</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordtype">bool</span> m_outlined_font = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    };   <span class="comment">// KartIconDisplayInfo</span></div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a593f74e871b2b2ebb8d75391a478a412">   76</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_variable" href="classRaceGUIBase.html#a593f74e871b2b2ebb8d75391a478a412">m_ignore_unimportant_messages</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="};">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classRaceGUIBase_1_1TimedMessage.html">   78</a></span>    <span class="keyword">class </span>TimedMessage</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>     <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classRaceGUIBase_1_1TimedMessage.html#a899717b111b00a3db745036ef0255d6c">   82</a></span>        irr::core::stringw  <a class="code hl_variable" href="classRaceGUIBase_1_1TimedMessage.html#a899717b111b00a3db745036ef0255d6c">m_message</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classRaceGUIBase_1_1TimedMessage.html#a9f072bcd15f2d08e0cb8d94abe24d794">   84</a></span>        <span class="keywordtype">float</span>               <a class="code hl_variable" href="classRaceGUIBase_1_1TimedMessage.html#a9f072bcd15f2d08e0cb8d94abe24d794">m_remaining_time</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classRaceGUIBase_1_1TimedMessage.html#a7dff84cf36254815dfa2f2c1cae10be2">   86</a></span>        video::SColor       <a class="code hl_variable" href="classRaceGUIBase_1_1TimedMessage.html#a7dff84cf36254815dfa2f2c1cae10be2">m_color</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *m_kart;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classRaceGUIBase_1_1TimedMessage.html#a48c994cbfb497b6538b2a9985ed94b7c">   90</a></span>        <span class="keywordtype">bool</span>                <a class="code hl_variable" href="classRaceGUIBase_1_1TimedMessage.html#a48c994cbfb497b6538b2a9985ed94b7c">m_important</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordtype">bool</span>                m_big_font;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordtype">bool</span>                m_outline;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="comment">// -----------------------------------------------------</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="comment">// std::vector needs standard copy-ctor and std-assignment op.</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="comment">// let compiler create defaults .. they&#39;ll do the job, no</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="comment">// deep copies here ..</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        TimedMessage(<span class="keyword">const</span> irr::core::stringw &amp;message,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                     <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart, <span class="keywordtype">float</span> time,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                     <span class="keyword">const</span> video::SColor &amp;color, <span class="keyword">const</span> <span class="keywordtype">bool</span> important,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                     <span class="keywordtype">bool</span> big_font, <span class="keywordtype">bool</span> outline)</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            <a class="code hl_variable" href="classRaceGUIBase_1_1TimedMessage.html#a899717b111b00a3db745036ef0255d6c">m_message</a>        = message;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>            m_kart           = kart;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>            <a class="code hl_variable" href="classRaceGUIBase_1_1TimedMessage.html#a9f072bcd15f2d08e0cb8d94abe24d794">m_remaining_time</a> = ( time &lt; 0.0f ) ? -1.0f : time;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            <a class="code hl_variable" href="classRaceGUIBase_1_1TimedMessage.html#a7dff84cf36254815dfa2f2c1cae10be2">m_color</a>          = color;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <a class="code hl_variable" href="classRaceGUIBase_1_1TimedMessage.html#a48c994cbfb497b6538b2a9985ed94b7c">m_important</a>      = important;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            m_big_font       = big_font;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            m_outline        = outline;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        }   <span class="comment">// TimedMessage</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="comment">// -----------------------------------------------------</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="comment">// in follow leader the clock counts backwards</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordtype">bool</span> done(<span class="keyword">const</span> <span class="keywordtype">float</span> dt)</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            <a class="code hl_variable" href="classRaceGUIBase_1_1TimedMessage.html#a9f072bcd15f2d08e0cb8d94abe24d794">m_remaining_time</a> -= dt;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classRaceGUIBase_1_1TimedMessage.html#a9f072bcd15f2d08e0cb8d94abe24d794">m_remaining_time</a> &lt; 0;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        }   <span class="comment">// done</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    };   <span class="comment">// TimedMessage</span></div>
+</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">// ---------------------------------------------------------</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keyword">typedef</span>          std::vector&lt;TimedMessage&gt; AllMessageType;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    AllMessageType   m_messages;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">int</span>              m_small_font_max_height;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a04c18d8934a3948dd59c30afe7958ce6">  127</a></span>    <span class="keywordtype">int</span>              <a class="code hl_variable" href="classRaceGUIBase.html#a04c18d8934a3948dd59c30afe7958ce6">m_max_font_height</a>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a12181ece72538c02d1de5a9e0a72e891">  130</a></span>        video::ITexture* <a class="code hl_variable" href="classRaceGUIBase.html#a12181ece72538c02d1de5a9e0a72e891">m_music_icon</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a09b60552a1853fa6ef8febae9d9a774c">  133</a></span>    video::ITexture* <a class="code hl_variable" href="classRaceGUIBase.html#a09b60552a1853fa6ef8febae9d9a774c">m_plunger_face</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a39c2a954bf1692bc075b7ea960f975c8">  136</a></span>    core::stringw    <a class="code hl_variable" href="classRaceGUIBase.html#a39c2a954bf1692bc075b7ea960f975c8">m_string_ready</a>, m_string_set, m_string_go, m_string_goal,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        m_string_waiting_for_others, m_string_waiting_for_the_server;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a5e21b50dcf65be2a14324e7d384112c7">  140</a></span>    std::vector&lt;Vec3&gt; <a class="code hl_variable" href="classRaceGUIBase.html#a5e21b50dcf65be2a14324e7d384112c7">m_referee_pos</a>;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a22545d24f4130802560d77a363c342c4">  143</a></span>    std::vector&lt;Vec3&gt; <a class="code hl_variable" href="classRaceGUIBase.html#a22545d24f4130802560d77a363c342c4">m_referee_rotation</a>;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a241b44f3313035cd39d46c9bd832eeef">  148</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classRaceGUIBase.html#a241b44f3313035cd39d46c9bd832eeef">m_referee_height</a>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a92565d62f06ef8be5f2a4077c1a4f60b">  151</a></span>    <a class="code hl_class" href="classReferee.html">Referee</a> *<a class="code hl_variable" href="classRaceGUIBase.html#a92565d62f06ef8be5f2a4077c1a4f60b">m_referee</a>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">/* True if spectating is possible in current GUI (when local player</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">     * finished). */</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordtype">bool</span> m_enabled_network_spectator;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="comment">/* this flag is set to true if we show at least one custom color for other karts</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment">     * in that case we want to draw a bigger circle around the player&#39;s own kart</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment">     * to make it easier for the player to identify */</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordtype">bool</span> m_showing_kart_colors;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span></div>
+<div class="foldopen" id="foldopen00167" data-start="{" data-end="};">
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a44f1da604eddb172aa02b82e39642a6f">  167</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classRaceGUIBase.html#a44f1da604eddb172aa02b82e39642a6f">PlungerState</a> {PLUNGER_STATE_INIT,   PLUNGER_STATE_SLOW_1,</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>                       PLUNGER_STATE_SLOW_2, PLUNGER_STATE_FAST}</div>
+</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>                        m_plunger_state;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a52fb9554a24c05dcf1e9df7120316f63">  172</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classRaceGUIBase.html#a52fb9554a24c05dcf1e9df7120316f63">m_plunger_move_time</a>;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#ae20251983881e8a9ea3e878d7b1c6780">  175</a></span>    core::vector2di <a class="code hl_variable" href="classRaceGUIBase.html#ae20251983881e8a9ea3e878d7b1c6780">m_plunger_offset</a>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="comment">/* Speed of the plunger. This gets changed depending on state (not moving,</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment">     *  slow moving, fast moving). */</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    core::vector2df m_plunger_speed;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="comment">//int              m_marker_rendered_size;</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="comment">//video::ITexture *m_marker;</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a657ffe048009bc3d703e67c3d0cf19ee">  186</a></span>    video::ITexture *<a class="code hl_variable" href="classRaceGUIBase.html#a657ffe048009bc3d703e67c3d0cf19ee">m_gauge_empty</a>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a2b0f3401ee589628f9ee9cd83cf6a617">  188</a></span>    video::ITexture *<a class="code hl_variable" href="classRaceGUIBase.html#a2b0f3401ee589628f9ee9cd83cf6a617">m_gauge_full</a>;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#acfa54e25e76836b8b9741b57372ebcbf">  190</a></span>    video::ITexture *<a class="code hl_variable" href="classRaceGUIBase.html#acfa54e25e76836b8b9741b57372ebcbf">m_gauge_full_bright</a>;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    video::ITexture *m_gauge_goal;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#ad04316512a3fb64066044367b03d1d64">  195</a></span>    video::ITexture* <a class="code hl_variable" href="classRaceGUIBase.html#ad04316512a3fb64066044367b03d1d64">m_icons_frame</a>;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a6c80fdddc3a16342d9bfb9cfdf4d8c11">  198</a></span>    video::ITexture* <a class="code hl_variable" href="classRaceGUIBase.html#a6c80fdddc3a16342d9bfb9cfdf4d8c11">m_icons_kart_list</a>;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#ae1910f242ece85548591be7549462df5">  201</a></span>    video::ITexture* <a class="code hl_variable" href="classRaceGUIBase.html#ae1910f242ece85548591be7549462df5">m_lap_flag</a>;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <a class="code hl_class" href="classRaceGUIMultitouch.html">RaceGUIMultitouch</a>* m_multitouch_gui;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="comment">//void createMarkerTexture();</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a46fc4409a4d07a5f1d1563dfdf855cfb">createRegularPolygon</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n, <span class="keywordtype">float</span> radius,</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>                              <span class="keyword">const</span> core::vector2df &amp;center,</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>                              <span class="keyword">const</span> video::SColor &amp;color,</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                              video::S3DVertex *v, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <span class="keywordtype">int</span> *index);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a7dd0a29940e36990eb900eeef4a5ae4b">drawAllMessages</a>       (<span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart,</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                                <span class="keyword">const</span> core::recti &amp;viewport,</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>                                <span class="keyword">const</span> core::vector2df &amp;scaling);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#af12bfb996455a4d4212258027a9e8321">drawPowerupIcons</a>      (<span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart,</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                                <span class="keyword">const</span> core::recti &amp;viewport,</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>                                <span class="keyword">const</span> core::vector2df &amp;scaling);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a985196cad6e2f4031b80828c3d0f9c81">drawGlobalMusicDescription</a>();</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a63fd5f29fa2cacf9a462668b5550f546">drawGlobalReadySetGo</a>();</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordtype">void</span> drawGlobalGoal();</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a653f2a023365dbe8996620145600fe99">drawPlungerInFace</a>(<span class="keyword">const</span> <a class="code hl_class" href="classCamera.html">Camera</a> *camera, <span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a1a44b18b761de68554e3cd90b9507be4">  223</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a1a44b18b761de68554e3cd90b9507be4">ignoreUnimportantMessages</a>() { <a class="code hl_variable" href="classRaceGUIBase.html#a593f74e871b2b2ebb8d75391a478a412">m_ignore_unimportant_messages</a> = <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#abe6db975202cfb8565c540d0c591c0f8">  226</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classRaceGUIBase.html#abe6db975202cfb8565c540d0c591c0f8">m_dist_show_overlap</a>;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a2e89eb79274641a8567bbe9d311aa33e">  227</a></span>    <span class="keywordtype">float</span>            <a class="code hl_variable" href="classRaceGUIBase.html#a2e89eb79274641a8567bbe9d311aa33e">m_icons_inertia</a>;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#add9382489c1dd98ccb8752713481c125">  230</a></span>    std::vector&lt; core::vector2d&lt;s32&gt; &gt; <a class="code hl_variable" href="classRaceGUIBase.html#add9382489c1dd98ccb8752713481c125">m_previous_icons_position</a>;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#a10ee354f3144c390390ffd7fdfdd814a">  234</a></span>    std::vector&lt;KartIconDisplayInfo&gt; <a class="code hl_variable" href="classRaceGUIBase.html#a10ee354f3144c390390ffd7fdfdd814a">m_kart_display_infos</a>;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordtype">bool</span> m_enabled;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>                  RaceGUIBase();</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keyword">virtual</span>      <a class="code hl_function" href="classRaceGUIBase.html#a9059a0ca11962a21fd358d4f55424d7b">~RaceGUIBase</a>();</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a68563aed658d3820a1361272596d1baa">renderGlobal</a>(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#aabf5cb648311fc9efbe025f81706b187">init</a>();</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a5057aac150e62911ac9eb61cb012496f">reset</a>();</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> renderPlayerView(<span class="keyword">const</span> <a class="code hl_class" href="classCamera.html">Camera</a> *camera, <span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a86946f27e38e42b086a2b481270e0a57">addMessage</a>(<span class="keyword">const</span> irr::core::stringw &amp;m,</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                            <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart, <span class="keywordtype">float</span> time,</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                            <span class="keyword">const</span> video::SColor &amp;color=</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                                video::SColor(255, 255, 0, 255),</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                            <span class="keywordtype">bool</span> important=<span class="keyword">true</span>,</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>                            <span class="keywordtype">bool</span> big_font=<span class="keyword">false</span>, <span class="keywordtype">bool</span> outline=<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a4a1fb6afd78303056649c619c3f83a92">update</a>(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#af87f06cd03db8c4c7589f41d1bb2fe40">preRenderCallback</a>(<span class="keyword">const</span> <a class="code hl_class" href="classCamera.html">Camera</a> *camera);</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> core::dimension2du</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="classRaceGUIBase.html#aa0b2a7b90a718a8e3cfbe72346bf5e33">  257</a></span>                  <a class="code hl_function" href="classRaceGUIBase.html#aa0b2a7b90a718a8e3cfbe72346bf5e33">getMiniMapSize</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> calculateMinimapSize() {};</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> clearAllMessages() { m_messages.clear(); }</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a81e312b6e7944fba71d3577fa47e963e">drawGlobalPlayerIcons</a>(<span class="keywordtype">int</span> bottom_margin);</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a7fab1bb7380d7bbe20528996b1baeffe">drawPlayerIcon</a>(AbstractKart *kart, <span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> w,</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                        <span class="keywordtype">bool</span> is_local);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> drawEnergyMeter(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keyword">const</span> AbstractKart *kart,</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>                                 <span class="keyword">const</span> core::recti &amp;viewport,</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>                                 <span class="keyword">const</span> core::vector2df &amp;scaling) {};</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a733b537aeb061a8b18ef3c30f9fe4a4d">cleanupMessages</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="keywordtype">void</span> removeReferee();</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    RaceGUIMultitouch* getMultitouchGUI() {<span class="keywordflow">return</span> m_multitouch_gui;}</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keywordtype">void</span> recreateGUI();</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRaceGUIBase.html#a8725e489a2435e617547339e4d2bd22e">initSize</a>();</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>};   <span class="comment">// RaceGUIBase</span></div>
+</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassCamera_html"><div class="ttname"><a href="classCamera.html">Camera</a></div><div class="ttdoc">This is the base class for all cameras.</div><div class="ttdef"><b>Definition</b> camera.hpp:49</div></div>
+<div class="ttc" id="aclassMaterial_html"><div class="ttname"><a href="classMaterial.html">Material</a></div><div class="ttdef"><b>Definition</b> material.hpp:48</div></div>
+<div class="ttc" id="aclassRaceGUIBase_1_1TimedMessage_html_a48c994cbfb497b6538b2a9985ed94b7c"><div class="ttname"><a href="classRaceGUIBase_1_1TimedMessage.html#a48c994cbfb497b6538b2a9985ed94b7c">RaceGUIBase::TimedMessage::m_important</a></div><div class="ttdeci">bool m_important</div><div class="ttdoc">Important msgs are displayed in the middle of the screen.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:90</div></div>
+<div class="ttc" id="aclassRaceGUIBase_1_1TimedMessage_html_a7dff84cf36254815dfa2f2c1cae10be2"><div class="ttname"><a href="classRaceGUIBase_1_1TimedMessage.html#a7dff84cf36254815dfa2f2c1cae10be2">RaceGUIBase::TimedMessage::m_color</a></div><div class="ttdeci">video::SColor m_color</div><div class="ttdoc">Color of message.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:86</div></div>
+<div class="ttc" id="aclassRaceGUIBase_1_1TimedMessage_html_a899717b111b00a3db745036ef0255d6c"><div class="ttname"><a href="classRaceGUIBase_1_1TimedMessage.html#a899717b111b00a3db745036ef0255d6c">RaceGUIBase::TimedMessage::m_message</a></div><div class="ttdeci">irr::core::stringw m_message</div><div class="ttdoc">Message to display.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:82</div></div>
+<div class="ttc" id="aclassRaceGUIBase_1_1TimedMessage_html_a9f072bcd15f2d08e0cb8d94abe24d794"><div class="ttname"><a href="classRaceGUIBase_1_1TimedMessage.html#a9f072bcd15f2d08e0cb8d94abe24d794">RaceGUIBase::TimedMessage::m_remaining_time</a></div><div class="ttdeci">float m_remaining_time</div><div class="ttdoc">Time remaining before removing this message from screen.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:84</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a04c18d8934a3948dd59c30afe7958ce6"><div class="ttname"><a href="classRaceGUIBase.html#a04c18d8934a3948dd59c30afe7958ce6">RaceGUIBase::m_max_font_height</a></div><div class="ttdeci">int m_max_font_height</div><div class="ttdoc">Used to display messages without overlapping</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:127</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a09b60552a1853fa6ef8febae9d9a774c"><div class="ttname"><a href="classRaceGUIBase.html#a09b60552a1853fa6ef8febae9d9a774c">RaceGUIBase::m_plunger_face</a></div><div class="ttdeci">video::ITexture * m_plunger_face</div><div class="ttdoc">Texture for the &#39;plunger in the face&#39; texture.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:133</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a10ee354f3144c390390ffd7fdfdd814a"><div class="ttname"><a href="classRaceGUIBase.html#a10ee354f3144c390390ffd7fdfdd814a">RaceGUIBase::m_kart_display_infos</a></div><div class="ttdeci">std::vector&lt; KartIconDisplayInfo &gt; m_kart_display_infos</div><div class="ttdoc">This vector is passed to world to be filled with the current race data information.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:234</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a12181ece72538c02d1de5a9e0a72e891"><div class="ttname"><a href="classRaceGUIBase.html#a12181ece72538c02d1de5a9e0a72e891">RaceGUIBase::m_music_icon</a></div><div class="ttdeci">video::ITexture * m_music_icon</div><div class="ttdoc">Musical notes icon (for music description and credits)</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:130</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a1a44b18b761de68554e3cd90b9507be4"><div class="ttname"><a href="classRaceGUIBase.html#a1a44b18b761de68554e3cd90b9507be4">RaceGUIBase::ignoreUnimportantMessages</a></div><div class="ttdeci">void ignoreUnimportantMessages()</div><div class="ttdoc">Instructs the base gui to ignore unimportant messages (like item messages).</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:223</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a22545d24f4130802560d77a363c342c4"><div class="ttname"><a href="classRaceGUIBase.html#a22545d24f4130802560d77a363c342c4">RaceGUIBase::m_referee_rotation</a></div><div class="ttdeci">std::vector&lt; Vec3 &gt; m_referee_rotation</div><div class="ttdoc">The actual rotation to use for the referee for each kart.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:143</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a241b44f3313035cd39d46c9bd832eeef"><div class="ttname"><a href="classRaceGUIBase.html#a241b44f3313035cd39d46c9bd832eeef">RaceGUIBase::m_referee_height</a></div><div class="ttdeci">float m_referee_height</div><div class="ttdoc">The height of the referee.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:148</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a2b0f3401ee589628f9ee9cd83cf6a617"><div class="ttname"><a href="classRaceGUIBase.html#a2b0f3401ee589628f9ee9cd83cf6a617">RaceGUIBase::m_gauge_full</a></div><div class="ttdeci">video::ITexture * m_gauge_full</div><div class="ttdoc">Default texture for nitro gauge.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:188</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a2e89eb79274641a8567bbe9d311aa33e"><div class="ttname"><a href="classRaceGUIBase.html#a2e89eb79274641a8567bbe9d311aa33e">RaceGUIBase::m_icons_inertia</a></div><div class="ttdeci">float m_icons_inertia</div><div class="ttdoc">can be zero</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:227</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a39c2a954bf1692bc075b7ea960f975c8"><div class="ttname"><a href="classRaceGUIBase.html#a39c2a954bf1692bc075b7ea960f975c8">RaceGUIBase::m_string_ready</a></div><div class="ttdeci">core::stringw m_string_ready</div><div class="ttdoc">Translated strings &#39;ready&#39;, &#39;set&#39;, &#39;go&#39;.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:136</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a44f1da604eddb172aa02b82e39642a6f"><div class="ttname"><a href="classRaceGUIBase.html#a44f1da604eddb172aa02b82e39642a6f">RaceGUIBase::PlungerState</a></div><div class="ttdeci">PlungerState</div><div class="ttdoc">State of the plunger: From the &#39;init&#39; states the plunger switches between two slow moving states (&#39;sh...</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:167</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a46fc4409a4d07a5f1d1563dfdf855cfb"><div class="ttname"><a href="classRaceGUIBase.html#a46fc4409a4d07a5f1d1563dfdf855cfb">RaceGUIBase::createRegularPolygon</a></div><div class="ttdeci">void createRegularPolygon(unsigned int n, float radius, const core::vector2df &amp;center, const video::SColor &amp;color, video::S3DVertex *v, unsigned short int *index)</div><div class="ttdoc">Creates the 2D vertices for a regular polygon.</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:234</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a4a1fb6afd78303056649c619c3f83a92"><div class="ttname"><a href="classRaceGUIBase.html#a4a1fb6afd78303056649c619c3f83a92">RaceGUIBase::update</a></div><div class="ttdeci">virtual void update(float dt)</div><div class="ttdoc">Update, called once per frame.</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:471</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a5057aac150e62911ac9eb61cb012496f"><div class="ttname"><a href="classRaceGUIBase.html#a5057aac150e62911ac9eb61cb012496f">RaceGUIBase::reset</a></div><div class="ttdeci">virtual void reset()</div><div class="ttdoc">This is called when restarting a race.</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:166</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a52fb9554a24c05dcf1e9df7120316f63"><div class="ttname"><a href="classRaceGUIBase.html#a52fb9554a24c05dcf1e9df7120316f63">RaceGUIBase::m_plunger_move_time</a></div><div class="ttdeci">float m_plunger_move_time</div><div class="ttdoc">How long the plunger should stay in the current state.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:172</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a593f74e871b2b2ebb8d75391a478a412"><div class="ttname"><a href="classRaceGUIBase.html#a593f74e871b2b2ebb8d75391a478a412">RaceGUIBase::m_ignore_unimportant_messages</a></div><div class="ttdeci">bool m_ignore_unimportant_messages</div><div class="ttdoc">True if unimportant messags (like item messages) should not be displayed.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:76</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a5e21b50dcf65be2a14324e7d384112c7"><div class="ttname"><a href="classRaceGUIBase.html#a5e21b50dcf65be2a14324e7d384112c7">RaceGUIBase::m_referee_pos</a></div><div class="ttdeci">std::vector&lt; Vec3 &gt; m_referee_pos</div><div class="ttdoc">The position of the referee for all karts.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:140</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a63fd5f29fa2cacf9a462668b5550f546"><div class="ttname"><a href="classRaceGUIBase.html#a63fd5f29fa2cacf9a462668b5550f546">RaceGUIBase::drawGlobalReadySetGo</a></div><div class="ttdeci">void drawGlobalReadySetGo()</div><div class="ttdoc">Draws the ready-set-go message on the screen.</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:734</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a653f2a023365dbe8996620145600fe99"><div class="ttname"><a href="classRaceGUIBase.html#a653f2a023365dbe8996620145600fe99">RaceGUIBase::drawPlungerInFace</a></div><div class="ttdeci">void drawPlungerInFace(const Camera *camera, float dt)</div><div class="ttdoc">Draws the plunger-in-face if necessary.</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:1263</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a657ffe048009bc3d703e67c3d0cf19ee"><div class="ttname"><a href="classRaceGUIBase.html#a657ffe048009bc3d703e67c3d0cf19ee">RaceGUIBase::m_gauge_empty</a></div><div class="ttdeci">video::ITexture * m_gauge_empty</div><div class="ttdoc">The size of a single marker in pixels, must be a power of 2.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:186</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a68563aed658d3820a1361272596d1baa"><div class="ttname"><a href="classRaceGUIBase.html#a68563aed658d3820a1361272596d1baa">RaceGUIBase::renderGlobal</a></div><div class="ttdeci">virtual void renderGlobal(float dt)</div><div class="ttdoc">Updates lightning related information.</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:461</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a6c80fdddc3a16342d9bfb9cfdf4d8c11"><div class="ttname"><a href="classRaceGUIBase.html#a6c80fdddc3a16342d9bfb9cfdf4d8c11">RaceGUIBase::m_icons_kart_list</a></div><div class="ttdeci">video::ITexture * m_icons_kart_list</div><div class="ttdoc">The frame around player karts in the kart list.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:198</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a733b537aeb061a8b18ef3c30f9fe4a4d"><div class="ttname"><a href="classRaceGUIBase.html#a733b537aeb061a8b18ef3c30f9fe4a4d">RaceGUIBase::cleanupMessages</a></div><div class="ttdeci">void cleanupMessages(const float dt)</div><div class="ttdoc">Removes messages which have been displayed long enough.</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:358</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a7dd0a29940e36990eb900eeef4a5ae4b"><div class="ttname"><a href="classRaceGUIBase.html#a7dd0a29940e36990eb900eeef4a5ae4b">RaceGUIBase::drawAllMessages</a></div><div class="ttdeci">void drawAllMessages(const AbstractKart *kart, const core::recti &amp;viewport, const core::vector2df &amp;scaling)</div><div class="ttdoc">Displays all messages in the message queue</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:256</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a7fab1bb7380d7bbe20528996b1baeffe"><div class="ttname"><a href="classRaceGUIBase.html#a7fab1bb7380d7bbe20528996b1baeffe">RaceGUIBase::drawPlayerIcon</a></div><div class="ttdeci">void drawPlayerIcon(AbstractKart *kart, int x, int y, int w, bool is_local)</div><div class="ttdoc">Draw one player icon Takes care of icon looking different due to plumber, squashing,...</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:1033</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a81e312b6e7944fba71d3577fa47e963e"><div class="ttname"><a href="classRaceGUIBase.html#a81e312b6e7944fba71d3577fa47e963e">RaceGUIBase::drawGlobalPlayerIcons</a></div><div class="ttdeci">void drawGlobalPlayerIcons(int bottom_margin)</div><div class="ttdoc">Draw players icons and, depending on the current mode, their time or their score (battle lives,...</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:785</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a86946f27e38e42b086a2b481270e0a57"><div class="ttname"><a href="classRaceGUIBase.html#a86946f27e38e42b086a2b481270e0a57">RaceGUIBase::addMessage</a></div><div class="ttdeci">virtual void addMessage(const irr::core::stringw &amp;m, const AbstractKart *kart, float time, const video::SColor &amp;color=video::SColor(255, 255, 0, 255), bool important=true, bool big_font=false, bool outline=false)</div><div class="ttdoc">Adds a message to the message queue.</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:597</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a8725e489a2435e617547339e4d2bd22e"><div class="ttname"><a href="classRaceGUIBase.html#a8725e489a2435e617547339e4d2bd22e">RaceGUIBase::initSize</a></div><div class="ttdeci">virtual void initSize()</div><div class="ttdoc">Called when loading the race gui or screen resized.</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:135</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a9059a0ca11962a21fd358d4f55424d7b"><div class="ttname"><a href="classRaceGUIBase.html#a9059a0ca11962a21fd358d4f55424d7b">RaceGUIBase::~RaceGUIBase</a></div><div class="ttdeci">virtual ~RaceGUIBase()</div><div class="ttdoc">The destructor removes the marker texture and the referee scene node.</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:204</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a92565d62f06ef8be5f2a4077c1a4f60b"><div class="ttname"><a href="classRaceGUIBase.html#a92565d62f06ef8be5f2a4077c1a4f60b">RaceGUIBase::m_referee</a></div><div class="ttdeci">Referee * m_referee</div><div class="ttdoc">The referee scene node.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:151</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_a985196cad6e2f4031b80828c3d0f9c81"><div class="ttname"><a href="classRaceGUIBase.html#a985196cad6e2f4031b80828c3d0f9c81">RaceGUIBase::drawGlobalMusicDescription</a></div><div class="ttdeci">void drawGlobalMusicDescription()</div><div class="ttdoc">Displays the description given for the music currently being played.</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:609</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_aa0b2a7b90a718a8e3cfbe72346bf5e33"><div class="ttname"><a href="classRaceGUIBase.html#aa0b2a7b90a718a8e3cfbe72346bf5e33">RaceGUIBase::getMiniMapSize</a></div><div class="ttdeci">virtual const core::dimension2du getMiniMapSize() const =0</div><div class="ttdoc">Returns the size of the texture on which to render the minimap to.</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_aabf5cb648311fc9efbe025f81706b187"><div class="ttname"><a href="classRaceGUIBase.html#aabf5cb648311fc9efbe025f81706b187">RaceGUIBase::init</a></div><div class="ttdeci">virtual void init()</div><div class="ttdoc">This is a second initialisation call (after the constructor) for the race gui.</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:151</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_abe6db975202cfb8565c540d0c591c0f8"><div class="ttname"><a href="classRaceGUIBase.html#abe6db975202cfb8565c540d0c591c0f8">RaceGUIBase::m_dist_show_overlap</a></div><div class="ttdeci">float m_dist_show_overlap</div><div class="ttdoc">Distance on track to begin showing overlap in drawGlobalPlayerIcons</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:226</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_acfa54e25e76836b8b9741b57372ebcbf"><div class="ttname"><a href="classRaceGUIBase.html#acfa54e25e76836b8b9741b57372ebcbf">RaceGUIBase::m_gauge_full_bright</a></div><div class="ttdeci">video::ITexture * m_gauge_full_bright</div><div class="ttdoc">Highlight gauge, used when a kart uses nitro.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:190</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_ad04316512a3fb64066044367b03d1d64"><div class="ttname"><a href="classRaceGUIBase.html#ad04316512a3fb64066044367b03d1d64">RaceGUIBase::m_icons_frame</a></div><div class="ttdeci">video::ITexture * m_icons_frame</div><div class="ttdoc">The frame around player karts in the mini map.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:195</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_add9382489c1dd98ccb8752713481c125"><div class="ttname"><a href="classRaceGUIBase.html#add9382489c1dd98ccb8752713481c125">RaceGUIBase::m_previous_icons_position</a></div><div class="ttdeci">std::vector&lt; core::vector2d&lt; s32 &gt; &gt; m_previous_icons_position</div><div class="ttdoc">can be zero</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:230</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_ae1910f242ece85548591be7549462df5"><div class="ttname"><a href="classRaceGUIBase.html#ae1910f242ece85548591be7549462df5">RaceGUIBase::m_lap_flag</a></div><div class="ttdeci">video::ITexture * m_lap_flag</div><div class="ttdoc">Texture for the lap icon</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:201</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_ae20251983881e8a9ea3e878d7b1c6780"><div class="ttname"><a href="classRaceGUIBase.html#ae20251983881e8a9ea3e878d7b1c6780">RaceGUIBase::m_plunger_offset</a></div><div class="ttdeci">core::vector2di m_plunger_offset</div><div class="ttdoc">Offset of the plunger.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:175</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_af12bfb996455a4d4212258027a9e8321"><div class="ttname"><a href="classRaceGUIBase.html#af12bfb996455a4d4212258027a9e8321">RaceGUIBase::drawPowerupIcons</a></div><div class="ttdeci">void drawPowerupIcons(const AbstractKart *kart, const core::recti &amp;viewport, const core::vector2df &amp;scaling)</div><div class="ttdoc">Draws the powerup icons on the screen (called once for each player).</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:380</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html_af87f06cd03db8c4c7589f41d1bb2fe40"><div class="ttname"><a href="classRaceGUIBase.html#af87f06cd03db8c4c7589f41d1bb2fe40">RaceGUIBase::preRenderCallback</a></div><div class="ttdeci">virtual void preRenderCallback(const Camera *camera)</div><div class="ttdoc">This function is called just before rendering the view for each kart.</div><div class="ttdef"><b>Definition</b> race_gui_base.cpp:565</div></div>
+<div class="ttc" id="aclassRaceGUIMultitouch_html"><div class="ttname"><a href="classRaceGUIMultitouch.html">RaceGUIMultitouch</a></div><div class="ttdef"><b>Definition</b> race_gui_multitouch.hpp:39</div></div>
+<div class="ttc" id="aclassReferee_html"><div class="ttname"><a href="classReferee.html">Referee</a></div><div class="ttdoc">This implements the referee, a character that is displayed at the start of the race holding a &#39;ready-...</div><div class="ttdef"><b>Definition</b> referee.hpp:53</div></div>
+<div class="ttc" id="astructRaceGUIBase_1_1KartIconDisplayInfo_html"><div class="ttname"><a href="structRaceGUIBase_1_1KartIconDisplayInfo.html">RaceGUIBase::KartIconDisplayInfo</a></div><div class="ttdoc">Used to display the list of karts and their times or whatever other info is relevant to the current m...</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:57</div></div>
+<div class="ttc" id="astructRaceGUIBase_1_1KartIconDisplayInfo_html_a6373b27a21fe15c2883e854cf31243d8"><div class="ttname"><a href="structRaceGUIBase_1_1KartIconDisplayInfo.html#a6373b27a21fe15c2883e854cf31243d8">RaceGUIBase::KartIconDisplayInfo::special_title</a></div><div class="ttdeci">core::stringw special_title</div><div class="ttdoc">If this kart has a special title, e.g.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:65</div></div>
+<div class="ttc" id="astructRaceGUIBase_1_1KartIconDisplayInfo_html_a67e6fd957380508cbbc7706d6c0e2585"><div class="ttname"><a href="structRaceGUIBase_1_1KartIconDisplayInfo.html#a67e6fd957380508cbbc7706d6c0e2585">RaceGUIBase::KartIconDisplayInfo::m_color</a></div><div class="ttdeci">video::SColor m_color</div><div class="ttdoc">Text color, if any text.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:62</div></div>
+<div class="ttc" id="astructRaceGUIBase_1_1KartIconDisplayInfo_html_a6ee97e7e1b48713668dce6e17f28fd80"><div class="ttname"><a href="structRaceGUIBase_1_1KartIconDisplayInfo.html#a6ee97e7e1b48713668dce6e17f28fd80">RaceGUIBase::KartIconDisplayInfo::m_text</a></div><div class="ttdeci">core::stringw m_text</div><div class="ttdoc">Text to display next to icon, if any.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:59</div></div>
+<div class="ttc" id="astructRaceGUIBase_1_1KartIconDisplayInfo_html_af32c49829e97d6d50abc14b499806051"><div class="ttname"><a href="structRaceGUIBase_1_1KartIconDisplayInfo.html#af32c49829e97d6d50abc14b499806051">RaceGUIBase::KartIconDisplayInfo::lap</a></div><div class="ttdeci">int lap</div><div class="ttdoc">Current lap of this kart, or -1 if irrelevant.</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:68</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

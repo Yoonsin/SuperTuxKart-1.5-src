@@ -1,0 +1,522 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: config/player_profile.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>config</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">player_profile.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2010-2015 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_PLAYER_PROFILE_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_PLAYER_PROFILE_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;challenges/story_mode_status.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;config/favorite_status.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="remote__kart__info_8hpp.html">network/remote_kart_info.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">utils/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;irrString.h&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">class </span><a class="code hl_class" href="classAchievementsStatus.html">AchievementsStatus</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">namespace </span>Online</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">class </span>CurrentUser;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">class </span><a class="code hl_class" href="classOnline_1_1HTTPRequest.html">HTTPRequest</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">class </span><a class="code hl_class" href="classOnline_1_1OnlineProfile.html">OnlineProfile</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">class </span><a class="code hl_class" href="classOnline_1_1XMLRequest.html">XMLRequest</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">class </span><a class="code hl_class" href="classUTFWriter.html">UTFWriter</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="};">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classPlayerProfile.html">   54</a></span><span class="keyword">class </span><a class="code hl_function" href="classPlayerProfile.html#afad2947e00914bfc8a01056d641a4c9d">PlayerProfile</a> : <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>{</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00058" data-start="{" data-end="};">
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#aa56094aa8ccfa69f01a60a32e1f5cdf6">   58</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classPlayerProfile.html#aa56094aa8ccfa69f01a60a32e1f5cdf6">OnlineState</a></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        OS_SIGNED_OUT = 0,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        OS_SIGNED_IN,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        OS_GUEST,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        OS_SIGNING_IN,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        OS_SIGNING_OUT</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    };</div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    LEAK_CHECK()</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_magic_number;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a9f7fb177f20530b9142ce31af15156c0">   77</a></span>    core::stringw <a class="code hl_variable" href="classPlayerProfile.html#a9f7fb177f20530b9142ce31af15156c0">m_local_name</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#ab8828b9922e28015fb7b292a7f229344">   80</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classPlayerProfile.html#ab8828b9922e28015fb7b292a7f229344">m_is_guest_account</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a44ed0cc6520cee65105e1185db9722b2">   83</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classPlayerProfile.html#a44ed0cc6520cee65105e1185db9722b2">m_use_frequency</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#ab5e620f44020c59467da683e27552be3">   86</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classPlayerProfile.html#ab5e620f44020c59467da683e27552be3">m_unique_id</a>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a59f6d1d69b25a199fd40033c5876763a">   89</a></span>    std::string <a class="code hl_variable" href="classPlayerProfile.html#a59f6d1d69b25a199fd40033c5876763a">m_icon_filename</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a102a6f9ae8a068ec49c9ceb610ba9657">   92</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classPlayerProfile.html#a102a6f9ae8a068ec49c9ceb610ba9657">m_saved_session</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#ae9245b6711ba71fb1b05823e29177348">   95</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classPlayerProfile.html#ae9245b6711ba71fb1b05823e29177348">m_saved_user_id</a>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a6ac7ca0763160d4df37677d517a9e952">   98</a></span>    std::string <a class="code hl_variable" href="classPlayerProfile.html#a6ac7ca0763160d4df37677d517a9e952">m_saved_token</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#afdcdc6f6a7f961d5f70187aa25e5b89d">  101</a></span>    core::stringw <a class="code hl_variable" href="classPlayerProfile.html#afdcdc6f6a7f961d5f70187aa25e5b89d">m_last_online_name</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a9617e97c7346bc84f0fb45712b230816">  104</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classPlayerProfile.html#a9617e97c7346bc84f0fb45712b230816">m_last_was_online</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#afe4f5a57e94f601d2852f90a15cecb35">  107</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classPlayerProfile.html#afe4f5a57e94f601d2852f90a15cecb35">m_remember_password</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#ac52bca4f1bebc0bb71b00097e48f4040">  110</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classPlayerProfile.html#ac52bca4f1bebc0bb71b00097e48f4040">m_default_kart_color</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">  113</a></span>    <a class="code hl_class" href="classStoryModeStatus.html">StoryModeStatus</a> *<a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a2c6abcc23aad17025613a08c3a4208a4">  116</a></span>    <a class="code hl_class" href="classAchievementsStatus.html">AchievementsStatus</a> *<a class="code hl_variable" href="classPlayerProfile.html#a2c6abcc23aad17025613a08c3a4208a4">m_achievements_status</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#ada2c6277ec2d1aa9deb19ff53e46d6d3">  119</a></span>    <a class="code hl_class" href="classFavoriteStatus.html">FavoriteStatus</a> *<a class="code hl_variable" href="classPlayerProfile.html#ada2c6277ec2d1aa9deb19ff53e46d6d3">m_favorite_track_status</a>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a9a843f8c75630c89c5d44be0a187eecc">  122</a></span>    <a class="code hl_class" href="classFavoriteStatus.html">FavoriteStatus</a> *<a class="code hl_variable" href="classPlayerProfile.html#a9a843f8c75630c89c5d44be0a187eecc">m_favorite_kart_status</a>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <a class="code hl_function" href="classPlayerProfile.html#afad2947e00914bfc8a01056d641a4c9d">PlayerProfile</a>(<span class="keyword">const</span> core::stringw &amp;name, <span class="keywordtype">bool</span> is_guest = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <a class="code hl_function" href="classPlayerProfile.html#afad2947e00914bfc8a01056d641a4c9d">PlayerProfile</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> *node);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classPlayerProfile.html#afad2947e00914bfc8a01056d641a4c9d">~PlayerProfile</a>();</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#adb82c35ca380235e8bde990c990b8267">save</a>(<a class="code hl_class" href="classUTFWriter.html">UTFWriter</a> &amp;out);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#a93305f92ba820f5178403f4b44b12010">loadRemainingData</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> *node);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#ae32cf0f9c0143189d9b11d77bf0b09ba">initRemainingData</a>();</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#a144e7b12bfa41c22ba48325c40a91bc9">incrementUseFrequency</a>();</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordtype">int</span> getUseFrequency()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a44ed0cc6520cee65105e1185db9722b2">m_use_frequency</a>; }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classPlayerProfile.html#a9955d3169ffede3ea39a30ff8dd647cd">operator&lt;</a>(<span class="keyword">const</span> <a class="code hl_class" href="classPlayerProfile.html">PlayerProfile</a> &amp;other);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#aa546d8c00c75c1033815f07a67d0da4f">raceFinished</a>();</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#a1690414acdb6446ebd8f84b65de7794b">saveSession</a>(<span class="keywordtype">int</span> user_id, <span class="keyword">const</span> std::string &amp;token);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#a001531342943b50face59e569deff17c">clearSession</a>(<span class="keywordtype">bool</span> <a class="code hl_function" href="classPlayerProfile.html#adb82c35ca380235e8bde990c990b8267">save</a>=<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#a2373424b84471037dc8f29479f41e5fe">addIcon</a>();</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#aee6d278065e0524b8c215bc1ec583737">  141</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#aee6d278065e0524b8c215bc1ec583737">setUserDetails</a>(std::shared_ptr&lt;Online::HTTPRequest&gt; request,</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>                                <span class="keyword">const</span> std::string &amp;action,</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>                                <span class="keyword">const</span> std::string &amp;url_path = <span class="stringliteral">&quot;&quot;</span>) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keyword">virtual</span> uint32_t getOnlineId() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keyword">virtual</span> <a class="code hl_enumeration" href="classPlayerProfile.html#aa56094aa8ccfa69f01a60a32e1f5cdf6">PlayerProfile::OnlineState</a> getOnlineState() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classOnline_1_1OnlineProfile.html">Online::OnlineProfile</a>* getProfile() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> requestPoll() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> requestSavedSession() = 0;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> requestSignIn(<span class="keyword">const</span> irr::core::stringw &amp;username,</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                               <span class="keyword">const</span> irr::core::stringw &amp;password) = 0;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> signIn(<span class="keywordtype">bool</span> success, <span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> * input) = 0;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> signOut(<span class="keywordtype">bool</span> success, <span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> * input,</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                         <span class="keyword">const</span> irr::core::stringw &amp;info) = 0;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> requestSignOut() = 0;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> isLoggedIn()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>;  }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keyword">const</span> std::string <a class="code hl_function" href="classPlayerProfile.html#a62e2b228228c098afafc60782fd96a3b">getIconFilename</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00159" data-start="{" data-end="}">
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a711e4217b26e6e4872829aa7420b6266">  159</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#a711e4217b26e6e4872829aa7420b6266">setName</a>(<span class="keyword">const</span> core::stringw&amp; name)</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="preprocessor">        #ifdef DEBUG</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        assert(m_magic_number == 0xABCD1234);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">        #endif</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <a class="code hl_variable" href="classPlayerProfile.html#a9f7fb177f20530b9142ce31af15156c0">m_local_name</a> = name;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    }   <span class="comment">// setName</span></div>
+</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00169" data-start="{" data-end="}">
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a7f54ac1fc3dbd5a8a3fce9367fa6d702">  169</a></span>    <span class="keyword">const</span> core::stringw&amp; <a class="code hl_function" href="classPlayerProfile.html#a7f54ac1fc3dbd5a8a3fce9367fa6d702">getName</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="preprocessor">        #ifdef DEBUG</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        assert(m_magic_number == 0xABCD1234);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="preprocessor">        #endif</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a9f7fb177f20530b9142ce31af15156c0">m_local_name</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    }   <span class="comment">// getName</span></div>
+</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00179" data-start="{" data-end="}">
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#aae92725711815d22641c83fd6ce2f78f">  179</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classPlayerProfile.html#aae92725711815d22641c83fd6ce2f78f">isGuestAccount</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">        #ifdef DEBUG</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        assert(m_magic_number == 0xABCD1234);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">        #endif</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#ab8828b9922e28015fb7b292a7f229344">m_is_guest_account</a>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    }   <span class="comment">// isGuestAccount</span></div>
+</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00188" data-start="{" data-end="}">
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a0619dc16851da2a91ddbf0cae478027c">  188</a></span>    <span class="keyword">const</span> core::stringw&amp; <a class="code hl_function" href="classPlayerProfile.html#a0619dc16851da2a91ddbf0cae478027c">getLastOnlineName</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#afdcdc6f6a7f961d5f70187aa25e5b89d">m_last_online_name</a>;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    }   <span class="comment">// getLastOnlineName</span></div>
+</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00194" data-start="{" data-end="}">
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a583a88808d2ca76e56c4f24567bba48a">  194</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#a583a88808d2ca76e56c4f24567bba48a">setLastOnlineName</a>(<span class="keyword">const</span> core::stringw &amp;name)</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <a class="code hl_variable" href="classPlayerProfile.html#afdcdc6f6a7f961d5f70187aa25e5b89d">m_last_online_name</a> = name;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    }   <span class="comment">// setLastOnlineName</span></div>
+</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a090f24cbfbc9ea6e3852f2180c9b5260">  200</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classPlayerProfile.html#a090f24cbfbc9ea6e3852f2180c9b5260">getUniqueID</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#ab5e620f44020c59467da683e27552be3">m_unique_id</a>; }</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00203" data-start="{" data-end="}">
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#aaa07f35ab8d3ba6d745a38ef2c6570d1">  203</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classPlayerProfile.html#aaa07f35ab8d3ba6d745a38ef2c6570d1">isLocked</a>(<span class="keyword">const</span> std::string &amp;feature)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;isLocked(feature);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    }   <span class="comment">// isLocked</span></div>
+</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#ac7c53ce887e480907417fada7e558312">  209</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#ac7c53ce887e480907417fada7e558312">computeActive</a>() { <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;computeActive(); }</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00212" data-start="{" data-end="}">
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#ac05edcb0d9ef70084dc33d7635421054">  212</a></span>    std::vector&lt;const ChallengeData*&gt; <a class="code hl_function" href="classPlayerProfile.html#ac05edcb0d9ef70084dc33d7635421054">getRecentlyCompletedChallenges</a>()</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;getRecentlyCompletedChallenges();</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    }   <span class="comment">// getRecently Completed Challenges</span></div>
+</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00218" data-start="{" data-end="}">
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a30b6e460708afdb4d69b3c6fe56466db">  218</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#a30b6e460708afdb4d69b3c6fe56466db">setCurrentChallenge</a>(<span class="keyword">const</span> std::string &amp;name)</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    {</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;setCurrentChallenge(name);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    }   <span class="comment">// setCurrentChallenge</span></div>
+</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a0ff000e00a9e1adb6691a4bcac9aa450">  225</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#a0ff000e00a9e1adb6691a4bcac9aa450">grandPrixFinished</a>() { <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;grandPrixFinished(); }</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> getNumCompletedChallenges()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;<a class="code hl_function" href="classStoryModeStatus.html#a036edeb37957bdea00b5291a6e2856b2">getNumCompletedChallenges</a>(); }</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> getPoints()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;getPoints(); }</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> getPointsBefore()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;getPointsBefore(); }</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> getNextUnlockPoints()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;getNextUnlockPoints(); }</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordtype">void</span> setFirstTime(<span class="keywordtype">bool</span> b) { <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;setFirstTime(b); }</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordtype">bool</span> isFirstTime()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;isFirstTime(); }</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keywordtype">void</span> setFinished() { <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;setFinished(); }</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keywordtype">bool</span> isFinished()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;isFinished(); }</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="keywordtype">void</span> setSpeedrunFinished() { <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;setSpeedrunFinished(); }</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keywordtype">bool</span> isSpeedrunFinished() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;isSpeedrunFinished(); }</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordtype">void</span> setStoryModeTimer(<span class="keywordtype">int</span> ms)  {  <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;setStoryModeTimer(ms); }</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="keywordtype">int</span> getStoryModeTimer()  {  <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;getStoryModeTimer(); }</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keywordtype">void</span> setSpeedrunTimer(<span class="keywordtype">int</span> ms)  {  <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;setSpeedrunTimer(ms); }</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keywordtype">int</span> getSpeedrunTimer()  {  <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;getSpeedrunTimer(); }</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keywordtype">void</span> clearUnlocked()</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    {</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>        <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;clearUnlocked();</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    }</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00261" data-start="{" data-end="}">
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a279359f6b3455d9a3d5670606e917c61">  261</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classChallengeStatus.html">ChallengeStatus</a>* <a class="code hl_function" href="classPlayerProfile.html#a279359f6b3455d9a3d5670606e917c61">getCurrentChallengeStatus</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;getCurrentChallengeStatus();</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    }   <span class="comment">// getCurrentChallengeStatus</span></div>
+</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keyword">const</span> <a class="code hl_class" href="classChallengeStatus.html">ChallengeStatus</a>* getChallengeStatus(<span class="keyword">const</span> std::string &amp;<span class="keywordtype">id</span>)</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    {</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;<a class="code hl_function" href="classStoryModeStatus.html#ae6134c413c976db95c3ffe3ad14f259a">getChallengeStatus</a>(<span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    }   <span class="comment">// getChallengeStatus</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> getNumEasyTrophies()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;getNumEasyTrophies();</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    }   <span class="comment">// getNumEasyTrophies</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> getNumMediumTrophies()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;getNumMediumTrophies();</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    }   <span class="comment">// getNumEasyTrophies</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="comment">// -----------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> getNumHardTrophies()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;getNumHardTrophies();</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    }   <span class="comment">// getNumHardTrophies</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> getNumBestTrophies()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>-&gt;getNumBestTrophies();</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    }   <span class="comment">// getNumBestTrophies</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    AchievementsStatus* getAchievementsStatus()</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    {</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a2c6abcc23aad17025613a08c3a4208a4">m_achievements_status</a>;</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    }   <span class="comment">// getAchievementsStatus</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a101fc04055fbcb0780ed849ed3f7d040">  296</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classPlayerProfile.html#a101fc04055fbcb0780ed849ed3f7d040">hasSavedSession</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a102a6f9ae8a068ec49c9ceb610ba9657">m_saved_session</a>;  }</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <a class="code hl_class" href="classStoryModeStatus.html">StoryModeStatus</a>* getStoryModeStatus() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">m_story_mode_status</a>; }</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    FavoriteStatus* getFavoriteTrackStatus() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#ada2c6277ec2d1aa9deb19ff53e46d6d3">m_favorite_track_status</a>; }</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    FavoriteStatus* getFavoriteKartStatus() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a9a843f8c75630c89c5d44be0a187eecc">m_favorite_kart_status</a>; }</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <span class="keywordtype">bool</span> isFavoriteTrack(std::string ident)</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    {</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#ada2c6277ec2d1aa9deb19ff53e46d6d3">m_favorite_track_status</a>-&gt;isFavorite(ident);</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    }</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <span class="keywordtype">void</span> addFavoriteTrack(std::string ident, std::string group = </div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        FavoriteStatus::DEFAULT_FAVORITE_GROUP_NAME)</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    {</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>        <a class="code hl_variable" href="classPlayerProfile.html#ada2c6277ec2d1aa9deb19ff53e46d6d3">m_favorite_track_status</a>-&gt;addFavorite(ident, group);</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    }</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="keywordtype">void</span> removeFavoriteTrack(std::string ident, std::string group = </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>        FavoriteStatus::DEFAULT_FAVORITE_GROUP_NAME)</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    {</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        <a class="code hl_variable" href="classPlayerProfile.html#ada2c6277ec2d1aa9deb19ff53e46d6d3">m_favorite_track_status</a>-&gt;removeFavorite(ident, group);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    }</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="keywordtype">bool</span> isFavoriteKart(std::string ident)</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    {</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a9a843f8c75630c89c5d44be0a187eecc">m_favorite_kart_status</a>-&gt;isFavorite(ident);</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    }</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="keywordtype">void</span> addFavoriteKart(std::string ident, std::string group = </div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>        FavoriteStatus::DEFAULT_FAVORITE_GROUP_NAME)</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    {</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        <a class="code hl_variable" href="classPlayerProfile.html#a9a843f8c75630c89c5d44be0a187eecc">m_favorite_kart_status</a>-&gt;addFavorite(ident, group);</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    }</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keywordtype">void</span> removeFavoriteKart(std::string ident, std::string group = </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        FavoriteStatus::DEFAULT_FAVORITE_GROUP_NAME)</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    {</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>        <a class="code hl_variable" href="classPlayerProfile.html#a9a843f8c75630c89c5d44be0a187eecc">m_favorite_kart_status</a>-&gt;removeFavorite(ident, group);</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    }</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00335" data-start="{" data-end="}">
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a2cf47e36a2babe96969b39ef615727ea">  335</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classPlayerProfile.html#a2cf47e36a2babe96969b39ef615727ea">getSavedUserId</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>        assert(<a class="code hl_variable" href="classPlayerProfile.html#a102a6f9ae8a068ec49c9ceb610ba9657">m_saved_session</a>);</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#ae9245b6711ba71fb1b05823e29177348">m_saved_user_id</a>;</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    }   <span class="comment">// getSavedUserId</span></div>
+</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00342" data-start="{" data-end="}">
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a8ff65f302c6bd3307cd1469bb76da910">  342</a></span>    <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classPlayerProfile.html#a8ff65f302c6bd3307cd1469bb76da910">getSavedToken</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>        assert(<a class="code hl_variable" href="classPlayerProfile.html#a102a6f9ae8a068ec49c9ceb610ba9657">m_saved_session</a>);</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a6ac7ca0763160d4df37677d517a9e952">m_saved_token</a>;</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    }   <span class="comment">// getSavedToken</span></div>
+</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#aeb96d19ad7d0aa087be47851324bc533">  350</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classPlayerProfile.html#aeb96d19ad7d0aa087be47851324bc533">wasOnlineLastTime</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#a9617e97c7346bc84f0fb45712b230816">m_last_was_online</a>; }</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#ac5261c0e12801f773731ff63378ec908">  353</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#ac5261c0e12801f773731ff63378ec908">setWasOnlineLastTime</a>(<span class="keywordtype">bool</span> b) { <a class="code hl_variable" href="classPlayerProfile.html#a9617e97c7346bc84f0fb45712b230816">m_last_was_online</a> = b; }</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#ad4095703090c8e9ff8c5ce7b93657f98">  357</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classPlayerProfile.html#ad4095703090c8e9ff8c5ce7b93657f98">rememberPassword</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#afe4f5a57e94f601d2852f90a15cecb35">m_remember_password</a>; }</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno"><a class="line" href="classPlayerProfile.html#a7334fd06cbc231ff5a24de6c0eca4b6f">  360</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerProfile.html#a7334fd06cbc231ff5a24de6c0eca4b6f">setRememberPassword</a>(<span class="keywordtype">bool</span> b) { <a class="code hl_variable" href="classPlayerProfile.html#afe4f5a57e94f601d2852f90a15cecb35">m_remember_password</a> = b; }</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    <span class="keywordtype">void</span> setDefaultKartColor(<span class="keywordtype">float</span> c) { <a class="code hl_variable" href="classPlayerProfile.html#ac52bca4f1bebc0bb71b00097e48f4040">m_default_kart_color</a> = c; }</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="comment">// ----------------------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="keywordtype">float</span> getDefaultKartColor()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classPlayerProfile.html#ac52bca4f1bebc0bb71b00097e48f4040">m_default_kart_color</a>; }</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>};   <span class="comment">// class PlayerProfile</span></div>
+</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="comment">/*EOF*/</span></div>
+<div class="ttc" id="aclassAchievementsStatus_html"><div class="ttname"><a href="classAchievementsStatus.html">AchievementsStatus</a></div><div class="ttdoc">This class keeps tracks of all achievements of one player.</div><div class="ttdef"><b>Definition</b> achievements_status.hpp:43</div></div>
+<div class="ttc" id="aclassChallengeStatus_html"><div class="ttname"><a href="classChallengeStatus.html">ChallengeStatus</a></div><div class="ttdoc">The state of a challenge for one player.</div><div class="ttdef"><b>Definition</b> challenge_status.hpp:53</div></div>
+<div class="ttc" id="aclassFavoriteStatus_html"><div class="ttname"><a href="classFavoriteStatus.html">FavoriteStatus</a></div><div class="ttdoc">Class for storing the current favorites/custom groups of karts and tracks.</div><div class="ttdef"><b>Definition</b> favorite_status.hpp:43</div></div>
+<div class="ttc" id="aclassOnline_1_1HTTPRequest_html"><div class="ttname"><a href="classOnline_1_1HTTPRequest.html">Online::HTTPRequest</a></div><div class="ttdoc">A http request.</div><div class="ttdef"><b>Definition</b> http_request.hpp:46</div></div>
+<div class="ttc" id="aclassOnline_1_1OnlineProfile_html"><div class="ttname"><a href="classOnline_1_1OnlineProfile.html">Online::OnlineProfile</a></div><div class="ttdoc">Class that represents an online profile.</div><div class="ttdef"><b>Definition</b> online_profile.hpp:42</div></div>
+<div class="ttc" id="aclassOnline_1_1XMLRequest_html"><div class="ttname"><a href="classOnline_1_1XMLRequest.html">Online::XMLRequest</a></div><div class="ttdoc">A http request expecting a xml return value.</div><div class="ttdef"><b>Definition</b> xml_request.hpp:36</div></div>
+<div class="ttc" id="aclassPlayerProfile_html"><div class="ttname"><a href="classPlayerProfile.html">PlayerProfile</a></div><div class="ttdoc">Class for managing player profiles (name, usage frequency, etc.).</div><div class="ttdef"><b>Definition</b> player_profile.hpp:55</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a001531342943b50face59e569deff17c"><div class="ttname"><a href="classPlayerProfile.html#a001531342943b50face59e569deff17c">PlayerProfile::clearSession</a></div><div class="ttdeci">void clearSession(bool save=true)</div><div class="ttdoc">Unsets any saved session data.</div><div class="ttdef"><b>Definition</b> player_profile.cpp:290</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a0619dc16851da2a91ddbf0cae478027c"><div class="ttname"><a href="classPlayerProfile.html#a0619dc16851da2a91ddbf0cae478027c">PlayerProfile::getLastOnlineName</a></div><div class="ttdeci">const core::stringw &amp; getLastOnlineName() const</div><div class="ttdoc">Returns the last used online name.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:188</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a090f24cbfbc9ea6e3852f2180c9b5260"><div class="ttname"><a href="classPlayerProfile.html#a090f24cbfbc9ea6e3852f2180c9b5260">PlayerProfile::getUniqueID</a></div><div class="ttdeci">unsigned int getUniqueID() const</div><div class="ttdoc">Returns the unique id of this player.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:200</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a0ff000e00a9e1adb6691a4bcac9aa450"><div class="ttname"><a href="classPlayerProfile.html#a0ff000e00a9e1adb6691a4bcac9aa450">PlayerProfile::grandPrixFinished</a></div><div class="ttdeci">void grandPrixFinished()</div><div class="ttdoc">Callback when a GP is finished (to test if a challenge was fulfilled).</div><div class="ttdef"><b>Definition</b> player_profile.hpp:225</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a101fc04055fbcb0780ed849ed3f7d040"><div class="ttname"><a href="classPlayerProfile.html#a101fc04055fbcb0780ed849ed3f7d040">PlayerProfile::hasSavedSession</a></div><div class="ttdeci">bool hasSavedSession() const</div><div class="ttdoc">Returns true if a session was saved for this player.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:296</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a102a6f9ae8a068ec49c9ceb610ba9657"><div class="ttname"><a href="classPlayerProfile.html#a102a6f9ae8a068ec49c9ceb610ba9657">PlayerProfile::m_saved_session</a></div><div class="ttdeci">bool m_saved_session</div><div class="ttdoc">True if this user has a saved session.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:92</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a144e7b12bfa41c22ba48325c40a91bc9"><div class="ttname"><a href="classPlayerProfile.html#a144e7b12bfa41c22ba48325c40a91bc9">PlayerProfile::incrementUseFrequency</a></div><div class="ttdeci">void incrementUseFrequency()</div><div class="ttdoc">Increments how often that account was used.</div><div class="ttdef"><b>Definition</b> player_profile.cpp:302</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a1690414acdb6446ebd8f84b65de7794b"><div class="ttname"><a href="classPlayerProfile.html#a1690414acdb6446ebd8f84b65de7794b">PlayerProfile::saveSession</a></div><div class="ttdeci">void saveSession(int user_id, const std::string &amp;token)</div><div class="ttdoc">Saves the online data, so that it will automatically re-connect next time this profile is loaded.</div><div class="ttdef"><b>Definition</b> player_profile.cpp:280</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a2373424b84471037dc8f29479f41e5fe"><div class="ttname"><a href="classPlayerProfile.html#a2373424b84471037dc8f29479f41e5fe">PlayerProfile::addIcon</a></div><div class="ttdeci">void addIcon()</div><div class="ttdoc">Creates an icon for a player if non exist so far.</div><div class="ttdef"><b>Definition</b> player_profile.cpp:185</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a279359f6b3455d9a3d5670606e917c61"><div class="ttname"><a href="classPlayerProfile.html#a279359f6b3455d9a3d5670606e917c61">PlayerProfile::getCurrentChallengeStatus</a></div><div class="ttdeci">const ChallengeStatus * getCurrentChallengeStatus() const</div><div class="ttdoc">Returns the current challenge for this player.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:261</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a2c6abcc23aad17025613a08c3a4208a4"><div class="ttname"><a href="classPlayerProfile.html#a2c6abcc23aad17025613a08c3a4208a4">PlayerProfile::m_achievements_status</a></div><div class="ttdeci">AchievementsStatus * m_achievements_status</div><div class="ttdoc">The complete achievement data.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:116</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a2cf47e36a2babe96969b39ef615727ea"><div class="ttname"><a href="classPlayerProfile.html#a2cf47e36a2babe96969b39ef615727ea">PlayerProfile::getSavedUserId</a></div><div class="ttdeci">int getSavedUserId() const</div><div class="ttdoc">If a session was saved, return the id of the saved user.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:335</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a30b6e460708afdb4d69b3c6fe56466db"><div class="ttname"><a href="classPlayerProfile.html#a30b6e460708afdb4d69b3c6fe56466db">PlayerProfile::setCurrentChallenge</a></div><div class="ttdeci">void setCurrentChallenge(const std::string &amp;name)</div><div class="ttdoc">Sets the currently active challenge.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:218</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a44ed0cc6520cee65105e1185db9722b2"><div class="ttname"><a href="classPlayerProfile.html#a44ed0cc6520cee65105e1185db9722b2">PlayerProfile::m_use_frequency</a></div><div class="ttdeci">int m_use_frequency</div><div class="ttdoc">Counts how often this player was used (always -1 for guests).</div><div class="ttdef"><b>Definition</b> player_profile.hpp:83</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a583a88808d2ca76e56c4f24567bba48a"><div class="ttname"><a href="classPlayerProfile.html#a583a88808d2ca76e56c4f24567bba48a">PlayerProfile::setLastOnlineName</a></div><div class="ttdeci">void setLastOnlineName(const core::stringw &amp;name)</div><div class="ttdoc">Sets the last used online name.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:194</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a59f6d1d69b25a199fd40033c5876763a"><div class="ttname"><a href="classPlayerProfile.html#a59f6d1d69b25a199fd40033c5876763a">PlayerProfile::m_icon_filename</a></div><div class="ttdeci">std::string m_icon_filename</div><div class="ttdoc">Absolute path of the icon file for this player.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:89</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a5eb64ad63872371269b97be637c20fee"><div class="ttname"><a href="classPlayerProfile.html#a5eb64ad63872371269b97be637c20fee">PlayerProfile::m_story_mode_status</a></div><div class="ttdeci">StoryModeStatus * m_story_mode_status</div><div class="ttdoc">The complete challenge state.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:113</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a62e2b228228c098afafc60782fd96a3b"><div class="ttname"><a href="classPlayerProfile.html#a62e2b228228c098afafc60782fd96a3b">PlayerProfile::getIconFilename</a></div><div class="ttdeci">const std::string getIconFilename() const</div><div class="ttdoc">Returns the name of the icon file for this player.</div><div class="ttdef"><b>Definition</b> player_profile.cpp:216</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a6ac7ca0763160d4df37677d517a9e952"><div class="ttname"><a href="classPlayerProfile.html#a6ac7ca0763160d4df37677d517a9e952">PlayerProfile::m_saved_token</a></div><div class="ttdeci">std::string m_saved_token</div><div class="ttdoc">The token of the saved session.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:98</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a711e4217b26e6e4872829aa7420b6266"><div class="ttname"><a href="classPlayerProfile.html#a711e4217b26e6e4872829aa7420b6266">PlayerProfile::setName</a></div><div class="ttdeci">void setName(const core::stringw &amp;name)</div><div class="ttdoc">Sets the name of this player.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:159</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a7334fd06cbc231ff5a24de6c0eca4b6f"><div class="ttname"><a href="classPlayerProfile.html#a7334fd06cbc231ff5a24de6c0eca4b6f">PlayerProfile::setRememberPassword</a></div><div class="ttdeci">void setRememberPassword(bool b)</div><div class="ttdoc">Sets if this player was logged in last time it was used.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:360</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a7f54ac1fc3dbd5a8a3fce9367fa6d702"><div class="ttname"><a href="classPlayerProfile.html#a7f54ac1fc3dbd5a8a3fce9367fa6d702">PlayerProfile::getName</a></div><div class="ttdeci">const core::stringw &amp; getName() const</div><div class="ttdoc">Returns the name of this player.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:169</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a8ff65f302c6bd3307cd1469bb76da910"><div class="ttname"><a href="classPlayerProfile.html#a8ff65f302c6bd3307cd1469bb76da910">PlayerProfile::getSavedToken</a></div><div class="ttdeci">const std::string &amp; getSavedToken() const</div><div class="ttdoc">If a session was saved, return the token to use.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:342</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a93305f92ba820f5178403f4b44b12010"><div class="ttname"><a href="classPlayerProfile.html#a93305f92ba820f5178403f4b44b12010">PlayerProfile::loadRemainingData</a></div><div class="ttdeci">void loadRemainingData(const XMLNode *node)</div><div class="ttdoc">This function loads the achievement, story mode and favorites data.</div><div class="ttdef"><b>Definition</b> player_profile.cpp:134</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a9617e97c7346bc84f0fb45712b230816"><div class="ttname"><a href="classPlayerProfile.html#a9617e97c7346bc84f0fb45712b230816">PlayerProfile::m_last_was_online</a></div><div class="ttdeci">bool m_last_was_online</div><div class="ttdoc">True if the last time this player was used as online.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:104</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a9955d3169ffede3ea39a30ff8dd647cd"><div class="ttname"><a href="classPlayerProfile.html#a9955d3169ffede3ea39a30ff8dd647cd">PlayerProfile::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const PlayerProfile &amp;other)</div><div class="ttdoc">Comparison used to sort players.</div><div class="ttdef"><b>Definition</b> player_profile.cpp:320</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a9a843f8c75630c89c5d44be0a187eecc"><div class="ttname"><a href="classPlayerProfile.html#a9a843f8c75630c89c5d44be0a187eecc">PlayerProfile::m_favorite_kart_status</a></div><div class="ttdeci">FavoriteStatus * m_favorite_kart_status</div><div class="ttdoc">The favorite karts selected by this player.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:122</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_a9f7fb177f20530b9142ce31af15156c0"><div class="ttname"><a href="classPlayerProfile.html#a9f7fb177f20530b9142ce31af15156c0">PlayerProfile::m_local_name</a></div><div class="ttdeci">core::stringw m_local_name</div><div class="ttdoc">The name of the player (wide string, so it can be in native language).</div><div class="ttdef"><b>Definition</b> player_profile.hpp:77</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_aa546d8c00c75c1033815f07a67d0da4f"><div class="ttname"><a href="classPlayerProfile.html#aa546d8c00c75c1033815f07a67d0da4f">PlayerProfile::raceFinished</a></div><div class="ttdeci">void raceFinished()</div><div class="ttdoc">Notification of a finished race, which can trigger fulfilling challenges.</div><div class="ttdef"><b>Definition</b> player_profile.cpp:311</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_aa56094aa8ccfa69f01a60a32e1f5cdf6"><div class="ttname"><a href="classPlayerProfile.html#aa56094aa8ccfa69f01a60a32e1f5cdf6">PlayerProfile::OnlineState</a></div><div class="ttdeci">OnlineState</div><div class="ttdoc">The online state a player can be in.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:59</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_aaa07f35ab8d3ba6d745a38ef2c6570d1"><div class="ttname"><a href="classPlayerProfile.html#aaa07f35ab8d3ba6d745a38ef2c6570d1">PlayerProfile::isLocked</a></div><div class="ttdeci">bool isLocked(const std::string &amp;feature) const</div><div class="ttdoc">Returnes if the feature (kart, track) is locked.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:203</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_aae92725711815d22641c83fd6ce2f78f"><div class="ttname"><a href="classPlayerProfile.html#aae92725711815d22641c83fd6ce2f78f">PlayerProfile::isGuestAccount</a></div><div class="ttdeci">bool isGuestAccount() const</div><div class="ttdoc">Returns true if this player is a guest account.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:179</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_ab5e620f44020c59467da683e27552be3"><div class="ttname"><a href="classPlayerProfile.html#ab5e620f44020c59467da683e27552be3">PlayerProfile::m_unique_id</a></div><div class="ttdeci">unsigned int m_unique_id</div><div class="ttdoc">A unique number for this player, used to link it to challenges etc.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:86</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_ab8828b9922e28015fb7b292a7f229344"><div class="ttname"><a href="classPlayerProfile.html#ab8828b9922e28015fb7b292a7f229344">PlayerProfile::m_is_guest_account</a></div><div class="ttdeci">bool m_is_guest_account</div><div class="ttdoc">True if this account is a guest account.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:80</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_ac05edcb0d9ef70084dc33d7635421054"><div class="ttname"><a href="classPlayerProfile.html#ac05edcb0d9ef70084dc33d7635421054">PlayerProfile::getRecentlyCompletedChallenges</a></div><div class="ttdeci">std::vector&lt; const ChallengeData * &gt; getRecentlyCompletedChallenges()</div><div class="ttdoc">Returns the list of recently completed challenges.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:212</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_ac5261c0e12801f773731ff63378ec908"><div class="ttname"><a href="classPlayerProfile.html#ac5261c0e12801f773731ff63378ec908">PlayerProfile::setWasOnlineLastTime</a></div><div class="ttdeci">void setWasOnlineLastTime(bool b)</div><div class="ttdoc">Sets if this player was logged in last time it was used.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:353</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_ac52bca4f1bebc0bb71b00097e48f4040"><div class="ttname"><a href="classPlayerProfile.html#ac52bca4f1bebc0bb71b00097e48f4040">PlayerProfile::m_default_kart_color</a></div><div class="ttdeci">float m_default_kart_color</div><div class="ttdoc">Default kart color (in hue) used in game, 0.0f to use the original.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:110</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_ac7c53ce887e480907417fada7e558312"><div class="ttname"><a href="classPlayerProfile.html#ac7c53ce887e480907417fada7e558312">PlayerProfile::computeActive</a></div><div class="ttdeci">void computeActive()</div><div class="ttdoc">Returns all active challenges.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:209</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_ad4095703090c8e9ff8c5ce7b93657f98"><div class="ttname"><a href="classPlayerProfile.html#ad4095703090c8e9ff8c5ce7b93657f98">PlayerProfile::rememberPassword</a></div><div class="ttdeci">bool rememberPassword() const</div><div class="ttdoc">Returns if the last time this player was used it was used online or offline.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:357</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_ada2c6277ec2d1aa9deb19ff53e46d6d3"><div class="ttname"><a href="classPlayerProfile.html#ada2c6277ec2d1aa9deb19ff53e46d6d3">PlayerProfile::m_favorite_track_status</a></div><div class="ttdeci">FavoriteStatus * m_favorite_track_status</div><div class="ttdoc">The favorite tracks selected by this player.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:119</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_adb82c35ca380235e8bde990c990b8267"><div class="ttname"><a href="classPlayerProfile.html#adb82c35ca380235e8bde990c990b8267">PlayerProfile::save</a></div><div class="ttdeci">void save(UTFWriter &amp;out)</div><div class="ttdoc">Writes the data for this player to the specified UTFWriter.</div><div class="ttdef"><b>Definition</b> player_profile.cpp:232</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_ae32cf0f9c0143189d9b11d77bf0b09ba"><div class="ttname"><a href="classPlayerProfile.html#ae32cf0f9c0143189d9b11d77bf0b09ba">PlayerProfile::initRemainingData</a></div><div class="ttdeci">void initRemainingData()</div><div class="ttdoc">Initialises the story- and achievement data structure in case of the first start of STK.</div><div class="ttdef"><b>Definition</b> player_profile.cpp:162</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_ae9245b6711ba71fb1b05823e29177348"><div class="ttname"><a href="classPlayerProfile.html#ae9245b6711ba71fb1b05823e29177348">PlayerProfile::m_saved_user_id</a></div><div class="ttdeci">int m_saved_user_id</div><div class="ttdoc">If a session was saved, this will be the online user id to use.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:95</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_aeb96d19ad7d0aa087be47851324bc533"><div class="ttname"><a href="classPlayerProfile.html#aeb96d19ad7d0aa087be47851324bc533">PlayerProfile::wasOnlineLastTime</a></div><div class="ttdeci">bool wasOnlineLastTime() const</div><div class="ttdoc">Returns if the last time this player was used it was used online or offline.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:350</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_aee6d278065e0524b8c215bc1ec583737"><div class="ttname"><a href="classPlayerProfile.html#aee6d278065e0524b8c215bc1ec583737">PlayerProfile::setUserDetails</a></div><div class="ttdeci">virtual void setUserDetails(std::shared_ptr&lt; Online::HTTPRequest &gt; request, const std::string &amp;action, const std::string &amp;url_path=&quot;&quot;) const =0</div><div class="ttdoc">Abstract virtual classes, to be implemented by the OnlinePlayer.</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_afad2947e00914bfc8a01056d641a4c9d"><div class="ttname"><a href="classPlayerProfile.html#afad2947e00914bfc8a01056d641a4c9d">PlayerProfile::PlayerProfile</a></div><div class="ttdeci">PlayerProfile(const core::stringw &amp;name, bool is_guest=false)</div><div class="ttdoc">Constructor to create a new player that didn&#39;t exist before.</div><div class="ttdef"><b>Definition</b> player_profile.cpp:38</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_afdcdc6f6a7f961d5f70187aa25e5b89d"><div class="ttname"><a href="classPlayerProfile.html#afdcdc6f6a7f961d5f70187aa25e5b89d">PlayerProfile::m_last_online_name</a></div><div class="ttdeci">core::stringw m_last_online_name</div><div class="ttdoc">The online user name used last (empty if not used online).</div><div class="ttdef"><b>Definition</b> player_profile.hpp:101</div></div>
+<div class="ttc" id="aclassPlayerProfile_html_afe4f5a57e94f601d2852f90a15cecb35"><div class="ttname"><a href="classPlayerProfile.html#afe4f5a57e94f601d2852f90a15cecb35">PlayerProfile::m_remember_password</a></div><div class="ttdeci">bool m_remember_password</div><div class="ttdoc">True if the login data are saved.</div><div class="ttdef"><b>Definition</b> player_profile.hpp:107</div></div>
+<div class="ttc" id="aclassStoryModeStatus_html"><div class="ttname"><a href="classStoryModeStatus.html">StoryModeStatus</a></div><div class="ttdoc">This class contains the progression through challenges for the story mode.</div><div class="ttdef"><b>Definition</b> story_mode_status.hpp:49</div></div>
+<div class="ttc" id="aclassStoryModeStatus_html_a036edeb37957bdea00b5291a6e2856b2"><div class="ttname"><a href="classStoryModeStatus.html#a036edeb37957bdea00b5291a6e2856b2">StoryModeStatus::getNumCompletedChallenges</a></div><div class="ttdeci">int getNumCompletedChallenges() const</div><div class="ttdoc">Returns the number of completed challenges.</div><div class="ttdef"><b>Definition</b> story_mode_status.hpp:114</div></div>
+<div class="ttc" id="aclassStoryModeStatus_html_ae6134c413c976db95c3ffe3ad14f259a"><div class="ttname"><a href="classStoryModeStatus.html#ae6134c413c976db95c3ffe3ad14f259a">StoryModeStatus::getChallengeStatus</a></div><div class="ttdeci">const ChallengeStatus * getChallengeStatus(const std::string &amp;id) const</div><div class="ttdoc">Returns a challenge given the challenge id.</div><div class="ttdef"><b>Definition</b> story_mode_status.hpp:179</div></div>
+<div class="ttc" id="aclassUTFWriter_html"><div class="ttname"><a href="classUTFWriter.html">UTFWriter</a></div><div class="ttdoc">utility class used to write wide (UTF-16 or UTF-32, depending of size of wchar_t) XML files</div><div class="ttdef"><b>Definition</b> utf_writer.hpp:35</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+<div class="ttc" id="aremote__kart__info_8hpp_html"><div class="ttname"><a href="remote__kart__info_8hpp.html">remote_kart_info.hpp</a></div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Declares the general types that are used by the network.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
