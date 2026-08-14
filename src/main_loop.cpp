@@ -675,6 +675,13 @@ void MainLoop::run()
                 }
             }   // for i < num_steps
 
+            if (NetworkConfig::get()->isNetworking() && STKHost::existHost())
+            {
+                const World* world = World::getWorld();
+                bool race_active = world != nullptr && world->isActiveRacePhaseIncludingPause();
+                STKHost::get()->updateRTTLogging(race_active);
+            }
+
             // Do it after all pending rewinding is done
             if (World::getWorld() && RewindManager::isEnabled())
                  RewindManager::get()->handleResetSmoothNetworkBody();

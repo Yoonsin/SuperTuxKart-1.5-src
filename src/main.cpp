@@ -1299,6 +1299,14 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         }
     }
 
+    if (CommandLine::has("--rtt-log"))
+    {
+        STKHost::m_rtt_log_enabled = true;
+        std::string rtt_log_directory;
+		if (CommandLine::has("--rtt-log-dir", &rtt_log_directory))
+			STKHost::m_rtt_log_directory = rtt_log_directory;
+    }
+ 
     if (CommandLine::has("--network-console"))
     {
         ServerConfig::m_enable_console = true;

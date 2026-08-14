@@ -396,6 +396,28 @@ public:
     static BareNetworkString getStunRequest(uint8_t* stun_tansaction_id);
     // ------------------------------------------------------------------------
     ChildLoop* getChildLoop() const { return m_client_loop; }
+
+    static void ENET_CALLBACK rawRTTCallback(void* user_data, ENetPeer* enet_peer, const ENetRTTSample* sample) noexcept;
+ 
+    struct RTTRecord
+    {
+        ENetRTTSample sample;
+        std::string remote_address;
+        std::string platform;
+        std::string player_name;
+    };
+	void recordRTT(ENetPeer* enet_peer, const ENetRTTSample& sample); //raw RTT
+    void updateRTTLogging(bool race_active);
+    void finishRTTLogging();
+    void updateRTTProbes();
+	bool isRTTLoggingEnabled() const { return m_rtt_log_enabled; }
+    static bool m_rtt_log_enabled;
+    static std::string m_rtt_log_directory;
+    std::atomic_bool m_rtt_logging;
+    std::vector<RTTRecord> m_rtt_records;
+    std::mutex m_rtt_mutex;
+    static constexpr uint64_t RTT_PROBE_INTERVAL_MS = 1000;
+    uint64_t m_next_rtt_probe_ms;
 };   // class STKHost
 
 #endif // STK_HOST_HPP

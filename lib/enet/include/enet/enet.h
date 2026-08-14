@@ -186,6 +186,7 @@ typedef struct _ENetOutgoingCommand
    enet_uint32  fragmentOffset;
    enet_uint16  fragmentLength;
    enet_uint16  sendAttempts;
+   enet_uint8   isRTTProbe;
    ENetProtocol command;
    ENetPacket * packet;
 } ENetOutgoingCommand;
@@ -368,6 +369,21 @@ typedef int (ENET_CALLBACK * ENetInterceptCallback) (struct _ENetHost * host, st
     @sa enet_host_bandwidth_limit()
     @sa enet_host_bandwidth_throttle()
   */
+
+typedef struct _ENetRTTSample
+{
+    enet_uint32 rawRTT;
+    enet_uint32 sentTime;
+    enet_uint32 timeStamp;
+    enet_uint16 sendAttempts;
+    enet_uint32 isRTTProbe;
+} ENetRTTSample;
+
+typedef void (ENET_CALLBACK* ENetRawRTTCallback) (
+    void* userData,
+    ENetPeer* peer,
+    const ENetRTTSample* sample);
+
 typedef struct _ENetHost
 {
    ENetSocket           socket;
@@ -406,6 +422,8 @@ typedef struct _ENetHost
    size_t               duplicatePeers;              /**< optional number of allowed peers from duplicate IPs, defaults to ENET_PROTOCOL_MAXIMUM_PEER_ID */
    size_t               maximumPacketSize;           /**< the maximum allowable packet size that may be sent or received on a peer */
    size_t               maximumWaitingData;          /**< the maximum aggregate amount of buffer space a peer may use waiting for packets to be delivered */
+   ENetRawRTTCallback rawRTTCallback;
+   void* rawRTTCallbackData;
 } ENetHost;
 
 /**
@@ -438,7 +456,6 @@ typedef enum _ENetEventType
      */
    ENET_EVENT_TYPE_RECEIVE    = 3
 } ENetEventType;
-
 /**
  * An ENet event as returned by enet_host_service().
    
@@ -583,9 +600,11 @@ ENET_API void       enet_host_channel_limit (ENetHost *, size_t);
 ENET_API void       enet_host_bandwidth_limit (ENetHost *, enet_uint32, enet_uint32);
 extern   void       enet_host_bandwidth_throttle (ENetHost *);
 extern  enet_uint32 enet_host_random_seed (void);
+ENET_API void enet_host_set_raw_rtt_callback(ENetHost* host, ENetRawRTTCallback callback, void* user_data);
 
 ENET_API int                 enet_peer_send (ENetPeer *, enet_uint8, ENetPacket *);
 ENET_API ENetPacket *        enet_peer_receive (ENetPeer *, enet_uint8 * channelID);
+ENET_API int                 enet_peer_ping_tracked ( ENetPeer *, enet_uint16 * reliableSequenceNumber);
 ENET_API void                enet_peer_ping (ENetPeer *);
 ENET_API void                enet_peer_ping_interval (ENetPeer *, enet_uint32);
 ENET_API void                enet_peer_timeout (ENetPeer *, enet_uint32, enet_uint32, enet_uint32);
