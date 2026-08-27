@@ -294,6 +294,11 @@ bool RewindManager::addRewinder(std::shared_ptr<Rewinder> rewinder)
 void RewindManager::rewindTo(int rewind_ticks, int now_ticks,
                              bool fast_forward)
 {
+    uint32_t current_ticks = World::getWorld()->getTicks();
+    uint32_t delta_ticks = (current_ticks > target_ticks) ? (current_ticks - target_ticks) : 0;
+    Log::info("NetLogging", "[REWIND_TRIGGER] RewindTicks: %d | NowTick: %d (%ums delay)",
+        rewind_ticks, now_ticks, rewind_ticks * 1000 / 60);
+
     assert(!m_is_rewinding);
     bool is_history = history->replayHistory();
     history->setReplayHistory(false);

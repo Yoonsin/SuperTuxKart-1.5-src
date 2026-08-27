@@ -87,6 +87,9 @@
 #include <IrrlichtDevice.h>
 #include <ISceneManager.h>
 
+#include "graphics/irr_driver.hpp"
+#include <atomic>
+
 World* World::m_world[PT_COUNT];
 
 /** The main world class is used to handle the track and the karts.
@@ -1109,6 +1112,18 @@ void World::scheduleTutorial()
  */
 void World::updateGraphics(float dt)
 {
+    static std::atomic<uint64_t> s_last_fps_log_time{ 0 };
+    uint64_t now_ms = StkTime::getMonoTimeMs();
+    uint64_t last_fps_time = s_last_fps_log_time.load(std::memory_order_relaxed);
+    if (now_ms - last_fps_time >= 1000)
+    {
+        if (s_last_fps_log_time.compare_exchange_strong(last_fps_time, now_ms, std::memory_order_relaxed))
+        {
+            int current_fps = irr_driver->getFPS();
+            Log::info("ClientLogging", "[FPS_STATS] FPS: %d | FrameDelta(dt): %.4f sec", current_fps, dt);
+        }
+    }
+
     if (auto cl = LobbyProtocol::get<ClientLobby>())
     {
         // Reset all smooth network body of rewinders so the rubber band effect

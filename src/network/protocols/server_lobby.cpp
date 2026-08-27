@@ -799,6 +799,30 @@ void ServerLobby::asynchronousUpdate()
 #ifdef ENABLE_SQLITE3
     pollDatabase();
 #endif
+    // 네트워크 3종 지표 주기적 수집
+    static uint64_t s_last_async_metrics_log = 0;
+    uint64_t currentTime = StkTime::getMonoTimeMs();
+
+    if (currentTime - s_last_async_metrics_log >= 1000)
+    {
+        s_last_async_metrics_log = currentTime;
+        const auto peers = STKHost::get()->getPeers();
+        for (const auto& peer : peers)
+        {
+            if (peer && peer->getENetPeer())
+            {
+                ENetPeer* ep = peer->getENetPeer();
+                std::string username = peer->getUsername();
+                std::string os_type = peer->getOS();
+                uint32_t host_id = peer->getHostId();
+                uint32_t latency_ping = ep->roundTripTime;
+                uint32_t jitter = ep->roundTripTimeVariance;
+                float packet_loss = (float)ep->packetLoss / ENET_PACKET_LOSS_SCALE * 100.0f;
+                Log::info("NetLogging", "[ASYNC_METRICS] HostID: %u | User: %s (%s) | Ping: %ums | Jitter: %ums | Loss: %.2f%%",
+                    host_id, username.c_str(), os_type.c_str(), latency_ping, jitter, packet_loss);
+            }
+        }
+    }
 
     // Check if server owner has left
     updateServerOwner();
@@ -2297,6 +2321,27 @@ void ServerLobby::checkRaceFinished()
     if (!RaceEventManager::get()->isRaceOver()) return;
 
     Log::info("ServerLobby", "The game is considered finished.");
+
+    World* world = World::getWorld();
+    if (world)
+    {
+        for (unsigned i = 0; i < RaceManager::get()->getNumPlayers(); i++)
+        {
+            RemoteKartInfo& rki = RaceManager::get()->getKartInfo(i);
+            std::string player_name = StringUtils::wideToUtf8(rki.getPlayerName());
+
+            std::string os_type = "Unknown";
+            if (auto player_profile = rki.getNetworkPlayerProfile().lock())
+            {
+                os_type = player_profile->getOS();
+            }
+            float overall_time = RaceManager::get()->getOverallTime(i);
+            int rank = world->getKart(i)->getPosition();
+            Log::info("NetLogging", "[SERVER_RACE_FINISH] User: %s (%s) | Rank: %d | LapTime: %.3f sec",
+                player_name.c_str(), os_type.c_str(), rank, overall_time);
+        }
+    }
+
     // notify the network world that it is stopped
     RaceEventManager::get()->stop();
 
@@ -3568,10 +3613,14 @@ bool ServerLobby::decryptConnectionRequest(std::shared_ptr<STKPeer> peer,
     if (crypto->decryptConnectionRequest(data))
     {
         peer->setCrypto(std::move(crypto));
-        Log::info("ServerLobby", "%s validated",
-            StringUtils::wideToUtf8(online_name).c_str());
-        handleUnencryptedConnection(peer, data, online_id,
-            online_name, true/*is_pending_connection*/, country_code);
+
+        //Collect User OS & Platform
+        std::string user_os = peer->getOS();
+        std::string user_name_str = StringUtils::wideToUtf8(online_name);
+        Log::info("NetLogging", "[USER_CONNECT] Name: %s | OS: %s | ID: %u",
+            user_name_str.c_str(), user_os.c_str(), online_id);
+        Log::info("ServerLobby", "%s validated", StringUtils::wideToUtf8(online_name).c_str());
+        handleUnencryptedConnection(peer, data, online_id, online_name, true, country_code);
         return true;
     }
     return false;
