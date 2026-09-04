@@ -621,6 +621,10 @@ void cmdLineHelp()
     "       --profile-time=n   Enable automatic driven profile mode for n "
                               "seconds.\n"
     "       --benchmark        Start Benchmark Mode, save results and exit. \n"
+    "       --rtt-log          Save RTT (Round Trip Time) log data.\n"
+    "       --rtt-log-dir=DIR  Set the RTT log output directory.\n"
+    "       --profile-log      Save profiler data for each multiplayer race.\n"
+    "       --profile-log-dir=DIR  Set the profile log output directory.\n"
     "       --unlock-all       Permanently unlock all karts and tracks for testing.\n"
     "       --no-unlock-all    Disable unlock-all (i.e. base unlocking on player achievement).\n"
     "       --xmas=n           Toggle Xmas/Christmas mode. n=0 Use current date, n=1, Always enable,\n"
@@ -1301,11 +1305,21 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
 
     if (CommandLine::has("--rtt-log"))
     {
-        STKHost::m_rtt_log_enabled = true;
+        STKHost::setRTTLogEnabled(true);
         std::string rtt_log_directory;
 		if (CommandLine::has("--rtt-log-dir", &rtt_log_directory))
-			STKHost::m_rtt_log_directory = rtt_log_directory;
+			STKHost::setRTTLogDirectory(rtt_log_directory);
     }
+
+    //if (CommandLine::has("--profile-log"))
+    //{
+        profiler.setProfileLogEnabled(true);
+        std::string profile_log_directory;
+        if (CommandLine::has("--profile-log-dir", &profile_log_directory))
+        {
+            profiler.setProfileLogDirectory(profile_log_directory);
+        }
+    //}
  
     if (CommandLine::has("--network-console"))
     {

@@ -564,7 +564,7 @@ void MainLoop::run()
             float frame_duration = num_steps * dt;
             if (!GUIEngine::isNoGraphics())
             {
-                PROFILER_PUSH_CPU_MARKER("Update race", 0, 255, 255);
+                PROFILER_PUSH_CPU_MARKER("Update Graphics", 0, 255, 255);
                 if (World::getWorld())
                     World::getWorld()->updateGraphics(frame_duration);
                 PROFILER_POP_CPU_MARKER();
@@ -574,8 +574,10 @@ void MainLoop::run()
                 irr_driver->update(frame_duration);
                 PROFILER_POP_CPU_MARKER();
 
-                PROFILER_PUSH_CPU_MARKER("Input/GUI", 0x7F, 0x00, 0x00);
+                PROFILER_PUSH_CPU_MARKER("InputManager update", 0x7F, 0x00, 0x00);
                 input_manager->update(frame_duration);
+                PROFILER_POP_CPU_MARKER();
+                PROFILER_PUSH_CPU_MARKER("GUIEngine update", 0x7F, 0x00, 0x00);
                 GUIEngine::update(frame_duration);
                 PROFILER_POP_CPU_MARKER();
                 if (!m_download_assets)
@@ -639,7 +641,7 @@ void MainLoop::run()
                 }
                 PROFILER_POP_CPU_MARKER();
 
-                PROFILER_PUSH_CPU_MARKER("Update race", 0, 255, 255);
+                PROFILER_PUSH_CPU_MARKER("Race simulation", 0, 255, 255);
                 if (World::getWorld())
                 {
                     updateRace(1, fast_forward);
@@ -675,12 +677,15 @@ void MainLoop::run()
                 }
             }   // for i < num_steps
 
+            bool network_race_active = false;
             if (NetworkConfig::get()->isNetworking() && STKHost::existHost())
             {
                 const World* world = World::getWorld();
-                bool race_active = world != nullptr && world->isActiveRacePhaseIncludingPause();
-                STKHost::get()->updateRTTLogging(race_active);
+                network_race_active = world != nullptr &&
+                    world->isActiveRacePhaseIncludingPause();
+                STKHost::get()->updateRTTLogging(network_race_active);
             }
+            profiler.updateProfileLog(network_race_active);
 
             // Do it after all pending rewinding is done
             if (World::getWorld() && RewindManager::isEnabled())
@@ -691,7 +696,9 @@ void MainLoop::run()
             if (!GUIEngine::isNoGraphics())
             {
                 // User aborted (e.g. closed window)
+                PROFILER_PUSH_CPU_MARKER("Device Run", 0xFF, 0x80, 0x00);
                 bool abort = !irr_driver->getDevice()->run();
+                PROFILER_POP_CPU_MARKER();
 
                 if (m_frame_before_loading_world)
                 {
@@ -745,6 +752,8 @@ void MainLoop::run()
         PROFILER_POP_CPU_MARKER();   // MainLoop pop
         PROFILER_SYNC_FRAME();
     }  // while !m_abort
+
+    profiler.finishProfileLog();
 
 #ifdef WIN32
     if (parent != 0 && parent != INVALID_HANDLE_VALUE)

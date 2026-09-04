@@ -75,6 +75,9 @@ private:
     /** Singleton pointer to the instance. */
     static STKHost* m_stk_host[PT_COUNT];
 
+    static bool m_rtt_log_enabled;
+    static std::string m_rtt_log_directory;
+
     /** Separate process of server instance. */
     ChildLoop* m_client_loop;
 
@@ -175,6 +178,12 @@ private:
 public:
     /** If a network console should be started. */
     static bool m_enable_console;
+
+    static void setRTTLogEnabled(bool enabled)
+        { m_rtt_log_enabled = enabled; }
+    static void setRTTLogDirectory(const std::string& directory)
+        { m_rtt_log_directory = directory; }
+    static bool isRTTLoggingEnabled() { return m_rtt_log_enabled; }
 
     /** Creates the STKHost. It takes all confifguration parameters from
      *  NetworkConfig. This STKHost can either be a client or a server.
@@ -410,9 +419,6 @@ public:
     void updateRTTLogging(bool race_active);
     void finishRTTLogging();
     void updateRTTProbes();
-	bool isRTTLoggingEnabled() const { return m_rtt_log_enabled; }
-    static bool m_rtt_log_enabled;
-    static std::string m_rtt_log_directory;
     std::atomic_bool m_rtt_logging;
     std::vector<RTTRecord> m_rtt_records;
     std::mutex m_rtt_mutex;
