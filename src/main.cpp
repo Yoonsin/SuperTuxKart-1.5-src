@@ -625,6 +625,8 @@ void cmdLineHelp()
     "       --rtt-log-dir=DIR  Set the RTT log output directory.\n"
     "       --profile-log      Save profiler data for each multiplayer race.\n"
     "       --profile-log-dir=DIR  Set the profile log output directory.\n"
+    "       --auto-input       Generate deterministic input during multiplayer races.\n"
+    "       --auto-accel       Hold acceleration during multiplayer races.\n"
     "       --unlock-all       Permanently unlock all karts and tracks for testing.\n"
     "       --no-unlock-all    Disable unlock-all (i.e. base unlocking on player achievement).\n"
     "       --xmas=n           Toggle Xmas/Christmas mode. n=0 Use current date, n=1, Always enable,\n"
@@ -642,6 +644,8 @@ void cmdLineHelp()
     "       --history          Replay history file 'history.dat'.\n"
     "       --server-config=file Specify the server_config.xml for server hosting, it will create\n"
     "                            one if not found.\n"
+    "       --fixed-kart=NAME Force all server players to use this kart.\n"
+    "       --fixed-track=NAME Force the server to use this track.\n"
     "       --network-console  Enable network console.\n"
     "       --wan-server=name  Start a Wan server (not a playing client).\n"
     "       --public-server    Allow direct connection to the server (without stk server)\n"
@@ -1311,15 +1315,30 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
 			STKHost::setRTTLogDirectory(rtt_log_directory);
     }
 
-    //if (CommandLine::has("--profile-log"))
-    //{
+    if (CommandLine::has("--profile-log"))
+    {
         profiler.setProfileLogEnabled(true);
         std::string profile_log_directory;
         if (CommandLine::has("--profile-log-dir", &profile_log_directory))
         {
             profiler.setProfileLogDirectory(profile_log_directory);
         }
-    //}
+    }
+
+    if (CommandLine::has("--auto-input"))
+        input_manager->setAutoInputEnabled(true);
+
+    if (CommandLine::has("--auto-accel"))
+        input_manager->setAutoAccelEnabled(true);
+
+    if (CommandLine::has("--fixed-kart", &s))
+        ServerConfig::m_fixed_kart = s;
+
+    if (CommandLine::has("--fixed-track", &s))
+    {
+        ServerConfig::m_fixed_track = s;
+        ServerConfig::m_track_voting = false;
+    }
  
     if (CommandLine::has("--network-console"))
     {

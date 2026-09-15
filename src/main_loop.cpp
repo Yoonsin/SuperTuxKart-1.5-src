@@ -641,6 +641,16 @@ void MainLoop::run()
                 }
                 PROFILER_POP_CPU_MARKER();
 
+                bool network_race_tick_active = false;
+                if (NetworkConfig::get()->isNetworking() && STKHost::existHost())
+                {
+                    const World* world = World::getWorld();
+                    network_race_tick_active = world != nullptr &&
+                        world->isActiveRacePhaseIncludingPause();
+                }
+                input_manager->updateAutoInput(network_race_tick_active);
+                input_manager->updateAutoAccel(network_race_tick_active);
+
                 PROFILER_PUSH_CPU_MARKER("Race simulation", 0, 255, 255);
                 if (World::getWorld())
                 {

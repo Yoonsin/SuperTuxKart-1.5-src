@@ -282,6 +282,13 @@ void ServerLobby::updateAddons()
         m_available_kts.first = m_official_kts.first;
     else
         m_available_kts.first = { all_k.begin(), all_k.end() };
+    if (!ServerConfig::m_fixed_kart.empty())
+    {
+        if (m_available_kts.first.count(ServerConfig::m_fixed_kart) == 0)
+            Log::fatal("ServerLobby", "Fixed kart '%s' is unavailable.",
+                ServerConfig::m_fixed_kart.c_str());
+        m_available_kts.first = { ServerConfig::m_fixed_kart };
+    }
 }   // updateAddons
 
 //-----------------------------------------------------------------------------
@@ -363,6 +370,15 @@ void ServerLobby::updateTracksForMode()
             break;
     }
 
+    if (!ServerConfig::m_fixed_track.empty())
+    {
+        if (m_available_kts.second.count(ServerConfig::m_fixed_track) == 0)
+            Log::fatal("ServerLobby",
+                "Fixed track '%s' is unavailable for this game mode.",
+                ServerConfig::m_fixed_track.c_str());
+        m_available_kts.second = { ServerConfig::m_fixed_track };
+    }
+
 }   // updateTracksForMode
 
 //-----------------------------------------------------------------------------
@@ -403,6 +419,13 @@ void ServerLobby::setup()
         m_available_kts.first = m_official_kts.first;
     else
         m_available_kts.first = { all_k.begin(), all_k.end() };
+    if (!ServerConfig::m_fixed_kart.empty())
+    {
+        if (m_available_kts.first.count(ServerConfig::m_fixed_kart) == 0)
+            Log::fatal("ServerLobby", "Fixed kart '%s' is unavailable.",
+                ServerConfig::m_fixed_kart.c_str());
+        m_available_kts.first = { ServerConfig::m_fixed_kart };
+    }
     NetworkConfig::get()->setTuxHitboxAddon(ServerConfig::m_live_players);
     updateTracksForMode();
 
@@ -4171,7 +4194,12 @@ void ServerLobby::setPlayerKarts(const NetworkString& ns, STKPeer* peer) const
     {
         std::string kart;
         ns.decodeString(&kart);
-        if (kart.find("randomkart") != std::string::npos ||
+        if (!ServerConfig::m_fixed_kart.empty())
+        {
+            peer->getPlayerProfiles()[i]->setKartName(
+                ServerConfig::m_fixed_kart);
+        }
+        else if (kart.find("randomkart") != std::string::npos ||
             (kart.find("addon_") == std::string::npos &&
             m_available_kts.first.find(kart) == m_available_kts.first.end()))
         {

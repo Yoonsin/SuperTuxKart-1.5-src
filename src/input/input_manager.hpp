@@ -74,6 +74,12 @@ private:
     */
     int m_mouse_val_x, m_mouse_val_y;
 
+    bool m_auto_input_enabled = false;
+    bool m_auto_input_pressed = false;
+    int m_next_auto_input_tick = -1;
+    bool m_auto_accel_enabled = false;
+    bool m_auto_accel_sent = false;
+
     void   handleStaticAction(int id0, int value);
     void   inputSensing(Input::InputType type, int deviceID, int btnID,
                         Input::AxisDirection axisDirection,  int value);
@@ -105,6 +111,12 @@ public:
     bool    masterPlayerOnly() const;
 
     void   update(float dt);
+    void   updateAutoInput(bool race_active);
+    void   updateAutoAccel(bool race_active);
+    void   setAutoInputEnabled(bool enabled)
+           { m_auto_input_enabled = enabled; }
+    void   setAutoAccelEnabled(bool enabled)
+           { m_auto_accel_enabled = enabled; }
 
     /** Returns the ID of the player that plays with the keyboard,
      *  or -1 if none. */
