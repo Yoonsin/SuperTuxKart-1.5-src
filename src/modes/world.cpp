@@ -84,6 +84,10 @@
 #include "utils/translation.hpp"
 #include "utils/string_utils.hpp"
 
+//새로 추가
+#include "evaluation/evaluation.hpp"
+#include "karts/abstract_kart.hpp"
+
 #include <IrrlichtDevice.h>
 #include <ISceneManager.h>
 
@@ -1218,6 +1222,15 @@ void World::update(int ticks)
     PROFILER_PUSH_CPU_MARKER("World::update (physics)", 0xa0, 0x7F, 0x00);
     Physics::get()->update(ticks);
     PROFILER_POP_CPU_MARKER();
+    //eval로 위치 받아오기
+    AbstractKart* player_kart = getLocalPlayerKart(0);
+    if (player_kart)
+    {
+        const Vec3& pos = player_kart->getXYZ();
+		Evaluation::get()->update(ticks, pos);
+        // tick == ticks, position == pos
+    }
+    //eval로 위치받아오기
 
     PROFILER_POP_CPU_MARKER();
     updateTimeTargetSound();
