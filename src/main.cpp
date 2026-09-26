@@ -244,6 +244,7 @@ extern "C" {
 #include "karts/official_karts.hpp"
 #include "modes/cutscene_world.hpp"
 #include "modes/demo_world.hpp"
+#include "modes/linear_world.hpp"
 #include "network/protocols/connect_to_server.hpp"
 #include "network/protocols/client_lobby.hpp"
 #include "network/protocols/server_lobby.hpp"
@@ -625,6 +626,8 @@ void cmdLineHelp()
     "       --rtt-log-dir=DIR  Set the RTT log output directory.\n"
     "       --profile-log      Save profiler data for each multiplayer race.\n"
     "       --profile-log-dir=DIR  Set the profile log output directory.\n"
+    "       --quad-log         Save first visits to track quads as CSV.\n"
+    "       --quad-log-dir=DIR Set the quad log output directory.\n"
     "       --auto-input       Generate deterministic input during multiplayer races.\n"
     "       --auto-accel       Hold acceleration during multiplayer races.\n"
     "       --unlock-all       Permanently unlock all karts and tracks for testing.\n"
@@ -1323,6 +1326,14 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         {
             profiler.setProfileLogDirectory(profile_log_directory);
         }
+    }
+
+    if (CommandLine::has("--quad-log"))
+    {
+        LinearWorld::setQuadLogEnabled(true);
+        std::string quad_log_directory;
+        if (CommandLine::has("--quad-log-dir", &quad_log_directory))
+            LinearWorld::setQuadLogDirectory(quad_log_directory);
     }
 
     if (CommandLine::has("--auto-input"))
