@@ -100,7 +100,7 @@ Result Evaluation::getDistance(const Vec3& Player, const Vec3& wr_A, const Vec3&
 	*/
 	if (p_y - st_A_y > 0.5f || st_A_y - p_y > 0.5f)
 	{
-		return { true, 0.01 };
+		return { true, 0.2 };
 	}
 	/*
 	Vec3 LineAB = wr_B - wr_A;
@@ -122,10 +122,10 @@ Result Evaluation::getDistance(const Vec3& Player, const Vec3& wr_A, const Vec3&
 	if (dot_AB == 0.0f || LineAB.length() < 0.001f)
 	{
 		float distance = (st_A - Player).length();
-		if (distance > 2.0f)
+		if (distance > 1.8f)
 		{
 			//대략적으로 0.2점 감점, 추후에 변경 가능
-			return { true, 0.01 };
+			return { true, 0.2 };
 		}
 		//통과
 		return { false, 0.0 };
@@ -179,50 +179,57 @@ Result Evaluation::getDistance(const Vec3& Player, const Vec3& wr_A, const Vec3&
 	return { false, 0.0 };
 }
 
-void Evaluation::update(float delta_time, const Vec3& Player)
+void Evaluation::update(const Vec3& Player)
 {
 	if(m_wr_point.empty() || m_st_point.empty())
 	{
 		return;
 	}
-
-	m_time_offset += delta_time;
-	if(m_time_offset >= 10.0f)
+	/*
+	int search_index = 200;
+	int start_wr = std::max(0, m_wr_index - search_index);
+	int end_wr = std::min((int)m_wr_point.size() - 1, m_wr_index + search_index);
+	float min_distance = 500;
+	for(int i = start_wr; i <= end_wr; i++)
 	{
-		m_time_offset = 0.0f;
-
-		int search_index = 200;
-		int start_wr = std::max(0, m_wr_index - search_index);
-		int end_wr = std::min((int)m_wr_point.size() - 1, m_wr_index + search_index);
-		float min_distance = 500;
-
-		for(int i = start_wr; i <= end_wr; i++)
+		float distance = (Player - m_wr_point[i].pos).length();
+		if(distance < min_distance)
 		{
-			float distance = (Player - m_wr_point[i].pos).length();
-			if(distance < min_distance)
-			{
-				min_distance = distance;
-				m_wr_index = i;
-			}
+			min_distance = distance;
+			m_wr_index = i;
+		}
+	}
+	*/
+	int search_index = 200;
+	int start_st = std::max(0, m_st_index - search_index);
+	int end_st = std::min((int)m_st_point.size() - 1, m_st_index + search_index);
+	float min_distance = 500;
+	for (int i = start_st; i <= end_st; i++)
+	{
+		float distance = (Player - m_st_point[i].pos).length();
+		if (distance < min_distance)
+		{
+			min_distance = distance;
+			m_st_index = i;
 		}
 	}
 
-
-	Vec3 wr_A = m_wr_point[m_wr_index].pos;
+	Vec3 wr_A = m_wr_point[m_st_index].pos;
 	Vec3 wr_B = wr_A;
-	Vec3 st_A = m_st_point[m_wr_index].pos;
+	Vec3 st_A = m_st_point[m_st_index].pos;
 	Vec3 st_B = st_A;
 
-	if (m_wr_index < (int)m_wr_point.size() - 1) {
-		wr_B = m_wr_point[m_wr_index + 1].pos;
-		st_B = m_st_point[m_wr_index + 1].pos;
+	if (m_st_index < (int)m_st_point.size() - 1)
+	{
+		wr_B = m_wr_point[m_st_index + 1].pos;
+		st_B = m_st_point[m_st_index + 1].pos;
 	}
-	else if (m_wr_index > 0) {
-		// 맨 마지막 점이라면, 이전 점과 현재 점을 이용해 계산 (에러 방지)
-		wr_A = m_wr_point[m_wr_index - 1].pos;
-		wr_B = m_wr_point[m_wr_index].pos;
-		st_A = m_st_point[m_wr_index - 1].pos;
-		st_B = m_st_point[m_wr_index].pos;
+	else if (m_st_index > 0)
+	{
+		wr_A = m_wr_point[m_st_index - 1].pos;
+		wr_B = m_wr_point[m_st_index].pos;
+		st_A = m_st_point[m_st_index - 1].pos;
+		st_B = m_st_point[m_st_index].pos;
 	}
 
 	m_result = getDistance(Player, wr_A, wr_B, st_A, st_B);
@@ -233,28 +240,24 @@ void Evaluation::update(float delta_time, const Vec3& Player)
 		if(m_current_score < 0.0f)
 		{
 			m_current_score = 0.0f;
-
 		}
 		Log::info("Current Score", "%f", m_current_score);
 	}
 }
 
-void Evaluation::renderMesh()
+void Evaluation::render()
 {
-	Log::info("Evaluation", "WR: %d, ST: %d", m_wr_point.size(), m_st_point.size());
 	if (m_wr_point.size() < 2 || m_st_point.size() < 2)
-		return;
-
-	if (!irr_driver)
 	{
-		Log::error("Evaluation", "irr_driver is null");
 		return;
 	}
-
+	if (!irr_driver)
+	{
+		return;
+	}
 	irr::scene::ISceneManager* smgr = irr_driver->getSceneManager();
 	if (!smgr)
 	{
-		Log::error("Evaluation", "Scene manager is null");
 		return;
 	}
 
@@ -262,26 +265,24 @@ void Evaluation::renderMesh()
 	buffer->Material.Lighting = false;
 	buffer->Material.BackfaceCulling = false;
 
-	const irr::video::SColor lineColor(255, 255, 0, 0);
+	const irr::video::SColor lineColor(100, 255, 0, 0);
 
-	const float width = 2.0f;
+	const float width = 1.8f;
 	const float lift = 0.5f;
 
 	for (size_t i = 0; i < m_st_point.size(); ++i)
 	{
 		const Vec3 pos = m_st_point[i].pos;
 
-		// 해당 좌표 위에서 트랙 표면을 찾습니다.
 		TerrainInfo terrain;
 		terrain.update(pos + Vec3(0.0f, 5.0f, 0.0f));
 
-		Vec3 surface_pos(terrain.getHitPoint());
+		Vec3 surface(terrain.getHitPoint());
 		Vec3 normal = terrain.getNormal();
 
-		// 표면 정보를 얻지 못한 경우 Y축 기준으로 대체합니다.
 		if (normal.length() < 0.001f)
 		{
-			surface_pos = pos;
+			surface = pos;
 			normal = Vec3(0.0f, 1.0f, 0.0f);
 		}
 		else
@@ -291,25 +292,32 @@ void Evaluation::renderMesh()
 
 		Vec3 direction;
 		if (i + 1 < m_st_point.size())
+		{
 			direction = m_st_point[i + 1].pos - pos;
+		}
 		else
+		{
 			direction = pos - m_st_point[i - 1].pos;
+		}
 
-		// 경사면에 수직인 성분을 제거해 표면을 따라가는 방향으로 만듭니다.
 		direction -= normal * direction.dot(normal);
 
 		if (direction.length() < 0.001f)
+		{
 			continue;
+		}
 
 		direction.normalize();
 
 		Vec3 right = direction.cross(normal);
-		if (right.length() < 0.001f)
-			continue;
 
+		if (right.length() < 0.001f)
+		{
+			continue;
+		}
 		right.normalize();
 
-		const Vec3 center = surface_pos + normal * lift;
+		const Vec3 center = surface + normal * lift;
 		const Vec3 left_pos = center - right * width;
 		const Vec3 right_pos = center + right * width;
 
@@ -335,8 +343,6 @@ void Evaluation::renderMesh()
 	irr::scene::SMesh* mesh = new irr::scene::SMesh();
 	mesh->addMeshBuffer(buffer);
 	mesh->recalculateBoundingBox();
-
-	Log::info("Evaluation", "Mesh ready: vertices=%d indices=%d", buffer->getVertexCount(), buffer->getIndexCount());
 
 	irr::scene::ISceneNode* node = nullptr;
     bool using_spmesh = false;

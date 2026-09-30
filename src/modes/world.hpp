@@ -1,4 +1,4 @@
-//
+﻿//
 //  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2004-2015 SuperTuxKart-Team
 //
@@ -185,6 +185,8 @@ protected:
     bool m_is_network_world;
 
     bool m_ended_early;
+
+    float m_timer;
 
     virtual void  onGo() OVERRIDE;
     /** Returns true if the race is over. Must be defined by all modes. */

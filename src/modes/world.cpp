@@ -1,4 +1,4 @@
-//
+ï»¿//
 //  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2006-2015 SuperTuxKart-Team
 //
@@ -84,7 +84,7 @@
 #include "utils/translation.hpp"
 #include "utils/string_utils.hpp"
 
-//»õ·Î Ãß°¡
+//ìƒˆë¡œ ì¶”ê°€
 #include "evaluation/evaluation.hpp"
 #include "karts/abstract_kart.hpp"
 
@@ -165,7 +165,8 @@ void World::init()
     m_eliminated_players  = 0;
     m_num_players         = 0;
     unsigned int gk       = 0;
-    m_red_ai = m_blue_ai = 0;
+    m_red_ai = m_blue_ai  = 0;
+	m_timer               = 0;
     if (RaceManager::get()->hasGhostKarts())
         gk = ReplayPlay::get()->getNumGhostKart();
 
@@ -1222,15 +1223,21 @@ void World::update(int ticks)
     PROFILER_PUSH_CPU_MARKER("World::update (physics)", 0xa0, 0x7F, 0x00);
     Physics::get()->update(ticks);
     PROFILER_POP_CPU_MARKER();
-    //eval·Î À§Ä¡ ¹Þ¾Æ¿À±â
+    //evalë¡œ ìœ„ì¹˜ ë°›ì•„ì˜¤ê¸°
     AbstractKart* player_kart = getLocalPlayerKart(0);
     if (player_kart)
     {
-        const Vec3& pos = player_kart->getXYZ();
-		Evaluation::get()->update(ticks, pos);
+        m_timer += stk_config->ticks2Time(ticks);
+
+        if (m_timer >= 0.1f)
+        {
+            m_timer -= 0.1f;
+            const Vec3& pos = player_kart->getXYZ();
+            Evaluation::get()->update(pos);
+        }
         // tick == ticks, position == pos
     }
-    //eval·Î À§Ä¡¹Þ¾Æ¿À±â
+    //evalë¡œ ìœ„ì¹˜ë°›ì•„ì˜¤ê¸°
 
     PROFILER_POP_CPU_MARKER();
     updateTimeTargetSound();

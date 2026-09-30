@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <vector>
 #include <string>
@@ -31,8 +31,9 @@ private:
 	float m_current_score;
 	float m_time_offset;
 	int m_wr_index;
+	int m_st_index;
 
-	Evaluation() : m_current_score(100.0f), m_time_offset(0.0f), m_wr_index(0), m_result{false, 0.0f}  {}
+	Evaluation() : m_current_score(100.0f), m_time_offset(0.0f), m_wr_index(0), m_st_index(0), m_result{false, 0.0f} {}
 	Result getDistance(const Vec3& Player, const Vec3& wr_A, const Vec3& wr_B, const Vec3& st_A, const Vec3& st_B);
 
 public:
@@ -43,10 +44,10 @@ public:
 	}
 	void reset() { m_current_score = 100.0f; }
 	float getScore() const { return m_current_score; }
-	void update(float delta_time, const Vec3& kart_pos);
+	void update(const Vec3& kart_pos);
 	void loadWorldRecordCSV(const std::string& filename);
 
-	//�߰�
-	void renderMesh();
+	//추가
+	void render();
 
 };

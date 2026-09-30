@@ -1,4 +1,4 @@
-//
+ï»¿//
 //  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2006-2015 SuperTuxKart-Team
 //
@@ -387,7 +387,7 @@ void RaceManager::computeRandomKartList()
  */
 void RaceManager::startNew(bool from_overworld)
 {
-    //¸ðµç ¼³Á¤ ¿©±â¼­
+    //ëª¨ë“  ì„¤ì • ì—¬ê¸°ì„œ
     if (UserConfigParams::m_course_evaluation)
     {
        //m_major_mode = MAJOR_MODE_SINGLE;
@@ -710,9 +710,9 @@ void RaceManager::startNextRace()
     // Calling this here reduces code duplication in init and restartRace()
     // functions.
     World::getWorld()->reset();
-    //ÀÓ½Ã Ãß°¡
+    //ìž„ì‹œ ì¶”ê°€
     if (UserConfigParams::m_course_evaluation) {
-        Evaluation::get()->renderMesh();
+        Evaluation::get()->render();
     }
 
     if (NetworkConfig::get()->isNetworking())
