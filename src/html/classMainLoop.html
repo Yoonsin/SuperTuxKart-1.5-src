@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: MainLoop 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pri-types">Private 타입</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="classMainLoop-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">MainLoop 클래스 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Management class for the whole gameflow, this is where the main-loop is  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="main__loop_8hpp_source.html">main_loop.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a6fe385905607cc8c35f04361805e5d66" id="r_a6fe385905607cc8c35f04361805e5d66"><td class="memItemLeft"><a id="a6fe385905607cc8c35f04361805e5d66" name="a6fe385905607cc8c35f04361805e5d66"></a>
+&#160;</td><td class="memItemRight"><b>MainLoop</b> (unsigned parent_pid, bool download_assets=false)</td></tr>
+<tr class="memitem:a1a49fb3e742b67c7249d37cf1ee91e1a" id="r_a1a49fb3e742b67c7249d37cf1ee91e1a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1a49fb3e742b67c7249d37cf1ee91e1a">run</a> ()</td></tr>
+<tr class="memdesc:a1a49fb3e742b67c7249d37cf1ee91e1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the actual main loop.  <br /></td></tr>
+<tr class="memitem:ab38d8ad1b5831d96a1ecf03a7742c2f2" id="r_ab38d8ad1b5831d96a1ecf03a7742c2f2"><td class="memItemLeft"><a id="ab38d8ad1b5831d96a1ecf03a7742c2f2" name="ab38d8ad1b5831d96a1ecf03a7742c2f2"></a>
+void&#160;</td><td class="memItemRight"><b>abort</b> ()</td></tr>
+<tr class="memdesc:ab38d8ad1b5831d96a1ecf03a7742c2f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the abort flag, causing the mainloop to be left. <br /></td></tr>
+<tr class="memitem:a209d5c9b52f142b0d1092e33d2f58a17" id="r_a209d5c9b52f142b0d1092e33d2f58a17"><td class="memItemLeft"><a id="a209d5c9b52f142b0d1092e33d2f58a17" name="a209d5c9b52f142b0d1092e33d2f58a17"></a>
+void&#160;</td><td class="memItemRight"><b>requestAbort</b> ()</td></tr>
+<tr class="memitem:ad89e8ec2ba92079f6e110b16faf3f634" id="r_ad89e8ec2ba92079f6e110b16faf3f634"><td class="memItemLeft"><a id="ad89e8ec2ba92079f6e110b16faf3f634" name="ad89e8ec2ba92079f6e110b16faf3f634"></a>
+void&#160;</td><td class="memItemRight"><b>setThrottleFPS</b> (bool throttle)</td></tr>
+<tr class="memitem:aaf992b0f561f16add1c6e1142f5dfc8f" id="r_aaf992b0f561f16add1c6e1142f5dfc8f"><td class="memItemLeft"><a id="aaf992b0f561f16add1c6e1142f5dfc8f" name="aaf992b0f561f16add1c6e1142f5dfc8f"></a>
+void&#160;</td><td class="memItemRight"><b>setAllowLargeDt</b> (bool enable)</td></tr>
+<tr class="memitem:ad31cca169757dd79e09b92e1d27b638c" id="r_ad31cca169757dd79e09b92e1d27b638c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad31cca169757dd79e09b92e1d27b638c">renderGUI</a> (int phase, int loop_index=-1, int loop_size=-1)</td></tr>
+<tr class="memdesc:ad31cca169757dd79e09b92e1d27b638c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders the GUI.  <br /></td></tr>
+<tr class="memitem:ae111c16e550e0848fda8ee581a5b8bb3" id="r_ae111c16e550e0848fda8ee581a5b8bb3"><td class="memItemLeft"><a id="ae111c16e550e0848fda8ee581a5b8bb3" name="ae111c16e550e0848fda8ee581a5b8bb3"></a>
+bool&#160;</td><td class="memItemRight"><b>isAborted</b> () const</td></tr>
+<tr class="memdesc:ae111c16e550e0848fda8ee581a5b8bb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if STK is to be stoppe. <br /></td></tr>
+<tr class="memitem:a739606de0b8f01cf7caa992ef70a8b29" id="r_a739606de0b8f01cf7caa992ef70a8b29"><td class="memItemLeft"><a id="a739606de0b8f01cf7caa992ef70a8b29" name="a739606de0b8f01cf7caa992ef70a8b29"></a>
+void&#160;</td><td class="memItemRight"><b>setFrameBeforeLoadingWorld</b> ()</td></tr>
+<tr class="memitem:a645a2e94713ee11ee0a27441ce004e97" id="r_a645a2e94713ee11ee0a27441ce004e97"><td class="memItemLeft"><a id="a645a2e94713ee11ee0a27441ce004e97" name="a645a2e94713ee11ee0a27441ce004e97"></a>
+void&#160;</td><td class="memItemRight"><b>setTicksAdjustment</b> (int ticks)</td></tr>
+<tr class="memitem:a39d53b3c93f819677c002bfd33bc2eee" id="r_a39d53b3c93f819677c002bfd33bc2eee"><td class="memItemLeft"><a id="a39d53b3c93f819677c002bfd33bc2eee" name="a39d53b3c93f819677c002bfd33bc2eee"></a>
+void&#160;</td><td class="memItemRight"><b>setPaused</b> (bool val)</td></tr>
+<tr class="memitem:a6da63d07eea6db02af3d6f9725da47d4" id="r_a6da63d07eea6db02af3d6f9725da47d4"><td class="memItemLeft"><a id="a6da63d07eea6db02af3d6f9725da47d4" name="a6da63d07eea6db02af3d6f9725da47d4"></a>
+bool&#160;</td><td class="memItemRight"><b>isPaused</b> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private 타입</h2></td></tr>
+<tr class="memitem:aea1836c2cbe47c4d2fc9c19e01a9383a" id="r_aea1836c2cbe47c4d2fc9c19e01a9383a"><td class="memItemLeft"><a id="aea1836c2cbe47c4d2fc9c19e01a9383a" name="aea1836c2cbe47c4d2fc9c19e01a9383a"></a>
+using&#160;</td><td class="memItemRight"><b>TimePoint</b> = std::chrono::steady_clock::time_point</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:a437c75097f5d69edca520590c0ebb96e" id="r_a437c75097f5d69edca520590c0ebb96e"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a437c75097f5d69edca520590c0ebb96e">getLimitedDt</a> ()</td></tr>
+<tr class="memdesc:a437c75097f5d69edca520590c0ebb96e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current dt, which guarantees a limited frame rate.  <br /></td></tr>
+<tr class="memitem:a36807d243fc180a96b7634c8121710b7" id="r_a36807d243fc180a96b7634c8121710b7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a36807d243fc180a96b7634c8121710b7">updateRace</a> (int ticks, bool fast_forward)</td></tr>
+<tr class="memdesc:a36807d243fc180a96b7634c8121710b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates all race related objects.  <br /></td></tr>
+<tr class="memitem:a2bb146f46eace9ad678fcb90ad844a46" id="r_a2bb146f46eace9ad678fcb90ad844a46"><td class="memItemLeft"><a id="a2bb146f46eace9ad678fcb90ad844a46" name="a2bb146f46eace9ad678fcb90ad844a46"></a>
+double&#160;</td><td class="memItemRight"><b>convertToTime</b> (const TimePoint &amp;cur, const TimePoint &amp;prev) const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:a6e2315588c02c7ee00ec79fe48eef239" id="r_a6e2315588c02c7ee00ec79fe48eef239"><td class="memItemLeft"><a id="a6e2315588c02c7ee00ec79fe48eef239" name="a6e2315588c02c7ee00ec79fe48eef239"></a>
+std::atomic_bool&#160;</td><td class="memItemRight"><b>m_abort</b></td></tr>
+<tr class="memdesc:a6e2315588c02c7ee00ec79fe48eef239"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the main loop should exit. <br /></td></tr>
+<tr class="memitem:a822dcd760329f0d16205842e44ccb841" id="r_a822dcd760329f0d16205842e44ccb841"><td class="memItemLeft"><a id="a822dcd760329f0d16205842e44ccb841" name="a822dcd760329f0d16205842e44ccb841"></a>
+std::atomic_bool&#160;</td><td class="memItemRight"><b>m_request_abort</b></td></tr>
+<tr class="memitem:aca2e69ec979748bf3388e23f735c2b0b" id="r_aca2e69ec979748bf3388e23f735c2b0b"><td class="memItemLeft"><a id="aca2e69ec979748bf3388e23f735c2b0b" name="aca2e69ec979748bf3388e23f735c2b0b"></a>
+std::atomic_bool&#160;</td><td class="memItemRight"><b>m_paused</b></td></tr>
+<tr class="memitem:aa1e1fb18c15d16dfd50d3dc93597470e" id="r_aa1e1fb18c15d16dfd50d3dc93597470e"><td class="memItemLeft"><a id="aa1e1fb18c15d16dfd50d3dc93597470e" name="aa1e1fb18c15d16dfd50d3dc93597470e"></a>
+bool&#160;</td><td class="memItemRight"><b>m_throttle_fps</b></td></tr>
+<tr class="memdesc:aa1e1fb18c15d16dfd50d3dc93597470e"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the frame rate should be throttled. <br /></td></tr>
+<tr class="memitem:aba25e3cf1219ceed07241e1d77ae69a6" id="r_aba25e3cf1219ceed07241e1d77ae69a6"><td class="memItemLeft"><a id="aba25e3cf1219ceed07241e1d77ae69a6" name="aba25e3cf1219ceed07241e1d77ae69a6"></a>
+bool&#160;</td><td class="memItemRight"><b>m_allow_large_dt</b></td></tr>
+<tr class="memdesc:aba25e3cf1219ceed07241e1d77ae69a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if dt is not decreased for low fps <br /></td></tr>
+<tr class="memitem:a36a7e4e19cee17840d5a6cad6d1dca22" id="r_a36a7e4e19cee17840d5a6cad6d1dca22"><td class="memItemLeft"><a id="a36a7e4e19cee17840d5a6cad6d1dca22" name="a36a7e4e19cee17840d5a6cad6d1dca22"></a>
+bool&#160;</td><td class="memItemRight"><b>m_frame_before_loading_world</b></td></tr>
+<tr class="memitem:afdd3336f8f19692a7d05c8212c9ff637" id="r_afdd3336f8f19692a7d05c8212c9ff637"><td class="memItemLeft"><a id="afdd3336f8f19692a7d05c8212c9ff637" name="afdd3336f8f19692a7d05c8212c9ff637"></a>
+bool&#160;</td><td class="memItemRight"><b>m_download_assets</b></td></tr>
+<tr class="memitem:a27bd235dd2e340f85f6876aebf791853" id="r_a27bd235dd2e340f85f6876aebf791853"><td class="memItemLeft"><a id="a27bd235dd2e340f85f6876aebf791853" name="a27bd235dd2e340f85f6876aebf791853"></a>
+<a class="el" href="classSynchronised.html">Synchronised</a>&lt; int &gt;&#160;</td><td class="memItemRight"><b>m_ticks_adjustment</b></td></tr>
+<tr class="memitem:af205bf340ac9c1b21de8f120745c151e" id="r_af205bf340ac9c1b21de8f120745c151e"><td class="memItemLeft"><a id="af205bf340ac9c1b21de8f120745c151e" name="af205bf340ac9c1b21de8f120745c151e"></a>
+TimePoint&#160;</td><td class="memItemRight"><b>m_curr_time</b></td></tr>
+<tr class="memitem:a12cd98dbf2aa63b39ca0c650100311ff" id="r_a12cd98dbf2aa63b39ca0c650100311ff"><td class="memItemLeft"><a id="a12cd98dbf2aa63b39ca0c650100311ff" name="a12cd98dbf2aa63b39ca0c650100311ff"></a>
+TimePoint&#160;</td><td class="memItemRight"><b>m_prev_time</b></td></tr>
+<tr class="memitem:a90ce62df03d26108e51a2187772fa1b4" id="r_a90ce62df03d26108e51a2187772fa1b4"><td class="memItemLeft"><a id="a90ce62df03d26108e51a2187772fa1b4" name="a90ce62df03d26108e51a2187772fa1b4"></a>
+unsigned&#160;</td><td class="memItemRight"><b>m_parent_pid</b></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Management class for the whole gameflow, this is where the main-loop is </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a437c75097f5d69edca520590c0ebb96e" name="a437c75097f5d69edca520590c0ebb96e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a437c75097f5d69edca520590c0ebb96e">&#9670;&#160;</a></span>getLimitedDt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double MainLoop::getLimitedDt </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the current dt, which guarantees a limited frame rate. </p>
+<p>If dt is too low (the frame rate too high), the process will sleep to reach the maximum frame rate. </p>
+
+</div>
+</div>
+<a id="ad31cca169757dd79e09b92e1d27b638c" name="ad31cca169757dd79e09b92e1d27b638c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad31cca169757dd79e09b92e1d27b638c">&#9670;&#160;</a></span>renderGUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainLoop::renderGUI </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>phase</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>loop_index</em></span><span class="paramdefsep"> = </span><span class="paramdefval">-1</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>loop_size</em></span><span class="paramdefsep"> = </span><span class="paramdefval">-1</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Renders the GUI. </p>
+<p>This function is used during loading a track to get a responsive GUI, and allow GUI animations (like a progress bar) to be shown. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phase</td><td>An integer indicated a phase. The maximum number of phases is used to show a progress bar. The values are between 0 and 8200. </td></tr>
+    <tr><td class="paramname">loop_index</td><td>If the call is from a loop, the current loop index. </td></tr>
+    <tr><td class="paramname">loop_size</td><td>The number of loop iterations. Used to smooth update e.g. a progress bar. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1a49fb3e742b67c7249d37cf1ee91e1a" name="a1a49fb3e742b67c7249d37cf1ee91e1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a49fb3e742b67c7249d37cf1ee91e1a">&#9670;&#160;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainLoop::run </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Run the actual main loop. </p>
+<p>The sequence in which various parts of STK are updated is:</p><ul>
+<li>Determine next time step size (<span class="tt"><a class="el" href="#a437c75097f5d69edca520590c0ebb96e" title="Returns the current dt, which guarantees a limited frame rate.">getLimitedDt</a></span>). This takes maximum fps into account (i.e. sleep if the fps would be too high), and will actually slow down the in-game clock if the fps are too low (if more than 3/60 of a second have passed, more than 3 physics time steps would be needed, and physics do at most 3 time steps).</li>
+<li>if a race is taking place (i.e. not only a menu being shown), call <span class="tt"><a class="el" href="#a36807d243fc180a96b7634c8121710b7" title="Updates all race related objects.">updateRace()</a></span>, which is a thin wrapper around a call to <span class="tt"><a class="el" href="classWorld.html#a5280bf9a0986cc6665cfe7df1ea21cb0" title="This is the main interface to update the world.">World::updateWorld()</a></span>:<ul>
+<li>Update history manager (which will either set the kart position and/or controls when replaying, or store the current info for a replay). This is mostly for debugging only (though available even in release mode).</li>
+<li>Updates Replays - either storing data when not replaying, or updating kart positions/control when replaying).</li>
+<li>Calls <span class="tt"><a class="el" href="classWorldStatus.html#a4ceb2c4b0c5f07f77f3e4c2ff20d14b5" title="Update, called once per frame.">WorldStatus::update()</a></span>, which updates the race state (e.g. go from 'ready' to 'set' etc), and clock.</li>
+<li>Updates the physics (<span class="tt"><a class="el" href="classPhysics.html#a12d00ec64c77035f70da0763be2ffbc3" title="Updates the physics simulation and handles all collisions.">Physics::update()</a></span>). This will simulate all physical objects for the specified time with bullet.</li>
+<li>Updates all karts (<span class="tt">Kart::update()</span>). Obviously the update function does a lot more than what is described here, this is only supposed to be a <em>very</em> high level overview:<ul>
+<li>Updates its rewinder (to store potentially changed controls as events) in <span class="tt"><a class="el" href="classKartRewinder.html#a9e5e410e0b0d03d9bf86852c32a30400" title="Called once a frame.">KartRewinder::update()</a></span>.</li>
+<li>Calls <span class="tt"><a class="el" href="classMoveable.html#aba9443a655c09cbe02e2f845398d605b" title="Updates the current position and rotation from the corresponding physics body, and then calls updateG...">Moveable::update()</a></span>, which takes the new position from the physics and saves it (and computes dependent values, like heading, local velocity).</li>
+<li>Updates its controller. This is either:<ul>
+<li>an AI using <span class="tt">SkiddingController::update()</span> (which then will compute the new controls), or</li>
+<li>a player controller using <span class="tt"><a class="el" href="classPlayerController.html#a951f1441064ec6172175330ec6d6359b" title="Updates the player kart, called once each timestep.">PlayerController::update()</a></span>, which will handle smooth steering (in case of digital input devices steering is adjusted a bit over time to avoid an instant change from all left to all right). <a class="el" href="structInput.html">Input</a> events will be handled when updating the irrlicht driver later at the end of the main loop.</li>
+</ul>
+</li>
+<li>Updates kart animation (like rescue, ...) if one is shown atm.</li>
+<li>Update attachments.</li>
+<li>update physics, i.e. taking the current steering and updating the bullet raycast vehicle with that data. The settings are actually only used in the next frame when the physics are updated.</li>
+</ul>
+</li>
+<li>Updates all cameras via <span class="tt"><a class="el" href="classCamera.html#a3c1c5346a58c34d7484c988bd3ae6f24" title="Called once per time frame to move the camera to the right position.">Camera::update()</a></span>. The camera position and rotation is adjusted according to the position etc of the kart (and special circumstances like rescue, falling).</li>
+<li>Updates all projectiles using the projectile manager. Some of the projectiles are mostly handled by the physics (e.g. a cake will mainly check if it's out of bounds), others (like basket ball) do all their aiming and movement here.</li>
+<li>Updates the rewind manager to store rewind states.</li>
+</ul>
+</li>
+<li>Updates the music manager.</li>
+<li>Updates the input manager (which only updates internal time, actual input handling follows late)</li>
+<li>Updates the wiimote manager. This will read the data of all wiimotes and feed the corresponding events to the irrlicht event system.</li>
+<li>Updates the STK internal gui engine. This updates all widgets, and e.g. takes care of the rotation of the karts in the KartSelection screen using the ModelViewWidget.</li>
+<li>Updates STK's irrlicht driver <span class="tt"><a class="el" href="classIrrDriver.html#a84b1e6de4d01545b697be085fde0a8d2" title="Update, called once per frame.">IrrDriver::update()</a></span>:<ul>
+<li>Calls Irrlicht's <span class="tt">beginScene()</span> .</li>
+<li>Renders the scene (several times with different viewport if split screen is being used)</li>
+<li>Calls <span class="tt"><a class="el" href="namespaceGUIEngine.html#ab101c1763cb35d52978b33d05e5771af" title="called on every frame to trigger the rendering of the GUI.">GUIEngine::render()</a></span>, which renders all widgets with the help of Irrlicht's GUIEnvironment (<span class="tt">drawAll()</span>). This will also handle all events, i.e. all input is now handled (e.g. steering, firing etc are all set in the corresponding karts depending on user input).</li>
+<li>Calls Irrlicht's <span class="tt">endScene()</span> </li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+<a id="a36807d243fc180a96b7634c8121710b7" name="a36807d243fc180a96b7634c8121710b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36807d243fc180a96b7634c8121710b7">&#9670;&#160;</a></span>updateRace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainLoop::updateRace </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>fast_forward</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Updates all race related objects. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks</td><td>Number of ticks (physics steps) to simulate - should be 1. </td></tr>
+    <tr><td class="paramname">fast_forward</td><td>If true, then only rewinders in network will be updated, but not the physics. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li><a class="el" href="main__loop_8hpp_source.html">main_loop.hpp</a></li>
+<li><b>main_loop.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

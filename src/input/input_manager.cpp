@@ -264,6 +264,123 @@ void InputManager::update(float dt)
 #endif
 }
 
+// -----------------------------------------------------------------------------
+void InputManager::updateAutoInput(bool race_active)
+{
+#ifndef SERVER_ONLY
+    if (!m_auto_input_enabled)
+        return;
+
+    World* world = World::getWorld();
+    if (!race_active || world == NULL)
+    {
+        m_auto_input_pressed = false;
+        m_next_auto_input_tick = -1;
+        return;
+    }
+
+    const int interval = 30;
+    const int tick = world->getTicksSinceStart();
+    if (m_next_auto_input_tick < 0)
+        m_next_auto_input_tick = interval;
+
+#ifdef MOBILE_STK
+    MultitouchDevice* device = m_device_manager->getMultitouchDevice();
+    MultitouchButton* button = NULL;
+    if (device != NULL)
+    {
+        for (unsigned int i = 0; i < device->getButtonsCount(); i++)
+        {
+            MultitouchButton* candidate = device->getButton(i);
+            if (candidate->type == BUTTON_STEERING ||
+                candidate->type == BUTTON_UP_DOWN)
+            {
+                button = candidate;
+                break;
+            }
+        }
+    }
+    if (button == NULL)
+        return;
+#endif
+
+    while (tick >= m_next_auto_input_tick)
+    {
+        m_auto_input_pressed = !m_auto_input_pressed;
+        SEvent event = {};
+#ifdef MOBILE_STK
+        event.EventType = EET_TOUCH_INPUT_EVENT;
+        event.TouchInput.ID = 0;
+        event.TouchInput.X = button->x + button->width / 2;
+        event.TouchInput.Y = button->y + button->height * 7 / 8; //button->y + button->height / 8;
+        event.TouchInput.Event = m_auto_input_pressed ?
+            ETIE_PRESSED_DOWN : ETIE_LEFT_UP;
+#else
+        event.EventType = EET_KEY_INPUT_EVENT;
+        event.KeyInput.Key = IRR_KEY_DOWN; //IRR_KEY_UP;
+        event.KeyInput.PressedDown = m_auto_input_pressed;
+#endif
+        GUIEngine::EventHandler::get()->OnEvent(event);
+        m_next_auto_input_tick += interval;
+    }
+#else
+    (void)race_active;
+#endif
+}   // updateAutoInput
+
+// -----------------------------------------------------------------------------
+void InputManager::updateAutoAccel(bool race_active)
+{
+#ifndef SERVER_ONLY
+    if (!m_auto_accel_enabled)
+        return;
+
+    if (!race_active)
+    {
+        m_auto_accel_sent = false;
+        return;
+    }
+
+    if (m_auto_accel_sent)
+        return;
+
+    SEvent event = {};
+#ifdef MOBILE_STK
+    MultitouchDevice* device = m_device_manager->getMultitouchDevice();
+    MultitouchButton* button = NULL;
+    if (device != NULL)
+    {
+        for (unsigned int i = 0; i < device->getButtonsCount(); i++)
+        {
+            MultitouchButton* candidate = device->getButton(i);
+            if (candidate->type == BUTTON_STEERING ||
+                candidate->type == BUTTON_UP_DOWN)
+            {
+                button = candidate;
+                break;
+            }
+        }
+    }
+    if (button == NULL)
+        return;
+
+    event.EventType = EET_TOUCH_INPUT_EVENT;
+    event.TouchInput.ID = 0;
+    event.TouchInput.X = button->x + button->width / 2;
+    event.TouchInput.Y = button->y;
+    event.TouchInput.Event = ETIE_PRESSED_DOWN;
+#else
+    event.EventType = EET_KEY_INPUT_EVENT;
+    event.KeyInput.Key = IRR_KEY_UP;
+    event.KeyInput.PressedDown = true;
+#endif
+    GUIEngine::EventHandler::get()->OnEvent(event);
+    m_auto_accel_sent = true;
+#else
+    (void)race_active;
+#endif
+}   // updateAutoAccel
+
 //-----------------------------------------------------------------------------
 #ifndef SERVER_ONLY
 const irr::SEvent& InputManager::getEventForGamePad(unsigned i) const
@@ -1431,4 +1548,3 @@ void InputManager::setMode(InputDriverMode new_mode)
             assert(false);
     }
 }
-

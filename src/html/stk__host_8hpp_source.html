@@ -1,0 +1,553 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: network/stk_host.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>network</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">stk_host.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="stk__host_8hpp.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2013-2015 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef STK_HOST_HPP</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define STK_HOST_HPP</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;utils/stk_process.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;utils/synchronised.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;utils/time.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;irrString.h&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// enet.h includes win32.h, which without lean_and_mean includes</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">// winspool.h, which defines MAX_PRIORITY as a macro, which then</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">// results in request_manager.hpp not being compilable.</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#define WIN32_LEAN_AND_MEAN</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;enet/enet.h&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;cassert&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;list&gt;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#include &lt;tuple&gt;</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">class </span><a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">class </span><a class="code hl_class" href="classGameSetup.html">GameSetup</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">class </span><a class="code hl_class" href="classLobbyProtocol.html">LobbyProtocol</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">class </span><a class="code hl_class" href="classNetwork.html">Network</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">class </span><a class="code hl_class" href="classNetworkPlayerProfile.html">NetworkPlayerProfile</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">class </span><a class="code hl_class" href="classNetworkString.html">NetworkString</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">class </span><a class="code hl_class" href="classNetworkTimerSynchronizer.html">NetworkTimerSynchronizer</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">class </span><a class="code hl_class" href="classServer.html">Server</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">class </span><a class="code hl_class" href="classServerLobby.html">ServerLobby</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">class </span><a class="code hl_class" href="classChildLoop.html">ChildLoop</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">class </span><a class="code hl_class" href="classSocketAddress.html">SocketAddress</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">class </span><a class="code hl_class" href="classSTKPeer.html">STKPeer</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">enum</span> ENetCommandType : <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>{</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    ECT_SEND_PACKET = 0,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    ECT_DISCONNECT = 1,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    ECT_RESET = 2</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="foldopen" id="foldopen00072" data-start="{" data-end="};">
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classSTKHost.html">   72</a></span><span class="keyword">class </span><a class="code hl_function" href="classSTKHost.html#a54e811e77ff04e9066e8be1b398c48af">STKHost</a></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>{</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classSTKHost.html#a041a4c26a8ace0428b9a557b56aac391">   76</a></span>    <span class="keyword">static</span> <a class="code hl_function" href="classSTKHost.html#a54e811e77ff04e9066e8be1b398c48af">STKHost</a>* <a class="code hl_variable" href="classSTKHost.html#a041a4c26a8ace0428b9a557b56aac391">m_stk_host</a>[PT_COUNT];</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classSTKHost.html#ad94a4d213e36587fdcbe7110a4b7905f">   79</a></span>    <a class="code hl_class" href="classChildLoop.html">ChildLoop</a>* <a class="code hl_variable" href="classSTKHost.html#ad94a4d213e36587fdcbe7110a4b7905f">m_client_loop</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    std::thread m_client_loop_thread;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classSTKHost.html#ac5e27b0c70088bd08375d02772298cde">   84</a></span>    <a class="code hl_class" href="classNetwork.html">Network</a>* <a class="code hl_variable" href="classSTKHost.html#ac5e27b0c70088bd08375d02772298cde">m_network</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classSTKHost.html#aab22afd178e1a5579037082d7e05f1d4">   87</a></span>    std::thread <a class="code hl_variable" href="classSTKHost.html#aab22afd178e1a5579037082d7e05f1d4">m_network_console</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classSTKHost.html#a5a105d920f7481c95de286c9714fd7d2">   90</a></span>    <span class="keyword">mutable</span> std::mutex <a class="code hl_variable" href="classSTKHost.html#a5a105d920f7481c95de286c9714fd7d2">m_peers_mutex</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    std::vector&lt;std::tuple&lt;<span class="comment">/*peer receive*/</span>ENetPeer*,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="comment">/*packet to send*/</span>ENetPacket*, <span class="comment">/*integer data*/</span>uint32_t,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classSTKHost.html#a7db7125a8242bd5bd3abb38f9a13009f">   96</a></span>        ENetCommandType, ENetAddress&gt; &gt; <a class="code hl_variable" href="classSTKHost.html#a7db7125a8242bd5bd3abb38f9a13009f">m_enet_cmd</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classSTKHost.html#aef6fea6de5d1d16103e95a430a2b38a7">   99</a></span>    std::mutex <a class="code hl_variable" href="classSTKHost.html#aef6fea6de5d1d16103e95a430a2b38a7">m_enet_cmd_mutex</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classSTKHost.html#a736afcebfd7cb628a73dcca22c568faf">  102</a></span>    std::map&lt;ENetPeer*, std::shared_ptr&lt;STKPeer&gt; &gt; <a class="code hl_variable" href="classSTKHost.html#a736afcebfd7cb628a73dcca22c568faf">m_peers</a>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classSTKHost.html#ac52204dac426d9e33146618b6ccf5ef7">  108</a></span>    uint32_t <a class="code hl_variable" href="classSTKHost.html#ac52204dac426d9e33146618b6ccf5ef7">m_next_unique_host_id</a> = 0;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classSTKHost.html#a4a3ee531e00d049db0be6a26d0d380a1">  111</a></span>    uint32_t <a class="code hl_variable" href="classSTKHost.html#a4a3ee531e00d049db0be6a26d0d380a1">m_host_id</a> = 0;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classSTKHost.html#a0e63da295e66e28b08a337f01d47b362">  114</a></span>    std::thread <a class="code hl_variable" href="classSTKHost.html#a0e63da295e66e28b08a337f01d47b362">m_listening_thread</a>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classSTKHost.html#a05b44f3051d7c5aa9a1d15ac0c0d6208">  118</a></span>    std::atomic_bool <a class="code hl_variable" href="classSTKHost.html#a05b44f3051d7c5aa9a1d15ac0c0d6208">m_shutdown</a>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="classSTKHost.html#a11c312832e7c9268664625a3fdf81a9d">  121</a></span>    std::atomic_bool <a class="code hl_variable" href="classSTKHost.html#a11c312832e7c9268664625a3fdf81a9d">m_authorised</a>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classSTKHost.html#a6225b3998a013dd24c22fb3755ff7549">  124</a></span>    std::atomic&lt;uint64_t&gt; <a class="code hl_variable" href="classSTKHost.html#a6225b3998a013dd24c22fb3755ff7549">m_exit_timeout</a>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classSTKHost.html#ae44877eb9f5907d51d55f2183318f566">  128</a></span>    irr::core::stringw <a class="code hl_variable" href="classSTKHost.html#ae44877eb9f5907d51d55f2183318f566">m_error_message</a>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classSTKHost.html#a2e7f31926b5eaccac8c53c229119015a">  131</a></span>    std::unique_ptr&lt;SocketAddress&gt; <a class="code hl_variable" href="classSTKHost.html#a2e7f31926b5eaccac8c53c229119015a">m_public_address</a>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classSTKHost.html#a3c690fbeab60b943a57e6634b258bd2b">  134</a></span>    std::string <a class="code hl_variable" href="classSTKHost.html#a3c690fbeab60b943a57e6634b258bd2b">m_public_ipv6_address</a>;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classSTKHost.html#a32cd3cd588867caeca9153b8872902da">  137</a></span>    std::unique_ptr&lt;SocketAddress&gt; <a class="code hl_variable" href="classSTKHost.html#a32cd3cd588867caeca9153b8872902da">m_stun_ipv4</a>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="classSTKHost.html#ad891c24d1cf0956be436f0a238a919a7">  140</a></span>    std::unique_ptr&lt;SocketAddress&gt; <a class="code hl_variable" href="classSTKHost.html#ad891c24d1cf0956be436f0a238a919a7">m_stun_ipv6</a>;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <a class="code hl_class" href="classSynchronised.html">Synchronised&lt;std::map&lt;uint32_t, uint32_t&gt;</a> &gt; m_peer_pings;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    std::atomic&lt;uint32_t&gt; m_client_ping;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    std::atomic&lt;uint32_t&gt; m_upload_speed;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    std::atomic&lt;uint32_t&gt; m_download_speed;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    std::atomic&lt;uint32_t&gt; m_players_in_game;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    std::atomic&lt;uint32_t&gt; m_players_waiting;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    std::atomic&lt;uint32_t&gt; m_total_players;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    std::atomic&lt;int64_t&gt; m_network_timer;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    std::unique_ptr&lt;NetworkTimerSynchronizer&gt; m_nts;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <a class="code hl_function" href="classSTKHost.html#a54e811e77ff04e9066e8be1b398c48af">STKHost</a>(<span class="keywordtype">bool</span> server);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <a class="code hl_function" href="classSTKHost.html#ab8d10b1119140ae8cc9997a5eda1e48b">~STKHost</a>();</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#a2e39a55844744372848cc31491180c30">init</a>();</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#a33e21f1e9eac945f573274a15653b32a">handleDirectSocketRequest</a>(<a class="code hl_class" href="classNetwork.html">Network</a>* direct_socket,</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>                                   std::shared_ptr&lt;ServerLobby&gt; sl,</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>                                   std::map&lt;std::string, uint64_t&gt;&amp; ctp);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#a18cad24b5f261fa6a7acc0a1fe15ac02">mainLoop</a>(ProcessType pt);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">void</span> getIPFromStun(<span class="keywordtype">int</span> socket, <span class="keyword">const</span> std::string&amp; stun_address,</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>                       <span class="keywordtype">short</span> family, <a class="code hl_class" href="classSocketAddress.html">SocketAddress</a>* result);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="classSTKHost.html#a5fce24fda0ed49e7ba02ab27b3e89119">  177</a></span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="classSTKHost.html#a5fce24fda0ed49e7ba02ab27b3e89119">m_enable_console</a>;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keyword">static</span> std::shared_ptr&lt;LobbyProtocol&gt; <a class="code hl_function" href="classSTKHost.html#a591d1bbecf98159996980e9e203aa84f">create</a>(<a class="code hl_class" href="classChildLoop.html">ChildLoop</a>* cl = NULL);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00185" data-start="{" data-end="}">
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="classSTKHost.html#ae3b384ef2dc21872d984b8b6d6276a86">  185</a></span>    <span class="keyword">static</span> <a class="code hl_function" href="classSTKHost.html#a54e811e77ff04e9066e8be1b398c48af">STKHost</a> *<a class="code hl_function" href="classSTKHost.html#ae3b384ef2dc21872d984b8b6d6276a86">get</a>()</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    {</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        ProcessType pt = STKProcess::getType();</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        assert(<a class="code hl_variable" href="classSTKHost.html#a041a4c26a8ace0428b9a557b56aac391">m_stk_host</a>[pt] != NULL);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKHost.html#a041a4c26a8ace0428b9a557b56aac391">m_stk_host</a>[pt];</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    }   <span class="comment">// get</span></div>
+</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keyword">static</span> <a class="code hl_class" href="classSTKHost.html">STKHost</a> *getByType(ProcessType pt)</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    {</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        assert(<a class="code hl_variable" href="classSTKHost.html#a041a4c26a8ace0428b9a557b56aac391">m_stk_host</a>[pt] != NULL);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKHost.html#a041a4c26a8ace0428b9a557b56aac391">m_stk_host</a>[pt];</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    }   <span class="comment">// get</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> destroy()</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    {</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        ProcessType pt = STKProcess::getType();</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        assert(<a class="code hl_variable" href="classSTKHost.html#a041a4c26a8ace0428b9a557b56aac391">m_stk_host</a>[pt] != NULL);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        <span class="keyword">delete</span> <a class="code hl_variable" href="classSTKHost.html#a041a4c26a8ace0428b9a557b56aac391">m_stk_host</a>[pt];</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        <a class="code hl_variable" href="classSTKHost.html#a041a4c26a8ace0428b9a557b56aac391">m_stk_host</a>[pt] = NULL;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    }   <span class="comment">// destroy</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00207" data-start="{" data-end="}">
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="classSTKHost.html#a02d9deb9a58280a7fb7b38f9b9aae287">  207</a></span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classSTKHost.html#a02d9deb9a58280a7fb7b38f9b9aae287">existHost</a>()</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>                       { <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKHost.html#a041a4c26a8ace0428b9a557b56aac391">m_stk_host</a>[STKProcess::getType()] != NULL; }</div>
+</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> clear()          { memset(<a class="code hl_variable" href="classSTKHost.html#a041a4c26a8ace0428b9a557b56aac391">m_stk_host</a>, 0, <span class="keyword">sizeof</span>(<a class="code hl_variable" href="classSTKHost.html#a041a4c26a8ace0428b9a557b56aac391">m_stk_host</a>)); }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keyword">const</span> SocketAddress&amp; getPublicAddress()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="keyword">                                            </span>{ <span class="keywordflow">return</span> *<a class="code hl_variable" href="classSTKHost.html#a2e7f31926b5eaccac8c53c229119015a">m_public_address</a>.get(); }</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keyword">const</span> std::string&amp; getPublicIPv6Address()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="keyword">                                              </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKHost.html#a3c690fbeab60b943a57e6634b258bd2b">m_public_ipv6_address</a>; }</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    std::string <a class="code hl_function" href="classSTKHost.html#a5818f3e4cc9857af95fd20d668783296">getValidPublicAddress</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keyword">const</span> SocketAddress* getStunIPv4Address()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="keyword">                                                  </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKHost.html#a32cd3cd588867caeca9153b8872902da">m_stun_ipv4</a>.get(); }</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keyword">const</span> SocketAddress* getStunIPv6Address()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="keyword">                                                  </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKHost.html#ad891c24d1cf0956be436f0a238a919a7">m_stun_ipv6</a>.get(); }</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    uint16_t getPrivatePort() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#a2ef05e8b00d6fce5da46d80a18b9f5ff">setPublicAddress</a>(<span class="keywordtype">short</span> family);</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#a647e3b8e0e39c375fe9d0926d47decce">disconnectAllPeers</a>(<span class="keywordtype">bool</span> timeout_waiting = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="comment">//-------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00239" data-start="{" data-end="}">
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="classSTKHost.html#a1c90b57e60b73db3811a2329f64261ff">  239</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#a1c90b57e60b73db3811a2329f64261ff">requestShutdown</a>()</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    {</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <a class="code hl_variable" href="classSTKHost.html#a05b44f3051d7c5aa9a1d15ac0c0d6208">m_shutdown</a>.store(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    }   <span class="comment">// requestExit</span></div>
+</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="comment">//-------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#a155c295cbe5daccd77e1d5fe48ed47fa">shutdown</a>();</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="comment">//-------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#adba8fe602df072dfab53271d8a20dc0f">sendPacketToAllPeersInServer</a>(<a class="code hl_class" href="classNetworkString.html">NetworkString</a> *data,</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                                      <span class="keywordtype">bool</span> reliable = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#a96ac960f545012f676b3c780192aee66">sendPacketToAllPeers</a>(<a class="code hl_class" href="classNetworkString.html">NetworkString</a> *data, <span class="keywordtype">bool</span> reliable = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#a9b0c7a043c85cda3d310ce6842140523">sendPacketToAllPeersWith</a>(std::function&lt;<span class="keywordtype">bool</span>(<a class="code hl_class" href="classSTKPeer.html">STKPeer</a>*)&gt; predicate,</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                                  <a class="code hl_class" href="classNetworkString.html">NetworkString</a>* data, <span class="keywordtype">bool</span> reliable = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="classSTKHost.html#ae009c275b70c9b02230ac96a7da77ce0">  257</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSTKHost.html#ae009c275b70c9b02230ac96a7da77ce0">isAuthorisedToControl</a>()<span class="keyword"> const          </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKHost.html#a11c312832e7c9268664625a3fdf81a9d">m_authorised</a>.load(); }</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00260" data-start="{" data-end="}">
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="classSTKHost.html#ae0d4aae64969fcbe69d482e71343c417">  260</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#ae0d4aae64969fcbe69d482e71343c417">setAuthorisedToControl</a>(<span class="keywordtype">bool</span> authorised)</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>                                            { <a class="code hl_variable" href="classSTKHost.html#a11c312832e7c9268664625a3fdf81a9d">m_authorised</a>.store(authorised); }</div>
+</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    std::vector&lt;std::shared_ptr&lt;NetworkPlayerProfile&gt; &gt;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                                                  getAllPlayerProfiles() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    std::set&lt;uint32_t&gt; getAllPlayerOnlineIds() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    std::shared_ptr&lt;STKPeer&gt; findPeerByHostId(uint32_t <span class="keywordtype">id</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    std::shared_ptr&lt;STKPeer&gt; findPeerByName(<span class="keyword">const</span> core::stringw&amp; name) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#a3d90d18d1124501a0ce9e3f1e57a12ce">sendPacketExcept</a>(<a class="code hl_class" href="classSTKPeer.html">STKPeer</a>* peer, <a class="code hl_class" href="classNetworkString.html">NetworkString</a> *data,</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>                          <span class="keywordtype">bool</span> reliable = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordtype">void</span> setupClient(<span class="keywordtype">int</span> peer_count, <span class="keywordtype">int</span> channel_limit,</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                     uint32_t max_incoming_bandwidth,</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>                     uint32_t max_outgoing_bandwidth);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#a6a234014bf445403be413899d23a693a">startListening</a>();</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#ac67bcd05cb9b5ad170262474c0459a96">stopListening</a>();</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSTKHost.html#ad274b6aed211b5cc92b619a6d6ac2bd0">peerExists</a>(<span class="keyword">const</span> <a class="code hl_class" href="classSocketAddress.html">SocketAddress</a>&amp; peer_address);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    std::shared_ptr&lt;STKPeer&gt; <a class="code hl_function" href="classSTKHost.html#a264bc7dbff70fedee33fa202f81115b4">getServerPeerForClient</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#aa75e9de4f9b0dcda071072785406d19f">setErrorMessage</a>(<span class="keyword">const</span> irr::core::stringw &amp;message);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="keywordtype">void</span> addEnetCommand(ENetPeer* peer, ENetPacket* packet, uint32_t i,</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>                        ENetCommandType ect, ENetAddress ea)</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    {</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="classSTKHost.html#aef6fea6de5d1d16103e95a430a2b38a7">m_enet_cmd_mutex</a>);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>        <a class="code hl_variable" href="classSTKHost.html#a7db7125a8242bd5bd3abb38f9a13009f">m_enet_cmd</a>.emplace_back(peer, packet, i, ect, ea);</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    }</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00297" data-start="{" data-end="}">
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno"><a class="line" href="classSTKHost.html#aa3afc33998abc41533195a007277a73e">  297</a></span>    <span class="keyword">const</span> irr::core::stringw&amp; <a class="code hl_function" href="classSTKHost.html#aa3afc33998abc41533195a007277a73e">getErrorMessage</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="keyword">                                                    </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKHost.html#ae44877eb9f5907d51d55f2183318f566">m_error_message</a>; }</div>
+</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="classSTKHost.html#aa556d0af2d488e60f4e9211af2044383">  302</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSTKHost.html#aa556d0af2d488e60f4e9211af2044383">requestedShutdown</a>()<span class="keyword"> const                </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKHost.html#a05b44f3051d7c5aa9a1d15ac0c0d6208">m_shutdown</a>.load(); }</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <span class="keywordtype">int</span> receiveRawPacket(<span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> buffer_len,</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>                         <a class="code hl_class" href="classSocketAddress.html">SocketAddress</a>* sender, <span class="keywordtype">int</span> max_tries = -1);</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    <span class="keywordtype">void</span> sendRawPacket(<span class="keyword">const</span> <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> &amp;buffer,</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>                       <span class="keyword">const</span> <a class="code hl_class" href="classSocketAddress.html">SocketAddress</a>&amp; dst);</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <a class="code hl_class" href="classNetwork.html">Network</a>* getNetwork()<span class="keyword"> const                           </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKHost.html#ac5e27b0c70088bd08375d02772298cde">m_network</a>; }</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00313" data-start="{" data-end="}">
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno"><a class="line" href="classSTKHost.html#ac7556101655d8a9003811e9f9d41ddbd">  313</a></span>    std::vector&lt;std::shared_ptr&lt;STKPeer&gt; &gt; <a class="code hl_function" href="classSTKHost.html#ac7556101655d8a9003811e9f9d41ddbd">getPeers</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="classSTKHost.html#a5a105d920f7481c95de286c9714fd7d2">m_peers_mutex</a>);</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        std::vector&lt;std::shared_ptr&lt;STKPeer&gt; &gt; peers;</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> p : <a class="code hl_variable" href="classSTKHost.html#a736afcebfd7cb628a73dcca22c568faf">m_peers</a>)</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>        {</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>            peers.push_back(p.second);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        }</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        <span class="keywordflow">return</span> peers;</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    }</div>
+</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00325" data-start="{" data-end="}">
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="classSTKHost.html#a1eed8cda5644a39d15a37f100a426947">  325</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classSTKHost.html#a1eed8cda5644a39d15a37f100a426947">getNextHostId</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>        assert(<a class="code hl_variable" href="classSTKHost.html#ac52204dac426d9e33146618b6ccf5ef7">m_next_unique_host_id</a> &gt;= 0);</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKHost.html#ac52204dac426d9e33146618b6ccf5ef7">m_next_unique_host_id</a>;</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    }</div>
+</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keywordtype">void</span> setNextHostId(uint32_t <span class="keywordtype">id</span>)             { <a class="code hl_variable" href="classSTKHost.html#ac52204dac426d9e33146618b6ccf5ef7">m_next_unique_host_id</a> = id; }</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00334" data-start="{" data-end="}">
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno"><a class="line" href="classSTKHost.html#a2466740cd60aa406b6adcf510876ac62">  334</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classSTKHost.html#a2466740cd60aa406b6adcf510876ac62">getPeerCount</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>        std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="classSTKHost.html#a5a105d920f7481c95de286c9714fd7d2">m_peers_mutex</a>);</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>        <span class="keywordflow">return</span> (<span class="keywordtype">unsigned</span>)<a class="code hl_variable" href="classSTKHost.html#a736afcebfd7cb628a73dcca22c568faf">m_peers</a>.size();</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    }</div>
+</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno"><a class="line" href="classSTKHost.html#a0707c816f0a9aba6029981761ee1ecba">  341</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#a0707c816f0a9aba6029981761ee1ecba">setMyHostId</a>(uint32_t my_host_id)           { <a class="code hl_variable" href="classSTKHost.html#a4a3ee531e00d049db0be6a26d0d380a1">m_host_id</a> = my_host_id; }</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno"><a class="line" href="classSTKHost.html#a7dca93c9f2cc44e83adeabd08a7bbabd">  344</a></span>    uint32_t <a class="code hl_function" href="classSTKHost.html#a7dca93c9f2cc44e83adeabd08a7bbabd">getMyHostId</a>()<span class="keyword"> const                          </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKHost.html#a4a3ee531e00d049db0be6a26d0d380a1">m_host_id</a>; }</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#ad573d4451074e4ebdaf8e29d67f17103">sendToServer</a>(<a class="code hl_class" href="classNetworkString.html">NetworkString</a> *data, <span class="keywordtype">bool</span> reliable = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSTKHost.html#aa4646942dc9631ac1fac9a4cd1a7b5e9">isClientServer</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    <span class="keywordtype">void</span> initClientNetwork(ENetEvent&amp; event, <a class="code hl_class" href="classNetwork.html">Network</a>* new_network);</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    std::map&lt;uint32_t, uint32_t&gt; getPeerPings()</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>                                           { <span class="keywordflow">return</span> m_peer_pings.<a class="code hl_function" href="classSynchronised.html#ac9b937ab20f901379385d36daf6e3295">getAtomic</a>(); }</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>    uint32_t getClientPingToServer()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="keyword">                      </span>{ <span class="keywordflow">return</span> m_client_ping.load(std::memory_order_relaxed); }</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    NetworkTimerSynchronizer* getNetworkTimerSynchronizer()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="keyword">                                                        </span>{ <span class="keywordflow">return</span> m_nts.get(); }</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    uint64_t getNetworkTimer()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="keyword">                  </span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="classStkTime.html#a216a8bfe77f82bf1fd5ab96f78e99e65">StkTime::getMonoTimeMs</a>() - m_network_timer.load(); }</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="keywordtype">void</span> setNetworkTimer(uint64_t ticks)</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    {</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>        m_network_timer.store(</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>            (int64_t)<a class="code hl_function" href="classStkTime.html#a216a8bfe77f82bf1fd5ab96f78e99e65">StkTime::getMonoTimeMs</a>() - (int64_t)ticks);</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>    }</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    std::pair&lt;int, int&gt; getAllPlayersTeamInfo() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    <span class="comment">/* Return upload speed in bytes per second. */</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    <span class="keywordtype">unsigned</span> getUploadSpeed()<span class="keyword"> const           </span>{ <span class="keywordflow">return</span> m_upload_speed.load(); }</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>    <span class="comment">/* Return download speed in bytes per second. */</span></div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>    <span class="keywordtype">unsigned</span> getDownloadSpeed()<span class="keyword"> const       </span>{ <span class="keywordflow">return</span> m_download_speed.load(); }</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSTKHost.html#a6ef6b5219a1108bb384fd59526e84170">updatePlayers</a>(<span class="keywordtype">unsigned</span>* ingame = NULL,</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>                       <span class="keywordtype">unsigned</span>* waiting = NULL,</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>                       <span class="keywordtype">unsigned</span>* total = NULL);</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>    uint32_t getPlayersInGame()<span class="keyword"> const      </span>{ <span class="keywordflow">return</span> m_players_in_game.load(); }</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>    uint32_t getWaitingPlayers()<span class="keyword"> const     </span>{ <span class="keywordflow">return</span> m_players_waiting.load(); }</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    uint32_t getTotalPlayers()<span class="keyword"> const         </span>{ <span class="keywordflow">return</span> m_total_players.load(); }</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>    std::vector&lt;std::shared_ptr&lt;NetworkPlayerProfile&gt; &gt;</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>        <a class="code hl_function" href="classSTKHost.html#acb9499423b6e5ec92bb625827e964c84">getPlayersForNewGame</a>(<span class="keywordtype">bool</span>* has_always_on_spectators = NULL) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>    <span class="keywordtype">void</span> replaceNetwork(Network* new_network)</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>    {</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>        <a class="code hl_variable" href="classSTKHost.html#ac5e27b0c70088bd08375d02772298cde">m_network</a> = new_network;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    }</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    <span class="keyword">static</span> BareNetworkString <a class="code hl_function" href="classSTKHost.html#a767f4375ca19d1aa0f95560b4beba5f3">getStunRequest</a>(uint8_t* stun_tansaction_id);</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    ChildLoop* getChildLoop()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSTKHost.html#ad94a4d213e36587fdcbe7110a4b7905f">m_client_loop</a>; }</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>};   <span class="comment">// class STKHost</span></div>
+</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span> </div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span><span class="preprocessor">#endif </span><span class="comment">// STK_HOST_HPP</span></div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassChildLoop_html"><div class="ttname"><a href="classChildLoop.html">ChildLoop</a></div><div class="ttdef"><b>Definition</b> child_loop.hpp:34</div></div>
+<div class="ttc" id="aclassGameSetup_html"><div class="ttname"><a href="classGameSetup.html">GameSetup</a></div><div class="ttdoc">Used to store the needed data about the players that join a game. This class stores all the possible ...</div><div class="ttdef"><b>Definition</b> game_setup.hpp:43</div></div>
+<div class="ttc" id="aclassLobbyProtocol_html"><div class="ttname"><a href="classLobbyProtocol.html">LobbyProtocol</a></div><div class="ttdoc">Base class for both client and server lobby. The lobbies are started when a server opens a game,...</div><div class="ttdef"><b>Definition</b> lobby_protocol.hpp:47</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html"><div class="ttname"><a href="classNetworkPlayerProfile.html">NetworkPlayerProfile</a></div><div class="ttdoc">Contains the profile of a player.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:42</div></div>
+<div class="ttc" id="aclassNetworkString_html"><div class="ttname"><a href="classNetworkString.html">NetworkString</a></div><div class="ttdoc">A new implementation of NetworkString, which has a fixed format: Byte 0: The type of the message,...</div><div class="ttdef"><b>Definition</b> network_string.hpp:422</div></div>
+<div class="ttc" id="aclassNetworkTimerSynchronizer_html"><div class="ttname"><a href="classNetworkTimerSynchronizer.html">NetworkTimerSynchronizer</a></div><div class="ttdef"><b>Definition</b> network_timer_synchronizer.hpp:34</div></div>
+<div class="ttc" id="aclassNetwork_html"><div class="ttname"><a href="classNetwork.html">Network</a></div><div class="ttdef"><b>Definition</b> network.hpp:46</div></div>
+<div class="ttc" id="aclassSTKHost_html"><div class="ttname"><a href="classSTKHost.html">STKHost</a></div><div class="ttdoc">Represents the local host.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:73</div></div>
+<div class="ttc" id="aclassSTKHost_html_a02d9deb9a58280a7fb7b38f9b9aae287"><div class="ttname"><a href="classSTKHost.html#a02d9deb9a58280a7fb7b38f9b9aae287">STKHost::existHost</a></div><div class="ttdeci">static bool existHost()</div><div class="ttdoc">Checks if the STKHost has been created.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:207</div></div>
+<div class="ttc" id="aclassSTKHost_html_a041a4c26a8ace0428b9a557b56aac391"><div class="ttname"><a href="classSTKHost.html#a041a4c26a8ace0428b9a557b56aac391">STKHost::m_stk_host</a></div><div class="ttdeci">static STKHost * m_stk_host[PT_COUNT]</div><div class="ttdoc">Singleton pointer to the instance.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:76</div></div>
+<div class="ttc" id="aclassSTKHost_html_a05b44f3051d7c5aa9a1d15ac0c0d6208"><div class="ttname"><a href="classSTKHost.html#a05b44f3051d7c5aa9a1d15ac0c0d6208">STKHost::m_shutdown</a></div><div class="ttdeci">std::atomic_bool m_shutdown</div><div class="ttdoc">Flag which is set from the protocol manager thread which triggers a shutdown of the STKHost (and the ...</div><div class="ttdef"><b>Definition</b> stk_host.hpp:118</div></div>
+<div class="ttc" id="aclassSTKHost_html_a0707c816f0a9aba6029981761ee1ecba"><div class="ttname"><a href="classSTKHost.html#a0707c816f0a9aba6029981761ee1ecba">STKHost::setMyHostId</a></div><div class="ttdeci">void setMyHostId(uint32_t my_host_id)</div><div class="ttdoc">Sets the global host id of this host (client use).</div><div class="ttdef"><b>Definition</b> stk_host.hpp:341</div></div>
+<div class="ttc" id="aclassSTKHost_html_a0e63da295e66e28b08a337f01d47b362"><div class="ttname"><a href="classSTKHost.html#a0e63da295e66e28b08a337f01d47b362">STKHost::m_listening_thread</a></div><div class="ttdeci">std::thread m_listening_thread</div><div class="ttdoc">Id of thread listening to enet events.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:114</div></div>
+<div class="ttc" id="aclassSTKHost_html_a11c312832e7c9268664625a3fdf81a9d"><div class="ttname"><a href="classSTKHost.html#a11c312832e7c9268664625a3fdf81a9d">STKHost::m_authorised</a></div><div class="ttdeci">std::atomic_bool m_authorised</div><div class="ttdoc">True if this local host is authorised to control a server.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:121</div></div>
+<div class="ttc" id="aclassSTKHost_html_a155c295cbe5daccd77e1d5fe48ed47fa"><div class="ttname"><a href="classSTKHost.html#a155c295cbe5daccd77e1d5fe48ed47fa">STKHost::shutdown</a></div><div class="ttdeci">void shutdown()</div><div class="ttdoc">Called from the main thread when the network infrastructure is to be shut down.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:387</div></div>
+<div class="ttc" id="aclassSTKHost_html_a18cad24b5f261fa6a7acc0a1fe15ac02"><div class="ttname"><a href="classSTKHost.html#a18cad24b5f261fa6a7acc0a1fe15ac02">STKHost::mainLoop</a></div><div class="ttdeci">void mainLoop(ProcessType pt)</div><div class="ttdoc">Thread function checking if data is received.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:793</div></div>
+<div class="ttc" id="aclassSTKHost_html_a1c90b57e60b73db3811a2329f64261ff"><div class="ttname"><a href="classSTKHost.html#a1c90b57e60b73db3811a2329f64261ff">STKHost::requestShutdown</a></div><div class="ttdeci">void requestShutdown()</div><div class="ttdoc">Requests that the network infrastructure is to be shut down.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:239</div></div>
+<div class="ttc" id="aclassSTKHost_html_a1eed8cda5644a39d15a37f100a426947"><div class="ttname"><a href="classSTKHost.html#a1eed8cda5644a39d15a37f100a426947">STKHost::getNextHostId</a></div><div class="ttdeci">unsigned int getNextHostId() const</div><div class="ttdoc">Returns the next (unique) host id.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:325</div></div>
+<div class="ttc" id="aclassSTKHost_html_a2466740cd60aa406b6adcf510876ac62"><div class="ttname"><a href="classSTKHost.html#a2466740cd60aa406b6adcf510876ac62">STKHost::getPeerCount</a></div><div class="ttdeci">unsigned int getPeerCount() const</div><div class="ttdoc">Returns the number of currently connected peers.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:334</div></div>
+<div class="ttc" id="aclassSTKHost_html_a264bc7dbff70fedee33fa202f81115b4"><div class="ttname"><a href="classSTKHost.html#a264bc7dbff70fedee33fa202f81115b4">STKHost::getServerPeerForClient</a></div><div class="ttdeci">std::shared_ptr&lt; STKPeer &gt; getServerPeerForClient() const</div><div class="ttdoc">Return the only server peer for client.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:1327</div></div>
+<div class="ttc" id="aclassSTKHost_html_a2e39a55844744372848cc31491180c30"><div class="ttname"><a href="classSTKHost.html#a2e39a55844744372848cc31491180c30">STKHost::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Initialises the internal data structures and starts the protocol manager and the debug console.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:313</div></div>
+<div class="ttc" id="aclassSTKHost_html_a2e7f31926b5eaccac8c53c229119015a"><div class="ttname"><a href="classSTKHost.html#a2e7f31926b5eaccac8c53c229119015a">STKHost::m_public_address</a></div><div class="ttdeci">std::unique_ptr&lt; SocketAddress &gt; m_public_address</div><div class="ttdoc">The public address found by stun (if WAN is used).</div><div class="ttdef"><b>Definition</b> stk_host.hpp:131</div></div>
+<div class="ttc" id="aclassSTKHost_html_a2ef05e8b00d6fce5da46d80a18b9f5ff"><div class="ttname"><a href="classSTKHost.html#a2ef05e8b00d6fce5da46d80a18b9f5ff">STKHost::setPublicAddress</a></div><div class="ttdeci">void setPublicAddress(short family)</div><div class="ttdoc">Set the public address using stun protocol.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:635</div></div>
+<div class="ttc" id="aclassSTKHost_html_a32cd3cd588867caeca9153b8872902da"><div class="ttname"><a href="classSTKHost.html#a32cd3cd588867caeca9153b8872902da">STKHost::m_stun_ipv4</a></div><div class="ttdeci">std::unique_ptr&lt; SocketAddress &gt; m_stun_ipv4</div><div class="ttdoc">The public IPv4 address stun server used.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:137</div></div>
+<div class="ttc" id="aclassSTKHost_html_a33e21f1e9eac945f573274a15653b32a"><div class="ttname"><a href="classSTKHost.html#a33e21f1e9eac945f573274a15653b32a">STKHost::handleDirectSocketRequest</a></div><div class="ttdeci">void handleDirectSocketRequest(Network *direct_socket, std::shared_ptr&lt; ServerLobby &gt; sl, std::map&lt; std::string, uint64_t &gt; &amp;ctp)</div><div class="ttdoc">Handles a direct request given to a socket.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:1235</div></div>
+<div class="ttc" id="aclassSTKHost_html_a3c690fbeab60b943a57e6634b258bd2b"><div class="ttname"><a href="classSTKHost.html#a3c690fbeab60b943a57e6634b258bd2b">STKHost::m_public_ipv6_address</a></div><div class="ttdeci">std::string m_public_ipv6_address</div><div class="ttdoc">The public IPv6 address found by stun (if WAN is used).</div><div class="ttdef"><b>Definition</b> stk_host.hpp:134</div></div>
+<div class="ttc" id="aclassSTKHost_html_a3d90d18d1124501a0ce9e3f1e57a12ce"><div class="ttname"><a href="classSTKHost.html#a3d90d18d1124501a0ce9e3f1e57a12ce">STKHost::sendPacketExcept</a></div><div class="ttdeci">void sendPacketExcept(STKPeer *peer, NetworkString *data, bool reliable=true)</div><div class="ttdoc">Sends data to all validated peers except the specified currently in game</div><div class="ttdef"><b>Definition</b> stk_host.cpp:1371</div></div>
+<div class="ttc" id="aclassSTKHost_html_a4a3ee531e00d049db0be6a26d0d380a1"><div class="ttname"><a href="classSTKHost.html#a4a3ee531e00d049db0be6a26d0d380a1">STKHost::m_host_id</a></div><div class="ttdeci">uint32_t m_host_id</div><div class="ttdoc">Host id of this host.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:111</div></div>
+<div class="ttc" id="aclassSTKHost_html_a54e811e77ff04e9066e8be1b398c48af"><div class="ttname"><a href="classSTKHost.html#a54e811e77ff04e9066e8be1b398c48af">STKHost::STKHost</a></div><div class="ttdeci">STKHost(bool server)</div><div class="ttdoc">The constructor for a server or client.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:259</div></div>
+<div class="ttc" id="aclassSTKHost_html_a5818f3e4cc9857af95fd20d668783296"><div class="ttname"><a href="classSTKHost.html#a5818f3e4cc9857af95fd20d668783296">STKHost::getValidPublicAddress</a></div><div class="ttdeci">std::string getValidPublicAddress() const</div><div class="ttdoc">Return an valid public IPv4 or IPv6 address with port, empty if both are unset, IPv6 will come first ...</div><div class="ttdef"><b>Definition</b> stk_host.cpp:1603</div></div>
+<div class="ttc" id="aclassSTKHost_html_a591d1bbecf98159996980e9e203aa84f"><div class="ttname"><a href="classSTKHost.html#a591d1bbecf98159996980e9e203aa84f">STKHost::create</a></div><div class="ttdeci">static std::shared_ptr&lt; LobbyProtocol &gt; create(ChildLoop *cl=NULL)</div><div class="ttdoc">Creates the STKHost.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:77</div></div>
+<div class="ttc" id="aclassSTKHost_html_a5a105d920f7481c95de286c9714fd7d2"><div class="ttname"><a href="classSTKHost.html#a5a105d920f7481c95de286c9714fd7d2">STKHost::m_peers_mutex</a></div><div class="ttdeci">std::mutex m_peers_mutex</div><div class="ttdoc">Make sure the removing or adding a peer is thread-safe.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:90</div></div>
+<div class="ttc" id="aclassSTKHost_html_a5fce24fda0ed49e7ba02ab27b3e89119"><div class="ttname"><a href="classSTKHost.html#a5fce24fda0ed49e7ba02ab27b3e89119">STKHost::m_enable_console</a></div><div class="ttdeci">static bool m_enable_console</div><div class="ttdoc">If a network console should be started.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:177</div></div>
+<div class="ttc" id="aclassSTKHost_html_a6225b3998a013dd24c22fb3755ff7549"><div class="ttname"><a href="classSTKHost.html#a6225b3998a013dd24c22fb3755ff7549">STKHost::m_exit_timeout</a></div><div class="ttdeci">std::atomic&lt; uint64_t &gt; m_exit_timeout</div><div class="ttdoc">Use as a timeout to waiting a disconnect event when exiting.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:124</div></div>
+<div class="ttc" id="aclassSTKHost_html_a647e3b8e0e39c375fe9d0926d47decce"><div class="ttname"><a href="classSTKHost.html#a647e3b8e0e39c375fe9d0926d47decce">STKHost::disconnectAllPeers</a></div><div class="ttdeci">void disconnectAllPeers(bool timeout_waiting=false)</div><div class="ttdoc">Disconnect all connected peers.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:738</div></div>
+<div class="ttc" id="aclassSTKHost_html_a6a234014bf445403be413899d23a693a"><div class="ttname"><a href="classSTKHost.html#a6a234014bf445403be413899d23a693a">STKHost::startListening</a></div><div class="ttdeci">void startListening()</div><div class="ttdoc">Starts the listening of events from ENet.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:767</div></div>
+<div class="ttc" id="aclassSTKHost_html_a6ef6b5219a1108bb384fd59526e84170"><div class="ttname"><a href="classSTKHost.html#a6ef6b5219a1108bb384fd59526e84170">STKHost::updatePlayers</a></div><div class="ttdeci">void updatePlayers(unsigned *ingame=NULL, unsigned *waiting=NULL, unsigned *total=NULL)</div><div class="ttdoc">Update players count in server</div><div class="ttdef"><b>Definition</b> stk_host.cpp:1561</div></div>
+<div class="ttc" id="aclassSTKHost_html_a736afcebfd7cb628a73dcca22c568faf"><div class="ttname"><a href="classSTKHost.html#a736afcebfd7cb628a73dcca22c568faf">STKHost::m_peers</a></div><div class="ttdeci">std::map&lt; ENetPeer *, std::shared_ptr&lt; STKPeer &gt; &gt; m_peers</div><div class="ttdoc">The list of peers connected to this instance.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:102</div></div>
+<div class="ttc" id="aclassSTKHost_html_a767f4375ca19d1aa0f95560b4beba5f3"><div class="ttname"><a href="classSTKHost.html#a767f4375ca19d1aa0f95560b4beba5f3">STKHost::getStunRequest</a></div><div class="ttdeci">static BareNetworkString getStunRequest(uint8_t *stun_tansaction_id)</div><div class="ttdoc">Get the stun network string required for binding request</div><div class="ttdef"><b>Definition</b> stk_host.cpp:397</div></div>
+<div class="ttc" id="aclassSTKHost_html_a7db7125a8242bd5bd3abb38f9a13009f"><div class="ttname"><a href="classSTKHost.html#a7db7125a8242bd5bd3abb38f9a13009f">STKHost::m_enet_cmd</a></div><div class="ttdeci">std::vector&lt; std::tuple&lt; ENetPeer *, ENetPacket *, uint32_t, ENetCommandType, ENetAddress &gt; &gt; m_enet_cmd</div><div class="ttdoc">Let (atm enet_peer_send and enet_peer_disconnect) run in the listening thread.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:96</div></div>
+<div class="ttc" id="aclassSTKHost_html_a7dca93c9f2cc44e83adeabd08a7bbabd"><div class="ttname"><a href="classSTKHost.html#a7dca93c9f2cc44e83adeabd08a7bbabd">STKHost::getMyHostId</a></div><div class="ttdeci">uint32_t getMyHostId() const</div><div class="ttdoc">Returns the host id of this host.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:344</div></div>
+<div class="ttc" id="aclassSTKHost_html_a96ac960f545012f676b3c780192aee66"><div class="ttname"><a href="classSTKHost.html#a96ac960f545012f676b3c780192aee66">STKHost::sendPacketToAllPeers</a></div><div class="ttdeci">void sendPacketToAllPeers(NetworkString *data, bool reliable=true)</div><div class="ttdoc">Sends data to all validated peers currently in game</div><div class="ttdef"><b>Definition</b> stk_host.cpp:1355</div></div>
+<div class="ttc" id="aclassSTKHost_html_a9b0c7a043c85cda3d310ce6842140523"><div class="ttname"><a href="classSTKHost.html#a9b0c7a043c85cda3d310ce6842140523">STKHost::sendPacketToAllPeersWith</a></div><div class="ttdeci">void sendPacketToAllPeersWith(std::function&lt; bool(STKPeer *)&gt; predicate, NetworkString *data, bool reliable=true)</div><div class="ttdoc">Sends data to peers with custom rule</div><div class="ttdef"><b>Definition</b> stk_host.cpp:1392</div></div>
+<div class="ttc" id="aclassSTKHost_html_aa3afc33998abc41533195a007277a73e"><div class="ttname"><a href="classSTKHost.html#aa3afc33998abc41533195a007277a73e">STKHost::getErrorMessage</a></div><div class="ttdeci">const irr::core::stringw &amp; getErrorMessage() const</div><div class="ttdoc">Returns the last error (or &quot;&quot; if no error has happened).</div><div class="ttdef"><b>Definition</b> stk_host.hpp:297</div></div>
+<div class="ttc" id="aclassSTKHost_html_aa4646942dc9631ac1fac9a4cd1a7b5e9"><div class="ttname"><a href="classSTKHost.html#aa4646942dc9631ac1fac9a4cd1a7b5e9">STKHost::isClientServer</a></div><div class="ttdeci">bool isClientServer() const</div><div class="ttdoc">True if this is a client and server in graphics mode made by server creation screen.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:1595</div></div>
+<div class="ttc" id="aclassSTKHost_html_aa556d0af2d488e60f4e9211af2044383"><div class="ttname"><a href="classSTKHost.html#aa556d0af2d488e60f4e9211af2044383">STKHost::requestedShutdown</a></div><div class="ttdeci">bool requestedShutdown() const</div><div class="ttdoc">Returns true if a shutdown of the network infrastructure was requested.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:302</div></div>
+<div class="ttc" id="aclassSTKHost_html_aa75e9de4f9b0dcda071072785406d19f"><div class="ttname"><a href="classSTKHost.html#aa75e9de4f9b0dcda071072785406d19f">STKHost::setErrorMessage</a></div><div class="ttdeci">void setErrorMessage(const irr::core::stringw &amp;message)</div><div class="ttdoc">Sets an error message for the gui.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:754</div></div>
+<div class="ttc" id="aclassSTKHost_html_aab22afd178e1a5579037082d7e05f1d4"><div class="ttname"><a href="classSTKHost.html#aab22afd178e1a5579037082d7e05f1d4">STKHost::m_network_console</a></div><div class="ttdeci">std::thread m_network_console</div><div class="ttdoc">Network console thread</div><div class="ttdef"><b>Definition</b> stk_host.hpp:87</div></div>
+<div class="ttc" id="aclassSTKHost_html_ab8d10b1119140ae8cc9997a5eda1e48b"><div class="ttname"><a href="classSTKHost.html#ab8d10b1119140ae8cc9997a5eda1e48b">STKHost::~STKHost</a></div><div class="ttdeci">~STKHost()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:349</div></div>
+<div class="ttc" id="aclassSTKHost_html_ac52204dac426d9e33146618b6ccf5ef7"><div class="ttname"><a href="classSTKHost.html#ac52204dac426d9e33146618b6ccf5ef7">STKHost::m_next_unique_host_id</a></div><div class="ttdeci">uint32_t m_next_unique_host_id</div><div class="ttdoc">Next unique host id.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:108</div></div>
+<div class="ttc" id="aclassSTKHost_html_ac5e27b0c70088bd08375d02772298cde"><div class="ttname"><a href="classSTKHost.html#ac5e27b0c70088bd08375d02772298cde">STKHost::m_network</a></div><div class="ttdeci">Network * m_network</div><div class="ttdoc">ENet host interfacing sockets.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:84</div></div>
+<div class="ttc" id="aclassSTKHost_html_ac67bcd05cb9b5ad170262474c0459a96"><div class="ttname"><a href="classSTKHost.html#ac67bcd05cb9b5ad170262474c0459a96">STKHost::stopListening</a></div><div class="ttdeci">void stopListening()</div><div class="ttdoc">Stops the listening of events from ENet.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:778</div></div>
+<div class="ttc" id="aclassSTKHost_html_ac7556101655d8a9003811e9f9d41ddbd"><div class="ttname"><a href="classSTKHost.html#ac7556101655d8a9003811e9f9d41ddbd">STKHost::getPeers</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; STKPeer &gt; &gt; getPeers() const</div><div class="ttdoc">Returns a copied list of peers.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:313</div></div>
+<div class="ttc" id="aclassSTKHost_html_acb9499423b6e5ec92bb625827e964c84"><div class="ttname"><a href="classSTKHost.html#acb9499423b6e5ec92bb625827e964c84">STKHost::getPlayersForNewGame</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; NetworkPlayerProfile &gt; &gt; getPlayersForNewGame(bool *has_always_on_spectators=NULL) const</div><div class="ttdoc">Get the players for starting a new game.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:1530</div></div>
+<div class="ttc" id="aclassSTKHost_html_ad274b6aed211b5cc92b619a6d6ac2bd0"><div class="ttname"><a href="classSTKHost.html#ad274b6aed211b5cc92b619a6d6ac2bd0">STKHost::peerExists</a></div><div class="ttdeci">bool peerExists(const SocketAddress &amp;peer_address)</div><div class="ttdoc">Tells if a peer is known.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:1308</div></div>
+<div class="ttc" id="aclassSTKHost_html_ad573d4451074e4ebdaf8e29d67f17103"><div class="ttname"><a href="classSTKHost.html#ad573d4451074e4ebdaf8e29d67f17103">STKHost::sendToServer</a></div><div class="ttdeci">void sendToServer(NetworkString *data, bool reliable=true)</div><div class="ttdoc">Sends a message from a client to the server.</div><div class="ttdef"><b>Definition</b> stk_host.cpp:1408</div></div>
+<div class="ttc" id="aclassSTKHost_html_ad891c24d1cf0956be436f0a238a919a7"><div class="ttname"><a href="classSTKHost.html#ad891c24d1cf0956be436f0a238a919a7">STKHost::m_stun_ipv6</a></div><div class="ttdeci">std::unique_ptr&lt; SocketAddress &gt; m_stun_ipv6</div><div class="ttdoc">The public IPv6 address stun server used.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:140</div></div>
+<div class="ttc" id="aclassSTKHost_html_ad94a4d213e36587fdcbe7110a4b7905f"><div class="ttname"><a href="classSTKHost.html#ad94a4d213e36587fdcbe7110a4b7905f">STKHost::m_client_loop</a></div><div class="ttdeci">ChildLoop * m_client_loop</div><div class="ttdoc">Separate process of server instance.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:79</div></div>
+<div class="ttc" id="aclassSTKHost_html_adba8fe602df072dfab53271d8a20dc0f"><div class="ttname"><a href="classSTKHost.html#adba8fe602df072dfab53271d8a20dc0f">STKHost::sendPacketToAllPeersInServer</a></div><div class="ttdeci">void sendPacketToAllPeersInServer(NetworkString *data, bool reliable=true)</div><div class="ttdoc">Sends data to all validated peers currently in server</div><div class="ttdef"><b>Definition</b> stk_host.cpp:1340</div></div>
+<div class="ttc" id="aclassSTKHost_html_ae009c275b70c9b02230ac96a7da77ce0"><div class="ttname"><a href="classSTKHost.html#ae009c275b70c9b02230ac96a7da77ce0">STKHost::isAuthorisedToControl</a></div><div class="ttdeci">bool isAuthorisedToControl() const</div><div class="ttdoc">Returns true if this client instance is allowed to control the server.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:257</div></div>
+<div class="ttc" id="aclassSTKHost_html_ae0d4aae64969fcbe69d482e71343c417"><div class="ttname"><a href="classSTKHost.html#ae0d4aae64969fcbe69d482e71343c417">STKHost::setAuthorisedToControl</a></div><div class="ttdeci">void setAuthorisedToControl(bool authorised)</div><div class="ttdoc">Sets if this local host is authorised to control the server.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:260</div></div>
+<div class="ttc" id="aclassSTKHost_html_ae3b384ef2dc21872d984b8b6d6276a86"><div class="ttname"><a href="classSTKHost.html#ae3b384ef2dc21872d984b8b6d6276a86">STKHost::get</a></div><div class="ttdeci">static STKHost * get()</div><div class="ttdoc">Returns the instance of STKHost.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:185</div></div>
+<div class="ttc" id="aclassSTKHost_html_ae44877eb9f5907d51d55f2183318f566"><div class="ttname"><a href="classSTKHost.html#ae44877eb9f5907d51d55f2183318f566">STKHost::m_error_message</a></div><div class="ttdeci">irr::core::stringw m_error_message</div><div class="ttdoc">An error message, which is set by a protocol to be displayed in the GUI.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:128</div></div>
+<div class="ttc" id="aclassSTKHost_html_aef6fea6de5d1d16103e95a430a2b38a7"><div class="ttname"><a href="classSTKHost.html#aef6fea6de5d1d16103e95a430a2b38a7">STKHost::m_enet_cmd_mutex</a></div><div class="ttdeci">std::mutex m_enet_cmd_mutex</div><div class="ttdoc">Protect m_enet_cmd from multiple threads usage.</div><div class="ttdef"><b>Definition</b> stk_host.hpp:99</div></div>
+<div class="ttc" id="aclassSTKPeer_html"><div class="ttname"><a href="classSTKPeer.html">STKPeer</a></div><div class="ttdoc">Represents a peer. This class is used to interface the ENetPeer structure.</div><div class="ttdef"><b>Definition</b> stk_peer.hpp:76</div></div>
+<div class="ttc" id="aclassServerLobby_html"><div class="ttname"><a href="classServerLobby.html">ServerLobby</a></div><div class="ttdef"><b>Definition</b> server_lobby.hpp:52</div></div>
+<div class="ttc" id="aclassServer_html"><div class="ttname"><a href="classServer.html">Server</a></div><div class="ttdef"><b>Definition</b> server.hpp:44</div></div>
+<div class="ttc" id="aclassSocketAddress_html"><div class="ttname"><a href="classSocketAddress.html">SocketAddress</a></div><div class="ttdoc">Describes a IPv4 or IPv6 address in sockaddr_in(6) format, suitable in using with sendto.</div><div class="ttdef"><b>Definition</b> socket_address.hpp:47</div></div>
+<div class="ttc" id="aclassStkTime_html_a216a8bfe77f82bf1fd5ab96f78e99e65"><div class="ttname"><a href="classStkTime.html#a216a8bfe77f82bf1fd5ab96f78e99e65">StkTime::getMonoTimeMs</a></div><div class="ttdeci">static uint64_t getMonoTimeMs()</div><div class="ttdoc">Returns a time based since the starting of stk (monotonic clock).</div><div class="ttdef"><b>Definition</b> time.hpp:113</div></div>
+<div class="ttc" id="aclassSynchronised_html"><div class="ttname"><a href="classSynchronised.html">Synchronised</a></div><div class="ttdoc">A variable that is automatically synchronised using pthreads mutex.</div><div class="ttdef"><b>Definition</b> synchronised.hpp:28</div></div>
+<div class="ttc" id="aclassSynchronised_html_ac9b937ab20f901379385d36daf6e3295"><div class="ttname"><a href="classSynchronised.html#ac9b937ab20f901379385d36daf6e3295">Synchronised::getAtomic</a></div><div class="ttdeci">TYPE getAtomic() const</div><div class="ttdoc">Returns a copy of this variable.</div><div class="ttdef"><b>Definition</b> synchronised.hpp:68</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

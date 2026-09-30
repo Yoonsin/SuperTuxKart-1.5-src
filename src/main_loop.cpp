@@ -35,6 +35,7 @@
 #include "guiengine/modaldialog.hpp"
 #include "guiengine/screen_keyboard.hpp"
 #include "input/input_manager.hpp"
+#include "modes/linear_world.hpp"
 #include "modes/world.hpp"
 #include "modes/profile_world.hpp"
 #include "network/network_config.hpp"
@@ -304,7 +305,7 @@ double MainLoop::getLimitedDt()
     {
         /* time 3 internal substeps take */
         const double MAX_ELAPSED_TIME = 3.0f*1.0f / 60.0f*1000.0f;
-        if (dt > MAX_ELAPSED_TIME) dt = MAX_ELAPSED_TIME;
+        if (dt > MAX_ELAPSED_TIME) dt = MAX_ELAPSED_TIME; 
     }
 
     dt *= 0.001;
@@ -564,7 +565,7 @@ void MainLoop::run()
             float frame_duration = num_steps * dt;
             if (!GUIEngine::isNoGraphics())
             {
-                PROFILER_PUSH_CPU_MARKER("Update race", 0, 255, 255);
+                PROFILER_PUSH_CPU_MARKER("Update Graphics", 0, 255, 255);
                 if (World::getWorld())
                     World::getWorld()->updateGraphics(frame_duration);
                 PROFILER_POP_CPU_MARKER();
@@ -574,8 +575,10 @@ void MainLoop::run()
                 irr_driver->update(frame_duration);
                 PROFILER_POP_CPU_MARKER();
 
-                PROFILER_PUSH_CPU_MARKER("Input/GUI", 0x7F, 0x00, 0x00);
+                PROFILER_PUSH_CPU_MARKER("InputManager update", 0x7F, 0x00, 0x00);
                 input_manager->update(frame_duration);
+                PROFILER_POP_CPU_MARKER();
+                PROFILER_PUSH_CPU_MARKER("GUIEngine update", 0x7F, 0x00, 0x00);
                 GUIEngine::update(frame_duration);
                 PROFILER_POP_CPU_MARKER();
                 if (!m_download_assets)
@@ -639,7 +642,12 @@ void MainLoop::run()
                 }
                 PROFILER_POP_CPU_MARKER();
 
-                PROFILER_PUSH_CPU_MARKER("Update race", 0, 255, 255);
+                const World* world = World::getWorld();
+                bool race_tick_active = world != nullptr && world->isActiveRacePhaseIncludingPause();
+                input_manager->updateAutoInput(race_tick_active);
+                input_manager->updateAutoAccel(race_tick_active);
+
+                PROFILER_PUSH_CPU_MARKER("Race simulation", 0, 255, 255);
                 if (World::getWorld())
                 {
                     updateRace(1, fast_forward);
@@ -672,8 +680,25 @@ void MainLoop::run()
                         break;
                     }
                     World::getWorld()->updateTime(1);
+                    if (World::getWorld() &&
+                        World::getWorld()->getPhase() ==
+                            WorldStatus::RESULT_DISPLAY_PHASE)
+                    {
+                        LinearWorld* linear_world =
+                            dynamic_cast<LinearWorld*>(World::getWorld());
+                        if (linear_world)
+                            linear_world->finishQuadLog();
+                    }
                 }
             }   // for i < num_steps
+
+            const World* world = World::getWorld();
+            bool race_active = world != nullptr && world->isActiveRacePhaseIncludingPause();
+            if (NetworkConfig::get()->isNetworking() && STKHost::existHost())
+            {
+                STKHost::get()->updateRTTLogging(race_active);
+            }
+            profiler.updateProfileLog(race_active);
 
             // Do it after all pending rewinding is done
             if (World::getWorld() && RewindManager::isEnabled())
@@ -684,7 +709,9 @@ void MainLoop::run()
             if (!GUIEngine::isNoGraphics())
             {
                 // User aborted (e.g. closed window)
+                PROFILER_PUSH_CPU_MARKER("Device Run", 0xFF, 0x80, 0x00);
                 bool abort = !irr_driver->getDevice()->run();
+                PROFILER_POP_CPU_MARKER();
 
                 if (m_frame_before_loading_world)
                 {
@@ -738,6 +765,8 @@ void MainLoop::run()
         PROFILER_POP_CPU_MARKER();   // MainLoop pop
         PROFILER_SYNC_FRAME();
     }  // while !m_abort
+
+    profiler.finishProfileLog();
 
 #ifdef WIN32
     if (parent != 0 && parent != INVALID_HANDLE_VALUE)

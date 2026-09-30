@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: items/rubber_ball.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>items</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">rubber_ball.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2011-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_RUBBER_BALL_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_RUBBER_BALL_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;irrString.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;items/flyable.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;tracks/track_sector.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;utils/cpp2011.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">class </span><a class="code hl_class" href="classSFXBase.html">SFXBase</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classRubberBall.html">   34</a></span><span class="keyword">class </span>RubberBall: <span class="keyword">public</span> Flyable, <span class="keyword">public</span> <a class="code hl_function" href="classTrackSector.html#a9351a5766d455fd51578c49eb5e2f6fc">TrackSector</a></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classRubberBall.html#ad55262436742b4f616ee7a0c4292ae7e">   39</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classRubberBall.html#ad55262436742b4f616ee7a0c4292ae7e">m_id</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classRubberBall.html#af6cce001e84bf1fe48b19a6bed19b8c8">   42</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classRubberBall.html#af6cce001e84bf1fe48b19a6bed19b8c8">m_st_interval</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classRubberBall.html#a8326691aeb2cf7553937198034cccb1e">   45</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classRubberBall.html#a8326691aeb2cf7553937198034cccb1e">m_st_squash_duration</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classRubberBall.html#aaf983718d39f31230ba7bb1fba9bcb43">   48</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classRubberBall.html#aaf983718d39f31230ba7bb1fba9bcb43">m_st_squash_slowdown</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classRubberBall.html#a32f1d764aca8b6a44fae77a575fdabcd">   52</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classRubberBall.html#a32f1d764aca8b6a44fae77a575fdabcd">m_st_target_distance</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classRubberBall.html#a4346c104255fea3f32f3a60909af2c69">   59</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classRubberBall.html#a4346c104255fea3f32f3a60909af2c69">m_st_max_height_difference</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classRubberBall.html#a1aed0943fdbcaefcdd5199d219481a2a">   65</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classRubberBall.html#a1aed0943fdbcaefcdd5199d219481a2a">m_st_fast_ping_distance</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classRubberBall.html#a5bfa4a249c69746803773ba9fb23f25b">   70</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classRubberBall.html#a5bfa4a249c69746803773ba9fb23f25b">m_st_target_max_angle</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classRubberBall.html#a2744438df300105b489ab5a1c3df51e7">   75</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classRubberBall.html#a2744438df300105b489ab5a1c3df51e7">m_st_min_interpolation_distance</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classRubberBall.html#a091515126f1e1a0dcc68337b792e31ef">   80</a></span>    <span class="keyword">static</span> int16_t <a class="code hl_variable" href="classRubberBall.html#a091515126f1e1a0dcc68337b792e31ef">m_st_delete_ticks</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classRubberBall.html#a7fb77ea667a125bf5b08022c1750a8c9">   84</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classRubberBall.html#a7fb77ea667a125bf5b08022c1750a8c9">m_st_min_speed_offset</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classRubberBall.html#a49b4d6a5b888aa3a3508cc8898229ba4">   88</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classRubberBall.html#a49b4d6a5b888aa3a3508cc8898229ba4">m_st_max_speed_offset</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classRubberBall.html#afcc21e7dcb0c956b9cf8c9a09504e964">   91</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classRubberBall.html#afcc21e7dcb0c956b9cf8c9a09504e964">m_st_min_offset_distance</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classRubberBall.html#a5d677f0c5eb8aacfacb05c0d377e7666">   94</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classRubberBall.html#a5d677f0c5eb8aacfacb05c0d377e7666">m_st_max_offset_distance</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classRubberBall.html#a926f68f82093e1b06011b07dbca713d1">  110</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classRubberBall.html#a926f68f82093e1b06011b07dbca713d1">m_st_early_target_factor</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classRubberBall.html#aed7f00edca5393c3270e890fb325b248">  113</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>  *<a class="code hl_variable" href="classRubberBall.html#aed7f00edca5393c3270e890fb325b248">m_target</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classRubberBall.html#aa92cec3f3d1ff7a573d0df815d6cae9f">  117</a></span>    <span class="keywordtype">int</span>          <a class="code hl_variable" href="classRubberBall.html#aa92cec3f3d1ff7a573d0df815d6cae9f">m_last_aimed_graph_node</a>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="classRubberBall.html#a05cdb1985066854b42bf44d7f62d311c">  121</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a>         <a class="code hl_variable" href="classRubberBall.html#a05cdb1985066854b42bf44d7f62d311c">m_control_points</a>[4];</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="classRubberBall.html#ad0a1f60274f4b41bea053d1c78f02aa5">  126</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a>         <a class="code hl_variable" href="classRubberBall.html#ad0a1f60274f4b41bea053d1c78f02aa5">m_previous_xyz</a>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classRubberBall.html#a251d34173fb040f4d07f70156973c8a2">  130</a></span>    <span class="keywordtype">float</span>        <a class="code hl_variable" href="classRubberBall.html#a251d34173fb040f4d07f70156973c8a2">m_previous_height</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classRubberBall.html#aa78dfee59427275e7392389f02643ebc">  134</a></span>    <span class="keywordtype">float</span>        <a class="code hl_variable" href="classRubberBall.html#aa78dfee59427275e7392389f02643ebc">m_length_cp_1_2</a>;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classRubberBall.html#a4c55804ae073d7debb5fdb103ce7951d">  138</a></span>    <span class="keywordtype">float</span>        <a class="code hl_variable" href="classRubberBall.html#a4c55804ae073d7debb5fdb103ce7951d">m_length_cp_2_3</a>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="classRubberBall.html#a635c3366b5ca139eec0a1c64cdae43ba">  148</a></span>    <span class="keywordtype">float</span>        <a class="code hl_variable" href="classRubberBall.html#a635c3366b5ca139eec0a1c64cdae43ba">m_t</a>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classRubberBall.html#a9da0de05263fd366b511176131a2b49d">  153</a></span>    <span class="keywordtype">float</span>        <a class="code hl_variable" href="classRubberBall.html#a9da0de05263fd366b511176131a2b49d">m_t_increase</a>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="classRubberBall.html#a9aefc74855cdd90d34d9b9a72f468c6d">  156</a></span>    <span class="keywordtype">float</span>        <a class="code hl_variable" href="classRubberBall.html#a9aefc74855cdd90d34d9b9a72f468c6d">m_interval</a>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="classRubberBall.html#a740e70e37f2e16672f6eccd362b60eb0">  162</a></span>    <span class="keywordtype">float</span>        <a class="code hl_variable" href="classRubberBall.html#a740e70e37f2e16672f6eccd362b60eb0">m_distance_to_target</a>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classRubberBall.html#a37c1c39c7c6ac75892b22e74db7eb844">  166</a></span>    <span class="keywordtype">float</span>        <a class="code hl_variable" href="classRubberBall.html#a37c1c39c7c6ac75892b22e74db7eb844">m_height_timer</a>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="classRubberBall.html#a156bec507facdd8e561bae0bba5c52ab">  170</a></span>    <span class="keywordtype">float</span>        <a class="code hl_variable" href="classRubberBall.html#a156bec507facdd8e561bae0bba5c52ab">m_current_max_height</a>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="classRubberBall.html#ae997a3f57775c5737bbff4d4c52b492f">  176</a></span>    int16_t      <a class="code hl_variable" href="classRubberBall.html#ae997a3f57775c5737bbff4d4c52b492f">m_delete_ticks</a>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classRubberBall.html#aa07ec807de3f742532c74b1e565f43f7">  181</a></span>    uint8_t      <a class="code hl_variable" href="classRubberBall.html#aa07ec807de3f742532c74b1e565f43f7">m_tunnel_count</a>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="classRubberBall.html#a0cbc804bfbdcdb6aec635cd7b9f5d534">  185</a></span>    <span class="keywordtype">bool</span>         <a class="code hl_variable" href="classRubberBall.html#a0cbc804bfbdcdb6aec635cd7b9f5d534">m_fast_ping</a>;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classRubberBall.html#af6017656cd454655773f2ead0e715a4d">  191</a></span>    <span class="keywordtype">bool</span>         <a class="code hl_variable" href="classRubberBall.html#af6017656cd454655773f2ead0e715a4d">m_aiming_at_target</a>;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="classRubberBall.html#a59ca97f0a1ad460cdbe09359e17acd0f">  194</a></span>    <a class="code hl_class" href="classSFXBase.html">SFXBase</a>     *<a class="code hl_variable" href="classRubberBall.html#a59ca97f0a1ad460cdbe09359e17acd0f">m_ping_sfx</a>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordtype">bool</span> m_restoring_state;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classRubberBall.html#ac9defbb8f68bcfa01574e837b701da6b">computeTarget</a>();</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classRubberBall.html#a9566040ea7eb1d0b76340b94f8559387">updateDistanceToTarget</a>();</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classRubberBall.html#ab5a473e0eb455c957bc91e1e09d6dea8">getSuccessorToHitTarget</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> node_index,</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                                         <span class="keywordtype">float</span> *f=NULL);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classRubberBall.html#a288bcaed27a03fccd3aa263ddbc68464">getNextControlPoint</a>();</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordtype">float</span>        <a class="code hl_function" href="classRubberBall.html#a5053659dcbcd756b2d0bcf49d67d2927">updateHeight</a>();</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classRubberBall.html#a0f68cd3811af71b6ed36fd27615cc4bd">interpolate</a>(<a class="code hl_class" href="classVec3.html">Vec3</a> *next_xyz, <span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classRubberBall.html#a158b4691966389a9032b0c843cc563bd">moveTowardsTarget</a>(<a class="code hl_class" href="classVec3.html">Vec3</a> *next_xyz, <span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classRubberBall.html#aa2124ff152fb37eec8ce32ab2fcd094a">updateWeightedSpeed</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classRubberBall.html#af095c36e3dd245c000e159746e5a07f7">initializeControlPoints</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;xyz);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordtype">float</span>        <a class="code hl_function" href="classRubberBall.html#a5dc729ab9a17b70a0651556d48f1a672">getTunnelHeight</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;next_xyz, </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                                     <span class="keyword">const</span> <span class="keywordtype">float</span> vertical_offset) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordtype">bool</span>         <a class="code hl_function" href="classRubberBall.html#a886f8a7961bee542533a3a0b416de748">checkTunneling</a>();</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordtype">void</span> removePingSFX();</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                 RubberBall  (<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keyword">virtual</span>     <a class="code hl_function" href="classRubberBall.html#aa0d5b48023eb1589f2bf93fcf1478b1e">~RubberBall</a>();</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keyword">static</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRubberBall.html#a99ec4f9915b904965c19db9b9eab6231">init</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> &amp;node, scene::IMesh *rubberball);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classRubberBall.html#a90e027b52e90d0a21fc69a84e8890a4d">updateAndDelete</a>(<span class="keywordtype">int</span> ticks) OVERRIDE;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classRubberBall.html#af1f58d2f4fc38324f4fd9da6d5c6b0d1">hit</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart, <a class="code hl_class" href="classPhysicalObject.html">PhysicalObject</a>* obj=NULL) OVERRIDE;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setAnimation(<a class="code hl_class" href="classAbstractKartAnimation.html">AbstractKartAnimation</a> *animation) OVERRIDE;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="comment">//virtual HitEffect *getHitEffect() const {return NULL; }</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>* <a class="code hl_function" href="classRubberBall.html#ab99aace6f8b0901ed477c3e71c9616f9">saveState</a>(std::vector&lt;std::string&gt;* ru)</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        OVERRIDE;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRubberBall.html#ac2dc8d96042a8a18a528621da10b8a90">restoreState</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer, <span class="keywordtype">int</span> count) OVERRIDE;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRubberBall.html#a99cf6b2ec51cef2d919cfb676f8c0fc2">onFireFlyable</a>() OVERRIDE;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>};   <span class="comment">// RubberBall</span></div>
+</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAbstractKartAnimation_html"><div class="ttname"><a href="classAbstractKartAnimation.html">AbstractKartAnimation</a></div><div class="ttdoc">The base class for all kart animation, like rescue, explosion, or cannon.</div><div class="ttdef"><b>Definition</b> abstract_kart_animation.hpp:60</div></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassPhysicalObject_html"><div class="ttname"><a href="classPhysicalObject.html">PhysicalObject</a></div><div class="ttdef"><b>Definition</b> physical_object.hpp:40</div></div>
+<div class="ttc" id="aclassRubberBall_html_a05cdb1985066854b42bf44d7f62d311c"><div class="ttname"><a href="classRubberBall.html#a05cdb1985066854b42bf44d7f62d311c">RubberBall::m_control_points</a></div><div class="ttdeci">Vec3 m_control_points[4]</div><div class="ttdoc">Keep the last two, current, and next aiming points for interpolation.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:121</div></div>
+<div class="ttc" id="aclassRubberBall_html_a091515126f1e1a0dcc68337b792e31ef"><div class="ttname"><a href="classRubberBall.html#a091515126f1e1a0dcc68337b792e31ef">RubberBall::m_st_delete_ticks</a></div><div class="ttdeci">static int16_t m_st_delete_ticks</div><div class="ttdoc">If the ball overtakes its target or starts to aim at the kart which originally shot the rubber ball,...</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:80</div></div>
+<div class="ttc" id="aclassRubberBall_html_a0cbc804bfbdcdb6aec635cd7b9f5d534"><div class="ttname"><a href="classRubberBall.html#a0cbc804bfbdcdb6aec635cd7b9f5d534">RubberBall::m_fast_ping</a></div><div class="ttdeci">bool m_fast_ping</div><div class="ttdoc">This flag is set if the target is within the fast ping distance.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:185</div></div>
+<div class="ttc" id="aclassRubberBall_html_a0f68cd3811af71b6ed36fd27615cc4bd"><div class="ttname"><a href="classRubberBall.html#a0f68cd3811af71b6ed36fd27615cc4bd">RubberBall::interpolate</a></div><div class="ttdeci">void interpolate(Vec3 *next_xyz, int ticks)</div><div class="ttdoc">Uses Hermite splines (Catmull-Rom) to interpolate the position of the ball between the control points...</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:609</div></div>
+<div class="ttc" id="aclassRubberBall_html_a156bec507facdd8e561bae0bba5c52ab"><div class="ttname"><a href="classRubberBall.html#a156bec507facdd8e561bae0bba5c52ab">RubberBall::m_current_max_height</a></div><div class="ttdeci">float m_current_max_height</div><div class="ttdoc">The current maximum height of the ball.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:170</div></div>
+<div class="ttc" id="aclassRubberBall_html_a158b4691966389a9032b0c843cc563bd"><div class="ttname"><a href="classRubberBall.html#a158b4691966389a9032b0c843cc563bd">RubberBall::moveTowardsTarget</a></div><div class="ttdeci">void moveTowardsTarget(Vec3 *next_xyz, int ticks)</div><div class="ttdoc">Moves the rubber ball in a straight line towards the target.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:513</div></div>
+<div class="ttc" id="aclassRubberBall_html_a1aed0943fdbcaefcdd5199d219481a2a"><div class="ttname"><a href="classRubberBall.html#a1aed0943fdbcaefcdd5199d219481a2a">RubberBall::m_st_fast_ping_distance</a></div><div class="ttdeci">static float m_st_fast_ping_distance</div><div class="ttdoc">Distance between ball and target at which the ball will start to bounce faster (which makes more &#39;pin...</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:65</div></div>
+<div class="ttc" id="aclassRubberBall_html_a251d34173fb040f4d07f70156973c8a2"><div class="ttname"><a href="classRubberBall.html#a251d34173fb040f4d07f70156973c8a2">RubberBall::m_previous_height</a></div><div class="ttdeci">float m_previous_height</div><div class="ttdoc">To simplify code this stores the previous height above terrain used.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:130</div></div>
+<div class="ttc" id="aclassRubberBall_html_a2744438df300105b489ab5a1c3df51e7"><div class="ttname"><a href="classRubberBall.html#a2744438df300105b489ab5a1c3df51e7">RubberBall::m_st_min_interpolation_distance</a></div><div class="ttdeci">static float m_st_min_interpolation_distance</div><div class="ttdoc">Each control point chosen must be at least this far away from the previous one.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:75</div></div>
+<div class="ttc" id="aclassRubberBall_html_a288bcaed27a03fccd3aa263ddbc68464"><div class="ttname"><a href="classRubberBall.html#a288bcaed27a03fccd3aa263ddbc68464">RubberBall::getNextControlPoint</a></div><div class="ttdeci">void getNextControlPoint()</div><div class="ttdoc">Determines the next control points to aim at.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:262</div></div>
+<div class="ttc" id="aclassRubberBall_html_a32f1d764aca8b6a44fae77a575fdabcd"><div class="ttname"><a href="classRubberBall.html#a32f1d764aca8b6a44fae77a575fdabcd">RubberBall::m_st_target_distance</a></div><div class="ttdeci">static float m_st_target_distance</div><div class="ttdoc">If the ball is closer than this distance to the target, it will start to aim directly at the target (...</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:52</div></div>
+<div class="ttc" id="aclassRubberBall_html_a37c1c39c7c6ac75892b22e74db7eb844"><div class="ttname"><a href="classRubberBall.html#a37c1c39c7c6ac75892b22e74db7eb844">RubberBall::m_height_timer</a></div><div class="ttdeci">float m_height_timer</div><div class="ttdoc">This timer is used to determine the height depending on the time.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:166</div></div>
+<div class="ttc" id="aclassRubberBall_html_a4346c104255fea3f32f3a60909af2c69"><div class="ttname"><a href="classRubberBall.html#a4346c104255fea3f32f3a60909af2c69">RubberBall::m_st_max_height_difference</a></div><div class="ttdeci">static float m_st_max_height_difference</div><div class="ttdoc">In somce track, e.g.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:59</div></div>
+<div class="ttc" id="aclassRubberBall_html_a49b4d6a5b888aa3a3508cc8898229ba4"><div class="ttname"><a href="classRubberBall.html#a49b4d6a5b888aa3a3508cc8898229ba4">RubberBall::m_st_max_speed_offset</a></div><div class="ttdeci">static float m_st_max_speed_offset</div><div class="ttdoc">If the ball is farther to its target than max_offset_distance, the speed in addition to the difficult...</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:88</div></div>
+<div class="ttc" id="aclassRubberBall_html_a4c55804ae073d7debb5fdb103ce7951d"><div class="ttname"><a href="classRubberBall.html#a4c55804ae073d7debb5fdb103ce7951d">RubberBall::m_length_cp_2_3</a></div><div class="ttdeci">float m_length_cp_2_3</div><div class="ttdoc">Estimated length of the spline between the control points 2 and 3.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:138</div></div>
+<div class="ttc" id="aclassRubberBall_html_a5053659dcbcd756b2d0bcf49d67d2927"><div class="ttname"><a href="classRubberBall.html#a5053659dcbcd756b2d0bcf49d67d2927">RubberBall::updateHeight</a></div><div class="ttdeci">float updateHeight()</div><div class="ttdoc">Updates the height of the rubber ball, and if necessary also adjusts the maximum height of the ball d...</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:695</div></div>
+<div class="ttc" id="aclassRubberBall_html_a59ca97f0a1ad460cdbe09359e17acd0f"><div class="ttname"><a href="classRubberBall.html#a59ca97f0a1ad460cdbe09359e17acd0f">RubberBall::m_ping_sfx</a></div><div class="ttdeci">SFXBase * m_ping_sfx</div><div class="ttdoc">A &#39;ping&#39; sound effect to be played when the ball hits the ground.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:194</div></div>
+<div class="ttc" id="aclassRubberBall_html_a5bfa4a249c69746803773ba9fb23f25b"><div class="ttname"><a href="classRubberBall.html#a5bfa4a249c69746803773ba9fb23f25b">RubberBall::m_st_target_max_angle</a></div><div class="ttdeci">static float m_st_target_max_angle</div><div class="ttdoc">The maximum angle the ball can change per second when being close to the taregt.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:70</div></div>
+<div class="ttc" id="aclassRubberBall_html_a5d677f0c5eb8aacfacb05c0d377e7666"><div class="ttname"><a href="classRubberBall.html#a5d677f0c5eb8aacfacb05c0d377e7666">RubberBall::m_st_max_offset_distance</a></div><div class="ttdeci">static float m_st_max_offset_distance</div><div class="ttdoc">The distance to target over which the ball is the fastest</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:94</div></div>
+<div class="ttc" id="aclassRubberBall_html_a5dc729ab9a17b70a0651556d48f1a672"><div class="ttname"><a href="classRubberBall.html#a5dc729ab9a17b70a0651556d48f1a672">RubberBall::getTunnelHeight</a></div><div class="ttdeci">float getTunnelHeight(const Vec3 &amp;next_xyz, const float vertical_offset) const</div><div class="ttdoc">When the ball is in a tunnel, this will return the tunnel height.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:757</div></div>
+<div class="ttc" id="aclassRubberBall_html_a635c3366b5ca139eec0a1c64cdae43ba"><div class="ttname"><a href="classRubberBall.html#a635c3366b5ca139eec0a1c64cdae43ba">RubberBall::m_t</a></div><div class="ttdeci">float m_t</div><div class="ttdoc">The parameter for the spline, m_t in [0,1].</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:148</div></div>
+<div class="ttc" id="aclassRubberBall_html_a740e70e37f2e16672f6eccd362b60eb0"><div class="ttname"><a href="classRubberBall.html#a740e70e37f2e16672f6eccd362b60eb0">RubberBall::m_distance_to_target</a></div><div class="ttdeci">float m_distance_to_target</div><div class="ttdoc">Distance to target.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:162</div></div>
+<div class="ttc" id="aclassRubberBall_html_a7fb77ea667a125bf5b08022c1750a8c9"><div class="ttname"><a href="classRubberBall.html#a7fb77ea667a125bf5b08022c1750a8c9">RubberBall::m_st_min_speed_offset</a></div><div class="ttdeci">static float m_st_min_speed_offset</div><div class="ttdoc">If the ball is closer to its target than min_offset_distance, the speed in addition to the difficulty...</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:84</div></div>
+<div class="ttc" id="aclassRubberBall_html_a8326691aeb2cf7553937198034cccb1e"><div class="ttname"><a href="classRubberBall.html#a8326691aeb2cf7553937198034cccb1e">RubberBall::m_st_squash_duration</a></div><div class="ttdeci">static float m_st_squash_duration</div><div class="ttdoc">A class variable to store the default squash duration.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:45</div></div>
+<div class="ttc" id="aclassRubberBall_html_a886f8a7961bee542533a3a0b416de748"><div class="ttname"><a href="classRubberBall.html#a886f8a7961bee542533a3a0b416de748">RubberBall::checkTunneling</a></div><div class="ttdeci">bool checkTunneling()</div><div class="ttdoc">Checks if the line from the previous ball position to the new position hits something,...</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:651</div></div>
+<div class="ttc" id="aclassRubberBall_html_a90e027b52e90d0a21fc69a84e8890a4d"><div class="ttname"><a href="classRubberBall.html#a90e027b52e90d0a21fc69a84e8890a4d">RubberBall::updateAndDelete</a></div><div class="ttdeci">virtual bool updateAndDelete(int ticks) OVERRIDE</div><div class="ttdoc">Updates the rubber ball.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:374</div></div>
+<div class="ttc" id="aclassRubberBall_html_a926f68f82093e1b06011b07dbca713d1"><div class="ttname"><a href="classRubberBall.html#a926f68f82093e1b06011b07dbca713d1">RubberBall::m_st_early_target_factor</a></div><div class="ttdeci">static float m_st_early_target_factor</div><div class="ttdoc">This factor is used to influence how much the rubber ball should aim at its target early.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:110</div></div>
+<div class="ttc" id="aclassRubberBall_html_a9566040ea7eb1d0b76340b94f8559387"><div class="ttname"><a href="classRubberBall.html#a9566040ea7eb1d0b76340b94f8559387">RubberBall::updateDistanceToTarget</a></div><div class="ttdeci">void updateDistanceToTarget()</div><div class="ttdoc">Determines the distance to the target kart.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:775</div></div>
+<div class="ttc" id="aclassRubberBall_html_a99cf6b2ec51cef2d919cfb676f8c0fc2"><div class="ttname"><a href="classRubberBall.html#a99cf6b2ec51cef2d919cfb676f8c0fc2">RubberBall::onFireFlyable</a></div><div class="ttdeci">virtual void onFireFlyable() OVERRIDE</div><div class="ttdoc">Call when the item is (re-)fired (during rewind if needed) by projectile_manager.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:80</div></div>
+<div class="ttc" id="aclassRubberBall_html_a99ec4f9915b904965c19db9b9eab6231"><div class="ttname"><a href="classRubberBall.html#a99ec4f9915b904965c19db9b9eab6231">RubberBall::init</a></div><div class="ttdeci">static void init(const XMLNode &amp;node, scene::IMesh *rubberball)</div><div class="ttdoc">Initialises this object with data from the power.xml file (this is a static function).</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:292</div></div>
+<div class="ttc" id="aclassRubberBall_html_a9aefc74855cdd90d34d9b9a72f468c6d"><div class="ttname"><a href="classRubberBall.html#a9aefc74855cdd90d34d9b9a72f468c6d">RubberBall::m_interval</a></div><div class="ttdeci">float m_interval</div><div class="ttdoc">How long it takes from one bounce of the ball to the next.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:156</div></div>
+<div class="ttc" id="aclassRubberBall_html_a9da0de05263fd366b511176131a2b49d"><div class="ttname"><a href="classRubberBall.html#a9da0de05263fd366b511176131a2b49d">RubberBall::m_t_increase</a></div><div class="ttdeci">float m_t_increase</div><div class="ttdoc">How much m_t must increase per second in order to maintain a constant speed, i.e.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:153</div></div>
+<div class="ttc" id="aclassRubberBall_html_aa07ec807de3f742532c74b1e565f43f7"><div class="ttname"><a href="classRubberBall.html#aa07ec807de3f742532c74b1e565f43f7">RubberBall::m_tunnel_count</a></div><div class="ttdeci">uint8_t m_tunnel_count</div><div class="ttdoc">This variable counts how often a ball tunneled (in consecutive frames).</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:181</div></div>
+<div class="ttc" id="aclassRubberBall_html_aa0d5b48023eb1589f2bf93fcf1478b1e"><div class="ttname"><a href="classRubberBall.html#aa0d5b48023eb1589f2bf93fcf1478b1e">RubberBall::~RubberBall</a></div><div class="ttdeci">virtual ~RubberBall()</div><div class="ttdoc">Destructor, removes any playing sfx.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:137</div></div>
+<div class="ttc" id="aclassRubberBall_html_aa2124ff152fb37eec8ce32ab2fcd094a"><div class="ttname"><a href="classRubberBall.html#aa2124ff152fb37eec8ce32ab2fcd094a">RubberBall::updateWeightedSpeed</a></div><div class="ttdeci">void updateWeightedSpeed(int ticks)</div><div class="ttdoc">Calculates the current speed of the basket ball.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:552</div></div>
+<div class="ttc" id="aclassRubberBall_html_aa78dfee59427275e7392389f02643ebc"><div class="ttname"><a href="classRubberBall.html#aa78dfee59427275e7392389f02643ebc">RubberBall::m_length_cp_1_2</a></div><div class="ttdeci">float m_length_cp_1_2</div><div class="ttdoc">Estimated length of the spline between the control points 1 and 2.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:134</div></div>
+<div class="ttc" id="aclassRubberBall_html_aa92cec3f3d1ff7a573d0df815d6cae9f"><div class="ttname"><a href="classRubberBall.html#aa92cec3f3d1ff7a573d0df815d6cae9f">RubberBall::m_last_aimed_graph_node</a></div><div class="ttdeci">int m_last_aimed_graph_node</div><div class="ttdoc">The last graph node who&#39;s coordinates are stored in m_control_points[3].</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:117</div></div>
+<div class="ttc" id="aclassRubberBall_html_aaf983718d39f31230ba7bb1fba9bcb43"><div class="ttname"><a href="classRubberBall.html#aaf983718d39f31230ba7bb1fba9bcb43">RubberBall::m_st_squash_slowdown</a></div><div class="ttdeci">static float m_st_squash_slowdown</div><div class="ttdoc">A class variable to store the default squash slowdown.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:48</div></div>
+<div class="ttc" id="aclassRubberBall_html_ab5a473e0eb455c957bc91e1e09d6dea8"><div class="ttname"><a href="classRubberBall.html#ab5a473e0eb455c957bc91e1e09d6dea8">RubberBall::getSuccessorToHitTarget</a></div><div class="ttdeci">unsigned int getSuccessorToHitTarget(unsigned int node_index, float *f=NULL)</div><div class="ttdoc">Determines the successor of a graph node.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:238</div></div>
+<div class="ttc" id="aclassRubberBall_html_ab99aace6f8b0901ed477c3e71c9616f9"><div class="ttname"><a href="classRubberBall.html#ab99aace6f8b0901ed477c3e71c9616f9">RubberBall::saveState</a></div><div class="ttdeci">virtual BareNetworkString * saveState(std::vector&lt; std::string &gt; *ru) OVERRIDE</div><div class="ttdoc">This object does not create an explosion, all affects on karts are handled by this hit() function.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:887</div></div>
+<div class="ttc" id="aclassRubberBall_html_ac2dc8d96042a8a18a528621da10b8a90"><div class="ttname"><a href="classRubberBall.html#ac2dc8d96042a8a18a528621da10b8a90">RubberBall::restoreState</a></div><div class="ttdeci">virtual void restoreState(BareNetworkString *buffer, int count) OVERRIDE</div><div class="ttdoc">Called when a state needs to be replayed.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:914</div></div>
+<div class="ttc" id="aclassRubberBall_html_ac9defbb8f68bcfa01574e837b701da6b"><div class="ttname"><a href="classRubberBall.html#ac9defbb8f68bcfa01574e837b701da6b">RubberBall::computeTarget</a></div><div class="ttdeci">void computeTarget()</div><div class="ttdoc">Determines the first kart that is still in the race.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:186</div></div>
+<div class="ttc" id="aclassRubberBall_html_ad0a1f60274f4b41bea053d1c78f02aa5"><div class="ttname"><a href="classRubberBall.html#ad0a1f60274f4b41bea053d1c78f02aa5">RubberBall::m_previous_xyz</a></div><div class="ttdeci">Vec3 m_previous_xyz</div><div class="ttdoc">Saves the previous location of the ball.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:126</div></div>
+<div class="ttc" id="aclassRubberBall_html_ad55262436742b4f616ee7a0c4292ae7e"><div class="ttname"><a href="classRubberBall.html#ad55262436742b4f616ee7a0c4292ae7e">RubberBall::m_id</a></div><div class="ttdeci">int m_id</div><div class="ttdoc">Used in case of flyable debugging so that each output line gets a unique number for each ball.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:39</div></div>
+<div class="ttc" id="aclassRubberBall_html_ae997a3f57775c5737bbff4d4c52b492f"><div class="ttname"><a href="classRubberBall.html#ae997a3f57775c5737bbff4d4c52b492f">RubberBall::m_delete_ticks</a></div><div class="ttdeci">int16_t m_delete_ticks</div><div class="ttdoc">If the ball overtakes its target or starts to aim at the kart which originally shot the rubber ball,...</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:176</div></div>
+<div class="ttc" id="aclassRubberBall_html_aed7f00edca5393c3270e890fb325b248"><div class="ttname"><a href="classRubberBall.html#aed7f00edca5393c3270e890fb325b248">RubberBall::m_target</a></div><div class="ttdeci">const AbstractKart * m_target</div><div class="ttdoc">A pointer to the target kart.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:113</div></div>
+<div class="ttc" id="aclassRubberBall_html_af095c36e3dd245c000e159746e5a07f7"><div class="ttname"><a href="classRubberBall.html#af095c36e3dd245c000e159746e5a07f7">RubberBall::initializeControlPoints</a></div><div class="ttdeci">void initializeControlPoints(const Vec3 &amp;xyz)</div><div class="ttdoc">Sets up the control points for the interpolation.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:152</div></div>
+<div class="ttc" id="aclassRubberBall_html_af1f58d2f4fc38324f4fd9da6d5c6b0d1"><div class="ttname"><a href="classRubberBall.html#af1f58d2f4fc38324f4fd9da6d5c6b0d1">RubberBall::hit</a></div><div class="ttdeci">virtual bool hit(AbstractKart *kart, PhysicalObject *obj=NULL) OVERRIDE</div><div class="ttdoc">Callback from the physics in case that a kart or object is hit.</div><div class="ttdef"><b>Definition</b> rubber_ball.cpp:852</div></div>
+<div class="ttc" id="aclassRubberBall_html_af6017656cd454655773f2ead0e715a4d"><div class="ttname"><a href="classRubberBall.html#af6017656cd454655773f2ead0e715a4d">RubberBall::m_aiming_at_target</a></div><div class="ttdeci">bool m_aiming_at_target</div><div class="ttdoc">Once the ball is close enough, it will aim for the kart.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:191</div></div>
+<div class="ttc" id="aclassRubberBall_html_af6cce001e84bf1fe48b19a6bed19b8c8"><div class="ttname"><a href="classRubberBall.html#af6cce001e84bf1fe48b19a6bed19b8c8">RubberBall::m_st_interval</a></div><div class="ttdeci">static float m_st_interval</div><div class="ttdoc">A class variable to store the default interval size.</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:42</div></div>
+<div class="ttc" id="aclassRubberBall_html_afcc21e7dcb0c956b9cf8c9a09504e964"><div class="ttname"><a href="classRubberBall.html#afcc21e7dcb0c956b9cf8c9a09504e964">RubberBall::m_st_min_offset_distance</a></div><div class="ttdeci">static float m_st_min_offset_distance</div><div class="ttdoc">The distance to target under which the ball is the slowest</div><div class="ttdef"><b>Definition</b> rubber_ball.hpp:91</div></div>
+<div class="ttc" id="aclassSFXBase_html"><div class="ttname"><a href="classSFXBase.html">SFXBase</a></div><div class="ttdoc">The base class for sound effects.</div><div class="ttdef"><b>Definition</b> sfx_base.hpp:43</div></div>
+<div class="ttc" id="aclassTrackSector_html_a9351a5766d455fd51578c49eb5e2f6fc"><div class="ttname"><a href="classTrackSector.html#a9351a5766d455fd51578c49eb5e2f6fc">TrackSector::TrackSector</a></div><div class="ttdeci">TrackSector()</div><div class="ttdoc">Initialises the object, and sets the current graph node to be undefined.</div><div class="ttdef"><b>Definition</b> track_sector.cpp:34</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

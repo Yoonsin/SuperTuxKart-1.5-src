@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: guiengine/widgets/progress_bar_widget.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>guiengine</b></li><li class="navelem"><b>widgets</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">progress_bar_widget.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  Copyright (C) 2009-2015 Marianne Gagnon</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef HEADER_PROGRESS_BAR_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HEADER_PROGRESS_BAR_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;irrString.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;guiengine/widget.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;utils/ptr_vector.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceGUIEngine.html">GUIEngine</a></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ProgressBarWidget.html">   35</a></span>    <span class="keyword">class </span>ProgressBarWidget : <span class="keyword">public</span> Widget</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ProgressBarWidget.html#a641a1c196359788c6ca7f153b819b916">   39</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classGUIEngine_1_1ProgressBarWidget.html#a641a1c196359788c6ca7f153b819b916">getWidthNeededAroundLabel</a>()<span class="keyword">  const </span>{ <span class="keywordflow">return</span> 35; }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ProgressBarWidget.html#a3bc707f4bcefe1aef0a9ae898d86c29a">   43</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classGUIEngine_1_1ProgressBarWidget.html#a3bc707f4bcefe1aef0a9ae898d86c29a">getHeightNeededAroundLabel</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> 4; }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ProgressBarWidget.html#a0b6b3eb74d43675910508500ebc996ba">setLabel</a>(<span class="keyword">const</span> irr::core::stringw label);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordtype">float</span> m_value;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordtype">bool</span> m_show_label;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ProgressBarWidget.html#a6e9bb524b4e222dae390f6f6b9fe2312">   51</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="classGUIEngine_1_1ProgressBarWidget.html#a6e9bb524b4e222dae390f6f6b9fe2312">m_target_value</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordtype">float</span> m_previous_value;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        LEAK_CHECK()</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        ProgressBarWidget(<span class="keywordtype">bool</span> show_label = true);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        virtual ~ProgressBarWidget();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ProgressBarWidget.html#a557b813c0b4cf39c22101488fca09079">setValue</a>(<span class="keywordtype">float</span> value);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ProgressBarWidget.html#ad0de6101d7a3b7a3df7a34e3cf61b7ba">moveValue</a>(<span class="keywordtype">float</span> value);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ProgressBarWidget.html#a2b5354919e711518e7726f854a3ea260">update</a>(<span class="keywordtype">float</span> delta);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ProgressBarWidget.html#a4537a8642acaf8f87469b4552ec92927">add</a>();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ProgressBarWidget.html#a71b16b48cc76437dc70e894b6145b19e">   72</a></span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classGUIEngine_1_1ProgressBarWidget.html#a71b16b48cc76437dc70e894b6145b19e">getValue</a>() {<span class="keywordflow">return</span> m_value; };</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ProgressBarWidget.html#ac614a0f829411d28ee2105eb8b8b835c">   76</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ProgressBarWidget.html#ac614a0f829411d28ee2105eb8b8b835c">showLabel</a>(<span class="keywordtype">bool</span> show_label) { m_show_label = show_label; }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    };</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>}</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassGUIEngine_1_1ProgressBarWidget_html_a0b6b3eb74d43675910508500ebc996ba"><div class="ttname"><a href="classGUIEngine_1_1ProgressBarWidget.html#a0b6b3eb74d43675910508500ebc996ba">GUIEngine::ProgressBarWidget::setLabel</a></div><div class="ttdeci">void setLabel(const irr::core::stringw label)</div><div class="ttdoc">Change the label on the widget</div><div class="ttdef"><b>Definition</b> progress_bar_widget.cpp:122</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ProgressBarWidget_html_a2b5354919e711518e7726f854a3ea260"><div class="ttname"><a href="classGUIEngine_1_1ProgressBarWidget.html#a2b5354919e711518e7726f854a3ea260">GUIEngine::ProgressBarWidget::update</a></div><div class="ttdeci">virtual void update(float delta)</div><div class="ttdoc">Override in children to possibly receive updates (you may need to register to them first)</div><div class="ttdef"><b>Definition</b> progress_bar_widget.cpp:104</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ProgressBarWidget_html_a3bc707f4bcefe1aef0a9ae898d86c29a"><div class="ttname"><a href="classGUIEngine_1_1ProgressBarWidget.html#a3bc707f4bcefe1aef0a9ae898d86c29a">GUIEngine::ProgressBarWidget::getHeightNeededAroundLabel</a></div><div class="ttdeci">virtual int getHeightNeededAroundLabel() const</div><div class="ttdoc">When inferring widget size from its label length, this method will be called to if/how much space mus...</div><div class="ttdef"><b>Definition</b> progress_bar_widget.hpp:43</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ProgressBarWidget_html_a4537a8642acaf8f87469b4552ec92927"><div class="ttname"><a href="classGUIEngine_1_1ProgressBarWidget.html#a4537a8642acaf8f87469b4552ec92927">GUIEngine::ProgressBarWidget::add</a></div><div class="ttdeci">void add()</div><div class="ttdoc">Create and add the irrLicht widget(s) associated with this object.</div><div class="ttdef"><b>Definition</b> progress_bar_widget.cpp:53</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ProgressBarWidget_html_a557b813c0b4cf39c22101488fca09079"><div class="ttname"><a href="classGUIEngine_1_1ProgressBarWidget.html#a557b813c0b4cf39c22101488fca09079">GUIEngine::ProgressBarWidget::setValue</a></div><div class="ttdeci">void setValue(float value)</div><div class="ttdoc">Change the value of the widget, it must be a percent.</div><div class="ttdef"><b>Definition</b> progress_bar_widget.cpp:77</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ProgressBarWidget_html_a641a1c196359788c6ca7f153b819b916"><div class="ttname"><a href="classGUIEngine_1_1ProgressBarWidget.html#a641a1c196359788c6ca7f153b819b916">GUIEngine::ProgressBarWidget::getWidthNeededAroundLabel</a></div><div class="ttdeci">virtual int getWidthNeededAroundLabel() const</div><div class="ttdoc">When inferring widget size from its label length, this method will be called to if/how much space mus...</div><div class="ttdef"><b>Definition</b> progress_bar_widget.hpp:39</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ProgressBarWidget_html_a6e9bb524b4e222dae390f6f6b9fe2312"><div class="ttname"><a href="classGUIEngine_1_1ProgressBarWidget.html#a6e9bb524b4e222dae390f6f6b9fe2312">GUIEngine::ProgressBarWidget::m_target_value</a></div><div class="ttdeci">float m_target_value</div><div class="ttdoc">Values for animation</div><div class="ttdef"><b>Definition</b> progress_bar_widget.hpp:51</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ProgressBarWidget_html_a71b16b48cc76437dc70e894b6145b19e"><div class="ttname"><a href="classGUIEngine_1_1ProgressBarWidget.html#a71b16b48cc76437dc70e894b6145b19e">GUIEngine::ProgressBarWidget::getValue</a></div><div class="ttdeci">float getValue()</div><div class="ttdoc">Get the current value of the widget.</div><div class="ttdef"><b>Definition</b> progress_bar_widget.hpp:72</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ProgressBarWidget_html_ac614a0f829411d28ee2105eb8b8b835c"><div class="ttname"><a href="classGUIEngine_1_1ProgressBarWidget.html#ac614a0f829411d28ee2105eb8b8b835c">GUIEngine::ProgressBarWidget::showLabel</a></div><div class="ttdeci">void showLabel(bool show_label)</div><div class="ttdoc">Sets if the current fraction is shown as a percentage value in the progress bar.</div><div class="ttdef"><b>Definition</b> progress_bar_widget.hpp:76</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ProgressBarWidget_html_ad0de6101d7a3b7a3df7a34e3cf61b7ba"><div class="ttname"><a href="classGUIEngine_1_1ProgressBarWidget.html#ad0de6101d7a3b7a3df7a34e3cf61b7ba">GUIEngine::ProgressBarWidget::moveValue</a></div><div class="ttdeci">void moveValue(float value)</div><div class="ttdoc">Change the value of the widget smooth, it must be a percent.</div><div class="ttdef"><b>Definition</b> progress_bar_widget.cpp:91</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html"><div class="ttname"><a href="namespaceGUIEngine.html">GUIEngine</a></div><div class="ttdoc">Contains all GUI engine related classes and functions</div><div class="ttdef"><b>Definition</b> abstract_state_manager.hpp:33</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

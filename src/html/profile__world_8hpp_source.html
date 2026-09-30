@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: modes/profile_world.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>modes</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">profile_world.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2009-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_PROFILE_WORLD_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_PROFILE_WORLD_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;modes/standard_race.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">class </span>Kart;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classProfileWorld.html">   30</a></span><span class="keyword">class </span><a class="code hl_function" href="classProfileWorld.html#a2e4bc63d9aec453e98ec19fb3207d41f">ProfileWorld</a> : <span class="keyword">public</span> StandardRace</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classProfileWorld.html#a670a1a0b2441f802fb60c61efe2883eb">   34</a></span>    <span class="keyword">enum</span>        <a class="code hl_enumeration" href="classProfileWorld.html#a670a1a0b2441f802fb60c61efe2883eb">ProfileType</a> {PROFILE_NONE, PROFILE_TIME, PROFILE_LAPS};</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classProfileWorld.html#a3f36adf494e33b150d4620c6f8f736b6">   37</a></span>    <span class="keyword">static</span> <a class="code hl_enumeration" href="classProfileWorld.html#a670a1a0b2441f802fb60c61efe2883eb">ProfileType</a> <a class="code hl_variable" href="classProfileWorld.html#a3f36adf494e33b150d4620c6f8f736b6">m_profile_mode</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classProfileWorld.html#ae427865ab62ff0a447a7d9c208d57e79">   40</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classProfileWorld.html#ae427865ab62ff0a447a7d9c208d57e79">m_time</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classProfileWorld.html#a231217874cb9ec9e3af3a98a208e4a30">   43</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classProfileWorld.html#a231217874cb9ec9e3af3a98a208e4a30">m_start_time</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classProfileWorld.html#af86049700f70f1e0dbfdfdf72a72fd70">   46</a></span>    <span class="keywordtype">int</span>          <a class="code hl_variable" href="classProfileWorld.html#af86049700f70f1e0dbfdfdf72a72fd70">m_frame_count</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classProfileWorld.html#a50a7289b8e65c2199180a7098cd48c75">   49</a></span>    <span class="keywordtype">long</span> <span class="keywordtype">long</span>    <a class="code hl_variable" href="classProfileWorld.html#a50a7289b8e65c2199180a7098cd48c75">m_num_triangles</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classProfileWorld.html#aac001dfa043d728b68052e5d8ef8faef">   52</a></span>    <span class="keywordtype">long</span> <span class="keywordtype">long</span>    <a class="code hl_variable" href="classProfileWorld.html#aac001dfa043d728b68052e5d8ef8faef">m_num_culls</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classProfileWorld.html#aa6ebbbc7e59e115f0760b91b2217fdd0">   55</a></span>    <span class="keywordtype">long</span> <span class="keywordtype">long</span>    <a class="code hl_variable" href="classProfileWorld.html#aa6ebbbc7e59e115f0760b91b2217fdd0">m_num_solid</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classProfileWorld.html#a809320b13a9ad336a61957f17e59a488">   58</a></span>    <span class="keywordtype">long</span> <span class="keywordtype">long</span>    <a class="code hl_variable" href="classProfileWorld.html#a809320b13a9ad336a61957f17e59a488">m_num_transparent</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classProfileWorld.html#a2f2a81066554c3b398bcaacf0dea93a0">   61</a></span>    <span class="keywordtype">long</span> <span class="keywordtype">long</span>    <a class="code hl_variable" href="classProfileWorld.html#a2f2a81066554c3b398bcaacf0dea93a0">m_num_trans_effect</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classProfileWorld.html#a52f5cc189669a3628f3daaae348a1272">   64</a></span>    <span class="keywordtype">long</span> <span class="keywordtype">long</span>    <a class="code hl_variable" href="classProfileWorld.html#a52f5cc189669a3628f3daaae348a1272">m_num_calls</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classProfileWorld.html#a9516721723a03396d2e1788dd8d34fc5">   69</a></span>    <span class="keyword">static</span> <span class="keywordtype">int</span>   <a class="code hl_variable" href="classProfileWorld.html#a9516721723a03396d2e1788dd8d34fc5">m_num_laps</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">virtual</span> std::shared_ptr&lt;AbstractKart&gt; <a class="code hl_function" href="classProfileWorld.html#a8a48a85ef8418d881185d66f3c25c0e0">createKart</a></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        (<span class="keyword">const</span> std::string &amp;kart_ident, <span class="keywordtype">int</span> index, <span class="keywordtype">int</span> local_player_id,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordtype">int</span> global_player_id, <a class="code hl_enumeration" href="classRaceManager.html#a32bd4fe8548756ed82bcb39d239c602a">RaceManager::KartType</a> type,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <a class="code hl_enumeration" href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a> handicap);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                          <a class="code hl_function" href="classProfileWorld.html#a2e4bc63d9aec453e98ec19fb3207d41f">ProfileWorld</a>();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">virtual</span>              <a class="code hl_function" href="classProfileWorld.html#a7af0a878336bb563b752f29e3e7f8e42">~ProfileWorld</a>();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classProfileWorld.html#af47be78304c430b5835b26389fc79b32">   80</a></span>    <span class="keyword">virtual</span>  std::string <a class="code hl_function" href="classProfileWorld.html#af47be78304c430b5835b26389fc79b32">getInternalCode</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <span class="stringliteral">&quot;PROFILE&quot;</span>; }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keyword">virtual</span>  <span class="keywordtype">void</span>        <a class="code hl_function" href="classProfileWorld.html#ac1b41e893f1e34bf52445d72cc34f061">update</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">virtual</span>  <span class="keywordtype">bool</span>        <a class="code hl_function" href="classProfileWorld.html#a529786dea7bdd52fe9d9b2fdea78809e">isRaceOver</a>();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">virtual</span>  <span class="keywordtype">void</span>        <a class="code hl_function" href="classProfileWorld.html#aaf4fbf9b96712cfa719461248e980444">enterRaceOverState</a>();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">static</span>   <span class="keywordtype">void</span> <a class="code hl_function" href="classProfileWorld.html#aa1b854fe069ee67f05ba67f2159940af">setProfileModeTime</a>(<span class="keywordtype">float</span> time);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">static</span>   <span class="keywordtype">void</span> <a class="code hl_function" href="classProfileWorld.html#ae423b3c50d3df0180478d1ece2436023">setProfileModeLaps</a>(<span class="keywordtype">int</span> laps);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classProfileWorld.html#a1eda3d0ac5f506024867e856d5c75600">   89</a></span>    <span class="keyword">static</span>   <span class="keywordtype">bool</span> <a class="code hl_function" href="classProfileWorld.html#a1eda3d0ac5f506024867e856d5c75600">isProfileMode</a>() {<span class="keywordflow">return</span> <a class="code hl_variable" href="classProfileWorld.html#a3f36adf494e33b150d4620c6f8f736b6">m_profile_mode</a>!=PROFILE_NONE; }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>};</div>
+</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassProfileWorld_html_a1eda3d0ac5f506024867e856d5c75600"><div class="ttname"><a href="classProfileWorld.html#a1eda3d0ac5f506024867e856d5c75600">ProfileWorld::isProfileMode</a></div><div class="ttdeci">static bool isProfileMode()</div><div class="ttdoc">Returns true if profile mode was selected.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:89</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a231217874cb9ec9e3af3a98a208e4a30"><div class="ttname"><a href="classProfileWorld.html#a231217874cb9ec9e3af3a98a208e4a30">ProfileWorld::m_start_time</a></div><div class="ttdeci">unsigned int m_start_time</div><div class="ttdoc">Return value of real time at start of race.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:43</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a2e4bc63d9aec453e98ec19fb3207d41f"><div class="ttname"><a href="classProfileWorld.html#a2e4bc63d9aec453e98ec19fb3207d41f">ProfileWorld::ProfileWorld</a></div><div class="ttdeci">ProfileWorld()</div><div class="ttdoc">The constructor sets the number of (local) players to 0, since only AI karts are used.</div><div class="ttdef"><b>Definition</b> profile_world.cpp:43</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a2f2a81066554c3b398bcaacf0dea93a0"><div class="ttname"><a href="classProfileWorld.html#a2f2a81066554c3b398bcaacf0dea93a0">ProfileWorld::m_num_trans_effect</a></div><div class="ttdeci">long long m_num_trans_effect</div><div class="ttdoc">Number of transparent effect triangles drawn.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:61</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a3f36adf494e33b150d4620c6f8f736b6"><div class="ttname"><a href="classProfileWorld.html#a3f36adf494e33b150d4620c6f8f736b6">ProfileWorld::m_profile_mode</a></div><div class="ttdeci">static ProfileType m_profile_mode</div><div class="ttdoc">If profiling is done, and if so, which mode.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:37</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a50a7289b8e65c2199180a7098cd48c75"><div class="ttname"><a href="classProfileWorld.html#a50a7289b8e65c2199180a7098cd48c75">ProfileWorld::m_num_triangles</a></div><div class="ttdeci">long long m_num_triangles</div><div class="ttdoc">Number of primitives drawn (in 1000).</div><div class="ttdef"><b>Definition</b> profile_world.hpp:49</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a529786dea7bdd52fe9d9b2fdea78809e"><div class="ttname"><a href="classProfileWorld.html#a529786dea7bdd52fe9d9b2fdea78809e">ProfileWorld::isRaceOver</a></div><div class="ttdeci">virtual bool isRaceOver()</div><div class="ttdoc">The race is over if either the requested number of laps have been done or the requested time is over.</div><div class="ttdef"><b>Definition</b> profile_world.cpp:136</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a52f5cc189669a3628f3daaae348a1272"><div class="ttname"><a href="classProfileWorld.html#a52f5cc189669a3628f3daaae348a1272">ProfileWorld::m_num_calls</a></div><div class="ttdeci">long long m_num_calls</div><div class="ttdoc">Number of calls to draw.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:64</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a670a1a0b2441f802fb60c61efe2883eb"><div class="ttname"><a href="classProfileWorld.html#a670a1a0b2441f802fb60c61efe2883eb">ProfileWorld::ProfileType</a></div><div class="ttdeci">ProfileType</div><div class="ttdoc">Profiling modes.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:34</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a7af0a878336bb563b752f29e3e7f8e42"><div class="ttname"><a href="classProfileWorld.html#a7af0a878336bb563b752f29e3e7f8e42">ProfileWorld::~ProfileWorld</a></div><div class="ttdeci">virtual ~ProfileWorld()</div><div class="ttdoc">Sets profile mode off again.</div><div class="ttdef"><b>Definition</b> profile_world.cpp:67</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a809320b13a9ad336a61957f17e59a488"><div class="ttname"><a href="classProfileWorld.html#a809320b13a9ad336a61957f17e59a488">ProfileWorld::m_num_transparent</a></div><div class="ttdeci">long long m_num_transparent</div><div class="ttdoc">Number of transparent triangles drawn.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:58</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a8a48a85ef8418d881185d66f3c25c0e0"><div class="ttname"><a href="classProfileWorld.html#a8a48a85ef8418d881185d66f3c25c0e0">ProfileWorld::createKart</a></div><div class="ttdeci">virtual std::shared_ptr&lt; AbstractKart &gt; createKart(const std::string &amp;kart_ident, int index, int local_player_id, int global_player_id, RaceManager::KartType type, HandicapLevel handicap)</div><div class="ttdoc">Creates a kart, having a certain position, starting location, and local and global player id (if appl...</div><div class="ttdef"><b>Definition</b> profile_world.cpp:108</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a9516721723a03396d2e1788dd8d34fc5"><div class="ttname"><a href="classProfileWorld.html#a9516721723a03396d2e1788dd8d34fc5">ProfileWorld::m_num_laps</a></div><div class="ttdeci">static int m_num_laps</div><div class="ttdoc">In laps based profiling: number of laps to run.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:69</div></div>
+<div class="ttc" id="aclassProfileWorld_html_aa1b854fe069ee67f05ba67f2159940af"><div class="ttname"><a href="classProfileWorld.html#aa1b854fe069ee67f05ba67f2159940af">ProfileWorld::setProfileModeTime</a></div><div class="ttdeci">static void setProfileModeTime(float time)</div><div class="ttdoc">Enables profiling for a certain amount of time.</div><div class="ttdef"><b>Definition</b> profile_world.cpp:78</div></div>
+<div class="ttc" id="aclassProfileWorld_html_aa6ebbbc7e59e115f0760b91b2217fdd0"><div class="ttname"><a href="classProfileWorld.html#aa6ebbbc7e59e115f0760b91b2217fdd0">ProfileWorld::m_num_solid</a></div><div class="ttdeci">long long m_num_solid</div><div class="ttdoc">Numer of solid triangles drawn.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:55</div></div>
+<div class="ttc" id="aclassProfileWorld_html_aac001dfa043d728b68052e5d8ef8faef"><div class="ttname"><a href="classProfileWorld.html#aac001dfa043d728b68052e5d8ef8faef">ProfileWorld::m_num_culls</a></div><div class="ttdeci">long long m_num_culls</div><div class="ttdoc">Number of culled triangles.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:52</div></div>
+<div class="ttc" id="aclassProfileWorld_html_aaf4fbf9b96712cfa719461248e980444"><div class="ttname"><a href="classProfileWorld.html#aaf4fbf9b96712cfa719461248e980444">ProfileWorld::enterRaceOverState</a></div><div class="ttdeci">virtual void enterRaceOverState()</div><div class="ttdoc">This function is called when the race is finished, but end-of-race animations have still to be played...</div><div class="ttdef"><b>Definition</b> profile_world.cpp:177</div></div>
+<div class="ttc" id="aclassProfileWorld_html_ac1b41e893f1e34bf52445d72cc34f061"><div class="ttname"><a href="classProfileWorld.html#ac1b41e893f1e34bf52445d72cc34f061">ProfileWorld::update</a></div><div class="ttdeci">virtual void update(int ticks)</div><div class="ttdoc">Counts the number of frames.</div><div class="ttdef"><b>Definition</b> profile_world.cpp:155</div></div>
+<div class="ttc" id="aclassProfileWorld_html_ae423b3c50d3df0180478d1ece2436023"><div class="ttname"><a href="classProfileWorld.html#ae423b3c50d3df0180478d1ece2436023">ProfileWorld::setProfileModeLaps</a></div><div class="ttdeci">static void setProfileModeLaps(int laps)</div><div class="ttdoc">Enables profiling for a certain number of laps.</div><div class="ttdef"><b>Definition</b> profile_world.cpp:90</div></div>
+<div class="ttc" id="aclassProfileWorld_html_ae427865ab62ff0a447a7d9c208d57e79"><div class="ttname"><a href="classProfileWorld.html#ae427865ab62ff0a447a7d9c208d57e79">ProfileWorld::m_time</a></div><div class="ttdeci">static float m_time</div><div class="ttdoc">In time based profiling only: time to run.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:40</div></div>
+<div class="ttc" id="aclassProfileWorld_html_af47be78304c430b5835b26389fc79b32"><div class="ttname"><a href="classProfileWorld.html#af47be78304c430b5835b26389fc79b32">ProfileWorld::getInternalCode</a></div><div class="ttdeci">virtual std::string getInternalCode() const</div><div class="ttdoc">Returns identifier for this world.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:80</div></div>
+<div class="ttc" id="aclassProfileWorld_html_af86049700f70f1e0dbfdfdf72a72fd70"><div class="ttname"><a href="classProfileWorld.html#af86049700f70f1e0dbfdfdf72a72fd70">ProfileWorld::m_frame_count</a></div><div class="ttdeci">int m_frame_count</div><div class="ttdoc">Number of frames.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:46</div></div>
+<div class="ttc" id="aclassRaceManager_html_a32bd4fe8548756ed82bcb39d239c602a"><div class="ttname"><a href="classRaceManager.html#a32bd4fe8548756ed82bcb39d239c602a">RaceManager::KartType</a></div><div class="ttdeci">KartType</div><div class="ttdoc">Different kart types: A local player, a player connected via network, an AI kart, the leader kart (cu...</div><div class="ttdef"><b>Definition</b> race_manager.hpp:243</div></div>
+<div class="ttc" id="aremote__kart__info_8hpp_html_a2fd442f27ee994082c435f49c9410f55"><div class="ttname"><a href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a></div><div class="ttdeci">HandicapLevel</div><div class="ttdoc">Handicap per player.</div><div class="ttdef"><b>Definition</b> remote_kart_info.hpp:43</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

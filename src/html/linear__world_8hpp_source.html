@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: modes/linear_world.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>modes</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">linear_world.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  Copyright (C) 2004-2015 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifndef HEADER_LINEAR_WORLD_HPP</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#define HEADER_LINEAR_WORLD_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;modes/world_with_rank.hpp&quot;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;utils/aligned_array.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;climits&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">class </span><a class="code hl_class" href="classSFXBase.html">SFXBase</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"> * A &#39;linear world&#39; is a subcategory of world used in &#39;standard&#39; races, i.e.</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment"> * with a start line and a road that loops. This includes management of drivelines</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment"> * and lap counting.</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment"> * \ingroup modes</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment"> */</span></div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classLinearWorld.html">   35</a></span><span class="keyword">class </span><a class="code hl_function" href="classLinearWorld.html#aea800d230081ad49f77b91eca9e344c2">LinearWorld</a> : <span class="keyword">public</span> WorldWithRank</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classLinearWorld.html#a7d9c407eab04ed7bfe3e37b6c1c468dc">   39</a></span>    <a class="code hl_class" href="classSFXBase.html">SFXBase</a>     *<a class="code hl_variable" href="classLinearWorld.html#a7d9c407eab04ed7bfe3e37b6c1c468dc">m_last_lap_sfx</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classLinearWorld.html#a3e1b3a447484ba8e31f4c1471b75d6b1">   42</a></span>    <span class="keywordtype">bool</span>         <a class="code hl_variable" href="classLinearWorld.html#a3e1b3a447484ba8e31f4c1471b75d6b1">m_last_lap_sfx_played</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">bool</span>         m_last_lap_sfx_playing;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classLinearWorld.html#aae5be352cf578e3a7b02d9509fd6f4ab">   47</a></span>    <span class="keywordtype">bool</span>         <a class="code hl_variable" href="classLinearWorld.html#aae5be352cf578e3a7b02d9509fd6f4ab">m_check_structure_compatible</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classLinearWorld.html#a90d93ac1bd3a3b7ae3590c63436665e9">   50</a></span>    <span class="keywordtype">int</span>          <a class="code hl_variable" href="classLinearWorld.html#a90d93ac1bd3a3b7ae3590c63436665e9">m_fastest_lap_ticks</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    core::stringw m_fastest_lap_kart_name;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classLinearWorld.html#a2cdc5323997534e4e0b1929b486b599b">   61</a></span>    <span class="keywordtype">float</span>       <a class="code hl_variable" href="classLinearWorld.html#a2cdc5323997534e4e0b1929b486b599b">m_distance_increase</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classLinearWorld.html#ad4c1f7a1d8b5d09d51b3b1dc952da640">   66</a></span>    <span class="keywordtype">float</span>       <a class="code hl_variable" href="classLinearWorld.html#ad4c1f7a1d8b5d09d51b3b1dc952da640">m_live_time_difference</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classLinearWorld.html#ab13524b0339b2fb4db3d52d24611dfbc">   69</a></span>    <span class="keywordtype">bool</span>        <a class="code hl_variable" href="classLinearWorld.html#ab13524b0339b2fb4db3d52d24611dfbc">m_valid_reference_time</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">/* if set then the game will auto end after this time for networking */</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">float</span>       m_finish_timeout;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classLinearWorld.html#ab80f84808a9e6c206a5898dcb59a76a0">updateLiveDifference</a>();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00084" data-start="{" data-end="};">
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classLinearWorld_1_1KartInfo.html">   84</a></span>    <span class="keyword">class </span><a class="code hl_function" href="classLinearWorld_1_1KartInfo.html#a858c12c678449def681186341741242b">KartInfo</a></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classLinearWorld_1_1KartInfo.html#aae6746af8ca9f6c8066cac697d3f37bb">   88</a></span>        <span class="keywordtype">int</span>         <a class="code hl_variable" href="classLinearWorld_1_1KartInfo.html#aae6746af8ca9f6c8066cac697d3f37bb">m_finished_laps</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classLinearWorld_1_1KartInfo.html#a661e239e66cefb7b8ece48e101cfcbe0">   91</a></span>        <span class="keywordtype">int</span>         <a class="code hl_variable" href="classLinearWorld_1_1KartInfo.html#a661e239e66cefb7b8ece48e101cfcbe0">m_ticks_at_last_lap</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classLinearWorld_1_1KartInfo.html#a03a5114bd2b3fd0a36b62d46bad71807">   94</a></span>        <span class="keywordtype">int</span>         <a class="code hl_variable" href="classLinearWorld_1_1KartInfo.html#a03a5114bd2b3fd0a36b62d46bad71807">m_lap_start_ticks</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classLinearWorld_1_1KartInfo.html#ac1824edfd124451dcace1d68872791dd">   97</a></span>        <span class="keywordtype">float</span>       <a class="code hl_variable" href="classLinearWorld_1_1KartInfo.html#ac1824edfd124451dcace1d68872791dd">m_estimated_finish</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classLinearWorld_1_1KartInfo.html#a2c25ed5a206a11978c60a2691114fe35">  101</a></span>        <span class="keywordtype">float</span>       <a class="code hl_variable" href="classLinearWorld_1_1KartInfo.html#a2c25ed5a206a11978c60a2691114fe35">m_overall_distance</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classLinearWorld_1_1KartInfo.html#a390330aca649fce3af0aec725c26c833">  105</a></span>        <span class="keywordtype">float</span>       <a class="code hl_variable" href="classLinearWorld_1_1KartInfo.html#a390330aca649fce3af0aec725c26c833">m_wrong_way_timer</a>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classLinearWorld_1_1KartInfo.html#a858c12c678449def681186341741242b">  108</a></span>        <a class="code hl_function" href="classLinearWorld_1_1KartInfo.html#a858c12c678449def681186341741242b">KartInfo</a>()  { <a class="code hl_function" href="classLinearWorld_1_1KartInfo.html#a80b45c6b99b01dba842bfd91db5fd790">reset</a>(); }</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00111" data-start="{" data-end="}">
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classLinearWorld_1_1KartInfo.html#a80b45c6b99b01dba842bfd91db5fd790">  111</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classLinearWorld_1_1KartInfo.html#a80b45c6b99b01dba842bfd91db5fd790">reset</a>()</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            <a class="code hl_variable" href="classLinearWorld_1_1KartInfo.html#aae6746af8ca9f6c8066cac697d3f37bb">m_finished_laps</a>     = -1;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <a class="code hl_variable" href="classLinearWorld_1_1KartInfo.html#a03a5114bd2b3fd0a36b62d46bad71807">m_lap_start_ticks</a>   = 0;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            <a class="code hl_variable" href="classLinearWorld_1_1KartInfo.html#a661e239e66cefb7b8ece48e101cfcbe0">m_ticks_at_last_lap</a> = INT_MAX;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            <a class="code hl_variable" href="classLinearWorld_1_1KartInfo.html#ac1824edfd124451dcace1d68872791dd">m_estimated_finish</a>  = -1.0f;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            <a class="code hl_variable" href="classLinearWorld_1_1KartInfo.html#a2c25ed5a206a11978c60a2691114fe35">m_overall_distance</a>  = 0.0f;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <a class="code hl_variable" href="classLinearWorld_1_1KartInfo.html#a390330aca649fce3af0aec725c26c833">m_wrong_way_timer</a>   = 0.0f;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        }   <span class="comment">// reset</span></div>
+</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <span class="keywordtype">void</span> saveCompleteState(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>* bns);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordtype">void</span> restoreCompleteState(<span class="keyword">const</span> <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>&amp; b);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    };</div>
+</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classLinearWorld.html#ab921a2c6610a75b1fb76b1637388ff76">  133</a></span>    std::vector&lt;KartInfo&gt; <a class="code hl_variable" href="classLinearWorld.html#ab921a2c6610a75b1fb76b1637388ff76">m_kart_info</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>  <a class="code hl_function" href="classLinearWorld.html#a786affb8f58be88f04b19715990728a8">checkForWrongDirection</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i, <span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keyword">virtual</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classLinearWorld.html#ae71184e83cc923c10158fcd613c74d6d">estimateFinishTimeForKart</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart) OVERRIDE;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                  <a class="code hl_function" href="classLinearWorld.html#aea800d230081ad49f77b91eca9e344c2">LinearWorld</a>();</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>  <a class="code hl_function" href="classLinearWorld.html#a8ccc70d2093d36449b1e07f97561eb7e">init</a>() OVERRIDE;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    virtual      ~<a class="code hl_function" href="classLinearWorld.html#aea800d230081ad49f77b91eca9e344c2">LinearWorld</a>();</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    virtual <span class="keywordtype">void</span>  <a class="code hl_function" href="classLinearWorld.html#a434fe4d4543e7eca47a0e9f27e866f55">update</a>(<span class="keywordtype">int</span> ticks) OVERRIDE;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    virtual <span class="keywordtype">void</span>  <a class="code hl_function" href="classLinearWorld.html#a1887f1a3b755d2bf20aa503f3f150a52">updateGraphics</a>(<span class="keywordtype">float</span> dt) OVERRIDE;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordtype">float</span>         <a class="code hl_function" href="classLinearWorld.html#a49a7c1099e2c20fa5ce1309efc2b07b8">getDistanceDownTrackForKart</a>(const <span class="keywordtype">int</span> kart_id,</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                                            <span class="keywordtype">bool</span> account_for_checklines) const;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordtype">void</span>          updateTrackSectors();</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordtype">void</span>          <a class="code hl_function" href="classLinearWorld.html#aca593e830d6646a238f3a9db4fca7b60">updateRacePosition</a>();</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordtype">float</span>         <a class="code hl_function" href="classLinearWorld.html#a16fa614e0c53714560548f8273fc28eb">getDistanceToCenterForKart</a>(const <span class="keywordtype">int</span> kart_id) const;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordtype">float</span>         <a class="code hl_function" href="classLinearWorld.html#afb8f8b01f47fa1bbb886d55327ecdb39">getEstimatedFinishTime</a>(const <span class="keywordtype">int</span> kart_id) const;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordtype">int</span>           getLapForKart(const <span class="keywordtype">int</span> kart_id) const;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordtype">int</span>           getTicksAtLapForKart(const <span class="keywordtype">int</span> kart_id) const;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordtype">float</span>         getLiveTimeDifference()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classLinearWorld.html#ad4c1f7a1d8b5d09d51b3b1dc952da640">m_live_time_difference</a>; }</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordtype">bool</span>          hasValidTimeDifference()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classLinearWorld.html#ab13524b0339b2fb4db3d52d24611dfbc">m_valid_reference_time</a>; }</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keyword">virtual</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classLinearWorld.html#ac9ff37e0d70e394de89bdeeceecaf018">getKartsDisplayInfo</a>(</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                  std::vector&lt;RaceGUIBase::KartIconDisplayInfo&gt; *info) OVERRIDE;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classLinearWorld.html#abc7c7be2b7184e2576d5b963af2fb154">getNumberOfRescuePositions</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    virtual <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classLinearWorld.html#a362a1386a61683f34eca52a823dcefb1">getRescuePositionIndex</a>(AbstractKart *kart) OVERRIDE;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    virtual btTransform <a class="code hl_function" href="classLinearWorld.html#a6f060384e9822b3aee51b5469dcc138e">getRescueTransform</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index) const OVERRIDE;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    virtual <span class="keywordtype">void</span>  <a class="code hl_function" href="classLinearWorld.html#a44d928686451c6232a23eff36a54f07d">reset</a>(<span class="keywordtype">bool</span> restart=false) OVERRIDE;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    virtual <span class="keywordtype">void</span>  <a class="code hl_function" href="classLinearWorld.html#afb080774f3a1b932a89d02509f3adc4e">newLap</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> kart_index) OVERRIDE;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="classLinearWorld.html#a7b21c39f193571972f61c20e7ac76688">  170</a></span>    virtual <span class="keywordtype">bool</span>  <a class="code hl_function" href="classLinearWorld.html#a7b21c39f193571972f61c20e7ac76688">raceHasLaps</a>() OVERRIDE { <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classLinearWorld.html#a0e532a5fcf7c3dd5e8eec50fe64eb3a5">  173</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span>  <a class="code hl_function" href="classLinearWorld.html#a0e532a5fcf7c3dd5e8eec50fe64eb3a5">haveBonusBoxes</a>() OVERRIDE { <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="classLinearWorld.html#a08d37b184b64d07ac25fb405fe4f7cd9">  176</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classLinearWorld.html#a08d37b184b64d07ac25fb405fe4f7cd9">useChecklineRequirements</a>() const OVERRIDE { <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00180" data-start="{" data-end="}">
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="classLinearWorld.html#ac2e85a951bd700e0e6d948f0f90bd65c">  180</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classLinearWorld.html#ac2e85a951bd700e0e6d948f0f90bd65c">getFinishedLapsOfKart</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> kart_index) <span class="keyword">const</span> OVERRIDE</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        assert(kart_index &lt; <a class="code hl_variable" href="classLinearWorld.html#ab921a2c6610a75b1fb76b1637388ff76">m_kart_info</a>.size());</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classLinearWorld.html#ab921a2c6610a75b1fb76b1637388ff76">m_kart_info</a>[kart_index].m_finished_laps;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    }   <span class="comment">// getkartLap</span></div>
+</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordtype">void</span> setLastTriggeredCheckline(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> kart_index, <span class="keywordtype">int</span> index);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00191" data-start="{" data-end="}">
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classLinearWorld.html#a479accbe110788c2b3971de53bb42a45">  191</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classLinearWorld.html#a479accbe110788c2b3971de53bb42a45">getOverallDistance</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> kart_index)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classLinearWorld.html#ab921a2c6610a75b1fb76b1637388ff76">m_kart_info</a>[kart_index].m_overall_distance;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    }   <span class="comment">// getOverallDistance</span></div>
+</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00197" data-start="{" data-end="}">
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="classLinearWorld.html#afd1d295aac84471ad268e1a438aff43e">  197</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classLinearWorld.html#afd1d295aac84471ad268e1a438aff43e">getFastestLap</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        <span class="keywordflow">return</span> stk_config-&gt;ticks2Time(<a class="code hl_variable" href="classLinearWorld.html#a90d93ac1bd3a3b7ae3590c63436665e9">m_fastest_lap_ticks</a>);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    }</div>
+</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00203" data-start="{" data-end="}">
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="classLinearWorld.html#a616b8dbb3c96c6c8f633a685050737d5">  203</a></span>    stringw <a class="code hl_function" href="classLinearWorld.html#a616b8dbb3c96c6c8f633a685050737d5">getFastestLapKartName</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        <span class="keywordflow">return</span> m_fastest_lap_kart_name;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    }</div>
+</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00209" data-start="{" data-end="}">
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="classLinearWorld.html#aec7c74afc71ff992574febd7228091f5">  209</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classLinearWorld.html#aec7c74afc71ff992574febd7228091f5">getFastestLapTicks</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classLinearWorld.html#a90d93ac1bd3a3b7ae3590c63436665e9">m_fastest_lap_ticks</a>;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    }</div>
+</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00215" data-start="{" data-end="}">
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="classLinearWorld.html#adb1bb29fa83be7ef11281777aebdddf0">  215</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classLinearWorld.html#adb1bb29fa83be7ef11281777aebdddf0">setFastestLapTicks</a>(<span class="keywordtype">int</span> ticks)</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <a class="code hl_variable" href="classLinearWorld.html#a90d93ac1bd3a3b7ae3590c63436665e9">m_fastest_lap_ticks</a> = ticks;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    }</div>
+</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00221" data-start="{" data-end="}">
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="classLinearWorld.html#a71ce8549f17f8b82cf48cb77210bc727">  221</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classLinearWorld.html#a71ce8549f17f8b82cf48cb77210bc727">setFastestKartName</a>(<span class="keyword">const</span> stringw&amp; name)</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    {</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        m_fastest_lap_kart_name = name;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    }</div>
+</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keyword">virtual</span> std::pair&lt;uint32_t, uint32_t&gt; <a class="code hl_function" href="classLinearWorld.html#a22d71effb4179a073bc002520fa15a9f">getGameStartedProgress</a>() const</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        OVERRIDE;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    virtual <span class="keywordtype">void</span> saveCompleteState(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>* bns,</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                                   <a class="code hl_class" href="classSTKPeer.html">STKPeer</a>* peer) OVERRIDE;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    virtual <span class="keywordtype">void</span> restoreCompleteState(const <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>&amp; b) OVERRIDE;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classLinearWorld.html#abf390658d5cadc8fdaa87fa8f9b605d5">updateCheckLinesServer</a>(<span class="keywordtype">int</span> check_id, <span class="keywordtype">int</span> kart_id);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keywordtype">void</span> updateCheckLinesClient(const <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>&amp; b);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordtype">void</span> handleServerCheckStructureCount(<span class="keywordtype">unsigned</span> count);</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="classLinearWorld.html#affbdea26b8ddefee26bc9c74dc1450da">  240</a></span>    virtual <span class="keywordtype">bool</span> <a class="code hl_function" href="classLinearWorld.html#affbdea26b8ddefee26bc9c74dc1450da">showLapsTarget</a>() OVERRIDE { <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>};   <span class="comment">// LinearWorld</span></div>
+</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassLinearWorld_1_1KartInfo_html_a03a5114bd2b3fd0a36b62d46bad71807"><div class="ttname"><a href="classLinearWorld_1_1KartInfo.html#a03a5114bd2b3fd0a36b62d46bad71807">LinearWorld::KartInfo::m_lap_start_ticks</a></div><div class="ttdeci">int m_lap_start_ticks</div><div class="ttdoc">Time at start of a new lap.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:94</div></div>
+<div class="ttc" id="aclassLinearWorld_1_1KartInfo_html_a2c25ed5a206a11978c60a2691114fe35"><div class="ttname"><a href="classLinearWorld_1_1KartInfo.html#a2c25ed5a206a11978c60a2691114fe35">LinearWorld::KartInfo::m_overall_distance</a></div><div class="ttdeci">float m_overall_distance</div><div class="ttdoc">How far the kart has travelled (this is (number-of-laps-1) times track-length plus distance-along-tra...</div><div class="ttdef"><b>Definition</b> linear_world.hpp:101</div></div>
+<div class="ttc" id="aclassLinearWorld_1_1KartInfo_html_a390330aca649fce3af0aec725c26c833"><div class="ttname"><a href="classLinearWorld_1_1KartInfo.html#a390330aca649fce3af0aec725c26c833">LinearWorld::KartInfo::m_wrong_way_timer</a></div><div class="ttdeci">float m_wrong_way_timer</div><div class="ttdoc">Accumulates the time a kart has been driving in the wrong direction so that a message can be displaye...</div><div class="ttdef"><b>Definition</b> linear_world.hpp:105</div></div>
+<div class="ttc" id="aclassLinearWorld_1_1KartInfo_html_a661e239e66cefb7b8ece48e101cfcbe0"><div class="ttname"><a href="classLinearWorld_1_1KartInfo.html#a661e239e66cefb7b8ece48e101cfcbe0">LinearWorld::KartInfo::m_ticks_at_last_lap</a></div><div class="ttdeci">int m_ticks_at_last_lap</div><div class="ttdoc">Time at finishing last lap.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:91</div></div>
+<div class="ttc" id="aclassLinearWorld_1_1KartInfo_html_a80b45c6b99b01dba842bfd91db5fd790"><div class="ttname"><a href="classLinearWorld_1_1KartInfo.html#a80b45c6b99b01dba842bfd91db5fd790">LinearWorld::KartInfo::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Re-initialises all data.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:111</div></div>
+<div class="ttc" id="aclassLinearWorld_1_1KartInfo_html_a858c12c678449def681186341741242b"><div class="ttname"><a href="classLinearWorld_1_1KartInfo.html#a858c12c678449def681186341741242b">LinearWorld::KartInfo::KartInfo</a></div><div class="ttdeci">KartInfo()</div><div class="ttdoc">Initialises all fields.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:108</div></div>
+<div class="ttc" id="aclassLinearWorld_1_1KartInfo_html_aae6746af8ca9f6c8066cac697d3f37bb"><div class="ttname"><a href="classLinearWorld_1_1KartInfo.html#aae6746af8ca9f6c8066cac697d3f37bb">LinearWorld::KartInfo::m_finished_laps</a></div><div class="ttdeci">int m_finished_laps</div><div class="ttdoc">Number of finished laps.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:88</div></div>
+<div class="ttc" id="aclassLinearWorld_1_1KartInfo_html_ac1824edfd124451dcace1d68872791dd"><div class="ttname"><a href="classLinearWorld_1_1KartInfo.html#ac1824edfd124451dcace1d68872791dd">LinearWorld::KartInfo::m_estimated_finish</a></div><div class="ttdeci">float m_estimated_finish</div><div class="ttdoc">During last lap only: estimated finishing time!</div><div class="ttdef"><b>Definition</b> linear_world.hpp:97</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a08d37b184b64d07ac25fb405fe4f7cd9"><div class="ttname"><a href="classLinearWorld.html#a08d37b184b64d07ac25fb405fe4f7cd9">LinearWorld::useChecklineRequirements</a></div><div class="ttdeci">virtual bool useChecklineRequirements() const OVERRIDE</div><div class="ttdoc">Override settings from base class</div><div class="ttdef"><b>Definition</b> linear_world.hpp:176</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a0e532a5fcf7c3dd5e8eec50fe64eb3a5"><div class="ttname"><a href="classLinearWorld.html#a0e532a5fcf7c3dd5e8eec50fe64eb3a5">LinearWorld::haveBonusBoxes</a></div><div class="ttdeci">virtual bool haveBonusBoxes() OVERRIDE</div><div class="ttdoc">Returns if this race mode has bonus items.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:173</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a16fa614e0c53714560548f8273fc28eb"><div class="ttname"><a href="classLinearWorld.html#a16fa614e0c53714560548f8273fc28eb">LinearWorld::getDistanceToCenterForKart</a></div><div class="ttdeci">float getDistanceToCenterForKart(const int kart_id) const</div><div class="ttdoc">Gets the distance of the kart from the center of the driveline.</div><div class="ttdef"><b>Definition</b> linear_world.cpp:590</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a1887f1a3b755d2bf20aa503f3f150a52"><div class="ttname"><a href="classLinearWorld.html#a1887f1a3b755d2bf20aa503f3f150a52">LinearWorld::updateGraphics</a></div><div class="ttdeci">virtual void updateGraphics(float dt) OVERRIDE</div><div class="ttdoc">This updates all only graphical elements.It is only called once per rendered frame,...</div><div class="ttdef"><b>Definition</b> linear_world.cpp:304</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a22d71effb4179a073bc002520fa15a9f"><div class="ttname"><a href="classLinearWorld.html#a22d71effb4179a073bc002520fa15a9f">LinearWorld::getGameStartedProgress</a></div><div class="ttdeci">virtual std::pair&lt; uint32_t, uint32_t &gt; getGameStartedProgress() const OVERRIDE</div><div class="ttdoc">Used by server to get the current started game progress in either or both remaining time or progress ...</div><div class="ttdef"><b>Definition</b> linear_world.cpp:1113</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a2cdc5323997534e4e0b1929b486b599b"><div class="ttname"><a href="classLinearWorld.html#a2cdc5323997534e4e0b1929b486b599b">LinearWorld::m_distance_increase</a></div><div class="ttdeci">float m_distance_increase</div><div class="ttdoc">The track length returned by Track::getLength() only covers the distance from start line to finish li...</div><div class="ttdef"><b>Definition</b> linear_world.hpp:61</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a362a1386a61683f34eca52a823dcefb1"><div class="ttname"><a href="classLinearWorld.html#a362a1386a61683f34eca52a823dcefb1">LinearWorld::getRescuePositionIndex</a></div><div class="ttdeci">virtual unsigned int getRescuePositionIndex(AbstractKart *kart) OVERRIDE</div><div class="ttdoc">Determines the rescue position for a kart.</div><div class="ttdef"><b>Definition</b> linear_world.cpp:832</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a3e1b3a447484ba8e31f4c1471b75d6b1"><div class="ttname"><a href="classLinearWorld.html#a3e1b3a447484ba8e31f4c1471b75d6b1">LinearWorld::m_last_lap_sfx_played</a></div><div class="ttdeci">bool m_last_lap_sfx_played</div><div class="ttdoc">Last lap sfx should only be played once.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:42</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a434fe4d4543e7eca47a0e9f27e866f55"><div class="ttname"><a href="classLinearWorld.html#a434fe4d4543e7eca47a0e9f27e866f55">LinearWorld::update</a></div><div class="ttdeci">virtual void update(int ticks) OVERRIDE</div><div class="ttdoc">General update function called once per frame.</div><div class="ttdef"><b>Definition</b> linear_world.cpp:174</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a44d928686451c6232a23eff36a54f07d"><div class="ttname"><a href="classLinearWorld.html#a44d928686451c6232a23eff36a54f07d">LinearWorld::reset</a></div><div class="ttdeci">virtual void reset(bool restart=false) OVERRIDE</div><div class="ttdoc">Called before a race is started (or restarted).</div><div class="ttdef"><b>Definition</b> linear_world.cpp:107</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a479accbe110788c2b3971de53bb42a45"><div class="ttname"><a href="classLinearWorld.html#a479accbe110788c2b3971de53bb42a45">LinearWorld::getOverallDistance</a></div><div class="ttdeci">float getOverallDistance(unsigned int kart_index) const</div><div class="ttdoc">Returns how far the kart has driven so far (i.e.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:191</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a49a7c1099e2c20fa5ce1309efc2b07b8"><div class="ttname"><a href="classLinearWorld.html#a49a7c1099e2c20fa5ce1309efc2b07b8">LinearWorld::getDistanceDownTrackForKart</a></div><div class="ttdeci">float getDistanceDownTrackForKart(const int kart_id, bool account_for_checklines) const</div><div class="ttdoc">Returns the distance the kart has travelled along the track since crossing the start line.</div><div class="ttdef"><b>Definition</b> linear_world.cpp:580</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a616b8dbb3c96c6c8f633a685050737d5"><div class="ttname"><a href="classLinearWorld.html#a616b8dbb3c96c6c8f633a685050737d5">LinearWorld::getFastestLapKartName</a></div><div class="ttdeci">stringw getFastestLapKartName() const</div><div class="ttdoc">Returns the kart name that made the fastest lap time</div><div class="ttdef"><b>Definition</b> linear_world.hpp:203</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a6f060384e9822b3aee51b5469dcc138e"><div class="ttname"><a href="classLinearWorld.html#a6f060384e9822b3aee51b5469dcc138e">LinearWorld::getRescueTransform</a></div><div class="ttdeci">virtual btTransform getRescueTransform(unsigned int index) const OVERRIDE</div><div class="ttdoc">Returns the bullet transformation for the specified rescue index.</div><div class="ttdef"><b>Definition</b> linear_world.cpp:854</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a71ce8549f17f8b82cf48cb77210bc727"><div class="ttname"><a href="classLinearWorld.html#a71ce8549f17f8b82cf48cb77210bc727">LinearWorld::setFastestKartName</a></div><div class="ttdeci">void setFastestKartName(const stringw &amp;name)</div><div class="ttdoc">Network use: set fastest kart name</div><div class="ttdef"><b>Definition</b> linear_world.hpp:221</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a786affb8f58be88f04b19715990728a8"><div class="ttname"><a href="classLinearWorld.html#a786affb8f58be88f04b19715990728a8">LinearWorld::checkForWrongDirection</a></div><div class="ttdeci">virtual void checkForWrongDirection(unsigned int i, float dt)</div><div class="ttdoc">Checks if a kart is going in the wrong direction.</div><div class="ttdef"><b>Definition</b> linear_world.cpp:1045</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a7b21c39f193571972f61c20e7ac76688"><div class="ttname"><a href="classLinearWorld.html#a7b21c39f193571972f61c20e7ac76688">LinearWorld::raceHasLaps</a></div><div class="ttdeci">virtual bool raceHasLaps() OVERRIDE</div><div class="ttdoc">Returns if this race mode has laps.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:170</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a7d9c407eab04ed7bfe3e37b6c1c468dc"><div class="ttname"><a href="classLinearWorld.html#a7d9c407eab04ed7bfe3e37b6c1c468dc">LinearWorld::m_last_lap_sfx</a></div><div class="ttdeci">SFXBase * m_last_lap_sfx</div><div class="ttdoc">Sfx for the final lap.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:39</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a8ccc70d2093d36449b1e07f97561eb7e"><div class="ttname"><a href="classLinearWorld.html#a8ccc70d2093d36449b1e07f97561eb7e">LinearWorld::init</a></div><div class="ttdeci">virtual void init() OVERRIDE</div><div class="ttdoc">call just after instanciating.</div><div class="ttdef"><b>Definition</b> linear_world.cpp:78</div></div>
+<div class="ttc" id="aclassLinearWorld_html_a90d93ac1bd3a3b7ae3590c63436665e9"><div class="ttname"><a href="classLinearWorld.html#a90d93ac1bd3a3b7ae3590c63436665e9">LinearWorld::m_fastest_lap_ticks</a></div><div class="ttdeci">int m_fastest_lap_ticks</div><div class="ttdoc">The fastest lap time, in ticks of physics dt.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:50</div></div>
+<div class="ttc" id="aclassLinearWorld_html_aae5be352cf578e3a7b02d9509fd6f4ab"><div class="ttname"><a href="classLinearWorld.html#aae5be352cf578e3a7b02d9509fd6f4ab">LinearWorld::m_check_structure_compatible</a></div><div class="ttdeci">bool m_check_structure_compatible</div><div class="ttdoc">True if clients and server has the same check structure.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:47</div></div>
+<div class="ttc" id="aclassLinearWorld_html_ab13524b0339b2fb4db3d52d24611dfbc"><div class="ttname"><a href="classLinearWorld.html#ab13524b0339b2fb4db3d52d24611dfbc">LinearWorld::m_valid_reference_time</a></div><div class="ttdeci">bool m_valid_reference_time</div><div class="ttdoc">True if the live_time_difference is invalid</div><div class="ttdef"><b>Definition</b> linear_world.hpp:69</div></div>
+<div class="ttc" id="aclassLinearWorld_html_ab80f84808a9e6c206a5898dcb59a76a0"><div class="ttname"><a href="classLinearWorld.html#ab80f84808a9e6c206a5898dcb59a76a0">LinearWorld::updateLiveDifference</a></div><div class="ttdeci">void updateLiveDifference()</div><div class="ttdoc">This calculate the time difference between the second kart in the race (there must be at least two) a...</div><div class="ttdef"><b>Definition</b> linear_world.cpp:337</div></div>
+<div class="ttc" id="aclassLinearWorld_html_ab921a2c6610a75b1fb76b1637388ff76"><div class="ttname"><a href="classLinearWorld.html#ab921a2c6610a75b1fb76b1637388ff76">LinearWorld::m_kart_info</a></div><div class="ttdeci">std::vector&lt; KartInfo &gt; m_kart_info</div><div class="ttdoc">This vector contains an &#39;KartInfo&#39; struct for every kart in the race.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:133</div></div>
+<div class="ttc" id="aclassLinearWorld_html_abc7c7be2b7184e2576d5b963af2fb154"><div class="ttname"><a href="classLinearWorld.html#abc7c7be2b7184e2576d5b963af2fb154">LinearWorld::getNumberOfRescuePositions</a></div><div class="ttdeci">virtual unsigned int getNumberOfRescuePositions() const OVERRIDE</div><div class="ttdoc">Returns the number of rescue positions on a given track, which in linear races is just the number of ...</div><div class="ttdef"><b>Definition</b> linear_world.cpp:826</div></div>
+<div class="ttc" id="aclassLinearWorld_html_abf390658d5cadc8fdaa87fa8f9b605d5"><div class="ttname"><a href="classLinearWorld.html#abf390658d5cadc8fdaa87fa8f9b605d5">LinearWorld::updateCheckLinesServer</a></div><div class="ttdeci">void updateCheckLinesServer(int check_id, int kart_id)</div><div class="ttdoc">Called in server whenever a kart cross a check line, it send server current kart lap count,...</div><div class="ttdef"><b>Definition</b> linear_world.cpp:1220</div></div>
+<div class="ttc" id="aclassLinearWorld_html_ac2e85a951bd700e0e6d948f0f90bd65c"><div class="ttname"><a href="classLinearWorld.html#ac2e85a951bd700e0e6d948f0f90bd65c">LinearWorld::getFinishedLapsOfKart</a></div><div class="ttdeci">int getFinishedLapsOfKart(unsigned int kart_index) const OVERRIDE</div><div class="ttdoc">Returns the number of laps a kart has completed.</div><div class="ttdef"><b>Definition</b> linear_world.hpp:180</div></div>
+<div class="ttc" id="aclassLinearWorld_html_ac9ff37e0d70e394de89bdeeceecaf018"><div class="ttname"><a href="classLinearWorld.html#ac9ff37e0d70e394de89bdeeceecaf018">LinearWorld::getKartsDisplayInfo</a></div><div class="ttdeci">virtual void getKartsDisplayInfo(std::vector&lt; RaceGUIBase::KartIconDisplayInfo &gt; *info) OVERRIDE</div><div class="ttdoc">Called by the code that draws the list of karts on the race GUI to know what needs to be drawn in the...</div><div class="ttdef"><b>Definition</b> linear_world.cpp:620</div></div>
+<div class="ttc" id="aclassLinearWorld_html_aca593e830d6646a238f3a9db4fca7b60"><div class="ttname"><a href="classLinearWorld.html#aca593e830d6646a238f3a9db4fca7b60">LinearWorld::updateRacePosition</a></div><div class="ttdeci">void updateRacePosition()</div><div class="ttdoc">Find the position (rank) of every kart.</div><div class="ttdef"><b>Definition</b> linear_world.cpp:875</div></div>
+<div class="ttc" id="aclassLinearWorld_html_ad4c1f7a1d8b5d09d51b3b1dc952da640"><div class="ttname"><a href="classLinearWorld.html#ad4c1f7a1d8b5d09d51b3b1dc952da640">LinearWorld::m_live_time_difference</a></div><div class="ttdeci">float m_live_time_difference</div><div class="ttdoc">This stores the live time difference between a ghost kart and a second kart racing against it (normal...</div><div class="ttdef"><b>Definition</b> linear_world.hpp:66</div></div>
+<div class="ttc" id="aclassLinearWorld_html_adb1bb29fa83be7ef11281777aebdddf0"><div class="ttname"><a href="classLinearWorld.html#adb1bb29fa83be7ef11281777aebdddf0">LinearWorld::setFastestLapTicks</a></div><div class="ttdeci">void setFastestLapTicks(int ticks)</div><div class="ttdoc">Network use: set fastest lap in ticks</div><div class="ttdef"><b>Definition</b> linear_world.hpp:215</div></div>
+<div class="ttc" id="aclassLinearWorld_html_ae71184e83cc923c10158fcd613c74d6d"><div class="ttname"><a href="classLinearWorld.html#ae71184e83cc923c10158fcd613c74d6d">LinearWorld::estimateFinishTimeForKart</a></div><div class="ttdeci">virtual float estimateFinishTimeForKart(AbstractKart *kart) OVERRIDE</div><div class="ttdoc">Estimate the arrival time of any karts that haven&#39;t arrived yet by using their average speed up to no...</div><div class="ttdef"><b>Definition</b> linear_world.cpp:754</div></div>
+<div class="ttc" id="aclassLinearWorld_html_aea800d230081ad49f77b91eca9e344c2"><div class="ttname"><a href="classLinearWorld.html#aea800d230081ad49f77b91eca9e344c2">LinearWorld::LinearWorld</a></div><div class="ttdeci">LinearWorld()</div><div class="ttdoc">Constructs the linear world.</div><div class="ttdef"><b>Definition</b> linear_world.cpp:61</div></div>
+<div class="ttc" id="aclassLinearWorld_html_aec7c74afc71ff992574febd7228091f5"><div class="ttname"><a href="classLinearWorld.html#aec7c74afc71ff992574febd7228091f5">LinearWorld::getFastestLapTicks</a></div><div class="ttdeci">int getFastestLapTicks() const</div><div class="ttdoc">Network use: get fastest lap in ticks</div><div class="ttdef"><b>Definition</b> linear_world.hpp:209</div></div>
+<div class="ttc" id="aclassLinearWorld_html_afb080774f3a1b932a89d02509f3adc4e"><div class="ttname"><a href="classLinearWorld.html#afb080774f3a1b932a89d02509f3adc4e">LinearWorld::newLap</a></div><div class="ttdeci">virtual void newLap(unsigned int kart_index) OVERRIDE</div><div class="ttdoc">Is called by check structures if a kart starts a new lap.</div><div class="ttdef"><b>Definition</b> linear_world.cpp:376</div></div>
+<div class="ttc" id="aclassLinearWorld_html_afb8f8b01f47fa1bbb886d55327ecdb39"><div class="ttname"><a href="classLinearWorld.html#afb8f8b01f47fa1bbb886d55327ecdb39">LinearWorld::getEstimatedFinishTime</a></div><div class="ttdeci">float getEstimatedFinishTime(const int kart_id) const</div><div class="ttdoc">Returns the estimated finishing time.</div><div class="ttdef"><b>Definition</b> linear_world.cpp:606</div></div>
+<div class="ttc" id="aclassLinearWorld_html_afd1d295aac84471ad268e1a438aff43e"><div class="ttname"><a href="classLinearWorld.html#afd1d295aac84471ad268e1a438aff43e">LinearWorld::getFastestLap</a></div><div class="ttdeci">float getFastestLap() const</div><div class="ttdoc">Returns time for the fastest laps</div><div class="ttdef"><b>Definition</b> linear_world.hpp:197</div></div>
+<div class="ttc" id="aclassLinearWorld_html_affbdea26b8ddefee26bc9c74dc1450da"><div class="ttname"><a href="classLinearWorld.html#affbdea26b8ddefee26bc9c74dc1450da">LinearWorld::showLapsTarget</a></div><div class="ttdeci">virtual bool showLapsTarget() OVERRIDE</div><div class="ttdoc">If true lap counter shows lap count in format: 4/20 or if false then in format: 4</div><div class="ttdef"><b>Definition</b> linear_world.hpp:240</div></div>
+<div class="ttc" id="aclassSFXBase_html"><div class="ttname"><a href="classSFXBase.html">SFXBase</a></div><div class="ttdoc">The base class for sound effects.</div><div class="ttdef"><b>Definition</b> sfx_base.hpp:43</div></div>
+<div class="ttc" id="aclassSTKPeer_html"><div class="ttname"><a href="classSTKPeer.html">STKPeer</a></div><div class="ttdoc">Represents a peer. This class is used to interface the ENetPeer structure.</div><div class="ttdef"><b>Definition</b> stk_peer.hpp:76</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

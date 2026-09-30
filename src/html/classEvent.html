@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: Event 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="classEvent-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">Event 클래스 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class representing an event that need to pass trough the system. This is used to remove ENet dependency in the network. It interfaces the ENetEvent structure. The user has to be extremely careful about the peer. Indeed, when packets are logged, the state of the peer cannot be stored at all times, and then the user of this class can rely only on the address/port of the peer, and not on values that might change over time.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="event_8hpp_source.html">event.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:aeb7c7ec5ae7fcb3f96c78bf492f021fc" id="r_aeb7c7ec5ae7fcb3f96c78bf492f021fc"><td class="memItemLeft"><a id="aeb7c7ec5ae7fcb3f96c78bf492f021fc" name="aeb7c7ec5ae7fcb3f96c78bf492f021fc"></a>
+&#160;</td><td class="memItemRight"><b>Event</b> (ENetEvent *event, std::shared_ptr&lt; <a class="el" href="classSTKPeer.html">STKPeer</a> &gt; peer)</td></tr>
+<tr class="memitem:a7704ec01ce91e673885792054214b3d2" id="r_a7704ec01ce91e673885792054214b3d2"><td class="memItemLeft"><a id="a7704ec01ce91e673885792054214b3d2" name="a7704ec01ce91e673885792054214b3d2"></a>
+&#160;</td><td class="memItemRight"><b>~Event</b> ()</td></tr>
+<tr class="memdesc:a7704ec01ce91e673885792054214b3d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor that frees the memory of the package. <br /></td></tr>
+<tr class="memitem:a5de453d7ce255d80382bdc9ad347a8ed" id="r_a5de453d7ce255d80382bdc9ad347a8ed"><td class="memItemLeft"><a id="a5de453d7ce255d80382bdc9ad347a8ed" name="a5de453d7ce255d80382bdc9ad347a8ed"></a>
+<a class="el" href="event_8hpp.html#aacea4a7e80c7ca11553910c740986045">EVENT_TYPE</a>&#160;</td><td class="memItemRight"><b>getType</b> () const</td></tr>
+<tr class="memdesc:a5de453d7ce255d80382bdc9ad347a8ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the type of this event. <br /></td></tr>
+<tr class="memitem:aac4b745727c2737b9ff7f47af43f74fc" id="r_aac4b745727c2737b9ff7f47af43f74fc"><td class="memItemLeft"><a id="aac4b745727c2737b9ff7f47af43f74fc" name="aac4b745727c2737b9ff7f47af43f74fc"></a>
+std::shared_ptr&lt; <a class="el" href="classSTKPeer.html">STKPeer</a> &gt;&#160;</td><td class="memItemRight"><b>getPeerSP</b> () const</td></tr>
+<tr class="memdesc:aac4b745727c2737b9ff7f47af43f74fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the peer of this event (shared pointer). <br /></td></tr>
+<tr class="memitem:acf815474edb292674d76bf80d38a12d7" id="r_acf815474edb292674d76bf80d38a12d7"><td class="memItemLeft"><a id="acf815474edb292674d76bf80d38a12d7" name="acf815474edb292674d76bf80d38a12d7"></a>
+<a class="el" href="classSTKPeer.html">STKPeer</a> *&#160;</td><td class="memItemRight"><b>getPeer</b> () const</td></tr>
+<tr class="memdesc:acf815474edb292674d76bf80d38a12d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the peer of this event. <br /></td></tr>
+<tr class="memitem:a60da6ea92a339f452ec0221fccf0ff09" id="r_a60da6ea92a339f452ec0221fccf0ff09"><td class="memItemLeft">const <a class="el" href="classNetworkString.html">NetworkString</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a60da6ea92a339f452ec0221fccf0ff09">data</a> () const</td></tr>
+<tr class="memdesc:a60da6ea92a339f452ec0221fccf0ff09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a const reference to the received data.  <br /></td></tr>
+<tr class="memitem:a65d7314070dacc3614c275200908de2a" id="r_a65d7314070dacc3614c275200908de2a"><td class="memItemLeft"><a class="el" href="classNetworkString.html">NetworkString</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a65d7314070dacc3614c275200908de2a">data</a> ()</td></tr>
+<tr class="memdesc:a65d7314070dacc3614c275200908de2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a non-const reference to the received data.  <br /></td></tr>
+<tr class="memitem:a8f35502868d6d7a63a70f7cd8b07ee7f" id="r_a8f35502868d6d7a63a70f7cd8b07ee7f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a8f35502868d6d7a63a70f7cd8b07ee7f">isSynchronous</a> () const</td></tr>
+<tr class="memdesc:a8f35502868d6d7a63a70f7cd8b07ee7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if this event should be delivered synchronous or not.  <br /></td></tr>
+<tr class="memitem:aad7141d3f84e33ad39a5ff7c408c2944" id="r_aad7141d3f84e33ad39a5ff7c408c2944"><td class="memItemLeft"><a id="aad7141d3f84e33ad39a5ff7c408c2944" name="aad7141d3f84e33ad39a5ff7c408c2944"></a>
+uint64_t&#160;</td><td class="memItemRight"><b>getArrivalTime</b> () const</td></tr>
+<tr class="memdesc:aad7141d3f84e33ad39a5ff7c408c2944"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the arrival time of this event. <br /></td></tr>
+<tr class="memitem:a98d688d091432c592463dda05285cf19" id="r_a98d688d091432c592463dda05285cf19"><td class="memItemLeft"><a id="a98d688d091432c592463dda05285cf19" name="a98d688d091432c592463dda05285cf19"></a>
+<a class="el" href="stk__peer_8hpp.html#a0da67dae55acce2b89e08972fee076de">PeerDisconnectInfo</a>&#160;</td><td class="memItemRight"><b>getPeerDisconnectInfo</b> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:a0d05e05ee129ade97bd80b23cdb1776d" id="r_a0d05e05ee129ade97bd80b23cdb1776d"><td class="memItemLeft"><a id="a0d05e05ee129ade97bd80b23cdb1776d" name="a0d05e05ee129ade97bd80b23cdb1776d"></a>
+<a class="el" href="classNetworkString.html">NetworkString</a> *&#160;</td><td class="memItemRight"><b>m_data</b></td></tr>
+<tr class="memdesc:a0d05e05ee129ade97bd80b23cdb1776d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy of the data passed by the event. <br /></td></tr>
+<tr class="memitem:a42714d3e75d92edb5e2346b57a946780" id="r_a42714d3e75d92edb5e2346b57a946780"><td class="memItemLeft"><a id="a42714d3e75d92edb5e2346b57a946780" name="a42714d3e75d92edb5e2346b57a946780"></a>
+<a class="el" href="event_8hpp.html#aacea4a7e80c7ca11553910c740986045">EVENT_TYPE</a>&#160;</td><td class="memItemRight"><b>m_type</b></td></tr>
+<tr class="memdesc:a42714d3e75d92edb5e2346b57a946780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the event. <br /></td></tr>
+<tr class="memitem:a5def9b375df9c29528a53e4186bf02ba" id="r_a5def9b375df9c29528a53e4186bf02ba"><td class="memItemLeft"><a id="a5def9b375df9c29528a53e4186bf02ba" name="a5def9b375df9c29528a53e4186bf02ba"></a>
+std::shared_ptr&lt; <a class="el" href="classSTKPeer.html">STKPeer</a> &gt;&#160;</td><td class="memItemRight"><b>m_peer</b></td></tr>
+<tr class="memdesc:a5def9b375df9c29528a53e4186bf02ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the peer that triggered that event. <br /></td></tr>
+<tr class="memitem:a28878faed0db9906fd84c3f27565e816" id="r_a28878faed0db9906fd84c3f27565e816"><td class="memItemLeft"><a id="a28878faed0db9906fd84c3f27565e816" name="a28878faed0db9906fd84c3f27565e816"></a>
+uint64_t&#160;</td><td class="memItemRight"><b>m_arrival_time</b></td></tr>
+<tr class="memdesc:a28878faed0db9906fd84c3f27565e816"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arrivial time of the event, for timeouts. <br /></td></tr>
+<tr class="memitem:a9464b057f6c680ce5740e6ff9460ae78" id="r_a9464b057f6c680ce5740e6ff9460ae78"><td class="memItemLeft"><a id="a9464b057f6c680ce5740e6ff9460ae78" name="a9464b057f6c680ce5740e6ff9460ae78"></a>
+<a class="el" href="stk__peer_8hpp.html#a0da67dae55acce2b89e08972fee076de">PeerDisconnectInfo</a>&#160;</td><td class="memItemRight"><b>m_pdi</b></td></tr>
+<tr class="memdesc:a9464b057f6c680ce5740e6ff9460ae78"><td class="mdescLeft">&#160;</td><td class="mdescRight">For disconnection event, a bit more info is provided. <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Class representing an event that need to pass trough the system. This is used to remove ENet dependency in the network. It interfaces the ENetEvent structure. The user has to be extremely careful about the peer. Indeed, when packets are logged, the state of the peer cannot be stored at all times, and then the user of this class can rely only on the address/port of the peer, and not on values that might change over time. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a65d7314070dacc3614c275200908de2a" name="a65d7314070dacc3614c275200908de2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65d7314070dacc3614c275200908de2a">&#9670;&#160;</a></span>data() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classNetworkString.html">NetworkString</a> &amp; Event::data </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a non-const reference to the received data. </p>
+<p>A copy of the message data. This is empty for events like connection or disconnections. </p>
+
+</div>
+</div>
+<a id="a60da6ea92a339f452ec0221fccf0ff09" name="a60da6ea92a339f452ec0221fccf0ff09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60da6ea92a339f452ec0221fccf0ff09">&#9670;&#160;</a></span>data() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classNetworkString.html">NetworkString</a> &amp; Event::data </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a const reference to the received data. </p>
+<p>This is empty for events like connection or disconnections. </p>
+
+</div>
+</div>
+<a id="a8f35502868d6d7a63a70f7cd8b07ee7f" name="a8f35502868d6d7a63a70f7cd8b07ee7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f35502868d6d7a63a70f7cd8b07ee7f">&#9670;&#160;</a></span>isSynchronous()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Event::isSynchronous </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determines if this event should be delivered synchronous or not. </p>
+<p>Only messages can be delivered synchronous. </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>network/<a class="el" href="event_8hpp_source.html">event.hpp</a></li>
+<li>network/<b>event.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

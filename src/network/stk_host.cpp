@@ -70,9 +70,12 @@
 #include <random>
 #include <string>
 #include <utility>
+#include <fstream>
 
 STKHost *STKHost::m_stk_host[PT_COUNT];
 bool     STKHost::m_enable_console = false;
+bool     STKHost::m_rtt_log_enabled = false;
+std::string  STKHost::m_rtt_log_directory = "";
 
 std::shared_ptr<LobbyProtocol> STKHost::create(ChildLoop* cl)
 {
@@ -117,7 +120,7 @@ std::shared_ptr<LobbyProtocol> STKHost::create(ChildLoop* cl)
  *  Additionally this object stores information from the various protocols,
  *  which can be queried by the GUI. The online game works
  *  closely together with the stk server: a (game) server first connects
- *  to the stk server and registers itself, clients find the list of servers
+to the stk server and registers itself, clients find the list of servers
  *  from the stk server. They insert a connections request into the stk
  *  server, which is regularly polled by the client. On detecting a new
  *  connection request the server will try to send a message to the client.
@@ -285,6 +288,10 @@ STKHost::STKHost(bool server)
         m_network = new Network(peer_count,
             /*channel_limit*/EVENT_CHANNEL_COUNT, /*max_in_bandwidth*/0,
             /*max_out_bandwidth*/ 0, &addr, true/*change_port_if_bound*/);
+
+        ENetHost* host = m_network->getENetHost();
+        if (isRTTLoggingEnabled())
+            enet_host_set_raw_rtt_callback(host, &STKHost::rawRTTCallback, this);
     }
     else
     {
@@ -319,6 +326,8 @@ void STKHost::init()
     m_shutdown         = false;
     m_authorised       = false;
     m_network          = NULL;
+	m_rtt_logging      = false;
+	m_next_rtt_probe_ms = 0;
     m_exit_timeout.store(std::numeric_limits<uint64_t>::max());
     m_client_ping.store(0);
 
@@ -361,6 +370,7 @@ STKHost::~STKHost()
     disconnectAllPeers(true/*timeout_waiting*/);
     Network::closeLog();
     stopListening();
+    finishRTTLogging();
 
     // Drop all unsent packets
     for (auto& p : m_enet_cmd)
@@ -1047,6 +1057,7 @@ void STKHost::mainLoop(ProcessType pt)
             }
         }
 
+        updateRTTProbes();
         bool need_ping_update = false;
         while (enet_host_service(host, &event, 10) != 0)
         {
@@ -1497,6 +1508,11 @@ void STKHost::initClientNetwork(ENetEvent& event, Network* new_network)
         delete m_network;
         m_network = new_network;
     }
+    
+    ENetHost* host = m_network->getENetHost();
+    if( isRTTLoggingEnabled() )
+        enet_host_set_raw_rtt_callback(host, &STKHost::rawRTTCallback, this);
+    
     auto stk_peer = std::make_shared<STKPeer>(event.peer, this,
         m_next_unique_host_id++);
     stk_peer->setValidated(true);
@@ -1632,3 +1648,148 @@ uint16_t STKHost::getPrivatePort() const
 {
     return m_network->getPort();
 }  // getPrivatePort
+
+void STKHost::recordRTT(ENetPeer* enet_peer, const ENetRTTSample& sample)
+{
+    if (!m_rtt_logging.load(std::memory_order_acquire))
+        return;
+
+    RTTRecord record{};
+
+    {
+        std::lock_guard<std::mutex> lock(m_peers_mutex);
+
+        const auto it = m_peers.find(enet_peer);
+        if (it == m_peers.end()) return;
+
+        const std::shared_ptr<STKPeer> peer = it->second;
+        if (!peer || !peer->isValidated()) return;
+        if (NetworkConfig::get()->isServer() && peer->isWaitingForGame()) return;
+
+        record.sample = sample;
+        record.remote_address = peer->getAddress().toString();
+        record.platform = StringUtils::extractVersionOS(peer->getUserVersion()).second;
+        const auto& profiles = peer->getPlayerProfiles();
+        if (!profiles.empty() && profiles.front())
+            record.player_name = StringUtils::wideToUtf8(profiles.front()->getName());
+    }
+
+    {
+        std::lock_guard<std::mutex> lock(m_rtt_mutex);
+        if (!m_rtt_logging.load(std::memory_order_relaxed))return;
+        m_rtt_records.emplace_back(std::move(record));
+    }
+}
+
+void STKHost::updateRTTLogging(bool race_active)
+{
+    if (!isRTTLoggingEnabled()) return;
+
+	if (!race_active)
+	{
+		finishRTTLogging();
+		return;
+	}
+
+    std::lock_guard<std::mutex> lock(m_rtt_mutex);
+
+    if (m_rtt_logging.load(std::memory_order_relaxed))
+        return;
+
+    m_rtt_records.clear();
+    m_rtt_logging.store(true, std::memory_order_release);
+}
+
+void STKHost::finishRTTLogging()
+{
+    std::vector<RTTRecord> records;
+
+    {
+        std::lock_guard<std::mutex> lock(m_rtt_mutex);
+
+        if (!m_rtt_logging.load(std::memory_order_relaxed))
+            return;
+
+        m_rtt_logging.store(false, std::memory_order_release);
+        records.swap(m_rtt_records);
+    }
+
+    // Set Time Format (YYYYMMDD_HHMMSS)
+    StkTime::TimeType t = StkTime::getTimeSinceEpoch();
+    struct tm* now = std::localtime(&t);
+    char buffer[32];
+    std::strftime(buffer, sizeof(buffer), "%Y%m%d_%H%M%S", now);
+    const std::string role = NetworkConfig::get()->isServer() ? "server" : "client";
+    const std::string file_name = "rtt_log_" + role + "_" + std::string(buffer) + ".csv";
+	const std::string file_path = ((!m_rtt_log_directory.empty()) ? m_rtt_log_directory + "/" : "./") + file_name;
+    
+    std::ofstream out(file_path.c_str(),std::ios::out | std::ios::trunc);
+    
+    if (!out.is_open())
+    {
+        Log::error("RawRTT", "Failed to open RTT CSV file: %s", file_path.c_str());
+        return;
+    }
+	out << "Remote Address,Player Name,Platform,Sent Time,Record TimeStamp,RTT Sample (ms),Probe Attempts,Probe Lost\n";
+    for (const RTTRecord& record : records)
+    {
+        const uint16_t attempts = record.sample.sendAttempts;
+        const uint16_t lost = attempts > 0 ? attempts - 1 : 0;
+
+		out << record.remote_address << ","
+            << record.player_name << ","
+			<< record.platform << ","
+            << record.sample.sentTime << ","
+			<< record.sample.timeStamp << ","
+			<< record.sample.rawRTT << ","
+            << attempts << ","
+            << lost << "\n";
+    }
+    out.close();
+}
+
+void STKHost::updateRTTProbes()
+{
+    if (!m_rtt_log_enabled || !m_rtt_logging.load())
+    {
+        m_next_rtt_probe_ms = 0;
+        return;
+    }
+
+    const uint64_t now = StkTime::getMonoTimeMs();
+
+    if (m_next_rtt_probe_ms == 0) m_next_rtt_probe_ms = now;
+    if (now < m_next_rtt_probe_ms) return;
+
+    do { m_next_rtt_probe_ms += RTT_PROBE_INTERVAL_MS; } while (m_next_rtt_probe_ms <= now);
+
+    std::lock_guard<std::mutex> lock(m_peers_mutex);
+
+    for (const auto& entry : m_peers)
+    {
+        ENetPeer* enet_peer = entry.first;
+        const std::shared_ptr<STKPeer>& stk_peer = entry.second;
+
+        if (!stk_peer || !stk_peer->isValidated() || stk_peer->isAIPeer() || enet_peer->state != ENET_PEER_STATE_CONNECTED)
+            continue;
+        
+        if (NetworkConfig::get()->isServer() && stk_peer->isWaitingForGame())
+            continue;
+        
+        enet_peer_ping_tracked(enet_peer, NULL);
+    }
+}
+
+void ENET_CALLBACK STKHost::rawRTTCallback(void* user_data, ENetPeer* enet_peer, const ENetRTTSample* sample) noexcept
+{
+    if (!user_data || !enet_peer || !sample) return;
+
+    try
+    {
+        static_cast<STKHost*>(user_data)->recordRTT(enet_peer, *sample);
+    }
+    catch (const std::exception& e)
+    {
+        Log::error("RawRTT", "Failed to record RTT: %s", e.what());
+    }
+}

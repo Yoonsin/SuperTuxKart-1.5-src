@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: physics/irr_debug_drawer.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>physics</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">irr_debug_drawer.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2006-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_IRR_DEBUG_DRAWER_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_IRR_DEBUG_DRAWER_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;btBulletDynamicsCommon.h&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;SColor.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;utils/vec3.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classIrrDebugDrawer.html">   32</a></span><span class="keyword">class </span>IrrDebugDrawer : <span class="keyword">public</span> btIDebugDraw</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classIrrDebugDrawer.html#ae209a37b759b175f1f5164bde7c7e64f">   39</a></span>    <span class="keyword">enum</span>            <a class="code hl_enumeration" href="classIrrDebugDrawer.html#ae209a37b759b175f1f5164bde7c7e64f">DebugModeType</a> { DM_NONE              = 0x00,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                                    DM_KARTS_PHYSICS     = 0x01,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                                    DM_NO_KARTS_GRAPHICS = 0x02</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                                  };</div>
+</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_enumeration" href="classIrrDebugDrawer.html#ae209a37b759b175f1f5164bde7c7e64f">DebugModeType</a>   m_debug_mode;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    std::map&lt;video::SColor, std::vector&lt;float&gt; &gt; m_lines;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_class" href="classVec3.html">Vec3</a> m_camera_pos;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>    setDebugMode(<span class="keywordtype">int</span> debug_mode) {}</div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classIrrDebugDrawer.html#aba7f656a22efff73901148c68e50673c">   55</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span>     <a class="code hl_function" href="classIrrDebugDrawer.html#aba7f656a22efff73901148c68e50673c">getDebugMode</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">                    </span>{ <span class="keywordflow">return</span> m_debug_mode==DM_NONE ? DBG_NoDebug</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                                                   : DBG_DrawWireframe;}</div>
+</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                    <a class="code hl_class" href="classIrrDebugDrawer.html">IrrDebugDrawer</a>();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span>            render(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>    <a class="code hl_function" href="classIrrDebugDrawer.html#adefbc099467840447ed519d589102336">drawLine</a>(<span class="keyword">const</span> btVector3&amp; from, <span class="keyword">const</span> btVector3&amp; to,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                             <span class="keyword">const</span> btVector3&amp; color);</div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classIrrDebugDrawer.html#a84c75b0bfb65cf16c971cbb43870d168">   65</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>    <a class="code hl_function" href="classIrrDebugDrawer.html#a84c75b0bfb65cf16c971cbb43870d168">drawContactPoint</a>(<span class="keyword">const</span> btVector3&amp; Point_on_b,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                                     <span class="keyword">const</span> btVector3&amp; normal_on_b,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                                     btScalar distance,<span class="keywordtype">int</span> life_time,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                                     <span class="keyword">const</span> btVector3&amp; color)      {}</div>
+</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>    reportErrorWarning(<span class="keyword">const</span> <span class="keywordtype">char</span>* warningString) {}</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>    draw3dText(<span class="keyword">const</span> btVector3&amp; location,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                               <span class="keyword">const</span> <span class="keywordtype">char</span>* textString)            {}</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classIrrDebugDrawer.html#ab5da9df82631ebd0ddac7a06230e3dda">   73</a></span>    <span class="keywordtype">bool</span>            <a class="code hl_function" href="classIrrDebugDrawer.html#ab5da9df82631ebd0ddac7a06230e3dda">debugEnabled</a>()<span class="keyword"> const         </span>{<span class="keywordflow">return</span> m_debug_mode!=0;}</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">void</span>            <a class="code hl_function" href="classIrrDebugDrawer.html#a3973fa14260a934184f86ce81406432e">nextDebugMode</a>();</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span>            setDebugMode(<a class="code hl_enumeration" href="classIrrDebugDrawer.html#ae209a37b759b175f1f5164bde7c7e64f">DebugModeType</a> mode);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span>            beginNextFrame();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">const</span> std::map&lt;video::SColor, std::vector&lt;float&gt; &gt;&amp; getLines()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_lines; }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};   <span class="comment">// IrrDebugDrawer</span></div>
+</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">/* EOF */</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="ttc" id="aclassIrrDebugDrawer_html"><div class="ttname"><a href="classIrrDebugDrawer.html">IrrDebugDrawer</a></div><div class="ttdef"><b>Definition</b> irr_debug_drawer.hpp:33</div></div>
+<div class="ttc" id="aclassIrrDebugDrawer_html_a3973fa14260a934184f86ce81406432e"><div class="ttname"><a href="classIrrDebugDrawer.html#a3973fa14260a934184f86ce81406432e">IrrDebugDrawer::nextDebugMode</a></div><div class="ttdeci">void nextDebugMode()</div><div class="ttdoc">Activates the next debug mode, or switches the mode off again.</div><div class="ttdef"><b>Definition</b> irr_debug_drawer.cpp:37</div></div>
+<div class="ttc" id="aclassIrrDebugDrawer_html_a84c75b0bfb65cf16c971cbb43870d168"><div class="ttname"><a href="classIrrDebugDrawer.html#a84c75b0bfb65cf16c971cbb43870d168">IrrDebugDrawer::drawContactPoint</a></div><div class="ttdeci">virtual void drawContactPoint(const btVector3 &amp;Point_on_b, const btVector3 &amp;normal_on_b, btScalar distance, int life_time, const btVector3 &amp;color)</div><div class="ttdoc">optional debug methods</div><div class="ttdef"><b>Definition</b> irr_debug_drawer.hpp:65</div></div>
+<div class="ttc" id="aclassIrrDebugDrawer_html_ab5da9df82631ebd0ddac7a06230e3dda"><div class="ttname"><a href="classIrrDebugDrawer.html#ab5da9df82631ebd0ddac7a06230e3dda">IrrDebugDrawer::debugEnabled</a></div><div class="ttdeci">bool debugEnabled() const</div><div class="ttdoc">Returns true if debug mode is enabled.</div><div class="ttdef"><b>Definition</b> irr_debug_drawer.hpp:73</div></div>
+<div class="ttc" id="aclassIrrDebugDrawer_html_aba7f656a22efff73901148c68e50673c"><div class="ttname"><a href="classIrrDebugDrawer.html#aba7f656a22efff73901148c68e50673c">IrrDebugDrawer::getDebugMode</a></div><div class="ttdeci">virtual int getDebugMode() const</div><div class="ttdoc">Callback for bullet: if debug drawing should be done or not.</div><div class="ttdef"><b>Definition</b> irr_debug_drawer.hpp:55</div></div>
+<div class="ttc" id="aclassIrrDebugDrawer_html_adefbc099467840447ed519d589102336"><div class="ttname"><a href="classIrrDebugDrawer.html#adefbc099467840447ed519d589102336">IrrDebugDrawer::drawLine</a></div><div class="ttdeci">virtual void drawLine(const btVector3 &amp;from, const btVector3 &amp;to, const btVector3 &amp;color)</div><div class="ttdoc">Draws a line.</div><div class="ttdef"><b>Definition</b> irr_debug_drawer.cpp:58</div></div>
+<div class="ttc" id="aclassIrrDebugDrawer_html_ae209a37b759b175f1f5164bde7c7e64f"><div class="ttname"><a href="classIrrDebugDrawer.html#ae209a37b759b175f1f5164bde7c7e64f">IrrDebugDrawer::DebugModeType</a></div><div class="ttdeci">DebugModeType</div><div class="ttdoc">The drawing mode to use: If bit 0 is set, draw the bullet collision shape of karts If bit 1 is set,...</div><div class="ttdef"><b>Definition</b> irr_debug_drawer.hpp:39</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

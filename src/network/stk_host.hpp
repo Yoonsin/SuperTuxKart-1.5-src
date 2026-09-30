@@ -75,6 +75,9 @@ private:
     /** Singleton pointer to the instance. */
     static STKHost* m_stk_host[PT_COUNT];
 
+    static bool m_rtt_log_enabled;
+    static std::string m_rtt_log_directory;
+
     /** Separate process of server instance. */
     ChildLoop* m_client_loop;
 
@@ -175,6 +178,12 @@ private:
 public:
     /** If a network console should be started. */
     static bool m_enable_console;
+
+    static void setRTTLogEnabled(bool enabled)
+        { m_rtt_log_enabled = enabled; }
+    static void setRTTLogDirectory(const std::string& directory)
+        { m_rtt_log_directory = directory; }
+    static bool isRTTLoggingEnabled() { return m_rtt_log_enabled; }
 
     /** Creates the STKHost. It takes all confifguration parameters from
      *  NetworkConfig. This STKHost can either be a client or a server.
@@ -396,6 +405,25 @@ public:
     static BareNetworkString getStunRequest(uint8_t* stun_tansaction_id);
     // ------------------------------------------------------------------------
     ChildLoop* getChildLoop() const { return m_client_loop; }
+
+    static void ENET_CALLBACK rawRTTCallback(void* user_data, ENetPeer* enet_peer, const ENetRTTSample* sample) noexcept;
+ 
+    struct RTTRecord
+    {
+        ENetRTTSample sample;
+        std::string remote_address;
+        std::string platform;
+        std::string player_name;
+    };
+	void recordRTT(ENetPeer* enet_peer, const ENetRTTSample& sample); //raw RTT
+    void updateRTTLogging(bool race_active);
+    void finishRTTLogging();
+    void updateRTTProbes();
+    std::atomic_bool m_rtt_logging;
+    std::vector<RTTRecord> m_rtt_records;
+    std::mutex m_rtt_mutex;
+    static constexpr uint64_t RTT_PROBE_INTERVAL_MS = 1000;
+    uint64_t m_next_rtt_probe_ms;
 };   // class STKHost
 
 #endif // STK_HOST_HPP

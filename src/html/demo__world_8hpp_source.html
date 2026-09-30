@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: modes/demo_world.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>modes</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">demo_world.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2012-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_DEMO_WORLD_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_DEMO_WORLD_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;modes/profile_world.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">class </span>Kart;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classDemoWorld.html">   31</a></span><span class="keyword">class </span><a class="code hl_function" href="classDemoWorld.html#af79a36efccbbf9cf8cc3f05bdd261056">DemoWorld</a> : <span class="keyword">public</span> <a class="code hl_function" href="classProfileWorld.html#a2e4bc63d9aec453e98ec19fb3207d41f">ProfileWorld</a></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classDemoWorld.html#a9591f306a0aca3e607eb29dc5d8e12ff">   36</a></span>    <span class="keywordtype">bool</span>   <a class="code hl_variable" href="classDemoWorld.html#a9591f306a0aca3e607eb29dc5d8e12ff">m_abort</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classDemoWorld.html#aba037464840f6d1d7c0702baa00cdaf3">   40</a></span>    <span class="keyword">static</span> std::vector&lt;std::string&gt; <a class="code hl_variable" href="classDemoWorld.html#aba037464840f6d1d7c0702baa00cdaf3">m_demo_tracks</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classDemoWorld.html#a192894ab315eb556c2194be476268872">   43</a></span>    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classDemoWorld.html#a192894ab315eb556c2194be476268872">m_default_num_karts</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classDemoWorld.html#a025580fd8b30852752228014ed277917">   46</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classDemoWorld.html#a025580fd8b30852752228014ed277917">m_max_idle_time</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classDemoWorld.html#a514e284b24601c73a879da5048e6bc93">   49</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classDemoWorld.html#a514e284b24601c73a879da5048e6bc93">m_current_idle_time</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classDemoWorld.html#af67e31ce1f8ede240ae38587e55dd969">   52</a></span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_variable" href="classDemoWorld.html#af67e31ce1f8ede240ae38587e55dd969">m_do_demo</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                          <a class="code hl_function" href="classDemoWorld.html#af79a36efccbbf9cf8cc3f05bdd261056">DemoWorld</a>();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">virtual</span>              <a class="code hl_function" href="classDemoWorld.html#ade340a23253e228e95f07f8331a0ef22">~DemoWorld</a>();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">virtual</span>  <span class="keywordtype">bool</span>        <a class="code hl_function" href="classDemoWorld.html#a0fe8a113c9c1ffbb5e43ab5982c12edd">isRaceOver</a>() OVERRIDE;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    virtual  <span class="keywordtype">void</span>        <a class="code hl_function" href="classDemoWorld.html#a8f67740457115ec4f2147039a65d1808">enterRaceOverState</a>() OVERRIDE;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classDemoWorld.html#a5db753c5a665f50e5618ac93c18f631a">   60</a></span>    virtual  std::<span class="keywordtype">string</span> <a class="code hl_function" href="classDemoWorld.html#a5db753c5a665f50e5618ac93c18f631a">getInternalCode</a>() const OVERRIDE { <span class="keywordflow">return</span> <span class="stringliteral">&quot;DEMO&quot;</span>; }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classDemoWorld.html#a3c775e5514a923b14516e422e83b625c">   62</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classDemoWorld.html#a3c775e5514a923b14516e422e83b625c">update</a>(<span class="keywordtype">int</span> ticks) OVERRIDE { <a class="code hl_function" href="classProfileWorld.html#ac1b41e893f1e34bf52445d72cc34f061">ProfileWorld::update</a>(ticks); }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classDemoWorld.html#ad7728323ae30a494b5c1c915baa2b452">updateIdleTimeAndStartDemo</a>(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classDemoWorld.html#aeac8983c0a088db86ccdce4fdf84429f">   68</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classDemoWorld.html#aeac8983c0a088db86ccdce4fdf84429f">setNumLaps</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> num_laps) { <a class="code hl_variable" href="classProfileWorld.html#a9516721723a03396d2e1788dd8d34fc5">m_num_laps</a> = num_laps; }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="}">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classDemoWorld.html#a76359cd102e1b467f6ff5c913945a5fe">   71</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classDemoWorld.html#a76359cd102e1b467f6ff5c913945a5fe">setNumKarts</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> num_karts)</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <a class="code hl_variable" href="classDemoWorld.html#a192894ab315eb556c2194be476268872">m_default_num_karts</a> = num_karts;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }   <span class="comment">// setNumKarts</span></div>
+</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classDemoWorld.html#a078b6357f5b5d38bb1ec81c9bc2e7e43">setTracks</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;tracks);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classDemoWorld.html#a7b6282dfb22428ee6cb2f4e535ce0562">   81</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classDemoWorld.html#a7b6282dfb22428ee6cb2f4e535ce0562">enableDemoMode</a>(<span class="keywordtype">float</span> time=1.0f) { <a class="code hl_variable" href="classDemoWorld.html#a025580fd8b30852752228014ed277917">m_max_idle_time</a> = time; }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classDemoWorld.html#a751ab7b3644896b28ca9aceb5aae2b2e">   84</a></span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classDemoWorld.html#a751ab7b3644896b28ca9aceb5aae2b2e">isDemoMode</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classDemoWorld.html#af67e31ce1f8ede240ae38587e55dd969">m_do_demo</a>; }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classDemoWorld.html#a68cb2f47cded5a22e3cb6226ee931695">   87</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classDemoWorld.html#a68cb2f47cded5a22e3cb6226ee931695">resetIdleTime</a>() { <a class="code hl_variable" href="classDemoWorld.html#a514e284b24601c73a879da5048e6bc93">m_current_idle_time</a> = 0; }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classDemoWorld.html#a217f17186959eed9aecf24601cdbaca6">   90</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDemoWorld.html#a217f17186959eed9aecf24601cdbaca6">abortDemo</a>() {<a class="code hl_variable" href="classDemoWorld.html#a9591f306a0aca3e607eb29dc5d8e12ff">m_abort</a> = <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>};   <span class="comment">// DemoWorld</span></div>
+</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassDemoWorld_html_a025580fd8b30852752228014ed277917"><div class="ttname"><a href="classDemoWorld.html#a025580fd8b30852752228014ed277917">DemoWorld::m_max_idle_time</a></div><div class="ttdeci">static float m_max_idle_time</div><div class="ttdoc">Idle time after which demo mode should be started.</div><div class="ttdef"><b>Definition</b> demo_world.hpp:46</div></div>
+<div class="ttc" id="aclassDemoWorld_html_a078b6357f5b5d38bb1ec81c9bc2e7e43"><div class="ttname"><a href="classDemoWorld.html#a078b6357f5b5d38bb1ec81c9bc2e7e43">DemoWorld::setTracks</a></div><div class="ttdeci">static void setTracks(const std::vector&lt; std::string &gt; &amp;tracks)</div><div class="ttdoc">Sets the list of tracks that is to be used.</div><div class="ttdef"><b>Definition</b> demo_world.cpp:100</div></div>
+<div class="ttc" id="aclassDemoWorld_html_a0fe8a113c9c1ffbb5e43ab5982c12edd"><div class="ttname"><a href="classDemoWorld.html#a0fe8a113c9c1ffbb5e43ab5982c12edd">DemoWorld::isRaceOver</a></div><div class="ttdeci">virtual bool isRaceOver() OVERRIDE</div><div class="ttdoc">The race is over if either the requested number of laps have been done or the requested time is over.</div><div class="ttdef"><b>Definition</b> demo_world.cpp:109</div></div>
+<div class="ttc" id="aclassDemoWorld_html_a192894ab315eb556c2194be476268872"><div class="ttname"><a href="classDemoWorld.html#a192894ab315eb556c2194be476268872">DemoWorld::m_default_num_karts</a></div><div class="ttdeci">static int m_default_num_karts</div><div class="ttdoc">Number of karts to use in demo mode.</div><div class="ttdef"><b>Definition</b> demo_world.hpp:43</div></div>
+<div class="ttc" id="aclassDemoWorld_html_a217f17186959eed9aecf24601cdbaca6"><div class="ttname"><a href="classDemoWorld.html#a217f17186959eed9aecf24601cdbaca6">DemoWorld::abortDemo</a></div><div class="ttdeci">void abortDemo()</div><div class="ttdoc">Signals that the demo should be aborted.</div><div class="ttdef"><b>Definition</b> demo_world.hpp:90</div></div>
+<div class="ttc" id="aclassDemoWorld_html_a3c775e5514a923b14516e422e83b625c"><div class="ttname"><a href="classDemoWorld.html#a3c775e5514a923b14516e422e83b625c">DemoWorld::update</a></div><div class="ttdeci">virtual void update(int ticks) OVERRIDE</div><div class="ttdoc">Counts the number of frames.</div><div class="ttdef"><b>Definition</b> demo_world.hpp:62</div></div>
+<div class="ttc" id="aclassDemoWorld_html_a514e284b24601c73a879da5048e6bc93"><div class="ttname"><a href="classDemoWorld.html#a514e284b24601c73a879da5048e6bc93">DemoWorld::m_current_idle_time</a></div><div class="ttdeci">static float m_current_idle_time</div><div class="ttdoc">Used by the menu system to measure idle time.</div><div class="ttdef"><b>Definition</b> demo_world.hpp:49</div></div>
+<div class="ttc" id="aclassDemoWorld_html_a5db753c5a665f50e5618ac93c18f631a"><div class="ttname"><a href="classDemoWorld.html#a5db753c5a665f50e5618ac93c18f631a">DemoWorld::getInternalCode</a></div><div class="ttdeci">virtual std::string getInternalCode() const OVERRIDE</div><div class="ttdoc">Returns identifier for this world.</div><div class="ttdef"><b>Definition</b> demo_world.hpp:60</div></div>
+<div class="ttc" id="aclassDemoWorld_html_a68cb2f47cded5a22e3cb6226ee931695"><div class="ttname"><a href="classDemoWorld.html#a68cb2f47cded5a22e3cb6226ee931695">DemoWorld::resetIdleTime</a></div><div class="ttdeci">static void resetIdleTime()</div><div class="ttdoc">Resets the idle time to 0.</div><div class="ttdef"><b>Definition</b> demo_world.hpp:87</div></div>
+<div class="ttc" id="aclassDemoWorld_html_a751ab7b3644896b28ca9aceb5aae2b2e"><div class="ttname"><a href="classDemoWorld.html#a751ab7b3644896b28ca9aceb5aae2b2e">DemoWorld::isDemoMode</a></div><div class="ttdeci">static bool isDemoMode()</div><div class="ttdoc">Returns true if the menu detected enough idle time to run a demo.</div><div class="ttdef"><b>Definition</b> demo_world.hpp:84</div></div>
+<div class="ttc" id="aclassDemoWorld_html_a76359cd102e1b467f6ff5c913945a5fe"><div class="ttname"><a href="classDemoWorld.html#a76359cd102e1b467f6ff5c913945a5fe">DemoWorld::setNumKarts</a></div><div class="ttdeci">static void setNumKarts(unsigned int num_karts)</div><div class="ttdoc">Sets the number of karts to use in demo mode.</div><div class="ttdef"><b>Definition</b> demo_world.hpp:71</div></div>
+<div class="ttc" id="aclassDemoWorld_html_a7b6282dfb22428ee6cb2f4e535ce0562"><div class="ttname"><a href="classDemoWorld.html#a7b6282dfb22428ee6cb2f4e535ce0562">DemoWorld::enableDemoMode</a></div><div class="ttdeci">static void enableDemoMode(float time=1.0f)</div><div class="ttdoc">Enables demo mode after the specified amount of time (default 1 second).</div><div class="ttdef"><b>Definition</b> demo_world.hpp:81</div></div>
+<div class="ttc" id="aclassDemoWorld_html_a8f67740457115ec4f2147039a65d1808"><div class="ttname"><a href="classDemoWorld.html#a8f67740457115ec4f2147039a65d1808">DemoWorld::enterRaceOverState</a></div><div class="ttdeci">virtual void enterRaceOverState() OVERRIDE</div><div class="ttdoc">This function is called when the race is finished, but end-of-race animations have still to be played...</div><div class="ttdef"><b>Definition</b> demo_world.cpp:122</div></div>
+<div class="ttc" id="aclassDemoWorld_html_a9591f306a0aca3e607eb29dc5d8e12ff"><div class="ttname"><a href="classDemoWorld.html#a9591f306a0aca3e607eb29dc5d8e12ff">DemoWorld::m_abort</a></div><div class="ttdeci">bool m_abort</div><div class="ttdoc">True if demo mode should be aborted, e.g.</div><div class="ttdef"><b>Definition</b> demo_world.hpp:36</div></div>
+<div class="ttc" id="aclassDemoWorld_html_aba037464840f6d1d7c0702baa00cdaf3"><div class="ttname"><a href="classDemoWorld.html#aba037464840f6d1d7c0702baa00cdaf3">DemoWorld::m_demo_tracks</a></div><div class="ttdeci">static std::vector&lt; std::string &gt; m_demo_tracks</div><div class="ttdoc">The list of tracks to use for demo mode.</div><div class="ttdef"><b>Definition</b> demo_world.hpp:40</div></div>
+<div class="ttc" id="aclassDemoWorld_html_ad7728323ae30a494b5c1c915baa2b452"><div class="ttname"><a href="classDemoWorld.html#ad7728323ae30a494b5c1c915baa2b452">DemoWorld::updateIdleTimeAndStartDemo</a></div><div class="ttdeci">static bool updateIdleTimeAndStartDemo(float dt)</div><div class="ttdoc">Updates the current idle time by dt.</div><div class="ttdef"><b>Definition</b> demo_world.cpp:134</div></div>
+<div class="ttc" id="aclassDemoWorld_html_ade340a23253e228e95f07f8331a0ef22"><div class="ttname"><a href="classDemoWorld.html#ade340a23253e228e95f07f8331a0ef22">DemoWorld::~DemoWorld</a></div><div class="ttdeci">virtual ~DemoWorld()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition</b> demo_world.cpp:90</div></div>
+<div class="ttc" id="aclassDemoWorld_html_aeac8983c0a088db86ccdce4fdf84429f"><div class="ttname"><a href="classDemoWorld.html#aeac8983c0a088db86ccdce4fdf84429f">DemoWorld::setNumLaps</a></div><div class="ttdeci">static void setNumLaps(unsigned int num_laps)</div><div class="ttdoc">Sets the number of laps to use in demo mode.</div><div class="ttdef"><b>Definition</b> demo_world.hpp:68</div></div>
+<div class="ttc" id="aclassDemoWorld_html_af67e31ce1f8ede240ae38587e55dd969"><div class="ttname"><a href="classDemoWorld.html#af67e31ce1f8ede240ae38587e55dd969">DemoWorld::m_do_demo</a></div><div class="ttdeci">static bool m_do_demo</div><div class="ttdoc">True if the next race is to be a demo race.</div><div class="ttdef"><b>Definition</b> demo_world.hpp:52</div></div>
+<div class="ttc" id="aclassDemoWorld_html_af79a36efccbbf9cf8cc3f05bdd261056"><div class="ttname"><a href="classDemoWorld.html#af79a36efccbbf9cf8cc3f05bdd261056">DemoWorld::DemoWorld</a></div><div class="ttdeci">DemoWorld()</div><div class="ttdoc">The constructor sets the number of (local) players to 0, since only AI karts are used.</div><div class="ttdef"><b>Definition</b> demo_world.cpp:43</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a2e4bc63d9aec453e98ec19fb3207d41f"><div class="ttname"><a href="classProfileWorld.html#a2e4bc63d9aec453e98ec19fb3207d41f">ProfileWorld::ProfileWorld</a></div><div class="ttdeci">ProfileWorld()</div><div class="ttdoc">The constructor sets the number of (local) players to 0, since only AI karts are used.</div><div class="ttdef"><b>Definition</b> profile_world.cpp:43</div></div>
+<div class="ttc" id="aclassProfileWorld_html_a9516721723a03396d2e1788dd8d34fc5"><div class="ttname"><a href="classProfileWorld.html#a9516721723a03396d2e1788dd8d34fc5">ProfileWorld::m_num_laps</a></div><div class="ttdeci">static int m_num_laps</div><div class="ttdoc">In laps based profiling: number of laps to run.</div><div class="ttdef"><b>Definition</b> profile_world.hpp:69</div></div>
+<div class="ttc" id="aclassProfileWorld_html_ac1b41e893f1e34bf52445d72cc34f061"><div class="ttname"><a href="classProfileWorld.html#ac1b41e893f1e34bf52445d72cc34f061">ProfileWorld::update</a></div><div class="ttdeci">virtual void update(int ticks)</div><div class="ttdoc">Counts the number of frames.</div><div class="ttdef"><b>Definition</b> profile_world.cpp:155</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -432,19 +432,44 @@ enet_peer_reset (ENetPeer * peer)
     frequent ping requests.
 */
 void
-enet_peer_ping (ENetPeer * peer)
+enet_peer_ping(ENetPeer* peer)
 {
     ENetProtocol command;
 
-    if (peer -> state != ENET_PEER_STATE_CONNECTED)
-      return;
+    if (peer->state != ENET_PEER_STATE_CONNECTED)
+        return;
 
     command.header.command = ENET_PROTOCOL_COMMAND_PING | ENET_PROTOCOL_COMMAND_FLAG_ACKNOWLEDGE;
     command.header.channelID = 0xFF;
-   
-    enet_peer_queue_outgoing_command (peer, & command, NULL, 0, 0);
+
+    enet_peer_queue_outgoing_command(peer, &command, NULL, 0, 0);
 }
 
+int
+enet_peer_ping_tracked(ENetPeer* peer, enet_uint16* reliableSequenceNumber)
+{
+    ENetProtocol command;
+    ENetOutgoingCommand* outgoingCommand;
+
+    if (peer == NULL || peer->state != ENET_PEER_STATE_CONNECTED)
+        return -1;
+
+    command.header.command = ENET_PROTOCOL_COMMAND_PING | ENET_PROTOCOL_COMMAND_FLAG_ACKNOWLEDGE;
+    command.header.channelID = 0xFF;
+
+    outgoingCommand = enet_peer_queue_outgoing_command(peer, &command, NULL, 0, 0);
+
+    if (outgoingCommand == NULL) return -1;
+
+    outgoingCommand->isRTTProbe = 1;
+
+    if (reliableSequenceNumber != NULL)
+    {
+        *reliableSequenceNumber = outgoingCommand->reliableSequenceNumber;
+    }
+
+    return 0;
+}
 /** Sets the interval at which pings will be sent to a peer. 
     
     Pings are used both to monitor the liveness of the connection and also to dynamically
@@ -690,6 +715,8 @@ enet_peer_queue_outgoing_command (ENetPeer * peer, const ENetProtocol * command,
     outgoingCommand -> fragmentOffset = offset;
     outgoingCommand -> fragmentLength = length;
     outgoingCommand -> packet = packet;
+    outgoingCommand -> isRTTProbe = 0;
+
     if (packet != NULL)
       ++ packet -> referenceCount;
 

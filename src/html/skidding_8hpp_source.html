@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: karts/skidding.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>karts</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">skidding.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2012-2015  Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_SKIDDING_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_SKIDDING_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;karts/controller/kart_control.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">utils/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">class </span><a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">class </span>Kart;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">class </span><a class="code hl_class" href="classShowCurve.html">ShowCurve</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#undef SKID_DEBUG</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classSkidding.html">   39</a></span><span class="keyword">class </span><a class="code hl_function" href="classSkidding.html#ae1d435eb47ad1fa7dae2d82dd7bcd4d0">Skidding</a></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">friend</span> <span class="keyword">class </span>KartRewinder;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    LEAK_CHECK();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classSkidding.html#a243bbc88542207f59cadf53b4d70209d">   46</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSkidding.html#a243bbc88542207f59cadf53b4d70209d">m_skid_reduce_turn_delta</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classSkidding.html#a24d16cc809c1d364186d379f625a46e4">   50</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSkidding.html#a24d16cc809c1d364186d379f625a46e4">m_real_steering</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classSkidding.html#a14150ec3b4fa4724910105b4eb1f7a52">   54</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSkidding.html#a14150ec3b4fa4724910105b4eb1f7a52">m_visual_rotation</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classSkidding.html#a1f40a5a5d2db811f3d5e419c0f5f2ef0">   57</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSkidding.html#a1f40a5a5d2db811f3d5e419c0f5f2ef0">m_skid_factor</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classSkidding.html#aa9dc8fb8f471aeb6e05a027b0232d14d">   61</a></span>    uint16_t <a class="code hl_variable" href="classSkidding.html#aa9dc8fb8f471aeb6e05a027b0232d14d">m_skid_time</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classSkidding.html#a16249c1d08b5876740ed56acff99ba3b">   65</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classSkidding.html#a16249c1d08b5876740ed56acff99ba3b">m_skid_bonus_ready</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classSkidding.html#aa9f193cc825b424a8943b5ab7ae5fafd">   68</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSkidding.html#aa9f193cc825b424a8943b5ab7ae5fafd">m_remaining_jump_time</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">float</span> m_graphical_remaining_jump_time;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">float</span> m_prev_visual_rotation;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">float</span> m_smoothing_time;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">float</span> m_smoothing_dt;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">int</span> m_skid_bonus_end_ticks;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="};">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classSkidding.html#ad0b020db2561c9ea9c42a8a94c1d0a73">   89</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classSkidding.html#ad0b020db2561c9ea9c42a8a94c1d0a73">SkidState</a> { SKID_NONE, SKID_ACCUMULATE_LEFT, SKID_ACCUMULATE_RIGHT,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                     SKID_SHOW_GFX_LEFT, SKID_SHOW_GFX_RIGHT, SKID_BREAK} ;</div>
+</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classSkidding.html#a819e02ef49fca3b7e4954b4c997be1db">   94</a></span>    <a class="code hl_enumeration" href="classSkidding.html#ad0b020db2561c9ea9c42a8a94c1d0a73">SkidState</a> <a class="code hl_variable" href="classSkidding.html#a819e02ef49fca3b7e4954b4c997be1db">m_skid_state</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classSkidding.html#af4f5112c73dc7c34a27154589f420a5f">   97</a></span>    Kart *<a class="code hl_variable" href="classSkidding.html#af4f5112c73dc7c34a27154589f420a5f">m_kart</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="preprocessor">#ifdef SKID_DEBUG</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <a class="code hl_class" href="classShowCurve.html">ShowCurve</a> *m_predicted_curve;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_class" href="classShowCurve.html">ShowCurve</a> *m_actual_curve;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classSkidding.html#aef167699cad4a94eefb1f337631b3480">getSkidBonus</a>(<span class="keywordtype">float</span> *bonus_time, <span class="keywordtype">float</span> *bonus_speed,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                              <span class="keywordtype">float</span> *bonus_force) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classSkidding.html#a8cefa3b1629abf8e1199ea8a0ef39a7c">updateSteering</a>(<span class="keywordtype">float</span> steer, <span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>         <a class="code hl_function" href="classSkidding.html#ae1d435eb47ad1fa7dae2d82dd7bcd4d0">Skidding</a>(Kart *kart);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <a class="code hl_function" href="classSkidding.html#ae1d435eb47ad1fa7dae2d82dd7bcd4d0">~Skidding</a>();</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSkidding.html#abef0b2642eb3497c3caf20c8feef61eb">reset</a>();</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classSkidding.html#a239eabaee161d5c45b9bb6cf85c04c58">updateGraphics</a>(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSkidding.html#a1f4897bf139411c49928265b7f7937ee">update</a>(<span class="keywordtype">int</span> dt, <span class="keywordtype">bool</span> is_on_ground, <span class="keywordtype">float</span> steer,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                <a class="code hl_enumeration" href="classKartControl.html#a1fca41f3f8d5e8c045508a111f3ab17b">KartControl::SkidControl</a> skidding);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSkidding.html#af27efd655f16073f781332480ec2daed">saveState</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSkidding.html#a5bc22363cae74a5b33ee059fa4ade101">rewindTo</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00120" data-start="{" data-end="}">
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classSkidding.html#a1b24f9f3dc9b1a07f81677a7ccc1af60">  120</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classSkidding.html#a1b24f9f3dc9b1a07f81677a7ccc1af60">getVisualSkidRotation</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keywordflow">if</span> (m_smoothing_dt &gt;= 0.0f)</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            <span class="keywordflow">return</span> m_smoothing_dt * <a class="code hl_variable" href="classSkidding.html#a14150ec3b4fa4724910105b4eb1f7a52">m_visual_rotation</a> +</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                (1.0f - m_smoothing_dt) * m_prev_visual_rotation;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classSkidding.html#a14150ec3b4fa4724910105b4eb1f7a52">m_visual_rotation</a>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    }</div>
+</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classSkidding.html#a7cf535db4caaa913878a79f72c74f7b8">  131</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classSkidding.html#a7cf535db4caaa913878a79f72c74f7b8">getSkidFactor</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSkidding.html#a1f40a5a5d2db811f3d5e419c0f5f2ef0">m_skid_factor</a>; }</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classSkidding.html#ab628da5100653faf91346295a767fdea">  134</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSkidding.html#ab628da5100653faf91346295a767fdea">isSkidding</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSkidding.html#a1f40a5a5d2db811f3d5e419c0f5f2ef0">m_skid_factor</a>&gt;1.0f; }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classSkidding.html#ad37cabc86f44e6f35f0edfceca9af190">  138</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classSkidding.html#ad37cabc86f44e6f35f0edfceca9af190">getSteeringFraction</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classSkidding.html#a24d16cc809c1d364186d379f625a46e4">m_real_steering</a>; }</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="classSkidding.html#a0ecce172c9ace3aa2f44e93f4f027072">  141</a></span>    <a class="code hl_enumeration" href="classSkidding.html#ad0b020db2561c9ea9c42a8a94c1d0a73">SkidState</a> <a class="code hl_function" href="classSkidding.html#a0ecce172c9ace3aa2f44e93f4f027072">getSkidState</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSkidding.html#a819e02ef49fca3b7e4954b4c997be1db">m_skid_state</a>; }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classSkidding.html#aaea090405f8e803dd283764b26b5698e">getSteeringWhenSkidding</a>(<span class="keywordtype">float</span> steering) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="classSkidding.html#a051b1af562959d8391ec1d4f5656decc">  148</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSkidding.html#a051b1af562959d8391ec1d4f5656decc">getSkidBonusReady</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSkidding.html#a16249c1d08b5876740ed56acff99ba3b">m_skid_bonus_ready</a>; }</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordtype">bool</span> isJumping()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_graphical_remaining_jump_time &gt; 0;  }</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordtype">void</span> prepareSmoothing();</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordtype">void</span> checkSmoothing();</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>};   <span class="comment">// Skidding</span></div>
+</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment">/* EOF */</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassKartControl_html_a1fca41f3f8d5e8c045508a111f3ab17b"><div class="ttname"><a href="classKartControl.html#a1fca41f3f8d5e8c045508a111f3ab17b">KartControl::SkidControl</a></div><div class="ttdeci">SkidControl</div><div class="ttdoc">The skidding control state: SC_NONE: not pressed; SC_NO_DIRECTION: pressed, but no steering; SC_LEFT/...</div><div class="ttdef"><b>Definition</b> kart_control.hpp:35</div></div>
+<div class="ttc" id="aclassShowCurve_html"><div class="ttname"><a href="classShowCurve.html">ShowCurve</a></div><div class="ttdoc">This class is used for debugging.</div><div class="ttdef"><b>Definition</b> show_curve.hpp:46</div></div>
+<div class="ttc" id="aclassSkidding_html_a051b1af562959d8391ec1d4f5656decc"><div class="ttname"><a href="classSkidding.html#a051b1af562959d8391ec1d4f5656decc">Skidding::getSkidBonusReady</a></div><div class="ttdeci">bool getSkidBonusReady() const</div><div class="ttdoc">Returns if the kart has skidded long enough to get a skid bonus if it stopped skidding now.</div><div class="ttdef"><b>Definition</b> skidding.hpp:148</div></div>
+<div class="ttc" id="aclassSkidding_html_a0ecce172c9ace3aa2f44e93f4f027072"><div class="ttname"><a href="classSkidding.html#a0ecce172c9ace3aa2f44e93f4f027072">Skidding::getSkidState</a></div><div class="ttdeci">SkidState getSkidState() const</div><div class="ttdoc">Returns the skidding state.</div><div class="ttdef"><b>Definition</b> skidding.hpp:141</div></div>
+<div class="ttc" id="aclassSkidding_html_a14150ec3b4fa4724910105b4eb1f7a52"><div class="ttname"><a href="classSkidding.html#a14150ec3b4fa4724910105b4eb1f7a52">Skidding::m_visual_rotation</a></div><div class="ttdeci">float m_visual_rotation</div><div class="ttdoc">An additional rotation (heading) of the kart while skidding.</div><div class="ttdef"><b>Definition</b> skidding.hpp:54</div></div>
+<div class="ttc" id="aclassSkidding_html_a16249c1d08b5876740ed56acff99ba3b"><div class="ttname"><a href="classSkidding.html#a16249c1d08b5876740ed56acff99ba3b">Skidding::m_skid_bonus_ready</a></div><div class="ttdeci">bool m_skid_bonus_ready</div><div class="ttdoc">True if the kart has skidded long enough to get a skid bonus if it stopped skidding now.</div><div class="ttdef"><b>Definition</b> skidding.hpp:65</div></div>
+<div class="ttc" id="aclassSkidding_html_a1b24f9f3dc9b1a07f81677a7ccc1af60"><div class="ttname"><a href="classSkidding.html#a1b24f9f3dc9b1a07f81677a7ccc1af60">Skidding::getVisualSkidRotation</a></div><div class="ttdeci">float getVisualSkidRotation() const</div><div class="ttdoc">Determines how much the graphics model of the kart should be rotated additionally (for skidding),...</div><div class="ttdef"><b>Definition</b> skidding.hpp:120</div></div>
+<div class="ttc" id="aclassSkidding_html_a1f40a5a5d2db811f3d5e419c0f5f2ef0"><div class="ttname"><a href="classSkidding.html#a1f40a5a5d2db811f3d5e419c0f5f2ef0">Skidding::m_skid_factor</a></div><div class="ttdeci">float m_skid_factor</div><div class="ttdoc">Accumulated skidding factor.</div><div class="ttdef"><b>Definition</b> skidding.hpp:57</div></div>
+<div class="ttc" id="aclassSkidding_html_a1f4897bf139411c49928265b7f7937ee"><div class="ttname"><a href="classSkidding.html#a1f4897bf139411c49928265b7f7937ee">Skidding::update</a></div><div class="ttdeci">void update(int dt, bool is_on_ground, float steer, KartControl::SkidControl skidding)</div><div class="ttdoc">Updates skidding status.</div><div class="ttdef"><b>Definition</b> skidding.cpp:353</div></div>
+<div class="ttc" id="aclassSkidding_html_a239eabaee161d5c45b9bb6cf85c04c58"><div class="ttname"><a href="classSkidding.html#a239eabaee161d5c45b9bb6cf85c04c58">Skidding::updateGraphics</a></div><div class="ttdeci">float updateGraphics(float dt)</div><div class="ttdoc">Called once per rendered frame to potentially update the graphical jump height.</div><div class="ttdef"><b>Definition</b> skidding.cpp:264</div></div>
+<div class="ttc" id="aclassSkidding_html_a243bbc88542207f59cadf53b4d70209d"><div class="ttname"><a href="classSkidding.html#a243bbc88542207f59cadf53b4d70209d">Skidding::m_skid_reduce_turn_delta</a></div><div class="ttdeci">float m_skid_reduce_turn_delta</div><div class="ttdoc">This is m_skid_reduce_turn_max - m_skid_reduce_turn_min.</div><div class="ttdef"><b>Definition</b> skidding.hpp:46</div></div>
+<div class="ttc" id="aclassSkidding_html_a24d16cc809c1d364186d379f625a46e4"><div class="ttname"><a href="classSkidding.html#a24d16cc809c1d364186d379f625a46e4">Skidding::m_real_steering</a></div><div class="ttdeci">float m_real_steering</div><div class="ttdoc">This is the actual steering (in fraction of max-steering-angle) to be used by this kart.</div><div class="ttdef"><b>Definition</b> skidding.hpp:50</div></div>
+<div class="ttc" id="aclassSkidding_html_a5bc22363cae74a5b33ee059fa4ade101"><div class="ttname"><a href="classSkidding.html#a5bc22363cae74a5b33ee059fa4ade101">Skidding::rewindTo</a></div><div class="ttdeci">void rewindTo(BareNetworkString *buffer)</div><div class="ttdoc">Restores the skidding state of a kart.</div><div class="ttdef"><b>Definition</b> skidding.cpp:114</div></div>
+<div class="ttc" id="aclassSkidding_html_a7cf535db4caaa913878a79f72c74f7b8"><div class="ttname"><a href="classSkidding.html#a7cf535db4caaa913878a79f72c74f7b8">Skidding::getSkidFactor</a></div><div class="ttdeci">float getSkidFactor() const</div><div class="ttdoc">Returns the current skid factor in [1, skid_max_for_this_kart].</div><div class="ttdef"><b>Definition</b> skidding.hpp:131</div></div>
+<div class="ttc" id="aclassSkidding_html_a819e02ef49fca3b7e4954b4c997be1db"><div class="ttname"><a href="classSkidding.html#a819e02ef49fca3b7e4954b4c997be1db">Skidding::m_skid_state</a></div><div class="ttdeci">SkidState m_skid_state</div><div class="ttdoc">The current skidding state.</div><div class="ttdef"><b>Definition</b> skidding.hpp:94</div></div>
+<div class="ttc" id="aclassSkidding_html_a8cefa3b1629abf8e1199ea8a0ef39a7c"><div class="ttname"><a href="classSkidding.html#a8cefa3b1629abf8e1199ea8a0ef39a7c">Skidding::updateSteering</a></div><div class="ttdeci">float updateSteering(float steer, int ticks)</div><div class="ttdoc">Computes the actual steering fraction to be used in the physics, and stores it in m_real_skidding.</div><div class="ttdef"><b>Definition</b> skidding.cpp:148</div></div>
+<div class="ttc" id="aclassSkidding_html_aa9dc8fb8f471aeb6e05a027b0232d14d"><div class="ttname"><a href="classSkidding.html#aa9dc8fb8f471aeb6e05a027b0232d14d">Skidding::m_skid_time</a></div><div class="ttdeci">uint16_t m_skid_time</div><div class="ttdoc">Keeps track on how long a kart has been skidding, in order to trigger the skidding bonus.</div><div class="ttdef"><b>Definition</b> skidding.hpp:61</div></div>
+<div class="ttc" id="aclassSkidding_html_aa9f193cc825b424a8943b5ab7ae5fafd"><div class="ttname"><a href="classSkidding.html#aa9f193cc825b424a8943b5ab7ae5fafd">Skidding::m_remaining_jump_time</a></div><div class="ttdeci">float m_remaining_jump_time</div><div class="ttdoc">Set to &gt;0 when a graphical jump is to be done.</div><div class="ttdef"><b>Definition</b> skidding.hpp:68</div></div>
+<div class="ttc" id="aclassSkidding_html_aaea090405f8e803dd283764b26b5698e"><div class="ttname"><a href="classSkidding.html#aaea090405f8e803dd283764b26b5698e">Skidding::getSteeringWhenSkidding</a></div><div class="ttdeci">float getSteeringWhenSkidding(float steering) const</div><div class="ttdoc">Returns the steering value necessary to set in KartControls.m_steer in order to actually to steer the...</div><div class="ttdef"><b>Definition</b> skidding.cpp:233</div></div>
+<div class="ttc" id="aclassSkidding_html_ab628da5100653faf91346295a767fdea"><div class="ttname"><a href="classSkidding.html#ab628da5100653faf91346295a767fdea">Skidding::isSkidding</a></div><div class="ttdeci">bool isSkidding() const</div><div class="ttdoc">Returns true if the kart is skidding.</div><div class="ttdef"><b>Definition</b> skidding.hpp:134</div></div>
+<div class="ttc" id="aclassSkidding_html_abef0b2642eb3497c3caf20c8feef61eb"><div class="ttname"><a href="classSkidding.html#abef0b2642eb3497c3caf20c8feef61eb">Skidding::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Resets all skidding related values.</div><div class="ttdef"><b>Definition</b> skidding.cpp:68</div></div>
+<div class="ttc" id="aclassSkidding_html_ad0b020db2561c9ea9c42a8a94c1d0a73"><div class="ttname"><a href="classSkidding.html#ad0b020db2561c9ea9c42a8a94c1d0a73">Skidding::SkidState</a></div><div class="ttdeci">SkidState</div><div class="ttdoc">SKID_NONE: Kart is currently not skidding.</div><div class="ttdef"><b>Definition</b> skidding.hpp:89</div></div>
+<div class="ttc" id="aclassSkidding_html_ad37cabc86f44e6f35f0edfceca9af190"><div class="ttname"><a href="classSkidding.html#ad37cabc86f44e6f35f0edfceca9af190">Skidding::getSteeringFraction</a></div><div class="ttdeci">float getSteeringFraction()</div><div class="ttdoc">Returns the steering fraction to be used by the physics.</div><div class="ttdef"><b>Definition</b> skidding.hpp:138</div></div>
+<div class="ttc" id="aclassSkidding_html_ae1d435eb47ad1fa7dae2d82dd7bcd4d0"><div class="ttname"><a href="classSkidding.html#ae1d435eb47ad1fa7dae2d82dd7bcd4d0">Skidding::Skidding</a></div><div class="ttdeci">Skidding(Kart *kart)</div><div class="ttdoc">Constructor of the skidding object.</div><div class="ttdef"><b>Definition</b> skidding.cpp:40</div></div>
+<div class="ttc" id="aclassSkidding_html_aef167699cad4a94eefb1f337631b3480"><div class="ttname"><a href="classSkidding.html#aef167699cad4a94eefb1f337631b3480">Skidding::getSkidBonus</a></div><div class="ttdeci">unsigned int getSkidBonus(float *bonus_time, float *bonus_speed, float *bonus_force) const</div><div class="ttdoc">Determines the bonus time and speed given the currently accumulated m_skid_time.</div><div class="ttdef"><b>Definition</b> skidding.cpp:605</div></div>
+<div class="ttc" id="aclassSkidding_html_af27efd655f16073f781332480ec2daed"><div class="ttname"><a href="classSkidding.html#af27efd655f16073f781332480ec2daed">Skidding::saveState</a></div><div class="ttdeci">void saveState(BareNetworkString *buffer)</div><div class="ttdoc">Save the skidding state of a kart.</div><div class="ttdef"><b>Definition</b> skidding.cpp:102</div></div>
+<div class="ttc" id="aclassSkidding_html_af4f5112c73dc7c34a27154589f420a5f"><div class="ttname"><a href="classSkidding.html#af4f5112c73dc7c34a27154589f420a5f">Skidding::m_kart</a></div><div class="ttdeci">Kart * m_kart</div><div class="ttdoc">A read-only pointer to the kart&#39;s properties.</div><div class="ttdef"><b>Definition</b> skidding.hpp:97</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Declares the general types that are used by the network.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: replay/replay_recorder.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>replay</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">replay_recorder.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2012-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_REPLAY_RECORDER_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_REPLAY_RECORDER_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;items/attachment.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;items/powerup_manager.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;karts/controller/kart_control.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;replay/replay_base.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classReplayRecorder.html">   32</a></span><span class="keyword">class </span><a class="code hl_function" href="classReplayRecorder.html#a0350d8714cbcffa472323ddc9ea48d9d">ReplayRecorder</a> : <span class="keyword">public</span> ReplayBase</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    std::string m_filename;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classReplayRecorder.html#af07b4600bb4e85dd32314cfe38c26c02">   38</a></span>    std::vector&lt; std::vector&lt;TransformEvent&gt; &gt; <a class="code hl_variable" href="classReplayRecorder.html#af07b4600bb4e85dd32314cfe38c26c02">m_transform_events</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classReplayRecorder.html#ab5cd300181c81c60a71d05c826164832">   41</a></span>    std::vector&lt; std::vector&lt;PhysicInfo&gt; &gt; <a class="code hl_variable" href="classReplayRecorder.html#ab5cd300181c81c60a71d05c826164832">m_physic_info</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classReplayRecorder.html#ad8b6540791b7d416519b4c7f8642a83e">   44</a></span>    std::vector&lt; std::vector&lt;BonusInfo&gt; &gt; <a class="code hl_variable" href="classReplayRecorder.html#ad8b6540791b7d416519b4c7f8642a83e">m_bonus_info</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classReplayRecorder.html#aa97e934066d2938e4e82a0541e7dc86a">   47</a></span>    std::vector&lt; std::vector&lt;KartReplayEvent&gt; &gt; <a class="code hl_variable" href="classReplayRecorder.html#aa97e934066d2938e4e82a0541e7dc86a">m_kart_replay_event</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classReplayRecorder.html#a2131c23b4640bab04c43dd6b7938e764">   50</a></span>    std::vector&lt;float&gt; <a class="code hl_variable" href="classReplayRecorder.html#a2131c23b4640bab04c43dd6b7938e764">m_last_saved_time</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classReplayRecorder.html#a22ab68437034496c3e1b6147e34b47ba">   53</a></span>    std::vector&lt;unsigned int&gt; <a class="code hl_variable" href="classReplayRecorder.html#a22ab68437034496c3e1b6147e34b47ba">m_count_transforms</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classReplayRecorder.html#ac085bce72ee5111e9f73f99a284bd57d">   56</a></span>    <span class="keyword">static</span> <a class="code hl_function" href="classReplayRecorder.html#a0350d8714cbcffa472323ddc9ea48d9d">ReplayRecorder</a> *<a class="code hl_variable" href="classReplayRecorder.html#ac085bce72ee5111e9f73f99a284bd57d">m_replay_recorder</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">bool</span>  m_complete_replay;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">bool</span>  m_incorrect_replay;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_max_frames;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment">// Stores the steering value at the previous transform.</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">// Used to trigger the recording of new transforms.</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">float</span> m_previous_steer = 0.0f;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keyword">const</span> <span class="keywordtype">float</span> DISTANCE_FAST_UPDATES = 10.0f;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">const</span> <span class="keywordtype">float</span> DISTANCE_MAX_UPDATES = 1.0f;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    uint64_t m_last_uid;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#ifdef DEBUG</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_count;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_count_skipped_time;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_count_skipped_interpolation;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    uint64_t <a class="code hl_function" href="classReplayRecorder.html#a64707b2c6f8f6a861350f1a80c6ddfd2">computeUID</a>(<span class="keywordtype">float</span> min_time);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>          <a class="code hl_function" href="classReplayRecorder.html#a0350d8714cbcffa472323ddc9ea48d9d">ReplayRecorder</a>();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>         <a class="code hl_function" href="classReplayRecorder.html#a93c2125cb9199495130b2f180b75aed5">~ReplayRecorder</a>();</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classReplayRecorder.html#ac717e809512a77b94c0dbb41ae3377aa">init</a>();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classReplayRecorder.html#ad9fd51b94c67f73a53cea79cd479a01d">reset</a>();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classReplayRecorder.html#a963d61cf814671d2eb08aef37daed15b">save</a>();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classReplayRecorder.html#ab41c673e939aef6f7773778b59280e34">update</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keyword">const</span> uint64_t getLastUID() { <span class="keywordflow">return</span> m_last_uid; }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classReplayRecorder.html#a287c5c92d4b0107f4238424ab103ccea">enumToCode</a> (Attachment::AttachmentType type);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classReplayRecorder.html#a287c5c92d4b0107f4238424ab103ccea">enumToCode</a> (PowerupManager::PowerupType type);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">static</span> Attachment::AttachmentType codeToEnumAttach (<span class="keywordtype">int</span> code);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">static</span> PowerupManager::PowerupType codeToEnumItem (<span class="keywordtype">int</span> code);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00109" data-start="{" data-end="}">
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classReplayRecorder.html#a86f62f2e58680be9daa4db355ba13feb">  109</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classReplayRecorder.html#a86f62f2e58680be9daa4db355ba13feb">create</a>() {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        assert(!<a class="code hl_variable" href="classReplayRecorder.html#ac085bce72ee5111e9f73f99a284bd57d">m_replay_recorder</a>);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <a class="code hl_variable" href="classReplayRecorder.html#ac085bce72ee5111e9f73f99a284bd57d">m_replay_recorder</a> = <span class="keyword">new</span> <a class="code hl_function" href="classReplayRecorder.html#a0350d8714cbcffa472323ddc9ea48d9d">ReplayRecorder</a>();</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    }</div>
+</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classReplayRecorder.html#a4994a55f8c8c3825bb9577bc7c58ac5a">  116</a></span>    <span class="keyword">static</span> <a class="code hl_function" href="classReplayRecorder.html#a0350d8714cbcffa472323ddc9ea48d9d">ReplayRecorder</a> *<a class="code hl_function" href="classReplayRecorder.html#a4994a55f8c8c3825bb9577bc7c58ac5a">get</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classReplayRecorder.html#ac085bce72ee5111e9f73f99a284bd57d">m_replay_recorder</a>; }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classReplayRecorder.html#aefcf91da24ea40cd939b875af6f7a1bc">  119</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classReplayRecorder.html#aefcf91da24ea40cd939b875af6f7a1bc">destroy</a>() { <span class="keyword">delete</span> <a class="code hl_variable" href="classReplayRecorder.html#ac085bce72ee5111e9f73f99a284bd57d">m_replay_recorder</a>; <a class="code hl_variable" href="classReplayRecorder.html#ac085bce72ee5111e9f73f99a284bd57d">m_replay_recorder</a>=NULL; }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classReplayRecorder.html#a58567566f9c708bb020ff50c00b61559">  122</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classReplayRecorder.html#a58567566f9c708bb020ff50c00b61559">getReplayFilename</a>(<span class="keywordtype">int</span> replay_file_number = 1)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_filename; }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>};   <span class="comment">// ReplayRecorder</span></div>
+</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="ttc" id="aclassReplayRecorder_html_a0350d8714cbcffa472323ddc9ea48d9d"><div class="ttname"><a href="classReplayRecorder.html#a0350d8714cbcffa472323ddc9ea48d9d">ReplayRecorder::ReplayRecorder</a></div><div class="ttdeci">ReplayRecorder()</div><div class="ttdoc">Initialises the Replay engine</div><div class="ttdef"><b>Definition</b> replay_recorder.cpp:50</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_a2131c23b4640bab04c43dd6b7938e764"><div class="ttname"><a href="classReplayRecorder.html#a2131c23b4640bab04c43dd6b7938e764">ReplayRecorder::m_last_saved_time</a></div><div class="ttdeci">std::vector&lt; float &gt; m_last_saved_time</div><div class="ttdoc">Time at which a transform was saved for the last time.</div><div class="ttdef"><b>Definition</b> replay_recorder.hpp:50</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_a22ab68437034496c3e1b6147e34b47ba"><div class="ttname"><a href="classReplayRecorder.html#a22ab68437034496c3e1b6147e34b47ba">ReplayRecorder::m_count_transforms</a></div><div class="ttdeci">std::vector&lt; unsigned int &gt; m_count_transforms</div><div class="ttdoc">Counts the number of transform events for each kart.</div><div class="ttdef"><b>Definition</b> replay_recorder.hpp:53</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_a287c5c92d4b0107f4238424ab103ccea"><div class="ttname"><a href="classReplayRecorder.html#a287c5c92d4b0107f4238424ab103ccea">ReplayRecorder::enumToCode</a></div><div class="ttdeci">static int enumToCode(Attachment::AttachmentType type)</div><div class="ttdoc">Functions to encode and decode attahcments and item types, so that the stored value is independent fr...</div><div class="ttdef"><b>Definition</b> replay_recorder.cpp:489</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_a4994a55f8c8c3825bb9577bc7c58ac5a"><div class="ttname"><a href="classReplayRecorder.html#a4994a55f8c8c3825bb9577bc7c58ac5a">ReplayRecorder::get</a></div><div class="ttdeci">static ReplayRecorder * get()</div><div class="ttdoc">Returns the instance of the replay object.</div><div class="ttdef"><b>Definition</b> replay_recorder.hpp:116</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_a58567566f9c708bb020ff50c00b61559"><div class="ttname"><a href="classReplayRecorder.html#a58567566f9c708bb020ff50c00b61559">ReplayRecorder::getReplayFilename</a></div><div class="ttdeci">virtual const std::string &amp; getReplayFilename(int replay_file_number=1) const</div><div class="ttdoc">Returns the filename that was opened.</div><div class="ttdef"><b>Definition</b> replay_recorder.hpp:122</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_a64707b2c6f8f6a861350f1a80c6ddfd2"><div class="ttname"><a href="classReplayRecorder.html#a64707b2c6f8f6a861350f1a80c6ddfd2">ReplayRecorder::computeUID</a></div><div class="ttdeci">uint64_t computeUID(float min_time)</div><div class="ttdoc">Compute the replay&#39;s UID ; partly based on race data ; partly randomly</div><div class="ttdef"><b>Definition</b> replay_recorder.cpp:317</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_a86f62f2e58680be9daa4db355ba13feb"><div class="ttname"><a href="classReplayRecorder.html#a86f62f2e58680be9daa4db355ba13feb">ReplayRecorder::create</a></div><div class="ttdeci">static void create()</div><div class="ttdoc">Creates a new instance of the replay object.</div><div class="ttdef"><b>Definition</b> replay_recorder.hpp:109</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_a93c2125cb9199495130b2f180b75aed5"><div class="ttname"><a href="classReplayRecorder.html#a93c2125cb9199495130b2f180b75aed5">ReplayRecorder::~ReplayRecorder</a></div><div class="ttdeci">~ReplayRecorder()</div><div class="ttdoc">Frees all stored data.</div><div class="ttdef"><b>Definition</b> replay_recorder.cpp:62</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_a963d61cf814671d2eb08aef37daed15b"><div class="ttname"><a href="classReplayRecorder.html#a963d61cf814671d2eb08aef37daed15b">ReplayRecorder::save</a></div><div class="ttdeci">void save()</div><div class="ttdoc">Saves the replay data stored in the internal data structures.</div><div class="ttdef"><b>Definition</b> replay_recorder.cpp:353</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_aa97e934066d2938e4e82a0541e7dc86a"><div class="ttname"><a href="classReplayRecorder.html#aa97e934066d2938e4e82a0541e7dc86a">ReplayRecorder::m_kart_replay_event</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; KartReplayEvent &gt; &gt; m_kart_replay_event</div><div class="ttdoc">A separate vector of Replay Events for all other events.</div><div class="ttdef"><b>Definition</b> replay_recorder.hpp:47</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_ab41c673e939aef6f7773778b59280e34"><div class="ttname"><a href="classReplayRecorder.html#ab41c673e939aef6f7773778b59280e34">ReplayRecorder::update</a></div><div class="ttdeci">void update(int ticks)</div><div class="ttdoc">Saves the current replay data.</div><div class="ttdef"><b>Definition</b> replay_recorder.cpp:115</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_ab5cd300181c81c60a71d05c826164832"><div class="ttname"><a href="classReplayRecorder.html#ab5cd300181c81c60a71d05c826164832">ReplayRecorder::m_physic_info</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; PhysicInfo &gt; &gt; m_physic_info</div><div class="ttdoc">A separate vector of Replay Events for all physic info.</div><div class="ttdef"><b>Definition</b> replay_recorder.hpp:41</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_ac085bce72ee5111e9f73f99a284bd57d"><div class="ttname"><a href="classReplayRecorder.html#ac085bce72ee5111e9f73f99a284bd57d">ReplayRecorder::m_replay_recorder</a></div><div class="ttdeci">static ReplayRecorder * m_replay_recorder</div><div class="ttdoc">Static pointer to the one instance of the replay object.</div><div class="ttdef"><b>Definition</b> replay_recorder.hpp:56</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_ac717e809512a77b94c0dbb41ae3377aa"><div class="ttname"><a href="classReplayRecorder.html#ac717e809512a77b94c0dbb41ae3377aa">ReplayRecorder::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Initialise the replay recorder.</div><div class="ttdef"><b>Definition</b> replay_recorder.cpp:90</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_ad8b6540791b7d416519b4c7f8642a83e"><div class="ttname"><a href="classReplayRecorder.html#ad8b6540791b7d416519b4c7f8642a83e">ReplayRecorder::m_bonus_info</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; BonusInfo &gt; &gt; m_bonus_info</div><div class="ttdoc">A separate vector of Replay Events for all item/nitro info.</div><div class="ttdef"><b>Definition</b> replay_recorder.hpp:44</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_ad9fd51b94c67f73a53cea79cd479a01d"><div class="ttname"><a href="classReplayRecorder.html#ad9fd51b94c67f73a53cea79cd479a01d">ReplayRecorder::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Reset the replay recorder.</div><div class="ttdef"><b>Definition</b> replay_recorder.cpp:68</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_aefcf91da24ea40cd939b875af6f7a1bc"><div class="ttname"><a href="classReplayRecorder.html#aefcf91da24ea40cd939b875af6f7a1bc">ReplayRecorder::destroy</a></div><div class="ttdeci">static void destroy()</div><div class="ttdoc">Delete the instance of the replay object.</div><div class="ttdef"><b>Definition</b> replay_recorder.hpp:119</div></div>
+<div class="ttc" id="aclassReplayRecorder_html_af07b4600bb4e85dd32314cfe38c26c02"><div class="ttname"><a href="classReplayRecorder.html#af07b4600bb4e85dd32314cfe38c26c02">ReplayRecorder::m_transform_events</a></div><div class="ttdeci">std::vector&lt; std::vector&lt; TransformEvent &gt; &gt; m_transform_events</div><div class="ttdoc">A separate vector of Replay Events for all transforms.</div><div class="ttdef"><b>Definition</b> replay_recorder.hpp:38</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

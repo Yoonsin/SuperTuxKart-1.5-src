@@ -1,0 +1,554 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: modes/world.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>modes</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">world.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2004-2015 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_WORLD_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_WORLD_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;graphics/weather.hpp&quot;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;modes/world_status.hpp&quot;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &quot;race/highscores.hpp&quot;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &quot;states_screens/race_gui_base.hpp&quot;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &quot;states_screens/state_manager.hpp&quot;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &quot;utils/random_generator.hpp&quot;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#include &quot;utils/stk_process.hpp&quot;</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#include &quot;LinearMath/btTransform.h&quot;</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">class </span><a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">class </span>btRigidBody;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">class </span><a class="code hl_class" href="classController.html">Controller</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">class </span><a class="code hl_class" href="classItemState.html">ItemState</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">class </span><a class="code hl_class" href="classPhysicalObject.html">PhysicalObject</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">class </span><a class="code hl_class" href="classSTKPeer.html">STKPeer</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">namespace </span>Scripting</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>{</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">class </span><a class="code hl_class" href="classScripting_1_1ScriptEngine.html">ScriptEngine</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">namespace </span>scene { <span class="keyword">class </span>ISceneNode; }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classAbortWorldUpdateException.html">   63</a></span><span class="keyword">class </span>AbortWorldUpdateException : <span class="keyword">public</span> std::runtime_error</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>{</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    AbortWorldUpdateException() : std::runtime_error(<span class="stringliteral">&quot;race abort&quot;</span>) { };</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>};</div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="foldopen" id="foldopen00087" data-start="{" data-end="};">
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classWorld.html">   87</a></span><span class="keyword">class </span><a class="code hl_function" href="classWorld.html#afa39d4e6f714a7a3691ac0c656f5e8a8">World</a> : <span class="keyword">public</span> WorldStatus</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>{</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">typedef</span> std::vector&lt;std::shared_ptr&lt;AbstractKart&gt; &gt; KartList;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classWorld.html#a5c3b909b3d5b838714b2b11eeb2a7d9b">   93</a></span>    <span class="keyword">static</span> <a class="code hl_function" href="classWorld.html#afa39d4e6f714a7a3691ac0c656f5e8a8">World</a> *<a class="code hl_variable" href="classWorld.html#a5c3b909b3d5b838714b2b11eeb2a7d9b">m_world</a>[PT_COUNT];</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">void</span> setAITeam();</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    std::shared_ptr&lt;AbstractKart&gt; createKartWithTeam</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        (<span class="keyword">const</span> std::string &amp;kart_ident, <span class="keywordtype">int</span> index, <span class="keywordtype">int</span> local_player_id,</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordtype">int</span> global_player_id, <a class="code hl_enumeration" href="classRaceManager.html#a32bd4fe8548756ed82bcb39d239c602a">RaceManager::KartType</a> type,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <a class="code hl_enumeration" href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a> handicap);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_magic_number;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">/* Team related variables. */</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordtype">int</span> m_red_ai;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">int</span> m_blue_ai;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    std::map&lt;int, KartTeam&gt; m_kart_team_map;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    std::map&lt;int, unsigned int&gt; m_kart_position_map;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classWorld.html#a6dfabfd54d136017144ac92613d92cff">  115</a></span>    KartList                  <a class="code hl_variable" href="classWorld.html#a6dfabfd54d136017144ac92613d92cff">m_karts</a>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <a class="code hl_class" href="classRandomGenerator.html">RandomGenerator</a>           m_random;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* m_fastest_kart;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classWorld.html#af84529a039eb32490126b5cf1126693a">  120</a></span>    <span class="keywordtype">int</span>         <a class="code hl_variable" href="classWorld.html#af84529a039eb32490126b5cf1126693a">m_eliminated_karts</a>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classWorld.html#a57e26f1f7c636986679043ef7604eee5">  122</a></span>    <span class="keywordtype">int</span>         <a class="code hl_variable" href="classWorld.html#a57e26f1f7c636986679043ef7604eee5">m_eliminated_players</a>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classWorld.html#a4eb2ac6b76044dfb3b64aef30b051ff3">  124</a></span>    <span class="keywordtype">int</span>         <a class="code hl_variable" href="classWorld.html#a4eb2ac6b76044dfb3b64aef30b051ff3">m_num_players</a>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordtype">bool</span>        m_faster_music_active; <span class="comment">// true if faster music was activated</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordtype">bool</span>        m_stop_music_when_dialog_open;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">bool</span>        m_unfair_team;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classWorld.html#af8fb49918e6af9114fdaf1262a0fd428">  135</a></span>    <span class="keywordtype">bool</span>        <a class="code hl_variable" href="classWorld.html#af8fb49918e6af9114fdaf1262a0fd428">m_use_highscores</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classWorld.html#aba5eeb1fbf878721fb72be18ca2296bc">updateHighscores</a>  (<span class="keywordtype">int</span>* best_highscore_rank);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classWorld.html#ae0c12deb1bd0b329e96ed445b4611d2f">resetAllKarts</a>     ();</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <a class="code hl_class" href="classController.html">Controller</a>*</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>          <a class="code hl_function" href="classWorld.html#a005ee95c91b8eee3ba878f40db31f24a">loadAIController</a>  (<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keyword">virtual</span> std::shared_ptr&lt;AbstractKart&gt; <a class="code hl_function" href="classWorld.html#a7366e39e39147014fd14508ab4d7b9c9">createKart</a></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        (<span class="keyword">const</span> std::string &amp;kart_ident, <span class="keywordtype">int</span> index, <span class="keywordtype">int</span> local_player_id,</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="keywordtype">int</span> global_player_id, <a class="code hl_enumeration" href="classRaceManager.html#a32bd4fe8548756ed82bcb39d239c602a">RaceManager::KartType</a> type,</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <a class="code hl_enumeration" href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a> handicap);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="classWorld.html#ada0c6604bab7a1a5e398bca59c16559d">  148</a></span>    <a class="code hl_class" href="classRaceGUIBase.html">RaceGUIBase</a> *<a class="code hl_variable" href="classWorld.html#ada0c6604bab7a1a5e398bca59c16559d">m_race_gui</a>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classWorld.html#a7df4fc96a1a9dbbd9a6c916bdc69a7d4">  155</a></span>    <a class="code hl_class" href="classRaceGUIBase.html">RaceGUIBase</a> *<a class="code hl_variable" href="classWorld.html#a7df4fc96a1a9dbbd9a6c916bdc69a7d4">m_saved_race_gui</a>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="classWorld.html#a01d81a6016dc1c1da86a5c7a27f30ddf">  162</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classWorld.html#a01d81a6016dc1c1da86a5c7a27f30ddf">m_schedule_pause</a>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="classWorld.html#a201c225da38b4acce17a7e1c0fba32dc">  169</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classWorld.html#a201c225da38b4acce17a7e1c0fba32dc">m_schedule_unpause</a>;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keywordtype">bool</span> m_schedule_exit_race;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">bool</span> m_schedule_tutorial;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    Phase m_scheduled_pause_phase;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordtype">bool</span> m_restart_camera;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classWorld.html#a5bb40d0cb3b7fc017a4fd552f685ae42">  182</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classWorld.html#a5bb40d0cb3b7fc017a4fd552f685ae42">m_self_destruct</a>;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="classWorld.html#a779f1c2d28f4102f16a372f9c6d0b4c6">  185</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classWorld.html#a779f1c2d28f4102f16a372f9c6d0b4c6">m_is_network_world</a>;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keywordtype">bool</span> m_ended_early;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>  <a class="code hl_function" href="classWorld.html#a7eadf39a84ccb1c96c77c3ac9178448a">onGo</a>() OVERRIDE;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classWorld.html#a83f794dffa2126df37946d2c3b57bbc8">  191</a></span>    virtual <span class="keywordtype">bool</span>  <a class="code hl_function" href="classWorld.html#a83f794dffa2126df37946d2c3b57bbc8">isRaceOver</a>() = 0;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    virtual <span class="keywordtype">void</span>  <a class="code hl_function" href="classWorld.html#aee4ccbf57a455d2bc52b2405f949df80">update</a>(<span class="keywordtype">int</span> ticks) OVERRIDE;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    virtual <span class="keywordtype">void</span>  createRaceGUI();</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>            <span class="keywordtype">void</span>  <a class="code hl_function" href="classWorld.html#ad29ebf28204a4a49df1f0258b1296a87">updateTrack</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00203" data-start="{" data-end="}">
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="classWorld.html#aab02a1a426c5119be746e7723e45759c">  203</a></span>    virtual <span class="keywordtype">float</span> <a class="code hl_function" href="classWorld.html#aab02a1a426c5119be746e7723e45759c">estimateFinishTimeForKart</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart)</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                                        {<span class="keywordflow">return</span> <a class="code hl_function" href="classWorldStatus.html#a0b1a1ed183546ec4058774cc8a04039e">getTime</a>(); }</div>
+</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordtype">void</span> updateAchievementDataEndRace();</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordtype">void</span> updateAchievementModeCounters(<span class="keywordtype">bool</span> start);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                    <a class="code hl_function" href="classWorld.html#afa39d4e6f714a7a3691ac0c656f5e8a8">World</a>();</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keyword">virtual</span>        <a class="code hl_class" href="classWorld.html">~World</a>();</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="comment">// Static functions to access world:</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="comment">// =================================</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00215" data-start="{" data-end="}">
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="classWorld.html#ad41c185176646b2fdf9a3536faecb996">  215</a></span>    <span class="keyword">static</span> <a class="code hl_function" href="classWorld.html#afa39d4e6f714a7a3691ac0c656f5e8a8">World</a>*   <a class="code hl_function" href="classWorld.html#ad41c185176646b2fdf9a3536faecb996">getWorld</a>()</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        ProcessType type = STKProcess::getType();</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classWorld.html#a5c3b909b3d5b838714b2b11eeb2a7d9b">m_world</a>[type];</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    }</div>
+</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00224" data-start="{" data-end="}">
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="classWorld.html#af5c23fcba9166c54b6b89e9255cdb93f">  224</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span>     <a class="code hl_function" href="classWorld.html#af5c23fcba9166c54b6b89e9255cdb93f">deleteWorld</a>()</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    {</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        ProcessType type = STKProcess::getType();</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        <span class="keyword">delete</span> <a class="code hl_variable" href="classWorld.html#a5c3b909b3d5b838714b2b11eeb2a7d9b">m_world</a>[type];</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        <a class="code hl_variable" href="classWorld.html#a5c3b909b3d5b838714b2b11eeb2a7d9b">m_world</a>[type] = NULL;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    }</div>
+</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00233" data-start="{" data-end="}">
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="classWorld.html#a1bb0c0840ed4352390fefcd6afb3423d">  233</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span>     <a class="code hl_function" href="classWorld.html#a1bb0c0840ed4352390fefcd6afb3423d">setWorld</a>(<a class="code hl_function" href="classWorld.html#afa39d4e6f714a7a3691ac0c656f5e8a8">World</a> *world)</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    {</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        ProcessType type = STKProcess::getType();</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        <a class="code hl_variable" href="classWorld.html#a5c3b909b3d5b838714b2b11eeb2a7d9b">m_world</a>[type] = world;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    }</div>
+</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keyword">static</span> <span class="keywordtype">void</span>     clear() { memset(<a class="code hl_variable" href="classWorld.html#a5c3b909b3d5b838714b2b11eeb2a7d9b">m_world</a>, 0, <span class="keyword">sizeof</span>(<a class="code hl_variable" href="classWorld.html#a5c3b909b3d5b838714b2b11eeb2a7d9b">m_world</a>)); }</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="comment">// Pure virtual functions</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="comment">// ======================</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="classWorld.html#ac6068680cb140ee9f9fc88eb3a7f23a0">  247</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classWorld.html#ac6068680cb140ee9f9fc88eb3a7f23a0">getIdent</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classWorld.html#adb3cb2fd5422d1415c9216cf94012c6b">getNumberOfRescuePositions</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno"><a class="line" href="classWorld.html#ac3fca47d5263315d51a0346e3730a18c">  254</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classWorld.html#ac3fca47d5263315d51a0346e3730a18c">getRescuePositionIndex</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart) = 0;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keyword">virtual</span> btTransform <a class="code hl_function" href="classWorld.html#adf5ca5bf3c9f5b29c82d409e9c254e17">getRescueTransform</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classWorld.html#af562ea7012ed10b5e99d8d98d12ce24c">moveKartAfterRescue</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno"><a class="line" href="classWorld.html#a6a5a3c52c7bc6c3eb55b934092cee26b">  263</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classWorld.html#a6a5a3c52c7bc6c3eb55b934092cee26b">raceHasLaps</a>() = 0;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno"><a class="line" href="classWorld.html#a47fb3c1f281dcb0965b4faff4b575140">  266</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classWorld.html#a47fb3c1f281dcb0965b4faff4b575140">showLapsTarget</a>() { <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00270" data-start="{" data-end="}">
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="classWorld.html#a734c8d84e624834da3db940ba3dbfdde">  270</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classWorld.html#a734c8d84e624834da3db940ba3dbfdde">getFinishedLapsOfKart</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> kart_index)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        assert(<span class="keyword">false</span>); <span class="keywordflow">return</span> -1; <span class="comment">// remove compiler warning</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    }   <span class="comment">// getFinishedLapsOfKart</span></div>
+</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="classWorld.html#ac69d02e10a5ee640dd9d09a969c99b44">  277</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classWorld.html#ac69d02e10a5ee640dd9d09a969c99b44">getKartsDisplayInfo</a>(</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                       std::vector&lt;RaceGUIBase::KartIconDisplayInfo&gt; *info)= 0;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="comment">// Virtual functions</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="comment">// =================</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>    <a class="code hl_function" href="classWorld.html#a0150607a49c2400d5c848159dd02d533">init</a>();</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>    <a class="code hl_function" href="classWorld.html#ad5a6c9cbfd7aecb8b5ace949caec7d03">updateGraphics</a>(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>    <a class="code hl_function" href="classWorld.html#a20b4f1cd0a19429d3e75d740f39637c6">terminateRace</a>() OVERRIDE;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    virtual <span class="keywordtype">void</span>    <a class="code hl_function" href="classWorld.html#ac5fd2328d02d6083679ee020dd8832e3">reset</a>(<span class="keywordtype">bool</span> restart=false) OVERRIDE;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    virtual <span class="keywordtype">void</span>    <a class="code hl_function" href="classWorld.html#a7e2a16aaa4cbbc4544adcb910b0fa6c2">pause</a>(Phase phase) OVERRIDE;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    virtual <span class="keywordtype">void</span>    <a class="code hl_function" href="classWorld.html#ac840af270ecc29e0917138d647e2db89">unpause</a>() OVERRIDE;</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    virtual <span class="keywordtype">void</span>    <a class="code hl_function" href="classWorld.html#a6dbfceb160c7b419ebdb54d1f5c32af2">getDefaultCollectibles</a>(<span class="keywordtype">int</span> *collectible_type,</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>                                           <span class="keywordtype">int</span> *amount );</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00293" data-start="{" data-end="}">
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno"><a class="line" href="classWorld.html#ab4d527f78bc52a41afadbe663bbe80eb">  293</a></span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classWorld.html#ab4d527f78bc52a41afadbe663bbe80eb">collectedItem</a>(const <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart, </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>                               const <a class="code hl_class" href="classItemState.html">ItemState</a> *item    ) {}</div>
+</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> endRaceEarly() { <span class="keywordflow">return</span>; }</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> hasRaceEndedEarly()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_ended_early; }</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno"><a class="line" href="classWorld.html#aaf69e2ce6614d86aaf44ab7d59da3764">  301</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classWorld.html#aaf69e2ce6614d86aaf44ab7d59da3764">haveBonusBoxes</a>() { <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno"><a class="line" href="classWorld.html#a5dea3e6bcb834baafde454993d1d1d9e">  304</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classWorld.html#a5dea3e6bcb834baafde454993d1d1d9e">useFastMusicNearEnd</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno"><a class="line" href="classWorld.html#a0d096116ccefbb4f14bc033abdd7bcc4">  308</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classWorld.html#a0d096116ccefbb4f14bc033abdd7bcc4">kartAdded</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart, scene::ISceneNode* node) {}</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno"><a class="line" href="classWorld.html#af13b3e85ed7f9a15f3851a5f311db273">  313</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classWorld.html#af13b3e85ed7f9a15f3851a5f311db273">newLap</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> kart_index) {}</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno"><a class="line" href="classWorld.html#a85dae599b3d2186fc28a7a0665cc83df">  316</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classWorld.html#a85dae599b3d2186fc28a7a0665cc83df">kartHit</a>(<span class="keywordtype">int</span> kart_id, <span class="keywordtype">int</span> hitter = -1) { <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> onMouseClick(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y) {};</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="comment">// Other functions</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    <span class="comment">// ===============</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    Highscores     *getHighscores() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    Highscores     *getGPHighscores() <span class="keyword">const</span>; </div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keywordtype">void</span>            schedulePause(Phase phase);</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    <span class="keywordtype">void</span>            scheduleUnpause();</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    <span class="keywordtype">void</span>            scheduleExitRace() { m_schedule_exit_race = <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <span class="keywordtype">void</span>            scheduleTutorial();</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keywordtype">void</span>            <a class="code hl_function" href="classWorld.html#a5280bf9a0986cc6665cfe7df1ea21cb0">updateWorld</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    <span class="keywordtype">void</span>            handleExplosion(<span class="keyword">const</span> Vec3 &amp;xyz, AbstractKart *kart_hit,</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>                                    PhysicalObject *<span class="keywordtype">object</span>);</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    AbstractKart*   <a class="code hl_function" href="classWorld.html#aebcee547bdf51e53a38a39cc53a2524c">getPlayerKart</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> player) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    AbstractKart*   <a class="code hl_function" href="classWorld.html#a93b8945af519dfea01463e39c59d46eb">getLocalPlayerKart</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> btTransform &amp;<a class="code hl_function" href="classWorld.html#adbb655257c38dfd6b129d91ada70e28f">getStartTransform</a>(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classWorld.html#ad5b02fb96f9abac517f7f7be280b8cfd">moveKartTo</a>(AbstractKart* kart, <span class="keyword">const</span> btTransform &amp;t);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    <span class="keywordtype">void</span> updateTimeTargetSound();</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno"><a class="line" href="classWorld.html#ac583f32b415db85600bc9ebe2e257b78">  338</a></span>    <a class="code hl_class" href="classRaceGUIBase.html">RaceGUIBase</a>    *<a class="code hl_function" href="classWorld.html#ac583f32b415db85600bc9ebe2e257b78">getRaceGUI</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classWorld.html#ada0c6604bab7a1a5e398bca59c16559d">m_race_gui</a>;}</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno"><a class="line" href="classWorld.html#ac7f00e3de67c521d9e9688c9faa58e85">  341</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>    <a class="code hl_function" href="classWorld.html#ac7f00e3de67c521d9e9688c9faa58e85">getNumKarts</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>) <a class="code hl_variable" href="classWorld.html#a6dfabfd54d136017144ac92613d92cff">m_karts</a>.size(); }</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00344" data-start="{" data-end="}">
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno"><a class="line" href="classWorld.html#ac9fd82b46af18186ff5fe5db19d8e2b5">  344</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>       *<a class="code hl_function" href="classWorld.html#ac9fd82b46af18186ff5fe5db19d8e2b5">getKart</a>(<span class="keywordtype">int</span> kartId)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>                        assert(kartId &gt;= 0 &amp;&amp; kartId &lt; <span class="keywordtype">int</span>(<a class="code hl_variable" href="classWorld.html#a6dfabfd54d136017144ac92613d92cff">m_karts</a>.size()));</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>                        <span class="keywordflow">return</span> <a class="code hl_variable" href="classWorld.html#a6dfabfd54d136017144ac92613d92cff">m_karts</a>[kartId].get();                              }</div>
+</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno"><a class="line" href="classWorld.html#a9c6248c4b77ef18b40cfc87c59ac74d9">  349</a></span>    <span class="keyword">const</span> KartList &amp; <a class="code hl_function" href="classWorld.html#a9c6248c4b77ef18b40cfc87c59ac74d9">getKarts</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classWorld.html#a6dfabfd54d136017144ac92613d92cff">m_karts</a>; }</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00352" data-start="{" data-end="}">
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno"><a class="line" href="classWorld.html#a551156c653186c990bde62cc9a5978c3">  352</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>    <a class="code hl_function" href="classWorld.html#a551156c653186c990bde62cc9a5978c3">getCurrentNumKarts</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<span class="keywordtype">int</span>)<a class="code hl_variable" href="classWorld.html#a6dfabfd54d136017144ac92613d92cff">m_karts</a>.size() -</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>                                                         <a class="code hl_variable" href="classWorld.html#af84529a039eb32490126b5cf1126693a">m_eliminated_karts</a>; }</div>
+</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00356" data-start="{" data-end="}">
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno"><a class="line" href="classWorld.html#aa17ec6b59f8f35741024ea52f5d61756">  356</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>    <a class="code hl_function" href="classWorld.html#aa17ec6b59f8f35741024ea52f5d61756">getCurrentNumPlayers</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classWorld.html#a4eb2ac6b76044dfb3b64aef30b051ff3">m_num_players</a> -</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>                                                         <a class="code hl_variable" href="classWorld.html#a57e26f1f7c636986679043ef7604eee5">m_eliminated_players</a>;}</div>
+</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    <span class="keywordtype">void</span> resetElimination()</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    {</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>        <a class="code hl_variable" href="classWorld.html#af84529a039eb32490126b5cf1126693a">m_eliminated_karts</a> = 0;</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>        <a class="code hl_variable" href="classWorld.html#a57e26f1f7c636986679043ef7604eee5">m_eliminated_players</a> = 0;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    }</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> addReservedKart(<span class="keywordtype">int</span> kart_id)</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    {</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classWorld.html#af84529a039eb32490126b5cf1126693a">m_eliminated_karts</a> &gt; 0)</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>            <a class="code hl_variable" href="classWorld.html#af84529a039eb32490126b5cf1126693a">m_eliminated_karts</a>--;</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>    }</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> saveCompleteState(BareNetworkString* bns, STKPeer* peer) {}</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> restoreCompleteState(<span class="keyword">const</span> BareNetworkString&amp; buffer) {}</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00377" data-start="{" data-end="}">
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno"><a class="line" href="classWorld.html#ad01e3d3b39db7500d73c78e43cb9125e">  377</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classWorld.html#ad01e3d3b39db7500d73c78e43cb9125e">shouldDrawTimer</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span><span class="keyword">                    </span>{ <span class="keywordflow">return</span> isActiveRacePhase() &amp;&amp; <a class="code hl_function" href="classWorldStatus.html#a5bf7a05e86695915042e9346c30082d1">getClockMode</a>() != CLOCK_NONE; }</div>
+</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno"><a class="line" href="classWorld.html#aa4838c4cd781f8919529d01e1f3f9f0d">  381</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classWorld.html#aa4838c4cd781f8919529d01e1f3f9f0d">shouldDrawSpeedometerDigit</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00384" data-start="{" data-end="}">
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno"><a class="line" href="classWorld.html#a6f08597cf1b9ea5d9bc10bc3b3dcdb43">  384</a></span>    <span class="keyword">virtual</span> std::pair&lt;int, video::SColor&gt; <a class="code hl_function" href="classWorld.html#a6f08597cf1b9ea5d9bc10bc3b3dcdb43">getSpeedometerDigit</a>(<span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart)<span class="keyword"> const </span></div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span><span class="keyword">                </span>{ <span class="keywordflow">return</span> std::make_pair(0, video::SColor(255, 255, 255, 255)); }</div>
+</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno"><a class="line" href="classWorld.html#aacc60c6f009b63cac2a8089b13a55cea">  388</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classWorld.html#aacc60c6f009b63cac2a8089b13a55cea">useHighScores</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classWorld.html#af8fb49918e6af9114fdaf1262a0fd428">m_use_highscores</a>; }</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno"><a class="line" href="classWorld.html#a726980d0849da2f2cb9c5b9a8a1cf5a2">  391</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classWorld.html#a726980d0849da2f2cb9c5b9a8a1cf5a2">onFirePressed</a>(<a class="code hl_class" href="classController.html">Controller</a>* who) {}</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno"><a class="line" href="classWorld.html#af8f6d702df8a15919417a20e9cc2277c">  395</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classWorld.html#af8f6d702df8a15919417a20e9cc2277c">useChecklineRequirements</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> escapePressed();</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> loadCustomModels() {}</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classWorld.html#a3dbf353890721e4e8d2947e423b34269">eliminateKart</a>(<span class="keywordtype">int</span> kart_number, <span class="keywordtype">bool</span> notify_of_elimination = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>    <span class="keywordtype">void</span> setUnfairTeam(<span class="keywordtype">bool</span> val)                       { m_unfair_team = val; }</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> hasTeam()<span class="keyword"> const                              </span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>    KartTeam <a class="code hl_function" href="classWorld.html#acf7478da5c6663b48e62f67c4c6041e4">getKartTeam</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> kart_id) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>    <span class="keywordtype">int</span> getTeamNum(KartTeam team) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno"><a class="line" href="classWorld.html#a909f6d3d00d66f2b237cc3341596a7ea">  413</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classWorld.html#a909f6d3d00d66f2b237cc3341596a7ea">setNetworkWorld</a>(<span class="keywordtype">bool</span> is_networked) { <a class="code hl_variable" href="classWorld.html#a779f1c2d28f4102f16a372f9c6d0b4c6">m_is_network_world</a> = is_networked; }</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    <span class="keywordtype">bool</span> isNetworkWorld()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classWorld.html#a779f1c2d28f4102f16a372f9c6d0b4c6">m_is_network_world</a>; }</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classWorld.html#abc3f9aee388e8957471cf664959e832b">initTeamArrows</a>(AbstractKart* k);</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00423" data-start="{" data-end="}">
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno"><a class="line" href="classWorld.html#a24266310d43a8fc16d7ff3f3bcbf62b5">  423</a></span>    <span class="keyword">virtual</span> std::pair&lt;uint32_t, uint32_t&gt; <a class="code hl_function" href="classWorld.html#a24266310d43a8fc16d7ff3f3bcbf62b5">getGameStartedProgress</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>        <span class="keywordflow">return</span> std::make_pair(std::numeric_limits&lt;uint32_t&gt;::max(),</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>            std::numeric_limits&lt;uint32_t&gt;::max());</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    }</div>
+</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> isGoalPhase()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>};   <span class="comment">// World</span></div>
+</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span> </div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> </div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span><span class="comment">/* EOF */</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassController_html"><div class="ttname"><a href="classController.html">Controller</a></div><div class="ttdoc">This is the base class for kart controller - that can be a player or a a robot.</div><div class="ttdef"><b>Definition</b> controller.hpp:46</div></div>
+<div class="ttc" id="aclassItemState_html"><div class="ttname"><a href="classItemState.html">ItemState</a></div><div class="ttdoc">Contains the state information of an item, i.e.</div><div class="ttdef"><b>Definition</b> item.hpp:53</div></div>
+<div class="ttc" id="aclassPhysicalObject_html"><div class="ttname"><a href="classPhysicalObject.html">PhysicalObject</a></div><div class="ttdef"><b>Definition</b> physical_object.hpp:40</div></div>
+<div class="ttc" id="aclassRaceGUIBase_html"><div class="ttname"><a href="classRaceGUIBase.html">RaceGUIBase</a></div><div class="ttdoc">An abstract base class for the two race guis (race_gui and race_result gui)</div><div class="ttdef"><b>Definition</b> race_gui_base.hpp:50</div></div>
+<div class="ttc" id="aclassRaceManager_html_a32bd4fe8548756ed82bcb39d239c602a"><div class="ttname"><a href="classRaceManager.html#a32bd4fe8548756ed82bcb39d239c602a">RaceManager::KartType</a></div><div class="ttdeci">KartType</div><div class="ttdoc">Different kart types: A local player, a player connected via network, an AI kart, the leader kart (cu...</div><div class="ttdef"><b>Definition</b> race_manager.hpp:243</div></div>
+<div class="ttc" id="aclassRandomGenerator_html"><div class="ttname"><a href="classRandomGenerator.html">RandomGenerator</a></div><div class="ttdoc">A random number generator.</div><div class="ttdef"><b>Definition</b> random_generator.hpp:33</div></div>
+<div class="ttc" id="aclassSTKPeer_html"><div class="ttname"><a href="classSTKPeer.html">STKPeer</a></div><div class="ttdoc">Represents a peer. This class is used to interface the ENetPeer structure.</div><div class="ttdef"><b>Definition</b> stk_peer.hpp:76</div></div>
+<div class="ttc" id="aclassScripting_1_1ScriptEngine_html"><div class="ttname"><a href="classScripting_1_1ScriptEngine.html">Scripting::ScriptEngine</a></div><div class="ttdef"><b>Definition</b> script_engine.hpp:60</div></div>
+<div class="ttc" id="aclassWorldStatus_html_a0b1a1ed183546ec4058774cc8a04039e"><div class="ttname"><a href="classWorldStatus.html#a0b1a1ed183546ec4058774cc8a04039e">WorldStatus::getTime</a></div><div class="ttdeci">float getTime() const</div><div class="ttdoc">Returns the current race time.</div><div class="ttdef"><b>Definition</b> world_status.hpp:204</div></div>
+<div class="ttc" id="aclassWorldStatus_html_a5bf7a05e86695915042e9346c30082d1"><div class="ttname"><a href="classWorldStatus.html#a5bf7a05e86695915042e9346c30082d1">WorldStatus::getClockMode</a></div><div class="ttdeci">int getClockMode() const</div><div class="ttdoc">Returns the current clock mode.</div><div class="ttdef"><b>Definition</b> world_status.hpp:200</div></div>
+<div class="ttc" id="aclassWorld_html"><div class="ttname"><a href="classWorld.html">World</a></div><div class="ttdoc">base class for all game modes This class is responsible for running the actual race.</div><div class="ttdef"><b>Definition</b> world.hpp:88</div></div>
+<div class="ttc" id="aclassWorld_html_a005ee95c91b8eee3ba878f40db31f24a"><div class="ttname"><a href="classWorld.html#a005ee95c91b8eee3ba878f40db31f24a">World::loadAIController</a></div><div class="ttdeci">Controller * loadAIController(AbstractKart *kart)</div><div class="ttdoc">Creates an AI controller for the kart.</div><div class="ttdef"><b>Definition</b> world.cpp:582</div></div>
+<div class="ttc" id="aclassWorld_html_a0150607a49c2400d5c848159dd02d533"><div class="ttname"><a href="classWorld.html#a0150607a49c2400d5c848159dd02d533">World::init</a></div><div class="ttdeci">virtual void init()</div><div class="ttdoc">This function is called after instanciating.</div><div class="ttdef"><b>Definition</b> world.cpp:155</div></div>
+<div class="ttc" id="aclassWorld_html_a01d81a6016dc1c1da86a5c7a27f30ddf"><div class="ttname"><a href="classWorld.html#a01d81a6016dc1c1da86a5c7a27f30ddf">World::m_schedule_pause</a></div><div class="ttdeci">bool m_schedule_pause</div><div class="ttdoc">Pausing/unpausing are not done immediately, but at next udpdate.</div><div class="ttdef"><b>Definition</b> world.hpp:162</div></div>
+<div class="ttc" id="aclassWorld_html_a0d096116ccefbb4f14bc033abdd7bcc4"><div class="ttname"><a href="classWorld.html#a0d096116ccefbb4f14bc033abdd7bcc4">World::kartAdded</a></div><div class="ttdeci">virtual void kartAdded(AbstractKart *kart, scene::ISceneNode *node)</div><div class="ttdoc">If you want to do something to karts or their graphics at the start of the race, override this.</div><div class="ttdef"><b>Definition</b> world.hpp:308</div></div>
+<div class="ttc" id="aclassWorld_html_a1bb0c0840ed4352390fefcd6afb3423d"><div class="ttname"><a href="classWorld.html#a1bb0c0840ed4352390fefcd6afb3423d">World::setWorld</a></div><div class="ttdeci">static void setWorld(World *world)</div><div class="ttdoc">Sets the pointer to the world object.</div><div class="ttdef"><b>Definition</b> world.hpp:233</div></div>
+<div class="ttc" id="aclassWorld_html_a201c225da38b4acce17a7e1c0fba32dc"><div class="ttname"><a href="classWorld.html#a201c225da38b4acce17a7e1c0fba32dc">World::m_schedule_unpause</a></div><div class="ttdeci">bool m_schedule_unpause</div><div class="ttdoc">Pausing/unpausing are not done immediately, but at next udpdate.</div><div class="ttdef"><b>Definition</b> world.hpp:169</div></div>
+<div class="ttc" id="aclassWorld_html_a20b4f1cd0a19429d3e75d740f39637c6"><div class="ttname"><a href="classWorld.html#a20b4f1cd0a19429d3e75d740f39637c6">World::terminateRace</a></div><div class="ttdeci">virtual void terminateRace() OVERRIDE</div><div class="ttdoc">Called at the end of a race.</div><div class="ttdef"><b>Definition</b> world.cpp:739</div></div>
+<div class="ttc" id="aclassWorld_html_a24266310d43a8fc16d7ff3f3bcbf62b5"><div class="ttname"><a href="classWorld.html#a24266310d43a8fc16d7ff3f3bcbf62b5">World::getGameStartedProgress</a></div><div class="ttdeci">virtual std::pair&lt; uint32_t, uint32_t &gt; getGameStartedProgress() const</div><div class="ttdoc">Used by server to get the current started game progress in either or both remaining time or progress ...</div><div class="ttdef"><b>Definition</b> world.hpp:423</div></div>
+<div class="ttc" id="aclassWorld_html_a3dbf353890721e4e8d2947e423b34269"><div class="ttname"><a href="classWorld.html#a3dbf353890721e4e8d2947e423b34269">World::eliminateKart</a></div><div class="ttdeci">void eliminateKart(int kart_number, bool notify_of_elimination=true)</div><div class="ttdoc">Remove (eliminate) a kart from the race</div><div class="ttdef"><b>Definition</b> world.cpp:1419</div></div>
+<div class="ttc" id="aclassWorld_html_a47fb3c1f281dcb0965b4faff4b575140"><div class="ttname"><a href="classWorld.html#a47fb3c1f281dcb0965b4faff4b575140">World::showLapsTarget</a></div><div class="ttdeci">virtual bool showLapsTarget()</div><div class="ttdoc">If true lap counter shows lap count in format: 4/20 or if false then in format: 4</div><div class="ttdef"><b>Definition</b> world.hpp:266</div></div>
+<div class="ttc" id="aclassWorld_html_a4eb2ac6b76044dfb3b64aef30b051ff3"><div class="ttname"><a href="classWorld.html#a4eb2ac6b76044dfb3b64aef30b051ff3">World::m_num_players</a></div><div class="ttdeci">int m_num_players</div><div class="ttdoc">OVerall number of players.</div><div class="ttdef"><b>Definition</b> world.hpp:124</div></div>
+<div class="ttc" id="aclassWorld_html_a5280bf9a0986cc6665cfe7df1ea21cb0"><div class="ttname"><a href="classWorld.html#a5280bf9a0986cc6665cfe7df1ea21cb0">World::updateWorld</a></div><div class="ttdeci">void updateWorld(int ticks)</div><div class="ttdoc">This is the main interface to update the world.</div><div class="ttdef"><b>Definition</b> world.cpp:1022</div></div>
+<div class="ttc" id="aclassWorld_html_a551156c653186c990bde62cc9a5978c3"><div class="ttname"><a href="classWorld.html#a551156c653186c990bde62cc9a5978c3">World::getCurrentNumKarts</a></div><div class="ttdeci">unsigned int getCurrentNumKarts() const</div><div class="ttdoc">Returns the number of currently active (i.e.non-elikminated) karts.</div><div class="ttdef"><b>Definition</b> world.hpp:352</div></div>
+<div class="ttc" id="aclassWorld_html_a57e26f1f7c636986679043ef7604eee5"><div class="ttname"><a href="classWorld.html#a57e26f1f7c636986679043ef7604eee5">World::m_eliminated_players</a></div><div class="ttdeci">int m_eliminated_players</div><div class="ttdoc">Number of eliminated players.</div><div class="ttdef"><b>Definition</b> world.hpp:122</div></div>
+<div class="ttc" id="aclassWorld_html_a5bb40d0cb3b7fc017a4fd552f685ae42"><div class="ttname"><a href="classWorld.html#a5bb40d0cb3b7fc017a4fd552f685ae42">World::m_self_destruct</a></div><div class="ttdeci">bool m_self_destruct</div><div class="ttdoc">Set when the world needs to be deleted but you can&#39;t do it immediately because you are e....</div><div class="ttdef"><b>Definition</b> world.hpp:182</div></div>
+<div class="ttc" id="aclassWorld_html_a5c3b909b3d5b838714b2b11eeb2a7d9b"><div class="ttname"><a href="classWorld.html#a5c3b909b3d5b838714b2b11eeb2a7d9b">World::m_world</a></div><div class="ttdeci">static World * m_world[PT_COUNT]</div><div class="ttdoc">A pointer to the global world object for a race.</div><div class="ttdef"><b>Definition</b> world.hpp:93</div></div>
+<div class="ttc" id="aclassWorld_html_a5dea3e6bcb834baafde454993d1d1d9e"><div class="ttname"><a href="classWorld.html#a5dea3e6bcb834baafde454993d1d1d9e">World::useFastMusicNearEnd</a></div><div class="ttdeci">virtual bool useFastMusicNearEnd() const</div><div class="ttdoc">Returns if this mode should use fast music (if available).</div><div class="ttdef"><b>Definition</b> world.hpp:304</div></div>
+<div class="ttc" id="aclassWorld_html_a6a5a3c52c7bc6c3eb55b934092cee26b"><div class="ttname"><a href="classWorld.html#a6a5a3c52c7bc6c3eb55b934092cee26b">World::raceHasLaps</a></div><div class="ttdeci">virtual bool raceHasLaps()=0</div><div class="ttdoc">Called when it is needed to know whether this kind of race involves counting laps.</div></div>
+<div class="ttc" id="aclassWorld_html_a6dbfceb160c7b419ebdb54d1f5c32af2"><div class="ttname"><a href="classWorld.html#a6dbfceb160c7b419ebdb54d1f5c32af2">World::getDefaultCollectibles</a></div><div class="ttdeci">virtual void getDefaultCollectibles(int *collectible_type, int *amount)</div><div class="ttdoc">Called to determine the default collectibles to give each player at the start for this kind of race.</div><div class="ttdef"><b>Definition</b> world.cpp:1476</div></div>
+<div class="ttc" id="aclassWorld_html_a6dfabfd54d136017144ac92613d92cff"><div class="ttname"><a href="classWorld.html#a6dfabfd54d136017144ac92613d92cff">World::m_karts</a></div><div class="ttdeci">KartList m_karts</div><div class="ttdoc">The list of all karts.</div><div class="ttdef"><b>Definition</b> world.hpp:115</div></div>
+<div class="ttc" id="aclassWorld_html_a6f08597cf1b9ea5d9bc10bc3b3dcdb43"><div class="ttname"><a href="classWorld.html#a6f08597cf1b9ea5d9bc10bc3b3dcdb43">World::getSpeedometerDigit</a></div><div class="ttdeci">virtual std::pair&lt; int, video::SColor &gt; getSpeedometerDigit(const AbstractKart *kart) const</div><div class="ttdef"><b>Definition</b> world.hpp:384</div></div>
+<div class="ttc" id="aclassWorld_html_a726980d0849da2f2cb9c5b9a8a1cf5a2"><div class="ttname"><a href="classWorld.html#a726980d0849da2f2cb9c5b9a8a1cf5a2">World::onFirePressed</a></div><div class="ttdeci">virtual void onFirePressed(Controller *who)</div><div class="ttdoc">Override if you want to know when a kart presses fire</div><div class="ttdef"><b>Definition</b> world.hpp:391</div></div>
+<div class="ttc" id="aclassWorld_html_a734c8d84e624834da3db940ba3dbfdde"><div class="ttname"><a href="classWorld.html#a734c8d84e624834da3db940ba3dbfdde">World::getFinishedLapsOfKart</a></div><div class="ttdeci">virtual int getFinishedLapsOfKart(unsigned int kart_index) const</div><div class="ttdoc">Returns the number of laps for a given kart.</div><div class="ttdef"><b>Definition</b> world.hpp:270</div></div>
+<div class="ttc" id="aclassWorld_html_a7366e39e39147014fd14508ab4d7b9c9"><div class="ttname"><a href="classWorld.html#a7366e39e39147014fd14508ab4d7b9c9">World::createKart</a></div><div class="ttdeci">virtual std::shared_ptr&lt; AbstractKart &gt; createKart(const std::string &amp;kart_ident, int index, int local_player_id, int global_player_id, RaceManager::KartType type, HandicapLevel handicap)</div><div class="ttdoc">Creates a kart, having a certain position, starting location, and local and global player id (if appl...</div><div class="ttdef"><b>Definition</b> world.cpp:467</div></div>
+<div class="ttc" id="aclassWorld_html_a779f1c2d28f4102f16a372f9c6d0b4c6"><div class="ttname"><a href="classWorld.html#a779f1c2d28f4102f16a372f9c6d0b4c6">World::m_is_network_world</a></div><div class="ttdeci">bool m_is_network_world</div><div class="ttdoc">Set when the world is online and counts network players.</div><div class="ttdef"><b>Definition</b> world.hpp:185</div></div>
+<div class="ttc" id="aclassWorld_html_a7df4fc96a1a9dbbd9a6c916bdc69a7d4"><div class="ttname"><a href="classWorld.html#a7df4fc96a1a9dbbd9a6c916bdc69a7d4">World::m_saved_race_gui</a></div><div class="ttdeci">RaceGUIBase * m_saved_race_gui</div><div class="ttdoc">The actual race gui needs to be saved when the race result gui is displayed since it is still needed ...</div><div class="ttdef"><b>Definition</b> world.hpp:155</div></div>
+<div class="ttc" id="aclassWorld_html_a7e2a16aaa4cbbc4544adcb910b0fa6c2"><div class="ttname"><a href="classWorld.html#a7e2a16aaa4cbbc4544adcb910b0fa6c2">World::pause</a></div><div class="ttdeci">virtual void pause(Phase phase) OVERRIDE</div><div class="ttdoc">Pauses the music (and then pauses WorldStatus).</div><div class="ttdef"><b>Definition</b> world.cpp:1485</div></div>
+<div class="ttc" id="aclassWorld_html_a7eadf39a84ccb1c96c77c3ac9178448a"><div class="ttname"><a href="classWorld.html#a7eadf39a84ccb1c96c77c3ac9178448a">World::onGo</a></div><div class="ttdeci">virtual void onGo() OVERRIDE</div><div class="ttdoc">Called when &#39;go&#39; is being displayed for the first time.</div><div class="ttdef"><b>Definition</b> world.cpp:706</div></div>
+<div class="ttc" id="aclassWorld_html_a83f794dffa2126df37946d2c3b57bbc8"><div class="ttname"><a href="classWorld.html#a83f794dffa2126df37946d2c3b57bbc8">World::isRaceOver</a></div><div class="ttdeci">virtual bool isRaceOver()=0</div><div class="ttdoc">Returns true if the race is over.</div></div>
+<div class="ttc" id="aclassWorld_html_a85dae599b3d2186fc28a7a0665cc83df"><div class="ttname"><a href="classWorld.html#a85dae599b3d2186fc28a7a0665cc83df">World::kartHit</a></div><div class="ttdeci">virtual bool kartHit(int kart_id, int hitter=-1)</div><div class="ttdoc">Called when a kart was hit by a projectile.</div><div class="ttdef"><b>Definition</b> world.hpp:316</div></div>
+<div class="ttc" id="aclassWorld_html_a909f6d3d00d66f2b237cc3341596a7ea"><div class="ttname"><a href="classWorld.html#a909f6d3d00d66f2b237cc3341596a7ea">World::setNetworkWorld</a></div><div class="ttdeci">void setNetworkWorld(bool is_networked)</div><div class="ttdoc">Set the network mode (true if networked)</div><div class="ttdef"><b>Definition</b> world.hpp:413</div></div>
+<div class="ttc" id="aclassWorld_html_a93b8945af519dfea01463e39c59d46eb"><div class="ttname"><a href="classWorld.html#a93b8945af519dfea01463e39c59d46eb">World::getLocalPlayerKart</a></div><div class="ttdeci">AbstractKart * getLocalPlayerKart(unsigned int n) const</div><div class="ttdoc">Returns the nth local player kart, i.e.</div><div class="ttdef"><b>Definition</b> world.cpp:1411</div></div>
+<div class="ttc" id="aclassWorld_html_a9c6248c4b77ef18b40cfc87c59ac74d9"><div class="ttname"><a href="classWorld.html#a9c6248c4b77ef18b40cfc87c59ac74d9">World::getKarts</a></div><div class="ttdeci">const KartList &amp; getKarts() const</div><div class="ttdoc">Returns all karts.</div><div class="ttdef"><b>Definition</b> world.hpp:349</div></div>
+<div class="ttc" id="aclassWorld_html_aa17ec6b59f8f35741024ea52f5d61756"><div class="ttname"><a href="classWorld.html#aa17ec6b59f8f35741024ea52f5d61756">World::getCurrentNumPlayers</a></div><div class="ttdeci">unsigned int getCurrentNumPlayers() const</div><div class="ttdoc">Returns the number of currently active (i.e.</div><div class="ttdef"><b>Definition</b> world.hpp:356</div></div>
+<div class="ttc" id="aclassWorld_html_aa4838c4cd781f8919529d01e1f3f9f0d"><div class="ttname"><a href="classWorld.html#aa4838c4cd781f8919529d01e1f3f9f0d">World::shouldDrawSpeedometerDigit</a></div><div class="ttdeci">virtual bool shouldDrawSpeedometerDigit() const</div><div class="ttdef"><b>Definition</b> world.hpp:381</div></div>
+<div class="ttc" id="aclassWorld_html_aab02a1a426c5119be746e7723e45759c"><div class="ttname"><a href="classWorld.html#aab02a1a426c5119be746e7723e45759c">World::estimateFinishTimeForKart</a></div><div class="ttdeci">virtual float estimateFinishTimeForKart(AbstractKart *kart)</div><div class="ttdoc">Used for AI karts that are still racing when all player kart finished.</div><div class="ttdef"><b>Definition</b> world.hpp:203</div></div>
+<div class="ttc" id="aclassWorld_html_aacc60c6f009b63cac2a8089b13a55cea"><div class="ttname"><a href="classWorld.html#aacc60c6f009b63cac2a8089b13a55cea">World::useHighScores</a></div><div class="ttdeci">bool useHighScores() const</div><div class="ttdef"><b>Definition</b> world.hpp:388</div></div>
+<div class="ttc" id="aclassWorld_html_aaf69e2ce6614d86aaf44ab7d59da3764"><div class="ttname"><a href="classWorld.html#aaf69e2ce6614d86aaf44ab7d59da3764">World::haveBonusBoxes</a></div><div class="ttdeci">virtual bool haveBonusBoxes()</div><div class="ttdoc">Called to determine whether this race mode uses bonus boxes.</div><div class="ttdef"><b>Definition</b> world.hpp:301</div></div>
+<div class="ttc" id="aclassWorld_html_ab4d527f78bc52a41afadbe663bbe80eb"><div class="ttname"><a href="classWorld.html#ab4d527f78bc52a41afadbe663bbe80eb">World::collectedItem</a></div><div class="ttdeci">virtual void collectedItem(const AbstractKart *kart, const ItemState *item)</div><div class="ttdoc">Receives notification if an item is collected.</div><div class="ttdef"><b>Definition</b> world.hpp:293</div></div>
+<div class="ttc" id="aclassWorld_html_aba5eeb1fbf878721fb72be18ca2296bc"><div class="ttname"><a href="classWorld.html#aba5eeb1fbf878721fb72be18ca2296bc">World::updateHighscores</a></div><div class="ttdeci">void updateHighscores(int *best_highscore_rank)</div><div class="ttdoc">Called at the end of a race.</div><div class="ttdef"><b>Definition</b> world.cpp:1288</div></div>
+<div class="ttc" id="aclassWorld_html_abc3f9aee388e8957471cf664959e832b"><div class="ttname"><a href="classWorld.html#abc3f9aee388e8957471cf664959e832b">World::initTeamArrows</a></div><div class="ttdeci">void initTeamArrows(AbstractKart *k)</div><div class="ttdoc">Set the team arrow on karts if necessary</div><div class="ttdef"><b>Definition</b> world.cpp:313</div></div>
+<div class="ttc" id="aclassWorld_html_ac3fca47d5263315d51a0346e3730a18c"><div class="ttname"><a href="classWorld.html#ac3fca47d5263315d51a0346e3730a18c">World::getRescuePositionIndex</a></div><div class="ttdeci">virtual unsigned int getRescuePositionIndex(AbstractKart *kart)=0</div><div class="ttdoc">Determines the rescue position index of the specified kart.</div></div>
+<div class="ttc" id="aclassWorld_html_ac583f32b415db85600bc9ebe2e257b78"><div class="ttname"><a href="classWorld.html#ac583f32b415db85600bc9ebe2e257b78">World::getRaceGUI</a></div><div class="ttdeci">RaceGUIBase * getRaceGUI() const</div><div class="ttdoc">Returns a pointer to the race gui.</div><div class="ttdef"><b>Definition</b> world.hpp:338</div></div>
+<div class="ttc" id="aclassWorld_html_ac5fd2328d02d6083679ee020dd8832e3"><div class="ttname"><a href="classWorld.html#ac5fd2328d02d6083679ee020dd8832e3">World::reset</a></div><div class="ttdeci">virtual void reset(bool restart=false) OVERRIDE</div><div class="ttdoc">This function is called before a race is started (i.e.</div><div class="ttdef"><b>Definition</b> world.cpp:349</div></div>
+<div class="ttc" id="aclassWorld_html_ac6068680cb140ee9f9fc88eb3a7f23a0"><div class="ttname"><a href="classWorld.html#ac6068680cb140ee9f9fc88eb3a7f23a0">World::getIdent</a></div><div class="ttdeci">virtual const std::string &amp; getIdent() const =0</div><div class="ttdoc">Each game mode should have a unique identifier.</div></div>
+<div class="ttc" id="aclassWorld_html_ac69d02e10a5ee640dd9d09a969c99b44"><div class="ttname"><a href="classWorld.html#ac69d02e10a5ee640dd9d09a969c99b44">World::getKartsDisplayInfo</a></div><div class="ttdeci">virtual void getKartsDisplayInfo(std::vector&lt; RaceGUIBase::KartIconDisplayInfo &gt; *info)=0</div><div class="ttdoc">Called by the code that draws the list of karts on the race GUI to know what needs to be drawn in the...</div></div>
+<div class="ttc" id="aclassWorld_html_ac7f00e3de67c521d9e9688c9faa58e85"><div class="ttname"><a href="classWorld.html#ac7f00e3de67c521d9e9688c9faa58e85">World::getNumKarts</a></div><div class="ttdeci">unsigned int getNumKarts() const</div><div class="ttdoc">Returns the number of karts in the race.</div><div class="ttdef"><b>Definition</b> world.hpp:341</div></div>
+<div class="ttc" id="aclassWorld_html_ac840af270ecc29e0917138d647e2db89"><div class="ttname"><a href="classWorld.html#ac840af270ecc29e0917138d647e2db89">World::unpause</a></div><div class="ttdeci">virtual void unpause() OVERRIDE</div><div class="ttdoc">Switches back from a pause state to the previous state.</div><div class="ttdef"><b>Definition</b> world.cpp:1495</div></div>
+<div class="ttc" id="aclassWorld_html_ac9fd82b46af18186ff5fe5db19d8e2b5"><div class="ttname"><a href="classWorld.html#ac9fd82b46af18186ff5fe5db19d8e2b5">World::getKart</a></div><div class="ttdeci">AbstractKart * getKart(int kartId) const</div><div class="ttdoc">Returns the kart with a given world id.</div><div class="ttdef"><b>Definition</b> world.hpp:344</div></div>
+<div class="ttc" id="aclassWorld_html_acf7478da5c6663b48e62f67c4c6041e4"><div class="ttname"><a href="classWorld.html#acf7478da5c6663b48e62f67c4c6041e4">World::getKartTeam</a></div><div class="ttdeci">KartTeam getKartTeam(unsigned int kart_id) const</div><div class="ttdoc">Get the team of kart in world (including AIs)</div><div class="ttdef"><b>Definition</b> world.cpp:1668</div></div>
+<div class="ttc" id="aclassWorld_html_ad01e3d3b39db7500d73c78e43cb9125e"><div class="ttname"><a href="classWorld.html#ad01e3d3b39db7500d73c78e43cb9125e">World::shouldDrawTimer</a></div><div class="ttdeci">virtual bool shouldDrawTimer() const</div><div class="ttdoc">The code that draws the timer should call this first to know whether the game mode wants a timer draw...</div><div class="ttdef"><b>Definition</b> world.hpp:377</div></div>
+<div class="ttc" id="aclassWorld_html_ad29ebf28204a4a49df1f0258b1296a87"><div class="ttname"><a href="classWorld.html#ad29ebf28204a4a49df1f0258b1296a87">World::updateTrack</a></div><div class="ttdeci">void updateTrack(int ticks)</div><div class="ttdoc">Only updates the track.</div><div class="ttdef"><b>Definition</b> world.cpp:1247</div></div>
+<div class="ttc" id="aclassWorld_html_ad41c185176646b2fdf9a3536faecb996"><div class="ttname"><a href="classWorld.html#ad41c185176646b2fdf9a3536faecb996">World::getWorld</a></div><div class="ttdeci">static World * getWorld()</div><div class="ttdoc">Returns a pointer to the (singleton) world object.</div><div class="ttdef"><b>Definition</b> world.hpp:215</div></div>
+<div class="ttc" id="aclassWorld_html_ad5a6c9cbfd7aecb8b5ace949caec7d03"><div class="ttname"><a href="classWorld.html#ad5a6c9cbfd7aecb8b5ace949caec7d03">World::updateGraphics</a></div><div class="ttdeci">virtual void updateGraphics(float dt)</div><div class="ttdoc">This updates all only graphical elements.</div><div class="ttdef"><b>Definition</b> world.cpp:1110</div></div>
+<div class="ttc" id="aclassWorld_html_ad5b02fb96f9abac517f7f7be280b8cfd"><div class="ttname"><a href="classWorld.html#ad5b02fb96f9abac517f7f7be280b8cfd">World::moveKartTo</a></div><div class="ttdeci">void moveKartTo(AbstractKart *kart, const btTransform &amp;t)</div><div class="ttdoc">Places the kart at a given position and rotation.</div><div class="ttdef"><b>Definition</b> world.cpp:933</div></div>
+<div class="ttc" id="aclassWorld_html_ada0c6604bab7a1a5e398bca59c16559d"><div class="ttname"><a href="classWorld.html#ada0c6604bab7a1a5e398bca59c16559d">World::m_race_gui</a></div><div class="ttdeci">RaceGUIBase * m_race_gui</div><div class="ttdoc">Pointer to the race GUI.</div><div class="ttdef"><b>Definition</b> world.hpp:148</div></div>
+<div class="ttc" id="aclassWorld_html_adb3cb2fd5422d1415c9216cf94012c6b"><div class="ttname"><a href="classWorld.html#adb3cb2fd5422d1415c9216cf94012c6b">World::getNumberOfRescuePositions</a></div><div class="ttdeci">virtual unsigned int getNumberOfRescuePositions() const</div><div class="ttdoc">Returns the number of rescue positions on a given track and game mode.</div><div class="ttdef"><b>Definition</b> world.cpp:1545</div></div>
+<div class="ttc" id="aclassWorld_html_adbb655257c38dfd6b129d91ada70e28f"><div class="ttname"><a href="classWorld.html#adbb655257c38dfd6b129d91ada70e28f">World::getStartTransform</a></div><div class="ttdeci">virtual const btTransform &amp; getStartTransform(int index)</div><div class="ttdoc">Returns the start coordinates for a kart with a given index.</div><div class="ttdef"><b>Definition</b> world.cpp:573</div></div>
+<div class="ttc" id="aclassWorld_html_adf5ca5bf3c9f5b29c82d409e9c254e17"><div class="ttname"><a href="classWorld.html#adf5ca5bf3c9f5b29c82d409e9c254e17">World::getRescueTransform</a></div><div class="ttdeci">virtual btTransform getRescueTransform(unsigned int index) const</div><div class="ttdoc">Returns the bullet transformation for the specified rescue index.</div><div class="ttdef"><b>Definition</b> world.cpp:1537</div></div>
+<div class="ttc" id="aclassWorld_html_ae0c12deb1bd0b329e96ed445b4611d2f"><div class="ttname"><a href="classWorld.html#ae0c12deb1bd0b329e96ed445b4611d2f">World::resetAllKarts</a></div><div class="ttdeci">void resetAllKarts()</div><div class="ttdoc">Waits till each kart is resting on the ground</div><div class="ttdef"><b>Definition</b> world.cpp:817</div></div>
+<div class="ttc" id="aclassWorld_html_aebcee547bdf51e53a38a39cc53a2524c"><div class="ttname"><a href="classWorld.html#aebcee547bdf51e53a38a39cc53a2524c">World::getPlayerKart</a></div><div class="ttdeci">AbstractKart * getPlayerKart(unsigned int player) const</div><div class="ttdoc">Returns the n-th player kart.</div><div class="ttdef"><b>Definition</b> world.cpp:1389</div></div>
+<div class="ttc" id="aclassWorld_html_aee4ccbf57a455d2bc52b2405f949df80"><div class="ttname"><a href="classWorld.html#aee4ccbf57a455d2bc52b2405f949df80">World::update</a></div><div class="ttdeci">virtual void update(int ticks) OVERRIDE</div><div class="ttdoc">Updates the physics, all karts, the track, and projectile manager.</div><div class="ttdef"><b>Definition</b> world.cpp:1156</div></div>
+<div class="ttc" id="aclassWorld_html_af13b3e85ed7f9a15f3851a5f311db273"><div class="ttname"><a href="classWorld.html#af13b3e85ed7f9a15f3851a5f311db273">World::newLap</a></div><div class="ttdeci">virtual void newLap(unsigned int kart_index)</div><div class="ttdoc">Called whenever a kart starts a new lap.</div><div class="ttdef"><b>Definition</b> world.hpp:313</div></div>
+<div class="ttc" id="aclassWorld_html_af562ea7012ed10b5e99d8d98d12ce24c"><div class="ttname"><a href="classWorld.html#af562ea7012ed10b5e99d8d98d12ce24c">World::moveKartAfterRescue</a></div><div class="ttdeci">virtual void moveKartAfterRescue(AbstractKart *kart)</div><div class="ttdoc">Places a kart that is rescued.</div><div class="ttdef"><b>Definition</b> world.cpp:921</div></div>
+<div class="ttc" id="aclassWorld_html_af5c23fcba9166c54b6b89e9255cdb93f"><div class="ttname"><a href="classWorld.html#af5c23fcba9166c54b6b89e9255cdb93f">World::deleteWorld</a></div><div class="ttdeci">static void deleteWorld()</div><div class="ttdoc">Delete the )singleton) world object, if it exists, and sets the singleton pointer to NULL.</div><div class="ttdef"><b>Definition</b> world.hpp:224</div></div>
+<div class="ttc" id="aclassWorld_html_af84529a039eb32490126b5cf1126693a"><div class="ttname"><a href="classWorld.html#af84529a039eb32490126b5cf1126693a">World::m_eliminated_karts</a></div><div class="ttdeci">int m_eliminated_karts</div><div class="ttdoc">Number of eliminated karts.</div><div class="ttdef"><b>Definition</b> world.hpp:120</div></div>
+<div class="ttc" id="aclassWorld_html_af8f6d702df8a15919417a20e9cc2277c"><div class="ttname"><a href="classWorld.html#af8f6d702df8a15919417a20e9cc2277c">World::useChecklineRequirements</a></div><div class="ttdeci">virtual bool useChecklineRequirements() const</div><div class="ttdoc">Whether to compute checkline requirements for each world on the quadgraph.</div><div class="ttdef"><b>Definition</b> world.hpp:395</div></div>
+<div class="ttc" id="aclassWorld_html_af8fb49918e6af9114fdaf1262a0fd428"><div class="ttname"><a href="classWorld.html#af8fb49918e6af9114fdaf1262a0fd428">World::m_use_highscores</a></div><div class="ttdeci">bool m_use_highscores</div><div class="ttdoc">Whether highscores should be used for this kind of race.</div><div class="ttdef"><b>Definition</b> world.hpp:135</div></div>
+<div class="ttc" id="aclassWorld_html_afa39d4e6f714a7a3691ac0c656f5e8a8"><div class="ttname"><a href="classWorld.html#afa39d4e6f714a7a3691ac0c656f5e8a8">World::World</a></div><div class="ttdeci">World()</div><div class="ttdoc">The main world class is used to handle the track and the karts.</div><div class="ttdef"><b>Definition</b> world.cpp:126</div></div>
+<div class="ttc" id="aremote__kart__info_8hpp_html_a2fd442f27ee994082c435f49c9410f55"><div class="ttname"><a href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a></div><div class="ttdeci">HandicapLevel</div><div class="ttdoc">Handicap per player.</div><div class="ttdef"><b>Definition</b> remote_kart_info.hpp:43</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

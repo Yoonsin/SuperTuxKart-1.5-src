@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: replay/replay_base.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>replay</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">replay_base.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2012-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_REPLAY_BASE_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_REPLAY_BASE_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;LinearMath/btTransform.h&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classReplayBase.html">   32</a></span><span class="keyword">class </span>ReplayBase : <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">// Needs access to KartReplayEvent</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">friend</span> <span class="keyword">class </span>GhostKart;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">protected</span>:</div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="};">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structReplayBase_1_1TransformEvent.html">   40</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structReplayBase_1_1TransformEvent.html">TransformEvent</a></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structReplayBase_1_1TransformEvent.html#a692653a7178ccae2aa247e01adb700c6">   43</a></span>        <span class="keywordtype">float</span>               <a class="code hl_variable" href="structReplayBase_1_1TransformEvent.html#a692653a7178ccae2aa247e01adb700c6">m_time</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structReplayBase_1_1TransformEvent.html#a0702f22a7e8e0037c4075d5604b4019c">   45</a></span>        btTransform         <a class="code hl_variable" href="structReplayBase_1_1TransformEvent.html#a0702f22a7e8e0037c4075d5604b4019c">m_transform</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    };   <span class="comment">// TransformEvent</span></div>
+</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="};">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structReplayBase_1_1PhysicInfo.html">   49</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structReplayBase_1_1PhysicInfo.html">PhysicInfo</a></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structReplayBase_1_1PhysicInfo.html#aba4bfd57c6ffdbae7d7311ad47f96e1a">   52</a></span>        <span class="keywordtype">float</span>               <a class="code hl_variable" href="structReplayBase_1_1PhysicInfo.html#aba4bfd57c6ffdbae7d7311ad47f96e1a">m_speed</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structReplayBase_1_1PhysicInfo.html#afc13bed04ad98d854bb7a48bf5b093f7">   54</a></span>        <span class="keywordtype">float</span>               <a class="code hl_variable" href="structReplayBase_1_1PhysicInfo.html#afc13bed04ad98d854bb7a48bf5b093f7">m_steer</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structReplayBase_1_1PhysicInfo.html#a1403bbe4b7c271ee71f9357b4800f63a">   56</a></span>        <span class="keywordtype">float</span>               <a class="code hl_variable" href="structReplayBase_1_1PhysicInfo.html#a1403bbe4b7c271ee71f9357b4800f63a">m_suspension_length</a>[4];</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="structReplayBase_1_1PhysicInfo.html#acf9b12a6f9290aaea0f15cb776e9454c">   58</a></span>        <span class="keywordtype">int</span>                 <a class="code hl_variable" href="structReplayBase_1_1PhysicInfo.html#acf9b12a6f9290aaea0f15cb776e9454c">m_skidding_state</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    };   <span class="comment">// PhysicInfo</span></div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="};">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structReplayBase_1_1BonusInfo.html">   62</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structReplayBase_1_1BonusInfo.html">BonusInfo</a></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structReplayBase_1_1BonusInfo.html#ad2eeace82adb8ee548ac99d4f30d63b2">   69</a></span>        <span class="keywordtype">int</span>                 <a class="code hl_variable" href="structReplayBase_1_1BonusInfo.html#ad2eeace82adb8ee548ac99d4f30d63b2">m_attachment</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structReplayBase_1_1BonusInfo.html#a92f4525f781880d248618d5b75ef8eeb">   71</a></span>        <span class="keywordtype">float</span>               <a class="code hl_variable" href="structReplayBase_1_1BonusInfo.html#a92f4525f781880d248618d5b75ef8eeb">m_nitro_amount</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structReplayBase_1_1BonusInfo.html#a1dfa722b362515b5ac8c92124207d070">   73</a></span>        <span class="keywordtype">int</span>                 <a class="code hl_variable" href="structReplayBase_1_1BonusInfo.html#a1dfa722b362515b5ac8c92124207d070">m_item_amount</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structReplayBase_1_1BonusInfo.html#a4b6a74b6e211fe418c26d8c477d5bbb7">   75</a></span>        <span class="keywordtype">int</span>                 <a class="code hl_variable" href="structReplayBase_1_1BonusInfo.html#a4b6a74b6e211fe418c26d8c477d5bbb7">m_item_type</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structReplayBase_1_1BonusInfo.html#a2557ec4c71b478d257c603edc3ae4fa2">   78</a></span>        <span class="keywordtype">int</span>                 <a class="code hl_variable" href="structReplayBase_1_1BonusInfo.html#a2557ec4c71b478d257c603edc3ae4fa2">m_special_value</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    };   <span class="comment">// StateInfo</span></div>
+</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00084" data-start="{" data-end="};">
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structReplayBase_1_1KartReplayEvent.html">   84</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structReplayBase_1_1KartReplayEvent.html">KartReplayEvent</a></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structReplayBase_1_1KartReplayEvent.html#a636a0d53c2432e65840c475ff43486bb">   87</a></span>        <span class="keywordtype">float</span>  <a class="code hl_variable" href="structReplayBase_1_1KartReplayEvent.html#a636a0d53c2432e65840c475ff43486bb">m_distance</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="structReplayBase_1_1KartReplayEvent.html#a36468809c388dd3547744efb131ccff4">   89</a></span>        <span class="keywordtype">int</span>    <a class="code hl_variable" href="structReplayBase_1_1KartReplayEvent.html#a36468809c388dd3547744efb131ccff4">m_nitro_usage</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structReplayBase_1_1KartReplayEvent.html#a78c82c63063bea72bd96e66f5e2e70a0">   91</a></span>        <span class="keywordtype">bool</span>   <a class="code hl_variable" href="structReplayBase_1_1KartReplayEvent.html#a78c82c63063bea72bd96e66f5e2e70a0">m_zipper_usage</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="structReplayBase_1_1KartReplayEvent.html#adfdfc1f112a2e042dc877b8935866792">   93</a></span>        <span class="keywordtype">int</span>    <a class="code hl_variable" href="structReplayBase_1_1KartReplayEvent.html#adfdfc1f112a2e042dc877b8935866792">m_skidding_effect</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="structReplayBase_1_1KartReplayEvent.html#a2eb51fb0bed68ac5296955952fa52bee">   95</a></span>        <span class="keywordtype">bool</span>   <a class="code hl_variable" href="structReplayBase_1_1KartReplayEvent.html#a2eb51fb0bed68ac5296955952fa52bee">m_red_skidding</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="structReplayBase_1_1KartReplayEvent.html#a45b2896f275b3559fdebdd5a005b8d1c">   97</a></span>        <span class="keywordtype">bool</span>        <a class="code hl_variable" href="structReplayBase_1_1KartReplayEvent.html#a45b2896f275b3559fdebdd5a005b8d1c">m_jumping</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    };   <span class="comment">// KartReplayEvent</span></div>
+</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    FILE *<a class="code hl_function" href="classReplayBase.html#a18ddd6e9777051c113cb171a8dc9bd8b">openReplayFile</a>(<span class="keywordtype">bool</span> writeable, <span class="keywordtype">bool</span> full_path = <span class="keyword">false</span>, <span class="keywordtype">int</span> replay_file_number=1);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classReplayBase.html#a1b40cc67f63fbb0613d9021af8a5758f">  104</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classReplayBase.html#a1b40cc67f63fbb0613d9021af8a5758f">getReplayFilename</a>(<span class="keywordtype">int</span> replay_file_number = 1) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classReplayBase.html#a0c1124652d8784be4b03738c3f4d305d">  108</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classReplayBase.html#a0c1124652d8784be4b03738c3f4d305d">getCurrentReplayVersion</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> 4; }</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classReplayBase.html#a81fc8c5a6fbf79b24724803e6b32dfe9">  113</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classReplayBase.html#a81fc8c5a6fbf79b24724803e6b32dfe9">getMinSupportedReplayVersion</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> 3; }</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>             <a class="code hl_class" href="classReplayBase.html">ReplayBase</a>();</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classReplayBase.html">~ReplayBase</a>() {};</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>};   <span class="comment">// ReplayBase</span></div>
+</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassReplayBase_html"><div class="ttname"><a href="classReplayBase.html">ReplayBase</a></div><div class="ttdef"><b>Definition</b> replay_base.hpp:33</div></div>
+<div class="ttc" id="aclassReplayBase_html_a0c1124652d8784be4b03738c3f4d305d"><div class="ttname"><a href="classReplayBase.html#a0c1124652d8784be4b03738c3f4d305d">ReplayBase::getCurrentReplayVersion</a></div><div class="ttdeci">unsigned int getCurrentReplayVersion() const</div><div class="ttdoc">Returns the version number of the replay file recorderd by this executable.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:108</div></div>
+<div class="ttc" id="aclassReplayBase_html_a18ddd6e9777051c113cb171a8dc9bd8b"><div class="ttname"><a href="classReplayBase.html#a18ddd6e9777051c113cb171a8dc9bd8b">ReplayBase::openReplayFile</a></div><div class="ttdeci">FILE * openReplayFile(bool writeable, bool full_path=false, int replay_file_number=1)</div><div class="ttdoc">Opens a replay file which is determined by sub classes.</div><div class="ttdef"><b>Definition</b> replay_base.cpp:33</div></div>
+<div class="ttc" id="aclassReplayBase_html_a1b40cc67f63fbb0613d9021af8a5758f"><div class="ttname"><a href="classReplayBase.html#a1b40cc67f63fbb0613d9021af8a5758f">ReplayBase::getReplayFilename</a></div><div class="ttdeci">virtual const std::string &amp; getReplayFilename(int replay_file_number=1) const =0</div><div class="ttdoc">Returns the filename that was opened.</div></div>
+<div class="ttc" id="aclassReplayBase_html_a81fc8c5a6fbf79b24724803e6b32dfe9"><div class="ttname"><a href="classReplayBase.html#a81fc8c5a6fbf79b24724803e6b32dfe9">ReplayBase::getMinSupportedReplayVersion</a></div><div class="ttdeci">unsigned int getMinSupportedReplayVersion() const</div><div class="ttdoc">This is used to check that a loaded replay file can still be understood by this executable.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:113</div></div>
+<div class="ttc" id="astructReplayBase_1_1BonusInfo_html"><div class="ttname"><a href="structReplayBase_1_1BonusInfo.html">ReplayBase::BonusInfo</a></div><div class="ttdef"><b>Definition</b> replay_base.hpp:63</div></div>
+<div class="ttc" id="astructReplayBase_1_1BonusInfo_html_a1dfa722b362515b5ac8c92124207d070"><div class="ttname"><a href="structReplayBase_1_1BonusInfo.html#a1dfa722b362515b5ac8c92124207d070">ReplayBase::BonusInfo::m_item_amount</a></div><div class="ttdeci">int m_item_amount</div><div class="ttdoc">The number of items at a certain time.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:73</div></div>
+<div class="ttc" id="astructReplayBase_1_1BonusInfo_html_a2557ec4c71b478d257c603edc3ae4fa2"><div class="ttname"><a href="structReplayBase_1_1BonusInfo.html#a2557ec4c71b478d257c603edc3ae4fa2">ReplayBase::BonusInfo::m_special_value</a></div><div class="ttdeci">int m_special_value</div><div class="ttdoc">Used to store mode-specific values : eggs in egg-hunt, number of lives in battle-mode.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:78</div></div>
+<div class="ttc" id="astructReplayBase_1_1BonusInfo_html_a4b6a74b6e211fe418c26d8c477d5bbb7"><div class="ttname"><a href="structReplayBase_1_1BonusInfo.html#a4b6a74b6e211fe418c26d8c477d5bbb7">ReplayBase::BonusInfo::m_item_type</a></div><div class="ttdeci">int m_item_type</div><div class="ttdoc">The type of item at a certain time.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:75</div></div>
+<div class="ttc" id="astructReplayBase_1_1BonusInfo_html_a92f4525f781880d248618d5b75ef8eeb"><div class="ttname"><a href="structReplayBase_1_1BonusInfo.html#a92f4525f781880d248618d5b75ef8eeb">ReplayBase::BonusInfo::m_nitro_amount</a></div><div class="ttdeci">float m_nitro_amount</div><div class="ttdoc">The nitro amount at a certain time.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:71</div></div>
+<div class="ttc" id="astructReplayBase_1_1BonusInfo_html_ad2eeace82adb8ee548ac99d4f30d63b2"><div class="ttname"><a href="structReplayBase_1_1BonusInfo.html#ad2eeace82adb8ee548ac99d4f30d63b2">ReplayBase::BonusInfo::m_attachment</a></div><div class="ttdeci">int m_attachment</div><div class="ttdoc">The attachment.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:69</div></div>
+<div class="ttc" id="astructReplayBase_1_1KartReplayEvent_html"><div class="ttname"><a href="structReplayBase_1_1KartReplayEvent.html">ReplayBase::KartReplayEvent</a></div><div class="ttdoc">Records all other events.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:85</div></div>
+<div class="ttc" id="astructReplayBase_1_1KartReplayEvent_html_a2eb51fb0bed68ac5296955952fa52bee"><div class="ttname"><a href="structReplayBase_1_1KartReplayEvent.html#a2eb51fb0bed68ac5296955952fa52bee">ReplayBase::KartReplayEvent::m_red_skidding</a></div><div class="ttdeci">bool m_red_skidding</div><div class="ttdoc">Kart skidding showing red flame or not.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:95</div></div>
+<div class="ttc" id="astructReplayBase_1_1KartReplayEvent_html_a36468809c388dd3547744efb131ccff4"><div class="ttname"><a href="structReplayBase_1_1KartReplayEvent.html#a36468809c388dd3547744efb131ccff4">ReplayBase::KartReplayEvent::m_nitro_usage</a></div><div class="ttdeci">int m_nitro_usage</div><div class="ttdoc">Nitro usage for the kart recorded.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:89</div></div>
+<div class="ttc" id="astructReplayBase_1_1KartReplayEvent_html_a45b2896f275b3559fdebdd5a005b8d1c"><div class="ttname"><a href="structReplayBase_1_1KartReplayEvent.html#a45b2896f275b3559fdebdd5a005b8d1c">ReplayBase::KartReplayEvent::m_jumping</a></div><div class="ttdeci">bool m_jumping</div><div class="ttdoc">True if the kart recorded is jumping.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:97</div></div>
+<div class="ttc" id="astructReplayBase_1_1KartReplayEvent_html_a636a0d53c2432e65840c475ff43486bb"><div class="ttname"><a href="structReplayBase_1_1KartReplayEvent.html#a636a0d53c2432e65840c475ff43486bb">ReplayBase::KartReplayEvent::m_distance</a></div><div class="ttdeci">float m_distance</div><div class="ttdoc">distance on track for the kart recorded.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:87</div></div>
+<div class="ttc" id="astructReplayBase_1_1KartReplayEvent_html_a78c82c63063bea72bd96e66f5e2e70a0"><div class="ttname"><a href="structReplayBase_1_1KartReplayEvent.html#a78c82c63063bea72bd96e66f5e2e70a0">ReplayBase::KartReplayEvent::m_zipper_usage</a></div><div class="ttdeci">bool m_zipper_usage</div><div class="ttdoc">Zipper usage for the kart recorded.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:91</div></div>
+<div class="ttc" id="astructReplayBase_1_1KartReplayEvent_html_adfdfc1f112a2e042dc877b8935866792"><div class="ttname"><a href="structReplayBase_1_1KartReplayEvent.html#adfdfc1f112a2e042dc877b8935866792">ReplayBase::KartReplayEvent::m_skidding_effect</a></div><div class="ttdeci">int m_skidding_effect</div><div class="ttdoc">Skidding effect for the kart recorded.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:93</div></div>
+<div class="ttc" id="astructReplayBase_1_1PhysicInfo_html"><div class="ttname"><a href="structReplayBase_1_1PhysicInfo.html">ReplayBase::PhysicInfo</a></div><div class="ttdef"><b>Definition</b> replay_base.hpp:50</div></div>
+<div class="ttc" id="astructReplayBase_1_1PhysicInfo_html_a1403bbe4b7c271ee71f9357b4800f63a"><div class="ttname"><a href="structReplayBase_1_1PhysicInfo.html#a1403bbe4b7c271ee71f9357b4800f63a">ReplayBase::PhysicInfo::m_suspension_length</a></div><div class="ttdeci">float m_suspension_length[4]</div><div class="ttdoc">The suspension length of 4 wheels at a certain time.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:56</div></div>
+<div class="ttc" id="astructReplayBase_1_1PhysicInfo_html_aba4bfd57c6ffdbae7d7311ad47f96e1a"><div class="ttname"><a href="structReplayBase_1_1PhysicInfo.html#aba4bfd57c6ffdbae7d7311ad47f96e1a">ReplayBase::PhysicInfo::m_speed</a></div><div class="ttdeci">float m_speed</div><div class="ttdoc">The speed at a certain time.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:52</div></div>
+<div class="ttc" id="astructReplayBase_1_1PhysicInfo_html_acf9b12a6f9290aaea0f15cb776e9454c"><div class="ttname"><a href="structReplayBase_1_1PhysicInfo.html#acf9b12a6f9290aaea0f15cb776e9454c">ReplayBase::PhysicInfo::m_skidding_state</a></div><div class="ttdeci">int m_skidding_state</div><div class="ttdoc">The skidding state</div><div class="ttdef"><b>Definition</b> replay_base.hpp:58</div></div>
+<div class="ttc" id="astructReplayBase_1_1PhysicInfo_html_afc13bed04ad98d854bb7a48bf5b093f7"><div class="ttname"><a href="structReplayBase_1_1PhysicInfo.html#afc13bed04ad98d854bb7a48bf5b093f7">ReplayBase::PhysicInfo::m_steer</a></div><div class="ttdeci">float m_steer</div><div class="ttdoc">The steering at a certain time.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:54</div></div>
+<div class="ttc" id="astructReplayBase_1_1TransformEvent_html"><div class="ttname"><a href="structReplayBase_1_1TransformEvent.html">ReplayBase::TransformEvent</a></div><div class="ttdoc">Stores a transform event, i.e.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:41</div></div>
+<div class="ttc" id="astructReplayBase_1_1TransformEvent_html_a0702f22a7e8e0037c4075d5604b4019c"><div class="ttname"><a href="structReplayBase_1_1TransformEvent.html#a0702f22a7e8e0037c4075d5604b4019c">ReplayBase::TransformEvent::m_transform</a></div><div class="ttdeci">btTransform m_transform</div><div class="ttdoc">The transform at a certain time.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:45</div></div>
+<div class="ttc" id="astructReplayBase_1_1TransformEvent_html_a692653a7178ccae2aa247e01adb700c6"><div class="ttname"><a href="structReplayBase_1_1TransformEvent.html#a692653a7178ccae2aa247e01adb700c6">ReplayBase::TransformEvent::m_time</a></div><div class="ttdeci">float m_time</div><div class="ttdoc">Time at which this event happens.</div><div class="ttdef"><b>Definition</b> replay_base.hpp:43</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

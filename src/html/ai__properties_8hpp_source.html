@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: karts/controller/ai_properties.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>karts</b></li><li class="navelem"><b>controller</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">ai_properties.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2012-2015  Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_AI_PROPERTIES_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_AI_PROPERTIES_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;race/race_manager.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/interpolation_array.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">class </span><a class="code hl_class" href="classXMLNode.html">XMLNode</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classAIProperties.html">   39</a></span><span class="keyword">class </span><a class="code hl_function" href="classAIProperties.html#a49a1c61d0bbe12f8dad7cc679e6ea79d">AIProperties</a></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">//LEAK_CHECK();</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// Give them access to the members</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">friend</span> <span class="keyword">class </span>AIBaseController;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">friend</span> <span class="keyword">class </span>AIBaseLapController;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">friend</span> <span class="keyword">class </span>SkiddingAI;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">friend</span> <span class="keyword">class </span>ArenaAI;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">friend</span> <span class="keyword">class </span>TestAI;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classAIProperties.html#aad2222179721d1b77fcabb25081d7fb6">   52</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="classAIProperties.html#aad2222179721d1b77fcabb25081d7fb6">UNDEFINED</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classAIProperties.html#a366f2c74fa6de952ed3eb8f7fdefe495">   56</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classAIProperties.html#a366f2c74fa6de952ed3eb8f7fdefe495">m_max_item_angle</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classAIProperties.html#a4bd6546f11d5e748b4e028a914f329af">   61</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classAIProperties.html#a4bd6546f11d5e748b4e028a914f329af">m_max_item_angle_high_speed</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classAIProperties.html#af365b159d558a72d0b6b888fa11eb5fb">   68</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classAIProperties.html#af365b159d558a72d0b6b888fa11eb5fb">m_bad_item_closeness_2</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classAIProperties.html#aa7e6aea2938c50c8fbef929cf88845e3">   72</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classAIProperties.html#aa7e6aea2938c50c8fbef929cf88845e3">m_time_full_steer</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classAIProperties.html#ab3d3eac4a0a9f9c894a7cf11a31d9fb0">   75</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classAIProperties.html#ab3d3eac4a0a9f9c894a7cf11a31d9fb0">m_straight_length_for_zipper</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classAIProperties.html#a5b9b0159b8087b901e25c82b0f15b091">   78</a></span>    <a class="code hl_class" href="classInterpolationArray.html">InterpolationArray</a> <a class="code hl_variable" href="classAIProperties.html#a5b9b0159b8087b901e25c82b0f15b091">m_skid_probability</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classAIProperties.html#a6015c41444e23be4b652be01021bd95c">   81</a></span>    <a class="code hl_class" href="classInterpolationArray.html">InterpolationArray</a> <a class="code hl_variable" href="classAIProperties.html#a6015c41444e23be4b652be01021bd95c">m_first_speed_cap</a>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_class" href="classInterpolationArray.html">InterpolationArray</a> m_last_speed_cap;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classAIProperties.html#a90b81aaf06566b444736a7f7c0a42547">   85</a></span>    <a class="code hl_class" href="classInterpolationArray.html">InterpolationArray</a> <a class="code hl_variable" href="classAIProperties.html#a90b81aaf06566b444736a7f7c0a42547">m_collect_item_probability</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classAIProperties.html#afd572664f52bd943b8bda7476c0130e9">   88</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classAIProperties.html#afd572664f52bd943b8bda7476c0130e9">m_shield_incoming_radius</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classAIProperties.html#a182f30fb66f58e0ec31a32ea8954c3a1">   92</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classAIProperties.html#a182f30fb66f58e0ec31a32ea8954c3a1">m_false_start_probability</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classAIProperties.html#ac8270b1667507b7824d5085a1c09f4ee">   95</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classAIProperties.html#ac8270b1667507b7824d5085a1c09f4ee">m_min_start_delay</a>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classAIProperties.html#a198d49f08e8ed6b41ccd4664f8dc3ee3">   98</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classAIProperties.html#a198d49f08e8ed6b41ccd4664f8dc3ee3">m_max_start_delay</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classAIProperties.html#a6ab646a924676b987ca25b69255604f8">  101</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classAIProperties.html#a6ab646a924676b987ca25b69255604f8">m_make_use_of_slipstream</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classAIProperties.html#a19718614fe7f5f375e96538c385330eb">  107</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classAIProperties.html#a19718614fe7f5f375e96538c385330eb">m_disable_slipstream_usage</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classAIProperties.html#a2f1b1a8c42ad43801a0612d8d0277d2c">  110</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classAIProperties.html#a2f1b1a8c42ad43801a0612d8d0277d2c">m_collect_avoid_items</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classAIProperties.html#a23872a6fc408c4926247e77e66f9d266">  113</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classAIProperties.html#a23872a6fc408c4926247e77e66f9d266">m_handle_bomb</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classAIProperties.html#a7cbdbe03e733ce6abe1671a3cb500ad3">  118</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classAIProperties.html#a7cbdbe03e733ce6abe1671a3cb500ad3">m_item_usage_skill</a>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classAIProperties.html#a4471303dc28f3c9f5a8e30997b822c27">  123</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classAIProperties.html#a4471303dc28f3c9f5a8e30997b822c27">m_nitro_usage</a>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classAIProperties.html#a0c0476a66cb298e42e768c5265af3cc9">  130</a></span>    <span class="keywordtype">float</span>    <a class="code hl_variable" href="classAIProperties.html#a0c0476a66cb298e42e768c5265af3cc9">m_skidding_threshold</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classAIProperties.html#adaf1a2c3c1bde316d48dd3208e5bc918">  133</a></span>    std::string <a class="code hl_variable" href="classAIProperties.html#adaf1a2c3c1bde316d48dd3208e5bc918">m_ident</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>         <a class="code hl_function" href="classAIProperties.html#a49a1c61d0bbe12f8dad7cc679e6ea79d">AIProperties</a>(<a class="code hl_enumeration" href="classRaceManager.html#acf298e99927d30996e847393337e67a6">RaceManager::Difficulty</a> difficulty);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAIProperties.html#a68ddf3d5a38be8041f122772f98b5b40">load</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> *skid_node);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAIProperties.html#ab3826b77804cd10148e366cddf5c493e">checkAllSet</a>(<span class="keyword">const</span> std::string &amp;filename) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00143" data-start="{" data-end="}">
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classAIProperties.html#a01e736fc539aff448c7405e9af75f66d">  143</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classAIProperties.html#a01e736fc539aff448c7405e9af75f66d">getSkiddingProbability</a>(<span class="keywordtype">float</span> distance)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classAIProperties.html#a5b9b0159b8087b901e25c82b0f15b091">m_skid_probability</a>.get(distance);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    }   <span class="comment">// getSkiddingProbability</span></div>
+</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classAIProperties.html#a1c3bbfd8bae8d4d5fb77bb5cbc80bd2d">getSpeedCap</a>(<span class="keywordtype">float</span> distance, <span class="keywordtype">int</span> ai_position, <span class="keywordtype">int</span> num_ai) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00155" data-start="{" data-end="}">
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classAIProperties.html#aae44fd18e56de3008bc9aa69bedae88e">  155</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classAIProperties.html#aae44fd18e56de3008bc9aa69bedae88e">getItemCollectProbability</a>(<span class="keywordtype">float</span> distance)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classAIProperties.html#a90b81aaf06566b444736a7f7c0a42547">m_collect_item_probability</a>.get(distance);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    }   <span class="comment">// getItemcollectProbability</span></div>
+</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classAIProperties.html#a44c50827c6d9ef047e9f88e0e27dcb97">  161</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classAIProperties.html#a44c50827c6d9ef047e9f88e0e27dcb97">disableSlipstreamUsage</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAIProperties.html#a19718614fe7f5f375e96538c385330eb">m_disable_slipstream_usage</a>; }</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>};   <span class="comment">// AIProperties</span></div>
+</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment">/* EOF */</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="ttc" id="aclassAIProperties_html_a01e736fc539aff448c7405e9af75f66d"><div class="ttname"><a href="classAIProperties.html#a01e736fc539aff448c7405e9af75f66d">AIProperties::getSkiddingProbability</a></div><div class="ttdeci">float getSkiddingProbability(float distance) const</div><div class="ttdoc">Returns the skidding probability dependent on the specified distance to the first player kart.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:143</div></div>
+<div class="ttc" id="aclassAIProperties_html_a0c0476a66cb298e42e768c5265af3cc9"><div class="ttname"><a href="classAIProperties.html#a0c0476a66cb298e42e768c5265af3cc9">AIProperties::m_skidding_threshold</a></div><div class="ttdeci">float m_skidding_threshold</div><div class="ttdoc">TODO: ONLY USE FOR OLD SKIDDING!</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:130</div></div>
+<div class="ttc" id="aclassAIProperties_html_a182f30fb66f58e0ec31a32ea8954c3a1"><div class="ttname"><a href="classAIProperties.html#a182f30fb66f58e0ec31a32ea8954c3a1">AIProperties::m_false_start_probability</a></div><div class="ttdeci">float m_false_start_probability</div><div class="ttdoc">Probability of a false start.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:92</div></div>
+<div class="ttc" id="aclassAIProperties_html_a19718614fe7f5f375e96538c385330eb"><div class="ttname"><a href="classAIProperties.html#a19718614fe7f5f375e96538c385330eb">AIProperties::m_disable_slipstream_usage</a></div><div class="ttdeci">bool m_disable_slipstream_usage</div><div class="ttdoc">Used for low level AI to not give them a slipstream bonus.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:107</div></div>
+<div class="ttc" id="aclassAIProperties_html_a198d49f08e8ed6b41ccd4664f8dc3ee3"><div class="ttname"><a href="classAIProperties.html#a198d49f08e8ed6b41ccd4664f8dc3ee3">AIProperties::m_max_start_delay</a></div><div class="ttdeci">float m_max_start_delay</div><div class="ttdoc">Maximum start delay.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:98</div></div>
+<div class="ttc" id="aclassAIProperties_html_a1c3bbfd8bae8d4d5fb77bb5cbc80bd2d"><div class="ttname"><a href="classAIProperties.html#a1c3bbfd8bae8d4d5fb77bb5cbc80bd2d">AIProperties::getSpeedCap</a></div><div class="ttdeci">float getSpeedCap(float distance, int ai_position, int num_ai) const</div><div class="ttdoc">Returns the fraction of maximum speed the AI should drive at, depending on the distance from the play...</div><div class="ttdef"><b>Definition</b> ai_properties.cpp:128</div></div>
+<div class="ttc" id="aclassAIProperties_html_a23872a6fc408c4926247e77e66f9d266"><div class="ttname"><a href="classAIProperties.html#a23872a6fc408c4926247e77e66f9d266">AIProperties::m_handle_bomb</a></div><div class="ttdeci">bool m_handle_bomb</div><div class="ttdoc">If the AI should actively try to pass on a bomb.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:113</div></div>
+<div class="ttc" id="aclassAIProperties_html_a2f1b1a8c42ad43801a0612d8d0277d2c"><div class="ttname"><a href="classAIProperties.html#a2f1b1a8c42ad43801a0612d8d0277d2c">AIProperties::m_collect_avoid_items</a></div><div class="ttdeci">bool m_collect_avoid_items</div><div class="ttdoc">Actively collect and avoid items.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:110</div></div>
+<div class="ttc" id="aclassAIProperties_html_a366f2c74fa6de952ed3eb8f7fdefe495"><div class="ttname"><a href="classAIProperties.html#a366f2c74fa6de952ed3eb8f7fdefe495">AIProperties::m_max_item_angle</a></div><div class="ttdeci">float m_max_item_angle</div><div class="ttdoc">Maximum direction change when trying to collect an item.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:56</div></div>
+<div class="ttc" id="aclassAIProperties_html_a4471303dc28f3c9f5a8e30997b822c27"><div class="ttname"><a href="classAIProperties.html#a4471303dc28f3c9f5a8e30997b822c27">AIProperties::m_nitro_usage</a></div><div class="ttdeci">int m_nitro_usage</div><div class="ttdoc">How the AI uses nitro.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:123</div></div>
+<div class="ttc" id="aclassAIProperties_html_a44c50827c6d9ef047e9f88e0e27dcb97"><div class="ttname"><a href="classAIProperties.html#a44c50827c6d9ef047e9f88e0e27dcb97">AIProperties::disableSlipstreamUsage</a></div><div class="ttdeci">bool disableSlipstreamUsage() const</div><div class="ttdoc">Returns true if this kart should not even get a slipstream bonus.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:161</div></div>
+<div class="ttc" id="aclassAIProperties_html_a49a1c61d0bbe12f8dad7cc679e6ea79d"><div class="ttname"><a href="classAIProperties.html#a49a1c61d0bbe12f8dad7cc679e6ea79d">AIProperties::AIProperties</a></div><div class="ttdeci">AIProperties(RaceManager::Difficulty difficulty)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> ai_properties.cpp:29</div></div>
+<div class="ttc" id="aclassAIProperties_html_a4bd6546f11d5e748b4e028a914f329af"><div class="ttname"><a href="classAIProperties.html#a4bd6546f11d5e748b4e028a914f329af">AIProperties::m_max_item_angle_high_speed</a></div><div class="ttdeci">float m_max_item_angle_high_speed</div><div class="ttdoc">Maximum direction change when trying to collect an item while being on high-speed (i....</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:61</div></div>
+<div class="ttc" id="aclassAIProperties_html_a5b9b0159b8087b901e25c82b0f15b091"><div class="ttname"><a href="classAIProperties.html#a5b9b0159b8087b901e25c82b0f15b091">AIProperties::m_skid_probability</a></div><div class="ttdeci">InterpolationArray m_skid_probability</div><div class="ttdoc">The array of (distance, skid_probability) points.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:78</div></div>
+<div class="ttc" id="aclassAIProperties_html_a6015c41444e23be4b652be01021bd95c"><div class="ttname"><a href="classAIProperties.html#a6015c41444e23be4b652be01021bd95c">AIProperties::m_first_speed_cap</a></div><div class="ttdeci">InterpolationArray m_first_speed_cap</div><div class="ttdoc">To cap maximum speed if the kart is ahead of the player.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:81</div></div>
+<div class="ttc" id="aclassAIProperties_html_a68ddf3d5a38be8041f122772f98b5b40"><div class="ttname"><a href="classAIProperties.html#a68ddf3d5a38be8041f122772f98b5b40">AIProperties::load</a></div><div class="ttdeci">void load(const XMLNode *skid_node)</div><div class="ttdoc">Loads the AI properties from an XML file.</div><div class="ttdef"><b>Definition</b> ai_properties.cpp:56</div></div>
+<div class="ttc" id="aclassAIProperties_html_a6ab646a924676b987ca25b69255604f8"><div class="ttname"><a href="classAIProperties.html#a6ab646a924676b987ca25b69255604f8">AIProperties::m_make_use_of_slipstream</a></div><div class="ttdeci">bool m_make_use_of_slipstream</div><div class="ttdoc">True if the AI should avtively try to make use of slipstream.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:101</div></div>
+<div class="ttc" id="aclassAIProperties_html_a7cbdbe03e733ce6abe1671a3cb500ad3"><div class="ttname"><a href="classAIProperties.html#a7cbdbe03e733ce6abe1671a3cb500ad3">AIProperties::m_item_usage_skill</a></div><div class="ttdeci">int m_item_usage_skill</div><div class="ttdoc">Determines the strategies used by the AI for items.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:118</div></div>
+<div class="ttc" id="aclassAIProperties_html_a90b81aaf06566b444736a7f7c0a42547"><div class="ttname"><a href="classAIProperties.html#a90b81aaf06566b444736a7f7c0a42547">AIProperties::m_collect_item_probability</a></div><div class="ttdeci">InterpolationArray m_collect_item_probability</div><div class="ttdoc">To determine the probability of selecting an item.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:85</div></div>
+<div class="ttc" id="aclassAIProperties_html_aa7e6aea2938c50c8fbef929cf88845e3"><div class="ttname"><a href="classAIProperties.html#aa7e6aea2938c50c8fbef929cf88845e3">AIProperties::m_time_full_steer</a></div><div class="ttdeci">float m_time_full_steer</div><div class="ttdoc">Time for AI karts to reach full steer angle (used to reduce shaking of karts).</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:72</div></div>
+<div class="ttc" id="aclassAIProperties_html_aad2222179721d1b77fcabb25081d7fb6"><div class="ttname"><a href="classAIProperties.html#aad2222179721d1b77fcabb25081d7fb6">AIProperties::UNDEFINED</a></div><div class="ttdeci">static float UNDEFINED</div><div class="ttdoc">Used to check that all values are defined in the xml file.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:52</div></div>
+<div class="ttc" id="aclassAIProperties_html_aae44fd18e56de3008bc9aa69bedae88e"><div class="ttname"><a href="classAIProperties.html#aae44fd18e56de3008bc9aa69bedae88e">AIProperties::getItemCollectProbability</a></div><div class="ttdeci">float getItemCollectProbability(float distance) const</div><div class="ttdoc">Returns the probability to collect an item depending on the distance to the first player kart.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:155</div></div>
+<div class="ttc" id="aclassAIProperties_html_ab3826b77804cd10148e366cddf5c493e"><div class="ttname"><a href="classAIProperties.html#ab3826b77804cd10148e366cddf5c493e">AIProperties::checkAllSet</a></div><div class="ttdeci">void checkAllSet(const std::string &amp;filename) const</div><div class="ttdoc">Check if all AI properties are defined, and aborts if some are missing.</div><div class="ttdef"><b>Definition</b> ai_properties.cpp:89</div></div>
+<div class="ttc" id="aclassAIProperties_html_ab3d3eac4a0a9f9c894a7cf11a31d9fb0"><div class="ttname"><a href="classAIProperties.html#ab3d3eac4a0a9f9c894a7cf11a31d9fb0">AIProperties::m_straight_length_for_zipper</a></div><div class="ttdeci">float m_straight_length_for_zipper</div><div class="ttdoc">Minimum length of a straight in order to activate a zipper.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:75</div></div>
+<div class="ttc" id="aclassAIProperties_html_ac8270b1667507b7824d5085a1c09f4ee"><div class="ttname"><a href="classAIProperties.html#ac8270b1667507b7824d5085a1c09f4ee">AIProperties::m_min_start_delay</a></div><div class="ttdeci">float m_min_start_delay</div><div class="ttdoc">Minimum start delay.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:95</div></div>
+<div class="ttc" id="aclassAIProperties_html_adaf1a2c3c1bde316d48dd3208e5bc918"><div class="ttname"><a href="classAIProperties.html#adaf1a2c3c1bde316d48dd3208e5bc918">AIProperties::m_ident</a></div><div class="ttdeci">std::string m_ident</div><div class="ttdoc">An identifier like &#39;easy&#39;, &#39;medium&#39; or &#39;hard&#39; for this data set.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:133</div></div>
+<div class="ttc" id="aclassAIProperties_html_af365b159d558a72d0b6b888fa11eb5fb"><div class="ttname"><a href="classAIProperties.html#af365b159d558a72d0b6b888fa11eb5fb">AIProperties::m_bad_item_closeness_2</a></div><div class="ttdeci">float m_bad_item_closeness_2</div><div class="ttdoc">If a good item and a bad item are closer than this distance, a good item will be avoided (in order to...</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:68</div></div>
+<div class="ttc" id="aclassAIProperties_html_afd572664f52bd943b8bda7476c0130e9"><div class="ttname"><a href="classAIProperties.html#afd572664f52bd943b8bda7476c0130e9">AIProperties::m_shield_incoming_radius</a></div><div class="ttdeci">float m_shield_incoming_radius</div><div class="ttdoc">Distance at which a detected projectile triggers a shield.</div><div class="ttdef"><b>Definition</b> ai_properties.hpp:88</div></div>
+<div class="ttc" id="aclassInterpolationArray_html"><div class="ttname"><a href="classInterpolationArray.html">InterpolationArray</a></div><div class="ttdoc">This class manages a set of (x_i,y_i) points, x_i must be sorted.</div><div class="ttdef"><b>Definition</b> interpolation_array.hpp:32</div></div>
+<div class="ttc" id="aclassRaceManager_html_acf298e99927d30996e847393337e67a6"><div class="ttname"><a href="classRaceManager.html#acf298e99927d30996e847393337e67a6">RaceManager::Difficulty</a></div><div class="ttdeci">Difficulty</div><div class="ttdoc">Game difficulty.</div><div class="ttdef"><b>Definition</b> race_manager.hpp:231</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

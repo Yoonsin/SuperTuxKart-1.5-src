@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: karts/controller/skidding_ai.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>karts</b></li><li class="navelem"><b>controller</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">skidding_ai.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  Copyright (C) 2004-2015  Steve Baker &lt;sjbaker1@airmail.net&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  Copyright (C) 2006-2015  Eduardo Hernandez Munoz</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  Copyright (C) 2010-2015  Joerg Henrichs</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef HEADER_SKIDDING_AI_HPP</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define HEADER_SKIDDING_AI_HPP</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">// Some debugging features for the AI. For example you can visualise the</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">// point the AI is aiming at, or visualise the curve the AI is predicting.</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">// It works best with just 1 AI kart, so set the number of karts</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// to 2 in main.cpp with quickstart and run supertuxkart with the arg -N.</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// Or use --profile-laps=99 and run just one AI. Using the debug camera</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">// (top view) is useful, too</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>   <span class="comment">// Enable AI graphical debugging</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#  undef AI_DEBUG</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>   <span class="comment">// Shows left and right lines when using new findNonCrashing function</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#  undef AI_DEBUG_NEW_FIND_NON_CRASHING</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>   <span class="comment">// Show the predicted turn circles</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#  undef AI_DEBUG_CIRCLES</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>   <span class="comment">// Show the heading of the kart</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#  undef AI_DEBUG_KART_HEADING</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>   <span class="comment">// Shows line from kart to its aim point</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#  undef AI_DEBUG_KART_AIM</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#include &quot;karts/controller/ai_base_lap_controller.hpp&quot;</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#include &quot;race/race_manager.hpp&quot;</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#include &quot;tracks/drive_node.hpp&quot;</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#include &quot;utils/random_generator.hpp&quot;</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#include &lt;line3d.h&gt;</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">class </span><a class="code hl_class" href="classItemManager.html">ItemManager</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">class </span><a class="code hl_class" href="classItemState.html">ItemState</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">class </span><a class="code hl_class" href="classLinearWorld.html">LinearWorld</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">class </span>Track;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">namespace </span>scene</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keyword">class </span>ISceneNode;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>}</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="foldopen" id="foldopen00116" data-start="{" data-end="};">
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classSkiddingAI.html">  116</a></span><span class="keyword">class </span>SkiddingAI : <span class="keyword">public</span> <a class="code hl_function" href="classAIBaseLapController.html#a75146c3f9740e40d6a3d941a59d12539">AIBaseLapController</a></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>{</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="foldopen" id="foldopen00120" data-start="{" data-end="};">
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classSkiddingAI_1_1CrashTypes.html">  120</a></span>    <span class="keyword">class </span>CrashTypes</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="keywordtype">bool</span> m_road; <span class="comment">//true if we are going to &#39;crash&#39; with the bounds of the road</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keywordtype">int</span> m_kart; <span class="comment">//-1 if no crash, pos numbers are the kart it crashes with</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        CrashTypes() : m_road(<span class="keyword">false</span>), m_kart(-1) {};</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="keywordtype">void</span> clear() {m_road = <span class="keyword">false</span>; m_kart = -1;}</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    } m_crashes;</div>
+</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <a class="code hl_enumeration" href="classRaceManager.html#aa6f02bae44655cf562f29cfc4a754334">RaceManager::AISuperPower</a> m_superpower;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">/*General purpose variables*/</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a5e93fbf5910ec786da66c80de8baa9dc">  136</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *<a class="code hl_variable" href="classSkiddingAI.html#a5e93fbf5910ec786da66c80de8baa9dc">m_kart_ahead</a>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#af83343cc26e45a86409c551cad449798">  139</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSkiddingAI.html#af83343cc26e45a86409c551cad449798">m_distance_ahead</a>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a88f058268febfacd65704b019deac0b4">  143</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *<a class="code hl_variable" href="classSkiddingAI.html#a88f058268febfacd65704b019deac0b4">m_kart_behind</a>;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#ae61d65298324a90da13a84ef16ea89ba">  146</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSkiddingAI.html#ae61d65298324a90da13a84ef16ea89ba">m_distance_behind</a>;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a3ce9c46fe8541b02c2bd5efaa2f91bbf">  151</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSkiddingAI.html#a3ce9c46fe8541b02c2bd5efaa2f91bbf">m_distance_leader</a>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#ad80dd87ae546c21dda25ecbc79ff7573">  155</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classSkiddingAI.html#ad80dd87ae546c21dda25ecbc79ff7573">m_start_delay</a>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a8e9ad0a6faa73dc04ce0a1893ed1a02e">  158</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSkiddingAI.html#a8e9ad0a6faa73dc04ce0a1893ed1a02e">m_time_since_last_shot</a>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordtype">float</span> m_time_since_stuck;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#ac2e5d6c46d6d0be334eb894bfe765a05">  163</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classSkiddingAI.html#ac2e5d6c46d6d0be334eb894bfe765a05">m_start_kart_crash_direction</a>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a390327cce8e12456516fd396fa18dcc6">  166</a></span>    <a class="code hl_enumeration" href="classDriveNode.html#a91dde10a23b5402b2fc36ffe3bff18dc">DriveNode::DirectionType</a> <a class="code hl_variable" href="classSkiddingAI.html#a390327cce8e12456516fd396fa18dcc6">m_current_track_direction</a>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#ac4c3cd1b3aef10b705b2a5ca89cb6155">  170</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSkiddingAI.html#ac4c3cd1b3aef10b705b2a5ca89cb6155">m_current_curve_radius</a>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a8c3b6eda4c661eff23a76634d43d8a8b">  174</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a>  <a class="code hl_variable" href="classSkiddingAI.html#a8c3b6eda4c661eff23a76634d43d8a8b">m_curve_center</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a33e4f3aa347f4ab821dd755e1f36a296">  179</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classSkiddingAI.html#a33e4f3aa347f4ab821dd755e1f36a296">m_last_direction_node</a>;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a0679dd591eb2517d29e9d936993734e1">  182</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classItemState.html">ItemState</a> *<a class="code hl_variable" href="classSkiddingAI.html#a0679dd591eb2517d29e9d936993734e1">m_item_to_collect</a>;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a9b67b94145f33cea22a0f640a91d117f">  186</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classSkiddingAI.html#a9b67b94145f33cea22a0f640a91d117f">m_avoid_item_close</a>;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a8fc30f6f297e707802e27029ca856d52">  189</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classSkiddingAI.html#a8fc30f6f297e707802e27029ca856d52">m_distance_to_player</a>;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#adcaa66cb1cc189f05526d98417da135c">  192</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classSkiddingAI.html#adcaa66cb1cc189f05526d98417da135c">m_num_players_ahead</a>;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#af7c3e6fe26e3756ae124ffd2fa757d8a">  195</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classSkiddingAI.html#af7c3e6fe26e3756ae124ffd2fa757d8a">m_burster</a>;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#ae5aa32e7a19b03feca6353cfc680b589">  198</a></span>    <a class="code hl_class" href="classRandomGenerator.html">RandomGenerator</a> <a class="code hl_variable" href="classSkiddingAI.html#ae5aa32e7a19b03feca6353cfc680b589">m_random_skid</a>;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keyword">enum</span> {SKID_PROBAB_NOT_YET, SKID_PROBAB_NO_SKID, SKID_PROBAB_SKID}</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a49221116ca931ebee929f7b51ef568b6">  209</a></span>          <a class="code hl_variable" href="classSkiddingAI.html#a49221116ca931ebee929f7b51ef568b6">m_skid_probability_state</a>;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#afac04f4ad5d69739b2768f8e9404b087">  212</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classSkiddingAI.html#afac04f4ad5d69739b2768f8e9404b087">SkillType</a> {ITEM_SKILL, NITRO_SKILL};</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#af3b42348d1afc14839b2c2cfa27814a8">  216</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classItemState.html">ItemState</a> *<a class="code hl_variable" href="classSkiddingAI.html#af3b42348d1afc14839b2c2cfa27814a8">m_last_item_random</a>;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a30a28acd995acd2d8afcd63ec383f71d">  219</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classSkiddingAI.html#a30a28acd995acd2d8afcd63ec383f71d">m_really_collect_item</a>;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a0040ccfe7a51e8cd7bf7730344145520">  222</a></span>    <a class="code hl_class" href="classRandomGenerator.html">RandomGenerator</a> <a class="code hl_variable" href="classSkiddingAI.html#a0040ccfe7a51e8cd7bf7730344145520">m_random_collect_item</a>;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keyword">enum</span> {PSA_DEFAULT, PSA_NEW}</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="classSkiddingAI.html#a1e890832efa67793d0c49b872550110a">  236</a></span>          <a class="code hl_variable" href="classSkiddingAI.html#a1e890832efa67793d0c49b872550110a">m_point_selection_algorithm</a>;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <a class="code hl_class" href="classItemManager.html">ItemManager</a>* m_item_manager;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="preprocessor">#ifdef AI_DEBUG</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <a class="code hl_class" href="classShowCurve.html">ShowCurve</a> **m_curve;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    irr::scene::ISceneNode *m_debug_sphere[4];</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    irr::scene::ISceneNode *m_item_sphere;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="comment">/*Functions called directly from update(). They all represent an action</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="comment">     *that can be done, and end up setting their respective m_controls</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="comment">     *variable, except handle_race_start() that isn&#39;t associated with any</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="comment">     *specific action (more like, associated with inaction).</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keywordtype">void</span>  handleRaceStart();</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#a2579af641e94160ca5e136f2e244b4f6">handleAccelerationAndBraking</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#a100d9141486143af1800f97077db7fad">handleSteering</a>(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordtype">int</span>   <a class="code hl_function" href="classSkiddingAI.html#a8833ad8e48dadb21be2bb6d786d37780">computeSkill</a>(<a class="code hl_enumeration" href="classSkiddingAI.html#afac04f4ad5d69739b2768f8e9404b087">SkillType</a> type);</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#aebf06e69819fe8ee717ae8cf3afeec5b">handleItems</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> dt, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> *aim_point,</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                                <span class="keywordtype">int</span> last_node, <span class="keywordtype">int</span> item_skill);</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#a7cce64a0846aa720999f5e6ba3fbe71f">handleBubblegum</a>(<span class="keywordtype">int</span> item_skill,</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                          <span class="keyword">const</span> std::vector&lt;const ItemState *&gt; &amp;items_to_collect,</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                          <span class="keyword">const</span> std::vector&lt;const ItemState *&gt; &amp;items_to_avoid);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#af5a1c09cdb45120920c37d44359ee9e1">handleCake</a>(<span class="keywordtype">int</span> item_skill);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#ab64c4c83b28009a926fca9bcdc7711f4">handleBowling</a>(<span class="keywordtype">int</span> item_skill);</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#a7134ab65ac62ec43af49cec3c0321ee9">handleSwatter</a>(<span class="keywordtype">int</span> item_skill);</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#a76a8aebc0c29da6cc03175933b548445">handleSwitch</a>(<span class="keywordtype">int</span> item_skill,</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>                       <span class="keyword">const</span> std::vector&lt;const ItemState *&gt; &amp;items_to_collect,</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>                       <span class="keyword">const</span> std::vector&lt;const ItemState *&gt; &amp;items_to_avoid);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keywordtype">void</span>  handleRescue(<span class="keyword">const</span> <span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#a56be352c71d40500164c42412a0fe53c">handleBraking</a>(<span class="keywordtype">float</span> max_turn_speed, <span class="keywordtype">float</span> min_speed);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#a981fce1ff0cb8c9a6c3fdfe149acf7b4">handleNitroAndZipper</a>(<span class="keywordtype">float</span> max_safe_speed);</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#aa12b707636199076e5d3c2fecea939b8">computeNearestKarts</a>();</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#aa657b3e42f4e0b3a2688bb90b1245949">handleItemCollectionAndAvoidance</a>(<a class="code hl_class" href="classVec3.html">Vec3</a> *aim_point,</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                                           <span class="keywordtype">int</span> last_node);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="keywordtype">bool</span>  <a class="code hl_function" href="classSkiddingAI.html#a28a50fbd878a2b130e74779e0c257e0b">handleSelectedItem</a>(<a class="code hl_class" href="classVec3.html">Vec3</a> kart_aim_direction, <a class="code hl_class" href="classVec3.html">Vec3</a> *aim_point);</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordtype">bool</span>  <a class="code hl_function" href="classSkiddingAI.html#a93587a501a7c9ff3361adc1ea04e4341">steerToAvoid</a>(<span class="keyword">const</span> std::vector&lt;const ItemState *&gt; &amp;items_to_avoid,</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>                       <span class="keyword">const</span> core::line3df &amp;line_to_target,</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>                       <a class="code hl_class" href="classVec3.html">Vec3</a> *aim_point);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordtype">bool</span>  <a class="code hl_function" href="classSkiddingAI.html#afe7704ea8df159afca36133af300ae04">hitBadItemWhenAimAt</a>(<span class="keyword">const</span> <a class="code hl_class" href="classItemState.html">ItemState</a> *item,</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>                              <span class="keyword">const</span> std::vector&lt;const ItemState *&gt; &amp;items_to_avoid);</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#a267c09c82696d1720ca22232fcd8be11">evaluateItems</a>(<span class="keyword">const</span> <a class="code hl_class" href="classItemState.html">ItemState</a> *item, <a class="code hl_class" href="classVec3.html">Vec3</a> kart_aim_direction,</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>                        std::vector&lt;const ItemState *&gt; *items_to_avoid,</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                        std::vector&lt;const ItemState *&gt; *items_to_collect);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="keywordtype">void</span>  checkCrashes(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a>&amp; pos);</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#a6c20a7a444d339d681ef1427162bbe5e">findNonCrashingPointNew</a>(<a class="code hl_class" href="classVec3.html">Vec3</a> *result, <span class="keywordtype">int</span> *last_node);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#a6fa21e9663794f328677f919dcaa7afd">findNonCrashingPoint</a>(<a class="code hl_class" href="classVec3.html">Vec3</a> *result, <span class="keywordtype">int</span> *last_node);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classSkiddingAI.html#a0e759fc7262daf93efc1c0835fca518b">determineTrackDirection</a>();</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classSkiddingAI.html#a32ef0314028631452a421efa19b68b71">canSkid</a>(<span class="keywordtype">float</span> steer_fraction);</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classSkiddingAI.html#a53970bd8c6f1b768ee10440037c459a4">setSteering</a>(<span class="keywordtype">float</span> angle, <span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSkiddingAI.html#a5ae30fa12a557877c8136064f6035b23">handleCurve</a>();</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classSkiddingAI.html#ae661d1fa97111c61ed1df66f08b6c53b">getNextSector</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index);</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>                 SkiddingAI(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart);</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>                ~SkiddingAI();</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classSkiddingAI.html#ad70ba8c85e74b8aceeba12f559afb8c8">update</a>      (<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classSkiddingAI.html#a63b16e59652015903e67561f4d920a24">reset</a>       ();</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> irr::core::stringw&amp; <a class="code hl_function" href="classSkiddingAI.html#af89eae4c0029f0de802ac251b5188686">getNamePostfix</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>};</div>
+</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="comment">/* EOF */</span></div>
+<div class="ttc" id="aclassAIBaseLapController_html_a75146c3f9740e40d6a3d941a59d12539"><div class="ttname"><a href="classAIBaseLapController.html#a75146c3f9740e40d6a3d941a59d12539">AIBaseLapController::AIBaseLapController</a></div><div class="ttdeci">AIBaseLapController(AbstractKart *kart)</div><div class="ttdoc">This is the base class for all AIs.</div><div class="ttdef"><b>Definition</b> ai_base_lap_controller.cpp:86</div></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassDriveNode_html_a91dde10a23b5402b2fc36ffe3bff18dc"><div class="ttname"><a href="classDriveNode.html#a91dde10a23b5402b2fc36ffe3bff18dc">DriveNode::DirectionType</a></div><div class="ttdeci">DirectionType</div><div class="ttdoc">To indiciate in which direction the track is going: straight, left, right.</div><div class="ttdef"><b>Definition</b> drive_node.hpp:37</div></div>
+<div class="ttc" id="aclassItemManager_html"><div class="ttname"><a href="classItemManager.html">ItemManager</a></div><div class="ttdef"><b>Definition</b> item_manager.hpp:47</div></div>
+<div class="ttc" id="aclassItemState_html"><div class="ttname"><a href="classItemState.html">ItemState</a></div><div class="ttdoc">Contains the state information of an item, i.e.</div><div class="ttdef"><b>Definition</b> item.hpp:53</div></div>
+<div class="ttc" id="aclassLinearWorld_html"><div class="ttname"><a href="classLinearWorld.html">LinearWorld</a></div><div class="ttdef"><b>Definition</b> linear_world.hpp:36</div></div>
+<div class="ttc" id="aclassRaceManager_html_aa6f02bae44655cf562f29cfc4a754334"><div class="ttname"><a href="classRaceManager.html#aa6f02bae44655cf562f29cfc4a754334">RaceManager::AISuperPower</a></div><div class="ttdeci">AISuperPower</div><div class="ttdoc">True if the AI should have additional abbilities, e.g.</div><div class="ttdef"><b>Definition</b> race_manager.hpp:135</div></div>
+<div class="ttc" id="aclassRandomGenerator_html"><div class="ttname"><a href="classRandomGenerator.html">RandomGenerator</a></div><div class="ttdoc">A random number generator.</div><div class="ttdef"><b>Definition</b> random_generator.hpp:33</div></div>
+<div class="ttc" id="aclassShowCurve_html"><div class="ttname"><a href="classShowCurve.html">ShowCurve</a></div><div class="ttdoc">This class is used for debugging.</div><div class="ttdef"><b>Definition</b> show_curve.hpp:46</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a0040ccfe7a51e8cd7bf7730344145520"><div class="ttname"><a href="classSkiddingAI.html#a0040ccfe7a51e8cd7bf7730344145520">SkiddingAI::m_random_collect_item</a></div><div class="ttdeci">RandomGenerator m_random_collect_item</div><div class="ttdoc">A random number generator for collecting items.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:222</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a0679dd591eb2517d29e9d936993734e1"><div class="ttname"><a href="classSkiddingAI.html#a0679dd591eb2517d29e9d936993734e1">SkiddingAI::m_item_to_collect</a></div><div class="ttdeci">const ItemState * m_item_to_collect</div><div class="ttdoc">If set an item that the AI should aim for.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:182</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a0e759fc7262daf93efc1c0835fca518b"><div class="ttname"><a href="classSkiddingAI.html#a0e759fc7262daf93efc1c0835fca518b">SkiddingAI::determineTrackDirection</a></div><div class="ttdeci">void determineTrackDirection()</div><div class="ttdoc">Determines the direction of the track ahead of the kart: 0 indicates straight, +1 right turn,...</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:2780</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a100d9141486143af1800f97077db7fad"><div class="ttname"><a href="classSkiddingAI.html#a100d9141486143af1800f97077db7fad">SkiddingAI::handleSteering</a></div><div class="ttdeci">void handleSteering(float dt)</div><div class="ttdoc">Decides in which direction to steer.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:370</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a1e890832efa67793d0c49b872550110a"><div class="ttname"><a href="classSkiddingAI.html#a1e890832efa67793d0c49b872550110a">SkiddingAI::m_point_selection_algorithm</a></div><div class="ttdeci">enum SkiddingAI::@237216244306171342126371364070200235141175152025 m_point_selection_algorithm</div><div class="ttdoc">Determines the algorithm to use to select the point-to-aim-for There are two different Point Selectio...</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a2579af641e94160ca5e136f2e244b4f6"><div class="ttname"><a href="classSkiddingAI.html#a2579af641e94160ca5e136f2e244b4f6">SkiddingAI::handleAccelerationAndBraking</a></div><div class="ttdeci">void handleAccelerationAndBraking(int ticks)</div><div class="ttdoc">Determines if the AI should accelerate or not, and if not if it should brake.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:1989</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a267c09c82696d1720ca22232fcd8be11"><div class="ttname"><a href="classSkiddingAI.html#a267c09c82696d1720ca22232fcd8be11">SkiddingAI::evaluateItems</a></div><div class="ttdeci">void evaluateItems(const ItemState *item, Vec3 kart_aim_direction, std::vector&lt; const ItemState * &gt; *items_to_avoid, std::vector&lt; const ItemState * &gt; *items_to_collect)</div><div class="ttdoc">This subroutine decides if the specified item should be collected, avoided, or ignored.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:974</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a28a50fbd878a2b130e74779e0c257e0b"><div class="ttname"><a href="classSkiddingAI.html#a28a50fbd878a2b130e74779e0c257e0b">SkiddingAI::handleSelectedItem</a></div><div class="ttdeci">bool handleSelectedItem(Vec3 kart_aim_direction, Vec3 *aim_point)</div><div class="ttdoc">This function is called when the AI is trying to hit an item that is pre-selected to be collected.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:786</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a30a28acd995acd2d8afcd63ec383f71d"><div class="ttname"><a href="classSkiddingAI.html#a30a28acd995acd2d8afcd63ec383f71d">SkiddingAI::m_really_collect_item</a></div><div class="ttdeci">bool m_really_collect_item</div><div class="ttdoc">True if m_last_item_random was randomly selected to be collected.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:219</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a32ef0314028631452a421efa19b68b71"><div class="ttname"><a href="classSkiddingAI.html#a32ef0314028631452a421efa19b68b71">SkiddingAI::canSkid</a></div><div class="ttdeci">virtual bool canSkid(float steer_fraction)</div><div class="ttdoc">Determines if the kart should skid.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:2899</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a33e4f3aa347f4ab821dd755e1f36a296"><div class="ttname"><a href="classSkiddingAI.html#a33e4f3aa347f4ab821dd755e1f36a296">SkiddingAI::m_last_direction_node</a></div><div class="ttdeci">unsigned int m_last_direction_node</div><div class="ttdoc">The index of the last node with the same direction as the current node the kart is on.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:179</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a390327cce8e12456516fd396fa18dcc6"><div class="ttname"><a href="classSkiddingAI.html#a390327cce8e12456516fd396fa18dcc6">SkiddingAI::m_current_track_direction</a></div><div class="ttdeci">DriveNode::DirectionType m_current_track_direction</div><div class="ttdoc">The direction of the track where the kart is on atm.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:166</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a3ce9c46fe8541b02c2bd5efaa2f91bbf"><div class="ttname"><a href="classSkiddingAI.html#a3ce9c46fe8541b02c2bd5efaa2f91bbf">SkiddingAI::m_distance_leader</a></div><div class="ttdeci">float m_distance_leader</div><div class="ttdoc">Distance to the leader kart (used only in FTL) If this kart is leader, contains a high value to avoid...</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:151</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a49221116ca931ebee929f7b51ef568b6"><div class="ttname"><a href="classSkiddingAI.html#a49221116ca931ebee929f7b51ef568b6">SkiddingAI::m_skid_probability_state</a></div><div class="ttdeci">enum SkiddingAI::@354004175230171040026346371351034063263065001221 m_skid_probability_state</div><div class="ttdoc">This implements a simple finite state machine: it starts in NOT_YET.</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a53970bd8c6f1b768ee10440037c459a4"><div class="ttname"><a href="classSkiddingAI.html#a53970bd8c6f1b768ee10440037c459a4">SkiddingAI::setSteering</a></div><div class="ttdeci">virtual void setSteering(float angle, float dt)</div><div class="ttdoc">Converts the steering angle to a lr steering in the range of -1 to 1.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:3029</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a56be352c71d40500164c42412a0fe53c"><div class="ttname"><a href="classSkiddingAI.html#a56be352c71d40500164c42412a0fe53c">SkiddingAI::handleBraking</a></div><div class="ttdeci">void handleBraking(float max_turn_speed, float min_speed)</div><div class="ttdoc">This function decides if the AI should brake.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:2069</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a5ae30fa12a557877c8136064f6035b23"><div class="ttname"><a href="classSkiddingAI.html#a5ae30fa12a557877c8136064f6035b23">SkiddingAI::handleCurve</a></div><div class="ttdeci">void handleCurve()</div><div class="ttdoc">If the kart is at/in a curve, determine the turn radius.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:2837</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a5e93fbf5910ec786da66c80de8baa9dc"><div class="ttname"><a href="classSkiddingAI.html#a5e93fbf5910ec786da66c80de8baa9dc">SkiddingAI::m_kart_ahead</a></div><div class="ttdeci">AbstractKart * m_kart_ahead</div><div class="ttdoc">Pointer to the closest kart ahead of this kart.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:136</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a63b16e59652015903e67561f4d920a24"><div class="ttname"><a href="classSkiddingAI.html#a63b16e59652015903e67561f4d920a24">SkiddingAI::reset</a></div><div class="ttdeci">virtual void reset()</div><div class="ttdoc">Resets the AI when a race is restarted.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:162</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a6c20a7a444d339d681ef1427162bbe5e"><div class="ttname"><a href="classSkiddingAI.html#a6c20a7a444d339d681ef1427162bbe5e">SkiddingAI::findNonCrashingPointNew</a></div><div class="ttdeci">void findNonCrashingPointNew(Vec3 *result, int *last_node)</div><div class="ttdoc">This is a new version of findNonCrashingPoint, which at this stage is slightly inferior (though faste...</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:2584</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a6fa21e9663794f328677f919dcaa7afd"><div class="ttname"><a href="classSkiddingAI.html#a6fa21e9663794f328677f919dcaa7afd">SkiddingAI::findNonCrashingPoint</a></div><div class="ttdeci">void findNonCrashingPoint(Vec3 *result, int *last_node)</div><div class="ttdoc">This is basically the original AI algorithm.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:2695</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a7134ab65ac62ec43af49cec3c0321ee9"><div class="ttname"><a href="classSkiddingAI.html#a7134ab65ac62ec43af49cec3c0321ee9">SkiddingAI::handleSwatter</a></div><div class="ttdeci">void handleSwatter(int item_skill)</div><div class="ttdoc">Handle the swatter depending on the chosen strategy Level 2 : Use the swatter immediately after a wai...</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:1681</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a76a8aebc0c29da6cc03175933b548445"><div class="ttname"><a href="classSkiddingAI.html#a76a8aebc0c29da6cc03175933b548445">SkiddingAI::handleSwitch</a></div><div class="ttdeci">void handleSwitch(int item_skill, const std::vector&lt; const ItemState * &gt; &amp;items_to_collect, const std::vector&lt; const ItemState * &gt; &amp;items_to_avoid)</div><div class="ttdoc">Handle switch depending on the chosen strategy Level 2 : Use the switch after a wait time Level 3 : S...</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:1742</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a7cce64a0846aa720999f5e6ba3fbe71f"><div class="ttname"><a href="classSkiddingAI.html#a7cce64a0846aa720999f5e6ba3fbe71f">SkiddingAI::handleBubblegum</a></div><div class="ttdeci">void handleBubblegum(int item_skill, const std::vector&lt; const ItemState * &gt; &amp;items_to_collect, const std::vector&lt; const ItemState * &gt; &amp;items_to_avoid)</div><div class="ttdoc">Handle bubblegum depending on the chosen strategy Level 2 : Use the shield immediately after a wait t...</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:1299</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a8833ad8e48dadb21be2bb6d786d37780"><div class="ttname"><a href="classSkiddingAI.html#a8833ad8e48dadb21be2bb6d786d37780">SkiddingAI::computeSkill</a></div><div class="ttdeci">int computeSkill(SkillType type)</div><div class="ttdoc">Returns the AI skill value used by the kart</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:2394</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a88f058268febfacd65704b019deac0b4"><div class="ttname"><a href="classSkiddingAI.html#a88f058268febfacd65704b019deac0b4">SkiddingAI::m_kart_behind</a></div><div class="ttdeci">AbstractKart * m_kart_behind</div><div class="ttdoc">Pointer to the closest kart behind this kart.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:143</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a8c3b6eda4c661eff23a76634d43d8a8b"><div class="ttname"><a href="classSkiddingAI.html#a8c3b6eda4c661eff23a76634d43d8a8b">SkiddingAI::m_curve_center</a></div><div class="ttdeci">Vec3 m_curve_center</div><div class="ttdoc">Stores the center of the curve (if the kart is in a curve, otherwise undefined).</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:174</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a8e9ad0a6faa73dc04ce0a1893ed1a02e"><div class="ttname"><a href="classSkiddingAI.html#a8e9ad0a6faa73dc04ce0a1893ed1a02e">SkiddingAI::m_time_since_last_shot</a></div><div class="ttdeci">float m_time_since_last_shot</div><div class="ttdoc">Time an item has been collected and not used.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:158</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a8fc30f6f297e707802e27029ca856d52"><div class="ttname"><a href="classSkiddingAI.html#a8fc30f6f297e707802e27029ca856d52">SkiddingAI::m_distance_to_player</a></div><div class="ttdeci">float m_distance_to_player</div><div class="ttdoc">Distance to the player, used for rubber-banding.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:189</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a93587a501a7c9ff3361adc1ea04e4341"><div class="ttname"><a href="classSkiddingAI.html#a93587a501a7c9ff3361adc1ea04e4341">SkiddingAI::steerToAvoid</a></div><div class="ttdeci">bool steerToAvoid(const std::vector&lt; const ItemState * &gt; &amp;items_to_avoid, const core::line3df &amp;line_to_target, Vec3 *aim_point)</div><div class="ttdoc">Decides if steering is necessary to avoid bad items.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:821</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a981fce1ff0cb8c9a6c3fdfe149acf7b4"><div class="ttname"><a href="classSkiddingAI.html#a981fce1ff0cb8c9a6c3fdfe149acf7b4">SkiddingAI::handleNitroAndZipper</a></div><div class="ttdeci">void handleNitroAndZipper(float max_safe_speed)</div><div class="ttdoc">Decides wether to use nitro and zipper or not.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:2193</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_a9b67b94145f33cea22a0f640a91d117f"><div class="ttname"><a href="classSkiddingAI.html#a9b67b94145f33cea22a0f640a91d117f">SkiddingAI::m_avoid_item_close</a></div><div class="ttdeci">bool m_avoid_item_close</div><div class="ttdoc">True if items to avoid are close by.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:186</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_aa12b707636199076e5d3c2fecea939b8"><div class="ttname"><a href="classSkiddingAI.html#aa12b707636199076e5d3c2fecea939b8">SkiddingAI::computeNearestKarts</a></div><div class="ttdeci">void computeNearestKarts()</div><div class="ttdoc">Determines the closest karts just behind and in front of this kart.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:1869</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_aa657b3e42f4e0b3a2688bb90b1245949"><div class="ttname"><a href="classSkiddingAI.html#aa657b3e42f4e0b3a2688bb90b1245949">SkiddingAI::handleItemCollectionAndAvoidance</a></div><div class="ttdeci">void handleItemCollectionAndAvoidance(Vec3 *aim_point, int last_node)</div><div class="ttdoc">Decides if the currently selected aim at point (as determined by handleSteering) should be changed in...</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:554</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_ab64c4c83b28009a926fca9bcdc7711f4"><div class="ttname"><a href="classSkiddingAI.html#ab64c4c83b28009a926fca9bcdc7711f4">SkiddingAI::handleBowling</a></div><div class="ttdeci">void handleBowling(int item_skill)</div><div class="ttdoc">Handle the bowling ball depending on the chosen strategy Level 2 : Use the bowling ball against enemi...</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:1600</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_ac2e5d6c46d6d0be334eb894bfe765a05"><div class="ttname"><a href="classSkiddingAI.html#ac2e5d6c46d6d0be334eb894bfe765a05">SkiddingAI::m_start_kart_crash_direction</a></div><div class="ttdeci">int m_start_kart_crash_direction</div><div class="ttdoc">Direction of crash: -1 = left, 1 = right, 0 = no crash.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:163</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_ac4c3cd1b3aef10b705b2a5ca89cb6155"><div class="ttname"><a href="classSkiddingAI.html#ac4c3cd1b3aef10b705b2a5ca89cb6155">SkiddingAI::m_current_curve_radius</a></div><div class="ttdeci">float m_current_curve_radius</div><div class="ttdoc">The radius of the curve the kart is currently driving.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:170</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_ad70ba8c85e74b8aceeba12f559afb8c8"><div class="ttname"><a href="classSkiddingAI.html#ad70ba8c85e74b8aceeba12f559afb8c8">SkiddingAI::update</a></div><div class="ttdeci">virtual void update(int ticks)</div><div class="ttdoc">This is the main entry point for the AI.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:225</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_ad80dd87ae546c21dda25ecbc79ff7573"><div class="ttname"><a href="classSkiddingAI.html#ad80dd87ae546c21dda25ecbc79ff7573">SkiddingAI::m_start_delay</a></div><div class="ttdeci">int m_start_delay</div><div class="ttdoc">The actual start delay used in ticks.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:155</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_adcaa66cb1cc189f05526d98417da135c"><div class="ttname"><a href="classSkiddingAI.html#adcaa66cb1cc189f05526d98417da135c">SkiddingAI::m_num_players_ahead</a></div><div class="ttdeci">int m_num_players_ahead</div><div class="ttdoc">Number of players ahead, used for rubber-banding.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:192</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_ae5aa32e7a19b03feca6353cfc680b589"><div class="ttname"><a href="classSkiddingAI.html#ae5aa32e7a19b03feca6353cfc680b589">SkiddingAI::m_random_skid</a></div><div class="ttdeci">RandomGenerator m_random_skid</div><div class="ttdoc">A random number generator to decide if the AI should skid or not.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:198</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_ae61d65298324a90da13a84ef16ea89ba"><div class="ttname"><a href="classSkiddingAI.html#ae61d65298324a90da13a84ef16ea89ba">SkiddingAI::m_distance_behind</a></div><div class="ttdeci">float m_distance_behind</div><div class="ttdoc">Distance to the kard behind.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:146</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_ae661d1fa97111c61ed1df66f08b6c53b"><div class="ttname"><a href="classSkiddingAI.html#ae661d1fa97111c61ed1df66f08b6c53b">SkiddingAI::getNextSector</a></div><div class="ttdeci">virtual unsigned int getNextSector(unsigned int index)</div><div class="ttdoc">Returns the pre-computed successor of a graph node.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:215</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_aebf06e69819fe8ee717ae8cf3afeec5b"><div class="ttname"><a href="classSkiddingAI.html#aebf06e69819fe8ee717ae8cf3afeec5b">SkiddingAI::handleItems</a></div><div class="ttdeci">void handleItems(const float dt, const Vec3 *aim_point, int last_node, int item_skill)</div><div class="ttdoc">Handle all items depending on the chosen strategy.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:1081</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_af3b42348d1afc14839b2c2cfa27814a8"><div class="ttname"><a href="classSkiddingAI.html#af3b42348d1afc14839b2c2cfa27814a8">SkiddingAI::m_last_item_random</a></div><div class="ttdeci">const ItemState * m_last_item_random</div><div class="ttdoc">The last item selected for collection, for which a probability was determined.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:216</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_af5a1c09cdb45120920c37d44359ee9e1"><div class="ttname"><a href="classSkiddingAI.html#af5a1c09cdb45120920c37d44359ee9e1">SkiddingAI::handleCake</a></div><div class="ttdeci">void handleCake(int item_skill)</div><div class="ttdoc">Handle cake depending on the chosen strategy Level 2 : Use the cake against any close vulnerable enem...</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:1462</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_af7c3e6fe26e3756ae124ffd2fa757d8a"><div class="ttname"><a href="classSkiddingAI.html#af7c3e6fe26e3756ae124ffd2fa757d8a">SkiddingAI::m_burster</a></div><div class="ttdeci">bool m_burster</div><div class="ttdoc">This bool allows to make the AI use nitro by series of two bursts</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:195</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_af83343cc26e45a86409c551cad449798"><div class="ttname"><a href="classSkiddingAI.html#af83343cc26e45a86409c551cad449798">SkiddingAI::m_distance_ahead</a></div><div class="ttdeci">float m_distance_ahead</div><div class="ttdoc">Distance to the kart ahead.</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:139</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_af89eae4c0029f0de802ac251b5188686"><div class="ttname"><a href="classSkiddingAI.html#af89eae4c0029f0de802ac251b5188686">SkiddingAI::getNamePostfix</a></div><div class="ttdeci">virtual const irr::core::stringw &amp; getNamePostfix() const</div><div class="ttdoc">Returns a name for the AI.</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:203</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_afac04f4ad5d69739b2768f8e9404b087"><div class="ttname"><a href="classSkiddingAI.html#afac04f4ad5d69739b2768f8e9404b087">SkiddingAI::SkillType</a></div><div class="ttdeci">SkillType</div><div class="ttdoc">This is used by computeSkill to know what skill is used</div><div class="ttdef"><b>Definition</b> skidding_ai.hpp:212</div></div>
+<div class="ttc" id="aclassSkiddingAI_html_afe7704ea8df159afca36133af300ae04"><div class="ttname"><a href="classSkiddingAI.html#afe7704ea8df159afca36133af300ae04">SkiddingAI::hitBadItemWhenAimAt</a></div><div class="ttdeci">bool hitBadItemWhenAimAt(const ItemState *item, const std::vector&lt; const ItemState * &gt; &amp;items_to_avoid)</div><div class="ttdoc">Returns true if the AI would hit any of the listed bad items when trying to drive towards the specifi...</div><div class="ttdef"><b>Definition</b> skidding_ai.cpp:761</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

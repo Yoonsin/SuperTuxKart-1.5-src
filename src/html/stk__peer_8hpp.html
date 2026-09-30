@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: network/stk_peer.hpp 파일 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>network</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">클래스</a> &#124;
+<a href="#enum-members">열거형 타입</a>  </div>
+  <div class="headertitle"><div class="title">stk_peer.hpp 파일 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Defines functions to easily manipulate 8-bit network destinated strings.  
+<a href="#details">더 자세히 ...</a></p>
+<div class="textblock"><code>#include &quot;utils/no_copy.hpp&quot;</code><br />
+<code>#include &quot;utils/time.hpp&quot;</code><br />
+<code>#include &quot;<a class="el" href="types_8hpp_source.html">utils/types.hpp</a>&quot;</code><br />
+<code>#include &lt;enet/enet.h&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+<code>#include &lt;atomic&gt;</code><br />
+<code>#include &lt;deque&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;numeric&gt;</code><br />
+<code>#include &lt;set&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+stk_peer.hpp에 대한 include 의존 그래프</div>
+<div class="dyncontent">
+<div class="center"><img src="stk__peer_8hpp__incl.png" border="0" usemap="#anetwork_2stk__peer_8hpp" loading="lazy" alt=""/></div>
+<map name="anetwork_2stk__peer_8hpp" id="anetwork_2stk__peer_8hpp">
+<area shape="rect" title="Defines functions to easily manipulate 8&#45;bit network destinated strings." alt="" coords="693,5,840,32"/>
+<area shape="rect" href="no__copy_8hpp_source.html" title=" " alt="" coords="221,80,344,107"/>
+<area shape="poly" title=" " alt="" coords="691,33,363,83,360,83,358,78,362,77,695,29"/>
+<area shape="rect" href="time_8hpp_source.html" title=" " alt="" coords="418,80,518,107"/>
+<area shape="poly" title=" " alt="" coords="712,33,534,79,532,74,717,32"/>
+<area shape="rect" href="types_8hpp.html" title="Declares the general types that are used by the network." alt="" coords="5,155,112,181"/>
+<area shape="poly" title=" " alt="" coords="690,26,558,46,482,61,407,82,382,96,357,109,264,130,127,157,126,151,263,125,355,104,380,91,406,78,481,56,557,41,695,25"/>
+<area shape="rect" title=" " alt="" coords="830,155,884,181"/>
+<area shape="poly" title=" " alt="" coords="690,29,643,42,599,57,584,67,575,78,574,90,582,105,606,129,630,142,655,149,682,150,743,147,777,147,818,155,813,155,777,152,743,152,682,155,655,154,628,147,603,133,578,108,569,92,570,76,580,63,596,53,641,37,695,28"/>
+<area shape="rect" title=" " alt="" coords="591,80,678,107"/>
+<area shape="poly" title=" " alt="" coords="746,32,672,75,669,70,741,34"/>
+<area shape="rect" title=" " alt="" coords="701,80,752,107"/>
+<area shape="poly" title=" " alt="" coords="762,31,742,68,739,64,757,34"/>
+<area shape="rect" title=" " alt="" coords="776,80,837,107"/>
+<area shape="poly" title=" " alt="" coords="775,30,795,67,790,65,772,35"/>
+<area shape="rect" title=" " alt="" coords="861,80,917,107"/>
+<area shape="poly" title=" " alt="" coords="788,30,857,72,852,71,787,35"/>
+<area shape="rect" title=" " alt="" coords="942,80,1010,107"/>
+<area shape="poly" title=" " alt="" coords="803,30,930,75,924,75,803,35"/>
+<area shape="rect" title=" " alt="" coords="1034,80,1102,107"/>
+<area shape="poly" title=" " alt="" coords="823,30,1022,79,1017,79,822,35"/>
+<area shape="rect" title=" " alt="" coords="1126,80,1165,107"/>
+<area shape="poly" title=" " alt="" coords="840,26,963,45,1113,80,1108,80,962,50,840,31"/>
+<area shape="rect" title=" " alt="" coords="1188,80,1246,107"/>
+<area shape="poly" title=" " alt="" coords="840,25,991,44,1176,79,1170,80,990,49,840,30"/>
+<area shape="rect" title=" " alt="" coords="136,155,205,181"/>
+<area shape="poly" title=" " alt="" coords="416,108,221,156,220,151,420,105"/>
+<area shape="rect" title=" " alt="" coords="230,155,290,181"/>
+<area shape="poly" title=" " alt="" coords="429,108,305,154,304,149,434,106"/>
+<area shape="rect" title=" " alt="" coords="314,155,392,181"/>
+<area shape="poly" title=" " alt="" coords="450,106,387,148,385,144,445,108"/>
+<area shape="poly" title=" " alt="" coords="415,104,400,109,128,157,127,151,399,104,420,103"/>
+<area shape="rect" title=" " alt="" coords="212,229,276,256"/>
+<area shape="poly" title=" " alt="" coords="464,106,441,145,425,166,405,183,378,201,349,215,292,234,291,229,347,210,376,196,402,179,421,162,437,142,459,109"/>
+<area shape="rect" title=" " alt="" coords="467,155,549,181"/>
+<area shape="poly" title=" " alt="" coords="476,105,496,142,491,140,474,110"/>
+<area shape="rect" title=" " alt="" coords="573,155,640,181"/>
+<area shape="poly" title=" " alt="" coords="492,105,571,147,566,147,491,110"/>
+<area shape="rect" title=" " alt="" coords="664,155,722,181"/>
+<area shape="poly" title=" " alt="" coords="507,105,652,153,647,153,507,110"/>
+<area shape="poly" title=" " alt="" coords="518,101,536,104,675,125,737,135,818,154,813,154,736,140,674,130,535,109,518,106"/>
+<area shape="rect" title=" " alt="" coords="746,155,806,181"/>
+<area shape="poly" title=" " alt="" coords="518,102,733,153,728,154,517,108"/>
+<area shape="poly" title=" " alt="" coords="91,179,199,222,195,225,90,184"/>
+</map>
+</div>
+</div>
+<p><a href="stk__peer_8hpp_source.html">이 파일의 소스 코드 페이지로 가기</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+클래스</h2></td></tr>
+<tr class="memitem:STKPeer" id="r_STKPeer"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classSTKPeer.html">STKPeer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a peer. This class is used to interface the ENetPeer structure.  <a href="classSTKPeer.html#details">더 자세히 ...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+열거형 타입</h2></td></tr>
+<tr class="memitem:a0da67dae55acce2b89e08972fee076de" id="r_a0da67dae55acce2b89e08972fee076de"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a0da67dae55acce2b89e08972fee076de">PeerDisconnectInfo</a> : unsigned int { <a class="el" href="#a0da67dae55acce2b89e08972fee076dea1d37593e0fcaafbc9b1e6189fc3644c4">PDI_TIMEOUT</a> = 0
+, <a class="el" href="#a0da67dae55acce2b89e08972fee076deabddfa43661e3d7b9246872249e3a32b2">PDI_NORMAL</a> = 1
+, <a class="el" href="#a0da67dae55acce2b89e08972fee076dea32dc568cf6a0d1fa45e17783f45f15e8">PDI_KICK</a> = 2
+, <a class="el" href="#a0da67dae55acce2b89e08972fee076deafca1fb9ac3554fe1bca8b9ea201b8c38">PDI_KICK_HIGH_PING</a> = 3
+ }</td></tr>
+<tr class="memitem:a84122dbc6eec66fbf051ff650a062c62" id="r_a84122dbc6eec66fbf051ff650a062c62"><td class="memItemLeft"><a id="a84122dbc6eec66fbf051ff650a062c62" name="a84122dbc6eec66fbf051ff650a062c62"></a>enum &#160;</td><td class="memItemRight"><b>AddonScore</b> : int { <br />
+&#160;&#160;<b>AS_KART</b> = 0
+, <b>AS_TRACK</b> = 1
+, <b>AS_ARENA</b> = 2
+, <b>AS_SOCCER</b> = 3
+, <br />
+&#160;&#160;<b>AS_TOTAL</b> = 4
+<br />
+ }</td></tr>
+<tr class="memitem:abbbe14e3d0a5bfa857c30d9f591c9972" id="r_abbbe14e3d0a5bfa857c30d9f591c9972"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#abbbe14e3d0a5bfa857c30d9f591c9972">AlwaysSpectateMode</a> : uint8_t { <a class="el" href="#abbbe14e3d0a5bfa857c30d9f591c9972ad62a6e06819864152c382aa86d16b579">ASM_NONE</a> = 0
+, <a class="el" href="#abbbe14e3d0a5bfa857c30d9f591c9972a458050e03b2ec62f5d5d82d43dfbfe41">ASM_COMMAND</a> = 1
+, <a class="el" href="#abbbe14e3d0a5bfa857c30d9f591c9972a991d141357932f15cedcd008915271fb">ASM_FULL</a> = 2
+ }</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Defines functions to easily manipulate 8-bit network destinated strings. </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">열거형 타입 문서화</h2>
+<a id="abbbe14e3d0a5bfa857c30d9f591c9972" name="abbbe14e3d0a5bfa857c30d9f591c9972"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbbe14e3d0a5bfa857c30d9f591c9972">&#9670;&#160;</a></span>AlwaysSpectateMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#abbbe14e3d0a5bfa857c30d9f591c9972">AlwaysSpectateMode</a> : uint8_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">열거형 멤버</th></tr><tr><td class="fieldname"><a id="abbbe14e3d0a5bfa857c30d9f591c9972ad62a6e06819864152c382aa86d16b579" name="abbbe14e3d0a5bfa857c30d9f591c9972ad62a6e06819864152c382aa86d16b579"></a>ASM_NONE&#160;</td><td class="fielddoc"><p>Default, not spectating at all </p>
+</td></tr>
+<tr><td class="fieldname"><a id="abbbe14e3d0a5bfa857c30d9f591c9972a458050e03b2ec62f5d5d82d43dfbfe41" name="abbbe14e3d0a5bfa857c30d9f591c9972a458050e03b2ec62f5d5d82d43dfbfe41"></a>ASM_COMMAND&#160;</td><td class="fielddoc"><p>Set by player through command </p>
+</td></tr>
+<tr><td class="fieldname"><a id="abbbe14e3d0a5bfa857c30d9f591c9972a991d141357932f15cedcd008915271fb" name="abbbe14e3d0a5bfa857c30d9f591c9972a991d141357932f15cedcd008915271fb"></a>ASM_FULL&#160;</td><td class="fielddoc"><p>Set by server because too many players joined </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a0da67dae55acce2b89e08972fee076de" name="a0da67dae55acce2b89e08972fee076de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0da67dae55acce2b89e08972fee076de">&#9670;&#160;</a></span>PeerDisconnectInfo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a0da67dae55acce2b89e08972fee076de">PeerDisconnectInfo</a> : unsigned int</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">열거형 멤버</th></tr><tr><td class="fieldname"><a id="a0da67dae55acce2b89e08972fee076dea1d37593e0fcaafbc9b1e6189fc3644c4" name="a0da67dae55acce2b89e08972fee076dea1d37593e0fcaafbc9b1e6189fc3644c4"></a>PDI_TIMEOUT&#160;</td><td class="fielddoc"><p>Timeout disconnected (default in enet). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0da67dae55acce2b89e08972fee076deabddfa43661e3d7b9246872249e3a32b2" name="a0da67dae55acce2b89e08972fee076deabddfa43661e3d7b9246872249e3a32b2"></a>PDI_NORMAL&#160;</td><td class="fielddoc"><p>Normal disconnction with acknowledgement </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0da67dae55acce2b89e08972fee076dea32dc568cf6a0d1fa45e17783f45f15e8" name="a0da67dae55acce2b89e08972fee076dea32dc568cf6a0d1fa45e17783f45f15e8"></a>PDI_KICK&#160;</td><td class="fielddoc"><p>Kick disconnection </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0da67dae55acce2b89e08972fee076deafca1fb9ac3554fe1bca8b9ea201b8c38" name="a0da67dae55acce2b89e08972fee076deafca1fb9ac3554fe1bca8b9ea201b8c38"></a>PDI_KICK_HIGH_PING&#160;</td><td class="fielddoc"><p>Too high ping, kicked by server </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

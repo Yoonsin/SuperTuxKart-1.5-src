@@ -1,0 +1,1445 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: FileManager 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 타입</a> &#124;
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-static-methods">정적 Public 멤버 함수</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="#pri-static-attribs">정적 Private 속성</a> &#124;
+<a href="classFileManager-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">FileManager 클래스 참조<div class="ingroups"><a class="el" href="group__io.html">Io</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>class handling files and paths  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="file__manager_8hpp_source.html">file_manager.hpp</a>&gt;</code></p>
+<div class="dynheader">
+FileManager에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classFileManager__inherit__graph.png" border="0" usemap="#aFileManager_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aFileManager_inherit__map" id="aFileManager_inherit__map">
+<area shape="rect" title="class handling files and paths" alt="" coords="5,80,98,107"/>
+<area shape="rect" href="classNoCopy.html" title="Utility class, you can inherit from this class to disallow the assignment operator and copy construct..." alt="" coords="17,5,86,32"/>
+<area shape="poly" title=" " alt="" coords="53,46,54,80,49,79,50,50"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 타입</h2></td></tr>
+<tr class="memitem:acb73b7203fb4939d40ce771bcf7972e0" id="r_acb73b7203fb4939d40ce771bcf7972e0"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#acb73b7203fb4939d40ce771bcf7972e0">AssetType</a> { <br />
+&#160;&#160;<b>ASSET_MIN</b>
+, <b>CHALLENGE</b> =ASSET_MIN
+, <b>GFX</b>
+, <b>GRANDPRIX</b>
+, <br />
+&#160;&#160;<b>GUI_ICON</b>
+, <b>GUI_SCREEN</b>
+, <b>GUI_DIALOG</b>
+, <b>REPLAY</b>
+, <br />
+&#160;&#160;<b>SHADER</b>
+, <b>SKIN</b>
+, <b>TTF</b>
+, <b>TRANSLATION</b>
+, <br />
+&#160;&#160;<b>BUILTIN_ASSETS</b> =TRANSLATION
+, <b>LIBRARY</b>
+, <b>MODEL</b>
+, <b>MUSIC</b>
+, <br />
+&#160;&#160;<b>SFX</b>
+, <b>TEXTURE</b>
+, <b>SCRIPT</b>
+, <b>ASSET_MAX</b> = SCRIPT
+, <br />
+&#160;&#160;<b>ASSET_COUNT</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:acb73b7203fb4939d40ce771bcf7972e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The various asset types (and directories) STK might request.  <a href="#acb73b7203fb4939d40ce771bcf7972e0">더 자세히 ...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a8afd512c06be9daf140cc19d71f9b391" id="r_a8afd512c06be9daf140cc19d71f9b391"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8afd512c06be9daf140cc19d71f9b391">FileManager</a> ()</td></tr>
+<tr class="memdesc:a8afd512c06be9daf140cc19d71f9b391"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor of the file manager creates an irrlicht file system and detects paths for the user config file and assets base directory (data).  <br /></td></tr>
+<tr class="memitem:afb716419f0e65717e90917a232fdbb99" id="r_afb716419f0e65717e90917a232fdbb99"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afb716419f0e65717e90917a232fdbb99">init</a> ()</td></tr>
+<tr class="memdesc:afb716419f0e65717e90917a232fdbb99"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is used to initialise the file-manager after reading in the user configuration data.  <br /></td></tr>
+<tr class="memitem:a8751a5946ce0495b28d2e1a096e591f2" id="r_a8751a5946ce0495b28d2e1a096e591f2"><td class="memItemLeft"><a id="a8751a5946ce0495b28d2e1a096e591f2" name="a8751a5946ce0495b28d2e1a096e591f2"></a>
+void&#160;</td><td class="memItemRight"><b>reinitAfterDownloadAssets</b> ()</td></tr>
+<tr class="memitem:af793c37bf243fa89de4c8d0a72d1ff50" id="r_af793c37bf243fa89de4c8d0a72d1ff50"><td class="memItemLeft"><a id="af793c37bf243fa89de4c8d0a72d1ff50" name="af793c37bf243fa89de4c8d0a72d1ff50"></a>
+io::IXMLReader *&#160;</td><td class="memItemRight"><b>createXMLReader</b> (const std::string &amp;filename)</td></tr>
+<tr class="memitem:a9ac56e965f73d4251a4512f49c5b5457" id="r_a9ac56e965f73d4251a4512f49c5b5457"><td class="memItemLeft"><a class="el" href="classXMLNode.html">XMLNode</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a9ac56e965f73d4251a4512f49c5b5457">createXMLTree</a> (const std::string &amp;filename)</td></tr>
+<tr class="memdesc:a9ac56e965f73d4251a4512f49c5b5457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads in a XML file and converts it into a <a class="el" href="classXMLNode.html" title="utility class used to parse XML files">XMLNode</a> tree.  <br /></td></tr>
+<tr class="memitem:afb8cd37737c3067b7898e665c9e883a0" id="r_afb8cd37737c3067b7898e665c9e883a0"><td class="memItemLeft"><a class="el" href="classXMLNode.html">XMLNode</a> *&#160;</td><td class="memItemRight"><a class="el" href="#afb8cd37737c3067b7898e665c9e883a0">createXMLTreeFromString</a> (const std::string &amp;content)</td></tr>
+<tr class="memdesc:afb8cd37737c3067b7898e665c9e883a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads in XML from a string and converts it into a <a class="el" href="classXMLNode.html" title="utility class used to parse XML files">XMLNode</a> tree.  <br /></td></tr>
+<tr class="memitem:ab13bc553de067d68ff255dfd14b216be" id="r_ab13bc553de067d68ff255dfd14b216be"><td class="memItemLeft"><a id="ab13bc553de067d68ff255dfd14b216be" name="ab13bc553de067d68ff255dfd14b216be"></a>
+std::string&#160;</td><td class="memItemRight"><b>getScreenshotDir</b> () const</td></tr>
+<tr class="memdesc:ab13bc553de067d68ff255dfd14b216be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the directory in which screenshots should be stored. <br /></td></tr>
+<tr class="memitem:abdf0cb92a7b4ce539df4c882b9f9840f" id="r_abdf0cb92a7b4ce539df4c882b9f9840f"><td class="memItemLeft"><a id="abdf0cb92a7b4ce539df4c882b9f9840f" name="abdf0cb92a7b4ce539df4c882b9f9840f"></a>
+std::string&#160;</td><td class="memItemRight"><b>getReplayDir</b> () const</td></tr>
+<tr class="memdesc:abdf0cb92a7b4ce539df4c882b9f9840f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the directory in which replay file should be stored. <br /></td></tr>
+<tr class="memitem:abc8409de4c2f5887cf5cf5b5d1fcb02b" id="r_abc8409de4c2f5887cf5cf5b5d1fcb02b"><td class="memItemLeft"><a id="abc8409de4c2f5887cf5cf5b5d1fcb02b" name="abc8409de4c2f5887cf5cf5b5d1fcb02b"></a>
+std::string&#160;</td><td class="memItemRight"><b>getCachedTexturesDir</b> () const</td></tr>
+<tr class="memdesc:abc8409de4c2f5887cf5cf5b5d1fcb02b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the directory in which resized textures should be cached. <br /></td></tr>
+<tr class="memitem:aeada5ec825e96d5c16e5565d92366efc" id="r_aeada5ec825e96d5c16e5565d92366efc"><td class="memItemLeft"><a id="aeada5ec825e96d5c16e5565d92366efc" name="aeada5ec825e96d5c16e5565d92366efc"></a>
+std::string&#160;</td><td class="memItemRight"><b>getGPDir</b> () const</td></tr>
+<tr class="memdesc:aeada5ec825e96d5c16e5565d92366efc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the directory in which user-defined grand prix should be stored. <br /></td></tr>
+<tr class="memitem:a48e897afdfe4ec99769747ad60752650" id="r_a48e897afdfe4ec99769747ad60752650"><td class="memItemLeft"><a id="a48e897afdfe4ec99769747ad60752650" name="a48e897afdfe4ec99769747ad60752650"></a>
+std::string&#160;</td><td class="memItemRight"><b>getStdoutDir</b> () const</td></tr>
+<tr class="memdesc:a48e897afdfe4ec99769747ad60752650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the directory in which the stdout file should be stored. <br /></td></tr>
+<tr class="memitem:aa6c8a0749d7bbf006d2cff9639b23968" id="r_aa6c8a0749d7bbf006d2cff9639b23968"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa6c8a0749d7bbf006d2cff9639b23968">checkAndCreateDirectory</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:aa6c8a0749d7bbf006d2cff9639b23968"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the directory specified in path does not exist, it is created.  <br /></td></tr>
+<tr class="memitem:a7f6d662d35b0035c27a8cd3da4b95483" id="r_a7f6d662d35b0035c27a8cd3da4b95483"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7f6d662d35b0035c27a8cd3da4b95483">checkAndCreateDirectoryP</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:a7f6d662d35b0035c27a8cd3da4b95483"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the directory specified in path does not exist, it is created recursively (mkdir -p style).  <br /></td></tr>
+<tr class="memitem:aeb5d0668548cdc1d4f579d0e581b6085" id="r_aeb5d0668548cdc1d4f579d0e581b6085"><td class="memItemLeft"><a id="aeb5d0668548cdc1d4f579d0e581b6085" name="aeb5d0668548cdc1d4f579d0e581b6085"></a>
+const std::string &amp;&#160;</td><td class="memItemRight"><b>getAddonsDir</b> () const</td></tr>
+<tr class="memdesc:aeb5d0668548cdc1d4f579d0e581b6085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the directory for addon files. <br /></td></tr>
+<tr class="memitem:a94437b7440add6e5a8a4ce9a4f2f4926" id="r_a94437b7440add6e5a8a4ce9a4f2f4926"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a94437b7440add6e5a8a4ce9a4f2f4926">getAddonsFile</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:a94437b7440add6e5a8a4ce9a4f2f4926"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the full path of a file in the addons directory.  <br /></td></tr>
+<tr class="memitem:af57c4c7c1babf2aeb02d04ff04651f8b" id="r_af57c4c7c1babf2aeb02d04ff04651f8b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af57c4c7c1babf2aeb02d04ff04651f8b">checkAndCreateDirForAddons</a> (const std::string &amp;dir)</td></tr>
+<tr class="memdesc:af57c4c7c1babf2aeb02d04ff04651f8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a directory for an addon.  <br /></td></tr>
+<tr class="memitem:a214d2cbdddd645af5566f35570f814ce" id="r_a214d2cbdddd645af5566f35570f814ce"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a214d2cbdddd645af5566f35570f814ce">removeFile</a> (const std::string &amp;name) const</td></tr>
+<tr class="memdesc:a214d2cbdddd645af5566f35570f814ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the specified file.  <br /></td></tr>
+<tr class="memitem:a3bdf4a240acaece3b0216720e7be24b2" id="r_a3bdf4a240acaece3b0216720e7be24b2"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a3bdf4a240acaece3b0216720e7be24b2">removeDirectory</a> (const std::string &amp;name) const</td></tr>
+<tr class="memdesc:a3bdf4a240acaece3b0216720e7be24b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a directory (including all files contained).  <br /></td></tr>
+<tr class="memitem:a1169cdc971f2e7bc76ad420f984ce71d" id="r_a1169cdc971f2e7bc76ad420f984ce71d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1169cdc971f2e7bc76ad420f984ce71d">moveDirectoryInto</a> (std::string source, std::string target)</td></tr>
+<tr class="memdesc:a1169cdc971f2e7bc76ad420f984ce71d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the source directory into the target directory location.  <br /></td></tr>
+<tr class="memitem:a64f589662444a37c092ca8af677cd3f5" id="r_a64f589662444a37c092ca8af677cd3f5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a64f589662444a37c092ca8af677cd3f5">copyFile</a> (const std::string &amp;source, const std::string &amp;dest)</td></tr>
+<tr class="memdesc:a64f589662444a37c092ca8af677cd3f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the file source to dest.  <br /></td></tr>
+<tr class="memitem:ad26978c2ada16f594d0b79478a4dd4d5" id="r_ad26978c2ada16f594d0b79478a4dd4d5"><td class="memItemLeft"><a id="ad26978c2ada16f594d0b79478a4dd4d5" name="ad26978c2ada16f594d0b79478a4dd4d5"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><b>getMusicDirs</b> () const</td></tr>
+<tr class="memdesc:ad26978c2ada16f594d0b79478a4dd4d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the list of all directories in which music files are searched. <br /></td></tr>
+<tr class="memitem:a50ec9436cddeeca3f97219f483374567" id="r_a50ec9436cddeeca3f97219f483374567"><td class="memItemLeft"><a id="a50ec9436cddeeca3f97219f483374567" name="a50ec9436cddeeca3f97219f483374567"></a>
+std::string&#160;</td><td class="memItemRight"><b>getAssetChecked</b> (<a class="el" href="#acb73b7203fb4939d40ce771bcf7972e0">AssetType</a> type, const std::string &amp;name, bool abort_on_error=false) const</td></tr>
+<tr class="memitem:a56344caa019dcc80e38754efc91a0866" id="r_a56344caa019dcc80e38754efc91a0866"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a56344caa019dcc80e38754efc91a0866">getAsset</a> (<a class="el" href="#acb73b7203fb4939d40ce771bcf7972e0">AssetType</a> type, const std::string &amp;name) const</td></tr>
+<tr class="memdesc:a56344caa019dcc80e38754efc91a0866"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the full path of a file of the given asset class.  <br /></td></tr>
+<tr class="memitem:aed88f63ab4b278ab93015d8478a342b6" id="r_aed88f63ab4b278ab93015d8478a342b6"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#aed88f63ab4b278ab93015d8478a342b6">getAsset</a> (const std::string &amp;name) const</td></tr>
+<tr class="memdesc:aed88f63ab4b278ab93015d8478a342b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches in all root directories for the specified file.  <br /></td></tr>
+<tr class="memitem:a19b18d8133a9588d305aef48eecc650b" id="r_a19b18d8133a9588d305aef48eecc650b"><td class="memItemLeft"><a id="a19b18d8133a9588d305aef48eecc650b" name="a19b18d8133a9588d305aef48eecc650b"></a>
+std::string&#160;</td><td class="memItemRight"><b>getAssetDirectory</b> (<a class="el" href="#acb73b7203fb4939d40ce771bcf7972e0">AssetType</a> type) const</td></tr>
+<tr class="memdesc:a19b18d8133a9588d305aef48eecc650b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the directory of an asset. <br /></td></tr>
+<tr class="memitem:a6b0640c7f9a3ae513052d7ca46bc2736" id="r_a6b0640c7f9a3ae513052d7ca46bc2736"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a6b0640c7f9a3ae513052d7ca46bc2736">searchMusic</a> (const std::string &amp;file_name) const</td></tr>
+<tr class="memdesc:a6b0640c7f9a3ae513052d7ca46bc2736"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the full path of a music file by searching all music search paths.  <br /></td></tr>
+<tr class="memitem:a9717dfeb2f45342ffae3a1dd88f5a1f7" id="r_a9717dfeb2f45342ffae3a1dd88f5a1f7"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a9717dfeb2f45342ffae3a1dd88f5a1f7">searchModel</a> (const std::string &amp;file_name) const</td></tr>
+<tr class="memdesc:a9717dfeb2f45342ffae3a1dd88f5a1f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the full path of a model file by searching all model search paths.  <br /></td></tr>
+<tr class="memitem:a663700f030fd479de9365e4baf1a31c1" id="r_a663700f030fd479de9365e4baf1a31c1"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a663700f030fd479de9365e4baf1a31c1">searchTexture</a> (const std::string &amp;fname) const</td></tr>
+<tr class="memdesc:a663700f030fd479de9365e4baf1a31c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the full path of a texture file name by searching in all directories currently in the texture search path.  <br /></td></tr>
+<tr class="memitem:aea6793dfe3f130106e5fc243add4f78d" id="r_aea6793dfe3f130106e5fc243add4f78d"><td class="memItemLeft"><a id="aea6793dfe3f130106e5fc243add4f78d" name="aea6793dfe3f130106e5fc243add4f78d"></a>
+std::string&#160;</td><td class="memItemRight"><b>getUserConfigFile</b> (const std::string &amp;fname) const</td></tr>
+<tr class="memdesc:aea6793dfe3f130106e5fc243add4f78d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the full path of the config directory. <br /></td></tr>
+<tr class="memitem:a05d7e574c289b16007b0ddc544d46f75" id="r_a05d7e574c289b16007b0ddc544d46f75"><td class="memItemLeft"><a id="a05d7e574c289b16007b0ddc544d46f75" name="a05d7e574c289b16007b0ddc544d46f75"></a>
+bool&#160;</td><td class="memItemRight"><b>fileExists</b> (const std::string &amp;path) const</td></tr>
+<tr class="memdesc:a05d7e574c289b16007b0ddc544d46f75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the specified file exists. <br /></td></tr>
+<tr class="memitem:af7c0ca781d1564c03290f9edbf359718" id="r_af7c0ca781d1564c03290f9edbf359718"><td class="memItemLeft"><a id="af7c0ca781d1564c03290f9edbf359718" name="af7c0ca781d1564c03290f9edbf359718"></a>
+bool&#160;</td><td class="memItemRight"><b>fileExists</b> (const char *prefix, const std::string &amp;path) const</td></tr>
+<tr class="memdesc:af7c0ca781d1564c03290f9edbf359718"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function to save some typing in the file manager constructor. <br /></td></tr>
+<tr class="memitem:aa8360d58beaabfd5af7a4435c5434899" id="r_aa8360d58beaabfd5af7a4435c5434899"><td class="memItemLeft"><a id="aa8360d58beaabfd5af7a4435c5434899" name="aa8360d58beaabfd5af7a4435c5434899"></a>
+bool&#160;</td><td class="memItemRight"><b>searchTextureContainerId</b> (std::string &amp;container_id, const std::string &amp;file_name) const</td></tr>
+<tr class="memitem:a1ca861aea616aecd4c465b68ef0bc3b6" id="r_a1ca861aea616aecd4c465b68ef0bc3b6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1ca861aea616aecd4c465b68ef0bc3b6">listFiles</a> (std::set&lt; std::string &gt; &amp;result, const std::string &amp;dir, bool make_full_path=false) const</td></tr>
+<tr class="memdesc:a1ca861aea616aecd4c465b68ef0bc3b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of files in a given directory.  <br /></td></tr>
+<tr class="memitem:a76b3a5f0db377efa247fe6a9cb02baae" id="r_a76b3a5f0db377efa247fe6a9cb02baae"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a76b3a5f0db377efa247fe6a9cb02baae">pushTextureSearchPath</a> (const std::string &amp;path, const std::string &amp;container_id)</td></tr>
+<tr class="memdesc:a76b3a5f0db377efa247fe6a9cb02baae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a texture search path to the list of texture search paths.  <br /></td></tr>
+<tr class="memitem:a755fd510b8ea72710574cc345f056971" id="r_a755fd510b8ea72710574cc345f056971"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a755fd510b8ea72710574cc345f056971">pushModelSearchPath</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:a755fd510b8ea72710574cc345f056971"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a model search path to the list of model search paths.  <br /></td></tr>
+<tr class="memitem:a3adc52a9915b6b8a0210963d983e2a17" id="r_a3adc52a9915b6b8a0210963d983e2a17"><td class="memItemLeft"><a id="a3adc52a9915b6b8a0210963d983e2a17" name="a3adc52a9915b6b8a0210963d983e2a17"></a>
+void&#160;</td><td class="memItemRight"><b>popTextureSearchPath</b> ()</td></tr>
+<tr class="memdesc:a3adc52a9915b6b8a0210963d983e2a17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the last added texture search path from the list of paths. <br /></td></tr>
+<tr class="memitem:a71247dacb68b725740d4741c8e5a7cc3" id="r_a71247dacb68b725740d4741c8e5a7cc3"><td class="memItemLeft"><a id="a71247dacb68b725740d4741c8e5a7cc3" name="a71247dacb68b725740d4741c8e5a7cc3"></a>
+void&#160;</td><td class="memItemRight"><b>popModelSearchPath</b> ()</td></tr>
+<tr class="memdesc:a71247dacb68b725740d4741c8e5a7cc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the last added model search path from the list of paths. <br /></td></tr>
+<tr class="memitem:ace1dae22760f1c5b4fb2af21d85e6a44" id="r_ace1dae22760f1c5b4fb2af21d85e6a44"><td class="memItemLeft"><a id="ace1dae22760f1c5b4fb2af21d85e6a44" name="ace1dae22760f1c5b4fb2af21d85e6a44"></a>
+void&#160;</td><td class="memItemRight"><b>popMusicSearchPath</b> ()</td></tr>
+<tr class="memdesc:ace1dae22760f1c5b4fb2af21d85e6a44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the last added directory from the music search path. <br /></td></tr>
+<tr class="memitem:ab83483d32d7a6f6478501e6fc7400008" id="r_ab83483d32d7a6f6478501e6fc7400008"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab83483d32d7a6f6478501e6fc7400008">redirectOutput</a> ()</td></tr>
+<tr class="memdesc:ab83483d32d7a6f6478501e6fc7400008"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redirects output to go into files in the user's config directory instead of to the console.  <br /></td></tr>
+<tr class="memitem:a8644587c8be385302dc785609b1b8625" id="r_a8644587c8be385302dc785609b1b8625"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a8644587c8be385302dc785609b1b8625">fileIsNewer</a> (const std::string &amp;f1, const std::string &amp;f2) const</td></tr>
+<tr class="memdesc:a8644587c8be385302dc785609b1b8625"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the first file is newer than the second.  <br /></td></tr>
+<tr class="memitem:a9e6371b69e9c2e0b90bff75ac3be95a0" id="r_a9e6371b69e9c2e0b90bff75ac3be95a0"><td class="memItemLeft"><a id="a9e6371b69e9c2e0b90bff75ac3be95a0" name="a9e6371b69e9c2e0b90bff75ac3be95a0"></a>
+const std::string &amp;&#160;</td><td class="memItemRight"><b>getUserConfigDir</b> () const</td></tr>
+<tr class="memitem:a73046ae06da4b4f2d68d13247a0c88ce" id="r_a73046ae06da4b4f2d68d13247a0c88ce"><td class="memItemLeft"><a id="a73046ae06da4b4f2d68d13247a0c88ce" name="a73046ae06da4b4f2d68d13247a0c88ce"></a>
+irr::io::IFileSystem *&#160;</td><td class="memItemRight"><b>getFileSystem</b> ()</td></tr>
+<tr class="memdesc:a73046ae06da4b4f2d68d13247a0c88ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the irrlicht file system. <br /></td></tr>
+<tr class="memitem:acd38b9f39bc2bb0ed3d5d887c32cc6a4" id="r_acd38b9f39bc2bb0ed3d5d887c32cc6a4"><td class="memItemLeft"><a id="acd38b9f39bc2bb0ed3d5d887c32cc6a4" name="acd38b9f39bc2bb0ed3d5d887c32cc6a4"></a>
+void&#160;</td><td class="memItemRight"><b>pushMusicSearchPath</b> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:acd38b9f39bc2bb0ed3d5d887c32cc6a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a directory to the music search path (or stack). <br /></td></tr>
+<tr class="memitem:adff5a4461aa156dbd1f331f55ef63b5f" id="r_adff5a4461aa156dbd1f331f55ef63b5f"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#adff5a4461aa156dbd1f331f55ef63b5f">getShader</a> (const std::string &amp;name) const</td></tr>
+<tr class="memdesc:adff5a4461aa156dbd1f331f55ef63b5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the full path to a shader (this function could be modified later to allow track-specific shaders).  <br /></td></tr>
+<tr class="memitem:aecbef694e3be022d049f62e8c4201a2f" id="r_aecbef694e3be022d049f62e8c4201a2f"><td class="memItemLeft"><a id="aecbef694e3be022d049f62e8c4201a2f" name="aecbef694e3be022d049f62e8c4201a2f"></a>
+std::string&#160;</td><td class="memItemRight"><b>getShadersDir</b> () const</td></tr>
+<tr class="memitem:a3b74ba7e14679e0a67345ff7e2beb576" id="r_a3b74ba7e14679e0a67345ff7e2beb576"><td class="memItemLeft"><a id="a3b74ba7e14679e0a67345ff7e2beb576" name="a3b74ba7e14679e0a67345ff7e2beb576"></a>
+const std::string &amp;&#160;</td><td class="memItemRight"><b>getSTKAssetsDownloadDir</b> () const</td></tr>
+<tr class="memitem:a6a633ea4841790f5d5fe2c7a6453344b" id="r_a6a633ea4841790f5d5fe2c7a6453344b"><td class="memItemLeft"><a id="a6a633ea4841790f5d5fe2c7a6453344b" name="a6a633ea4841790f5d5fe2c7a6453344b"></a>
+const std::string &amp;&#160;</td><td class="memItemRight"><b>getCertBundleLocation</b> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a04e217c5d82aed26302d1f0ff59fb18c" id="r_a04e217c5d82aed26302d1f0ff59fb18c"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a04e217c5d82aed26302d1f0ff59fb18c">addRootDirs</a> (const std::string &amp;roots)</td></tr>
+<tr class="memdesc:a04e217c5d82aed26302d1f0ff59fb18c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds paths to the list of stk root directories.  <br /></td></tr>
+<tr class="memitem:acd56da63796757ba36a28c24b463111f" id="r_acd56da63796757ba36a28c24b463111f"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#acd56da63796757ba36a28c24b463111f">setStdoutName</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:acd56da63796757ba36a28c24b463111f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name for the stdout log file.  <br /></td></tr>
+<tr class="memitem:a638b8f25722793f03c352b84a883d3d2" id="r_a638b8f25722793f03c352b84a883d3d2"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a638b8f25722793f03c352b84a883d3d2">setStdoutDir</a> (const std::string &amp;dir)</td></tr>
+<tr class="memdesc:a638b8f25722793f03c352b84a883d3d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the directory for the stdout log file.  <br /></td></tr>
+<tr class="memitem:ae6e7f8e8347c8c3929d1461baa55dd34" id="r_ae6e7f8e8347c8c3929d1461baa55dd34"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#ae6e7f8e8347c8c3929d1461baa55dd34">isDirectory</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:ae6e7f8e8347c8c3929d1461baa55dd34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the given name is a directory.  <br /></td></tr>
+<tr class="memitem:adf4300cfb58a62d8a027b36eed83fcf3" id="r_adf4300cfb58a62d8a027b36eed83fcf3"><td class="memItemLeft"><a id="adf4300cfb58a62d8a027b36eed83fcf3" name="adf4300cfb58a62d8a027b36eed83fcf3"></a>
+static const std::string &amp;&#160;</td><td class="memItemRight"><b>getStdoutName</b> ()</td></tr>
+<tr class="memdesc:adf4300cfb58a62d8a027b36eed83fcf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the stdout file for log messages. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:afe2f11888841b647e2750a8e1eecb7c9" id="r_afe2f11888841b647e2750a8e1eecb7c9"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#afe2f11888841b647e2750a8e1eecb7c9">findFile</a> (std::string &amp;full_path, const std::string &amp;fname, const std::vector&lt; std::string &gt; &amp;search_path) const</td></tr>
+<tr class="memdesc:afe2f11888841b647e2750a8e1eecb7c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to find the specified file in any of the given search paths.  <br /></td></tr>
+<tr class="memitem:ac5d3cd65733423357619330d7e9e2b99" id="r_ac5d3cd65733423357619330d7e9e2b99"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac5d3cd65733423357619330d7e9e2b99">findFile</a> (std::string &amp;full_path, const std::string &amp;fname, const std::vector&lt; <a class="el" href="structTextureSearchPath.html">TextureSearchPath</a> &gt; &amp;search_path) const</td></tr>
+<tr class="memdesc:ac5d3cd65733423357619330d7e9e2b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to find the specified file in any of the given search paths.  <br /></td></tr>
+<tr class="memitem:a36c6c9e2c593c95ce5dbd047d5bae877" id="r_a36c6c9e2c593c95ce5dbd047d5bae877"><td class="memItemLeft"><a id="a36c6c9e2c593c95ce5dbd047d5bae877" name="a36c6c9e2c593c95ce5dbd047d5bae877"></a>
+void&#160;</td><td class="memItemRight"><b>makePath</b> (std::string &amp;path, const std::string &amp;dir, const std::string &amp;fname) const</td></tr>
+<tr class="memitem:af5bb546d931efd19f4e2ac57857e77cc" id="r_af5bb546d931efd19f4e2ac57857e77cc"><td class="memItemLeft"><a id="af5bb546d931efd19f4e2ac57857e77cc" name="af5bb546d931efd19f4e2ac57857e77cc"></a>
+io::path&#160;</td><td class="memItemRight"><b>createAbsoluteFilename</b> (const std::string &amp;f)</td></tr>
+<tr class="memdesc:af5bb546d931efd19f4e2ac57857e77cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">In order to add and later remove paths we have to specify the absolute filename (and replace '\' with '/' on windows). <br /></td></tr>
+<tr class="memitem:adfd8e7379646fb5e94b4fe44f0cf3c4a" id="r_adfd8e7379646fb5e94b4fe44f0cf3c4a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adfd8e7379646fb5e94b4fe44f0cf3c4a">checkAndCreateConfigDir</a> ()</td></tr>
+<tr class="memdesc:adfd8e7379646fb5e94b4fe44f0cf3c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the config directory exists, and it not, tries to create it.  <br /></td></tr>
+<tr class="memitem:a79d11682fe4b11d6804b525e84b4193a" id="r_a79d11682fe4b11d6804b525e84b4193a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a79d11682fe4b11d6804b525e84b4193a">checkAndCreateAddonsDir</a> ()</td></tr>
+<tr class="memdesc:a79d11682fe4b11d6804b525e84b4193a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the directories for the addons data.  <br /></td></tr>
+<tr class="memitem:acaca658d03092d1123ddc8a7d04a800c" id="r_acaca658d03092d1123ddc8a7d04a800c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#acaca658d03092d1123ddc8a7d04a800c">checkAndCreateScreenshotDir</a> ()</td></tr>
+<tr class="memdesc:acaca658d03092d1123ddc8a7d04a800c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the directories for screenshots.  <br /></td></tr>
+<tr class="memitem:a0d5489a367456a636127d0ec2040e9fc" id="r_a0d5489a367456a636127d0ec2040e9fc"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0d5489a367456a636127d0ec2040e9fc">checkAndCreateReplayDir</a> ()</td></tr>
+<tr class="memdesc:a0d5489a367456a636127d0ec2040e9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the directories for replay recorded.  <br /></td></tr>
+<tr class="memitem:ac0e3a4f8591397c0f878c7b23e608202" id="r_ac0e3a4f8591397c0f878c7b23e608202"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac0e3a4f8591397c0f878c7b23e608202">checkAndCreateCachedTexturesDir</a> ()</td></tr>
+<tr class="memdesc:ac0e3a4f8591397c0f878c7b23e608202"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the directories for cached textures.  <br /></td></tr>
+<tr class="memitem:a9cdb261cdb0ec104dedd1cd622e5899b" id="r_a9cdb261cdb0ec104dedd1cd622e5899b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9cdb261cdb0ec104dedd1cd622e5899b">checkAndCreateGPDir</a> ()</td></tr>
+<tr class="memdesc:a9cdb261cdb0ec104dedd1cd622e5899b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the directories for user-defined grand prix.  <br /></td></tr>
+<tr class="memitem:a89cba835d27ee26baff744188bc75d91" id="r_a89cba835d27ee26baff744188bc75d91"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a89cba835d27ee26baff744188bc75d91">discoverPaths</a> ()</td></tr>
+<tr class="memdesc:a89cba835d27ee26baff744188bc75d91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detects where the assets are stored.  <br /></td></tr>
+<tr class="memitem:a1fd207f925600fb76b5f610fc38ea21d" id="r_a1fd207f925600fb76b5f610fc38ea21d"><td class="memItemLeft"><a id="a1fd207f925600fb76b5f610fc38ea21d" name="a1fd207f925600fb76b5f610fc38ea21d"></a>
+void&#160;</td><td class="memItemRight"><b>addAssetsSearchPath</b> ()</td></tr>
+<tr class="memitem:a1662f38e05ec308819f5420a20e80da7" id="r_a1662f38e05ec308819f5420a20e80da7"><td class="memItemLeft"><a id="a1662f38e05ec308819f5420a20e80da7" name="a1662f38e05ec308819f5420a20e80da7"></a>
+void&#160;</td><td class="memItemRight"><b>resetSubdir</b> ()</td></tr>
+<tr class="memdesc:a1662f38e05ec308819f5420a20e80da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset subdirectories to initial state, for example after download assets <br /></td></tr>
+<tr class="memitem:a554635450510615dd990793e48647f8a" id="r_a554635450510615dd990793e48647f8a"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a554635450510615dd990793e48647f8a">checkAndCreateLinuxDir</a> (const char *env_name, const char *dir_name, const char *fallback1, const char *fallback2=NULL)</td></tr>
+<tr class="memdesc:a554635450510615dd990793e48647f8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a directory to use for remaining unix variants.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:a3b196fc67bac87989cc8a1a078083e33" id="r_a3b196fc67bac87989cc8a1a078083e33"><td class="memItemLeft"><a id="a3b196fc67bac87989cc8a1a078083e33" name="a3b196fc67bac87989cc8a1a078083e33"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><b>m_subdir_name</b></td></tr>
+<tr class="memdesc:a3b196fc67bac87989cc8a1a078083e33"><td class="mdescLeft">&#160;</td><td class="mdescRight">The names of the various subdirectories of the asset types. <br /></td></tr>
+<tr class="memitem:a2876c9d2a8beb2c4140a4dc9c5aa4520" id="r_a2876c9d2a8beb2c4140a4dc9c5aa4520"><td class="memItemLeft"><a id="a2876c9d2a8beb2c4140a4dc9c5aa4520" name="a2876c9d2a8beb2c4140a4dc9c5aa4520"></a>
+io::IFileSystem *&#160;</td><td class="memItemRight"><b>m_file_system</b></td></tr>
+<tr class="memdesc:a2876c9d2a8beb2c4140a4dc9c5aa4520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle to irrlicht's file systems. <br /></td></tr>
+<tr class="memitem:a8c84ea6727735c88a647121614390ff3" id="r_a8c84ea6727735c88a647121614390ff3"><td class="memItemLeft"><a id="a8c84ea6727735c88a647121614390ff3" name="a8c84ea6727735c88a647121614390ff3"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_user_config_dir</b></td></tr>
+<tr class="memdesc:a8c84ea6727735c88a647121614390ff3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directory where user config files are stored. <br /></td></tr>
+<tr class="memitem:a5875b89c4e3f8fced506507d93c5702e" id="r_a5875b89c4e3f8fced506507d93c5702e"><td class="memItemLeft"><a id="a5875b89c4e3f8fced506507d93c5702e" name="a5875b89c4e3f8fced506507d93c5702e"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_addons_dir</b></td></tr>
+<tr class="memdesc:a5875b89c4e3f8fced506507d93c5702e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directory where addons are stored. <br /></td></tr>
+<tr class="memitem:a93ca757b1faae1d5bded3aa1586141c1" id="r_a93ca757b1faae1d5bded3aa1586141c1"><td class="memItemLeft"><a id="a93ca757b1faae1d5bded3aa1586141c1" name="a93ca757b1faae1d5bded3aa1586141c1"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_screenshot_dir</b></td></tr>
+<tr class="memdesc:a93ca757b1faae1d5bded3aa1586141c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directory to store screenshots in. <br /></td></tr>
+<tr class="memitem:abf8d92868ed68cef51c6b410497a98ca" id="r_abf8d92868ed68cef51c6b410497a98ca"><td class="memItemLeft"><a id="abf8d92868ed68cef51c6b410497a98ca" name="abf8d92868ed68cef51c6b410497a98ca"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_replay_dir</b></td></tr>
+<tr class="memdesc:abf8d92868ed68cef51c6b410497a98ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directory to store replays in. <br /></td></tr>
+<tr class="memitem:a8de77cfc77bd584f7c9ec6838d4ba76d" id="r_a8de77cfc77bd584f7c9ec6838d4ba76d"><td class="memItemLeft"><a id="a8de77cfc77bd584f7c9ec6838d4ba76d" name="a8de77cfc77bd584f7c9ec6838d4ba76d"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_cached_textures_dir</b></td></tr>
+<tr class="memdesc:a8de77cfc77bd584f7c9ec6838d4ba76d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directory where resized textures are cached. <br /></td></tr>
+<tr class="memitem:a969449711b33facabcc61f9faf30e460" id="r_a969449711b33facabcc61f9faf30e460"><td class="memItemLeft"><a id="a969449711b33facabcc61f9faf30e460" name="a969449711b33facabcc61f9faf30e460"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_gp_dir</b></td></tr>
+<tr class="memdesc:a969449711b33facabcc61f9faf30e460"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directory where user-defined grand prix are stored. <br /></td></tr>
+<tr class="memitem:add994d2b4f8bf3027ed98ea6081bea41" id="r_add994d2b4f8bf3027ed98ea6081bea41"><td class="memItemLeft"><a id="add994d2b4f8bf3027ed98ea6081bea41" name="add994d2b4f8bf3027ed98ea6081bea41"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_cert_bundle_location</b></td></tr>
+<tr class="memdesc:add994d2b4f8bf3027ed98ea6081bea41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Location of the certificate bundle. <br /></td></tr>
+<tr class="memitem:ade591e5462e4d32b7387568218e83b59" id="r_ade591e5462e4d32b7387568218e83b59"><td class="memItemLeft"><a id="ade591e5462e4d32b7387568218e83b59" name="ade591e5462e4d32b7387568218e83b59"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_stk_assets_download_dir</b></td></tr>
+<tr class="memdesc:ade591e5462e4d32b7387568218e83b59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mobile stk specific to download stk-assets in the first. <br /></td></tr>
+<tr class="memitem:a469a1b085270f01b09a3041f38c7be18" id="r_a469a1b085270f01b09a3041f38c7be18"><td class="memItemLeft"><a id="a469a1b085270f01b09a3041f38c7be18" name="a469a1b085270f01b09a3041f38c7be18"></a>
+std::vector&lt; <a class="el" href="structTextureSearchPath.html">TextureSearchPath</a> &gt;&#160;</td><td class="memItemRight"><b>m_texture_search_path</b></td></tr>
+<tr class="memitem:a038852b10fb25e100bc2e027f3e8a3b9" id="r_a038852b10fb25e100bc2e027f3e8a3b9"><td class="memItemLeft"><a id="a038852b10fb25e100bc2e027f3e8a3b9" name="a038852b10fb25e100bc2e027f3e8a3b9"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><b>m_model_search_path</b></td></tr>
+<tr class="memitem:a17442b187424a83d38a51556388e76df" id="r_a17442b187424a83d38a51556388e76df"><td class="memItemLeft"><a id="a17442b187424a83d38a51556388e76df" name="a17442b187424a83d38a51556388e76df"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><b>m_music_search_path</b></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+정적 Private 속성</h2></td></tr>
+<tr class="memitem:afdaa2dfa22a651fcdaafc2dcf3ad36c5" id="r_afdaa2dfa22a651fcdaafc2dcf3ad36c5"><td class="memItemLeft"><a id="afdaa2dfa22a651fcdaafc2dcf3ad36c5" name="afdaa2dfa22a651fcdaafc2dcf3ad36c5"></a>
+static std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><b>m_root_dirs</b></td></tr>
+<tr class="memdesc:afdaa2dfa22a651fcdaafc2dcf3ad36c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of all root directories. <br /></td></tr>
+<tr class="memitem:a64ef50630d26ab48ebd1fa65bbb5afc5" id="r_a64ef50630d26ab48ebd1fa65bbb5afc5"><td class="memItemLeft"><a id="a64ef50630d26ab48ebd1fa65bbb5afc5" name="a64ef50630d26ab48ebd1fa65bbb5afc5"></a>
+static std::string&#160;</td><td class="memItemRight"><b>m_stdout_filename</b> = &quot;stdout.log&quot;</td></tr>
+<tr class="memdesc:a64ef50630d26ab48ebd1fa65bbb5afc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of stdout file. <br /></td></tr>
+<tr class="memitem:a67752f92a458dd3250b97037b2ec25c7" id="r_a67752f92a458dd3250b97037b2ec25c7"><td class="memItemLeft"><a id="a67752f92a458dd3250b97037b2ec25c7" name="a67752f92a458dd3250b97037b2ec25c7"></a>
+static std::string&#160;</td><td class="memItemRight"><b>m_stdout_dir</b></td></tr>
+<tr class="memdesc:a67752f92a458dd3250b97037b2ec25c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directory of stdout file. <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>class handling files and paths </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">멤버 열거형 문서화</h2>
+<a id="acb73b7203fb4939d40ce771bcf7972e0" name="acb73b7203fb4939d40ce771bcf7972e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb73b7203fb4939d40ce771bcf7972e0">&#9670;&#160;</a></span>AssetType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#acb73b7203fb4939d40ce771bcf7972e0">FileManager::AssetType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The various asset types (and directories) STK might request. </p>
+<p>The last entry ASSET_COUNT specifies the number of entries. </p>
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">생성자 &amp; 소멸자 문서화</h2>
+<a id="a8afd512c06be9daf140cc19d71f9b391" name="a8afd512c06be9daf140cc19d71f9b391"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8afd512c06be9daf140cc19d71f9b391">&#9670;&#160;</a></span>FileManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FileManager::FileManager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The constructor of the file manager creates an irrlicht file system and detects paths for the user config file and assets base directory (data). </p>
+<p>A second initialisation is done later once (see <a class="el" href="#afb716419f0e65717e90917a232fdbb99" title="This function is used to initialise the file-manager after reading in the user configuration data.">init()</a>), once the user config file is read. This is necessary since part of discoverPaths depend on artist debug mode. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a04e217c5d82aed26302d1f0ff59fb18c" name="a04e217c5d82aed26302d1f0ff59fb18c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04e217c5d82aed26302d1f0ff59fb18c">&#9670;&#160;</a></span>addRootDirs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::addRootDirs </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>roots</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds paths to the list of stk root directories. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roots</td><td>A ":" separated string of directories to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a79d11682fe4b11d6804b525e84b4193a" name="a79d11682fe4b11d6804b525e84b4193a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79d11682fe4b11d6804b525e84b4193a">&#9670;&#160;</a></span>checkAndCreateAddonsDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::checkAndCreateAddonsDir </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates the directories for the addons data. </p>
+<p>This will set m_addons_dir with the appropriate path, and also create the subdirectories in this directory. </p>
+
+</div>
+</div>
+<a id="ac0e3a4f8591397c0f878c7b23e608202" name="ac0e3a4f8591397c0f878c7b23e608202"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0e3a4f8591397c0f878c7b23e608202">&#9670;&#160;</a></span>checkAndCreateCachedTexturesDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::checkAndCreateCachedTexturesDir </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates the directories for cached textures. </p>
+<p>This will set m_cached_textures_dir with the appropriate path. </p>
+
+</div>
+</div>
+<a id="adfd8e7379646fb5e94b4fe44f0cf3c4a" name="adfd8e7379646fb5e94b4fe44f0cf3c4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfd8e7379646fb5e94b4fe44f0cf3c4a">&#9670;&#160;</a></span>checkAndCreateConfigDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::checkAndCreateConfigDir </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if the config directory exists, and it not, tries to create it. </p>
+<p>It will set m_user_config_dir to the path to which user-specific config files are stored. </p>
+
+</div>
+</div>
+<a id="aa6c8a0749d7bbf006d2cff9639b23968" name="aa6c8a0749d7bbf006d2cff9639b23968"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6c8a0749d7bbf006d2cff9639b23968">&#9670;&#160;</a></span>checkAndCreateDirectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FileManager::checkAndCreateDirectory </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>If the directory specified in path does not exist, it is created. </p>
+<p>This function does not support recursive operations, so if a directory "a/b" is tested, and "a" does not exist, this function will fail. \params path Directory to test. </p><dl class="section return"><dt>반환값</dt><dd>True if the directory exists or could be created, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a7f6d662d35b0035c27a8cd3da4b95483" name="a7f6d662d35b0035c27a8cd3da4b95483"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f6d662d35b0035c27a8cd3da4b95483">&#9670;&#160;</a></span>checkAndCreateDirectoryP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FileManager::checkAndCreateDirectoryP </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>If the directory specified in path does not exist, it is created recursively (mkdir -p style). </p>
+<p>\params path Directory to test. </p><dl class="section return"><dt>반환값</dt><dd>True if the directory exists or could be created, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="af57c4c7c1babf2aeb02d04ff04651f8b" name="af57c4c7c1babf2aeb02d04ff04651f8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af57c4c7c1babf2aeb02d04ff04651f8b">&#9670;&#160;</a></span>checkAndCreateDirForAddons()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::checkAndCreateDirForAddons </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a directory for an addon. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addons_name</td><td>Name of the directory to create. </td></tr>
+    <tr><td class="paramname">addons_type</td><td>The type, which is used as a subdirectory. E.g.: 'karts' (m_addons_dir/karts/name will be created). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9cdb261cdb0ec104dedd1cd622e5899b" name="a9cdb261cdb0ec104dedd1cd622e5899b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cdb261cdb0ec104dedd1cd622e5899b">&#9670;&#160;</a></span>checkAndCreateGPDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::checkAndCreateGPDir </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates the directories for user-defined grand prix. </p>
+<p>This will set m_gp_dir with the appropriate path. </p>
+
+</div>
+</div>
+<a id="a554635450510615dd990793e48647f8a" name="a554635450510615dd990793e48647f8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a554635450510615dd990793e48647f8a">&#9670;&#160;</a></span>checkAndCreateLinuxDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string FileManager::checkAndCreateLinuxDir </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>env_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>dir_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>fallback1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>fallback2</em></span><span class="paramdefsep"> = </span><span class="paramdefval">NULL</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find a directory to use for remaining unix variants. </p>
+<p>Use the new standards for config directory based on XDG_* environment variables, or a subdirectory under $HOME, trying two different fallbacks. It will also check if the directory 'dirname' can be created (to avoid problems that e.g. $env_name is '/', which exists, but can not be written to. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">env_name</td><td>Name of the environment variable to test first. </td></tr>
+    <tr><td class="paramname">dir_name</td><td>Name of the directory to create </td></tr>
+    <tr><td class="paramname">fallback1</td><td>Subdirectory under $HOME to use if the environment variable is not defined or can not be created. </td></tr>
+    <tr><td class="paramname">fallback2</td><td>Subdirectory under $HOME to use if the environment variable and fallback1 are not defined or can not be created. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0d5489a367456a636127d0ec2040e9fc" name="a0d5489a367456a636127d0ec2040e9fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d5489a367456a636127d0ec2040e9fc">&#9670;&#160;</a></span>checkAndCreateReplayDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::checkAndCreateReplayDir </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates the directories for replay recorded. </p>
+<p>This will set m_replay_dir with the appropriate path. </p>
+
+</div>
+</div>
+<a id="acaca658d03092d1123ddc8a7d04a800c" name="acaca658d03092d1123ddc8a7d04a800c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaca658d03092d1123ddc8a7d04a800c">&#9670;&#160;</a></span>checkAndCreateScreenshotDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::checkAndCreateScreenshotDir </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates the directories for screenshots. </p>
+<p>This will set m_screenshot_dir with the appropriate path. </p>
+
+</div>
+</div>
+<a id="a64f589662444a37c092ca8af677cd3f5" name="a64f589662444a37c092ca8af677cd3f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64f589662444a37c092ca8af677cd3f5">&#9670;&#160;</a></span>copyFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FileManager::copyFile </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>source</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>dest</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies the file source to dest. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>The file to read. </td></tr>
+    <tr><td class="paramname">dest</td><td>The new filename. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>True if the copy was successful, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a9ac56e965f73d4251a4512f49c5b5457" name="a9ac56e965f73d4251a4512f49c5b5457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ac56e965f73d4251a4512f49c5b5457">&#9670;&#160;</a></span>createXMLTree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classXMLNode.html">XMLNode</a> * FileManager::createXMLTree </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads in a XML file and converts it into a <a class="el" href="classXMLNode.html" title="utility class used to parse XML files">XMLNode</a> tree. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>Name of the XML file to read. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afb8cd37737c3067b7898e665c9e883a0" name="afb8cd37737c3067b7898e665c9e883a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb8cd37737c3067b7898e665c9e883a0">&#9670;&#160;</a></span>createXMLTreeFromString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classXMLNode.html">XMLNode</a> * FileManager::createXMLTreeFromString </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>content</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reads in XML from a string and converts it into a <a class="el" href="classXMLNode.html" title="utility class used to parse XML files">XMLNode</a> tree. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">content</td><td>the string containing the XML content. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a89cba835d27ee26baff744188bc75d91" name="a89cba835d27ee26baff744188bc75d91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89cba835d27ee26baff744188bc75d91">&#9670;&#160;</a></span>discoverPaths()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::discoverPaths </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Detects where the assets are stored. </p>
+<p>Now search for the path to all needed subdirectories.</p>
+
+</div>
+</div>
+<a id="a8644587c8be385302dc785609b1b8625" name="a8644587c8be385302dc785609b1b8625"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8644587c8be385302dc785609b1b8625">&#9670;&#160;</a></span>fileIsNewer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FileManager::fileIsNewer </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>f1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>f2</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if the first file is newer than the second. </p>
+<p>The comparison is based on the modification time of the two files. </p>
+
+</div>
+</div>
+<a id="afe2f11888841b647e2750a8e1eecb7c9" name="afe2f11888841b647e2750a8e1eecb7c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe2f11888841b647e2750a8e1eecb7c9">&#9670;&#160;</a></span>findFile() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FileManager::findFile </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>full_path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>file_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>search_path</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tries to find the specified file in any of the given search paths. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">full_path</td><td>On return contains the full path of the file, or "" if the file is not found. </td></tr>
+    <tr><td class="paramname">file_name</td><td>The name of the file to look for. </td></tr>
+    <tr><td class="paramname">search_path</td><td>The list of paths to search for the file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>True if the file is found, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ac5d3cd65733423357619330d7e9e2b99" name="ac5d3cd65733423357619330d7e9e2b99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5d3cd65733423357619330d7e9e2b99">&#9670;&#160;</a></span>findFile() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FileManager::findFile </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>full_path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>file_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structTextureSearchPath.html">TextureSearchPath</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>search_path</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tries to find the specified file in any of the given search paths. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">full_path</td><td>On return contains the full path of the file, or "" if the file is not found. </td></tr>
+    <tr><td class="paramname">file_name</td><td>The name of the file to look for. </td></tr>
+    <tr><td class="paramname">search_path</td><td>The list of paths to search for the file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>True if the file is found, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a94437b7440add6e5a8a4ce9a4f2f4926" name="a94437b7440add6e5a8a4ce9a4f2f4926"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94437b7440add6e5a8a4ce9a4f2f4926">&#9670;&#160;</a></span>getAddonsFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string FileManager::getAddonsFile </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the full path of a file in the addons directory. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of the file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a56344caa019dcc80e38754efc91a0866" name="a56344caa019dcc80e38754efc91a0866"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56344caa019dcc80e38754efc91a0866">&#9670;&#160;</a></span>getAsset() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string FileManager::getAsset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acb73b7203fb4939d40ce771bcf7972e0">FileManager::AssetType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the full path of a file of the given asset class. </p>
+<p>It is not checked if the file actually exists (use getAssetChecked() instead if checking is needed). </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>Type of the asset class. </td></tr>
+    <tr><td class="paramname">name</td><td>Name of the file to search. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>Full path to the file. </dd></dl>
+
+</div>
+</div>
+<a id="aed88f63ab4b278ab93015d8478a342b6" name="aed88f63ab4b278ab93015d8478a342b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed88f63ab4b278ab93015d8478a342b6">&#9670;&#160;</a></span>getAsset() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string FileManager::getAsset </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Searches in all root directories for the specified file. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of the file to find. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>Full path of the file, or "" if not found. </dd></dl>
+
+</div>
+</div>
+<a id="adff5a4461aa156dbd1f331f55ef63b5f" name="adff5a4461aa156dbd1f331f55ef63b5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adff5a4461aa156dbd1f331f55ef63b5f">&#9670;&#160;</a></span>getShader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string FileManager::getShader </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the full path to a shader (this function could be modified later to allow track-specific shaders). </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of the shader. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afb716419f0e65717e90917a232fdbb99" name="afb716419f0e65717e90917a232fdbb99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb716419f0e65717e90917a232fdbb99">&#9670;&#160;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::init </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function is used to initialise the file-manager after reading in the user configuration data. </p>
+<p>Esp. discovering the paths of all assets depends on the user config file (artist debug mode). </p>
+
+</div>
+</div>
+<a id="ae6e7f8e8347c8c3929d1461baa55dd34" name="ae6e7f8e8347c8c3929d1461baa55dd34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6e7f8e8347c8c3929d1461baa55dd34">&#9670;&#160;</a></span>isDirectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FileManager::isDirectory </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns true if the given name is a directory. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>File name to test. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1ca861aea616aecd4c465b68ef0bc3b6" name="a1ca861aea616aecd4c465b68ef0bc3b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ca861aea616aecd4c465b68ef0bc3b6">&#9670;&#160;</a></span>listFiles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::listFiles </td>
+          <td>(</td>
+          <td class="paramtype">std::set&lt; std::string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>result</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>dir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>make_full_path</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a list of files in a given directory. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">result</td><td>A reference to a std::vector&lt;std::string&gt; which will hold all files in a directory. The vector will be cleared. </td></tr>
+    <tr><td class="paramname">dir</td><td>The director for which to get the directory listing. </td></tr>
+    <tr><td class="paramname">make_full_path</td><td>If set to true, all listed files will be full paths. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1169cdc971f2e7bc76ad420f984ce71d" name="a1169cdc971f2e7bc76ad420f984ce71d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1169cdc971f2e7bc76ad420f984ce71d">&#9670;&#160;</a></span>moveDirectoryInto()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FileManager::moveDirectoryInto </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>source</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>target</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move the source directory into the target directory location. </p>
+<p>The target directory must be on the same drive as the source. </p>
+
+</div>
+</div>
+<a id="a755fd510b8ea72710574cc345f056971" name="a755fd510b8ea72710574cc345f056971"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a755fd510b8ea72710574cc345f056971">&#9670;&#160;</a></span>pushModelSearchPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::pushModelSearchPath </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a model search path to the list of model search paths. </p>
+<p>This path will be searched before any other existing paths. </p>
+
+</div>
+</div>
+<a id="a76b3a5f0db377efa247fe6a9cb02baae" name="a76b3a5f0db377efa247fe6a9cb02baae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76b3a5f0db377efa247fe6a9cb02baae">&#9670;&#160;</a></span>pushTextureSearchPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::pushTextureSearchPath </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>container_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a texture search path to the list of texture search paths. </p>
+<p>This path will be searched before any other existing paths. </p>
+
+</div>
+</div>
+<a id="ab83483d32d7a6f6478501e6fc7400008" name="ab83483d32d7a6f6478501e6fc7400008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab83483d32d7a6f6478501e6fc7400008">&#9670;&#160;</a></span>redirectOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::redirectOutput </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Redirects output to go into files in the user's config directory instead of to the console. </p>
+<p>It keeps backup copies of previous stdout files (3 atm), which can help to diagnose problems caused by a previous crash. </p>
+
+</div>
+</div>
+<a id="a3bdf4a240acaece3b0216720e7be24b2" name="a3bdf4a240acaece3b0216720e7be24b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bdf4a240acaece3b0216720e7be24b2">&#9670;&#160;</a></span>removeDirectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FileManager::removeDirectory </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes a directory (including all files contained). </p>
+<p>The function could easily recursively delete further subdirectories, but this is commented out atm (to limit the amount of damage in case of a bug). </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Directory name to remove. </td></tr>
+    <tr><td class="paramname">return</td><td>True if removal was successful. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a214d2cbdddd645af5566f35570f814ce" name="a214d2cbdddd645af5566f35570f814ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a214d2cbdddd645af5566f35570f814ce">&#9670;&#160;</a></span>removeFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FileManager::removeFile </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes the specified file. </p>
+<dl class="section return"><dt>반환값</dt><dd>True if successful, or false if the file is not a regular file or can not be removed. </dd></dl>
+
+</div>
+</div>
+<a id="a9717dfeb2f45342ffae3a1dd88f5a1f7" name="a9717dfeb2f45342ffae3a1dd88f5a1f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9717dfeb2f45342ffae3a1dd88f5a1f7">&#9670;&#160;</a></span>searchModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string FileManager::searchModel </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>file_name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the full path of a model file by searching all model search paths. </p>
+<p>It throws an exception if the file is not found. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>File name to search for. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6b0640c7f9a3ae513052d7ca46bc2736" name="a6b0640c7f9a3ae513052d7ca46bc2736"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b0640c7f9a3ae513052d7ca46bc2736">&#9670;&#160;</a></span>searchMusic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string FileManager::searchMusic </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>file_name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the full path of a music file by searching all music search paths. </p>
+<p>It throws an exception if the file is not found. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>File name to search for. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a663700f030fd479de9365e4baf1a31c1" name="a663700f030fd479de9365e4baf1a31c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a663700f030fd479de9365e4baf1a31c1">&#9670;&#160;</a></span>searchTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string FileManager::searchTexture </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>file_name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the full path of a texture file name by searching in all directories currently in the texture search path. </p>
+<p>The difference to a call getAsset(TEXTURE,...) is that the latter will only return textures from .../textures, while the searchTexture will also search e.g. in kart or track directories (depending on what is currently being loaded). </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file_name</td><td>Name of the texture file to search. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>The full path for the texture, or "" if the texture was not found. </dd></dl>
+
+</div>
+</div>
+<a id="a638b8f25722793f03c352b84a883d3d2" name="a638b8f25722793f03c352b84a883d3d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a638b8f25722793f03c352b84a883d3d2">&#9670;&#160;</a></span>setStdoutDir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::setStdoutDir </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>dir</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the directory for the stdout log file. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dir</td><td>Directory to use </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acd56da63796757ba36a28c24b463111f" name="acd56da63796757ba36a28c24b463111f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd56da63796757ba36a28c24b463111f">&#9670;&#160;</a></span>setStdoutName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FileManager::setStdoutName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the name for the stdout log file. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>Filename to use (relative to the user config dir). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>io/<a class="el" href="file__manager_8hpp_source.html">file_manager.hpp</a></li>
+<li>io/<b>file_manager.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

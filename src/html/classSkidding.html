@@ -1,0 +1,547 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: Skidding 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 타입</a> &#124;
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classSkidding-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">Skidding 클래스 참조<div class="ingroups"><a class="el" href="group__karts.html">Karts</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 타입</h2></td></tr>
+<tr class="memitem:ad0b020db2561c9ea9c42a8a94c1d0a73" id="r_ad0b020db2561c9ea9c42a8a94c1d0a73"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#ad0b020db2561c9ea9c42a8a94c1d0a73">SkidState</a> { <br />
+&#160;&#160;<b>SKID_NONE</b>
+, <b>SKID_ACCUMULATE_LEFT</b>
+, <b>SKID_ACCUMULATE_RIGHT</b>
+, <b>SKID_SHOW_GFX_LEFT</b>
+, <br />
+&#160;&#160;<b>SKID_SHOW_GFX_RIGHT</b>
+, <b>SKID_BREAK</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:ad0b020db2561c9ea9c42a8a94c1d0a73"><td class="mdescLeft">&#160;</td><td class="mdescRight">SKID_NONE: <a class="el" href="classKart.html" title="The main kart class.">Kart</a> is currently not skidding.  <a href="#ad0b020db2561c9ea9c42a8a94c1d0a73">더 자세히 ...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a06a7d003d3e9c93a7c16edfbd79d00e7" id="r_a06a7d003d3e9c93a7c16edfbd79d00e7"><td class="memItemLeft"><a id="a06a7d003d3e9c93a7c16edfbd79d00e7" name="a06a7d003d3e9c93a7c16edfbd79d00e7"></a>
+&#160;</td><td class="memItemRight"><b>LEAK_CHECK</b> ()</td></tr>
+<tr class="memitem:ae1d435eb47ad1fa7dae2d82dd7bcd4d0" id="r_ae1d435eb47ad1fa7dae2d82dd7bcd4d0"><td class="memItemLeft"><a id="ae1d435eb47ad1fa7dae2d82dd7bcd4d0" name="ae1d435eb47ad1fa7dae2d82dd7bcd4d0"></a>
+&#160;</td><td class="memItemRight"><b>Skidding</b> (<a class="el" href="classKart.html">Kart</a> *kart)</td></tr>
+<tr class="memdesc:ae1d435eb47ad1fa7dae2d82dd7bcd4d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the skidding object. <br /></td></tr>
+<tr class="memitem:abef0b2642eb3497c3caf20c8feef61eb" id="r_abef0b2642eb3497c3caf20c8feef61eb"><td class="memItemLeft"><a id="abef0b2642eb3497c3caf20c8feef61eb" name="abef0b2642eb3497c3caf20c8feef61eb"></a>
+void&#160;</td><td class="memItemRight"><b>reset</b> ()</td></tr>
+<tr class="memdesc:abef0b2642eb3497c3caf20c8feef61eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets all skidding related values. <br /></td></tr>
+<tr class="memitem:a239eabaee161d5c45b9bb6cf85c04c58" id="r_a239eabaee161d5c45b9bb6cf85c04c58"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a239eabaee161d5c45b9bb6cf85c04c58">updateGraphics</a> (float dt)</td></tr>
+<tr class="memdesc:a239eabaee161d5c45b9bb6cf85c04c58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called once per rendered frame to potentially update the graphical jump height.  <br /></td></tr>
+<tr class="memitem:a1f4897bf139411c49928265b7f7937ee" id="r_a1f4897bf139411c49928265b7f7937ee"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1f4897bf139411c49928265b7f7937ee">update</a> (int dt, bool is_on_ground, float steer, <a class="el" href="classKartControl.html#a1fca41f3f8d5e8c045508a111f3ab17b">KartControl::SkidControl</a> skidding)</td></tr>
+<tr class="memdesc:a1f4897bf139411c49928265b7f7937ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates skidding status.  <br /></td></tr>
+<tr class="memitem:af27efd655f16073f781332480ec2daed" id="r_af27efd655f16073f781332480ec2daed"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af27efd655f16073f781332480ec2daed">saveState</a> (<a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer)</td></tr>
+<tr class="memdesc:af27efd655f16073f781332480ec2daed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the skidding state of a kart.  <br /></td></tr>
+<tr class="memitem:a5bc22363cae74a5b33ee059fa4ade101" id="r_a5bc22363cae74a5b33ee059fa4ade101"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5bc22363cae74a5b33ee059fa4ade101">rewindTo</a> (<a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer)</td></tr>
+<tr class="memdesc:a5bc22363cae74a5b33ee059fa4ade101"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restores the skidding state of a kart.  <br /></td></tr>
+<tr class="memitem:a1b24f9f3dc9b1a07f81677a7ccc1af60" id="r_a1b24f9f3dc9b1a07f81677a7ccc1af60"><td class="memItemLeft"><a id="a1b24f9f3dc9b1a07f81677a7ccc1af60" name="a1b24f9f3dc9b1a07f81677a7ccc1af60"></a>
+float&#160;</td><td class="memItemRight"><b>getVisualSkidRotation</b> () const</td></tr>
+<tr class="memdesc:a1b24f9f3dc9b1a07f81677a7ccc1af60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines how much the graphics model of the kart should be rotated additionally (for skidding), depending on how long the kart has been skidding etc. <br /></td></tr>
+<tr class="memitem:a7cf535db4caaa913878a79f72c74f7b8" id="r_a7cf535db4caaa913878a79f72c74f7b8"><td class="memItemLeft"><a id="a7cf535db4caaa913878a79f72c74f7b8" name="a7cf535db4caaa913878a79f72c74f7b8"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidFactor</b> () const</td></tr>
+<tr class="memdesc:a7cf535db4caaa913878a79f72c74f7b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current skid factor in [1, skid_max_for_this_kart]. <br /></td></tr>
+<tr class="memitem:ab628da5100653faf91346295a767fdea" id="r_ab628da5100653faf91346295a767fdea"><td class="memItemLeft"><a id="ab628da5100653faf91346295a767fdea" name="ab628da5100653faf91346295a767fdea"></a>
+bool&#160;</td><td class="memItemRight"><b>isSkidding</b> () const</td></tr>
+<tr class="memdesc:ab628da5100653faf91346295a767fdea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the kart is skidding. <br /></td></tr>
+<tr class="memitem:ad37cabc86f44e6f35f0edfceca9af190" id="r_ad37cabc86f44e6f35f0edfceca9af190"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ad37cabc86f44e6f35f0edfceca9af190">getSteeringFraction</a> ()</td></tr>
+<tr class="memdesc:ad37cabc86f44e6f35f0edfceca9af190"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the steering fraction to be used by the physics.  <br /></td></tr>
+<tr class="memitem:a0ecce172c9ace3aa2f44e93f4f027072" id="r_a0ecce172c9ace3aa2f44e93f4f027072"><td class="memItemLeft"><a id="a0ecce172c9ace3aa2f44e93f4f027072" name="a0ecce172c9ace3aa2f44e93f4f027072"></a>
+<a class="el" href="#ad0b020db2561c9ea9c42a8a94c1d0a73">SkidState</a>&#160;</td><td class="memItemRight"><b>getSkidState</b> () const</td></tr>
+<tr class="memdesc:a0ecce172c9ace3aa2f44e93f4f027072"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the skidding state. <br /></td></tr>
+<tr class="memitem:aaea090405f8e803dd283764b26b5698e" id="r_aaea090405f8e803dd283764b26b5698e"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#aaea090405f8e803dd283764b26b5698e">getSteeringWhenSkidding</a> (float steering) const</td></tr>
+<tr class="memdesc:aaea090405f8e803dd283764b26b5698e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the steering value necessary to set in KartControls.m_steer in order to actually to steer the specified amount in 'steering'.  <br /></td></tr>
+<tr class="memitem:a051b1af562959d8391ec1d4f5656decc" id="r_a051b1af562959d8391ec1d4f5656decc"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a051b1af562959d8391ec1d4f5656decc">getSkidBonusReady</a> () const</td></tr>
+<tr class="memdesc:a051b1af562959d8391ec1d4f5656decc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the kart has skidded long enough to get a skid bonus if it stopped skidding now.  <br /></td></tr>
+<tr class="memitem:a753d8dcd959f1b74dfd8230c5b5145b8" id="r_a753d8dcd959f1b74dfd8230c5b5145b8"><td class="memItemLeft"><a id="a753d8dcd959f1b74dfd8230c5b5145b8" name="a753d8dcd959f1b74dfd8230c5b5145b8"></a>
+bool&#160;</td><td class="memItemRight"><b>isJumping</b> () const</td></tr>
+<tr class="memitem:ae1a65edf13a5564f24e0e3f2aad65bed" id="r_ae1a65edf13a5564f24e0e3f2aad65bed"><td class="memItemLeft"><a id="ae1a65edf13a5564f24e0e3f2aad65bed" name="ae1a65edf13a5564f24e0e3f2aad65bed"></a>
+void&#160;</td><td class="memItemRight"><b>prepareSmoothing</b> ()</td></tr>
+<tr class="memitem:a48394d808457c77818000eb52bc13fb5" id="r_a48394d808457c77818000eb52bc13fb5"><td class="memItemLeft"><a id="a48394d808457c77818000eb52bc13fb5" name="a48394d808457c77818000eb52bc13fb5"></a>
+void&#160;</td><td class="memItemRight"><b>checkSmoothing</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:aef167699cad4a94eefb1f337631b3480" id="r_aef167699cad4a94eefb1f337631b3480"><td class="memItemLeft">unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#aef167699cad4a94eefb1f337631b3480">getSkidBonus</a> (float *bonus_time, float *bonus_speed, float *bonus_force) const</td></tr>
+<tr class="memdesc:aef167699cad4a94eefb1f337631b3480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines the bonus time and speed given the currently accumulated m_skid_time.  <br /></td></tr>
+<tr class="memitem:a8cefa3b1629abf8e1199ea8a0ef39a7c" id="r_a8cefa3b1629abf8e1199ea8a0ef39a7c"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a8cefa3b1629abf8e1199ea8a0ef39a7c">updateSteering</a> (float steer, int ticks)</td></tr>
+<tr class="memdesc:a8cefa3b1629abf8e1199ea8a0ef39a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the actual steering fraction to be used in the physics, and stores it in m_real_skidding.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:a243bbc88542207f59cadf53b4d70209d" id="r_a243bbc88542207f59cadf53b4d70209d"><td class="memItemLeft"><a id="a243bbc88542207f59cadf53b4d70209d" name="a243bbc88542207f59cadf53b4d70209d"></a>
+float&#160;</td><td class="memItemRight"><b>m_skid_reduce_turn_delta</b></td></tr>
+<tr class="memdesc:a243bbc88542207f59cadf53b4d70209d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is m_skid_reduce_turn_max - m_skid_reduce_turn_min. <br /></td></tr>
+<tr class="memitem:a24d16cc809c1d364186d379f625a46e4" id="r_a24d16cc809c1d364186d379f625a46e4"><td class="memItemLeft"><a id="a24d16cc809c1d364186d379f625a46e4" name="a24d16cc809c1d364186d379f625a46e4"></a>
+float&#160;</td><td class="memItemRight"><b>m_real_steering</b></td></tr>
+<tr class="memdesc:a24d16cc809c1d364186d379f625a46e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the actual steering (in fraction of max-steering-angle) to be used by this kart. <br /></td></tr>
+<tr class="memitem:a14150ec3b4fa4724910105b4eb1f7a52" id="r_a14150ec3b4fa4724910105b4eb1f7a52"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a14150ec3b4fa4724910105b4eb1f7a52">m_visual_rotation</a></td></tr>
+<tr class="memdesc:a14150ec3b4fa4724910105b4eb1f7a52"><td class="mdescLeft">&#160;</td><td class="mdescRight">An additional rotation (heading) of the kart while skidding.  <br /></td></tr>
+<tr class="memitem:a1f40a5a5d2db811f3d5e419c0f5f2ef0" id="r_a1f40a5a5d2db811f3d5e419c0f5f2ef0"><td class="memItemLeft"><a id="a1f40a5a5d2db811f3d5e419c0f5f2ef0" name="a1f40a5a5d2db811f3d5e419c0f5f2ef0"></a>
+float&#160;</td><td class="memItemRight"><b>m_skid_factor</b></td></tr>
+<tr class="memdesc:a1f40a5a5d2db811f3d5e419c0f5f2ef0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accumulated skidding factor. <br /></td></tr>
+<tr class="memitem:aa9dc8fb8f471aeb6e05a027b0232d14d" id="r_aa9dc8fb8f471aeb6e05a027b0232d14d"><td class="memItemLeft"><a id="aa9dc8fb8f471aeb6e05a027b0232d14d" name="aa9dc8fb8f471aeb6e05a027b0232d14d"></a>
+uint16_t&#160;</td><td class="memItemRight"><b>m_skid_time</b></td></tr>
+<tr class="memdesc:aa9dc8fb8f471aeb6e05a027b0232d14d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keeps track on how long a kart has been skidding, in order to trigger the skidding bonus. <br /></td></tr>
+<tr class="memitem:a16249c1d08b5876740ed56acff99ba3b" id="r_a16249c1d08b5876740ed56acff99ba3b"><td class="memItemLeft"><a id="a16249c1d08b5876740ed56acff99ba3b" name="a16249c1d08b5876740ed56acff99ba3b"></a>
+bool&#160;</td><td class="memItemRight"><b>m_skid_bonus_ready</b></td></tr>
+<tr class="memdesc:a16249c1d08b5876740ed56acff99ba3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the kart has skidded long enough to get a skid bonus if it stopped skidding now. <br /></td></tr>
+<tr class="memitem:aa9f193cc825b424a8943b5ab7ae5fafd" id="r_aa9f193cc825b424a8943b5ab7ae5fafd"><td class="memItemLeft"><a id="aa9f193cc825b424a8943b5ab7ae5fafd" name="aa9f193cc825b424a8943b5ab7ae5fafd"></a>
+float&#160;</td><td class="memItemRight"><b>m_remaining_jump_time</b></td></tr>
+<tr class="memdesc:aa9f193cc825b424a8943b5ab7ae5fafd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set to &gt;0 when a graphical jump is to be done. <br /></td></tr>
+<tr class="memitem:a4489d312086b1b6e25a9c96ebfd212a1" id="r_a4489d312086b1b6e25a9c96ebfd212a1"><td class="memItemLeft"><a id="a4489d312086b1b6e25a9c96ebfd212a1" name="a4489d312086b1b6e25a9c96ebfd212a1"></a>
+float&#160;</td><td class="memItemRight"><b>m_graphical_remaining_jump_time</b></td></tr>
+<tr class="memitem:a297cd4a9da1638f7a22709a661cfe0ea" id="r_a297cd4a9da1638f7a22709a661cfe0ea"><td class="memItemLeft"><a id="a297cd4a9da1638f7a22709a661cfe0ea" name="a297cd4a9da1638f7a22709a661cfe0ea"></a>
+float&#160;</td><td class="memItemRight"><b>m_prev_visual_rotation</b></td></tr>
+<tr class="memitem:acca199b18bfd13dcce745574811aaef7" id="r_acca199b18bfd13dcce745574811aaef7"><td class="memItemLeft"><a id="acca199b18bfd13dcce745574811aaef7" name="acca199b18bfd13dcce745574811aaef7"></a>
+float&#160;</td><td class="memItemRight"><b>m_smoothing_time</b></td></tr>
+<tr class="memitem:aecf5679c15173f91ed020d0f8d723ba9" id="r_aecf5679c15173f91ed020d0f8d723ba9"><td class="memItemLeft"><a id="aecf5679c15173f91ed020d0f8d723ba9" name="aecf5679c15173f91ed020d0f8d723ba9"></a>
+float&#160;</td><td class="memItemRight"><b>m_smoothing_dt</b></td></tr>
+<tr class="memitem:a41401101155bd1f6c81ba09de16ed7ac" id="r_a41401101155bd1f6c81ba09de16ed7ac"><td class="memItemLeft"><a id="a41401101155bd1f6c81ba09de16ed7ac" name="a41401101155bd1f6c81ba09de16ed7ac"></a>
+int&#160;</td><td class="memItemRight"><b>m_skid_bonus_end_ticks</b></td></tr>
+<tr class="memitem:a819e02ef49fca3b7e4954b4c997be1db" id="r_a819e02ef49fca3b7e4954b4c997be1db"><td class="memItemLeft"><a id="a819e02ef49fca3b7e4954b4c997be1db" name="a819e02ef49fca3b7e4954b4c997be1db"></a>
+<a class="el" href="#ad0b020db2561c9ea9c42a8a94c1d0a73">SkidState</a>&#160;</td><td class="memItemRight"><b>m_skid_state</b></td></tr>
+<tr class="memdesc:a819e02ef49fca3b7e4954b4c997be1db"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current skidding state. <br /></td></tr>
+<tr class="memitem:af4f5112c73dc7c34a27154589f420a5f" id="r_af4f5112c73dc7c34a27154589f420a5f"><td class="memItemLeft"><a id="af4f5112c73dc7c34a27154589f420a5f" name="af4f5112c73dc7c34a27154589f420a5f"></a>
+<a class="el" href="classKart.html">Kart</a> *&#160;</td><td class="memItemRight"><b>m_kart</b></td></tr>
+<tr class="memdesc:af4f5112c73dc7c34a27154589f420a5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A read-only pointer to the kart's properties. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a415c6fded66885250aed8ff6cc39d609" id="r_a415c6fded66885250aed8ff6cc39d609"><td class="memItemLeft"><a id="a415c6fded66885250aed8ff6cc39d609" name="a415c6fded66885250aed8ff6cc39d609"></a>
+class&#160;</td><td class="memItemRight"><b>KartRewinder</b></td></tr>
+</table>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">멤버 열거형 문서화</h2>
+<a id="ad0b020db2561c9ea9c42a8a94c1d0a73" name="ad0b020db2561c9ea9c42a8a94c1d0a73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0b020db2561c9ea9c42a8a94c1d0a73">&#9670;&#160;</a></span>SkidState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ad0b020db2561c9ea9c42a8a94c1d0a73">Skidding::SkidState</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>SKID_NONE: <a class="el" href="classKart.html" title="The main kart class.">Kart</a> is currently not skidding. </p>
+<p>SKID_ACCUMULATE_LEFT: <a class="el" href="classKart.html" title="The main kart class.">Kart</a> is skidding to the left and accumulating for bonus. SKID_ACCUMULATE_RIGHT: Similar for turning right SKID_SHOW_GFX_LEFT: Shows the gfx, while the bonus is active, and the kart was turning left. SKID_SHOW_GFX_RIGHT: Similar for turning right. SKID_BREAK: <a class="el" href="classSkidding.html">Skidding</a> was stopped without bonus </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="aef167699cad4a94eefb1f337631b3480" name="aef167699cad4a94eefb1f337631b3480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef167699cad4a94eefb1f337631b3480">&#9670;&#160;</a></span>getSkidBonus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Skidding::getSkidBonus </td>
+          <td>(</td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>bonus_time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>bonus_speed</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>bonus_force</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determines the bonus time and speed given the currently accumulated m_skid_time. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bonus_time</td><td>On return contains how long the bonus should be active. </td></tr>
+    <tr><td class="paramname">bonus_speed</td><td>How much additional speed the kart should get. </td></tr>
+    <tr><td class="paramname">bonus_force</td><td>Additional engine force. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>The bonus level: 0 = no bonus, 1 = first entry in bonus array etc. </dd></dl>
+
+</div>
+</div>
+<a id="a051b1af562959d8391ec1d4f5656decc" name="a051b1af562959d8391ec1d4f5656decc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a051b1af562959d8391ec1d4f5656decc">&#9670;&#160;</a></span>getSkidBonusReady()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Skidding::getSkidBonusReady </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns if the kart has skidded long enough to get a skid bonus if it stopped skidding now. </p>
+<p>This function returns false if the kart is actually using the skid bonus. </p>
+
+</div>
+</div>
+<a id="ad37cabc86f44e6f35f0edfceca9af190" name="ad37cabc86f44e6f35f0edfceca9af190"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad37cabc86f44e6f35f0edfceca9af190">&#9670;&#160;</a></span>getSteeringFraction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Skidding::getSteeringFraction </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the steering fraction to be used by the physics. </p>
+<p>This is a fraction of the maximum steering angle ( so in [-1, 1]). </p>
+
+</div>
+</div>
+<a id="aaea090405f8e803dd283764b26b5698e" name="aaea090405f8e803dd283764b26b5698e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaea090405f8e803dd283764b26b5698e">&#9670;&#160;</a></span>getSteeringWhenSkidding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Skidding::getSteeringWhenSkidding </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>steering</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the steering value necessary to set in KartControls.m_steer in order to actually to steer the specified amount in 'steering'. </p>
+<p>If the kart is not skidding, the return value is just 'steering'. Otherwise the return value will be (depending on current skidding direction) 'steering1', so that when the kart steers 'steering1', it will de facto steer by the original 'steering' amount. This function might return a result outside of [-1,1] if the specified steering can not be reached (e.g. due to skidding) </p>
+
+</div>
+</div>
+<a id="a5bc22363cae74a5b33ee059fa4ade101" name="a5bc22363cae74a5b33ee059fa4ade101"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bc22363cae74a5b33ee059fa4ade101">&#9670;&#160;</a></span>rewindTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Skidding::rewindTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classBareNetworkString.html">BareNetworkString</a> *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Restores the skidding state of a kart. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>Buffer with state information. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af27efd655f16073f781332480ec2daed" name="af27efd655f16073f781332480ec2daed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af27efd655f16073f781332480ec2daed">&#9670;&#160;</a></span>saveState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Skidding::saveState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classBareNetworkString.html">BareNetworkString</a> *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Save the skidding state of a kart. </p>
+<p>It only saves the important physics values including m_remaining_jump_time (while this is mostly a graphical effect, you can't skid while still doing a jump, so it does affect the state). Similarly m_real_steering is output of updateRewind() and will be recomputed every frame when <a class="el" href="#a1f4897bf139411c49928265b7f7937ee" title="Updates skidding status.">update()</a> is called, and similar for m_skid_bonus_ready </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>Buffer for the state information. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1f4897bf139411c49928265b7f7937ee" name="a1f4897bf139411c49928265b7f7937ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f4897bf139411c49928265b7f7937ee">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Skidding::update </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_on_ground</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>steering</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKartControl.html#a1fca41f3f8d5e8c045508a111f3ab17b">KartControl::SkidControl</a></td>          <td class="paramname"><span class="paramname"><em>skidding</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates skidding status. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks</td><td>Number of physics time steps - should be 1. </td></tr>
+    <tr><td class="paramname">is_on_ground</td><td>True if the kart is on ground. </td></tr>
+    <tr><td class="paramname">steering</td><td>Raw steering of the kart [-1,1], i.e. not adjusted by the kart's max steering angle. </td></tr>
+    <tr><td class="paramname">skidding</td><td>True if the skid button is pressed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a239eabaee161d5c45b9bb6cf85c04c58" name="a239eabaee161d5c45b9bb6cf85c04c58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a239eabaee161d5c45b9bb6cf85c04c58">&#9670;&#160;</a></span>updateGraphics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Skidding::updateGraphics </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Called once per rendered frame to potentially update the graphical jump height. </p>
+<p>The jump at the start of a skid is graphical only. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>Time step size. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>Current height of the jump. </dd></dl>
+
+</div>
+</div>
+<a id="a8cefa3b1629abf8e1199ea8a0ef39a7c" name="a8cefa3b1629abf8e1199ea8a0ef39a7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cefa3b1629abf8e1199ea8a0ef39a7c">&#9670;&#160;</a></span>updateSteering()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Skidding::updateSteering </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>steer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the actual steering fraction to be used in the physics, and stores it in m_real_skidding. </p>
+<p>This is later used by kart to set the physical steering. The real steering takes skidding into account: if the kart skids either left or right, the steering fraction is bound by reduce-turn-min and reduce-turn-max. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="a14150ec3b4fa4724910105b4eb1f7a52" name="a14150ec3b4fa4724910105b4eb1f7a52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14150ec3b4fa4724910105b4eb1f7a52">&#9670;&#160;</a></span>m_visual_rotation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Skidding::m_visual_rotation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>An additional rotation (heading) of the kart while skidding. </p>
+<p>This is only a graphical effect, the actual physics body is not rotated. </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>karts/<a class="el" href="skidding_8hpp_source.html">skidding.hpp</a></li>
+<li>karts/<b>skidding.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

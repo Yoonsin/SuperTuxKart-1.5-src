@@ -459,6 +459,9 @@ namespace ServerConfig
     // ========================================================================
     /** Server uid, extracted from server_config.xml file with .xml removed. */
     extern std::string m_server_uid;
+    /** Command-line-only fixed kart and track for network servers. */
+    extern std::string m_fixed_kart;
+    extern std::string m_fixed_track;
     // ========================================================================
     void loadServerConfig(const std::string& path = "");
     // ------------------------------------------------------------------------

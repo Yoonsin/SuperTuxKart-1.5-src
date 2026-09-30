@@ -488,5 +488,15 @@ enet_host_bandwidth_throttle (ENetHost * host)
        } 
     }
 }
+
+void
+enet_host_set_raw_rtt_callback(ENetHost* host, ENetRawRTTCallback callback, void* user_data)
+{
+    if (host == NULL)
+        return;
+
+    host->rawRTTCallback = callback;
+    host->rawRTTCallbackData = user_data;
+}
     
 /** @} */

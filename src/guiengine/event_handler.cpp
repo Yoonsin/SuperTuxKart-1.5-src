@@ -69,15 +69,25 @@ EventHandler::~EventHandler()
 
 bool EventHandler::OnEvent (const SEvent &event)
 {
-    if (!m_accept_events && event.EventType != EET_LOG_TEXT_EVENT) return true;
+    PROFILER_PUSH_CPU_MARKER("EventHandler OnEvent", 0x7F, 0x00, 0x7F);
+    // pop marker above return statements to avoid unbalanced push/pop markers in case of early return 
+    
+    if (!m_accept_events && event.EventType != EET_LOG_TEXT_EVENT) {
+        PROFILER_POP_CPU_MARKER();
+        return true;
+    }
 
-    if(!Debug::onEvent(event))
+    if(!Debug::onEvent(event)) {
+        PROFILER_POP_CPU_MARKER();
         return false;
+    }
         
     if (ScreenKeyboard::isActive())
     {
-        if (ScreenKeyboard::getCurrent()->onEvent(event))
+        if (ScreenKeyboard::getCurrent()->onEvent(event)) {
+            PROFILER_POP_CPU_MARKER();
             return true; // EVENT_BLOCK
+        }
     }
     
     // TO DEBUG HATS (when you don't actually have a hat)
@@ -160,12 +170,14 @@ bool EventHandler::OnEvent (const SEvent &event)
 
     if (event.EventType == EET_GUI_EVENT)
     {
+        PROFILER_POP_CPU_MARKER();
         return onGUIEvent(event) == EVENT_BLOCK;
     }
     else if (GUIEngine::getStateManager()->getGameState() != GUIEngine::GAME &&
              event.EventType != EET_KEY_INPUT_EVENT && event.EventType != EET_JOYSTICK_INPUT_EVENT &&
              event.EventType != EET_LOG_TEXT_EVENT)
     {
+        PROFILER_POP_CPU_MARKER();
         return false; // EVENT_LET
     }
     else if (event.EventType == EET_MOUSE_INPUT_EVENT ||
@@ -205,18 +217,23 @@ bool EventHandler::OnEvent (const SEvent &event)
                 event.KeyInput.Control, event.KeyInput.PressedDown, 
                 event.KeyInput.Shift);
         }
+
         // FIXME? it may be a bit unclean that all input events go trough
         // the gui module
+        PROFILER_PUSH_CPU_MARKER("InputManager input", 0xFF, 0x80, 0x00);
         const EventPropagation blockPropagation = input_manager->input(event);
+        PROFILER_POP_CPU_MARKER();
 
         if (event.EventType == EET_KEY_INPUT_EVENT &&
             event.KeyInput.Key == irr::IRR_KEY_TAB)
         {
             // block all tab events, if we let them go, irrlicht will try
             // to apply its own focus code
+            PROFILER_POP_CPU_MARKER();
             return true; // EVENT_BLOCK
         }
 
+        PROFILER_POP_CPU_MARKER();
         return blockPropagation == EVENT_BLOCK;
     }
     else if (event.EventType == EET_LOG_TEXT_EVENT)
@@ -234,6 +251,7 @@ bool EventHandler::OnEvent (const SEvent &event)
 #ifdef DEBUG
                 Log::info("EventHandler", "The following message will not be printed in release mode");
 #else
+            PROFILER_POP_CPU_MARKER();
             return true; // EVENT_BLOCK
 #endif
             const std::string &error_info = STKTexManager::getInstance()->getTextureErrorMessage();
@@ -250,11 +268,13 @@ bool EventHandler::OnEvent (const SEvent &event)
                 Log::error("Irrlicht", event.LogEvent.Text);
             }
         }
+        PROFILER_POP_CPU_MARKER();
         return true;
     }
 
 
     // nothing to do with other events
+    PROFILER_POP_CPU_MARKER();
     return false;
 }
 

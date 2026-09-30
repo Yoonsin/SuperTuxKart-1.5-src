@@ -1,0 +1,517 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: network/protocols/server_lobby.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>network</b></li><li class="navelem"><b>protocols</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">server_lobby.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2018 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef SERVER_LOBBY_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define SERVER_LOBBY_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;network/protocols/lobby_protocol.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/cpp2011.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;utils/time.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;irrString.h&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">class </span><a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">class </span>DatabaseConnector;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">class </span><a class="code hl_class" href="classNetworkItemManager.html">NetworkItemManager</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">class </span><a class="code hl_class" href="classNetworkString.html">NetworkString</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">class </span><a class="code hl_class" href="classNetworkPlayerProfile.html">NetworkPlayerProfile</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">class </span><a class="code hl_class" href="classSTKPeer.html">STKPeer</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">class </span><a class="code hl_class" href="classSocketAddress.html">SocketAddress</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">class </span><a class="code hl_class" href="classRanking.html">Ranking</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">namespace </span>Online</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">class </span><a class="code hl_class" href="classOnline_1_1Request.html">Request</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classServerLobby.html">   51</a></span><span class="keyword">class </span><a class="code hl_function" href="classServerLobby.html#ac8f0dc6f83a077842025c0fbfecf92f0">ServerLobby</a> : <span class="keyword">public</span> LobbyProtocol</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">/* The state for a small finite state machine. */</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">enum</span> ServerState : <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        SET_PUBLIC_ADDRESS,       <span class="comment">// Waiting to receive its public ip address</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        REGISTER_SELF_ADDRESS,    <span class="comment">// Register with STK online server</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        WAITING_FOR_START_GAME,   <span class="comment">// In lobby, waiting for (auto) start game</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        SELECTING,                <span class="comment">// kart, track, ... selection started</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        LOAD_WORLD,               <span class="comment">// Server starts loading world</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        WAIT_FOR_WORLD_LOADED,    <span class="comment">// Wait for clients and server to load world</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        WAIT_FOR_RACE_STARTED,    <span class="comment">// Wait for all clients to have started the race</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        RACING,                   <span class="comment">// racing</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        WAIT_FOR_RACE_STOPPED,    <span class="comment">// Wait server for stopping all race protocols</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        RESULT_DISPLAY,           <span class="comment">// Show result screen</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        ERROR_LEAVE,              <span class="comment">// shutting down server</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        EXITING</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    };</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">private</span>:</div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="};">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structServerLobby_1_1KeyData.html">   71</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structServerLobby_1_1KeyData.html">KeyData</a></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        std::string m_aes_key;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        std::string m_aes_iv;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        irr::core::stringw m_name;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        std::string m_country_code;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordtype">bool</span> m_tried = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    };</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#ifdef ENABLE_SQLITE3</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    DatabaseConnector* m_db_connector;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordtype">void</span> pollDatabase();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    std::atomic&lt;ServerState&gt; m_state;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">/* The state used in multiple threads when reseting server. */</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">enum</span> ResetState : <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        RS_NONE, <span class="comment">// Default state</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        RS_WAITING, <span class="comment">// Waiting for reseting finished</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        RS_ASYNC_RESET <span class="comment">// Finished reseting server in main thread, now async</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                       <span class="comment">// thread</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    };</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    std::atomic&lt;ResetState&gt; m_rs_state;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classServerLobby.html#ac380a18c9d3b45a4eeb0c4eed8a68b0a">  101</a></span>    std::weak_ptr&lt;STKPeer&gt; <a class="code hl_variable" href="classServerLobby.html#ac380a18c9d3b45a4eeb0c4eed8a68b0a">m_server_owner</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classServerLobby.html#a803319635f73f4c56a955f0c79953c1c">  104</a></span>    std::weak_ptr&lt;STKPeer&gt; <a class="code hl_variable" href="classServerLobby.html#a803319635f73f4c56a955f0c79953c1c">m_ai_peer</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classServerLobby.html#a9dad5bd2f59b4da4d92a98efdabd2a07">  109</a></span>    std::vector&lt;std::shared_ptr&lt;NetworkPlayerProfile&gt; &gt; <a class="code hl_variable" href="classServerLobby.html#a9dad5bd2f59b4da4d92a98efdabd2a07">m_ai_profiles</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    std::atomic&lt;uint32_t&gt; m_server_owner_id;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classServerLobby.html#a9cd790c1a359505d37ad26924ca4b08e">  114</a></span>    std::pair&lt;std::set&lt;std::string&gt;, std::set&lt;std::string&gt; &gt; <a class="code hl_variable" href="classServerLobby.html#a9cd790c1a359505d37ad26924ca4b08e">m_official_kts</a>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classServerLobby.html#a20ff44bef1a7e7236fcd1887baa73ad2">  117</a></span>    std::pair&lt;std::set&lt;std::string&gt;, std::set&lt;std::string&gt; &gt; <a class="code hl_variable" href="classServerLobby.html#a20ff44bef1a7e7236fcd1887baa73ad2">m_addon_kts</a>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classServerLobby.html#a3f32f02803aec88103ed8fab5dc01d80">  120</a></span>    std::set&lt;std::string&gt; <a class="code hl_variable" href="classServerLobby.html#a3f32f02803aec88103ed8fab5dc01d80">m_addon_arenas</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classServerLobby.html#ab98a2b774577c3ed91fa1a7538f85244">  123</a></span>    std::set&lt;std::string&gt; <a class="code hl_variable" href="classServerLobby.html#ab98a2b774577c3ed91fa1a7538f85244">m_addon_soccers</a>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classServerLobby.html#a04d7252979d9d4ab4d06e67fa9d20b03">  127</a></span>    std::pair&lt;std::set&lt;std::string&gt;, std::set&lt;std::string&gt; &gt; <a class="code hl_variable" href="classServerLobby.html#a04d7252979d9d4ab4d06e67fa9d20b03">m_available_kts</a>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classServerLobby.html#a0bf68b56610d765ac34d7e04af5193ac">  130</a></span>    std::atomic_bool <a class="code hl_variable" href="classServerLobby.html#a0bf68b56610d765ac34d7e04af5193ac">m_server_has_loaded_world</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">bool</span> m_registered_for_once_only;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordtype">bool</span> m_save_server_config;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    std::map&lt;std::weak_ptr&lt;STKPeer&gt;, bool,</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classServerLobby.html#afd2fd6eace27a4af8fd5884ee3c9c771">  138</a></span>        std::owner_less&lt;std::weak_ptr&lt;STKPeer&gt; &gt; &gt; <a class="code hl_variable" href="classServerLobby.html#afd2fd6eace27a4af8fd5884ee3c9c771">m_peers_ready</a>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    std::map&lt;std::weak_ptr&lt;STKPeer&gt;, std::set&lt;irr::core::stringw&gt;,</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        std::owner_less&lt;std::weak_ptr&lt;STKPeer&gt; &gt; &gt; m_peers_muted_players;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    std::weak_ptr&lt;Online::Request&gt; m_server_registering;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classServerLobby.html#ab122993f51cf9f17558394f0fb1eb146">  146</a></span>    std::atomic&lt;int64_t&gt; <a class="code hl_variable" href="classServerLobby.html#ab122993f51cf9f17558394f0fb1eb146">m_timeout</a>;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    std::mutex m_keys_mutex;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    std::map&lt;uint32_t, KeyData&gt; m_keys;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    std::map&lt;std::weak_ptr&lt;STKPeer&gt;,</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        std::pair&lt;uint32_t, BareNetworkString&gt;,</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        std::owner_less&lt;std::weak_ptr&lt;STKPeer&gt; &gt; &gt; m_pending_connection;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    std::map&lt;std::string, uint64_t&gt; m_pending_peer_connection;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    std::shared_ptr&lt;Ranking&gt; m_ranking;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="comment">/* Saved the last game result */</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <a class="code hl_class" href="classNetworkString.html">NetworkString</a>* m_result_ns;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="comment">/* Used to make sure clients are having same item list at start */</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>* m_items_complete_state;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    std::atomic&lt;uint32_t&gt; m_server_id_online;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    std::atomic&lt;uint32_t&gt; m_client_server_host_id;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    std::atomic&lt;int&gt; m_difficulty;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    std::atomic&lt;int&gt; m_game_mode;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    std::atomic&lt;int&gt; m_lobby_players;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    std::atomic&lt;int&gt; m_current_ai_count;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    std::atomic&lt;uint64_t&gt; m_last_success_poll_time;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    uint64_t m_last_unsuccess_poll_time, m_server_started_at, m_server_delay;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="comment">// Default game settings if no one has ever vote, and save inside here for</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="comment">// final vote (for live join)</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <a class="code hl_class" href="classPeerVote.html">PeerVote</a>* m_default_vote;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordtype">int</span> m_battle_hit_capture_limit;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordtype">float</span> m_battle_time_limit;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordtype">unsigned</span> m_item_seed;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    uint32_t m_winner_peer_id;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    uint64_t m_client_starting_time;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="comment">// Calculated before each game started</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordtype">unsigned</span> m_ai_count;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="comment">// connection management</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#ab934ba1151154ddb5a736bf1558aaa56">clientDisconnected</a>(<a class="code hl_class" href="classEvent.html">Event</a>* event);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordtype">void</span> connectionRequested(<a class="code hl_class" href="classEvent.html">Event</a>* event);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="comment">// kart selection</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a20a70c9a2ad12b6a27b8f2f62c6c3fd1">kartSelectionRequested</a>(<a class="code hl_class" href="classEvent.html">Event</a>* event);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="comment">// Track(s) votes</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a0e8666eab13111b05a588c34be28f74f">handlePlayerVote</a>(<a class="code hl_class" href="classEvent.html">Event</a> *event);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#ae65ccb7afb1adec0f5f5352d6ca3b875">playerFinishedResult</a>(<a class="code hl_class" href="classEvent.html">Event</a> *event);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a47b3c8b9c8f9d33aec8c0057d4fc914e">registerServer</a>(<span class="keywordtype">bool</span> first_time);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a1af07e477c095d03fe6464e32de832b2">finishedLoadingWorldClient</a>(<a class="code hl_class" href="classEvent.html">Event</a> *event);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a3663cacd3a818891af1e7a29a73b20b6">finishedLoadingLiveJoinClient</a>(<a class="code hl_class" href="classEvent.html">Event</a> *event);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordtype">void</span> kickHost(<a class="code hl_class" href="classEvent.html">Event</a>* event);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordtype">void</span> changeTeam(<a class="code hl_class" href="classEvent.html">Event</a>* event);</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordtype">void</span> handleChat(<a class="code hl_class" href="classEvent.html">Event</a>* event);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a493abd019bdfab43515358ea812bf877">unregisterServer</a>(<span class="keywordtype">bool</span> now,</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        std::weak_ptr&lt;ServerLobby&gt; sl = std::weak_ptr&lt;ServerLobby&gt;());</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#ac5eea667afda2266da6f3b2a87d80b58">updatePlayerList</a>(<span class="keywordtype">bool</span> update_when_reset_server = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordtype">void</span> updateServerOwner();</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a3ce1afc9f7e570d229ffc53b4543c269">handleServerConfiguration</a>(<a class="code hl_class" href="classEvent.html">Event</a>* event);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a1b941cb260729709aa8044caa7b0e8be">updateTracksForMode</a>();</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keywordtype">bool</span> checkPeersReady(<span class="keywordtype">bool</span> ignore_ai_peer) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordtype">void</span> resetPeersReady()</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    {</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = <a class="code hl_variable" href="classServerLobby.html#afd2fd6eace27a4af8fd5884ee3c9c771">m_peers_ready</a>.begin(); it != <a class="code hl_variable" href="classServerLobby.html#afd2fd6eace27a4af8fd5884ee3c9c771">m_peers_ready</a>.end();)</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        {</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>            <span class="keywordflow">if</span> (it-&gt;first.expired())</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>            {</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>                it = <a class="code hl_variable" href="classServerLobby.html#afd2fd6eace27a4af8fd5884ee3c9c771">m_peers_ready</a>.erase(it);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>            }</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>            {</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                it-&gt;second = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                it++;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>            }</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>        }</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    }</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordtype">void</span> addPeerConnection(<span class="keyword">const</span> std::string&amp; addr_str)</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    {</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        m_pending_peer_connection[addr_str] = <a class="code hl_function" href="classStkTime.html#a216a8bfe77f82bf1fd5ab96f78e99e65">StkTime::getMonoTimeMs</a>();</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    }</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keywordtype">void</span> removeExpiredPeerConnection()</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    {</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <span class="comment">// Remove connect to peer protocol running more than a 45 seconds</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="comment">// (from stk addons poll server request),</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = m_pending_peer_connection.begin();</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>             it != m_pending_peer_connection.end();)</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        {</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="classStkTime.html#a216a8bfe77f82bf1fd5ab96f78e99e65">StkTime::getMonoTimeMs</a>() - it-&gt;second &gt; 45000)</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                it = m_pending_peer_connection.erase(it);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                it++;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        }</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    }</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordtype">void</span> replaceKeys(std::map&lt;uint32_t, KeyData&gt;&amp; new_keys)</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    {</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>        std::lock_guard&lt;std::mutex&gt; lock(m_keys_mutex);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>        std::swap(m_keys, new_keys);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    }</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordtype">void</span> handlePendingConnection();</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keywordtype">void</span> handleUnencryptedConnection(std::shared_ptr&lt;STKPeer&gt; peer,</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                                     BareNetworkString&amp; data,</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>                                     uint32_t online_id,</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>                                     <span class="keyword">const</span> irr::core::stringw&amp; online_name,</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>                                     <span class="keywordtype">bool</span> is_pending_connection,</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                                     std::string country_code = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="keywordtype">bool</span> decryptConnectionRequest(std::shared_ptr&lt;STKPeer&gt; peer,</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                                  BareNetworkString&amp; data,</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                                  <span class="keyword">const</span> std::string&amp; key,</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>                                  <span class="keyword">const</span> std::string&amp; iv,</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>                                  uint32_t online_id,</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                                  <span class="keyword">const</span> irr::core::stringw&amp; online_name,</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>                                  <span class="keyword">const</span> std::string&amp; country_code);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classServerLobby.html#aa81cca0121a6aebdf8eb942468da435d">handleAllVotes</a>(PeerVote* winner, uint32_t* winner_peer_id);</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="keywordtype">void</span> findMajorityValue(<span class="keyword">const</span> std::map&lt;T, unsigned&gt;&amp; choices, <span class="keywordtype">unsigned</span> cur_players,</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>                           T* best_choice, <span class="keywordtype">float</span>* rate);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordtype">void</span> getRankingForPlayer(std::shared_ptr&lt;NetworkPlayerProfile&gt; p);</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="keywordtype">void</span> submitRankingsToAddons();</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a017eb9db9d2cd92c9dbe142d67dfdc82">computeNewRankings</a>();</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a9796746bfc111a33f1af4f6f3be7ba99">checkRaceFinished</a>();</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="keywordtype">void</span> getHitCaptureLimit();</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a9d130d7ddf715938bbcf3aea75c16615">configPeersStartTime</a>();</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keywordtype">void</span> resetServer();</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="keywordtype">void</span> addWaitingPlayersToGame();</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a45f5672a2cb33146d54d029a2183dfd0">changeHandicap</a>(Event* event);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#ac2303e2c85082e4d29064611079f390f">handlePlayerDisconnection</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#ad3be65827d20f900d03e1ed810b5c68b">addLiveJoinPlaceholder</a>(</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>        std::vector&lt;std::shared_ptr&lt;NetworkPlayerProfile&gt; &gt;&amp; players) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    NetworkString* getLoadWorldMessage(</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>        std::vector&lt;std::shared_ptr&lt;NetworkPlayerProfile&gt; &gt;&amp; players,</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        <span class="keywordtype">bool</span> live_join) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keywordtype">void</span> encodePlayers(BareNetworkString* bns,</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        std::vector&lt;std::shared_ptr&lt;NetworkPlayerProfile&gt; &gt;&amp; players) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    std::vector&lt;std::shared_ptr&lt;NetworkPlayerProfile&gt; &gt; <a class="code hl_function" href="classServerLobby.html#a52d05adda77c3c15cf63e08217357a41">getLivePlayers</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <span class="keywordtype">void</span> setPlayerKarts(<span class="keyword">const</span> NetworkString&amp; ns, STKPeer* peer) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="keywordtype">bool</span> handleAssets(<span class="keyword">const</span> NetworkString&amp; ns, STKPeer* peer);</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keywordtype">void</span> handleServerCommand(Event* event, std::shared_ptr&lt;STKPeer&gt; peer);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#abf116dbdf0b2f27b6ca3c2481e25547a">liveJoinRequest</a>(Event* event);</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a778a595fe854219641d63e5ee35c0926">rejectLiveJoin</a>(STKPeer* peer, BackLobbyReason blr);</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classServerLobby.html#aeb848f62a0a8063304c98e79febef015">canLiveJoinNow</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classServerLobby.html#aae98e6a789dc77c369d5ad00cd17756b">worldIsActive</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classServerLobby.html#a3cd9ee118321823fbd1b56dc7d0292cc">getReservedId</a>(std::shared_ptr&lt;NetworkPlayerProfile&gt;&amp; p,</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>                      <span class="keywordtype">unsigned</span> local_id) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a84cad06c5d71ed455981318c1039491e">handleKartInfo</a>(Event* event);</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a56e0faf65d803c7ecdce780e86bdb0e3">clientInGameWantsToBackLobby</a>(Event* event);</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a7e9f5227be124efa9e101000cdc92116">clientSelectingAssetsWantsToBackLobby</a>(Event* event);</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    std::set&lt;std::shared_ptr&lt;STKPeer&gt;&gt; getSpectatorsByLimit();</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="keywordtype">void</span> kickPlayerWithReason(STKPeer* peer, <span class="keyword">const</span> <span class="keywordtype">char</span>* reason) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    <span class="keywordtype">void</span> testBannedForIP(STKPeer* peer) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <span class="keywordtype">void</span> testBannedForIPv6(STKPeer* peer) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <span class="keywordtype">void</span> testBannedForOnlineId(STKPeer* peer, uint32_t online_id) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <span class="keywordtype">void</span> writePlayerReport(Event* event);</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <span class="keywordtype">bool</span> supportsAI();</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <span class="keywordtype">void</span> updateAddons();</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>             <a class="code hl_function" href="classServerLobby.html#ac8f0dc6f83a077842025c0fbfecf92f0">ServerLobby</a>();</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classServerLobby.html#a9c17a80ea24fbe35fab5b18901f9e55a">~ServerLobby</a>();</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classServerLobby.html#aed5d1db510b6d6bd894d9d5d134058fb">notifyEventAsynchronous</a>(Event* event) OVERRIDE;</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classServerLobby.html#a67192db7514c2edbe1e586383c0ad630">notifyEvent</a>(Event* event) OVERRIDE;</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a0023634b2fead3a79ccf00cdcf9a7b22">setup</a>() OVERRIDE;</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#aaf6c01655025b424eeb115fbc55e3ef5">update</a>(<span class="keywordtype">int</span> ticks) OVERRIDE;</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#ad59e5d915b63c4cc83ebfd75387a0694">asynchronousUpdate</a>() OVERRIDE;</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#aa60f79e21bff8afe14739dc9448e9e6c">startSelection</a>(const Event *event=NULL);</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#a745a577e51a7febcdb0bdda2910701ac">checkIncomingConnectionRequests</a>();</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classServerLobby.html#aeedae7aeb7fa8059cd73a67008003b9d">finishedLoadingWorld</a>() OVERRIDE;</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>    ServerState getCurrentState()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_state.load(); }</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <span class="keywordtype">void</span> updateBanList();</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keywordtype">bool</span> waitingForPlayers() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> allPlayersReady() const OVERRIDE</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>                            { <span class="keywordflow">return</span> m_state.load() &gt;= WAIT_FOR_RACE_STARTED; }</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> isRacing() const OVERRIDE { <span class="keywordflow">return</span> m_state.load() == RACING; }</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <span class="keywordtype">bool</span> allowJoinedPlayersWaiting() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="keywordtype">void</span> setSaveServerConfig(<span class="keywordtype">bool</span> val)          { m_save_server_config = val; }</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    <span class="keywordtype">float</span> getStartupBoostOrPenaltyForKart(uint32_t ping, <span class="keywordtype">unsigned</span> kart_id);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    <span class="keywordtype">int</span> getDifficulty()<span class="keyword"> const                   </span>{ <span class="keywordflow">return</span> m_difficulty.load(); }</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    <span class="keywordtype">int</span> getGameMode()<span class="keyword"> const                      </span>{ <span class="keywordflow">return</span> m_game_mode.load(); }</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    <span class="keywordtype">int</span> getLobbyPlayers()<span class="keyword"> const              </span>{ <span class="keywordflow">return</span> m_lobby_players.load(); }</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <span class="keywordtype">void</span> saveInitialItems(std::shared_ptr&lt;NetworkItemManager&gt; nim);</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    <span class="keywordtype">void</span> saveIPBanTable(<span class="keyword">const</span> SocketAddress&amp; addr);</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    <span class="keywordtype">void</span> listBanTable();</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    <span class="keywordtype">void</span> initServerStatsTable();</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    <span class="keywordtype">bool</span> isAIProfile(<span class="keyword">const</span> std::shared_ptr&lt;NetworkPlayerProfile&gt;&amp; npp)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>        <span class="keywordflow">return</span> std::find(<a class="code hl_variable" href="classServerLobby.html#a9dad5bd2f59b4da4d92a98efdabd2a07">m_ai_profiles</a>.begin(), <a class="code hl_variable" href="classServerLobby.html#a9dad5bd2f59b4da4d92a98efdabd2a07">m_ai_profiles</a>.end(), npp) !=</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>            <a class="code hl_variable" href="classServerLobby.html#a9dad5bd2f59b4da4d92a98efdabd2a07">m_ai_profiles</a>.end();</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    }</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    uint32_t getServerIdOnline()<span class="keyword"> const           </span>{ <span class="keywordflow">return</span> m_server_id_online; }</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    <span class="keywordtype">void</span> setClientServerHostId(uint32_t <span class="keywordtype">id</span>)   { m_client_server_host_id = id; }</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    <span class="keyword">static</span> <span class="keywordtype">int</span> m_fixed_laps;</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    <span class="keywordtype">bool</span> playerReportsTableExists() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>};   <span class="comment">// class ServerLobby</span></div>
+</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="preprocessor">#endif </span><span class="comment">// SERVER_LOBBY_HPP</span></div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassEvent_html"><div class="ttname"><a href="classEvent.html">Event</a></div><div class="ttdoc">Class representing an event that need to pass trough the system. This is used to remove ENet dependen...</div><div class="ttdef"><b>Definition</b> event.hpp:73</div></div>
+<div class="ttc" id="aclassNetworkItemManager_html"><div class="ttname"><a href="classNetworkItemManager.html">NetworkItemManager</a></div><div class="ttdoc">The network item manager is responsible for handling all network related item manager tasks - synchro...</div><div class="ttdef"><b>Definition</b> network_item_manager.hpp:45</div></div>
+<div class="ttc" id="aclassNetworkPlayerProfile_html"><div class="ttname"><a href="classNetworkPlayerProfile.html">NetworkPlayerProfile</a></div><div class="ttdoc">Contains the profile of a player.</div><div class="ttdef"><b>Definition</b> network_player_profile.hpp:42</div></div>
+<div class="ttc" id="aclassNetworkString_html"><div class="ttname"><a href="classNetworkString.html">NetworkString</a></div><div class="ttdoc">A new implementation of NetworkString, which has a fixed format: Byte 0: The type of the message,...</div><div class="ttdef"><b>Definition</b> network_string.hpp:422</div></div>
+<div class="ttc" id="aclassOnline_1_1Request_html"><div class="ttname"><a href="classOnline_1_1Request.html">Online::Request</a></div><div class="ttdoc">Stores a request for the HTTP Manager.</div><div class="ttdef"><b>Definition</b> request.hpp:58</div></div>
+<div class="ttc" id="aclassPeerVote_html"><div class="ttname"><a href="classPeerVote.html">PeerVote</a></div><div class="ttdoc">A simple structure to store a vote from a client: track name, number of laps and reverse or not.</div><div class="ttdef"><b>Definition</b> peer_vote.hpp:30</div></div>
+<div class="ttc" id="aclassRanking_html"><div class="ttname"><a href="classRanking.html">Ranking</a></div><div class="ttdef"><b>Definition</b> ranking.hpp:57</div></div>
+<div class="ttc" id="aclassSTKPeer_html"><div class="ttname"><a href="classSTKPeer.html">STKPeer</a></div><div class="ttdoc">Represents a peer. This class is used to interface the ENetPeer structure.</div><div class="ttdef"><b>Definition</b> stk_peer.hpp:76</div></div>
+<div class="ttc" id="aclassServerLobby_html_a0023634b2fead3a79ccf00cdcf9a7b22"><div class="ttname"><a href="classServerLobby.html#a0023634b2fead3a79ccf00cdcf9a7b22">ServerLobby::setup</a></div><div class="ttdeci">virtual void setup() OVERRIDE</div><div class="ttdoc">A previous GameSetup is deleted and a new one is created.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:369</div></div>
+<div class="ttc" id="aclassServerLobby_html_a017eb9db9d2cd92c9dbe142d67dfdc82"><div class="ttname"><a href="classServerLobby.html#a017eb9db9d2cd92c9dbe142d67dfdc82">ServerLobby::computeNewRankings</a></div><div class="ttdeci">void computeNewRankings()</div><div class="ttdoc">Compute the new player&#39;s rankings used in ranked servers</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:2370</div></div>
+<div class="ttc" id="aclassServerLobby_html_a04d7252979d9d4ab4d06e67fa9d20b03"><div class="ttname"><a href="classServerLobby.html#a04d7252979d9d4ab4d06e67fa9d20b03">ServerLobby::m_available_kts</a></div><div class="ttdeci">std::pair&lt; std::set&lt; std::string &gt;, std::set&lt; std::string &gt; &gt; m_available_kts</div><div class="ttdoc">Available karts and tracks for all clients, this will be initialized with data in server first.</div><div class="ttdef"><b>Definition</b> server_lobby.hpp:127</div></div>
+<div class="ttc" id="aclassServerLobby_html_a0bf68b56610d765ac34d7e04af5193ac"><div class="ttname"><a href="classServerLobby.html#a0bf68b56610d765ac34d7e04af5193ac">ServerLobby::m_server_has_loaded_world</a></div><div class="ttdeci">std::atomic_bool m_server_has_loaded_world</div><div class="ttdoc">Keeps track of the server state.</div><div class="ttdef"><b>Definition</b> server_lobby.hpp:130</div></div>
+<div class="ttc" id="aclassServerLobby_html_a0e8666eab13111b05a588c34be28f74f"><div class="ttname"><a href="classServerLobby.html#a0e8666eab13111b05a588c34be28f74f">ServerLobby::handlePlayerVote</a></div><div class="ttdeci">void handlePlayerVote(Event *event)</div><div class="ttdoc">Called when a player votes for track(s), it will auto correct client data if it sends some invalid da...</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:3174</div></div>
+<div class="ttc" id="aclassServerLobby_html_a1af07e477c095d03fe6464e32de832b2"><div class="ttname"><a href="classServerLobby.html#a1af07e477c095d03fe6464e32de832b2">ServerLobby::finishedLoadingWorldClient</a></div><div class="ttdeci">void finishedLoadingWorldClient(Event *event)</div><div class="ttdoc">Called when a client notifies the server that it has loaded the world.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:3484</div></div>
+<div class="ttc" id="aclassServerLobby_html_a1b941cb260729709aa8044caa7b0e8be"><div class="ttname"><a href="classServerLobby.html#a1b941cb260729709aa8044caa7b0e8be">ServerLobby::updateTracksForMode</a></div><div class="ttdeci">void updateTracksForMode()</div><div class="ttdoc">Called whenever server is reset or game mode is changed.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:290</div></div>
+<div class="ttc" id="aclassServerLobby_html_a20a70c9a2ad12b6a27b8f2f62c6c3fd1"><div class="ttname"><a href="classServerLobby.html#a20a70c9a2ad12b6a27b8f2f62c6c3fd1">ServerLobby::kartSelectionRequested</a></div><div class="ttdeci">void kartSelectionRequested(Event *event)</div><div class="ttdoc">Called when a player asks to select karts.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:3151</div></div>
+<div class="ttc" id="aclassServerLobby_html_a20ff44bef1a7e7236fcd1887baa73ad2"><div class="ttname"><a href="classServerLobby.html#a20ff44bef1a7e7236fcd1887baa73ad2">ServerLobby::m_addon_kts</a></div><div class="ttdeci">std::pair&lt; std::set&lt; std::string &gt;, std::set&lt; std::string &gt; &gt; m_addon_kts</div><div class="ttdoc">Addon karts and tracks available in server.</div><div class="ttdef"><b>Definition</b> server_lobby.hpp:117</div></div>
+<div class="ttc" id="aclassServerLobby_html_a3663cacd3a818891af1e7a29a73b20b6"><div class="ttname"><a href="classServerLobby.html#a3663cacd3a818891af1e7a29a73b20b6">ServerLobby::finishedLoadingLiveJoinClient</a></div><div class="ttdeci">void finishedLoadingLiveJoinClient(Event *event)</div><div class="ttdoc">Finally put the kart in the world and inform client the current world status, (including current conf...</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:1400</div></div>
+<div class="ttc" id="aclassServerLobby_html_a3cd9ee118321823fbd1b56dc7d0292cc"><div class="ttname"><a href="classServerLobby.html#a3cd9ee118321823fbd1b56dc7d0292cc">ServerLobby::getReservedId</a></div><div class="ttdeci">int getReservedId(std::shared_ptr&lt; NetworkPlayerProfile &gt; &amp;p, unsigned local_id) const</div><div class="ttdoc">Decide where to put the live join player depends on his team and game mode.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:1336</div></div>
+<div class="ttc" id="aclassServerLobby_html_a3ce1afc9f7e570d229ffc53b4543c269"><div class="ttname"><a href="classServerLobby.html#a3ce1afc9f7e570d229ffc53b4543c269">ServerLobby::handleServerConfiguration</a></div><div class="ttdeci">void handleServerConfiguration(Event *event)</div><div class="ttdoc">Called when the server owner request to change game mode or difficulty.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:3912</div></div>
+<div class="ttc" id="aclassServerLobby_html_a3f32f02803aec88103ed8fab5dc01d80"><div class="ttname"><a href="classServerLobby.html#a3f32f02803aec88103ed8fab5dc01d80">ServerLobby::m_addon_arenas</a></div><div class="ttdeci">std::set&lt; std::string &gt; m_addon_arenas</div><div class="ttdoc">Addon arenas available in server.</div><div class="ttdef"><b>Definition</b> server_lobby.hpp:120</div></div>
+<div class="ttc" id="aclassServerLobby_html_a45f5672a2cb33146d54d029a2183dfd0"><div class="ttname"><a href="classServerLobby.html#a45f5672a2cb33146d54d029a2183dfd0">ServerLobby::changeHandicap</a></div><div class="ttdeci">void changeHandicap(Event *event)</div><div class="ttdoc">Called when a player want to change his handicap</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:4020</div></div>
+<div class="ttc" id="aclassServerLobby_html_a47b3c8b9c8f9d33aec8c0057d4fc914e"><div class="ttname"><a href="classServerLobby.html#a47b3c8b9c8f9d33aec8c0057d4fc914e">ServerLobby::registerServer</a></div><div class="ttdeci">void registerServer(bool first_time)</div><div class="ttdoc">Register this server (i.e.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:1707</div></div>
+<div class="ttc" id="aclassServerLobby_html_a493abd019bdfab43515358ea812bf877"><div class="ttname"><a href="classServerLobby.html#a493abd019bdfab43515358ea812bf877">ServerLobby::unregisterServer</a></div><div class="ttdeci">void unregisterServer(bool now, std::weak_ptr&lt; ServerLobby &gt; sl=std::weak_ptr&lt; ServerLobby &gt;())</div><div class="ttdoc">Unregister this server (i.e.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:1801</div></div>
+<div class="ttc" id="aclassServerLobby_html_a52d05adda77c3c15cf63e08217357a41"><div class="ttname"><a href="classServerLobby.html#a52d05adda77c3c15cf63e08217357a41">ServerLobby::getLivePlayers</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; NetworkPlayerProfile &gt; &gt; getLivePlayers() const</div><div class="ttdoc">Get a list of current ingame players for live join or spectate.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:1299</div></div>
+<div class="ttc" id="aclassServerLobby_html_a56e0faf65d803c7ecdce780e86bdb0e3"><div class="ttname"><a href="classServerLobby.html#a56e0faf65d803c7ecdce780e86bdb0e3">ServerLobby::clientInGameWantsToBackLobby</a></div><div class="ttdeci">void clientInGameWantsToBackLobby(Event *event)</div><div class="ttdoc">Client if currently in-game (including spectator) wants to go back to lobby.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:4261</div></div>
+<div class="ttc" id="aclassServerLobby_html_a67192db7514c2edbe1e586383c0ad630"><div class="ttname"><a href="classServerLobby.html#a67192db7514c2edbe1e586383c0ad630">ServerLobby::notifyEvent</a></div><div class="ttdeci">virtual bool notifyEvent(Event *event) OVERRIDE</div><div class="ttdoc">Notify a protocol matching the Event type of that event.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:420</div></div>
+<div class="ttc" id="aclassServerLobby_html_a745a577e51a7febcdb0bdda2910701ac"><div class="ttname"><a href="classServerLobby.html#a745a577e51a7febcdb0bdda2910701ac">ServerLobby::checkIncomingConnectionRequests</a></div><div class="ttdeci">void checkIncomingConnectionRequests()</div><div class="ttdoc">Query the STK server for connection requests.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:2162</div></div>
+<div class="ttc" id="aclassServerLobby_html_a778a595fe854219641d63e5ee35c0926"><div class="ttname"><a href="classServerLobby.html#a778a595fe854219641d63e5ee35c0926">ServerLobby::rejectLiveJoin</a></div><div class="ttdeci">void rejectLiveJoin(STKPeer *peer, BackLobbyReason blr)</div><div class="ttdoc">STKPeer peer will be reset back to the lobby with reason BackLobbyReason blr</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:1205</div></div>
+<div class="ttc" id="aclassServerLobby_html_a7e9f5227be124efa9e101000cdc92116"><div class="ttname"><a href="classServerLobby.html#a7e9f5227be124efa9e101000cdc92116">ServerLobby::clientSelectingAssetsWantsToBackLobby</a></div><div class="ttdeci">void clientSelectingAssetsWantsToBackLobby(Event *event)</div><div class="ttdoc">Client if currently select assets wants to go back to lobby.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:4345</div></div>
+<div class="ttc" id="aclassServerLobby_html_a803319635f73f4c56a955f0c79953c1c"><div class="ttname"><a href="classServerLobby.html#a803319635f73f4c56a955f0c79953c1c">ServerLobby::m_ai_peer</a></div><div class="ttdeci">std::weak_ptr&lt; STKPeer &gt; m_ai_peer</div><div class="ttdoc">AI peer which holds the list of reserved AI for dedicated server.</div><div class="ttdef"><b>Definition</b> server_lobby.hpp:104</div></div>
+<div class="ttc" id="aclassServerLobby_html_a84cad06c5d71ed455981318c1039491e"><div class="ttname"><a href="classServerLobby.html#a84cad06c5d71ed455981318c1039491e">ServerLobby::handleKartInfo</a></div><div class="ttdeci">void handleKartInfo(Event *event)</div><div class="ttdoc">Tell the client RemoteKartInfo of a player when some player joining live.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:4225</div></div>
+<div class="ttc" id="aclassServerLobby_html_a9796746bfc111a33f1af4f6f3be7ba99"><div class="ttname"><a href="classServerLobby.html#a9796746bfc111a33f1af4f6f3be7ba99">ServerLobby::checkRaceFinished</a></div><div class="ttdeci">void checkRaceFinished()</div><div class="ttdoc">Checks if the race is finished, and if so informs the clients and switches to state RESULT_DISPLAY,...</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:2293</div></div>
+<div class="ttc" id="aclassServerLobby_html_a9c17a80ea24fbe35fab5b18901f9e55a"><div class="ttname"><a href="classServerLobby.html#a9c17a80ea24fbe35fab5b18901f9e55a">ServerLobby::~ServerLobby</a></div><div class="ttdeci">virtual ~ServerLobby()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:199</div></div>
+<div class="ttc" id="aclassServerLobby_html_a9cd790c1a359505d37ad26924ca4b08e"><div class="ttname"><a href="classServerLobby.html#a9cd790c1a359505d37ad26924ca4b08e">ServerLobby::m_official_kts</a></div><div class="ttdeci">std::pair&lt; std::set&lt; std::string &gt;, std::set&lt; std::string &gt; &gt; m_official_kts</div><div class="ttdoc">Official karts and tracks available in server.</div><div class="ttdef"><b>Definition</b> server_lobby.hpp:114</div></div>
+<div class="ttc" id="aclassServerLobby_html_a9d130d7ddf715938bbcf3aea75c16615"><div class="ttname"><a href="classServerLobby.html#a9d130d7ddf715938bbcf3aea75c16615">ServerLobby::configPeersStartTime</a></div><div class="ttdeci">void configPeersStartTime()</div><div class="ttdoc">This function is called when all clients have loaded the world and are therefore ready to start the r...</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:3643</div></div>
+<div class="ttc" id="aclassServerLobby_html_a9dad5bd2f59b4da4d92a98efdabd2a07"><div class="ttname"><a href="classServerLobby.html#a9dad5bd2f59b4da4d92a98efdabd2a07">ServerLobby::m_ai_profiles</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; NetworkPlayerProfile &gt; &gt; m_ai_profiles</div><div class="ttdoc">AI profiles for all-in-one graphical client server, this will be a fixed count thorough the live time...</div><div class="ttdef"><b>Definition</b> server_lobby.hpp:109</div></div>
+<div class="ttc" id="aclassServerLobby_html_aa60f79e21bff8afe14739dc9448e9e6c"><div class="ttname"><a href="classServerLobby.html#aa60f79e21bff8afe14739dc9448e9e6c">ServerLobby::startSelection</a></div><div class="ttdeci">void startSelection(const Event *event=NULL)</div><div class="ttdoc">Instructs all clients to start the kart selection.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:1865</div></div>
+<div class="ttc" id="aclassServerLobby_html_aa81cca0121a6aebdf8eb942468da435d"><div class="ttname"><a href="classServerLobby.html#aa81cca0121a6aebdf8eb942468da435d">ServerLobby::handleAllVotes</a></div><div class="ttdeci">bool handleAllVotes(PeerVote *winner, uint32_t *winner_peer_id)</div><div class="ttdoc">Select the track to be used based on all votes being received.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:3276</div></div>
+<div class="ttc" id="aclassServerLobby_html_aae98e6a789dc77c369d5ad00cd17756b"><div class="ttname"><a href="classServerLobby.html#aae98e6a789dc77c369d5ad00cd17756b">ServerLobby::worldIsActive</a></div><div class="ttdeci">bool worldIsActive() const</div><div class="ttdoc">Returns true if world is active for clients to live join, spectate or going back to lobby live</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:1194</div></div>
+<div class="ttc" id="aclassServerLobby_html_aaf6c01655025b424eeb115fbc55e3ef5"><div class="ttname"><a href="classServerLobby.html#aaf6c01655025b424eeb115fbc55e3ef5">ServerLobby::update</a></div><div class="ttdeci">virtual void update(int ticks) OVERRIDE</div><div class="ttdoc">Simple finite state machine.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:1500</div></div>
+<div class="ttc" id="aclassServerLobby_html_ab122993f51cf9f17558394f0fb1eb146"><div class="ttname"><a href="classServerLobby.html#ab122993f51cf9f17558394f0fb1eb146">ServerLobby::m_timeout</a></div><div class="ttdeci">std::atomic&lt; int64_t &gt; m_timeout</div><div class="ttdoc">Timeout counter for various state.</div><div class="ttdef"><b>Definition</b> server_lobby.hpp:146</div></div>
+<div class="ttc" id="aclassServerLobby_html_ab934ba1151154ddb5a736bf1558aaa56"><div class="ttname"><a href="classServerLobby.html#ab934ba1151154ddb5a736bf1558aaa56">ServerLobby::clientDisconnected</a></div><div class="ttdeci">void clientDisconnected(Event *event)</div><div class="ttdoc">Called when a client disconnects.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:2418</div></div>
+<div class="ttc" id="aclassServerLobby_html_ab98a2b774577c3ed91fa1a7538f85244"><div class="ttname"><a href="classServerLobby.html#ab98a2b774577c3ed91fa1a7538f85244">ServerLobby::m_addon_soccers</a></div><div class="ttdeci">std::set&lt; std::string &gt; m_addon_soccers</div><div class="ttdoc">Addon soccers available in server.</div><div class="ttdef"><b>Definition</b> server_lobby.hpp:123</div></div>
+<div class="ttc" id="aclassServerLobby_html_abf116dbdf0b2f27b6ca3c2481e25547a"><div class="ttname"><a href="classServerLobby.html#abf116dbdf0b2f27b6ca3c2481e25547a">ServerLobby::liveJoinRequest</a></div><div class="ttdeci">void liveJoinRequest(Event *event)</div><div class="ttdoc">This message is like kartSelectionRequested, but it will send the peer load world message if he can j...</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:1225</div></div>
+<div class="ttc" id="aclassServerLobby_html_ac2303e2c85082e4d29064611079f390f"><div class="ttname"><a href="classServerLobby.html#ac2303e2c85082e4d29064611079f390f">ServerLobby::handlePlayerDisconnection</a></div><div class="ttdeci">void handlePlayerDisconnection() const</div><div class="ttdoc">Update and see if any player disconnects, if so eliminate the kart in world, so this function must be...</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:4046</div></div>
+<div class="ttc" id="aclassServerLobby_html_ac380a18c9d3b45a4eeb0c4eed8a68b0a"><div class="ttname"><a href="classServerLobby.html#ac380a18c9d3b45a4eeb0c4eed8a68b0a">ServerLobby::m_server_owner</a></div><div class="ttdeci">std::weak_ptr&lt; STKPeer &gt; m_server_owner</div><div class="ttdoc">Hold the next connected peer for server owner if current one expired (disconnected).</div><div class="ttdef"><b>Definition</b> server_lobby.hpp:101</div></div>
+<div class="ttc" id="aclassServerLobby_html_ac5eea667afda2266da6f3b2a87d80b58"><div class="ttname"><a href="classServerLobby.html#ac5eea667afda2266da6f3b2a87d80b58">ServerLobby::updatePlayerList</a></div><div class="ttdeci">void updatePlayerList(bool update_when_reset_server=false)</div><div class="ttdoc">Called when any players change their setting (team for example), or connection / disconnection,...</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:2980</div></div>
+<div class="ttc" id="aclassServerLobby_html_ac8f0dc6f83a077842025c0fbfecf92f0"><div class="ttname"><a href="classServerLobby.html#ac8f0dc6f83a077842025c0fbfecf92f0">ServerLobby::ServerLobby</a></div><div class="ttdeci">ServerLobby()</div><div class="ttdoc">This is the central game setup protocol running in the server.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:143</div></div>
+<div class="ttc" id="aclassServerLobby_html_ad3be65827d20f900d03e1ed810b5c68b"><div class="ttname"><a href="classServerLobby.html#ad3be65827d20f900d03e1ed810b5c68b">ServerLobby::addLiveJoinPlaceholder</a></div><div class="ttdeci">void addLiveJoinPlaceholder(std::vector&lt; std::shared_ptr&lt; NetworkPlayerProfile &gt; &gt; &amp;players) const</div><div class="ttdoc">Add reserved players for live join later if required.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:4120</div></div>
+<div class="ttc" id="aclassServerLobby_html_ad59e5d915b63c4cc83ebfd75387a0694"><div class="ttname"><a href="classServerLobby.html#ad59e5d915b63c4cc83ebfd75387a0694">ServerLobby::asynchronousUpdate</a></div><div class="ttdeci">virtual void asynchronousUpdate() OVERRIDE</div><div class="ttdoc">Find out the public IP server or poll STK server asynchronously.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:781</div></div>
+<div class="ttc" id="aclassServerLobby_html_ae65ccb7afb1adec0f5f5352d6ca3b875"><div class="ttname"><a href="classServerLobby.html#ae65ccb7afb1adec0f5f5352d6ca3b875">ServerLobby::playerFinishedResult</a></div><div class="ttdeci">void playerFinishedResult(Event *event)</div><div class="ttdoc">Called when a client clicks on &#39;ok&#39; on the race result screen.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:3497</div></div>
+<div class="ttc" id="aclassServerLobby_html_aeb848f62a0a8063304c98e79febef015"><div class="ttname"><a href="classServerLobby.html#aeb848f62a0a8063304c98e79febef015">ServerLobby::canLiveJoinNow</a></div><div class="ttdeci">bool canLiveJoinNow() const</div><div class="ttdoc">Returns true if server can be live joined or spectating</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:1158</div></div>
+<div class="ttc" id="aclassServerLobby_html_aed5d1db510b6d6bd894d9d5d134058fb"><div class="ttname"><a href="classServerLobby.html#aed5d1db510b6d6bd894d9d5d134058fb">ServerLobby::notifyEventAsynchronous</a></div><div class="ttdeci">virtual bool notifyEventAsynchronous(Event *event) OVERRIDE</div><div class="ttdoc">Notify a protocol matching the Event type of that event.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:601</div></div>
+<div class="ttc" id="aclassServerLobby_html_aeedae7aeb7fa8059cd73a67008003b9d"><div class="ttname"><a href="classServerLobby.html#aeedae7aeb7fa8059cd73a67008003b9d">ServerLobby::finishedLoadingWorld</a></div><div class="ttdeci">void finishedLoadingWorld() OVERRIDE</div><div class="ttdoc">Called from the RaceManager of the server when the world is loaded.</div><div class="ttdef"><b>Definition</b> server_lobby.cpp:3470</div></div>
+<div class="ttc" id="aclassServerLobby_html_afd2fd6eace27a4af8fd5884ee3c9c771"><div class="ttname"><a href="classServerLobby.html#afd2fd6eace27a4af8fd5884ee3c9c771">ServerLobby::m_peers_ready</a></div><div class="ttdeci">std::map&lt; std::weak_ptr&lt; STKPeer &gt;, bool, std::owner_less&lt; std::weak_ptr&lt; STKPeer &gt; &gt; &gt; m_peers_ready</div><div class="ttdoc">Counts how many peers have finished loading the world.</div><div class="ttdef"><b>Definition</b> server_lobby.hpp:138</div></div>
+<div class="ttc" id="aclassSocketAddress_html"><div class="ttname"><a href="classSocketAddress.html">SocketAddress</a></div><div class="ttdoc">Describes a IPv4 or IPv6 address in sockaddr_in(6) format, suitable in using with sendto.</div><div class="ttdef"><b>Definition</b> socket_address.hpp:47</div></div>
+<div class="ttc" id="aclassStkTime_html_a216a8bfe77f82bf1fd5ab96f78e99e65"><div class="ttname"><a href="classStkTime.html#a216a8bfe77f82bf1fd5ab96f78e99e65">StkTime::getMonoTimeMs</a></div><div class="ttdeci">static uint64_t getMonoTimeMs()</div><div class="ttdoc">Returns a time based since the starting of stk (monotonic clock).</div><div class="ttdef"><b>Definition</b> time.hpp:113</div></div>
+<div class="ttc" id="astructServerLobby_1_1KeyData_html"><div class="ttname"><a href="structServerLobby_1_1KeyData.html">ServerLobby::KeyData</a></div><div class="ttdef"><b>Definition</b> server_lobby.hpp:72</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

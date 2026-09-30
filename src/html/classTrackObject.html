@@ -1,0 +1,670 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: TrackObject 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pro-methods">Protected 멤버 함수</a> &#124;
+<a href="#pro-attribs">Protected 속성</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="classTrackObject-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">TrackObject 클래스 참조<div class="ingroups"><a class="el" href="group__tracks.html">Tracks</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>This is a base object for any separate object on the track, which might also have a skeletal animation.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="track__object_8hpp_source.html">track_object.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a15e204164dbda6c398152b461a28874e" id="r_a15e204164dbda6c398152b461a28874e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a15e204164dbda6c398152b461a28874e">TrackObject</a> (const <a class="el" href="classXMLNode.html">XMLNode</a> &amp;xml_node, scene::ISceneNode *parent, <a class="el" href="classModelDefinitionLoader.html">ModelDefinitionLoader</a> &amp;model_def_loader, <a class="el" href="classTrackObject.html">TrackObject</a> *parent_library)</td></tr>
+<tr class="memdesc:a15e204164dbda6c398152b461a28874e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A track object: any additional object on the track.  <br /></td></tr>
+<tr class="memitem:a9572b8aac4aee66881ab1bdc705720a3" id="r_a9572b8aac4aee66881ab1bdc705720a3"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9572b8aac4aee66881ab1bdc705720a3">TrackObject</a> (const core::vector3df &amp;xyz, const core::vector3df &amp;hpr, const core::vector3df &amp;scale, const char *interaction, <a class="el" href="classTrackObjectPresentation.html">TrackObjectPresentation</a> *presentation, bool is_dynamic, const <a class="el" href="classPhysicalObject_1_1Settings.html">PhysicalObject::Settings</a> *physicsSettings)</td></tr>
+<tr class="memitem:a2c835946134a7ef0023f4dce6dd15ab6" id="r_a2c835946134a7ef0023f4dce6dd15ab6"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="#a2c835946134a7ef0023f4dce6dd15ab6">~TrackObject</a> ()</td></tr>
+<tr class="memdesc:a2c835946134a7ef0023f4dce6dd15ab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
+<tr class="memitem:af5a046c5e3a099d341c5558dde7b5ab2" id="r_af5a046c5e3a099d341c5558dde7b5ab2"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#af5a046c5e3a099d341c5558dde7b5ab2">update</a> (float dt)</td></tr>
+<tr class="memdesc:af5a046c5e3a099d341c5558dde7b5ab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This updates once per physics time step.  <br /></td></tr>
+<tr class="memitem:a9d5d59f87777ec54c9e6770d778e9cdc" id="r_a9d5d59f87777ec54c9e6770d778e9cdc"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a9d5d59f87777ec54c9e6770d778e9cdc">updateGraphics</a> (float dt)</td></tr>
+<tr class="memdesc:a9d5d59f87777ec54c9e6770d778e9cdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This updates all only graphical elements.  <br /></td></tr>
+<tr class="memitem:a4424379790971cdb9c20947edda91dbf" id="r_a4424379790971cdb9c20947edda91dbf"><td class="memItemLeft"><a id="a4424379790971cdb9c20947edda91dbf" name="a4424379790971cdb9c20947edda91dbf"></a>
+virtual void&#160;</td><td class="memItemRight"><b>resetAfterRewind</b> ()</td></tr>
+<tr class="memdesc:a4424379790971cdb9c20947edda91dbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">This reset all physical object moved by 3d animation back to current ticks <br /></td></tr>
+<tr class="memitem:a3885ab27e838eb87c3de050cf055e3aa" id="r_a3885ab27e838eb87c3de050cf055e3aa"><td class="memItemLeft"><a id="a3885ab27e838eb87c3de050cf055e3aa" name="a3885ab27e838eb87c3de050cf055e3aa"></a>
+void&#160;</td><td class="memItemRight"><b>move</b> (const core::vector3df &amp;xyz, const core::vector3df &amp;hpr, const core::vector3df &amp;scale, bool updateRigidBody, bool isAbsoluteCoord)</td></tr>
+<tr class="memitem:a1f53cf26c91c36e9095a2541b75fba2b" id="r_a1f53cf26c91c36e9095a2541b75fba2b"><td class="memItemLeft"><a id="a1f53cf26c91c36e9095a2541b75fba2b" name="a1f53cf26c91c36e9095a2541b75fba2b"></a>
+virtual void&#160;</td><td class="memItemRight"><b>reset</b> ()</td></tr>
+<tr class="memdesc:a1f53cf26c91c36e9095a2541b75fba2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an object before a race starts. <br /></td></tr>
+<tr class="memitem:a452cd9afb197a97deb86efba22cd45df" id="r_a452cd9afb197a97deb86efba22cd45df"><td class="memItemLeft"><a id="a452cd9afb197a97deb86efba22cd45df" name="a452cd9afb197a97deb86efba22cd45df"></a>
+const core::vector3df &amp;&#160;</td><td class="memItemRight"><b>getPosition</b> () const</td></tr>
+<tr class="memitem:a6c489678941988236e271ab6022daf16" id="r_a6c489678941988236e271ab6022daf16"><td class="memItemLeft"><a id="a6c489678941988236e271ab6022daf16" name="a6c489678941988236e271ab6022daf16"></a>
+const core::vector3df&#160;</td><td class="memItemRight"><b>getAbsolutePosition</b> () const</td></tr>
+<tr class="memitem:a48aa0e4db74350b18fa726e40820d644" id="r_a48aa0e4db74350b18fa726e40820d644"><td class="memItemLeft"><a id="a48aa0e4db74350b18fa726e40820d644" name="a48aa0e4db74350b18fa726e40820d644"></a>
+const core::vector3df&#160;</td><td class="memItemRight"><b>getAbsoluteCenterPosition</b> () const</td></tr>
+<tr class="memitem:a7449cff945668d6f3e832828495d1952" id="r_a7449cff945668d6f3e832828495d1952"><td class="memItemLeft"><a id="a7449cff945668d6f3e832828495d1952" name="a7449cff945668d6f3e832828495d1952"></a>
+const core::vector3df &amp;&#160;</td><td class="memItemRight"><b>getRotation</b> () const</td></tr>
+<tr class="memitem:a37a9b96c74dc1e4a321cc605eb574246" id="r_a37a9b96c74dc1e4a321cc605eb574246"><td class="memItemLeft"><a id="a37a9b96c74dc1e4a321cc605eb574246" name="a37a9b96c74dc1e4a321cc605eb574246"></a>
+const core::vector3df &amp;&#160;</td><td class="memItemRight"><b>getScale</b> () const</td></tr>
+<tr class="memitem:a39ca7aafd343b0b5e4b03476e8cd7232" id="r_a39ca7aafd343b0b5e4b03476e8cd7232"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a39ca7aafd343b0b5e4b03476e8cd7232">castRay</a> (const btVector3 &amp;from, const btVector3 &amp;to, btVector3 *hit_point, const <a class="el" href="classMaterial.html">Material</a> **material, btVector3 *normal, bool interpolate_normal) const</td></tr>
+<tr class="memdesc:a39ca7aafd343b0b5e4b03476e8cd7232"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does a raycast against the track object.  <br /></td></tr>
+<tr class="memitem:a21e1453baa1086d6c0b365626c827d3e" id="r_a21e1453baa1086d6c0b365626c827d3e"><td class="memItemLeft"><a id="a21e1453baa1086d6c0b365626c827d3e" name="a21e1453baa1086d6c0b365626c827d3e"></a>
+<a class="el" href="classTrackObject.html">TrackObject</a> *&#160;</td><td class="memItemRight"><b>getParentLibrary</b> ()</td></tr>
+<tr class="memitem:a76994950b4c4ffdd51035261cc921569" id="r_a76994950b4c4ffdd51035261cc921569"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a76994950b4c4ffdd51035261cc921569">onWorldReady</a> ()</td></tr>
+<tr class="memdesc:a76994950b4c4ffdd51035261cc921569"><td class="mdescLeft">&#160;</td><td class="mdescRight">To finish object constructions.  <br /></td></tr>
+<tr class="memitem:afc4ec962e6fa8b51f90f36bcfc93c1ed" id="r_afc4ec962e6fa8b51f90f36bcfc93c1ed"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#afc4ec962e6fa8b51f90f36bcfc93c1ed">handleExplosion</a> (const <a class="el" href="classVec3.html">Vec3</a> &amp;pos, bool directHit)</td></tr>
+<tr class="memdesc:afc4ec962e6fa8b51f90f36bcfc93c1ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when an explosion happens.  <br /></td></tr>
+<tr class="memitem:a3bba978a207cbd762784fb8746d4b044" id="r_a3bba978a207cbd762784fb8746d4b044"><td class="memItemLeft"><a id="a3bba978a207cbd762784fb8746d4b044" name="a3bba978a207cbd762784fb8746d4b044"></a>
+void&#160;</td><td class="memItemRight"><b>setID</b> (std::string obj_id)</td></tr>
+<tr class="memitem:ae36846c95d2ec003561da3645ced1dc9" id="r_ae36846c95d2ec003561da3645ced1dc9"><td class="memItemLeft"><a id="ae36846c95d2ec003561da3645ced1dc9" name="ae36846c95d2ec003561da3645ced1dc9"></a>
+const std::string &amp;&#160;</td><td class="memItemRight"><b>getLodGroup</b> () const</td></tr>
+<tr class="memitem:a750e57a17674fc902490ac285b78c53f" id="r_a750e57a17674fc902490ac285b78c53f"><td class="memItemLeft"><a id="a750e57a17674fc902490ac285b78c53f" name="a750e57a17674fc902490ac285b78c53f"></a>
+const std::string &amp;&#160;</td><td class="memItemRight"><b>getType</b> () const</td></tr>
+<tr class="memitem:a50d6a70601d0863886cb0db4603aa0c3" id="r_a50d6a70601d0863886cb0db4603aa0c3"><td class="memItemLeft"><a id="a50d6a70601d0863886cb0db4603aa0c3" name="a50d6a70601d0863886cb0db4603aa0c3"></a>
+const std::string&#160;</td><td class="memItemRight"><b>getName</b> () const</td></tr>
+<tr class="memitem:a0238d2f03c65d77a4cd337cef385d858" id="r_a0238d2f03c65d77a4cd337cef385d858"><td class="memItemLeft"><a id="a0238d2f03c65d77a4cd337cef385d858" name="a0238d2f03c65d77a4cd337cef385d858"></a>
+const std::string&#160;</td><td class="memItemRight"><b>getID</b> () const</td></tr>
+<tr class="memitem:a8fcc93883620564de714458bd40899a4" id="r_a8fcc93883620564de714458bd40899a4"><td class="memItemLeft"><a id="a8fcc93883620564de714458bd40899a4" name="a8fcc93883620564de714458bd40899a4"></a>
+const std::string&#160;</td><td class="memItemRight"><b>getInteraction</b> () const</td></tr>
+<tr class="memitem:a61b9be89b6f87f5b2ba5aeec2f5ab105" id="r_a61b9be89b6f87f5b2ba5aeec2f5ab105"><td class="memItemLeft"><a id="a61b9be89b6f87f5b2ba5aeec2f5ab105" name="a61b9be89b6f87f5b2ba5aeec2f5ab105"></a>
+bool&#160;</td><td class="memItemRight"><b>isEnabled</b> () const</td></tr>
+<tr class="memitem:abd1b1dcf4802956644c3b902c094a5c4" id="r_abd1b1dcf4802956644c3b902c094a5c4"><td class="memItemLeft"><a id="abd1b1dcf4802956644c3b902c094a5c4" name="abd1b1dcf4802956644c3b902c094a5c4"></a>
+bool&#160;</td><td class="memItemRight"><b>isSoccerBall</b> () const</td></tr>
+<tr class="memitem:a47ebabafdb94556cabcfcf2dd6d2ede1" id="r_a47ebabafdb94556cabcfcf2dd6d2ede1"><td class="memItemLeft"><a id="a47ebabafdb94556cabcfcf2dd6d2ede1" name="a47ebabafdb94556cabcfcf2dd6d2ede1"></a>
+const <a class="el" href="classPhysicalObject.html">PhysicalObject</a> *&#160;</td><td class="memItemRight"><b>getPhysicalObject</b> () const</td></tr>
+<tr class="memitem:a84baa4f247d8436eee42424f7956cda8" id="r_a84baa4f247d8436eee42424f7956cda8"><td class="memItemLeft"><a id="a84baa4f247d8436eee42424f7956cda8" name="a84baa4f247d8436eee42424f7956cda8"></a>
+<a class="el" href="classPhysicalObject.html">PhysicalObject</a> *&#160;</td><td class="memItemRight"><b>getPhysicalObject</b> ()</td></tr>
+<tr class="memitem:aabcc83b1c6c3ae8a74a7cc5d2bbec4e0" id="r_aabcc83b1c6c3ae8a74a7cc5d2bbec4e0"><td class="memItemLeft"><a id="aabcc83b1c6c3ae8a74a7cc5d2bbec4e0" name="aabcc83b1c6c3ae8a74a7cc5d2bbec4e0"></a>
+const core::vector3df&#160;</td><td class="memItemRight"><b>getInitXYZ</b> () const</td></tr>
+<tr class="memitem:acc483743f834e8a887481d1959a1cdc9" id="r_acc483743f834e8a887481d1959a1cdc9"><td class="memItemLeft"><a id="acc483743f834e8a887481d1959a1cdc9" name="acc483743f834e8a887481d1959a1cdc9"></a>
+const core::vector3df&#160;</td><td class="memItemRight"><b>getInitRotation</b> () const</td></tr>
+<tr class="memitem:aae4e2fdf7b1a24dca8222c5c7c2b0336" id="r_aae4e2fdf7b1a24dca8222c5c7c2b0336"><td class="memItemLeft"><a id="aae4e2fdf7b1a24dca8222c5c7c2b0336" name="aae4e2fdf7b1a24dca8222c5c7c2b0336"></a>
+const core::vector3df&#160;</td><td class="memItemRight"><b>getInitScale</b> () const</td></tr>
+<tr class="memitem:aa951322ecd391249d53a73adab94216c" id="r_aa951322ecd391249d53a73adab94216c"><td class="memTemplParams" colspan="2"><a id="aa951322ecd391249d53a73adab94216c" name="aa951322ecd391249d53a73adab94216c"></a>
+template&lt;typename T&gt; </td></tr>
+<tr class="memitem:aa951322ecd391249d53a73adab94216c template"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><b>getPresentation</b> ()</td></tr>
+<tr class="memitem:a8698c0dfb1c3a651acd7b98f6e9ee590" id="r_a8698c0dfb1c3a651acd7b98f6e9ee590"><td class="memTemplParams" colspan="2"><a id="a8698c0dfb1c3a651acd7b98f6e9ee590" name="a8698c0dfb1c3a651acd7b98f6e9ee590"></a>
+template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a8698c0dfb1c3a651acd7b98f6e9ee590 template"><td class="memItemLeft">const T *&#160;</td><td class="memItemRight"><b>getPresentation</b> () const</td></tr>
+<tr class="memitem:ga20ed4622e81419f05544b595489e6d82" id="r_ga20ed4622e81419f05544b595489e6d82"><td class="memItemLeft">scene::IAnimatedMeshSceneNode *&#160;</td><td class="memItemRight"><a class="el" href="group__Scripting__TrackObject.html#ga20ed4622e81419f05544b595489e6d82">getMesh</a> ()</td></tr>
+<tr class="memdesc:ga20ed4622e81419f05544b595489e6d82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should only be used on mesh track objects.  <br /></td></tr>
+<tr class="memitem:gaac7a607402aff0b65472749156902a95" id="r_gaac7a607402aff0b65472749156902a95"><td class="memItemLeft"><a class="el" href="classTrackObjectPresentationParticles.html">TrackObjectPresentationParticles</a> *&#160;</td><td class="memItemRight"><a class="el" href="group__Scripting__TrackObject.html#gaac7a607402aff0b65472749156902a95">getParticleEmitter</a> ()</td></tr>
+<tr class="memdesc:gaac7a607402aff0b65472749156902a95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should only be used on particle emitter track objects.  <br /></td></tr>
+<tr class="memitem:gad2f20ba88fc1619f2c9fdc33f89e53c9" id="r_gad2f20ba88fc1619f2c9fdc33f89e53c9"><td class="memItemLeft"><a class="el" href="classTrackObjectPresentationSound.html">TrackObjectPresentationSound</a> *&#160;</td><td class="memItemRight"><a class="el" href="group__Scripting__TrackObject.html#gad2f20ba88fc1619f2c9fdc33f89e53c9">getSoundEmitter</a> ()</td></tr>
+<tr class="memdesc:gad2f20ba88fc1619f2c9fdc33f89e53c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should only be used on sound emitter track objects.  <br /></td></tr>
+<tr class="memitem:ga9d01416ca09e6f36be65158384ee8181" id="r_ga9d01416ca09e6f36be65158384ee8181"><td class="memItemLeft"><a class="el" href="classTrackObjectPresentationLight.html">TrackObjectPresentationLight</a> *&#160;</td><td class="memItemRight"><a class="el" href="group__Scripting__TrackObject.html#ga9d01416ca09e6f36be65158384ee8181">getLight</a> ()</td></tr>
+<tr class="memdesc:ga9d01416ca09e6f36be65158384ee8181"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should only be used on sound emitter track objects.  <br /></td></tr>
+<tr class="memitem:ga0a187710d4df1d2c9cb0cd093e5689b6" id="r_ga0a187710d4df1d2c9cb0cd093e5689b6"><td class="memItemLeft"><a class="el" href="classThreeDAnimation.html">ThreeDAnimation</a> *&#160;</td><td class="memItemRight"><a class="el" href="group__Scripting__TrackObject.html#ga0a187710d4df1d2c9cb0cd093e5689b6">getIPOAnimator</a> ()</td></tr>
+<tr class="memdesc:ga0a187710d4df1d2c9cb0cd093e5689b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should only be used on TrackObjects that use curve-based animation.  <br /></td></tr>
+<tr class="memitem:ga18df2f06778750fdd22a2322c5a4f075" id="r_ga18df2f06778750fdd22a2322c5a4f075"><td class="memItemLeft"><a class="el" href="classPhysicalObject.html">PhysicalObject</a> *&#160;</td><td class="memItemRight"><a class="el" href="group__Scripting__TrackObject.html#ga18df2f06778750fdd22a2322c5a4f075">getPhysics</a> ()</td></tr>
+<tr class="memdesc:ga18df2f06778750fdd22a2322c5a4f075"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the physics representation of an object.  <br /></td></tr>
+<tr class="memitem:gaec7cf113f7382107db6195ec461d606e" id="r_gaec7cf113f7382107db6195ec461d606e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__Scripting__TrackObject.html#gaec7cf113f7382107db6195ec461d606e">setEnabled</a> (bool mode)</td></tr>
+<tr class="memdesc:gaec7cf113f7382107db6195ec461d606e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hide or show the object  <br /></td></tr>
+<tr class="memitem:ga4910603497c9de366329c04e1644324a" id="r_ga4910603497c9de366329c04e1644324a"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>moveTo</b> (const <a class="el" href="structScripting_1_1SimpleVec3.html">Scripting::SimpleVec3</a> *pos, bool isAbsoluteCoord)</td></tr>
+<tr class="memitem:ga15ed3116576c785a146f9d0cab484624" id="r_ga15ed3116576c785a146f9d0cab484624"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>resetEnabled</b> ()</td></tr>
+<tr class="memitem:ga572d203c7e2cb709dbc2e8ef5a98ac9a" id="r_ga572d203c7e2cb709dbc2e8ef5a98ac9a"><td class="memItemLeft">
+<a class="el" href="classThreeDAnimation.html">ThreeDAnimation</a> *&#160;</td><td class="memItemRight"><b>getAnimator</b> ()</td></tr>
+<tr class="memitem:gaef6a1bfa0dd17faa8ca229ddb0571ba2" id="r_gaef6a1bfa0dd17faa8ca229ddb0571ba2"><td class="memItemLeft">
+const <a class="el" href="classThreeDAnimation.html">ThreeDAnimation</a> *&#160;</td><td class="memItemRight"><b>getAnimator</b> () const</td></tr>
+<tr class="memitem:ga8d81f495f04396e1aa928067b054fc0a" id="r_ga8d81f495f04396e1aa928067b054fc0a"><td class="memItemLeft">
+bool&#160;</td><td class="memItemRight"><b>hasAnimatorRecursively</b> () const</td></tr>
+<tr class="memitem:ga6ed5593a97b924e0c5d02bb2502240f2" id="r_ga6ed5593a97b924e0c5d02bb2502240f2"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>setPaused</b> (bool mode)</td></tr>
+<tr class="memitem:ga6bd1a86231ae0609ee7ef257b88da5c1" id="r_ga6bd1a86231ae0609ee7ef257b88da5c1"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>setInitiallyVisible</b> (bool val)</td></tr>
+<tr class="memitem:gad2c8f9170cba8d7c4d75b1de8c614af8" id="r_gad2c8f9170cba8d7c4d75b1de8c614af8"><td class="memItemLeft">
+bool&#160;</td><td class="memItemRight"><b>isDriveable</b> () const</td></tr>
+<tr class="memdesc:gad2c8f9170cba8d7c4d75b1de8c614af8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if a kart can drive on this object. <br /></td></tr>
+<tr class="memitem:ga2c79516047af27b3a3059dc5314b207e" id="r_ga2c79516047af27b3a3059dc5314b207e"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>addMovableChild</b> (<a class="el" href="classTrackObject.html">TrackObject</a> *child)</td></tr>
+<tr class="memdesc:ga2c79516047af27b3a3059dc5314b207e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used along the "extract movable nodes out of library objects" hack, used to still preserve the parent-child relationship <br /></td></tr>
+<tr class="memitem:ga5d98c6040166ff219ba12dc74c48d4e5" id="r_ga5d98c6040166ff219ba12dc74c48d4e5"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>addChild</b> (<a class="el" href="classTrackObject.html">TrackObject</a> *child)</td></tr>
+<tr class="memitem:ga8be952b893af3db28136b274e47c24d3" id="r_ga8be952b893af3db28136b274e47c24d3"><td class="memItemLeft">
+std::vector&lt; <a class="el" href="classTrackObject.html">TrackObject</a> * &gt; &amp;&#160;</td><td class="memItemRight"><b>getMovableChildren</b> ()</td></tr>
+<tr class="memitem:ga7312acde6d3145d5902ba61871f93abf" id="r_ga7312acde6d3145d5902ba61871f93abf"><td class="memItemLeft">
+std::vector&lt; <a class="el" href="classTrackObject.html">TrackObject</a> * &gt; &amp;&#160;</td><td class="memItemRight"><b>getChildren</b> ()</td></tr>
+<tr class="memitem:ga97d65137fb407ac542d7cd1812ea770d" id="r_ga97d65137fb407ac542d7cd1812ea770d"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>movePhysicalBodyToGraphicalNode</b> (const core::vector3df &amp;xyz, const core::vector3df &amp;hpr)</td></tr>
+<tr class="memitem:ga98e93031728adfd750a839205581e590" id="r_ga98e93031728adfd750a839205581e590"><td class="memItemLeft">
+bool&#160;</td><td class="memItemRight"><b>joinToMainTrack</b> ()</td></tr>
+<tr class="memitem:gad7c9fc0896f1b34cc0be57749fbc6769" id="r_gad7c9fc0896f1b34cc0be57749fbc6769"><td class="memItemLeft">
+<a class="el" href="classTrackObject.html">TrackObject</a> *&#160;</td><td class="memItemRight"><b>cloneToChild</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 멤버 함수</h2></td></tr>
+<tr class="memitem:a0282cbeb0c3e2c0d24b97620f29926e0" id="r_a0282cbeb0c3e2c0d24b97620f29926e0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0282cbeb0c3e2c0d24b97620f29926e0">init</a> (const <a class="el" href="classXMLNode.html">XMLNode</a> &amp;xml_node, scene::ISceneNode *parent, <a class="el" href="classModelDefinitionLoader.html">ModelDefinitionLoader</a> &amp;model_def_loader, <a class="el" href="classTrackObject.html">TrackObject</a> *parent_library)</td></tr>
+<tr class="memdesc:a0282cbeb0c3e2c0d24b97620f29926e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the track object based on the specified XML data.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 속성</h2></td></tr>
+<tr class="memitem:ae85f2b27cf2b958667785f03b2a2dfdc" id="r_ae85f2b27cf2b958667785f03b2a2dfdc"><td class="memItemLeft"><a id="ae85f2b27cf2b958667785f03b2a2dfdc" name="ae85f2b27cf2b958667785f03b2a2dfdc"></a>
+core::vector3df&#160;</td><td class="memItemRight"><b>m_init_xyz</b></td></tr>
+<tr class="memdesc:ae85f2b27cf2b958667785f03b2a2dfdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The initial XYZ position of the object. <br /></td></tr>
+<tr class="memitem:a39092f614f45c2c654250cc03d45d60e" id="r_a39092f614f45c2c654250cc03d45d60e"><td class="memItemLeft"><a id="a39092f614f45c2c654250cc03d45d60e" name="a39092f614f45c2c654250cc03d45d60e"></a>
+core::vector3df&#160;</td><td class="memItemRight"><b>m_init_hpr</b></td></tr>
+<tr class="memdesc:a39092f614f45c2c654250cc03d45d60e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The initial hpr of the object. <br /></td></tr>
+<tr class="memitem:aa5324a302b439e1f569b4c204a9c2ac4" id="r_aa5324a302b439e1f569b4c204a9c2ac4"><td class="memItemLeft"><a id="aa5324a302b439e1f569b4c204a9c2ac4" name="aa5324a302b439e1f569b4c204a9c2ac4"></a>
+core::vector3df&#160;</td><td class="memItemRight"><b>m_init_scale</b></td></tr>
+<tr class="memdesc:aa5324a302b439e1f569b4c204a9c2ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The initial scale of the object. <br /></td></tr>
+<tr class="memitem:a673b1f38a690bc95809d1b5c91203bce" id="r_a673b1f38a690bc95809d1b5c91203bce"><td class="memItemLeft"><a id="a673b1f38a690bc95809d1b5c91203bce" name="a673b1f38a690bc95809d1b5c91203bce"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_lod_group</b></td></tr>
+<tr class="memdesc:a673b1f38a690bc95809d1b5c91203bce"><td class="mdescLeft">&#160;</td><td class="mdescRight">LOD group this object is part of, if it is LOD <br /></td></tr>
+<tr class="memitem:a84949abfc3344c22c223c8bd58426b66" id="r_a84949abfc3344c22c223c8bd58426b66"><td class="memItemLeft"><a id="a84949abfc3344c22c223c8bd58426b66" name="a84949abfc3344c22c223c8bd58426b66"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_interaction</b></td></tr>
+<tr class="memitem:a1db69327955d52653991ba2b6cfe6903" id="r_a1db69327955d52653991ba2b6cfe6903"><td class="memItemLeft"><a id="a1db69327955d52653991ba2b6cfe6903" name="a1db69327955d52653991ba2b6cfe6903"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_type</b></td></tr>
+<tr class="memitem:a181428129f00ccc45fd7a5efb0bdab71" id="r_a181428129f00ccc45fd7a5efb0bdab71"><td class="memItemLeft"><a id="a181428129f00ccc45fd7a5efb0bdab71" name="a181428129f00ccc45fd7a5efb0bdab71"></a>
+bool&#160;</td><td class="memItemRight"><b>m_soccer_ball</b></td></tr>
+<tr class="memitem:a5f778a51657f5a4efa9950388e6dfe43" id="r_a5f778a51657f5a4efa9950388e6dfe43"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a5f778a51657f5a4efa9950388e6dfe43">m_is_driveable</a></td></tr>
+<tr class="memdesc:a5f778a51657f5a4efa9950388e6dfe43"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if a kart can drive on this object.  <br /></td></tr>
+<tr class="memitem:adbcf9126a337d33589eef896428b0b3d" id="r_adbcf9126a337d33589eef896428b0b3d"><td class="memItemLeft"><a id="adbcf9126a337d33589eef896428b0b3d" name="adbcf9126a337d33589eef896428b0b3d"></a>
+std::shared_ptr&lt; <a class="el" href="classPhysicalObject.html">PhysicalObject</a> &gt;&#160;</td><td class="memItemRight"><b>m_physical_object</b></td></tr>
+<tr class="memitem:afcfa3b8df4d128586cecc62500513f18" id="r_afcfa3b8df4d128586cecc62500513f18"><td class="memItemLeft"><a id="afcfa3b8df4d128586cecc62500513f18" name="afcfa3b8df4d128586cecc62500513f18"></a>
+<a class="el" href="classThreeDAnimation.html">ThreeDAnimation</a> *&#160;</td><td class="memItemRight"><b>m_animator</b></td></tr>
+<tr class="memitem:afaabbee256baaa1228797fb8e48e20fd" id="r_afaabbee256baaa1228797fb8e48e20fd"><td class="memItemLeft"><a id="afaabbee256baaa1228797fb8e48e20fd" name="afaabbee256baaa1228797fb8e48e20fd"></a>
+<a class="el" href="classTrackObject.html">TrackObject</a> *&#160;</td><td class="memItemRight"><b>m_parent_library</b></td></tr>
+<tr class="memitem:a43c3e58f651efc29c8252371700b7b2a" id="r_a43c3e58f651efc29c8252371700b7b2a"><td class="memItemLeft"><a id="a43c3e58f651efc29c8252371700b7b2a" name="a43c3e58f651efc29c8252371700b7b2a"></a>
+std::vector&lt; <a class="el" href="classTrackObject.html">TrackObject</a> * &gt;&#160;</td><td class="memItemRight"><b>m_movable_children</b></td></tr>
+<tr class="memitem:aa1319a7a5446ec9c7ae72a69f64afa73" id="r_aa1319a7a5446ec9c7ae72a69f64afa73"><td class="memItemLeft"><a id="aa1319a7a5446ec9c7ae72a69f64afa73" name="aa1319a7a5446ec9c7ae72a69f64afa73"></a>
+std::vector&lt; <a class="el" href="classTrackObject.html">TrackObject</a> * &gt;&#160;</td><td class="memItemRight"><b>m_children</b></td></tr>
+<tr class="memitem:a8f159e704d04e86fcecdc74ee60365b4" id="r_a8f159e704d04e86fcecdc74ee60365b4"><td class="memItemLeft"><a id="a8f159e704d04e86fcecdc74ee60365b4" name="a8f159e704d04e86fcecdc74ee60365b4"></a>
+bool&#160;</td><td class="memItemRight"><b>m_initially_visible</b></td></tr>
+<tr class="memitem:a208ede1b5d56f5ad10c12579008cd5a3" id="r_a208ede1b5d56f5ad10c12579008cd5a3"><td class="memItemLeft"><a id="a208ede1b5d56f5ad10c12579008cd5a3" name="a208ede1b5d56f5ad10c12579008cd5a3"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_visibility_condition</b></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:a77cb3e7f3fad5099376d5c928368ce78" id="r_a77cb3e7f3fad5099376d5c928368ce78"><td class="memItemLeft"><a id="a77cb3e7f3fad5099376d5c928368ce78" name="a77cb3e7f3fad5099376d5c928368ce78"></a>
+bool&#160;</td><td class="memItemRight"><b>m_enabled</b></td></tr>
+<tr class="memdesc:a77cb3e7f3fad5099376d5c928368ce78"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the object is currently being displayed. <br /></td></tr>
+<tr class="memitem:a69325bc64924583d150696d90daedadd" id="r_a69325bc64924583d150696d90daedadd"><td class="memItemLeft"><a id="a69325bc64924583d150696d90daedadd" name="a69325bc64924583d150696d90daedadd"></a>
+<a class="el" href="classTrackObjectPresentation.html">TrackObjectPresentation</a> *&#160;</td><td class="memItemRight"><b>m_presentation</b></td></tr>
+<tr class="memitem:a7f7b3726353859dd66736f33ec23338c" id="r_a7f7b3726353859dd66736f33ec23338c"><td class="memItemLeft"><a id="a7f7b3726353859dd66736f33ec23338c" name="a7f7b3726353859dd66736f33ec23338c"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_name</b></td></tr>
+<tr class="memitem:a56b02394e5685c67359b4ce3fe4bcf00" id="r_a56b02394e5685c67359b4ce3fe4bcf00"><td class="memItemLeft"><a id="a56b02394e5685c67359b4ce3fe4bcf00" name="a56b02394e5685c67359b4ce3fe4bcf00"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_id</b></td></tr>
+<tr class="memitem:aefe28fe7f703bf6a695b0459a024e522" id="r_aefe28fe7f703bf6a695b0459a024e522"><td class="memItemLeft"><a id="aefe28fe7f703bf6a695b0459a024e522" name="aefe28fe7f703bf6a695b0459a024e522"></a>
+std::shared_ptr&lt; GE::GERenderInfo &gt;&#160;</td><td class="memItemRight"><b>m_render_info</b></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>This is a base object for any separate object on the track, which might also have a skeletal animation. </p>
+<p>This is used by objects that have an IPO animation, as well as physical objects. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">생성자 &amp; 소멸자 문서화</h2>
+<a id="a15e204164dbda6c398152b461a28874e" name="a15e204164dbda6c398152b461a28874e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15e204164dbda6c398152b461a28874e">&#9670;&#160;</a></span>TrackObject() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TrackObject::TrackObject </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classXMLNode.html">XMLNode</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>xml_node</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">scene::ISceneNode *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classModelDefinitionLoader.html">ModelDefinitionLoader</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>model_def_loader</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classTrackObject.html">TrackObject</a> *</td>          <td class="paramname"><span class="paramname"><em>parent_library</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A track object: any additional object on the track. </p>
+<p>This object implements a graphics-only representation, i.e. there is no physical representation. Derived classes can implement a physical representation (see physics/physical_object) or animations. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">xml_node</td><td>The xml node from which the initial data is taken. This is for now: initial position, initial rotation, name of the model, enable/disable status, timer information. </td></tr>
+    <tr><td class="paramname">lod_node</td><td>Lod node (defaults to NULL). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9572b8aac4aee66881ab1bdc705720a3" name="a9572b8aac4aee66881ab1bdc705720a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9572b8aac4aee66881ab1bdc705720a3">&#9670;&#160;</a></span>TrackObject() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TrackObject::TrackObject </td>
+          <td>(</td>
+          <td class="paramtype">const core::vector3df &amp;</td>          <td class="paramname"><span class="paramname"><em>xyz</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const core::vector3df &amp;</td>          <td class="paramname"><span class="paramname"><em>hpr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const core::vector3df &amp;</td>          <td class="paramname"><span class="paramname"><em>scale</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>interaction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classTrackObjectPresentation.html">TrackObjectPresentation</a> *</td>          <td class="paramname"><span class="paramname"><em>presentation</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_dynamic</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classPhysicalObject_1_1Settings.html">PhysicalObject::Settings</a> *</td>          <td class="paramname"><span class="paramname"><em>physics_settings</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">is_dynamic</td><td>Only if interaction == 'movable', i.e. the object is affected by physics </td></tr>
+    <tr><td class="paramname">physics_settings</td><td>If interaction != 'ghost' </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2c835946134a7ef0023f4dce6dd15ab6" name="a2c835946134a7ef0023f4dce6dd15ab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c835946134a7ef0023f4dce6dd15ab6">&#9670;&#160;</a></span>~TrackObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TrackObject::~TrackObject </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
+<p>Removes the node from the scene graph, and also drops the textures of the mesh. Sound buffers are also freed. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a39ca7aafd343b0b5e4b03476e8cd7232" name="a39ca7aafd343b0b5e4b03476e8cd7232"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39ca7aafd343b0b5e4b03476e8cd7232">&#9670;&#160;</a></span>castRay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackObject::castRay </td>
+          <td>(</td>
+          <td class="paramtype">const btVector3 &amp;</td>          <td class="paramname"><span class="paramname"><em>from</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const btVector3 &amp;</td>          <td class="paramname"><span class="paramname"><em>to</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">btVector3 *</td>          <td class="paramname"><span class="paramname"><em>hit_point</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMaterial.html">Material</a> **</td>          <td class="paramname"><span class="paramname"><em>material</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">btVector3 *</td>          <td class="paramname"><span class="paramname"><em>normal</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>interpolate_normal</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Does a raycast against the track object. </p>
+<p>The object must have a physical object. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from/to</td><td>The from and to position for the raycast. </td></tr>
+    <tr><td class="paramname">xyz</td><td>The position in world where the ray hit. </td></tr>
+    <tr><td class="paramname">material</td><td>The material of the mesh that was hit. </td></tr>
+    <tr><td class="paramname">normal</td><td>The intrapolated normal at that position. </td></tr>
+    <tr><td class="paramname">interpolate_normal</td><td>If true, the returned normal is the interpolated based on the three normals of the triangle and the location of the hit point (which is more compute intensive, but results in much smoother results). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>True if a triangle was hit, false otherwise (and no output variable will be set. </dd></dl>
+
+</div>
+</div>
+<a id="afc4ec962e6fa8b51f90f36bcfc93c1ed" name="afc4ec962e6fa8b51f90f36bcfc93c1ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc4ec962e6fa8b51f90f36bcfc93c1ed">&#9670;&#160;</a></span>handleExplosion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void TrackObject::handleExplosion </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>directHit</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called when an explosion happens. </p>
+<p>As a default does nothing, will e.g. be overwritten by physical objects etc. </p>
+
+</div>
+</div>
+<a id="a0282cbeb0c3e2c0d24b97620f29926e0" name="a0282cbeb0c3e2c0d24b97620f29926e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0282cbeb0c3e2c0d24b97620f29926e0">&#9670;&#160;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackObject::init </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classXMLNode.html">XMLNode</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>xml_node</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">scene::ISceneNode *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classModelDefinitionLoader.html">ModelDefinitionLoader</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>model_def_loader</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classTrackObject.html">TrackObject</a> *</td>          <td class="paramname"><span class="paramname"><em>parent_library</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialises the track object based on the specified XML data. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">xml_node</td><td>The XML data. </td></tr>
+    <tr><td class="paramname">parent</td><td>The parent scene node. </td></tr>
+    <tr><td class="paramname">model_def_loader</td><td>Used to load level-of-detail nodes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a76994950b4c4ffdd51035261cc921569" name="a76994950b4c4ffdd51035261cc921569"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76994950b4c4ffdd51035261cc921569">&#9670;&#160;</a></span>onWorldReady()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackObject::onWorldReady </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>To finish object constructions. </p>
+<p>Called after the track model is ready. </p>
+
+</div>
+</div>
+<a id="af5a046c5e3a099d341c5558dde7b5ab2" name="af5a046c5e3a099d341c5558dde7b5ab2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5a046c5e3a099d341c5558dde7b5ab2">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackObject::update </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This updates once per physics time step. </p>
+<p>float dt Time since last rame. </p>
+
+</div>
+</div>
+<a id="a9d5d59f87777ec54c9e6770d778e9cdc" name="a9d5d59f87777ec54c9e6770d778e9cdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d5d59f87777ec54c9e6770d778e9cdc">&#9670;&#160;</a></span>updateGraphics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrackObject::updateGraphics </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This updates all only graphical elements. </p>
+<p>It is only called once per rendered frame, not once per time step. float dt Time since last rame. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="a5f778a51657f5a4efa9950388e6dfe43" name="a5f778a51657f5a4efa9950388e6dfe43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f778a51657f5a4efa9950388e6dfe43">&#9670;&#160;</a></span>m_is_driveable</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TrackObject::m_is_driveable</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True if a kart can drive on this object. </p>
+<p>This will </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>tracks/<a class="el" href="track__object_8hpp_source.html">track_object.hpp</a></li>
+<li>tracks/<b>track_object.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

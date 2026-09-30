@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: items/bowling.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>items</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">bowling.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2007-2015 Joerg Henrichs, Marianne Gagnon</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_BOWLING_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_BOWLING_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">namespace </span>scene { <span class="keyword">class </span>IMesh; }</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;irrString.h&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;items/flyable.hpp&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">class </span><a class="code hl_class" href="classXMLNode.html">XMLNode</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">class </span><a class="code hl_class" href="classSFXBase.html">SFXBase</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="};">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classBowling.html">   37</a></span><span class="keyword">class </span>Bowling : <span class="keyword">public</span> Flyable</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">static</span> <span class="keywordtype">float</span> m_st_max_distance;   <span class="comment">// maximum distance for a bowling ball to be attracted</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">static</span> <span class="keywordtype">float</span> m_st_max_distance_squared;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">static</span> <span class="keywordtype">float</span> m_st_force_to_target;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classBowling.html#a74827147b5eb4f73bf625280fde9ada3">   47</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classBowling.html#a74827147b5eb4f73bf625280fde9ada3">m_has_hit_kart</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classBowling.html#aaab5a80aae9b6f47b83fa0f501610fac">   50</a></span>    <a class="code hl_class" href="classSFXBase.html">SFXBase</a>     *<a class="code hl_variable" href="classBowling.html#aaab5a80aae9b6f47b83fa0f501610fac">m_roll_sfx</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> removeRollSfx();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>             Bowling(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classBowling.html#ad5b481f09b96f4fe00df13acdb51b9f2">~Bowling</a>();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">static</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classBowling.html#abd771a51ee5b548c0cbab39fe48db31a">init</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> &amp;node, scene::IMesh *bowling);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classBowling.html#a40beecaad8077a686bf430660177769e">updateAndDelete</a>(<span class="keywordtype">int</span> ticks) OVERRIDE;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classBowling.html#a87696789e7a5b58e7624b45d747f47b6">hit</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart, <a class="code hl_class" href="classPhysicalObject.html">PhysicalObject</a>* obj=NULL) OVERRIDE;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classHitEffect.html">HitEffect</a> *<a class="code hl_function" href="classBowling.html#a6aba0d44fc826f33e63cdbc3d2653e70">getHitEffect</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classBowling.html#a36ce272637b5e67f9e2a3652f2102d3d">onFireFlyable</a>() OVERRIDE;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>};   <span class="comment">// Bowling</span></div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassBowling_html_a36ce272637b5e67f9e2a3652f2102d3d"><div class="ttname"><a href="classBowling.html#a36ce272637b5e67f9e2a3652f2102d3d">Bowling::onFireFlyable</a></div><div class="ttdeci">virtual void onFireFlyable() OVERRIDE</div><div class="ttdoc">Call when the item is (re-)fired (during rewind if needed) by projectile_manager.</div><div class="ttdef"><b>Definition</b> bowling.cpp:201</div></div>
+<div class="ttc" id="aclassBowling_html_a40beecaad8077a686bf430660177769e"><div class="ttname"><a href="classBowling.html#a40beecaad8077a686bf430660177769e">Bowling::updateAndDelete</a></div><div class="ttdeci">virtual bool updateAndDelete(int ticks) OVERRIDE</div><div class="ttdoc">Updates the bowling ball ineach frame.</div><div class="ttdef"><b>Definition</b> bowling.cpp:79</div></div>
+<div class="ttc" id="aclassBowling_html_a6aba0d44fc826f33e63cdbc3d2653e70"><div class="ttname"><a href="classBowling.html#a6aba0d44fc826f33e63cdbc3d2653e70">Bowling::getHitEffect</a></div><div class="ttdeci">virtual HitEffect * getHitEffect() const OVERRIDE</div><div class="ttdoc">Returns the hit effect object to use when this objects hits something.</div><div class="ttdef"><b>Definition</b> bowling.cpp:188</div></div>
+<div class="ttc" id="aclassBowling_html_a74827147b5eb4f73bf625280fde9ada3"><div class="ttname"><a href="classBowling.html#a74827147b5eb4f73bf625280fde9ada3">Bowling::m_has_hit_kart</a></div><div class="ttdeci">bool m_has_hit_kart</div><div class="ttdoc">If a bowling ball has hit something, this flag is set to indicate if a kart was hit or not.</div><div class="ttdef"><b>Definition</b> bowling.hpp:47</div></div>
+<div class="ttc" id="aclassBowling_html_a87696789e7a5b58e7624b45d747f47b6"><div class="ttname"><a href="classBowling.html#a87696789e7a5b58e7624b45d747f47b6">Bowling::hit</a></div><div class="ttdeci">virtual bool hit(AbstractKart *kart, PhysicalObject *obj=NULL) OVERRIDE</div><div class="ttdoc">Callback from the physics in case that a kart or physical object is hit.</div><div class="ttdef"><b>Definition</b> bowling.cpp:155</div></div>
+<div class="ttc" id="aclassBowling_html_aaab5a80aae9b6f47b83fa0f501610fac"><div class="ttname"><a href="classBowling.html#aaab5a80aae9b6f47b83fa0f501610fac">Bowling::m_roll_sfx</a></div><div class="ttdeci">SFXBase * m_roll_sfx</div><div class="ttdoc">A sound effect for rolling ball.</div><div class="ttdef"><b>Definition</b> bowling.hpp:50</div></div>
+<div class="ttc" id="aclassBowling_html_abd771a51ee5b548c0cbab39fe48db31a"><div class="ttname"><a href="classBowling.html#abd771a51ee5b548c0cbab39fe48db31a">Bowling::init</a></div><div class="ttdeci">static void init(const XMLNode &amp;node, scene::IMesh *bowling)</div><div class="ttdoc">Initialises this object with data from the power.xml file.</div><div class="ttdef"><b>Definition</b> bowling.cpp:60</div></div>
+<div class="ttc" id="aclassBowling_html_ad5b481f09b96f4fe00df13acdb51b9f2"><div class="ttname"><a href="classBowling.html#ad5b481f09b96f4fe00df13acdb51b9f2">Bowling::~Bowling</a></div><div class="ttdeci">virtual ~Bowling()</div><div class="ttdoc">Destructor, removes any playing sfx.</div><div class="ttdef"><b>Definition</b> bowling.cpp:49</div></div>
+<div class="ttc" id="aclassHitEffect_html"><div class="ttname"><a href="classHitEffect.html">HitEffect</a></div><div class="ttdoc">A small interface for effects to be used when a kart is hit.</div><div class="ttdef"><b>Definition</b> hit_effect.hpp:33</div></div>
+<div class="ttc" id="aclassPhysicalObject_html"><div class="ttname"><a href="classPhysicalObject.html">PhysicalObject</a></div><div class="ttdef"><b>Definition</b> physical_object.hpp:40</div></div>
+<div class="ttc" id="aclassSFXBase_html"><div class="ttname"><a href="classSFXBase.html">SFXBase</a></div><div class="ttdoc">The base class for sound effects.</div><div class="ttdef"><b>Definition</b> sfx_base.hpp:43</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -22,6 +22,9 @@
 #include "utils/aligned_array.hpp"
 
 #include <climits>
+#include <set>
+#include <string>
+#include <tuple>
 #include <vector>
 
 class SFXBase;
@@ -35,6 +38,22 @@ class SFXBase;
 class LinearWorld : public WorldWithRank
 {
 private:
+    static bool m_quad_log_enabled;
+    static std::string m_quad_log_directory;
+
+    struct QuadLogEntry
+    {
+        unsigned int m_kart_id;
+        int m_lap;
+        int m_quad;
+        int m_tick;
+        float m_x, m_y, m_z;
+    };
+
+    std::vector<QuadLogEntry> m_quad_log_entries;
+    std::set<std::tuple<unsigned int, int, int>> m_seen_quads;
+    bool m_quad_log_saved;
+
     /** Sfx for the final lap. */
     SFXBase     *m_last_lap_sfx;
 
@@ -142,6 +161,16 @@ public:
        results will be incorrect */
     virtual void  init() OVERRIDE;
     virtual      ~LinearWorld();
+
+    static void setQuadLogEnabled(bool enabled)
+    {
+        m_quad_log_enabled = enabled;
+    }
+    static void setQuadLogDirectory(const std::string& directory)
+    {
+        m_quad_log_directory = directory;
+    }
+    void finishQuadLog();
 
     virtual void  update(int ticks) OVERRIDE;
     virtual void  updateGraphics(float dt) OVERRIDE;

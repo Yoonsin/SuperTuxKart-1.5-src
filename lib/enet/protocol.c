@@ -195,8 +195,9 @@ enet_protocol_remove_sent_unreliable_commands (ENetPeer * peer)
 }
 
 static ENetProtocolCommand
-enet_protocol_remove_sent_reliable_command (ENetPeer * peer, enet_uint16 reliableSequenceNumber, enet_uint8 channelID)
+enet_protocol_remove_sent_reliable_command (ENetPeer * peer, enet_uint16 reliableSequenceNumber, enet_uint8 channelID, ENetRTTSample* sample)
 {
+    if (sample != NULL) memset(sample, 0, sizeof(*sample));
     ENetOutgoingCommand * outgoingCommand = NULL;
     ENetListIterator currentCommand;
     ENetProtocolCommand commandNumber;
@@ -266,6 +267,11 @@ enet_protocol_remove_sent_reliable_command (ENetPeer * peer, enet_uint16 reliabl
 
           enet_packet_destroy (outgoingCommand -> packet);
        }
+    }
+
+    if (sample != NULL) {
+        sample->isRTTProbe = outgoingCommand->isRTTProbe;
+        sample->sendAttempts = outgoingCommand->sendAttempts;
     }
 
     enet_free (outgoingCommand);
@@ -889,7 +895,15 @@ enet_protocol_handle_acknowledge (ENetHost * host, ENetEvent * event, ENetPeer *
 
     receivedReliableSequenceNumber = ENET_NET_TO_HOST_16 (command -> acknowledge.receivedReliableSequenceNumber);
 
-    commandNumber = enet_protocol_remove_sent_reliable_command (peer, receivedReliableSequenceNumber, command -> header.channelID);
+    ENetRTTSample sample = { 0 };
+    commandNumber = enet_protocol_remove_sent_reliable_command (peer, receivedReliableSequenceNumber, command -> header.channelID, &sample);
+    
+    if (sample.isRTTProbe && host->rawRTTCallback != NULL) {
+        sample.rawRTT = roundTripTime;
+        sample.timeStamp = host->serviceTime;
+        sample.sentTime = receivedSentTime;
+        host->rawRTTCallback(host->rawRTTCallbackData, peer, &sample);
+    }
 
     switch (peer -> state)
     {
@@ -945,7 +959,7 @@ enet_protocol_handle_verify_connect (ENetHost * host, ENetEvent * event, ENetPee
         return -1;
     }
 
-    enet_protocol_remove_sent_reliable_command (peer, 1, 0xFF);
+    enet_protocol_remove_sent_reliable_command (peer, 1, 0xFF, NULL);
     
     if (channelCount < peer -> channelCount)
       peer -> channelCount = channelCount;

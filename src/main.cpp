@@ -244,6 +244,7 @@ extern "C" {
 #include "karts/official_karts.hpp"
 #include "modes/cutscene_world.hpp"
 #include "modes/demo_world.hpp"
+#include "modes/linear_world.hpp"
 #include "network/protocols/connect_to_server.hpp"
 #include "network/protocols/client_lobby.hpp"
 #include "network/protocols/server_lobby.hpp"
@@ -624,6 +625,14 @@ void cmdLineHelp()
     "       --profile-time=n   Enable automatic driven profile mode for n "
                               "seconds.\n"
     "       --benchmark        Start Benchmark Mode, save results and exit. \n"
+    "       --rtt-log          Save RTT (Round Trip Time) log data.\n"
+    "       --rtt-log-dir=DIR  Set the RTT log output directory.\n"
+    "       --profile-log      Save profiler data for each multiplayer race.\n"
+    "       --profile-log-dir=DIR  Set the profile log output directory.\n"
+    "       --quad-log         Save first visits to track quads as CSV.\n"
+    "       --quad-log-dir=DIR Set the quad log output directory.\n"
+    "       --auto-input       Generate deterministic input during multiplayer races.\n"
+    "       --auto-accel       Hold acceleration during multiplayer races.\n"
     "       --unlock-all       Permanently unlock all karts and tracks for testing.\n"
     "       --no-unlock-all    Disable unlock-all (i.e. base unlocking on player achievement).\n"
     "       --xmas=n           Toggle Xmas/Christmas mode. n=0 Use current date, n=1, Always enable,\n"
@@ -641,6 +650,8 @@ void cmdLineHelp()
     "       --history          Replay history file 'history.dat'.\n"
     "       --server-config=file Specify the server_config.xml for server hosting, it will create\n"
     "                            one if not found.\n"
+    "       --fixed-kart=NAME Force all server players to use this kart.\n"
+    "       --fixed-track=NAME Force the server to use this track.\n"
     "       --network-console  Enable network console.\n"
     "       --wan-server=name  Start a Wan server (not a playing client).\n"
     "       --public-server    Allow direct connection to the server (without stk server)\n"
@@ -1302,6 +1313,47 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         }
     }
 
+    if (CommandLine::has("--rtt-log"))
+    {
+        STKHost::setRTTLogEnabled(true);
+        std::string rtt_log_directory;
+		if (CommandLine::has("--rtt-log-dir", &rtt_log_directory))
+			STKHost::setRTTLogDirectory(rtt_log_directory);
+    }
+
+    if (CommandLine::has("--profile-log"))
+    {
+        profiler.setProfileLogEnabled(true);
+        std::string profile_log_directory;
+        if (CommandLine::has("--profile-log-dir", &profile_log_directory))
+        {
+            profiler.setProfileLogDirectory(profile_log_directory);
+        }
+    }
+
+    if (CommandLine::has("--quad-log"))
+    {
+        LinearWorld::setQuadLogEnabled(true);
+        std::string quad_log_directory;
+        if (CommandLine::has("--quad-log-dir", &quad_log_directory))
+            LinearWorld::setQuadLogDirectory(quad_log_directory);
+    }
+
+    if (CommandLine::has("--auto-input"))
+        input_manager->setAutoInputEnabled(true);
+
+    if (CommandLine::has("--auto-accel"))
+        input_manager->setAutoAccelEnabled(true);
+
+    if (CommandLine::has("--fixed-kart", &s))
+        ServerConfig::m_fixed_kart = s;
+
+    if (CommandLine::has("--fixed-track", &s))
+    {
+        ServerConfig::m_fixed_track = s;
+        ServerConfig::m_track_voting = false;
+    }
+ 
     if (CommandLine::has("--network-console"))
     {
         ServerConfig::m_enable_console = true;

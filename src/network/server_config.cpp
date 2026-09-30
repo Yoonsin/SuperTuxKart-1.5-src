@@ -54,6 +54,8 @@ namespace ServerConfig
 // ============================================================================
 std::string g_server_config_path;
 std::string m_server_uid;
+std::string m_fixed_kart;
+std::string m_fixed_track;
 // ============================================================================
 FloatServerConfigParam::FloatServerConfigParam(float default_value,
                                                const char* param_name,
@@ -415,4 +417,3 @@ std::string getConfigDirectory()
 }   // getConfigDirectory
 
 }
-

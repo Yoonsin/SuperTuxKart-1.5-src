@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: karts/controller/battle_ai.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>karts</b></li><li class="navelem"><b>controller</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">battle_ai.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2004-2005 Steve Baker &lt;sjbaker1@airmail.net&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  Copyright (C) 2006-2007 Eduardo Hernandez Munoz</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  Copyright (C) 2010-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifndef HEADER_BATTLE_AI_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#define HEADER_BATTLE_AI_HPP</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;karts/controller/arena_ai.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">class </span><a class="code hl_class" href="classThreeStrikesBattle.html">ThreeStrikesBattle</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">class </span><a class="code hl_class" href="classWorldWithRank.html">WorldWithRank</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classBattleAI.html">   32</a></span><span class="keyword">class </span>BattleAI : <span class="keyword">public</span> ArenaAI</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classBattleAI.html#a3630bb0dc41c82418ece6c3519f3bd62">   36</a></span>    <a class="code hl_class" href="classWorldWithRank.html">WorldWithRank</a> *<a class="code hl_variable" href="classBattleAI.html#a3630bb0dc41c82418ece6c3519f3bd62">m_world</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_class" href="classThreeStrikesBattle.html">ThreeStrikesBattle</a>* m_tsb_world;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>  <a class="code hl_function" href="classBattleAI.html#a043d9b7b25a5d5369a30a2b753a6f167">findClosestKart</a>(<span class="keywordtype">bool</span> consider_difficulty,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                                  <span class="keywordtype">bool</span> find_sta) OVERRIDE;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span>   <a class="code hl_function" href="classBattleAI.html#ab783dcdf3e5ece2e0e97601abe53f0cb">getCurrentNode</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>private:</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    virtual <span class="keywordtype">void</span>  <a class="code hl_function" href="classBattleAI.html#a60ed0ac0a1dc2b7fe90a2bb78a4c9ab0">findTarget</a>() OVERRIDE;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    virtual <span class="keywordtype">float</span> <a class="code hl_function" href="classBattleAI.html#a5ce9e06ec26d5eb642bcaf477b52bb65">getKartDistance</a>(const <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart) const OVERRIDE;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    virtual <span class="keywordtype">bool</span>  <a class="code hl_function" href="classBattleAI.html#aff4d4e0645c24fc6ed1ba5e6e607d700">isKartOnRoad</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    virtual <span class="keywordtype">bool</span>  <a class="code hl_function" href="classBattleAI.html#a325767a36174e32dc26fe566ec3f206d">isWaiting</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>public:</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                  BattleAI(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                 ~BattleAI();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>};</div>
+</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassBattleAI_html_a043d9b7b25a5d5369a30a2b753a6f167"><div class="ttname"><a href="classBattleAI.html#a043d9b7b25a5d5369a30a2b753a6f167">BattleAI::findClosestKart</a></div><div class="ttdeci">virtual void findClosestKart(bool consider_difficulty, bool find_sta) OVERRIDE</div><div class="ttdoc">Find the closest kart around this AI, if consider_difficulty is true, AI will try to follow human pla...</div><div class="ttdef"><b>Definition</b> battle_ai.cpp:75</div></div>
+<div class="ttc" id="aclassBattleAI_html_a325767a36174e32dc26fe566ec3f206d"><div class="ttname"><a href="classBattleAI.html#a325767a36174e32dc26fe566ec3f206d">BattleAI::isWaiting</a></div><div class="ttdeci">virtual bool isWaiting() const OVERRIDE</div><div class="ttdoc">If true, AI will stop moving.</div><div class="ttdef"><b>Definition</b> battle_ai.cpp:184</div></div>
+<div class="ttc" id="aclassBattleAI_html_a3630bb0dc41c82418ece6c3519f3bd62"><div class="ttname"><a href="classBattleAI.html#a3630bb0dc41c82418ece6c3519f3bd62">BattleAI::m_world</a></div><div class="ttdeci">WorldWithRank * m_world</div><div class="ttdoc">Keep a pointer to world.</div><div class="ttdef"><b>Definition</b> battle_ai.hpp:36</div></div>
+<div class="ttc" id="aclassBattleAI_html_a5ce9e06ec26d5eb642bcaf477b52bb65"><div class="ttname"><a href="classBattleAI.html#a5ce9e06ec26d5eb642bcaf477b52bb65">BattleAI::getKartDistance</a></div><div class="ttdeci">virtual float getKartDistance(const AbstractKart *kart) const OVERRIDE</div><div class="ttdoc">Return the distance based on graph distance matrix to any kart.</div><div class="ttdef"><b>Definition</b> battle_ai.cpp:190</div></div>
+<div class="ttc" id="aclassBattleAI_html_a60ed0ac0a1dc2b7fe90a2bb78a4c9ab0"><div class="ttname"><a href="classBattleAI.html#a60ed0ac0a1dc2b7fe90a2bb78a4c9ab0">BattleAI::findTarget</a></div><div class="ttdeci">virtual void findTarget() OVERRIDE</div><div class="ttdoc">Find a suitable target to follow, it will find the closest kart first, it&#39;s used as fallback if no it...</div><div class="ttdef"><b>Definition</b> battle_ai.cpp:139</div></div>
+<div class="ttc" id="aclassBattleAI_html_ab783dcdf3e5ece2e0e97601abe53f0cb"><div class="ttname"><a href="classBattleAI.html#ab783dcdf3e5ece2e0e97601abe53f0cb">BattleAI::getCurrentNode</a></div><div class="ttdeci">virtual int getCurrentNode() const OVERRIDE</div><div class="ttdoc">Return the current ArenaNode the AI located on.</div><div class="ttdef"><b>Definition</b> battle_ai.cpp:178</div></div>
+<div class="ttc" id="aclassBattleAI_html_aff4d4e0645c24fc6ed1ba5e6e607d700"><div class="ttname"><a href="classBattleAI.html#aff4d4e0645c24fc6ed1ba5e6e607d700">BattleAI::isKartOnRoad</a></div><div class="ttdeci">virtual bool isKartOnRoad() const OVERRIDE</div><div class="ttdoc">If true, AI stays on the ArenaNode correctly, otherwise RescueAnimation will be done after sometime.</div><div class="ttdef"><b>Definition</b> battle_ai.cpp:197</div></div>
+<div class="ttc" id="aclassThreeStrikesBattle_html"><div class="ttname"><a href="classThreeStrikesBattle.html">ThreeStrikesBattle</a></div><div class="ttdoc">An implementation of WorldWithRank, to provide the 3 strikes battle game mode</div><div class="ttdef"><b>Definition</b> three_strikes_battle.hpp:37</div></div>
+<div class="ttc" id="aclassWorldWithRank_html"><div class="ttname"><a href="classWorldWithRank.html">WorldWithRank</a></div><div class="ttdoc">A WorldWithRank is a world where the karts are ranked.</div><div class="ttdef"><b>Definition</b> world_with_rank.hpp:39</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

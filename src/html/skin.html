@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: Overview of GUI skin</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">Overview of GUI skin </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>The <a class="el" href="classGUIEngine_1_1Skin.html" title="Object used to render the GUI widgets see Overview of GUI skin for more information about skinning in...">GUIEngine::Skin</a> is the one handling skinning.</p>
+<p>It loads images and their sizing from a XML file. Since the irrLicht way of handling skin is quite "boxy" and results in games looking like Window 95, this class overrides it very much; in pretty much all callbacks, rather drawing plainly what irrLicht asks it to draw, it first checks which widget we're asked to render and redirects the call to a more specific method.</p>
+<p>Furthermore, since irrLicht widgets were quite basic, a few widgets were created by combining several irrLicht widgets (e.g. 2 buttons and a label in a box make a spinner). Because of this, some jumping through hoops is performed (we get a callback for each of these sub-widgets, but want to draw the whole thing as a single block)</p>
+<p>There are two types of images : some will be simply stretched as a whole, others will have non-stretchable borders (you cannot choose which one you must use, it's hardcoded for each element type; though, as you will see below, for all "advanced stretching" images you can easily fake "simple
+stretch")</p>
+<h1 class="doxsection"><a class="anchor" id="Describing"></a>
+a skin in a XML file</h1>
+<p>All elements will have at least 2 properties : </p><ul>
+<li><code>type="X"</code> : sets what you're skinning with this entry </li>
+<li><code>image="skinDirectory/imageName.png"</code> : sets which image is used for this element</li>
+</ul>
+<p>For more information, I highly recommend simply looking at existing skins, they will show the format of the XML file describing a skin quite well.</p>
+<h1 class="doxsection"><a class="anchor" id="states"></a>
+Widget States</h1>
+<p>Most elements also support states : </p><ul>
+<li><code>state="neutral"</code> </li>
+<li><code>state="focused"</code> </li>
+<li><code>state="down"</code> </li>
+</ul>
+<p>You can thus give different looks for different states. Not all widgets support all states, see entries and comments below to know what's supported. Note that checkboxes are an exception and have the following styles : </p><ul>
+<li>\lc "neutral+unchecked" </li>
+<li>\lc "neutral+checked" </li>
+<li>\lc "focused+unchecked" </li>
+<li>\lc "focused+checked"</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="stretch"></a>
+Advanced stretching</h1>
+<p>"Advanced stretching" images are split this way :</p>
+<div class="fragment"><div class="line">+----+--------------------+----+</div>
+<div class="line">|    |                    |    |</div>
+<div class="line">+----+--------------------+----+</div>
+<div class="line">|    |                    |    |</div>
+<div class="line">|    |                    |    |</div>
+<div class="line">|    |                    |    |</div>
+<div class="line">+----+--------------------+----+</div>
+<div class="line">|    |                    |    |</div>
+<div class="line">+----+--------------------+----+</div>
+</div><!-- fragment --><p>The center border will be stretched in all directions. The 4 corners will not stretch at all. Horizontal borders will stretch horizontally, vertical borders will stretch vertically. Use properties left_border="X" right_border="X" top_border="X" bottom_border="X" to specify the size of each border in pixels (setting all borders to '0' makes the whole image scaled).</p>
+<p>In some cases, you may not want vertical stretching to occur (like if the left and right sides of the image must not be stretched vertically, e.g. for the spinner). In this case, pass parameter preserve_h_aspect_ratios="true" to make the left and right areas stretch by keeping their aspect ratio.</p>
+<p>Some components may fill the full inner area with stuff; others will only take a smaller area at the center. To adjust for this, there are properties "hborder_out_portion" and "vborder_out_portion" that take a float from 0 to 1, representing the percentage of each border that goes out of the widget's area (this might include stuff like shadows, etc.). The 'h' one is for horizontal borders, the 'v' one is for vertical borders.</p>
+<p>Finnally : the image is split, as shown above, into 9 areas. In some cases, you may not want all areas to be rendered. Then you can pass parameter areas="body+left+right+top+bottom" and explicitely specify which parts you want to see. The 4 corner areas are only visible when the border that intersect at this corner are enabled. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

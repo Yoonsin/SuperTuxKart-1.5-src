@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: network/network.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>network</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">network.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="network_8hpp.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2013-2015 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef HEADER_NETWORK_HPP</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define HEADER_NETWORK_HPP</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;utils/synchronised.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">utils/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// enet.h includes win32.h, which without lean_and_mean includes</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// winspool.h, which defines MAX_PRIORITY as a macro, which then</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">// results in request_manager.hpp not being compilable.</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#define WIN32_LEAN_AND_MEAN</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;enet/enet.h&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">class </span><a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">class </span><a class="code hl_class" href="classNetworkString.html">NetworkString</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">class </span><a class="code hl_class" href="classSocketAddress.html">SocketAddress</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span></div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="};">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classNetwork.html">   45</a></span><span class="keyword">class </span><a class="code hl_function" href="classNetwork.html#a421a82e6ff5dc596d7c177d1ff53e8d9">Network</a></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classNetwork.html#ac2335b9daed7b7b8f51468569c33eca4">   49</a></span>    ENetHost*  <a class="code hl_variable" href="classNetwork.html#ac2335b9daed7b7b8f51468569c33eca4">m_host</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    uint16_t m_port;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">bool</span> m_ipv6_socket;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classNetwork.html#a7eb36962d32de2f05f72dc61d32262e6">   55</a></span>    <span class="keyword">static</span> <a class="code hl_class" href="classSynchronised.html">Synchronised&lt;FILE*&gt;</a> <a class="code hl_variable" href="classNetwork.html#a7eb36962d32de2f05f72dc61d32262e6">m_log_file</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> m_connection_debug;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>              <a class="code hl_function" href="classNetwork.html#a421a82e6ff5dc596d7c177d1ff53e8d9">Network</a>(<span class="keywordtype">int</span> peer_count, <span class="keywordtype">int</span> channel_limit,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                      uint32_t max_incoming_bandwidth,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                      uint32_t max_outgoing_bandwidth,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                      ENetAddress* address,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                      <span class="keywordtype">bool</span> change_port_if_bound = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">virtual</span>  <a class="code hl_function" href="classNetwork.html#a7a4e19cdb4bf0c7ecf82baa643831492">~Network</a>();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> openLog();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classNetwork.html#a842e91e3809a4f786bf2b9d6b7327438">logPacket</a>(<span class="keyword">const</span> <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> &amp;ns, <span class="keywordtype">bool</span> incoming);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> closeLog();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    ENetPeer *connectTo(<span class="keyword">const</span> ENetAddress &amp;address);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span>     <a class="code hl_function" href="classNetwork.html#ae102ce224cfa2bebf06113e2f9377776">sendRawPacket</a>(<span class="keyword">const</span> <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> &amp;buffer,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                           <span class="keyword">const</span> <a class="code hl_class" href="classSocketAddress.html">SocketAddress</a>&amp; dst);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classNetwork.html#a8c7f47c56f2ab6ab31b52a8b1522a266">receiveRawPacket</a>(<span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> buf_len,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                         <a class="code hl_class" href="classSocketAddress.html">SocketAddress</a>* sender, <span class="keywordtype">int</span> max_tries = -1);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">void</span>     <a class="code hl_function" href="classNetwork.html#a16719990bedc19de4466d302b2c4281b">broadcastPacket</a>(<a class="code hl_class" href="classNetworkString.html">NetworkString</a> *data,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                             <span class="keywordtype">bool</span> reliable = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    uint16_t getPort()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_port; }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classNetwork.html#a73722a4acc547e3b184e0add9be6d60d">   80</a></span>    ENetHost* <a class="code hl_function" href="classNetwork.html#a73722a4acc547e3b184e0add9be6d60d">getENetHost</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetwork.html#ac2335b9daed7b7b8f51468569c33eca4">m_host</a>; }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">bool</span> isIPv6Socket() { <span class="keywordflow">return</span> m_ipv6_socket; }</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>};   <span class="comment">// class Network</span></div>
+</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">#endif </span><span class="comment">// HEADER_ENET_SOCKET_HPP</span></div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassNetworkString_html"><div class="ttname"><a href="classNetworkString.html">NetworkString</a></div><div class="ttdoc">A new implementation of NetworkString, which has a fixed format: Byte 0: The type of the message,...</div><div class="ttdef"><b>Definition</b> network_string.hpp:422</div></div>
+<div class="ttc" id="aclassNetwork_html_a16719990bedc19de4466d302b2c4281b"><div class="ttname"><a href="classNetwork.html#a16719990bedc19de4466d302b2c4281b">Network::broadcastPacket</a></div><div class="ttdeci">void broadcastPacket(NetworkString *data, bool reliable=true)</div><div class="ttdoc">Broadcasts a packet to all peers.</div><div class="ttdef"><b>Definition</b> network.cpp:214</div></div>
+<div class="ttc" id="aclassNetwork_html_a421a82e6ff5dc596d7c177d1ff53e8d9"><div class="ttname"><a href="classNetwork.html#a421a82e6ff5dc596d7c177d1ff53e8d9">Network::Network</a></div><div class="ttdeci">Network(int peer_count, int channel_limit, uint32_t max_incoming_bandwidth, uint32_t max_outgoing_bandwidth, ENetAddress *address, bool change_port_if_bound=false)</div><div class="ttdoc">Constructor that just initialises this object (esp.</div><div class="ttdef"><b>Definition</b> network.cpp:61</div></div>
+<div class="ttc" id="aclassNetwork_html_a73722a4acc547e3b184e0add9be6d60d"><div class="ttname"><a href="classNetwork.html#a73722a4acc547e3b184e0add9be6d60d">Network::getENetHost</a></div><div class="ttdeci">ENetHost * getENetHost()</div><div class="ttdoc">Returns a pointer to the ENet host object.</div><div class="ttdef"><b>Definition</b> network.hpp:80</div></div>
+<div class="ttc" id="aclassNetwork_html_a7a4e19cdb4bf0c7ecf82baa643831492"><div class="ttname"><a href="classNetwork.html#a7a4e19cdb4bf0c7ecf82baa643831492">Network::~Network</a></div><div class="ttdeci">virtual ~Network()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition</b> network.cpp:112</div></div>
+<div class="ttc" id="aclassNetwork_html_a7eb36962d32de2f05f72dc61d32262e6"><div class="ttname"><a href="classNetwork.html#a7eb36962d32de2f05f72dc61d32262e6">Network::m_log_file</a></div><div class="ttdeci">static Synchronised&lt; FILE * &gt; m_log_file</div><div class="ttdoc">Where to log packets.</div><div class="ttdef"><b>Definition</b> network.hpp:55</div></div>
+<div class="ttc" id="aclassNetwork_html_a842e91e3809a4f786bf2b9d6b7327438"><div class="ttname"><a href="classNetwork.html#a842e91e3809a4f786bf2b9d6b7327438">Network::logPacket</a></div><div class="ttdeci">static void logPacket(const BareNetworkString &amp;ns, bool incoming)</div><div class="ttdoc">Log packets into a file</div><div class="ttdef"><b>Definition</b> network.cpp:243</div></div>
+<div class="ttc" id="aclassNetwork_html_a8c7f47c56f2ab6ab31b52a8b1522a266"><div class="ttname"><a href="classNetwork.html#a8c7f47c56f2ab6ab31b52a8b1522a266">Network::receiveRawPacket</a></div><div class="ttdeci">int receiveRawPacket(char *buffer, int buf_len, SocketAddress *sender, int max_tries=-1)</div><div class="ttdoc">Receives a packet directly from the network interface and filter its address.</div><div class="ttdef"><b>Definition</b> network.cpp:163</div></div>
+<div class="ttc" id="aclassNetwork_html_ac2335b9daed7b7b8f51468569c33eca4"><div class="ttname"><a href="classNetwork.html#ac2335b9daed7b7b8f51468569c33eca4">Network::m_host</a></div><div class="ttdeci">ENetHost * m_host</div><div class="ttdoc">ENet host interfacing sockets.</div><div class="ttdef"><b>Definition</b> network.hpp:49</div></div>
+<div class="ttc" id="aclassNetwork_html_ae102ce224cfa2bebf06113e2f9377776"><div class="ttname"><a href="classNetwork.html#ae102ce224cfa2bebf06113e2f9377776">Network::sendRawPacket</a></div><div class="ttdeci">void sendRawPacket(const BareNetworkString &amp;buffer, const SocketAddress &amp;dst)</div><div class="ttdoc">Sends a packet whithout ENet adding its headers.</div><div class="ttdef"><b>Definition</b> network.cpp:132</div></div>
+<div class="ttc" id="aclassSocketAddress_html"><div class="ttname"><a href="classSocketAddress.html">SocketAddress</a></div><div class="ttdoc">Describes a IPv4 or IPv6 address in sockaddr_in(6) format, suitable in using with sendto.</div><div class="ttdef"><b>Definition</b> socket_address.hpp:47</div></div>
+<div class="ttc" id="aclassSynchronised_html"><div class="ttname"><a href="classSynchronised.html">Synchronised</a></div><div class="ttdoc">A variable that is automatically synchronised using pthreads mutex.</div><div class="ttdef"><b>Definition</b> synchronised.hpp:28</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Declares the general types that are used by the network.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

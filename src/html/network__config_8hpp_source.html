@@ -1,0 +1,448 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: network/network_config.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>network</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">network_config.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="network__config_8hpp.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef HEADER_NETWORK_CONFIG</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define HEADER_NETWORK_CONFIG</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;race/race_manager.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;utils/stk_process.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;irrString.h&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;tuple&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">namespace </span>Online</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">class </span><a class="code hl_class" href="classOnline_1_1XMLRequest.html">XMLRequest</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceGUIEngine.html">GUIEngine</a></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>{</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1Screen.html">Screen</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">class </span><a class="code hl_class" href="classInputDevice.html">InputDevice</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">class </span><a class="code hl_class" href="classPlayerProfile.html">PlayerProfile</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="};">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classNetworkConfig.html">   52</a></span><span class="keyword">class </span><a class="code hl_function" href="classNetworkConfig.html#ad98d2afaf81fa11c2121ddab73644abe">NetworkConfig</a> : <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>{</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">enum</span> IPType : <span class="keywordtype">int</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        IP_NONE, IP_V4, IP_V6, IP_V6_NAT64, IP_DUAL_STACK</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    };</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a9b0c03bc64b429c0f521c30a16e08573">   61</a></span>    <span class="keyword">static</span> <a class="code hl_function" href="classNetworkConfig.html#ad98d2afaf81fa11c2121ddab73644abe">NetworkConfig</a> *<a class="code hl_variable" href="classNetworkConfig.html#a9b0c03bc64b429c0f521c30a16e08573">m_network_config</a>[PT_COUNT];</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> m_system_ipv4;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> m_system_ipv6;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">enum</span> NetworkType : <span class="keywordtype">int</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        NETWORK_NONE, NETWORK_WAN, NETWORK_LAN</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    };</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    std::atomic&lt;IPType&gt; m_ip_type;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#aac22867bb46e3c5774181c84ceea64b1">   75</a></span>    std::atomic&lt;NetworkType&gt; <a class="code hl_variable" href="classNetworkConfig.html#aac22867bb46e3c5774181c84ceea64b1">m_network_type</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a48b8a3553ccf4141e7b56d22123bbf08">   80</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classNetworkConfig.html#a48b8a3553ccf4141e7b56d22123bbf08">m_is_public_server</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#acfee95061f7b88ee6be22510c988a28d">   83</a></span>    std::atomic_bool <a class="code hl_variable" href="classNetworkConfig.html#acfee95061f7b88ee6be22510c988a28d">m_is_server</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a58a2d2b2a95c06caccfb9101f5f03937">   87</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classNetworkConfig.html#a58a2d2b2a95c06caccfb9101f5f03937">m_auto_connect</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">bool</span> m_done_adding_network_players;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a38c6dbfc46f65ab96f0171c0a580fbee">   93</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classNetworkConfig.html#a38c6dbfc46f65ab96f0171c0a580fbee">m_network_ai_instance</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#afaf4a982a6c1a1aaabd78eb5ac490132">   96</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classNetworkConfig.html#afaf4a982a6c1a1aaabd78eb5ac490132">m_tux_hitbox_addon</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#adbe99d73c5dcb37d08d341d6d5e8e3a6">  101</a></span>    <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="classNetworkConfig.html#adbe99d73c5dcb37d08d341d6d5e8e3a6">m_num_fixed_ai</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a6fefbd047ccbb395c4717dc9be773caf">  104</a></span>    uint16_t <a class="code hl_variable" href="classNetworkConfig.html#a6fefbd047ccbb395c4717dc9be773caf">m_client_port</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a278a83adddb516170e8be8fddf1cb586">  107</a></span>    uint32_t <a class="code hl_variable" href="classNetworkConfig.html#a278a83adddb516170e8be8fddf1cb586">m_cur_user_id</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    std::string m_cur_user_token;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#ae60ffbe21b56ffc92c33376041b1b920">  111</a></span>    std::string <a class="code hl_variable" href="classNetworkConfig.html#ae60ffbe21b56ffc92c33376041b1b920">m_server_id_file</a>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    std::vector&lt;std::tuple&lt;InputDevice*, PlayerProfile*, HandicapLevel&gt; &gt; m_network_players;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <a class="code hl_function" href="classNetworkConfig.html#ad98d2afaf81fa11c2121ddab73644abe">NetworkConfig</a>();</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    uint32_t m_joined_server_version;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a6b8537f2c64debbe5814230eebe1d744">  120</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classNetworkConfig.html#a6b8537f2c64debbe5814230eebe1d744">m_state_frequency</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#aa4b1221b7af7e62d0de8f023a6daa002">  124</a></span>    std::set&lt;std::string&gt; <a class="code hl_variable" href="classNetworkConfig.html#aa4b1221b7af7e62d0de8f023a6daa002">m_server_capabilities</a>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a51b18bbd8cb604655a384b6dd93ffcf4">  129</a></span>    std::string <a class="code hl_variable" href="classNetworkConfig.html#a51b18bbd8cb604655a384b6dd93ffcf4">m_nat64_prefix</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    std::array&lt;uint32_t, 8&gt; m_nat64_prefix_data;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> fillStunList(std::vector&lt;std::pair&lt;std::string, int&gt; &gt;* l,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                             <span class="keyword">const</span> std::string&amp; dns);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkConfig.html#aff122ebea7c7fcff2fddf61fd2286559">initSystemIP</a>();</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00139" data-start="{" data-end="}">
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a36577ccc532227941b8c01767ed60605">  139</a></span>    <span class="keyword">static</span> <a class="code hl_function" href="classNetworkConfig.html#ad98d2afaf81fa11c2121ddab73644abe">NetworkConfig</a> *<a class="code hl_function" href="classNetworkConfig.html#a36577ccc532227941b8c01767ed60605">get</a>()</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    {</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        ProcessType type = STKProcess::getType();</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classNetworkConfig.html#a9b0c03bc64b429c0f521c30a16e08573">m_network_config</a>[type])</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>            <a class="code hl_variable" href="classNetworkConfig.html#a9b0c03bc64b429c0f521c30a16e08573">m_network_config</a>[type] = <span class="keyword">new</span> <a class="code hl_function" href="classNetworkConfig.html#ad98d2afaf81fa11c2121ddab73644abe">NetworkConfig</a>();</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#a9b0c03bc64b429c0f521c30a16e08573">m_network_config</a>[type];</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    }   <span class="comment">// get</span></div>
+</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keyword">static</span> <a class="code hl_class" href="classNetworkConfig.html">NetworkConfig</a>* getByType(ProcessType type)</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#a9b0c03bc64b429c0f521c30a16e08573">m_network_config</a>[type];</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    }   <span class="comment">// get</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> clearDetectIPThread(<span class="keywordtype">bool</span> quit_stk);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkConfig.html#aba25a2d5964767a9c058ab2719123f38">queueIPDetection</a>();</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> destroy()</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        ProcessType type = STKProcess::getType();</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <span class="keyword">delete</span> <a class="code hl_variable" href="classNetworkConfig.html#a9b0c03bc64b429c0f521c30a16e08573">m_network_config</a>[type];   <span class="comment">// It&#39;s ok to delete NULL</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <a class="code hl_variable" href="classNetworkConfig.html#a9b0c03bc64b429c0f521c30a16e08573">m_network_config</a>[type] = NULL;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keywordflow">if</span> (type == PT_MAIN)</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>            clearDetectIPThread(<span class="keyword">true</span><span class="comment">/*quit_stk*/</span>);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    }   <span class="comment">// destroy</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> clear()</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    {</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        memset(<a class="code hl_variable" href="classNetworkConfig.html#a9b0c03bc64b429c0f521c30a16e08573">m_network_config</a>, 0, <span class="keyword">sizeof</span>(<a class="code hl_variable" href="classNetworkConfig.html#a9b0c03bc64b429c0f521c30a16e08573">m_network_config</a>));</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    }   <span class="comment">// clear</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00171" data-start="{" data-end="}">
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#af6baa440cbf550c2dc9029400785bbd6">  171</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkConfig.html#af6baa440cbf550c2dc9029400785bbd6">setIsServer</a>(<span class="keywordtype">bool</span> b)</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    {</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <a class="code hl_variable" href="classNetworkConfig.html#acfee95061f7b88ee6be22510c988a28d">m_is_server</a> = b;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    }   <span class="comment">// setIsServer</span></div>
+</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#aeae91642d43dced6da993754e1c38c01">  177</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkConfig.html#aeae91642d43dced6da993754e1c38c01">setClientPort</a>(uint16_t port) { <a class="code hl_variable" href="classNetworkConfig.html#a6fefbd047ccbb395c4717dc9be773caf">m_client_port</a> = port; }</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#aec1ab3caf08b490ba95a51081a8b438f">  180</a></span>    uint16_t <a class="code hl_function" href="classNetworkConfig.html#aec1ab3caf08b490ba95a51081a8b438f">getClientPort</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#a6fefbd047ccbb395c4717dc9be773caf">m_client_port</a>; }</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a79c27c7c611b059249281d5cadcf3923">  183</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkConfig.html#a79c27c7c611b059249281d5cadcf3923">setIsPublicServer</a>() { <a class="code hl_variable" href="classNetworkConfig.html#a48b8a3553ccf4141e7b56d22123bbf08">m_is_public_server</a> = <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a63465468973c888a76928e8b79c4d8e6">  186</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNetworkConfig.html#a63465468973c888a76928e8b79c4d8e6">isPublicServer</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#a48b8a3553ccf4141e7b56d22123bbf08">m_is_public_server</a>; }</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a988e31812d60199c345e5eb8a163320d">  190</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNetworkConfig.html#a988e31812d60199c345e5eb8a163320d">isNetworking</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#aac22867bb46e3c5774181c84ceea64b1">m_network_type</a>!=NETWORK_NONE; }</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#aed1fc3bb523c9baf9d784c79b9d4e840">  193</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNetworkConfig.html#aed1fc3bb523c9baf9d784c79b9d4e840">isLAN</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#aac22867bb46e3c5774181c84ceea64b1">m_network_type</a> == NETWORK_LAN; }</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#aed3a5ff745d0de841a1a6314469cd1a0">  196</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNetworkConfig.html#aed3a5ff745d0de841a1a6314469cd1a0">isWAN</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#aac22867bb46e3c5774181c84ceea64b1">m_network_type</a> == NETWORK_WAN; }</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a48e1346c7c3e0cce670ff0efe2d7be94">  199</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkConfig.html#a48e1346c7c3e0cce670ff0efe2d7be94">setIsLAN</a>() { <a class="code hl_variable" href="classNetworkConfig.html#aac22867bb46e3c5774181c84ceea64b1">m_network_type</a> = NETWORK_LAN; }</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#aa218d2b1b1bdf1943ce22ffc8fad9d32">  202</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkConfig.html#aa218d2b1b1bdf1943ce22ffc8fad9d32">setIsWAN</a>() { <a class="code hl_variable" href="classNetworkConfig.html#aac22867bb46e3c5774181c84ceea64b1">m_network_type</a> = NETWORK_WAN; }</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkConfig.html#a701854737a6d0cda19f3ddf195f1e6b0">unsetNetworking</a>();</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    std::vector&lt;std::tuple&lt;InputDevice*, PlayerProfile*, HandicapLevel&gt; &gt;&amp;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>                        getNetworkPlayers()       { <span class="keywordflow">return</span> m_network_players; }</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordtype">bool</span> isAddingNetworkPlayers()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="keyword">                                     </span>{ <span class="keywordflow">return</span> !m_done_adding_network_players; }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordtype">void</span> doneAddingNetworkPlayers()   { m_done_adding_network_players = <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keywordtype">bool</span> addNetworkPlayer(InputDevice* device, PlayerProfile* profile,</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>                          <a class="code hl_enumeration" href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a> h)</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; p : m_network_players)</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        {</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>            <span class="keywordflow">if</span> (std::get&lt;0&gt;(p) == device &amp;&amp; !<a class="code hl_variable" href="classNetworkConfig.html#a38c6dbfc46f65ab96f0171c0a580fbee">m_network_ai_instance</a>)</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>            <span class="keywordflow">if</span> (std::get&lt;1&gt;(p) == profile)</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        }</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        m_network_players.emplace_back(device, profile, h);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    }</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordtype">bool</span> playerExists(PlayerProfile* profile)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; p : m_network_players)</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        {</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>            <span class="keywordflow">if</span> (std::get&lt;1&gt;(p) == profile)</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        }</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    }</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordtype">void</span> cleanNetworkPlayers()</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    {</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        m_network_players.clear();</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        m_done_adding_network_players = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    }</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a6e63826d3d529a72fde499d739cf18a8">  245</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNetworkConfig.html#a6e63826d3d529a72fde499d739cf18a8">isServer</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#acfee95061f7b88ee6be22510c988a28d">m_is_server</a>;  }</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#a22d9178d2a8768f8ba69f736443c7b74">  248</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNetworkConfig.html#a22d9178d2a8768f8ba69f736443c7b74">isClient</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> !<a class="code hl_variable" href="classNetworkConfig.html#acfee95061f7b88ee6be22510c988a28d">m_is_server</a>; }</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#ae606e0aa80bfe4f0d378ff3db030ca70">  251</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkConfig.html#ae606e0aa80bfe4f0d378ff3db030ca70">setAutoConnect</a>(<span class="keywordtype">bool</span> b) { <a class="code hl_variable" href="classNetworkConfig.html#a58a2d2b2a95c06caccfb9101f5f03937">m_auto_connect</a> = b; }</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno"><a class="line" href="classNetworkConfig.html#aade2b373d7d26e7f697e4194af2700e9">  255</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNetworkConfig.html#aade2b373d7d26e7f697e4194af2700e9">isAutoConnect</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#a58a2d2b2a95c06caccfb9101f5f03937">m_auto_connect</a>; }</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordtype">void</span> setNetworkAIInstance(<span class="keywordtype">bool</span> b) { <a class="code hl_variable" href="classNetworkConfig.html#a38c6dbfc46f65ab96f0171c0a580fbee">m_network_ai_instance</a> = b; }</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keywordtype">bool</span> isNetworkAIInstance()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#a38c6dbfc46f65ab96f0171c0a580fbee">m_network_ai_instance</a>; }</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordtype">void</span> setCurrentUserId(uint32_t <span class="keywordtype">id</span>) { <a class="code hl_variable" href="classNetworkConfig.html#a278a83adddb516170e8be8fddf1cb586">m_cur_user_id</a> = id ; }</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keywordtype">void</span> setCurrentUserToken(<span class="keyword">const</span> std::string&amp; t) { m_cur_user_token = t; }</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    uint32_t getCurrentUserId()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#a278a83adddb516170e8be8fddf1cb586">m_cur_user_id</a>; }</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keyword">const</span> std::string&amp; getCurrentUserToken()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_cur_user_token; }</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="keywordtype">void</span> setUserDetails(std::shared_ptr&lt;Online::XMLRequest&gt; r,</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>                        <span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <span class="keywordtype">void</span> setServerDetails(std::shared_ptr&lt;Online::XMLRequest&gt; r,</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>                          <span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordtype">void</span> setServerIdFile(<span class="keyword">const</span> std::string&amp; <span class="keywordtype">id</span>) { <a class="code hl_variable" href="classNetworkConfig.html#ae60ffbe21b56ffc92c33376041b1b920">m_server_id_file</a> = id; }</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keyword">const</span> std::string&amp; getServerIdFile()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#ae60ffbe21b56ffc92c33376041b1b920">m_server_id_file</a>; }</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    std::vector&lt;GUIEngine::Screen*&gt; getResetScreens(<span class="keywordtype">bool</span> lobby = <span class="keyword">false</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keywordtype">void</span> setJoinedServerVersion(uint32_t v)    { m_joined_server_version = v; }</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    uint32_t getJoinedServerVersion()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_joined_server_version; }</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkConfig.html#a140d4303fd05bf777498f171ea102f12">clearActivePlayersForClient</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <span class="keywordtype">void</span> setStateFrequency(<span class="keywordtype">int</span> frequency)    { <a class="code hl_variable" href="classNetworkConfig.html#a6b8537f2c64debbe5814230eebe1d744">m_state_frequency</a> = frequency; }</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="keywordtype">int</span> getStateFrequency()<span class="keyword"> const                 </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#a6b8537f2c64debbe5814230eebe1d744">m_state_frequency</a>; }</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classNetworkConfig.html#a6bcfec83b7006e40bf95a9d29e785459">roundValuesNow</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    <span class="keywordtype">void</span> setServerCapabilities(std::set&lt;std::string&gt;&amp; caps)</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>                                   { <a class="code hl_variable" href="classNetworkConfig.html#aa4b1221b7af7e62d0de8f023a6daa002">m_server_capabilities</a> = std::move(caps); }</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    <span class="keywordtype">void</span> clearServerCapabilities()           { <a class="code hl_variable" href="classNetworkConfig.html#aa4b1221b7af7e62d0de8f023a6daa002">m_server_capabilities</a>.clear(); }</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="keyword">const</span> std::set&lt;std::string&gt;&amp; getServerCapabilities()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="keyword">                                              </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#aa4b1221b7af7e62d0de8f023a6daa002">m_server_capabilities</a>; }</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkConfig.html#a84bfa0c09c353534704c9545d58c7091">getIPDetectionResult</a>(uint64_t timeout);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    IPType getIPType()<span class="keyword"> const                       </span>{ <span class="keywordflow">return</span> m_ip_type.load(); }</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <span class="keywordtype">void</span> setIPType(IPType ip_type)                { m_ip_type.store(ip_type); }</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    <span class="keyword">const</span> std::string&amp; getNAT64Prefix()<span class="keyword"> const        </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#a51b18bbd8cb604655a384b6dd93ffcf4">m_nat64_prefix</a>; }</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <span class="keyword">const</span> std::array&lt;uint32_t, 8&gt;&amp; getNAT64PrefixData()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="keyword">                                                </span>{ <span class="keywordflow">return</span> m_nat64_prefix_data; }</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classNetworkConfig.html#a120def9424591bb3392ba8a555854e5b">initClientPort</a>();</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="keywordtype">void</span> setNumFixedAI(<span class="keywordtype">unsigned</span> num)                  { <a class="code hl_variable" href="classNetworkConfig.html#adbe99d73c5dcb37d08d341d6d5e8e3a6">m_num_fixed_ai</a> = num; }</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    <span class="keywordtype">unsigned</span> getNumFixedAI()<span class="keyword"> const                   </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#adbe99d73c5dcb37d08d341d6d5e8e3a6">m_num_fixed_ai</a>; }</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="keyword">static</span> <span class="keyword">const</span> std::vector&lt;std::pair&lt;std::string, int&gt; &gt;&amp;</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>                                                        getStunList(<span class="keywordtype">bool</span> ipv4);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    <span class="keywordtype">void</span> setTuxHitboxAddon(<span class="keywordtype">bool</span> val)              { <a class="code hl_variable" href="classNetworkConfig.html#afaf4a982a6c1a1aaabd78eb5ac490132">m_tux_hitbox_addon</a> = val; }</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>    <span class="keywordtype">bool</span> useTuxHitboxAddon()<span class="keyword"> const               </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classNetworkConfig.html#afaf4a982a6c1a1aaabd78eb5ac490132">m_tux_hitbox_addon</a>; }</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>};   <span class="comment">// class NetworkConfig</span></div>
+</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="preprocessor">#endif </span><span class="comment">// HEADER_NETWORK_CONFIG</span></div>
+<div class="ttc" id="aclassGUIEngine_1_1Screen_html"><div class="ttname"><a href="classGUIEngine_1_1Screen.html">GUIEngine::Screen</a></div><div class="ttdoc">Represents a single GUI screen.</div><div class="ttdef"><b>Definition</b> screen.hpp:94</div></div>
+<div class="ttc" id="aclassInputDevice_html"><div class="ttname"><a href="classInputDevice.html">InputDevice</a></div><div class="ttdoc">base class for input devices</div><div class="ttdef"><b>Definition</b> input_device.hpp:48</div></div>
+<div class="ttc" id="aclassNetworkConfig_html"><div class="ttname"><a href="classNetworkConfig.html">NetworkConfig</a></div><div class="ttdoc">This class is the interface between STK and the online code, particularly STKHost.</div><div class="ttdef"><b>Definition</b> network_config.hpp:53</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a120def9424591bb3392ba8a555854e5b"><div class="ttname"><a href="classNetworkConfig.html#a120def9424591bb3392ba8a555854e5b">NetworkConfig::initClientPort</a></div><div class="ttdeci">void initClientPort()</div><div class="ttdoc">Separated from constructor because this needs to be run after user config is load.</div><div class="ttdef"><b>Definition</b> network_config.cpp:169</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a140d4303fd05bf777498f171ea102f12"><div class="ttname"><a href="classNetworkConfig.html#a140d4303fd05bf777498f171ea102f12">NetworkConfig::clearActivePlayersForClient</a></div><div class="ttdeci">void clearActivePlayersForClient() const</div><div class="ttdoc">Called before (re)starting network race, must be used before adding split screen players.</div><div class="ttdef"><b>Definition</b> network_config.cpp:262</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a22d9178d2a8768f8ba69f736443c7b74"><div class="ttname"><a href="classNetworkConfig.html#a22d9178d2a8768f8ba69f736443c7b74">NetworkConfig::isClient</a></div><div class="ttdeci">bool isClient() const</div><div class="ttdoc">Returns if this instance is a client.</div><div class="ttdef"><b>Definition</b> network_config.hpp:248</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a278a83adddb516170e8be8fddf1cb586"><div class="ttname"><a href="classNetworkConfig.html#a278a83adddb516170e8be8fddf1cb586">NetworkConfig::m_cur_user_id</a></div><div class="ttdeci">uint32_t m_cur_user_id</div><div class="ttdoc">Used by wan server.</div><div class="ttdef"><b>Definition</b> network_config.hpp:107</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a36577ccc532227941b8c01767ed60605"><div class="ttname"><a href="classNetworkConfig.html#a36577ccc532227941b8c01767ed60605">NetworkConfig::get</a></div><div class="ttdeci">static NetworkConfig * get()</div><div class="ttdoc">Singleton get, which creates this object if necessary.</div><div class="ttdef"><b>Definition</b> network_config.hpp:139</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a38c6dbfc46f65ab96f0171c0a580fbee"><div class="ttname"><a href="classNetworkConfig.html#a38c6dbfc46f65ab96f0171c0a580fbee">NetworkConfig::m_network_ai_instance</a></div><div class="ttdeci">bool m_network_ai_instance</div><div class="ttdoc">True if this STK instance is an AI instance which is used for server AI.</div><div class="ttdef"><b>Definition</b> network_config.hpp:93</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a48b8a3553ccf4141e7b56d22123bbf08"><div class="ttname"><a href="classNetworkConfig.html#a48b8a3553ccf4141e7b56d22123bbf08">NetworkConfig::m_is_public_server</a></div><div class="ttdeci">bool m_is_public_server</div><div class="ttdoc">If set it allows clients to connect directly to this server without using the stk server in between.</div><div class="ttdef"><b>Definition</b> network_config.hpp:80</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a48e1346c7c3e0cce670ff0efe2d7be94"><div class="ttname"><a href="classNetworkConfig.html#a48e1346c7c3e0cce670ff0efe2d7be94">NetworkConfig::setIsLAN</a></div><div class="ttdeci">void setIsLAN()</div><div class="ttdoc">Set that this is a LAN networked game.</div><div class="ttdef"><b>Definition</b> network_config.hpp:199</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a51b18bbd8cb604655a384b6dd93ffcf4"><div class="ttname"><a href="classNetworkConfig.html#a51b18bbd8cb604655a384b6dd93ffcf4">NetworkConfig::m_nat64_prefix</a></div><div class="ttdeci">std::string m_nat64_prefix</div><div class="ttdoc">For IPv6 only network we try to detect the NAT64 prefix so we can use it to connect to ipv4 only serv...</div><div class="ttdef"><b>Definition</b> network_config.hpp:129</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a58a2d2b2a95c06caccfb9101f5f03937"><div class="ttname"><a href="classNetworkConfig.html#a58a2d2b2a95c06caccfb9101f5f03937">NetworkConfig::m_auto_connect</a></div><div class="ttdeci">bool m_auto_connect</div><div class="ttdoc">True if a client should connect to the first server it finds and immediately start a race.</div><div class="ttdef"><b>Definition</b> network_config.hpp:87</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a63465468973c888a76928e8b79c4d8e6"><div class="ttname"><a href="classNetworkConfig.html#a63465468973c888a76928e8b79c4d8e6">NetworkConfig::isPublicServer</a></div><div class="ttdeci">bool isPublicServer() const</div><div class="ttdoc">Returns if connections directly to the server are to be accepted.</div><div class="ttdef"><b>Definition</b> network_config.hpp:186</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a6b8537f2c64debbe5814230eebe1d744"><div class="ttname"><a href="classNetworkConfig.html#a6b8537f2c64debbe5814230eebe1d744">NetworkConfig::m_state_frequency</a></div><div class="ttdeci">int m_state_frequency</div><div class="ttdoc">Set by client or server which is required to be the same.</div><div class="ttdef"><b>Definition</b> network_config.hpp:120</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a6bcfec83b7006e40bf95a9d29e785459"><div class="ttname"><a href="classNetworkConfig.html#a6bcfec83b7006e40bf95a9d29e785459">NetworkConfig::roundValuesNow</a></div><div class="ttdeci">bool roundValuesNow() const</div><div class="ttdoc">True when client needs to round the bodies phyiscal info for current ticks, server doesn&#39;t as it will...</div><div class="ttdef"><b>Definition</b> network_config.cpp:279</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a6e63826d3d529a72fde499d739cf18a8"><div class="ttname"><a href="classNetworkConfig.html#a6e63826d3d529a72fde499d739cf18a8">NetworkConfig::isServer</a></div><div class="ttdeci">bool isServer() const</div><div class="ttdoc">Returns if this instance is a server.</div><div class="ttdef"><b>Definition</b> network_config.hpp:245</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a6fefbd047ccbb395c4717dc9be773caf"><div class="ttname"><a href="classNetworkConfig.html#a6fefbd047ccbb395c4717dc9be773caf">NetworkConfig::m_client_port</a></div><div class="ttdeci">uint16_t m_client_port</div><div class="ttdoc">The LAN port on which a client is waiting for a server connection.</div><div class="ttdef"><b>Definition</b> network_config.hpp:104</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a701854737a6d0cda19f3ddf195f1e6b0"><div class="ttname"><a href="classNetworkConfig.html#a701854737a6d0cda19f3ddf195f1e6b0">NetworkConfig::unsetNetworking</a></div><div class="ttdeci">void unsetNetworking()</div><div class="ttdoc">Set that this is not a networked game.</div><div class="ttdef"><b>Definition</b> network_config.cpp:178</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a79c27c7c611b059249281d5cadcf3923"><div class="ttname"><a href="classNetworkConfig.html#a79c27c7c611b059249281d5cadcf3923">NetworkConfig::setIsPublicServer</a></div><div class="ttdeci">void setIsPublicServer()</div><div class="ttdoc">Sets that this server can be contacted directly.</div><div class="ttdef"><b>Definition</b> network_config.hpp:183</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a84bfa0c09c353534704c9545d58c7091"><div class="ttname"><a href="classNetworkConfig.html#a84bfa0c09c353534704c9545d58c7091">NetworkConfig::getIPDetectionResult</a></div><div class="ttdeci">void getIPDetectionResult(uint64_t timeout)</div><div class="ttdoc">Use stun servers to detect current ip type.</div><div class="ttdef"><b>Definition</b> network_config.cpp:379</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a988e31812d60199c345e5eb8a163320d"><div class="ttname"><a href="classNetworkConfig.html#a988e31812d60199c345e5eb8a163320d">NetworkConfig::isNetworking</a></div><div class="ttdeci">bool isNetworking() const</div><div class="ttdoc">Return if a network setting is happening.</div><div class="ttdef"><b>Definition</b> network_config.hpp:190</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_a9b0c03bc64b429c0f521c30a16e08573"><div class="ttname"><a href="classNetworkConfig.html#a9b0c03bc64b429c0f521c30a16e08573">NetworkConfig::m_network_config</a></div><div class="ttdeci">static NetworkConfig * m_network_config[PT_COUNT]</div><div class="ttdoc">The singleton instance.</div><div class="ttdef"><b>Definition</b> network_config.hpp:61</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_aa218d2b1b1bdf1943ce22ffc8fad9d32"><div class="ttname"><a href="classNetworkConfig.html#aa218d2b1b1bdf1943ce22ffc8fad9d32">NetworkConfig::setIsWAN</a></div><div class="ttdeci">void setIsWAN()</div><div class="ttdoc">Set that this is a WAN networked game.</div><div class="ttdef"><b>Definition</b> network_config.hpp:202</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_aa4b1221b7af7e62d0de8f023a6daa002"><div class="ttname"><a href="classNetworkConfig.html#aa4b1221b7af7e62d0de8f023a6daa002">NetworkConfig::m_server_capabilities</a></div><div class="ttdeci">std::set&lt; std::string &gt; m_server_capabilities</div><div class="ttdoc">List of server capabilities set when joining it, to determine features available in same version.</div><div class="ttdef"><b>Definition</b> network_config.hpp:124</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_aac22867bb46e3c5774181c84ceea64b1"><div class="ttname"><a href="classNetworkConfig.html#aac22867bb46e3c5774181c84ceea64b1">NetworkConfig::m_network_type</a></div><div class="ttdeci">std::atomic&lt; NetworkType &gt; m_network_type</div><div class="ttdoc">Keeps the type of network connection: none (yet), LAN or WAN.</div><div class="ttdef"><b>Definition</b> network_config.hpp:75</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_aade2b373d7d26e7f697e4194af2700e9"><div class="ttname"><a href="classNetworkConfig.html#aade2b373d7d26e7f697e4194af2700e9">NetworkConfig::isAutoConnect</a></div><div class="ttdeci">bool isAutoConnect() const</div><div class="ttdoc">Returns if an immediate connection to the first server was requested.</div><div class="ttdef"><b>Definition</b> network_config.hpp:255</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_aba25a2d5964767a9c058ab2719123f38"><div class="ttname"><a href="classNetworkConfig.html#aba25a2d5964767a9c058ab2719123f38">NetworkConfig::queueIPDetection</a></div><div class="ttdeci">static void queueIPDetection()</div><div class="ttdoc">Use stun servers to detect current ip type.</div><div class="ttdef"><b>Definition</b> network_config.cpp:328</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_acfee95061f7b88ee6be22510c988a28d"><div class="ttname"><a href="classNetworkConfig.html#acfee95061f7b88ee6be22510c988a28d">NetworkConfig::m_is_server</a></div><div class="ttdeci">std::atomic_bool m_is_server</div><div class="ttdoc">True if this host is a server, false otherwise.</div><div class="ttdef"><b>Definition</b> network_config.hpp:83</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_ad98d2afaf81fa11c2121ddab73644abe"><div class="ttname"><a href="classNetworkConfig.html#ad98d2afaf81fa11c2121ddab73644abe">NetworkConfig::NetworkConfig</a></div><div class="ttdeci">NetworkConfig()</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> network_config.cpp:146</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_adbe99d73c5dcb37d08d341d6d5e8e3a6"><div class="ttname"><a href="classNetworkConfig.html#adbe99d73c5dcb37d08d341d6d5e8e3a6">NetworkConfig::m_num_fixed_ai</a></div><div class="ttdeci">unsigned m_num_fixed_ai</div><div class="ttdoc">No.</div><div class="ttdef"><b>Definition</b> network_config.hpp:101</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_ae606e0aa80bfe4f0d378ff3db030ca70"><div class="ttname"><a href="classNetworkConfig.html#ae606e0aa80bfe4f0d378ff3db030ca70">NetworkConfig::setAutoConnect</a></div><div class="ttdeci">void setAutoConnect(bool b)</div><div class="ttdoc">Sets if a client should immediately connect to the first server.</div><div class="ttdef"><b>Definition</b> network_config.hpp:251</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_ae60ffbe21b56ffc92c33376041b1b920"><div class="ttname"><a href="classNetworkConfig.html#ae60ffbe21b56ffc92c33376041b1b920">NetworkConfig::m_server_id_file</a></div><div class="ttdeci">std::string m_server_id_file</div><div class="ttdoc">Used by client server to determine if the child server is created.</div><div class="ttdef"><b>Definition</b> network_config.hpp:111</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_aeae91642d43dced6da993754e1c38c01"><div class="ttname"><a href="classNetworkConfig.html#aeae91642d43dced6da993754e1c38c01">NetworkConfig::setClientPort</a></div><div class="ttdeci">void setClientPort(uint16_t port)</div><div class="ttdoc">Sets the port on which a client listens for server connection.</div><div class="ttdef"><b>Definition</b> network_config.hpp:177</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_aec1ab3caf08b490ba95a51081a8b438f"><div class="ttname"><a href="classNetworkConfig.html#aec1ab3caf08b490ba95a51081a8b438f">NetworkConfig::getClientPort</a></div><div class="ttdeci">uint16_t getClientPort() const</div><div class="ttdoc">Returns the port on which a client listens for server connections.</div><div class="ttdef"><b>Definition</b> network_config.hpp:180</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_aed1fc3bb523c9baf9d784c79b9d4e840"><div class="ttname"><a href="classNetworkConfig.html#aed1fc3bb523c9baf9d784c79b9d4e840">NetworkConfig::isLAN</a></div><div class="ttdeci">bool isLAN() const</div><div class="ttdoc">Return true if it&#39;s a networked game with a LAN server.</div><div class="ttdef"><b>Definition</b> network_config.hpp:193</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_aed3a5ff745d0de841a1a6314469cd1a0"><div class="ttname"><a href="classNetworkConfig.html#aed3a5ff745d0de841a1a6314469cd1a0">NetworkConfig::isWAN</a></div><div class="ttdeci">bool isWAN() const</div><div class="ttdoc">Return true if it&#39;s a networked game but with a WAN server.</div><div class="ttdef"><b>Definition</b> network_config.hpp:196</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_af6baa440cbf550c2dc9029400785bbd6"><div class="ttname"><a href="classNetworkConfig.html#af6baa440cbf550c2dc9029400785bbd6">NetworkConfig::setIsServer</a></div><div class="ttdeci">void setIsServer(bool b)</div><div class="ttdoc">Sets if this instance is a server or client.</div><div class="ttdef"><b>Definition</b> network_config.hpp:171</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_afaf4a982a6c1a1aaabd78eb5ac490132"><div class="ttname"><a href="classNetworkConfig.html#afaf4a982a6c1a1aaabd78eb5ac490132">NetworkConfig::m_tux_hitbox_addon</a></div><div class="ttdeci">bool m_tux_hitbox_addon</div><div class="ttdoc">When live join is disabled addon kart will use their real hitbox</div><div class="ttdef"><b>Definition</b> network_config.hpp:96</div></div>
+<div class="ttc" id="aclassNetworkConfig_html_aff122ebea7c7fcff2fddf61fd2286559"><div class="ttname"><a href="classNetworkConfig.html#aff122ebea7c7fcff2fddf61fd2286559">NetworkConfig::initSystemIP</a></div><div class="ttdeci">static void initSystemIP()</div><div class="ttdoc">Initialize detection of system IPv4 or IPv6 support.</div><div class="ttdef"><b>Definition</b> network_config.cpp:95</div></div>
+<div class="ttc" id="aclassOnline_1_1XMLRequest_html"><div class="ttname"><a href="classOnline_1_1XMLRequest.html">Online::XMLRequest</a></div><div class="ttdoc">A http request expecting a xml return value.</div><div class="ttdef"><b>Definition</b> xml_request.hpp:36</div></div>
+<div class="ttc" id="aclassPlayerProfile_html"><div class="ttname"><a href="classPlayerProfile.html">PlayerProfile</a></div><div class="ttdoc">Class for managing player profiles (name, usage frequency, etc.).</div><div class="ttdef"><b>Definition</b> player_profile.hpp:55</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html"><div class="ttname"><a href="namespaceGUIEngine.html">GUIEngine</a></div><div class="ttdoc">Contains all GUI engine related classes and functions</div><div class="ttdef"><b>Definition</b> abstract_state_manager.hpp:33</div></div>
+<div class="ttc" id="aremote__kart__info_8hpp_html_a2fd442f27ee994082c435f49c9410f55"><div class="ttname"><a href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a></div><div class="ttdeci">HandicapLevel</div><div class="ttdoc">Handicap per player.</div><div class="ttdef"><b>Definition</b> remote_kart_info.hpp:43</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

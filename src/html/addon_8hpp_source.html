@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: addons/addon.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>addons</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">addon.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2010-2015 Lucas Baudin, Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_ADDON_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_ADDON_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;utils/time.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;irrString.h&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">class </span><a class="code hl_class" href="classXMLNode.html">XMLNode</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classAddon.html">   39</a></span><span class="keyword">class </span><a class="code hl_function" href="classAddon.html#a1f135d80e8224394bd7bf6cfaf475c1b">Addon</a></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classAddon.html#a71cfd003a9922cda3936d88b07e4618e">   43</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classAddon.html#a71cfd003a9922cda3936d88b07e4618e">AddonStatus</a> {AS_APPROVED = 0x0001,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                      AS_ALPHA    = 0x0002,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                      AS_BETA     = 0x0004,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                      AS_RC       = 0x0008,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                      AS_INVISIBLE= 0x0010,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                      <span class="comment">//AS_HQ       = 0x0020,   currently not supported</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                      AS_DFSG     = 0x0040,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                      AS_FEATURED = 0x0080,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                      AS_LATEST   = 0X0100,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                      AS_BAD_DIM  = 0x0200</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    };</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="};">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classAddon.html#afce4f3cc12b15a435ed684bdc4a471f4">   56</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classAddon.html#afce4f3cc12b15a435ed684bdc4a471f4">SortOrder</a> { SO_DEFAULT,   <span class="comment">// featured first, then alphabetically</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                     SO_NAME,      <span class="comment">// Sorted alphabetically by name</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                     SO_DATE       <span class="comment">// Sorted by date, newest first</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    };</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classAddon.html#aff76a1d30e1f7002d8197fc00091aa0d">isAddon</a>(<span class="keyword">const</span> std::string &amp;directory);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classAddon.html#a495bb559baf6ca30cf379abe77a1ed2d">   65</a></span>    <span class="keyword">static</span> std::string <a class="code hl_function" href="classAddon.html#a495bb559baf6ca30cf379abe77a1ed2d">createAddonId</a>(<span class="keyword">const</span> std::string &amp;<span class="keywordtype">id</span>)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">return</span> <span class="stringliteral">&quot;addon_&quot;</span>+id;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }   <span class="comment">// createAddonId</span></div>
+</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classAddon.html#aa2325661d248b984d3258707757b63dd">   73</a></span>    core::stringw <a class="code hl_variable" href="classAddon.html#aa2325661d248b984d3258707757b63dd">m_name</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classAddon.html#a6dda8a45d32a7a2e25e208b12fbb88d2">   77</a></span>    std::string <a class="code hl_variable" href="classAddon.html#a6dda8a45d32a7a2e25e208b12fbb88d2">m_id</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classAddon.html#a2b5a2ad3f886012c9e3b66e66a21c1ea">   79</a></span>    std::string <a class="code hl_variable" href="classAddon.html#a2b5a2ad3f886012c9e3b66e66a21c1ea">m_dir_name</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classAddon.html#ad90f0319a6039484accaca7b60269b8e">   82</a></span>    core::stringw <a class="code hl_variable" href="classAddon.html#ad90f0319a6039484accaca7b60269b8e">m_designer</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classAddon.html#a01a349ca35ee17a05aebdfef591d06bf">   84</a></span>    <span class="keywordtype">int</span>         <a class="code hl_variable" href="classAddon.html#a01a349ca35ee17a05aebdfef591d06bf">m_revision</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classAddon.html#ad5b17b072e35c349d55355e83a9d60cc">   86</a></span>    <span class="keywordtype">int</span>         <a class="code hl_variable" href="classAddon.html#ad5b17b072e35c349d55355e83a9d60cc">m_installed_revision</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classAddon.html#a1a8105f40be83ce52cadc57521c3d5b2">   88</a></span>    <span class="keywordtype">int</span>         <a class="code hl_variable" href="classAddon.html#a1a8105f40be83ce52cadc57521c3d5b2">m_icon_revision</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classAddon.html#af79a3c7d5bfbc15321bad0b086ecce6a">   90</a></span>    <span class="keywordtype">int</span>         <a class="code hl_variable" href="classAddon.html#af79a3c7d5bfbc15321bad0b086ecce6a">m_status</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classAddon.html#ac47768d3bd85513922d704346cefd122">   93</a></span>    <span class="keywordtype">bool</span>        <a class="code hl_variable" href="classAddon.html#ac47768d3bd85513922d704346cefd122">m_still_exists</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classAddon.html#ab7d8c91a2a4a98d581663bc18f96b9de">   95</a></span>    StkTime::TimeType <a class="code hl_variable" href="classAddon.html#ab7d8c91a2a4a98d581663bc18f96b9de">m_date</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classAddon.html#a4ee1558c233d5baa25771705b7b9e5a1">   97</a></span>    core::stringw <a class="code hl_variable" href="classAddon.html#a4ee1558c233d5baa25771705b7b9e5a1">m_description</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classAddon.html#a4dc78d65e26654e0b5e8682fd4085171">   99</a></span>    std::string <a class="code hl_variable" href="classAddon.html#a4dc78d65e26654e0b5e8682fd4085171">m_icon_url</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classAddon.html#afb6db385707a4ff4ada55300fe44830d">  101</a></span>    std::string <a class="code hl_variable" href="classAddon.html#afb6db385707a4ff4ada55300fe44830d">m_icon_basename</a>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classAddon.html#a0c297a7cc1e185c5e0af26bd64ac20c5">  103</a></span>    <span class="keywordtype">bool</span>        <a class="code hl_variable" href="classAddon.html#a0c297a7cc1e185c5e0af26bd64ac20c5">m_icon_ready</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classAddon.html#add2ac3d41ce1272b74cd4fb2adf97d04">  105</a></span>    std::string <a class="code hl_variable" href="classAddon.html#add2ac3d41ce1272b74cd4fb2adf97d04">m_zip_file</a>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classAddon.html#a56d49ccc5169072fda22748eb554e6c0">  107</a></span>    <span class="keywordtype">bool</span>        <a class="code hl_variable" href="classAddon.html#a56d49ccc5169072fda22748eb554e6c0">m_installed</a>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classAddon.html#a988655fc5b6c631c08138caa10582bf5">  109</a></span>    <span class="keywordtype">int</span>         <a class="code hl_variable" href="classAddon.html#a988655fc5b6c631c08138caa10582bf5">m_size</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classAddon.html#a8c74cc455c63e41c2ae0cf9323ad279f">  111</a></span>    <span class="keyword">mutable</span> <span class="keywordtype">float</span>       <a class="code hl_variable" href="classAddon.html#a8c74cc455c63e41c2ae0cf9323ad279f">m_rating</a>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classAddon.html#add379bd2dc57a547be27d233702f63c8">  113</a></span>    std::string <a class="code hl_variable" href="classAddon.html#add379bd2dc57a547be27d233702f63c8">m_min_include_ver</a>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classAddon.html#a85c07d76561e3d946da134647d73b2ea">  115</a></span>    std::string <a class="code hl_variable" href="classAddon.html#a85c07d76561e3d946da134647d73b2ea">m_max_include_ver</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classAddon.html#a0fa35a9dd1598b976d42afb669232b8f">  117</a></span>    std::string <a class="code hl_variable" href="classAddon.html#a0fa35a9dd1598b976d42afb669232b8f">m_type</a>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classAddon.html#ada4393e2f0e8f05bed6cc6001e5594dd">  120</a></span>    <span class="keyword">static</span> <a class="code hl_enumeration" href="classAddon.html#afce4f3cc12b15a435ed684bdc4a471f4">SortOrder</a> <a class="code hl_variable" href="classAddon.html#ada4393e2f0e8f05bed6cc6001e5594dd">m_sort_order</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>         <a class="code hl_function" href="classAddon.html#a1f135d80e8224394bd7bf6cfaf475c1b">Addon</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> &amp;xml);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAddon.html#a7ea3cbb54a2f4bdc9f17bd905b36f65b">deleteInvalidIconFile</a>();</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classAddon.html#a1614c0eb82af2c4b05a6a88e37ee108d">  130</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classAddon.html#a1614c0eb82af2c4b05a6a88e37ee108d">setSortOrder</a>(<a class="code hl_enumeration" href="classAddon.html#afce4f3cc12b15a435ed684bdc4a471f4">SortOrder</a> so) { <a class="code hl_variable" href="classAddon.html#ada4393e2f0e8f05bed6cc6001e5594dd">m_sort_order</a> = so; }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAddon.html#a304fb8db9d55532ac80be07a3d6539b0">writeXML</a>(std::ofstream *out_stram);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAddon.html#ad6634338c2f982f84d5f29800c665a65">copyInstallData</a>(<span class="keyword">const</span> <a class="code hl_class" href="classAddon.html">Addon</a> &amp;addon);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classAddon.html#a927dc0657b39c7c840778b3a9404891b">  137</a></span>    <span class="keyword">const</span> core::stringw&amp; <a class="code hl_function" href="classAddon.html#a927dc0657b39c7c840778b3a9404891b">getName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#aa2325661d248b984d3258707757b63dd">m_name</a>; }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="classAddon.html#a665c152491f1cae21d882be7b5661b9c">  140</a></span>    <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classAddon.html#a665c152491f1cae21d882be7b5661b9c">getMinIncludeVer</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#add379bd2dc57a547be27d233702f63c8">m_min_include_ver</a>; }</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classAddon.html#ae21fe37a21dbb2175acedb434b0360cb">  143</a></span>    <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classAddon.html#ae21fe37a21dbb2175acedb434b0360cb">getMaxIncludeVer</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a85c07d76561e3d946da134647d73b2ea">m_max_include_ver</a>; }</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classAddon.html#a6162c6cd8988bc86cc057df1b1cb72cf">  146</a></span>    <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_function" href="classAddon.html#a6162c6cd8988bc86cc057df1b1cb72cf">getRating</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a8c74cc455c63e41c2ae0cf9323ad279f">m_rating</a>; }</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="classAddon.html#ac48134abe2a2c8e5e242d2c471a5c89e">  149</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAddon.html#ac48134abe2a2c8e5e242d2c471a5c89e">setRating</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> rating)<span class="keyword"> const </span>{<a class="code hl_variable" href="classAddon.html#a8c74cc455c63e41c2ae0cf9323ad279f">m_rating</a> = rating; }</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="classAddon.html#a8e3ec74ea54d2e044d0710b714f84410">  152</a></span>    <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classAddon.html#a8e3ec74ea54d2e044d0710b714f84410">getType</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a0fa35a9dd1598b976d42afb669232b8f">m_type</a>; }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classAddon.html#a81ae323d707c49c3cd6dad8e0ba66b16">  155</a></span>    <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classAddon.html#a81ae323d707c49c3cd6dad8e0ba66b16">getZipFileName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#add2ac3d41ce1272b74cd4fb2adf97d04">m_zip_file</a>; }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="classAddon.html#a6c40c6ab210ef482435620942cb91e28">  158</a></span>    <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classAddon.html#a6c40c6ab210ef482435620942cb91e28">getIconURL</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a4dc78d65e26654e0b5e8682fd4085171">m_icon_url</a>; }</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classAddon.html#a933340b5feaf609c7ced8fc9434f84c9">  161</a></span>    <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classAddon.html#a933340b5feaf609c7ced8fc9434f84c9">getIconBasename</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#afb6db385707a4ff4ada55300fe44830d">m_icon_basename</a>; }</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="classAddon.html#a275b3a7dcbd4532b77f87e6942569e53">  164</a></span>    <span class="keyword">const</span> core::stringw&amp; <a class="code hl_function" href="classAddon.html#a275b3a7dcbd4532b77f87e6942569e53">getDescription</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a4ee1558c233d5baa25771705b7b9e5a1">m_description</a>; }</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="classAddon.html#a296bf9a373fadb4328adaa1f558a26c3">  168</a></span>    StkTime::TimeType <a class="code hl_function" href="classAddon.html#a296bf9a373fadb4328adaa1f558a26c3">getDate</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#ab7d8c91a2a4a98d581663bc18f96b9de">m_date</a>; }</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    std::string <a class="code hl_function" href="classAddon.html#abf818a23d2164f7bc1eecd857624002c">getDateAsString</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="classAddon.html#a99d3f3ada8fec1bdca3b5832bf720fd7">  174</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_function" href="classAddon.html#a99d3f3ada8fec1bdca3b5832bf720fd7">isInstalled</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a56d49ccc5169072fda22748eb554e6c0">m_installed</a>; }</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="classAddon.html#a803dab34197be5fa5229bdfbf29df873">  177</a></span>    <span class="keywordtype">int</span>   <a class="code hl_function" href="classAddon.html#a803dab34197be5fa5229bdfbf29df873">getInstalledRevision</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#ad5b17b072e35c349d55355e83a9d60cc">m_installed_revision</a>; }</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classAddon.html#ac313ae17bc8855e5bb7549a03432e02f">  182</a></span>    <span class="keywordtype">int</span>   <a class="code hl_function" href="classAddon.html#ac313ae17bc8855e5bb7549a03432e02f">getRevision</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a01a349ca35ee17a05aebdfef591d06bf">m_revision</a>; }</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="classAddon.html#a3bd7fd5aca9f4e46b4cceeedafdb33fb">  185</a></span>    <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classAddon.html#a3bd7fd5aca9f4e46b4cceeedafdb33fb">getId</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a6dda8a45d32a7a2e25e208b12fbb88d2">m_id</a>; }</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classAddon.html#a94f6c7944242202a06e81c2bae6e20ee">  188</a></span>    <span class="keyword">const</span> core::stringw&amp; <a class="code hl_function" href="classAddon.html#a94f6c7944242202a06e81c2bae6e20ee">getDesigner</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#ad90f0319a6039484accaca7b60269b8e">m_designer</a>; }</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classAddon.html#aef3811532fd4b7988cfc80d42b280298">  191</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classAddon.html#aef3811532fd4b7988cfc80d42b280298">getStillExists</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#ac47768d3bd85513922d704346cefd122">m_still_exists</a>; }</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="classAddon.html#a9739cd6a3fddc2c9780858ef7fba5ede">  194</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAddon.html#a9739cd6a3fddc2c9780858ef7fba5ede">setStillExists</a>() { <a class="code hl_variable" href="classAddon.html#ac47768d3bd85513922d704346cefd122">m_still_exists</a> = <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00197" data-start="{" data-end="}">
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="classAddon.html#ab7b7ab09819128c11aadae1928d0c334">  197</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classAddon.html#ab7b7ab09819128c11aadae1928d0c334">needsUpdate</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a56d49ccc5169072fda22748eb554e6c0">m_installed</a> &amp;&amp; <a class="code hl_function" href="classAddon.html#a803dab34197be5fa5229bdfbf29df873">getInstalledRevision</a>() &lt; <a class="code hl_function" href="classAddon.html#ac313ae17bc8855e5bb7549a03432e02f">getRevision</a>();</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    }   <span class="comment">// needsUpdate</span></div>
+</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00206" data-start="{" data-end="}">
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="classAddon.html#a3376a05ac232cedd5f554545e7a43aa0">  206</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classAddon.html#a3376a05ac232cedd5f554545e7a43aa0">iconNeedsUpdate</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a01a349ca35ee17a05aebdfef591d06bf">m_revision</a> &gt; <a class="code hl_variable" href="classAddon.html#a1a8105f40be83ce52cadc57521c3d5b2">m_icon_revision</a>;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    }   <span class="comment">// iconNeedsUpdate</span></div>
+</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00214" data-start="{" data-end="}">
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="classAddon.html#a36668482bf9e7faa507d8279b9abb602">  214</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAddon.html#a36668482bf9e7faa507d8279b9abb602">setInstalled</a>(<span class="keywordtype">bool</span> state)</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        <a class="code hl_variable" href="classAddon.html#a56d49ccc5169072fda22748eb554e6c0">m_installed</a>         = state;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <span class="keywordflow">if</span>(state)</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>            <a class="code hl_variable" href="classAddon.html#ad5b17b072e35c349d55355e83a9d60cc">m_installed_revision</a> = <a class="code hl_variable" href="classAddon.html#a01a349ca35ee17a05aebdfef591d06bf">m_revision</a>;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    }   <span class="comment">// setInstalled</span></div>
+</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="classAddon.html#acd7019032f7f515d34f1da57494517a0">  223</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classAddon.html#acd7019032f7f515d34f1da57494517a0">iconReady</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a0c297a7cc1e185c5e0af26bd64ac20c5">m_icon_ready</a>; }</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00226" data-start="{" data-end="}">
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="classAddon.html#a37027857798dfeecf026a89a7a92d23b">  226</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classAddon.html#a37027857798dfeecf026a89a7a92d23b">setIconReady</a>()</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    {</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        <a class="code hl_variable" href="classAddon.html#a1a8105f40be83ce52cadc57521c3d5b2">m_icon_revision</a> = <a class="code hl_variable" href="classAddon.html#a01a349ca35ee17a05aebdfef591d06bf">m_revision</a>;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        <a class="code hl_variable" href="classAddon.html#a0c297a7cc1e185c5e0af26bd64ac20c5">m_icon_ready</a>=<span class="keyword">true</span>;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    }   <span class="comment">// setIconReady</span></div>
+</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="classAddon.html#a9ea84e75676c10a821274512423462c0">  233</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classAddon.html#a9ea84e75676c10a821274512423462c0">getSize</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a988655fc5b6c631c08138caa10582bf5">m_size</a>; }</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00240" data-start="{" data-end="}">
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="classAddon.html#ae718a79207c2f7fe00a897ec753eebcf">  240</a></span>    std::string <a class="code hl_function" href="classAddon.html#ae718a79207c2f7fe00a897ec753eebcf">getTypeDirectory</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="classAddon.html#a0fa35a9dd1598b976d42afb669232b8f">m_type</a>==<span class="stringliteral">&quot;kart&quot;</span>)</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;karts/&quot;</span>;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="classAddon.html#a0fa35a9dd1598b976d42afb669232b8f">m_type</a>==<span class="stringliteral">&quot;track&quot;</span>)</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;tracks/&quot;</span>;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="classAddon.html#a0fa35a9dd1598b976d42afb669232b8f">m_type</a>==<span class="stringliteral">&quot;arena&quot;</span>)  <span class="comment">// arenas are installed as tracks</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;tracks/&quot;</span>;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        <span class="comment">// It must be one of the two</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        assert(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;  <span class="comment">// Ignore compiler warning</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    }   <span class="comment">// getTypeDirectory</span></div>
+</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classAddon.html#a743ade50c6b63db6c03788c78631befc">testIncluded</a>(<span class="keyword">const</span> std::string &amp;min_ver, <span class="keyword">const</span> std::string &amp;max_ver);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="classAddon.html#aeff52a07ccdfa71b4c20fe5e45eab831">  258</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classAddon.html#aeff52a07ccdfa71b4c20fe5e45eab831">testStatus</a>(<a class="code hl_enumeration" href="classAddon.html#a71cfd003a9922cda3936d88b07e4618e">AddonStatus</a> n)<span class="keyword"> const </span>{<span class="keywordflow">return</span> (<a class="code hl_variable" href="classAddon.html#af79a3c7d5bfbc15321bad0b086ecce6a">m_status</a> &amp; n) !=0; }</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    std::string <a class="code hl_function" href="classAddon.html#a67698b39a2f8376aea05d8ee49960701">getDataDir</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classAddon.html#a113a496e2b95db73ecce11d2be0284f9">filterByWords</a>(<span class="keyword">const</span> core::stringw words) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    </div>
+<div class="foldopen" id="foldopen00268" data-start="{" data-end="}">
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="classAddon.html#a7ecd67a890ea39475478d7be3259a624">  268</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classAddon.html#a7ecd67a890ea39475478d7be3259a624">operator&lt;</a>(<span class="keyword">const</span> <a class="code hl_function" href="classAddon.html#a1f135d80e8224394bd7bf6cfaf475c1b">Addon</a> &amp;a)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        <span class="keywordflow">switch</span>(<a class="code hl_variable" href="classAddon.html#ada4393e2f0e8f05bed6cc6001e5594dd">m_sort_order</a>)</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        {</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>            <span class="keywordflow">case</span> SO_DEFAULT:</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>                <span class="keywordflow">if</span>(<a class="code hl_function" href="classAddon.html#aeff52a07ccdfa71b4c20fe5e45eab831">testStatus</a>(AS_FEATURED) &amp;&amp;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>                    !a.<a class="code hl_function" href="classAddon.html#aeff52a07ccdfa71b4c20fe5e45eab831">testStatus</a>(AS_FEATURED))  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                <span class="keywordflow">if</span>(!<a class="code hl_function" href="classAddon.html#aeff52a07ccdfa71b4c20fe5e45eab831">testStatus</a>(AS_FEATURED) &amp;&amp;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                    a.<a class="code hl_function" href="classAddon.html#aeff52a07ccdfa71b4c20fe5e45eab831">testStatus</a>(AS_FEATURED))  <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>            <span class="comment">// Otherwise fall through to name comparison!</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>            <span class="keywordflow">case</span> SO_NAME:</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>                <span class="comment">// m_id is the lower case name</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>                <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a6dda8a45d32a7a2e25e208b12fbb88d2">m_id</a> &lt; a.<a class="code hl_variable" href="classAddon.html#a6dda8a45d32a7a2e25e208b12fbb88d2">m_id</a>;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>            <span class="keywordflow">case</span> SO_DATE:</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#ab7d8c91a2a4a98d581663bc18f96b9de">m_date</a> &lt; a.<a class="code hl_variable" href="classAddon.html#ab7d8c91a2a4a98d581663bc18f96b9de">m_date</a>;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        }   <span class="comment">// switch</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>        <span class="comment">// Fix compiler warning.</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    }   <span class="comment">// operator&lt;</span></div>
+</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    <span class="keyword">const</span> std::string&amp; getDirName()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classAddon.html#a2b5a2ad3f886012c9e3b66e66a21c1ea">m_dir_name</a>; }</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>};   <span class="comment">// Addon</span></div>
+</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAddon_html"><div class="ttname"><a href="classAddon.html">Addon</a></div><div class="ttdef"><b>Definition</b> addon.hpp:40</div></div>
+<div class="ttc" id="aclassAddon_html_a01a349ca35ee17a05aebdfef591d06bf"><div class="ttname"><a href="classAddon.html#a01a349ca35ee17a05aebdfef591d06bf">Addon::m_revision</a></div><div class="ttdeci">int m_revision</div><div class="ttdoc">The (highest) revision number available online.</div><div class="ttdef"><b>Definition</b> addon.hpp:84</div></div>
+<div class="ttc" id="aclassAddon_html_a0c297a7cc1e185c5e0af26bd64ac20c5"><div class="ttname"><a href="classAddon.html#a0c297a7cc1e185c5e0af26bd64ac20c5">Addon::m_icon_ready</a></div><div class="ttdeci">bool m_icon_ready</div><div class="ttdoc">True if the icon is cached/loaded and can be displayed.</div><div class="ttdef"><b>Definition</b> addon.hpp:103</div></div>
+<div class="ttc" id="aclassAddon_html_a0fa35a9dd1598b976d42afb669232b8f"><div class="ttname"><a href="classAddon.html#a0fa35a9dd1598b976d42afb669232b8f">Addon::m_type</a></div><div class="ttdeci">std::string m_type</div><div class="ttdoc">Type, must be &#39;kart&#39; or &#39;track&#39;.</div><div class="ttdef"><b>Definition</b> addon.hpp:117</div></div>
+<div class="ttc" id="aclassAddon_html_a113a496e2b95db73ecce11d2be0284f9"><div class="ttname"><a href="classAddon.html#a113a496e2b95db73ecce11d2be0284f9">Addon::filterByWords</a></div><div class="ttdeci">bool filterByWords(const core::stringw words) const</div><div class="ttdoc">Filter the add-on with a list of words.</div><div class="ttdef"><b>Definition</b> addon.cpp:187</div></div>
+<div class="ttc" id="aclassAddon_html_a1614c0eb82af2c4b05a6a88e37ee108d"><div class="ttname"><a href="classAddon.html#a1614c0eb82af2c4b05a6a88e37ee108d">Addon::setSortOrder</a></div><div class="ttdeci">static void setSortOrder(SortOrder so)</div><div class="ttdoc">Sets the sort order used in the comparison function.</div><div class="ttdef"><b>Definition</b> addon.hpp:130</div></div>
+<div class="ttc" id="aclassAddon_html_a1a8105f40be83ce52cadc57521c3d5b2"><div class="ttname"><a href="classAddon.html#a1a8105f40be83ce52cadc57521c3d5b2">Addon::m_icon_revision</a></div><div class="ttdeci">int m_icon_revision</div><div class="ttdoc">The version of the icon that was downloaded.</div><div class="ttdef"><b>Definition</b> addon.hpp:88</div></div>
+<div class="ttc" id="aclassAddon_html_a1f135d80e8224394bd7bf6cfaf475c1b"><div class="ttname"><a href="classAddon.html#a1f135d80e8224394bd7bf6cfaf475c1b">Addon::Addon</a></div><div class="ttdeci">Addon(const XMLNode &amp;xml)</div><div class="ttdoc">Initialises the object from an XML node.</div><div class="ttdef"><b>Definition</b> addon.cpp:33</div></div>
+<div class="ttc" id="aclassAddon_html_a275b3a7dcbd4532b77f87e6942569e53"><div class="ttname"><a href="classAddon.html#a275b3a7dcbd4532b77f87e6942569e53">Addon::getDescription</a></div><div class="ttdeci">const core::stringw &amp; getDescription() const</div><div class="ttdoc">Returns the name of the addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:164</div></div>
+<div class="ttc" id="aclassAddon_html_a296bf9a373fadb4328adaa1f558a26c3"><div class="ttname"><a href="classAddon.html#a296bf9a373fadb4328adaa1f558a26c3">Addon::getDate</a></div><div class="ttdeci">StkTime::TimeType getDate() const</div><div class="ttdoc">Returns the date (in seconds since epoch) when the addon was uploaded.</div><div class="ttdef"><b>Definition</b> addon.hpp:168</div></div>
+<div class="ttc" id="aclassAddon_html_a2b5a2ad3f886012c9e3b66e66a21c1ea"><div class="ttname"><a href="classAddon.html#a2b5a2ad3f886012c9e3b66e66a21c1ea">Addon::m_dir_name</a></div><div class="ttdeci">std::string m_dir_name</div><div class="ttdoc">The directory name (i.d.</div><div class="ttdef"><b>Definition</b> addon.hpp:79</div></div>
+<div class="ttc" id="aclassAddon_html_a304fb8db9d55532ac80be07a3d6539b0"><div class="ttname"><a href="classAddon.html#a304fb8db9d55532ac80be07a3d6539b0">Addon::writeXML</a></div><div class="ttdeci">void writeXML(std::ofstream *out_stram)</div><div class="ttdoc">Writes information about an installed addon (it is only called for installed addons).</div><div class="ttdef"><b>Definition</b> addon.cpp:142</div></div>
+<div class="ttc" id="aclassAddon_html_a3376a05ac232cedd5f554545e7a43aa0"><div class="ttname"><a href="classAddon.html#a3376a05ac232cedd5f554545e7a43aa0">Addon::iconNeedsUpdate</a></div><div class="ttdeci">bool iconNeedsUpdate() const</div><div class="ttdoc">Returns true if the (cached) icon needs to be updated.</div><div class="ttdef"><b>Definition</b> addon.hpp:206</div></div>
+<div class="ttc" id="aclassAddon_html_a36668482bf9e7faa507d8279b9abb602"><div class="ttname"><a href="classAddon.html#a36668482bf9e7faa507d8279b9abb602">Addon::setInstalled</a></div><div class="ttdeci">void setInstalled(bool state)</div><div class="ttdoc">Marks this addon to be installed.</div><div class="ttdef"><b>Definition</b> addon.hpp:214</div></div>
+<div class="ttc" id="aclassAddon_html_a37027857798dfeecf026a89a7a92d23b"><div class="ttname"><a href="classAddon.html#a37027857798dfeecf026a89a7a92d23b">Addon::setIconReady</a></div><div class="ttdeci">void setIconReady()</div><div class="ttdoc">Marks that the icon for this addon can be displayed.</div><div class="ttdef"><b>Definition</b> addon.hpp:226</div></div>
+<div class="ttc" id="aclassAddon_html_a3bd7fd5aca9f4e46b4cceeedafdb33fb"><div class="ttname"><a href="classAddon.html#a3bd7fd5aca9f4e46b4cceeedafdb33fb">Addon::getId</a></div><div class="ttdeci">const std::string &amp; getId() const</div><div class="ttdoc">Returns the ID of this addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:185</div></div>
+<div class="ttc" id="aclassAddon_html_a495bb559baf6ca30cf379abe77a1ed2d"><div class="ttname"><a href="classAddon.html#a495bb559baf6ca30cf379abe77a1ed2d">Addon::createAddonId</a></div><div class="ttdeci">static std::string createAddonId(const std::string &amp;id)</div><div class="ttdoc">Create an addon id by adding a &#39;addon_&#39; prefix to the given id.</div><div class="ttdef"><b>Definition</b> addon.hpp:65</div></div>
+<div class="ttc" id="aclassAddon_html_a4dc78d65e26654e0b5e8682fd4085171"><div class="ttname"><a href="classAddon.html#a4dc78d65e26654e0b5e8682fd4085171">Addon::m_icon_url</a></div><div class="ttdeci">std::string m_icon_url</div><div class="ttdoc">The URL of the icon (relative to the server)</div><div class="ttdef"><b>Definition</b> addon.hpp:99</div></div>
+<div class="ttc" id="aclassAddon_html_a4ee1558c233d5baa25771705b7b9e5a1"><div class="ttname"><a href="classAddon.html#a4ee1558c233d5baa25771705b7b9e5a1">Addon::m_description</a></div><div class="ttdeci">core::stringw m_description</div><div class="ttdoc">A description of this addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:97</div></div>
+<div class="ttc" id="aclassAddon_html_a56d49ccc5169072fda22748eb554e6c0"><div class="ttname"><a href="classAddon.html#a56d49ccc5169072fda22748eb554e6c0">Addon::m_installed</a></div><div class="ttdeci">bool m_installed</div><div class="ttdoc">True if the addon is installed.</div><div class="ttdef"><b>Definition</b> addon.hpp:107</div></div>
+<div class="ttc" id="aclassAddon_html_a6162c6cd8988bc86cc057df1b1cb72cf"><div class="ttname"><a href="classAddon.html#a6162c6cd8988bc86cc057df1b1cb72cf">Addon::getRating</a></div><div class="ttdeci">const float getRating() const</div><div class="ttdoc">Returns the rating of an addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:146</div></div>
+<div class="ttc" id="aclassAddon_html_a665c152491f1cae21d882be7b5661b9c"><div class="ttname"><a href="classAddon.html#a665c152491f1cae21d882be7b5661b9c">Addon::getMinIncludeVer</a></div><div class="ttdeci">const std::string &amp; getMinIncludeVer() const</div><div class="ttdoc">Returns the minimum version the addon was included with.</div><div class="ttdef"><b>Definition</b> addon.hpp:140</div></div>
+<div class="ttc" id="aclassAddon_html_a67698b39a2f8376aea05d8ee49960701"><div class="ttname"><a href="classAddon.html#a67698b39a2f8376aea05d8ee49960701">Addon::getDataDir</a></div><div class="ttdeci">std::string getDataDir() const</div><div class="ttdoc">Returns the directory in which this addon is installed.</div><div class="ttdef"><b>Definition</b> addon.cpp:243</div></div>
+<div class="ttc" id="aclassAddon_html_a6c40c6ab210ef482435620942cb91e28"><div class="ttname"><a href="classAddon.html#a6c40c6ab210ef482435620942cb91e28">Addon::getIconURL</a></div><div class="ttdeci">const std::string &amp; getIconURL() const</div><div class="ttdoc">Returns the name of the icon of this addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:158</div></div>
+<div class="ttc" id="aclassAddon_html_a6dda8a45d32a7a2e25e208b12fbb88d2"><div class="ttname"><a href="classAddon.html#a6dda8a45d32a7a2e25e208b12fbb88d2">Addon::m_id</a></div><div class="ttdeci">std::string m_id</div><div class="ttdoc">Internal id for this addon, which is the name in lower case.</div><div class="ttdef"><b>Definition</b> addon.hpp:77</div></div>
+<div class="ttc" id="aclassAddon_html_a71cfd003a9922cda3936d88b07e4618e"><div class="ttname"><a href="classAddon.html#a71cfd003a9922cda3936d88b07e4618e">Addon::AddonStatus</a></div><div class="ttdeci">AddonStatus</div><div class="ttdoc">AddonStatus flags - a bit pattern.</div><div class="ttdef"><b>Definition</b> addon.hpp:43</div></div>
+<div class="ttc" id="aclassAddon_html_a743ade50c6b63db6c03788c78631befc"><div class="ttname"><a href="classAddon.html#a743ade50c6b63db6c03788c78631befc">Addon::testIncluded</a></div><div class="ttdeci">bool testIncluded(const std::string &amp;min_ver, const std::string &amp;max_ver)</div><div class="ttdoc">Returns if the current version is between min and max versions</div><div class="ttdef"><b>Definition</b> addon.cpp:169</div></div>
+<div class="ttc" id="aclassAddon_html_a7ea3cbb54a2f4bdc9f17bd905b36f65b"><div class="ttname"><a href="classAddon.html#a7ea3cbb54a2f4bdc9f17bd905b36f65b">Addon::deleteInvalidIconFile</a></div><div class="ttdeci">void deleteInvalidIconFile()</div><div class="ttdoc">Deletes the icon file of this addon, and marks it to be re-downloaded (next time AddonsManager::downl...</div><div class="ttdef"><b>Definition</b> addon.cpp:224</div></div>
+<div class="ttc" id="aclassAddon_html_a7ecd67a890ea39475478d7be3259a624"><div class="ttname"><a href="classAddon.html#a7ecd67a890ea39475478d7be3259a624">Addon::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const Addon &amp;a) const</div><div class="ttdoc">Compares two addons according to the sort order currently defined.</div><div class="ttdef"><b>Definition</b> addon.hpp:268</div></div>
+<div class="ttc" id="aclassAddon_html_a803dab34197be5fa5229bdfbf29df873"><div class="ttname"><a href="classAddon.html#a803dab34197be5fa5229bdfbf29df873">Addon::getInstalledRevision</a></div><div class="ttdeci">int getInstalledRevision() const</div><div class="ttdoc">Returns the installed revision number of an addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:177</div></div>
+<div class="ttc" id="aclassAddon_html_a81ae323d707c49c3cd6dad8e0ba66b16"><div class="ttname"><a href="classAddon.html#a81ae323d707c49c3cd6dad8e0ba66b16">Addon::getZipFileName</a></div><div class="ttdeci">const std::string &amp; getZipFileName() const</div><div class="ttdoc">Returns the filename of the zip file with the addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:155</div></div>
+<div class="ttc" id="aclassAddon_html_a85c07d76561e3d946da134647d73b2ea"><div class="ttname"><a href="classAddon.html#a85c07d76561e3d946da134647d73b2ea">Addon::m_max_include_ver</a></div><div class="ttdeci">std::string m_max_include_ver</div><div class="ttdoc">Maximum version addon is included with.</div><div class="ttdef"><b>Definition</b> addon.hpp:115</div></div>
+<div class="ttc" id="aclassAddon_html_a8c74cc455c63e41c2ae0cf9323ad279f"><div class="ttname"><a href="classAddon.html#a8c74cc455c63e41c2ae0cf9323ad279f">Addon::m_rating</a></div><div class="ttdeci">float m_rating</div><div class="ttdoc">Rating for thsi addon package.</div><div class="ttdef"><b>Definition</b> addon.hpp:111</div></div>
+<div class="ttc" id="aclassAddon_html_a8e3ec74ea54d2e044d0710b714f84410"><div class="ttname"><a href="classAddon.html#a8e3ec74ea54d2e044d0710b714f84410">Addon::getType</a></div><div class="ttdeci">const std::string &amp; getType() const</div><div class="ttdoc">Returns the type of the addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:152</div></div>
+<div class="ttc" id="aclassAddon_html_a927dc0657b39c7c840778b3a9404891b"><div class="ttname"><a href="classAddon.html#a927dc0657b39c7c840778b3a9404891b">Addon::getName</a></div><div class="ttdeci">const core::stringw &amp; getName() const</div><div class="ttdoc">Returns the name of the addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:137</div></div>
+<div class="ttc" id="aclassAddon_html_a933340b5feaf609c7ced8fc9434f84c9"><div class="ttname"><a href="classAddon.html#a933340b5feaf609c7ced8fc9434f84c9">Addon::getIconBasename</a></div><div class="ttdeci">const std::string &amp; getIconBasename() const</div><div class="ttdoc">Returns the name of the icon (i.e.</div><div class="ttdef"><b>Definition</b> addon.hpp:161</div></div>
+<div class="ttc" id="aclassAddon_html_a94f6c7944242202a06e81c2bae6e20ee"><div class="ttname"><a href="classAddon.html#a94f6c7944242202a06e81c2bae6e20ee">Addon::getDesigner</a></div><div class="ttdeci">const core::stringw &amp; getDesigner() const</div><div class="ttdoc">Returns the designer of the addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:188</div></div>
+<div class="ttc" id="aclassAddon_html_a9739cd6a3fddc2c9780858ef7fba5ede"><div class="ttname"><a href="classAddon.html#a9739cd6a3fddc2c9780858ef7fba5ede">Addon::setStillExists</a></div><div class="ttdeci">void setStillExists()</div><div class="ttdoc">Marks that this addon still exists on the server.</div><div class="ttdef"><b>Definition</b> addon.hpp:194</div></div>
+<div class="ttc" id="aclassAddon_html_a988655fc5b6c631c08138caa10582bf5"><div class="ttname"><a href="classAddon.html#a988655fc5b6c631c08138caa10582bf5">Addon::m_size</a></div><div class="ttdeci">int m_size</div><div class="ttdoc">Compressed size of the addon package.</div><div class="ttdef"><b>Definition</b> addon.hpp:109</div></div>
+<div class="ttc" id="aclassAddon_html_a99d3f3ada8fec1bdca3b5832bf720fd7"><div class="ttname"><a href="classAddon.html#a99d3f3ada8fec1bdca3b5832bf720fd7">Addon::isInstalled</a></div><div class="ttdeci">bool isInstalled() const</div><div class="ttdoc">Returns if the addon is installed.</div><div class="ttdef"><b>Definition</b> addon.hpp:174</div></div>
+<div class="ttc" id="aclassAddon_html_a9ea84e75676c10a821274512423462c0"><div class="ttname"><a href="classAddon.html#a9ea84e75676c10a821274512423462c0">Addon::getSize</a></div><div class="ttdeci">int getSize() const</div><div class="ttdoc">Returns the size of the compressed package.</div><div class="ttdef"><b>Definition</b> addon.hpp:233</div></div>
+<div class="ttc" id="aclassAddon_html_aa2325661d248b984d3258707757b63dd"><div class="ttname"><a href="classAddon.html#aa2325661d248b984d3258707757b63dd">Addon::m_name</a></div><div class="ttdeci">core::stringw m_name</div><div class="ttdoc">The name to be displayed.</div><div class="ttdef"><b>Definition</b> addon.hpp:73</div></div>
+<div class="ttc" id="aclassAddon_html_ab7b7ab09819128c11aadae1928d0c334"><div class="ttname"><a href="classAddon.html#ab7b7ab09819128c11aadae1928d0c334">Addon::needsUpdate</a></div><div class="ttdeci">bool needsUpdate() const</div><div class="ttdoc">True if this addon needs to be updated.</div><div class="ttdef"><b>Definition</b> addon.hpp:197</div></div>
+<div class="ttc" id="aclassAddon_html_ab7d8c91a2a4a98d581663bc18f96b9de"><div class="ttname"><a href="classAddon.html#ab7d8c91a2a4a98d581663bc18f96b9de">Addon::m_date</a></div><div class="ttdeci">StkTime::TimeType m_date</div><div class="ttdoc">Date when the addon was added.</div><div class="ttdef"><b>Definition</b> addon.hpp:95</div></div>
+<div class="ttc" id="aclassAddon_html_abf818a23d2164f7bc1eecd857624002c"><div class="ttname"><a href="classAddon.html#abf818a23d2164f7bc1eecd857624002c">Addon::getDateAsString</a></div><div class="ttdeci">std::string getDateAsString() const</div><div class="ttdoc">Returns a user readable date as a string.</div><div class="ttdef"><b>Definition</b> addon.cpp:163</div></div>
+<div class="ttc" id="aclassAddon_html_ac313ae17bc8855e5bb7549a03432e02f"><div class="ttname"><a href="classAddon.html#ac313ae17bc8855e5bb7549a03432e02f">Addon::getRevision</a></div><div class="ttdeci">int getRevision() const</div><div class="ttdoc">Returns the latest revision number of this addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:182</div></div>
+<div class="ttc" id="aclassAddon_html_ac47768d3bd85513922d704346cefd122"><div class="ttname"><a href="classAddon.html#ac47768d3bd85513922d704346cefd122">Addon::m_still_exists</a></div><div class="ttdeci">bool m_still_exists</div><div class="ttdoc">True if this addon still exists on the server, i.e.</div><div class="ttdef"><b>Definition</b> addon.hpp:93</div></div>
+<div class="ttc" id="aclassAddon_html_ac48134abe2a2c8e5e242d2c471a5c89e"><div class="ttname"><a href="classAddon.html#ac48134abe2a2c8e5e242d2c471a5c89e">Addon::setRating</a></div><div class="ttdeci">void setRating(const float rating) const</div><div class="ttdoc">Sets the rating of an addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:149</div></div>
+<div class="ttc" id="aclassAddon_html_acd7019032f7f515d34f1da57494517a0"><div class="ttname"><a href="classAddon.html#acd7019032f7f515d34f1da57494517a0">Addon::iconReady</a></div><div class="ttdeci">bool iconReady() const</div><div class="ttdoc">Returns true if the icon of this addon was downloaded and is ready to be displayed.</div><div class="ttdef"><b>Definition</b> addon.hpp:223</div></div>
+<div class="ttc" id="aclassAddon_html_ad5b17b072e35c349d55355e83a9d60cc"><div class="ttname"><a href="classAddon.html#ad5b17b072e35c349d55355e83a9d60cc">Addon::m_installed_revision</a></div><div class="ttdeci">int m_installed_revision</div><div class="ttdoc">The currently installed revision.</div><div class="ttdef"><b>Definition</b> addon.hpp:86</div></div>
+<div class="ttc" id="aclassAddon_html_ad6634338c2f982f84d5f29800c665a65"><div class="ttname"><a href="classAddon.html#ad6634338c2f982f84d5f29800c665a65">Addon::copyInstallData</a></div><div class="ttdeci">void copyInstallData(const Addon &amp;addon)</div><div class="ttdoc">Copies the installation data (like description, revision, icon) from the downloaded online list to th...</div><div class="ttdef"><b>Definition</b> addon.cpp:117</div></div>
+<div class="ttc" id="aclassAddon_html_ad90f0319a6039484accaca7b60269b8e"><div class="ttname"><a href="classAddon.html#ad90f0319a6039484accaca7b60269b8e">Addon::m_designer</a></div><div class="ttdeci">core::stringw m_designer</div><div class="ttdoc">The name of the designer of the addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:82</div></div>
+<div class="ttc" id="aclassAddon_html_ada4393e2f0e8f05bed6cc6001e5594dd"><div class="ttname"><a href="classAddon.html#ada4393e2f0e8f05bed6cc6001e5594dd">Addon::m_sort_order</a></div><div class="ttdeci">static SortOrder m_sort_order</div><div class="ttdoc">The sort order to be used in the comparison.</div><div class="ttdef"><b>Definition</b> addon.hpp:120</div></div>
+<div class="ttc" id="aclassAddon_html_add2ac3d41ce1272b74cd4fb2adf97d04"><div class="ttname"><a href="classAddon.html#add2ac3d41ce1272b74cd4fb2adf97d04">Addon::m_zip_file</a></div><div class="ttdeci">std::string m_zip_file</div><div class="ttdoc">The name of the zip file on the addon server.</div><div class="ttdef"><b>Definition</b> addon.hpp:105</div></div>
+<div class="ttc" id="aclassAddon_html_add379bd2dc57a547be27d233702f63c8"><div class="ttname"><a href="classAddon.html#add379bd2dc57a547be27d233702f63c8">Addon::m_min_include_ver</a></div><div class="ttdeci">std::string m_min_include_ver</div><div class="ttdoc">Minimum version addon is included with.</div><div class="ttdef"><b>Definition</b> addon.hpp:113</div></div>
+<div class="ttc" id="aclassAddon_html_ae21fe37a21dbb2175acedb434b0360cb"><div class="ttname"><a href="classAddon.html#ae21fe37a21dbb2175acedb434b0360cb">Addon::getMaxIncludeVer</a></div><div class="ttdeci">const std::string &amp; getMaxIncludeVer() const</div><div class="ttdoc">Returns the maximum version the addon was included with.</div><div class="ttdef"><b>Definition</b> addon.hpp:143</div></div>
+<div class="ttc" id="aclassAddon_html_ae718a79207c2f7fe00a897ec753eebcf"><div class="ttname"><a href="classAddon.html#ae718a79207c2f7fe00a897ec753eebcf">Addon::getTypeDirectory</a></div><div class="ttdeci">std::string getTypeDirectory() const</div><div class="ttdoc">Returns the directory in which this type of addons is stored (in a separate subdirectory).</div><div class="ttdef"><b>Definition</b> addon.hpp:240</div></div>
+<div class="ttc" id="aclassAddon_html_aef3811532fd4b7988cfc80d42b280298"><div class="ttname"><a href="classAddon.html#aef3811532fd4b7988cfc80d42b280298">Addon::getStillExists</a></div><div class="ttdeci">bool getStillExists() const</div><div class="ttdoc">Returns if this addon still exists on the server.</div><div class="ttdef"><b>Definition</b> addon.hpp:191</div></div>
+<div class="ttc" id="aclassAddon_html_aeff52a07ccdfa71b4c20fe5e45eab831"><div class="ttname"><a href="classAddon.html#aeff52a07ccdfa71b4c20fe5e45eab831">Addon::testStatus</a></div><div class="ttdeci">bool testStatus(AddonStatus n) const</div><div class="ttdoc">Returns if a certain status flag is set.</div><div class="ttdef"><b>Definition</b> addon.hpp:258</div></div>
+<div class="ttc" id="aclassAddon_html_af79a3c7d5bfbc15321bad0b086ecce6a"><div class="ttname"><a href="classAddon.html#af79a3c7d5bfbc15321bad0b086ecce6a">Addon::m_status</a></div><div class="ttdeci">int m_status</div><div class="ttdoc">The status flags of this addon.</div><div class="ttdef"><b>Definition</b> addon.hpp:90</div></div>
+<div class="ttc" id="aclassAddon_html_afb6db385707a4ff4ada55300fe44830d"><div class="ttname"><a href="classAddon.html#afb6db385707a4ff4ada55300fe44830d">Addon::m_icon_basename</a></div><div class="ttdeci">std::string m_icon_basename</div><div class="ttdoc">Name of the icon to use.</div><div class="ttdef"><b>Definition</b> addon.hpp:101</div></div>
+<div class="ttc" id="aclassAddon_html_afce4f3cc12b15a435ed684bdc4a471f4"><div class="ttname"><a href="classAddon.html#afce4f3cc12b15a435ed684bdc4a471f4">Addon::SortOrder</a></div><div class="ttdeci">SortOrder</div><div class="ttdoc">Set the sort order used in the comparison function.</div><div class="ttdef"><b>Definition</b> addon.hpp:56</div></div>
+<div class="ttc" id="aclassAddon_html_aff76a1d30e1f7002d8197fc00091aa0d"><div class="ttname"><a href="classAddon.html#aff76a1d30e1f7002d8197fc00091aa0d">Addon::isAddon</a></div><div class="ttdeci">static bool isAddon(const std::string &amp;directory)</div><div class="ttdoc">A static function that checks if the given ID is an addon.</div><div class="ttdef"><b>Definition</b> addon.cpp:236</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -26,11 +26,14 @@
 #include "graphics/irr_driver.hpp"
 #include "guiengine/scalable_font.hpp"
 #include "io/file_manager.hpp"
+#include "network/network_config.hpp"
 #include "race/race_manager.hpp"
 #include "replay/replay_play.hpp"
 #include "tracks/track.hpp"
 #include "utils/file_utils.hpp"
+#include "utils/log.hpp"
 #include "utils/string_utils.hpp"
+#include "utils/time.hpp"
 #include "utils/tls.hpp"
 #include "utils/vs.hpp"
 
@@ -96,7 +99,11 @@ Profiler::Profiler()
     m_current_frame       = 0;
     m_has_wrapped_around  = false;
     m_drawing             = true;
-    m_threads_used = 1;
+    m_profile_log_enabled = false;
+    m_profile_logging     = false;
+    m_initialized         = false;
+    m_profile_log_sequence = 0;
+    m_threads_used        = 1;
 }   // Profiler
 
 //-----------------------------------------------------------------------------
@@ -117,6 +124,7 @@ void Profiler::init()
     // Add this thread to the thread mapping
     g_thread_id = 0;
     m_gpu_times.resize(Q_LAST * m_max_frames);
+    m_initialized = true;
 }   // init
 
 //------------------------------------------------------------------------------
@@ -690,14 +698,18 @@ void Profiler::startBenchmark()
  */
 void Profiler::writeToFile()
 {
+    writeToFile(file_manager->getUserConfigFile(
+        file_manager->getStdoutName()));
+}
+
+//-----------------------------------------------------------------------------
+void Profiler::writeToFile(const std::string& base_name)
+{
     // Turn the profiler off, and ensure overall performance metrics are computed
     if (UserConfigParams::m_profiler_enabled)
         desactivate();
 
     m_lock.lock();
-    std::string base_name =
-               file_manager->getUserConfigFile(file_manager->getStdoutName());
-
     // 1: Save overall performance metrics
     std::ofstream f(FileUtils::getPortableWritingPath(base_name +
         ".perf-report-" + (Track::getCurrentTrack() != NULL ? Track::getCurrentTrack()->getIdent() : "menu") + ".csv"));
@@ -810,3 +822,71 @@ void Profiler::writeToFile()
     m_lock.unlock();
 
 }   // writeFile
+
+//-----------------------------------------------------------------------------
+/** Starts and stops command-line profiling with the same race-active window
+ *  used by RTT logging. */
+void Profiler::updateProfileLog(bool race_active)
+{
+    if (!m_profile_log_enabled)
+        return;
+
+    if (!race_active)
+    {
+        finishProfileLog();
+        return;
+    }
+
+    if (m_profile_logging)
+        return;
+
+    if (!m_initialized)
+    {
+        Log::warn("Profiler", "--profile-log requires a graphical client");
+        m_profile_log_enabled = false;
+        return;
+    }
+
+    setDrawing(false);
+    activate();
+    m_profile_log_track = Track::getCurrentTrack() ?
+        Track::getCurrentTrack()->getIdent() : "unknown";
+    m_profile_logging = true;
+}
+
+//-----------------------------------------------------------------------------
+/** Saves one multiplayer race and leaves the profiler ready for the next. */
+void Profiler::finishProfileLog()
+{
+    if (!m_profile_logging)
+        return;
+
+    m_profile_logging = false;
+
+    // Activation happens in the middle of a frame. Skip a race that ended
+    // before a complete main-loop frame could be captured.
+    if (!m_has_wrapped_around && m_current_frame <= 1)
+    {
+        UserConfigParams::m_profiler_enabled = false;
+        Log::warn("Profiler", "Profile log skipped: no complete frame");
+        return;
+    }
+
+    StkTime::TimeType t = StkTime::getTimeSinceEpoch();
+    struct tm* now = std::localtime(&t);
+    char timestamp[32];
+    std::strftime(timestamp, sizeof(timestamp), "%Y%m%d_%H%M%S", now);
+
+    const std::string role = NetworkConfig::get()->isServer() ?
+        "server" : "client";
+    const std::string filename = "profile_log_" + role + "_" +
+        m_profile_log_track + "_" + timestamp + "_" +
+        StringUtils::toString(m_profile_log_sequence++);
+    const std::string base_name = m_profile_log_directory.empty() ?
+        file_manager->getUserConfigFile(filename) :
+        m_profile_log_directory + "/" + filename;
+
+    writeToFile(base_name);
+    Log::info("Profiler", "Profile log saved with base name '%s'",
+        base_name.c_str());
+}

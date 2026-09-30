@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: tracks/drive_graph.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>tracks</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">drive_graph.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2009-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, B</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_DRIVE_GRAPH_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_DRIVE_GRAPH_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;tracks/graph.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;utils/aligned_array.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;utils/cpp2011.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;LinearMath/btTransform.h&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">class </span><a class="code hl_class" href="classDriveNode.html">DriveNode</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">class </span><a class="code hl_class" href="classXMLNode.html">XMLNode</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classDriveGraph.html">   38</a></span><span class="keyword">class </span><a class="code hl_function" href="classDriveGraph.html#a7bf60a4c08bb2e94fe13bdcad8d8facf">DriveGraph</a> : <span class="keyword">public</span> Graph</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classDriveGraph.html#a580daf5b32929a7a679e9062e5367808">   42</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classDriveGraph.html#a580daf5b32929a7a679e9062e5367808">m_lap_length</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classDriveGraph.html#ac3572d19436e303413b7cc6c9aed4171">   45</a></span>    std::string <a class="code hl_variable" href="classDriveGraph.html#ac3572d19436e303413b7cc6c9aed4171">m_quad_filename</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classDriveGraph.html#a6f0ab61fc82b1cd9be08a0e1adaa749f">   48</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classDriveGraph.html#a6f0ab61fc82b1cd9be08a0e1adaa749f">m_reverse</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDriveGraph.html#a02b5f95b023f955453751cdee7bda626">setDefaultSuccessors</a>();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDriveGraph.html#a5d08baa89773eceae71be85d41698c1c">computeChecklineRequirements</a>(<a class="code hl_class" href="classDriveNode.html">DriveNode</a>* node, <span class="keywordtype">int</span> latest_checkline);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDriveGraph.html#aed9ea59eab8445ed473558ac67d260e7">computeDirectionData</a>();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDriveGraph.html#a866b9a6c7558250e1b0c43e1a31c113b">determineDirection</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> current, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> succ_index);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classDriveGraph.html#a9b4c103987368c9403ab3ff89e59e757">normalizeAngle</a>(<span class="keywordtype">float</span> f);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> addSuccessor(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> from, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> to);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDriveGraph.html#a7888317df1ddcb14d6f16d10c160a9aa">load</a>(<span class="keyword">const</span> std::string &amp;quad_file_name, <span class="keyword">const</span> std::string &amp;filename);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDriveGraph.html#a1ee5141212e3b867c5fab6e7e4462425">getPoint</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> *xml, <span class="keyword">const</span> std::string &amp;attribute_name,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                  <a class="code hl_class" href="classVec3.html">Vec3</a> *result) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDriveGraph.html#acd90903d14a0a4f9be54665071a30cc8">computeDistanceFromStart</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> start_node, <span class="keywordtype">float</span> distance);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classDriveGraph.html#a5451ea5216e406fbc865990d35a1a491">getStartNode</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> hasLapLine() const OVERRIDE;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    virtual <span class="keywordtype">void</span> differentNodeColor(<span class="keywordtype">int</span> n, video::SColor* c) const OVERRIDE;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>public:</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    static <a class="code hl_function" href="classDriveGraph.html#a7bf60a4c08bb2e94fe13bdcad8d8facf">DriveGraph</a>* get()     { <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span><a class="code hl_function" href="classDriveGraph.html#a7bf60a4c08bb2e94fe13bdcad8d8facf">DriveGraph</a>*<span class="keyword">&gt;</span>(m_graph); }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <a class="code hl_function" href="classDriveGraph.html#a7bf60a4c08bb2e94fe13bdcad8d8facf">DriveGraph</a>(<span class="keyword">const</span> std::string &amp;quad_file_name,</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>               <span class="keyword">const</span> std::string &amp;graph_file_name, <span class="keyword">const</span> <span class="keywordtype">bool</span> reverse);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classDriveGraph.html">~DriveGraph</a>() {}</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDriveGraph.html#a13801192cb0e3de48d7ab599d124a621">getSuccessors</a>(<span class="keywordtype">int</span> node_number, std::vector&lt;unsigned int&gt;&amp; succ,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                       <span class="keywordtype">bool</span> for_ai=<span class="keyword">false</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDriveGraph.html#aa19d81dae78e0b943df115a41fa865c6">spatialToTrack</a>(Vec3 *dst, <span class="keyword">const</span> Vec3&amp; xyz, <span class="keyword">const</span> <span class="keywordtype">int</span> sector) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDriveGraph.html#ad3217f2aa84be1045f8159a86794ab72">setDefaultStartPositions</a>(AlignedArray&lt;btTransform&gt; *start_transforms,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                                  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> karts_per_row,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                                  <span class="keywordtype">float</span> forwards_distance = 1.5f,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                                  <span class="keywordtype">float</span> sidewards_distance = 1.5f,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                                  <span class="keywordtype">float</span> upwards_distance=0.0f) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDriveGraph.html#ac45a5136c8c56b21568d1983aa4bced0">updateDistancesForAllSuccessors</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> indx, <span class="keywordtype">float</span> delta,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                                         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> count);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDriveGraph.html#ad374aa20067a2c314e60bac2df995475">setupPaths</a>();</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classDriveGraph.html#a5d08baa89773eceae71be85d41698c1c">computeChecklineRequirements</a>();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classDriveGraph.html#aa627cd7f095a79b98ee51f04a11ed55a">getDistanceToNext</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">int</span> j) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classDriveGraph.html#aff71aac33469b38c5f1d0dc885ec3fbf">getAngleToNext</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">int</span> j) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classDriveGraph.html#a06b3f9fdda0ea64639786e0d482d8a7e">getNumberOfSuccessors</a>(<span class="keywordtype">int</span> n) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    DriveNode* <a class="code hl_function" href="classDriveGraph.html#aadf1f4bc43d0241d843334a188ada7d0">getNode</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> j) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classDriveGraph.html#abd35db323ab8dc1c012d10f7b6f72153">getDistanceFromStart</a>(<span class="keywordtype">int</span> j) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classDriveGraph.html#ab9616fde16df7c22de3d4b9c746969f3">  119</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classDriveGraph.html#ab9616fde16df7c22de3d4b9c746969f3">getLapLength</a>()<span class="keyword"> const                         </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classDriveGraph.html#a580daf5b32929a7a679e9062e5367808">m_lap_length</a>; }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordtype">bool</span> isReverse()<span class="keyword"> const                                </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classDriveGraph.html#a6f0ab61fc82b1cd9be08a0e1adaa749f">m_reverse</a>; }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>};   <span class="comment">// DriveGraph</span></div>
+</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassDriveGraph_html"><div class="ttname"><a href="classDriveGraph.html">DriveGraph</a></div><div class="ttdoc">A graph made from driveline</div><div class="ttdef"><b>Definition</b> drive_graph.hpp:39</div></div>
+<div class="ttc" id="aclassDriveGraph_html_a02b5f95b023f955453751cdee7bda626"><div class="ttname"><a href="classDriveGraph.html#a02b5f95b023f955453751cdee7bda626">DriveGraph::setDefaultSuccessors</a></div><div class="ttdeci">void setDefaultSuccessors()</div><div class="ttdoc">This function sets a default successor for all graph nodes that currently don&#39;t have a successor defi...</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:370</div></div>
+<div class="ttc" id="aclassDriveGraph_html_a06b3f9fdda0ea64639786e0d482d8a7e"><div class="ttname"><a href="classDriveGraph.html#a06b3f9fdda0ea64639786e0d482d8a7e">DriveGraph::getNumberOfSuccessors</a></div><div class="ttdeci">int getNumberOfSuccessors(int n) const</div><div class="ttdoc">Returns the number of successors of a node n.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:725</div></div>
+<div class="ttc" id="aclassDriveGraph_html_a13801192cb0e3de48d7ab599d124a621"><div class="ttname"><a href="classDriveGraph.html#a13801192cb0e3de48d7ab599d124a621">DriveGraph::getSuccessors</a></div><div class="ttdeci">void getSuccessors(int node_number, std::vector&lt; unsigned int &gt; &amp;succ, bool for_ai=false) const</div><div class="ttdoc">Returns the list of successors or a node.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:483</div></div>
+<div class="ttc" id="aclassDriveGraph_html_a1ee5141212e3b867c5fab6e7e4462425"><div class="ttname"><a href="classDriveGraph.html#a1ee5141212e3b867c5fab6e7e4462425">DriveGraph::getPoint</a></div><div class="ttdeci">void getPoint(const XMLNode *xml, const std::string &amp;attribute_name, Vec3 *result) const</div><div class="ttdoc">This function interprets a point specification as an attribute in the xml quad file.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:66</div></div>
+<div class="ttc" id="aclassDriveGraph_html_a5451ea5216e406fbc865990d35a1a491"><div class="ttname"><a href="classDriveGraph.html#a5451ea5216e406fbc865990d35a1a491">DriveGraph::getStartNode</a></div><div class="ttdeci">unsigned int getStartNode() const</div><div class="ttdoc">Returns the index of the first graph node (i.e.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:274</div></div>
+<div class="ttc" id="aclassDriveGraph_html_a580daf5b32929a7a679e9062e5367808"><div class="ttname"><a href="classDriveGraph.html#a580daf5b32929a7a679e9062e5367808">DriveGraph::m_lap_length</a></div><div class="ttdeci">float m_lap_length</div><div class="ttdoc">The length of the first loop.</div><div class="ttdef"><b>Definition</b> drive_graph.hpp:42</div></div>
+<div class="ttc" id="aclassDriveGraph_html_a5d08baa89773eceae71be85d41698c1c"><div class="ttname"><a href="classDriveGraph.html#a5d08baa89773eceae71be85d41698c1c">DriveGraph::computeChecklineRequirements</a></div><div class="ttdeci">void computeChecklineRequirements()</div><div class="ttdoc">Sets the checkline requirements for all nodes in the graph.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:283</div></div>
+<div class="ttc" id="aclassDriveGraph_html_a6f0ab61fc82b1cd9be08a0e1adaa749f"><div class="ttname"><a href="classDriveGraph.html#a6f0ab61fc82b1cd9be08a0e1adaa749f">DriveGraph::m_reverse</a></div><div class="ttdeci">bool m_reverse</div><div class="ttdoc">Wether the graph should be reverted or not</div><div class="ttdef"><b>Definition</b> drive_graph.hpp:48</div></div>
+<div class="ttc" id="aclassDriveGraph_html_a7888317df1ddcb14d6f16d10c160a9aa"><div class="ttname"><a href="classDriveGraph.html#a7888317df1ddcb14d6f16d10c160a9aa">DriveGraph::load</a></div><div class="ttdeci">void load(const std::string &amp;quad_file_name, const std::string &amp;filename)</div><div class="ttdoc">Loads a drive graph from a file.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:92</div></div>
+<div class="ttc" id="aclassDriveGraph_html_a7bf60a4c08bb2e94fe13bdcad8d8facf"><div class="ttname"><a href="classDriveGraph.html#a7bf60a4c08bb2e94fe13bdcad8d8facf">DriveGraph::DriveGraph</a></div><div class="ttdeci">DriveGraph(const std::string &amp;quad_file_name, const std::string &amp;graph_file_name, const bool reverse)</div><div class="ttdoc">Constructor, loads the graph information for a given set of quads from a graph file.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:40</div></div>
+<div class="ttc" id="aclassDriveGraph_html_a866b9a6c7558250e1b0c43e1a31c113b"><div class="ttname"><a href="classDriveGraph.html#a866b9a6c7558250e1b0c43e1a31c113b">DriveGraph::determineDirection</a></div><div class="ttdeci">void determineDirection(unsigned int current, unsigned int succ_index)</div><div class="ttdoc">Determines the direction of the drive graph when driving to the specified successor.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:641</div></div>
+<div class="ttc" id="aclassDriveGraph_html_a9b4c103987368c9403ab3ff89e59e757"><div class="ttname"><a href="classDriveGraph.html#a9b4c103987368c9403ab3ff89e59e757">DriveGraph::normalizeAngle</a></div><div class="ttdeci">float normalizeAngle(float f)</div><div class="ttdoc">Adjust the given angle to be in [-PI, PI].</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:618</div></div>
+<div class="ttc" id="aclassDriveGraph_html_aa19d81dae78e0b943df115a41fa865c6"><div class="ttname"><a href="classDriveGraph.html#aa19d81dae78e0b943df115a41fa865c6">DriveGraph::spatialToTrack</a></div><div class="ttdeci">void spatialToTrack(Vec3 *dst, const Vec3 &amp;xyz, const int sector) const</div><div class="ttdoc">This function takes absolute coordinates (coordinates in OpenGL space) and transforms them into coord...</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:700</div></div>
+<div class="ttc" id="aclassDriveGraph_html_aa627cd7f095a79b98ee51f04a11ed55a"><div class="ttname"><a href="classDriveGraph.html#aa627cd7f095a79b98ee51f04a11ed55a">DriveGraph::getDistanceToNext</a></div><div class="ttdeci">float getDistanceToNext(int n, int j) const</div><div class="ttdoc">Return the distance to the j-th successor of node n.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:713</div></div>
+<div class="ttc" id="aclassDriveGraph_html_aadf1f4bc43d0241d843334a188ada7d0"><div class="ttname"><a href="classDriveGraph.html#aadf1f4bc43d0241d843334a188ada7d0">DriveGraph::getNode</a></div><div class="ttdeci">DriveNode * getNode(unsigned int j) const</div><div class="ttdoc">Returns the quad that belongs to a graph node.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:750</div></div>
+<div class="ttc" id="aclassDriveGraph_html_ab9616fde16df7c22de3d4b9c746969f3"><div class="ttname"><a href="classDriveGraph.html#ab9616fde16df7c22de3d4b9c746969f3">DriveGraph::getLapLength</a></div><div class="ttdeci">float getLapLength() const</div><div class="ttdoc">Returns the length of the main driveline.</div><div class="ttdef"><b>Definition</b> drive_graph.hpp:119</div></div>
+<div class="ttc" id="aclassDriveGraph_html_abd35db323ab8dc1c012d10f7b6f72153"><div class="ttname"><a href="classDriveGraph.html#abd35db323ab8dc1c012d10f7b6f72153">DriveGraph::getDistanceFromStart</a></div><div class="ttdeci">float getDistanceFromStart(int j) const</div><div class="ttdoc">Returns the distance from the start to the beginning of a quad.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:731</div></div>
+<div class="ttc" id="aclassDriveGraph_html_ac3572d19436e303413b7cc6c9aed4171"><div class="ttname"><a href="classDriveGraph.html#ac3572d19436e303413b7cc6c9aed4171">DriveGraph::m_quad_filename</a></div><div class="ttdeci">std::string m_quad_filename</div><div class="ttdoc">Stores the filename - just used for error messages.</div><div class="ttdef"><b>Definition</b> drive_graph.hpp:45</div></div>
+<div class="ttc" id="aclassDriveGraph_html_ac45a5136c8c56b21568d1983aa4bced0"><div class="ttname"><a href="classDriveGraph.html#ac45a5136c8c56b21568d1983aa4bced0">DriveGraph::updateDistancesForAllSuccessors</a></div><div class="ttdeci">void updateDistancesForAllSuccessors(unsigned int indx, float delta, unsigned int count)</div><div class="ttdoc">Increases the distance from start for all nodes that are directly or indirectly a successor of the gi...</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:552</div></div>
+<div class="ttc" id="aclassDriveGraph_html_acd90903d14a0a4f9be54665071a30cc8"><div class="ttname"><a href="classDriveGraph.html#acd90903d14a0a4f9be54665071a30cc8">DriveGraph::computeDistanceFromStart</a></div><div class="ttdeci">void computeDistanceFromStart(unsigned int start_node, float distance)</div><div class="ttdoc">Recursively determines the distance the beginning (lower end) of the quads have from the start of the...</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:503</div></div>
+<div class="ttc" id="aclassDriveGraph_html_ad3217f2aa84be1045f8159a86794ab72"><div class="ttname"><a href="classDriveGraph.html#ad3217f2aa84be1045f8159a86794ab72">DriveGraph::setDefaultStartPositions</a></div><div class="ttdeci">void setDefaultStartPositions(AlignedArray&lt; btTransform &gt; *start_transforms, unsigned int karts_per_row, float forwards_distance=1.5f, float sidewards_distance=1.5f, float upwards_distance=0.0f) const</div><div class="ttdoc">Sets all start positions depending on the drive graph.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:401</div></div>
+<div class="ttc" id="aclassDriveGraph_html_ad374aa20067a2c314e60bac2df995475"><div class="ttname"><a href="classDriveGraph.html#ad374aa20067a2c314e60bac2df995475">DriveGraph::setupPaths</a></div><div class="ttdeci">void setupPaths()</div><div class="ttdoc">This function defines the &quot;path-to-nodes&quot; for each graph node that has more than one successor.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:358</div></div>
+<div class="ttc" id="aclassDriveGraph_html_aed9ea59eab8445ed473558ac67d260e7"><div class="ttname"><a href="classDriveGraph.html#aed9ea59eab8445ed473558ac67d260e7">DriveGraph::computeDirectionData</a></div><div class="ttdeci">void computeDirectionData()</div><div class="ttdoc">Computes the direction (straight, left, right) of all graph nodes and the lastest graph node that is ...</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:601</div></div>
+<div class="ttc" id="aclassDriveGraph_html_aff71aac33469b38c5f1d0dc885ec3fbf"><div class="ttname"><a href="classDriveGraph.html#aff71aac33469b38c5f1d0dc885ec3fbf">DriveGraph::getAngleToNext</a></div><div class="ttdeci">float getAngleToNext(int n, int j) const</div><div class="ttdoc">Returns the angle of the line between node n and its j-th.</div><div class="ttdef"><b>Definition</b> drive_graph.cpp:719</div></div>
+<div class="ttc" id="aclassDriveNode_html"><div class="ttname"><a href="classDriveNode.html">DriveNode</a></div><div class="ttdoc">This class stores a node of the drive graph, i.e.</div><div class="ttdef"><b>Definition</b> drive_node.hpp:32</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

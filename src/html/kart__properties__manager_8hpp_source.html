@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: karts/kart_properties_manager.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>karts</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">kart_properties_manager.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2004-2015 Ingo Ruhnke &lt;grumbel@gmx.de&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  Copyright (C) 2006-2015 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef HEADER_KART_PROPERTIES_MANAGER_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HEADER_KART_PROPERTIES_MANAGER_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/ptr_vector.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;config/favorite_status.hpp&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;<a class="code" href="remote__kart__info_8hpp.html">network/remote_kart_info.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#define ALL_KART_GROUPS_ID  &quot;all&quot;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractCharacteristic.html">AbstractCharacteristic</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">class </span><a class="code hl_class" href="classKartProperties.html">KartProperties</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">class </span><a class="code hl_class" href="classXMLNode.html">XMLNode</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html">   41</a></span><span class="keyword">class </span><a class="code hl_function" href="classKartPropertiesManager.html#a83d854231ffea1ae0320cb783c0959fb">KartPropertiesManager</a>: <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#a8be83c87ae9a2623b6424fbc2a2e307d">   45</a></span>    <span class="keyword">static</span> std::vector&lt;std::string&gt;          <a class="code hl_variable" href="classKartPropertiesManager.html#a8be83c87ae9a2623b6424fbc2a2e307d">m_kart_search_path</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#af2f95136b85e3a6b6c0861e1e0dc6eb5">   49</a></span>    std::vector&lt;std::string&gt;                 <a class="code hl_variable" href="classKartPropertiesManager.html#af2f95136b85e3a6b6c0861e1e0dc6eb5">m_all_kart_dirs</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#ac82e5df9559bd18df53fd8338df401eb">   52</a></span>    std::vector&lt;std::string&gt;                 <a class="code hl_variable" href="classKartPropertiesManager.html#ac82e5df9559bd18df53fd8338df401eb">m_all_groups</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#a9f0355e55b2b80d02c882677a7dad013">   55</a></span>    <a class="code hl_class" href="classFavoriteStatus.html">FavoriteStatus</a>*                          <a class="code hl_variable" href="classKartPropertiesManager.html#a9f0355e55b2b80d02c882677a7dad013">m_current_favorite_status</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#a90bb6edad1ab71be4cb6095fb105b370">   58</a></span>    std::vector&lt;std::string&gt;                 <a class="code hl_variable" href="classKartPropertiesManager.html#a90bb6edad1ab71be4cb6095fb105b370">m_kart_types</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#aceca2897aa1dfea29dece4b223de5347">   61</a></span>    std::map&lt;std::string, std::vector&lt;int&gt; &gt; <a class="code hl_variable" href="classKartPropertiesManager.html#aceca2897aa1dfea29dece4b223de5347">m_groups_2_indices</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#a09e210fb469a9222fc671f52a653061b">   64</a></span>    std::map&lt;std::string, std::vector&lt;int&gt; &gt; <a class="code hl_variable" href="classKartPropertiesManager.html#a09e210fb469a9222fc671f52a653061b">m_groups_2_indices_no_custom</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#ad9899dc2a220443053f80d83f04340cb">   69</a></span>    std::vector&lt;int&gt;         <a class="code hl_variable" href="classKartPropertiesManager.html#ad9899dc2a220443053f80d83f04340cb">m_selected_karts</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#aa7a66fe96d987fb8ea560909d1e59266">   73</a></span>    std::vector&lt;bool&gt;        <a class="code hl_variable" href="classKartPropertiesManager.html#aa7a66fe96d987fb8ea560909d1e59266">m_kart_available</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    std::unique_ptr&lt;AbstractCharacteristic&gt;                         m_base_characteristic;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    std::map&lt;std::string, std::unique_ptr&lt;AbstractCharacteristic&gt; &gt; m_difficulty_characteristics;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    std::map&lt;std::string, std::unique_ptr&lt;AbstractCharacteristic&gt; &gt; m_kart_type_characteristics;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    std::map&lt;std::string, std::unique_ptr&lt;AbstractCharacteristic&gt; &gt; m_player_characteristics;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">typedef</span> <a class="code hl_class" href="classPtrVector.html">PtrVector&lt;KartProperties&gt;</a> KartPropertiesVector;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#a0db5fde12bf5717eb524174113045607">   84</a></span>    KartPropertiesVector <a class="code hl_variable" href="classKartPropertiesManager.html#a0db5fde12bf5717eb524174113045607">m_karts_properties</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                             <a class="code hl_function" href="classKartPropertiesManager.html#a83d854231ffea1ae0320cb783c0959fb">KartPropertiesManager</a>();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                            <a class="code hl_function" href="classKartPropertiesManager.html#ab0dafdda4574187880d19cd2faa000d9">~KartPropertiesManager</a>();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">static</span> <span class="keywordtype">void</span>              removeKartSearchDirs();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">static</span> <span class="keywordtype">void</span>              <a class="code hl_function" href="classKartPropertiesManager.html#aa6f0e04e82a03ba3dedc22ea158db008">addKartSearchDir</a>       (<span class="keyword">const</span> std::string &amp;s);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">const</span> <a class="code hl_class" href="classKartProperties.html">KartProperties</a>*    getKartById            (<span class="keywordtype">int</span> i) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keyword">const</span> <a class="code hl_class" href="classKartProperties.html">KartProperties</a>*    getKart(<span class="keyword">const</span> std::string &amp;ident) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">const</span> <span class="keywordtype">int</span>                <a class="code hl_function" href="classKartPropertiesManager.html#a32763e9a7ed5736434acb74119f0fff1">getKartId</a>(<span class="keyword">const</span> std::string &amp;ident) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">int</span>                      <a class="code hl_function" href="classKartPropertiesManager.html#ad16f5a8f0cafb3bf31ab1d0c969120e5">getKartByGroup</a>(<span class="keyword">const</span> std::string&amp; group,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                                           <span class="keywordtype">int</span> i) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classKartPropertiesManager.html#aa6cdb64384b43fad5f9b6da4b46f0937">loadCharacteristics</a>    (<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> *root);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">bool</span>                     <a class="code hl_function" href="classKartPropertiesManager.html#a37dd37756d549f1cc6d66181093939f3">loadKart</a>               (<span class="keyword">const</span> std::string &amp;dir);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classKartPropertiesManager.html#a2a8263412f0b03e69ed6bf5a177c2033">loadAllKarts</a>           (<span class="keywordtype">bool</span> loading_icon = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classKartPropertiesManager.html#a700b94c5f1b7b6240ba6387f5b6ada4a">unloadAllKarts</a>         ();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classKartPropertiesManager.html#a39d034fc877c4517a239cab174d1377f">removeKart</a>(<span class="keyword">const</span> std::string &amp;<span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keyword">const</span> std::vector&lt;int&gt;   <a class="code hl_function" href="classKartPropertiesManager.html#ab9339606cfc8753d05617fd107b79d5d">getKartsInGroup</a>        (<span class="keyword">const</span> std::string&amp; g);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classKartPropertiesManager.html#a710b5d596c0663b122cb438b29ebecda">setFavoriteKartStatus</a>(<a class="code hl_class" href="classFavoriteStatus.html">FavoriteStatus</a> *status);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">bool</span>                     <a class="code hl_function" href="classKartPropertiesManager.html#acaa23d6d1ac0c4bf6693ba8a6feba3e8">kartAvailable</a>(<span class="keywordtype">int</span> kartid);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    std::vector&lt;std::string&gt; <a class="code hl_function" href="classKartPropertiesManager.html#abed188ee7851a03ec7396549ff44f969">getAllAvailableKarts</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classKartPropertiesManager.html#a9e66135f25ed78473a5aa1eb2e2c2d03">setUnavailableKarts</a>(std::vector&lt;std::string&gt;);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classKartPropertiesManager.html#aa4754eb2e2524d99fbee24d83df9f351">selectKartName</a>(<span class="keyword">const</span> std::string &amp;kart_name);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">bool</span>                     testAndSetKart(<span class="keywordtype">int</span> kartid);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classKartPropertiesManager.html#a4e46aa0f1c471a73d58b389386a15113">getRandomKartList</a>(<span class="keywordtype">int</span> count,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                                           RemoteKartInfoList* existing_karts,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                                           std::vector&lt;std::string&gt; *ai_list);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classKartPropertiesManager.html#adea29932776ac684135a57b827032379">setHatMeshName</a>(<span class="keyword">const</span> std::string &amp;hat_name);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#a46a2a377ce7458587cb6953eaea6a2ee">  118</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classAbstractCharacteristic.html">AbstractCharacteristic</a>* <a class="code hl_function" href="classKartPropertiesManager.html#a46a2a377ce7458587cb6953eaea6a2ee">getBaseCharacteristic</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_base_characteristic.get(); }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">const</span> <a class="code hl_class" href="classAbstractCharacteristic.html">AbstractCharacteristic</a>* <a class="code hl_function" href="classKartPropertiesManager.html#a2dedd8610929d353e97aeee699878349">getDifficultyCharacteristic</a>(<span class="keyword">const</span> std::string &amp;type) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keyword">const</span> <a class="code hl_class" href="classAbstractCharacteristic.html">AbstractCharacteristic</a>* <a class="code hl_function" href="classKartPropertiesManager.html#a92af851425ac690bbb18f74ef5a40f23">getKartTypeCharacteristic</a>(<span class="keyword">const</span> std::string &amp;type, <span class="keyword">const</span> std::string &amp;name) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; getAllKartTypes()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classKartPropertiesManager.html#a90bb6edad1ab71be4cb6095fb105b370">m_kart_types</a>; }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keyword">const</span> std::string&amp; getDefaultKartType()<span class="keyword"> const           </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classKartPropertiesManager.html#a90bb6edad1ab71be4cb6095fb105b370">m_kart_types</a>[0]; }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">bool</span> hasKartTypeCharacteristic(<span class="keyword">const</span> std::string&amp; type)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordflow">return</span> m_kart_type_characteristics.find(type) !=</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            m_kart_type_characteristics.end();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keyword">const</span> AbstractCharacteristic* <a class="code hl_function" href="classKartPropertiesManager.html#a53218890f2b410ea371956f755ba5eb4">getPlayerCharacteristic</a>(<span class="keyword">const</span> std::string &amp;type) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#a65442632605751907ccdbed86fe1e37f">  140</a></span>    <span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; <a class="code hl_function" href="classKartPropertiesManager.html#a65442632605751907ccdbed86fe1e37f">getAllGroups</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classKartPropertiesManager.html#ac82e5df9559bd18df53fd8338df401eb">m_all_groups</a>; }</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#a63e0ccebddd4c33b132dac05a26262aa">  143</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartPropertiesManager.html#a63e0ccebddd4c33b132dac05a26262aa">clearAllSelectedKarts</a>() { <a class="code hl_variable" href="classKartPropertiesManager.html#ad9899dc2a220443053f80d83f04340cb">m_selected_karts</a>.clear(); }</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#af816dbe491e7b4d2ace51fb6c46c6581">  146</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartPropertiesManager.html#af816dbe491e7b4d2ace51fb6c46c6581">removeLastSelectedKart</a>() { <a class="code hl_variable" href="classKartPropertiesManager.html#ad9899dc2a220443053f80d83f04340cb">m_selected_karts</a>.pop_back(); }</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#afa46ee3d420d085a8bfa5cf91953994b">  149</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classKartPropertiesManager.html#afa46ee3d420d085a8bfa5cf91953994b">getNumSelectedKarts</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<span class="keywordtype">int</span>) <a class="code hl_variable" href="classKartPropertiesManager.html#ad9899dc2a220443053f80d83f04340cb">m_selected_karts</a>.size(); }</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#a079e69629cf3a5412ec0eb378092fe3d">  152</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartPropertiesManager.html#a079e69629cf3a5412ec0eb378092fe3d">selectKart</a>(<span class="keywordtype">int</span> kartid) { <a class="code hl_variable" href="classKartPropertiesManager.html#ad9899dc2a220443053f80d83f04340cb">m_selected_karts</a>.push_back(kartid); }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00155" data-start="{" data-end="}">
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#a6ea0d2f65a04a9cc0d8bc6b7b21dadc0">  155</a></span>    <span class="keyword">const</span> std::vector&lt;std::string&gt;* <a class="code hl_function" href="classKartPropertiesManager.html#a6ea0d2f65a04a9cc0d8bc6b7b21dadc0">getAllKartDirs</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keyword">                                    </span>{ <span class="keywordflow">return</span> &amp;<a class="code hl_variable" href="classKartPropertiesManager.html#af2f95136b85e3a6b6c0861e1e0dc6eb5">m_all_kart_dirs</a>; }</div>
+</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00159" data-start="{" data-end="}">
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classKartPropertiesManager.html#a799685792a3fb332e39d10861a93ab36">  159</a></span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classKartPropertiesManager.html#a799685792a3fb332e39d10861a93ab36">getNumberOfKarts</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keywordflow">return</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)<a class="code hl_variable" href="classKartPropertiesManager.html#a0db5fde12bf5717eb524174113045607">m_karts_properties</a>.size();</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    }   <span class="comment">// getNumberOfKarts</span></div>
+</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">void</span> onDemandLoadKartTextures(<span class="keyword">const</span> std::set&lt;std::string&gt;&amp; kart_list,</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>                                  <span class="keywordtype">bool</span> unload_unused = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>};</div>
+</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="keyword">extern</span> <a class="code hl_class" href="classKartPropertiesManager.html">KartPropertiesManager</a> *kart_properties_manager;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="comment">/* EOF */</span></div>
+<div class="ttc" id="aclassAbstractCharacteristic_html"><div class="ttname"><a href="classAbstractCharacteristic.html">AbstractCharacteristic</a></div><div class="ttdoc">Characteristics are the properties of a kart that influence gameplay mechanics.</div><div class="ttdef"><b>Definition</b> abstract_characteristic.hpp:43</div></div>
+<div class="ttc" id="aclassFavoriteStatus_html"><div class="ttname"><a href="classFavoriteStatus.html">FavoriteStatus</a></div><div class="ttdoc">Class for storing the current favorites/custom groups of karts and tracks.</div><div class="ttdef"><b>Definition</b> favorite_status.hpp:43</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html"><div class="ttname"><a href="classKartPropertiesManager.html">KartPropertiesManager</a></div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:42</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a079e69629cf3a5412ec0eb378092fe3d"><div class="ttname"><a href="classKartPropertiesManager.html#a079e69629cf3a5412ec0eb378092fe3d">KartPropertiesManager::selectKart</a></div><div class="ttdeci">void selectKart(int kartid)</div><div class="ttdoc">Sets a kartid to be selected (used in networking only).</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:152</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a09e210fb469a9222fc671f52a653061b"><div class="ttname"><a href="classKartPropertiesManager.html#a09e210fb469a9222fc671f52a653061b">KartPropertiesManager::m_groups_2_indices_no_custom</a></div><div class="ttdeci">std::map&lt; std::string, std::vector&lt; int &gt; &gt; m_groups_2_indices_no_custom</div><div class="ttdoc">Mapping of group names to list of kart indices in each group without customized ones.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:64</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a0db5fde12bf5717eb524174113045607"><div class="ttname"><a href="classKartPropertiesManager.html#a0db5fde12bf5717eb524174113045607">KartPropertiesManager::m_karts_properties</a></div><div class="ttdeci">KartPropertiesVector m_karts_properties</div><div class="ttdoc">All available kart configurations</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:84</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a2a8263412f0b03e69ed6bf5a177c2033"><div class="ttname"><a href="classKartPropertiesManager.html#a2a8263412f0b03e69ed6bf5a177c2033">KartPropertiesManager::loadAllKarts</a></div><div class="ttdeci">void loadAllKarts(bool loading_icon=true)</div><div class="ttdoc">Loads all kart properties and models.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:198</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a2dedd8610929d353e97aeee699878349"><div class="ttname"><a href="classKartPropertiesManager.html#a2dedd8610929d353e97aeee699878349">KartPropertiesManager::getDifficultyCharacteristic</a></div><div class="ttdeci">const AbstractCharacteristic * getDifficultyCharacteristic(const std::string &amp;type) const</div><div class="ttdoc">Get a characteristic that holds the values for a certain difficulty.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:351</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a32763e9a7ed5736434acb74119f0fff1"><div class="ttname"><a href="classKartPropertiesManager.html#a32763e9a7ed5736434acb74119f0fff1">KartPropertiesManager::getKartId</a></div><div class="ttdeci">const int getKartId(const std::string &amp;ident) const</div><div class="ttdoc">Returns index of the kart properties with the given ident.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:398</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a37dd37756d549f1cc6d66181093939f3"><div class="ttname"><a href="classKartPropertiesManager.html#a37dd37756d549f1cc6d66181093939f3">KartPropertiesManager::loadKart</a></div><div class="ttdeci">bool loadKart(const std::string &amp;dir)</div><div class="ttdoc">Loads a single kart and (if not disabled) the corresponding 3d model.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:290</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a39d034fc877c4517a239cab174d1377f"><div class="ttname"><a href="classKartPropertiesManager.html#a39d034fc877c4517a239cab174d1377f">KartPropertiesManager::removeKart</a></div><div class="ttdeci">void removeKart(const std::string &amp;id)</div><div class="ttdoc">Remove a kart from the kart manager.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:103</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a46a2a377ce7458587cb6953eaea6a2ee"><div class="ttname"><a href="classKartPropertiesManager.html#a46a2a377ce7458587cb6953eaea6a2ee">KartPropertiesManager::getBaseCharacteristic</a></div><div class="ttdeci">const AbstractCharacteristic * getBaseCharacteristic() const</div><div class="ttdoc">Get the characteristic that holds the base values.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:118</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a4e46aa0f1c471a73d58b389386a15113"><div class="ttname"><a href="classKartPropertiesManager.html#a4e46aa0f1c471a73d58b389386a15113">KartPropertiesManager::getRandomKartList</a></div><div class="ttdeci">void getRandomKartList(int count, RemoteKartInfoList *existing_karts, std::vector&lt; std::string &gt; *ai_list)</div><div class="ttdoc">Returns a list of randomly selected karts.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:608</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a53218890f2b410ea371956f755ba5eb4"><div class="ttname"><a href="classKartPropertiesManager.html#a53218890f2b410ea371956f755ba5eb4">KartPropertiesManager::getPlayerCharacteristic</a></div><div class="ttdeci">const AbstractCharacteristic * getPlayerCharacteristic(const std::string &amp;type) const</div><div class="ttdoc">Get a characteristic that holds the values for a player difficulty.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:385</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a63e0ccebddd4c33b132dac05a26262aa"><div class="ttname"><a href="classKartPropertiesManager.html#a63e0ccebddd4c33b132dac05a26262aa">KartPropertiesManager::clearAllSelectedKarts</a></div><div class="ttdeci">void clearAllSelectedKarts()</div><div class="ttdoc">Clears all selected karts (used in networking only).</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:143</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a65442632605751907ccdbed86fe1e37f"><div class="ttname"><a href="classKartPropertiesManager.html#a65442632605751907ccdbed86fe1e37f">KartPropertiesManager::getAllGroups</a></div><div class="ttdeci">const std::vector&lt; std::string &gt; &amp; getAllGroups() const</div><div class="ttdoc">Returns a list of all groups.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:140</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a6ea0d2f65a04a9cc0d8bc6b7b21dadc0"><div class="ttname"><a href="classKartPropertiesManager.html#a6ea0d2f65a04a9cc0d8bc6b7b21dadc0">KartPropertiesManager::getAllKartDirs</a></div><div class="ttdeci">const std::vector&lt; std::string &gt; * getAllKartDirs() const</div><div class="ttdoc">Returns all directories from which karts were loaded.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:155</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a700b94c5f1b7b6240ba6387f5b6ada4a"><div class="ttname"><a href="classKartPropertiesManager.html#a700b94c5f1b7b6240ba6387f5b6ada4a">KartPropertiesManager::unloadAllKarts</a></div><div class="ttdeci">void unloadAllKarts()</div><div class="ttdoc">Removes all karts from the KartPropertiesManager, so that they can be reloade.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:89</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a710b5d596c0663b122cb438b29ebecda"><div class="ttname"><a href="classKartPropertiesManager.html#a710b5d596c0663b122cb438b29ebecda">KartPropertiesManager::setFavoriteKartStatus</a></div><div class="ttdeci">void setFavoriteKartStatus(FavoriteStatus *status)</div><div class="ttdoc">Adds a track to the special group of favorite tracks.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:499</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a799685792a3fb332e39d10861a93ab36"><div class="ttname"><a href="classKartPropertiesManager.html#a799685792a3fb332e39d10861a93ab36">KartPropertiesManager::getNumberOfKarts</a></div><div class="ttdeci">const unsigned int getNumberOfKarts() const</div><div class="ttdoc">Returns the number of karts.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:159</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a83d854231ffea1ae0320cb783c0959fb"><div class="ttname"><a href="classKartPropertiesManager.html#a83d854231ffea1ae0320cb783c0959fb">KartPropertiesManager::KartPropertiesManager</a></div><div class="ttdeci">KartPropertiesManager()</div><div class="ttdoc">Constructor, only clears internal data structures.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:55</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a8be83c87ae9a2623b6424fbc2a2e307d"><div class="ttname"><a href="classKartPropertiesManager.html#a8be83c87ae9a2623b6424fbc2a2e307d">KartPropertiesManager::m_kart_search_path</a></div><div class="ttdeci">static std::vector&lt; std::string &gt; m_kart_search_path</div><div class="ttdoc">The list of all directories in which to search for karts.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:45</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a90bb6edad1ab71be4cb6095fb105b370"><div class="ttname"><a href="classKartPropertiesManager.html#a90bb6edad1ab71be4cb6095fb105b370">KartPropertiesManager::m_kart_types</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_kart_types</div><div class="ttdoc">List of all kart types.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:58</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a92af851425ac690bbb18f74ef5a40f23"><div class="ttname"><a href="classKartPropertiesManager.html#a92af851425ac690bbb18f74ef5a40f23">KartPropertiesManager::getKartTypeCharacteristic</a></div><div class="ttdeci">const AbstractCharacteristic * getKartTypeCharacteristic(const std::string &amp;type, const std::string &amp;name) const</div><div class="ttdoc">Get a characteristic that holds the values for a kart type.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:361</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a9e66135f25ed78473a5aa1eb2e2c2d03"><div class="ttname"><a href="classKartPropertiesManager.html#a9e66135f25ed78473a5aa1eb2e2c2d03">KartPropertiesManager::setUnavailableKarts</a></div><div class="ttdeci">void setUnavailableKarts(std::vector&lt; std::string &gt;)</div><div class="ttdoc">Marks all karts except the ones listed in the string vector to be unavailable.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:452</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_a9f0355e55b2b80d02c882677a7dad013"><div class="ttname"><a href="classKartPropertiesManager.html#a9f0355e55b2b80d02c882677a7dad013">KartPropertiesManager::m_current_favorite_status</a></div><div class="ttdeci">FavoriteStatus * m_current_favorite_status</div><div class="ttdoc">Current favorite karts</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:55</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_aa4754eb2e2524d99fbee24d83df9f351"><div class="ttname"><a href="classKartPropertiesManager.html#aa4754eb2e2524d99fbee24d83df9f351">KartPropertiesManager::selectKartName</a></div><div class="ttdeci">void selectKartName(const std::string &amp;kart_name)</div><div class="ttdoc">Sets a kart to be selected by specifying the identifier (name) of the kart.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:566</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_aa6cdb64384b43fad5f9b6da4b46f0937"><div class="ttname"><a href="classKartPropertiesManager.html#aa6cdb64384b43fad5f9b6da4b46f0937">KartPropertiesManager::loadCharacteristics</a></div><div class="ttdeci">void loadCharacteristics(const XMLNode *root)</div><div class="ttdoc">Loads the characteristics from the characteristics config file.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:233</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_aa6f0e04e82a03ba3dedc22ea158db008"><div class="ttname"><a href="classKartPropertiesManager.html#aa6f0e04e82a03ba3dedc22ea158db008">KartPropertiesManager::addKartSearchDir</a></div><div class="ttdeci">static void addKartSearchDir(const std::string &amp;s)</div><div class="ttdoc">Adds a directory from which karts are loaded.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:80</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_aa7a66fe96d987fb8ea560909d1e59266"><div class="ttname"><a href="classKartPropertiesManager.html#aa7a66fe96d987fb8ea560909d1e59266">KartPropertiesManager::m_kart_available</a></div><div class="ttdeci">std::vector&lt; bool &gt; m_kart_available</div><div class="ttdoc">Contains a flag for each kart indicating whether it is available on all clients or not.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:73</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_ab0dafdda4574187880d19cd2faa000d9"><div class="ttname"><a href="classKartPropertiesManager.html#ab0dafdda4574187880d19cd2faa000d9">KartPropertiesManager::~KartPropertiesManager</a></div><div class="ttdeci">~KartPropertiesManager()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:64</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_ab9339606cfc8753d05617fd107b79d5d"><div class="ttname"><a href="classKartPropertiesManager.html#ab9339606cfc8753d05617fd107b79d5d">KartPropertiesManager::getKartsInGroup</a></div><div class="ttdeci">const std::vector&lt; int &gt; getKartsInGroup(const std::string &amp;g)</div><div class="ttdoc">Returns a vector with the indices of all karts in the specified group.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:578</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_abed188ee7851a03ec7396549ff44f969"><div class="ttname"><a href="classKartPropertiesManager.html#abed188ee7851a03ec7396549ff44f969">KartPropertiesManager::getAllAvailableKarts</a></div><div class="ttdeci">std::vector&lt; std::string &gt; getAllAvailableKarts() const</div><div class="ttdoc">Returns a list of all available kart identifiers.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:435</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_ac82e5df9559bd18df53fd8338df401eb"><div class="ttname"><a href="classKartPropertiesManager.html#ac82e5df9559bd18df53fd8338df401eb">KartPropertiesManager::m_all_groups</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_all_groups</div><div class="ttdoc">List of all kart groups.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:52</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_acaa23d6d1ac0c4bf6693ba8a6feba3e8"><div class="ttname"><a href="classKartPropertiesManager.html#acaa23d6d1ac0c4bf6693ba8a6feba3e8">KartPropertiesManager::kartAvailable</a></div><div class="ttdeci">bool kartAvailable(int kartid)</div><div class="ttdoc">Returns true if a kart is available to be selected.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:547</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_aceca2897aa1dfea29dece4b223de5347"><div class="ttname"><a href="classKartPropertiesManager.html#aceca2897aa1dfea29dece4b223de5347">KartPropertiesManager::m_groups_2_indices</a></div><div class="ttdeci">std::map&lt; std::string, std::vector&lt; int &gt; &gt; m_groups_2_indices</div><div class="ttdoc">Mapping of group names to list of kart indices in each group.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:61</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_ad16f5a8f0cafb3bf31ab1d0c969120e5"><div class="ttname"><a href="classKartPropertiesManager.html#ad16f5a8f0cafb3bf31ab1d0c969120e5">KartPropertiesManager::getKartByGroup</a></div><div class="ttdeci">int getKartByGroup(const std::string &amp;group, int i) const</div><div class="ttdoc">Returns the (global) index of the n-th kart of a given group.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:475</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_ad9899dc2a220443053f80d83f04340cb"><div class="ttname"><a href="classKartPropertiesManager.html#ad9899dc2a220443053f80d83f04340cb">KartPropertiesManager::m_selected_karts</a></div><div class="ttdeci">std::vector&lt; int &gt; m_selected_karts</div><div class="ttdoc">Vector containing kart numbers that have been selected in multiplayer games.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:69</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_adea29932776ac684135a57b827032379"><div class="ttname"><a href="classKartPropertiesManager.html#adea29932776ac684135a57b827032379">KartPropertiesManager::setHatMeshName</a></div><div class="ttdeci">void setHatMeshName(const std::string &amp;hat_name)</div><div class="ttdoc">Sets the name of a mesh to use as a hat for all karts.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.cpp:342</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_af2f95136b85e3a6b6c0861e1e0dc6eb5"><div class="ttname"><a href="classKartPropertiesManager.html#af2f95136b85e3a6b6c0861e1e0dc6eb5">KartPropertiesManager::m_all_kart_dirs</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_all_kart_dirs</div><div class="ttdoc">All directories from which karts were loaded.</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:49</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_af816dbe491e7b4d2ace51fb6c46c6581"><div class="ttname"><a href="classKartPropertiesManager.html#af816dbe491e7b4d2ace51fb6c46c6581">KartPropertiesManager::removeLastSelectedKart</a></div><div class="ttdeci">void removeLastSelectedKart()</div><div class="ttdoc">Removed the last selected kart (used in networking only).</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:146</div></div>
+<div class="ttc" id="aclassKartPropertiesManager_html_afa46ee3d420d085a8bfa5cf91953994b"><div class="ttname"><a href="classKartPropertiesManager.html#afa46ee3d420d085a8bfa5cf91953994b">KartPropertiesManager::getNumSelectedKarts</a></div><div class="ttdeci">int getNumSelectedKarts() const</div><div class="ttdoc">Returns the number of selected karts (used in networking only).</div><div class="ttdef"><b>Definition</b> kart_properties_manager.hpp:149</div></div>
+<div class="ttc" id="aclassKartProperties_html"><div class="ttname"><a href="classKartProperties.html">KartProperties</a></div><div class="ttdoc">This class stores the properties of a kart.</div><div class="ttdef"><b>Definition</b> kart_properties.hpp:60</div></div>
+<div class="ttc" id="aclassPtrVector_html"><div class="ttname"><a href="classPtrVector.html">PtrVector</a></div><div class="ttdef"><b>Definition</b> ptr_vector.hpp:44</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+<div class="ttc" id="aremote__kart__info_8hpp_html"><div class="ttname"><a href="remote__kart__info_8hpp.html">remote_kart_info.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

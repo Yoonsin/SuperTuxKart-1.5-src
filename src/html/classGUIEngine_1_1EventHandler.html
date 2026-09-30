@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: GUIEngine::EventHandler 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespaceGUIEngine.html">GUIEngine</a></li><li class="navelem"><a href="classGUIEngine_1_1EventHandler.html">EventHandler</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-static-methods">정적 Public 멤버 함수</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="classGUIEngine_1_1EventHandler-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">GUIEngine::EventHandler 클래스 참조<div class="ingroups"><a class="el" href="group__guiengine.html">Guiengine</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class to handle irrLicht events (GUI and input as well)  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="event__handler_8hpp_source.html">event_handler.hpp</a>&gt;</code></p>
+<div class="dynheader">
+GUIEngine::EventHandler에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classGUIEngine_1_1EventHandler__inherit__graph.png" border="0" usemap="#aGUIEngine_1_1EventHandler_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aGUIEngine_1_1EventHandler_inherit__map" id="aGUIEngine_1_1EventHandler_inherit__map">
+<area shape="rect" title="Class to handle irrLicht events (GUI and input as well)" alt="" coords="5,80,178,107"/>
+<area shape="rect" title=" " alt="" coords="26,5,157,32"/>
+<area shape="poly" title=" " alt="" coords="93,46,94,81,89,79,90,50"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:ac8b07532cc4e1a24c13076fc94d55083" id="r_ac8b07532cc4e1a24c13076fc94d55083"><td class="memItemLeft"><a id="ac8b07532cc4e1a24c13076fc94d55083" name="ac8b07532cc4e1a24c13076fc94d55083"></a>
+bool&#160;</td><td class="memItemRight"><b>OnEvent</b> (const irr::SEvent &amp;event)</td></tr>
+<tr class="memdesc:ac8b07532cc4e1a24c13076fc94d55083"><td class="mdescLeft">&#160;</td><td class="mdescRight">All irrLicht events will go through this (input as well GUI; input events are immediately delegated to the input module, GUI events are processed here) <br /></td></tr>
+<tr class="memitem:a619e9b5ba7812864a1fd6b21ebfc7376" id="r_a619e9b5ba7812864a1fd6b21ebfc7376"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a619e9b5ba7812864a1fd6b21ebfc7376">processGUIAction</a> (const <a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> action, int deviceID, const unsigned int value, Input::InputType type, const int playerID)</td></tr>
+<tr class="memdesc:a619e9b5ba7812864a1fd6b21ebfc7376"><td class="mdescLeft">&#160;</td><td class="mdescRight">When the input module is done processing an input and mapped it to an action, and this action needs to be applied to the GUI (e.g.  <br /></td></tr>
+<tr class="memitem:ab36bccd806642867ada7b9b9e2e55bd8" id="r_ab36bccd806642867ada7b9b9e2e55bd8"><td class="memItemLeft"><a id="ab36bccd806642867ada7b9b9e2e55bd8" name="ab36bccd806642867ada7b9b9e2e55bd8"></a>
+const irr::core::vector2di &amp;&#160;</td><td class="memItemRight"><b>getMousePos</b> () const</td></tr>
+<tr class="memdesc:ab36bccd806642867ada7b9b9e2e55bd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the mouse position <br /></td></tr>
+<tr class="memitem:a02eed15cea30171078a96a5cb149c7cd" id="r_a02eed15cea30171078a96a5cb149c7cd"><td class="memItemLeft"><a id="a02eed15cea30171078a96a5cb149c7cd" name="a02eed15cea30171078a96a5cb149c7cd"></a>
+void&#160;</td><td class="memItemRight"><b>setAcceptEvents</b> (bool value)</td></tr>
+<tr class="memitem:ae4e329c97f6abd48d360061a90d107bd" id="r_ae4e329c97f6abd48d360061a90d107bd"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae4e329c97f6abd48d360061a90d107bd">findIDClosestWidget</a> (const NavigationDirection nav, const int playerID, <a class="el" href="classGUIEngine_1_1Widget.html">Widget</a> *w, bool ignore_disabled, int recursion_counter=0)</td></tr>
+<tr class="memdesc:ae4e329c97f6abd48d360061a90d107bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function use simple heuristics to find the closest widget in the requested direction.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a87f70c0a75c4995ae8dcde9d4e9daee2" id="r_a87f70c0a75c4995ae8dcde9d4e9daee2"><td class="memItemLeft"><a id="a87f70c0a75c4995ae8dcde9d4e9daee2" name="a87f70c0a75c4995ae8dcde9d4e9daee2"></a>
+static <a class="el" href="classEventHandler.html">EventHandler</a> *&#160;</td><td class="memItemRight"><b>get</b> ()</td></tr>
+<tr class="memdesc:a87f70c0a75c4995ae8dcde9d4e9daee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">singleton access <br /></td></tr>
+<tr class="memitem:abcf1d4128511f4eeb7727698f6b6e774" id="r_abcf1d4128511f4eeb7727698f6b6e774"><td class="memItemLeft"><a id="abcf1d4128511f4eeb7727698f6b6e774" name="abcf1d4128511f4eeb7727698f6b6e774"></a>
+static void&#160;</td><td class="memItemRight"><b>deallocate</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:a0855f304a9bc47809661580237ba9a2f" id="r_a0855f304a9bc47809661580237ba9a2f"><td class="memItemLeft"><a id="a0855f304a9bc47809661580237ba9a2f" name="a0855f304a9bc47809661580237ba9a2f"></a>
+EventPropagation&#160;</td><td class="memItemRight"><b>onGUIEvent</b> (const irr::SEvent &amp;event)</td></tr>
+<tr class="memitem:a739cb19f21ca7a17405c5eecea458275" id="r_a739cb19f21ca7a17405c5eecea458275"><td class="memItemLeft"><a id="a739cb19f21ca7a17405c5eecea458275" name="a739cb19f21ca7a17405c5eecea458275"></a>
+EventPropagation&#160;</td><td class="memItemRight"><b>onWidgetActivated</b> (<a class="el" href="classGUIEngine_1_1Widget.html">Widget</a> *w, const int playerID, Input::InputType type)</td></tr>
+<tr class="memitem:a7052bb6be8174d04faeffc3de27fcbe2" id="r_a7052bb6be8174d04faeffc3de27fcbe2"><td class="memItemLeft"><a id="a7052bb6be8174d04faeffc3de27fcbe2" name="a7052bb6be8174d04faeffc3de27fcbe2"></a>
+void&#160;</td><td class="memItemRight"><b>sendNavigationEvent</b> (const NavigationDirection nav, const int playerID)</td></tr>
+<tr class="memitem:a812b48e60c45955c828194b0ea1a3df6" id="r_a812b48e60c45955c828194b0ea1a3df6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a812b48e60c45955c828194b0ea1a3df6">navigate</a> (const NavigationDirection nav, <a class="el" href="classGUIEngine_1_1Widget.html">Widget</a> *starting_widget, const int playerID)</td></tr>
+<tr class="memdesc:a812b48e60c45955c828194b0ea1a3df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Focus the next widget downards, upwards, leftwards or rightwards.  <br /></td></tr>
+<tr class="memitem:a9d7b1fa9edb376f9be8be157df10ef01" id="r_a9d7b1fa9edb376f9be8be157df10ef01"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9d7b1fa9edb376f9be8be157df10ef01">sendEventToUser</a> (<a class="el" href="classGUIEngine_1_1Widget.html">Widget</a> *widget, std::string &amp;name, const int playerID)</td></tr>
+<tr class="memdesc:a9d7b1fa9edb376f9be8be157df10ef01"><td class="mdescLeft">&#160;</td><td class="mdescRight">send an event to the GUI module user's event callback  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:af6e5327732ae8ab4b93eb462b6e87426" id="r_af6e5327732ae8ab4b93eb462b6e87426"><td class="memItemLeft"><a id="af6e5327732ae8ab4b93eb462b6e87426" name="af6e5327732ae8ab4b93eb462b6e87426"></a>
+bool&#160;</td><td class="memItemRight"><b>m_accept_events</b></td></tr>
+<tr class="memdesc:af6e5327732ae8ab4b93eb462b6e87426"><td class="mdescLeft">&#160;</td><td class="mdescRight">This variable is used to ignore events during the initial load screen, so that a player cannot trigger an action by clicking on the window during loading screen for example <br /></td></tr>
+<tr class="memitem:ab0fec6d675980868f682ed9d45b23bee" id="r_ab0fec6d675980868f682ed9d45b23bee"><td class="memItemLeft"><a id="ab0fec6d675980868f682ed9d45b23bee" name="ab0fec6d675980868f682ed9d45b23bee"></a>
+irr::core::vector2di&#160;</td><td class="memItemRight"><b>m_mouse_pos</b></td></tr>
+<tr class="memdesc:ab0fec6d675980868f682ed9d45b23bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last position of the mouse cursor <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Class to handle irrLicht events (GUI and input as well) </p>
+<p>input events will be redirected to the input module in game mode. In menu mode, input is mapped to game actions with the help of the input module, then calls are made to move focus / trigger an event / etc.</p>
+<p>This is really only the irrLicht events bit, not to be confused with my own simple events dispatched mainly through <a class="el" href="classGUIEngine_1_1AbstractStateManager.html" title="Abstract base class you must override from to use the GUI engine">AbstractStateManager</a>, and also to widgets (this class is some kind of bridge between the base irrLicht GUI engine and the STK layer on top of it) </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="ae4e329c97f6abd48d360061a90d107bd" name="ae4e329c97f6abd48d360061a90d107bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4e329c97f6abd48d360061a90d107bd">&#9670;&#160;</a></span>findIDClosestWidget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int EventHandler::findIDClosestWidget </td>
+          <td>(</td>
+          <td class="paramtype">const NavigationDirection</td>          <td class="paramname"><span class="paramname"><em>nav</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>playerID</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classGUIEngine_1_1Widget.html">Widget</a> *</td>          <td class="paramname"><span class="paramname"><em>w</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>ignore_disabled</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>recursion_counter</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function use simple heuristics to find the closest widget in the requested direction. </p>
+<p>It prioritize widgets close vertically to widget close horizontally, as it is expected behavior in any direction. Several hardcoded values are used, having been found to work well experimentally while keeping simple heuristics. </p>
+
+</div>
+</div>
+<a id="a812b48e60c45955c828194b0ea1a3df6" name="a812b48e60c45955c828194b0ea1a3df6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a812b48e60c45955c828194b0ea1a3df6">&#9670;&#160;</a></span>navigate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EventHandler::navigate </td>
+          <td>(</td>
+          <td class="paramtype">const NavigationDirection</td>          <td class="paramname"><span class="paramname"><em>nav</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classGUIEngine_1_1Widget.html">Widget</a> *</td>          <td class="paramname"><span class="paramname"><em>starting_widget</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>playerID</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Focus the next widget downards, upwards, leftwards or rightwards. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nav</td><td>Determine in which direction to navigate </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a619e9b5ba7812864a1fd6b21ebfc7376" name="a619e9b5ba7812864a1fd6b21ebfc7376"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a619e9b5ba7812864a1fd6b21ebfc7376">&#9670;&#160;</a></span>processGUIAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EventHandler::processGUIAction </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a></td>          <td class="paramname"><span class="paramname"><em>action</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>deviceID</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Input::InputType</td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>playerID</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>When the input module is done processing an input and mapped it to an action, and this action needs to be applied to the GUI (e.g. </p>
+<p>fire pressed, left pressed, etc.) this method is called back by the input module. </p>
+
+</div>
+</div>
+<a id="a9d7b1fa9edb376f9be8be157df10ef01" name="a9d7b1fa9edb376f9be8be157df10ef01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d7b1fa9edb376f9be8be157df10ef01">&#9670;&#160;</a></span>sendEventToUser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EventHandler::sendEventToUser </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classGUIEngine_1_1Widget.html">GUIEngine::Widget</a> *</td>          <td class="paramname"><span class="paramname"><em>widget</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>playerID</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>send an event to the GUI module user's event callback </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">widget</td><td>the widget that triggerred this event </td></tr>
+    <tr><td class="paramname">name</td><td>the name/ID (PROP_ID) of the widget that triggerred this event </td></tr>
+    <tr><td class="paramname">playerID</td><td>ID of the player that triggerred this event </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>guiengine/<a class="el" href="event__handler_8hpp_source.html">event_handler.hpp</a></li>
+<li>guiengine/<b>event_handler.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

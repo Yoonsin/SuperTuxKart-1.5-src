@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: states_screens/options/options_screen_video.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>states_screens</b></li><li class="navelem"><b>options</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">options_screen_video.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  Copyright (C) 2009-2015 Marianne Gagnon</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef __HEADER_OPTIONS_SCREEN_VIDEO_HPP__</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define __HEADER_OPTIONS_SCREEN_VIDEO_HPP__</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;guiengine/screen.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceGUIEngine.html">GUIEngine</a> { <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1Widget.html">Widget</a>; }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structGFXPreset.html">   28</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structGFXPreset.html">GFXPreset</a></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">bool</span> lights;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">int</span> shadows;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">bool</span> bloom;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">bool</span> lightshaft;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">bool</span> glow;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">bool</span> mlaa;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">bool</span> ssao;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">bool</span> light_scatter;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">bool</span> animatedCharacters;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">int</span> particles;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">int</span> image_quality;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">bool</span> degraded_ibl;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">int</span> geometry_detail;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">bool</span> pc_soft_shadows;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">bool</span> ssr;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
+</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="};">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structBlurPreset.html">   47</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structBlurPreset.html">BlurPreset</a></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">bool</span> motionblur;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structBlurPreset.html#a14b16a4aefccb340a17d282dc2211db8">   51</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structBlurPreset.html#a14b16a4aefccb340a17d282dc2211db8">dof</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="};">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structScaleRttsCustomPreset.html">   54</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structScaleRttsCustomPreset.html">ScaleRttsCustomPreset</a></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>{</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">float</span> value;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>};</div>
+</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classOptionsScreenVideo.html">   63</a></span><span class="keyword">class </span>OptionsScreenVideo : <span class="keyword">public</span> <a class="code hl_class" href="classGUIEngine_1_1Screen.html">GUIEngine::Screen</a>, <span class="keyword">public</span> <a class="code hl_class" href="classGUIEngine_1_1ScreenSingleton.html">GUIEngine::ScreenSingleton</a>&lt;OptionsScreenVideo&gt;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>{</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">bool</span> m_prev_adv_pipline;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    OptionsScreenVideo();</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">bool</span> m_inited;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    std::vector&lt;GFXPreset&gt; m_presets;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    std::vector&lt;BlurPreset&gt; m_blur_presets;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    std::vector&lt;ScaleRttsCustomPreset&gt; m_scale_rtts_custom_presets;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span> updateTooltip();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">void</span> updateBlurTooltip();</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> initPresets();</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> onScrollResolutionsList(<span class="keywordtype">void</span>* data);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">/* Returns 1 or 2 if a restart will be done, 0 otherwise */</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">int</span> applySettings();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1ScreenSingleton.html">GUIEngine::ScreenSingleton</a>&lt;OptionsScreenVideo&gt;;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOptionsScreenVideo.html#a0777b1ef1b9372e3c85d0d76ca5f5181">loadedFromFile</a>() OVERRIDE;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOptionsScreenVideo.html#a3846f2edd3fab57d20e94662c7325951">eventCallback</a>(<a class="code hl_class" href="classGUIEngine_1_1Widget.html">GUIEngine::Widget</a>* widget, <span class="keyword">const</span> std::string&amp; name,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                               <span class="keyword">const</span> <span class="keywordtype">int</span> playerID) OVERRIDE;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOptionsScreenVideo.html#ac27e01f76a09ddfd564544b6a124aaa0">init</a>() OVERRIDE;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOptionsScreenVideo.html#a01eeb6cbbe53531adbc58be12c205967">tearDown</a>() OVERRIDE;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOptionsScreenVideo.html#a32edae686d74f7534b174476b75255f6">unloaded</a>() OVERRIDE;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classOptionsScreenVideo.html#a9103cc4085710c96873deb47cd9f4270">onEscapePressed</a>() OVERRIDE;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOptionsScreenVideo.html#a948f3818d5e36f8313a4b87137584659">onResize</a>() OVERRIDE;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">void</span>         updateGfxSlider();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordtype">void</span>         updateBlurSlider();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">void</span>         updateScaleRTTsSlider();</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">static</span> <span class="keywordtype">int</span> getImageQuality();</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> setImageQuality(<span class="keywordtype">int</span> quality, <span class="keywordtype">bool</span> force_reload_texture);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> setSSR();</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>};</div>
+</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassGUIEngine_1_1ScreenSingleton_html"><div class="ttname"><a href="classGUIEngine_1_1ScreenSingleton.html">GUIEngine::ScreenSingleton</a></div><div class="ttdoc">Declares a class to be a singleton.</div><div class="ttdef"><b>Definition</b> screen.hpp:59</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Screen_html"><div class="ttname"><a href="classGUIEngine_1_1Screen.html">GUIEngine::Screen</a></div><div class="ttdoc">Represents a single GUI screen.</div><div class="ttdef"><b>Definition</b> screen.hpp:94</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html"><div class="ttname"><a href="classGUIEngine_1_1Widget.html">GUIEngine::Widget</a></div><div class="ttdoc">The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...</div><div class="ttdef"><b>Definition</b> widget.hpp:147</div></div>
+<div class="ttc" id="aclassOptionsScreenVideo_html_a01eeb6cbbe53531adbc58be12c205967"><div class="ttname"><a href="classOptionsScreenVideo.html#a01eeb6cbbe53531adbc58be12c205967">OptionsScreenVideo::tearDown</a></div><div class="ttdeci">virtual void tearDown() OVERRIDE</div><div class="ttdoc">implement callback from parent class GUIEngine::Screen</div><div class="ttdef"><b>Definition</b> options_screen_video.cpp:721</div></div>
+<div class="ttc" id="aclassOptionsScreenVideo_html_a0777b1ef1b9372e3c85d0d76ca5f5181"><div class="ttname"><a href="classOptionsScreenVideo.html#a0777b1ef1b9372e3c85d0d76ca5f5181">OptionsScreenVideo::loadedFromFile</a></div><div class="ttdeci">virtual void loadedFromFile() OVERRIDE</div><div class="ttdoc">implement callback from parent class GUIEngine::Screen</div><div class="ttdef"><b>Definition</b> options_screen_video.cpp:232</div></div>
+<div class="ttc" id="aclassOptionsScreenVideo_html_a32edae686d74f7534b174476b75255f6"><div class="ttname"><a href="classOptionsScreenVideo.html#a32edae686d74f7534b174476b75255f6">OptionsScreenVideo::unloaded</a></div><div class="ttdeci">virtual void unloaded() OVERRIDE</div><div class="ttdoc">implement optional callback from parent class GUIEngine::Screen</div><div class="ttdef"><b>Definition</b> options_screen_video.cpp:755</div></div>
+<div class="ttc" id="aclassOptionsScreenVideo_html_a3846f2edd3fab57d20e94662c7325951"><div class="ttname"><a href="classOptionsScreenVideo.html#a3846f2edd3fab57d20e94662c7325951">OptionsScreenVideo::eventCallback</a></div><div class="ttdeci">virtual void eventCallback(GUIEngine::Widget *widget, const std::string &amp;name, const int playerID) OVERRIDE</div><div class="ttdoc">implement callback from parent class GUIEngine::Screen</div><div class="ttdef"><b>Definition</b> options_screen_video.cpp:588</div></div>
+<div class="ttc" id="aclassOptionsScreenVideo_html_a9103cc4085710c96873deb47cd9f4270"><div class="ttname"><a href="classOptionsScreenVideo.html#a9103cc4085710c96873deb47cd9f4270">OptionsScreenVideo::onEscapePressed</a></div><div class="ttdeci">virtual bool onEscapePressed() OVERRIDE</div><div class="ttdoc">Called when escape is pressed.</div><div class="ttdef"><b>Definition</b> options_screen_video.cpp:747</div></div>
+<div class="ttc" id="aclassOptionsScreenVideo_html_a948f3818d5e36f8313a4b87137584659"><div class="ttname"><a href="classOptionsScreenVideo.html#a948f3818d5e36f8313a4b87137584659">OptionsScreenVideo::onResize</a></div><div class="ttdeci">virtual void onResize() OVERRIDE</div><div class="ttdoc">optional callback you can override to be notified at every resize.</div><div class="ttdef"><b>Definition</b> options_screen_video.cpp:355</div></div>
+<div class="ttc" id="aclassOptionsScreenVideo_html_ac27e01f76a09ddfd564544b6a124aaa0"><div class="ttname"><a href="classOptionsScreenVideo.html#ac27e01f76a09ddfd564544b6a124aaa0">OptionsScreenVideo::init</a></div><div class="ttdeci">virtual void init() OVERRIDE</div><div class="ttdoc">implement callback from parent class GUIEngine::Screen</div><div class="ttdef"><b>Definition</b> options_screen_video.cpp:253</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html"><div class="ttname"><a href="namespaceGUIEngine.html">GUIEngine</a></div><div class="ttdoc">Contains all GUI engine related classes and functions</div><div class="ttdef"><b>Definition</b> abstract_state_manager.hpp:33</div></div>
+<div class="ttc" id="astructBlurPreset_html"><div class="ttname"><a href="structBlurPreset.html">BlurPreset</a></div><div class="ttdef"><b>Definition</b> options_screen_video.hpp:48</div></div>
+<div class="ttc" id="astructBlurPreset_html_a14b16a4aefccb340a17d282dc2211db8"><div class="ttname"><a href="structBlurPreset.html#a14b16a4aefccb340a17d282dc2211db8">BlurPreset::dof</a></div><div class="ttdeci">bool dof</div><div class="ttdoc">Depth of field</div><div class="ttdef"><b>Definition</b> options_screen_video.hpp:51</div></div>
+<div class="ttc" id="astructGFXPreset_html"><div class="ttname"><a href="structGFXPreset.html">GFXPreset</a></div><div class="ttdef"><b>Definition</b> options_screen_video.hpp:29</div></div>
+<div class="ttc" id="astructScaleRttsCustomPreset_html"><div class="ttname"><a href="structScaleRttsCustomPreset.html">ScaleRttsCustomPreset</a></div><div class="ttdef"><b>Definition</b> options_screen_video.hpp:55</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

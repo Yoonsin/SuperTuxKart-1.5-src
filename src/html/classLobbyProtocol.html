@@ -1,0 +1,606 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: LobbyProtocol 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 타입</a> &#124;
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-static-methods">정적 Public 멤버 함수</a> &#124;
+<a href="#pro-methods">Protected 멤버 함수</a> &#124;
+<a href="#pro-attribs">Protected 속성</a> &#124;
+<a href="#pro-static-attribs">정적 Protected 속성</a> &#124;
+<a href="classLobbyProtocol-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">LobbyProtocol 클래스 참조<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Base class for both client and server lobby. The lobbies are started when a server opens a game, or when a client joins a game. It is used to exchange data about the race settings, like kart selection.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="lobby__protocol_8hpp_source.html">lobby_protocol.hpp</a>&gt;</code></p>
+<div class="dynheader">
+LobbyProtocol에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classLobbyProtocol__inherit__graph.png" border="0" usemap="#aLobbyProtocol_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aLobbyProtocol_inherit__map" id="aLobbyProtocol_inherit__map">
+<area shape="rect" title="Base class for both client and server lobby. The lobbies are started when a server opens a game,..." alt="" coords="98,171,203,197"/>
+<area shape="rect" href="classClientLobby.html" title=" " alt="" coords="48,245,138,272"/>
+<area shape="poly" title=" " alt="" coords="134,209,105,247,101,243,129,211"/>
+<area shape="rect" href="classServerLobby.html" title=" " alt="" coords="162,245,256,272"/>
+<area shape="poly" title=" " alt="" coords="172,207,202,245,196,245,169,212"/>
+<area shape="rect" href="classProtocol.html" title="Abstract class used to define the global protocol functions." alt="" coords="116,96,185,123"/>
+<area shape="poly" title=" " alt="" coords="152,136,153,171,148,169,149,141"/>
+<area shape="rect" title=" " alt="" coords="5,5,160,48"/>
+<area shape="poly" title=" " alt="" coords="110,57,142,95,137,96,110,63"/>
+<area shape="rect" href="classNoCopy.html" title="Utility class, you can inherit from this class to disallow the assignment operator and copy construct..." alt="" coords="184,13,253,40"/>
+<area shape="poly" title=" " alt="" coords="200,50,163,98,159,94,196,54"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 타입</h2></td></tr>
+<tr class="memitem:a899f624727278c4b389e567c198e6352" id="r_a899f624727278c4b389e567c198e6352"><td class="memItemLeft"><a id="a899f624727278c4b389e567c198e6352" name="a899f624727278c4b389e567c198e6352"></a>enum &#160;</td><td class="memItemRight">: uint8_t { <br />
+&#160;&#160;<b>LE_CONNECTION_REQUESTED</b> = 1
+, <b>LE_CONNECTION_REFUSED</b>
+, <b>LE_CONNECTION_ACCEPTED</b>
+, <b>LE_SERVER_INFO</b>
+, <br />
+&#160;&#160;<b>LE_REQUEST_BEGIN</b>
+, <b>LE_UPDATE_PLAYER_LIST</b>
+, <b>LE_KART_SELECTION</b>
+, <b>LE_PLAYER_DISCONNECTED</b>
+, <br />
+&#160;&#160;<b>LE_CLIENT_LOADED_WORLD</b>
+, <b>LE_LOAD_WORLD</b>
+, <b>LE_START_RACE</b>
+, <b>LE_START_SELECTION</b>
+, <br />
+&#160;&#160;<b>LE_RACE_FINISHED</b>
+, <b>LE_RACE_FINISHED_ACK</b>
+, <b>LE_BACK_LOBBY</b>
+, <b>LE_VOTE</b>
+, <br />
+&#160;&#160;<b>LE_CHAT</b>
+, <b>LE_SERVER_OWNERSHIP</b>
+, <b>LE_KICK_HOST</b>
+, <b>LE_CHANGE_TEAM</b>
+, <br />
+&#160;&#160;<b>LE_BAD_TEAM</b>
+, <b>LE_BAD_CONNECTION</b>
+, <b>LE_CONFIG_SERVER</b>
+, <b>LE_CHANGE_HANDICAP</b>
+, <br />
+&#160;&#160;<b>LE_LIVE_JOIN</b>
+, <b>LE_LIVE_JOIN_ACK</b>
+, <b>LE_KART_INFO</b>
+, <b>LE_CLIENT_BACK_LOBBY</b>
+, <br />
+&#160;&#160;<b>LE_REPORT_PLAYER</b>
+, <b>LE_ASSETS_UPDATE</b>
+, <b>LE_COMMAND</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:a899f624727278c4b389e567c198e6352"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists all lobby events (LE). <br /></td></tr>
+<tr class="memitem:a623d19c4ff8638c1b237a596967c0716" id="r_a623d19c4ff8638c1b237a596967c0716"><td class="memItemLeft"><a id="a623d19c4ff8638c1b237a596967c0716" name="a623d19c4ff8638c1b237a596967c0716"></a>enum &#160;</td><td class="memItemRight"><b>RejectReason</b> : uint8_t { <br />
+&#160;&#160;<b>RR_BUSY</b> = 0
+, <b>RR_BANNED</b> = 1
+, <b>RR_INCORRECT_PASSWORD</b> = 2
+, <b>RR_INCOMPATIBLE_DATA</b> = 3
+, <br />
+&#160;&#160;<b>RR_TOO_MANY_PLAYERS</b> = 4
+, <b>RR_INVALID_PLAYER</b> = 5
+<br />
+ }</td></tr>
+<tr class="memitem:a99ef1e1b9a0da250b3d29c9fcde40a15" id="r_a99ef1e1b9a0da250b3d29c9fcde40a15"><td class="memItemLeft"><a id="a99ef1e1b9a0da250b3d29c9fcde40a15" name="a99ef1e1b9a0da250b3d29c9fcde40a15"></a>enum &#160;</td><td class="memItemRight"><b>BackLobbyReason</b> : uint8_t { <br />
+&#160;&#160;<b>BLR_NONE</b> = 0
+, <b>BLR_NO_GAME_FOR_LIVE_JOIN</b> = 1
+, <b>BLR_NO_PLACE_FOR_LIVE_JOIN</b> = 2
+, <b>BLR_ONE_PLAYER_IN_RANKED_MATCH</b> = 3
+, <br />
+&#160;&#160;<b>BLR_SERVER_ONWER_QUITED_THE_GAME</b> = 4
+, <b>BLR_SPECTATING_NEXT_GAME</b> = 5
+<br />
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a8c22051808aaa8725646f6631966dbd2" id="r_a8c22051808aaa8725646f6631966dbd2"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a8c22051808aaa8725646f6631966dbd2">setup</a> ()=0</td></tr>
+<tr class="memdesc:a8c22051808aaa8725646f6631966dbd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">A previous <a class="el" href="classGameSetup.html" title="Used to store the needed data about the players that join a game. This class stores all the possible ...">GameSetup</a> is deleted and a new one is created.  <br /></td></tr>
+<tr class="memitem:a0dd4a67057af14d9da2260e85fd5c7f6" id="r_a0dd4a67057af14d9da2260e85fd5c7f6"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a0dd4a67057af14d9da2260e85fd5c7f6">update</a> (int ticks)=0</td></tr>
+<tr class="memdesc:a0dd4a67057af14d9da2260e85fd5c7f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the protocol listener, synchronously with the main loop.  <br /></td></tr>
+<tr class="memitem:a73e5705f734a49f01de84213bc8cd6cd" id="r_a73e5705f734a49f01de84213bc8cd6cd"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a73e5705f734a49f01de84213bc8cd6cd">finishedLoadingWorld</a> ()=0</td></tr>
+<tr class="memitem:a547aea520abcd62b0298ac95887f5827" id="r_a547aea520abcd62b0298ac95887f5827"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a547aea520abcd62b0298ac95887f5827">loadWorld</a> ()</td></tr>
+<tr class="memdesc:a547aea520abcd62b0298ac95887f5827"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the sychronization protocol and the <a class="el" href="classRaceEventManager.html" title="This is the interface between the main game and the online implementation.">RaceEventManager</a>.  <br /></td></tr>
+<tr class="memitem:a0c8d6ce65c7621b4d38eab0d1159ea3d" id="r_a0c8d6ce65c7621b4d38eab0d1159ea3d"><td class="memItemLeft"><a id="a0c8d6ce65c7621b4d38eab0d1159ea3d" name="a0c8d6ce65c7621b4d38eab0d1159ea3d"></a>
+virtual bool&#160;</td><td class="memItemRight"><b>allPlayersReady</b> () const =0</td></tr>
+<tr class="memitem:ae104d77a25256dfd12534ba052f1b961" id="r_ae104d77a25256dfd12534ba052f1b961"><td class="memItemLeft"><a id="ae104d77a25256dfd12534ba052f1b961" name="ae104d77a25256dfd12534ba052f1b961"></a>
+virtual bool&#160;</td><td class="memItemRight"><b>isRacing</b> () const =0</td></tr>
+<tr class="memitem:a0623f4828d264c131cee8e79d080c9c8" id="r_a0623f4828d264c131cee8e79d080c9c8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0623f4828d264c131cee8e79d080c9c8">startVotingPeriod</a> (float max_time)</td></tr>
+<tr class="memdesc:a0623f4828d264c131cee8e79d080c9c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the voting period time with the specified maximum time.  <br /></td></tr>
+<tr class="memitem:a059c5144760ff1264c900a3e66494b8b" id="r_a059c5144760ff1264c900a3e66494b8b"><td class="memItemLeft"><a id="a059c5144760ff1264c900a3e66494b8b" name="a059c5144760ff1264c900a3e66494b8b"></a>
+float&#160;</td><td class="memItemRight"><b>getRemainingVotingTime</b> ()</td></tr>
+<tr class="memdesc:a059c5144760ff1264c900a3e66494b8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the remaining voting time in seconds. <br /></td></tr>
+<tr class="memitem:a16c3ce7ca239a437c062ad09342cbc50" id="r_a16c3ce7ca239a437c062ad09342cbc50"><td class="memItemLeft"><a id="a16c3ce7ca239a437c062ad09342cbc50" name="a16c3ce7ca239a437c062ad09342cbc50"></a>
+bool&#160;</td><td class="memItemRight"><b>isVotingOver</b> ()</td></tr>
+<tr class="memdesc:a16c3ce7ca239a437c062ad09342cbc50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the voting period is over. <br /></td></tr>
+<tr class="memitem:a7bf4cb21a9cb5cd4884d6a33b1644511" id="r_a7bf4cb21a9cb5cd4884d6a33b1644511"><td class="memItemLeft"><a id="a7bf4cb21a9cb5cd4884d6a33b1644511" name="a7bf4cb21a9cb5cd4884d6a33b1644511"></a>
+float&#160;</td><td class="memItemRight"><b>getMaxVotingTime</b> ()</td></tr>
+<tr class="memdesc:a7bf4cb21a9cb5cd4884d6a33b1644511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the maximum floating time in seconds. <br /></td></tr>
+<tr class="memitem:a53159b199d8ce156a36002a5df29a80b" id="r_a53159b199d8ce156a36002a5df29a80b"><td class="memItemLeft"><a id="a53159b199d8ce156a36002a5df29a80b" name="a53159b199d8ce156a36002a5df29a80b"></a>
+<a class="el" href="classGameSetup.html">GameSetup</a> *&#160;</td><td class="memItemRight"><b>getGameSetup</b> () const</td></tr>
+<tr class="memdesc:a53159b199d8ce156a36002a5df29a80b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the game setup data structure. <br /></td></tr>
+<tr class="memitem:a5174438a3c5ed3aa917cdc7cd482651a" id="r_a5174438a3c5ed3aa917cdc7cd482651a"><td class="memItemLeft"><a id="a5174438a3c5ed3aa917cdc7cd482651a" name="a5174438a3c5ed3aa917cdc7cd482651a"></a>
+int&#160;</td><td class="memItemRight"><b>getNumberOfVotes</b> () const</td></tr>
+<tr class="memdesc:a5174438a3c5ed3aa917cdc7cd482651a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of votes received so far. <br /></td></tr>
+<tr class="memitem:acb91f093a1162b9cb1e669a008fa7902" id="r_acb91f093a1162b9cb1e669a008fa7902"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#acb91f093a1162b9cb1e669a008fa7902">addVote</a> (uint32_t host_id, const <a class="el" href="classPeerVote.html">PeerVote</a> &amp;vote)</td></tr>
+<tr class="memdesc:acb91f093a1162b9cb1e669a008fa7902"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a vote.  <br /></td></tr>
+<tr class="memitem:aac8704bbf19a3a2a32c29843f75ec6e1" id="r_aac8704bbf19a3a2a32c29843f75ec6e1"><td class="memItemLeft">const <a class="el" href="classPeerVote.html">PeerVote</a> *&#160;</td><td class="memItemRight"><a class="el" href="#aac8704bbf19a3a2a32c29843f75ec6e1">getVote</a> (uint32_t host_id) const</td></tr>
+<tr class="memdesc:aac8704bbf19a3a2a32c29843f75ec6e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the voting data for one host.  <br /></td></tr>
+<tr class="memitem:a58ed1aea153a3fb4c32095d4dac48c9d" id="r_a58ed1aea153a3fb4c32095d4dac48c9d"><td class="memItemLeft"><a id="a58ed1aea153a3fb4c32095d4dac48c9d" name="a58ed1aea153a3fb4c32095d4dac48c9d"></a>
+void&#160;</td><td class="memItemRight"><b>resetVotingTime</b> ()</td></tr>
+<tr class="memitem:adde004600f1801b755e6c8e2ff654a03" id="r_adde004600f1801b755e6c8e2ff654a03"><td class="memItemLeft"><a id="adde004600f1801b755e6c8e2ff654a03" name="adde004600f1801b755e6c8e2ff654a03"></a>
+const std::map&lt; uint32_t, <a class="el" href="classPeerVote.html">PeerVote</a> &gt; &amp;&#160;</td><td class="memItemRight"><b>getAllVotes</b> () const</td></tr>
+<tr class="memdesc:adde004600f1801b755e6c8e2ff654a03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns all voting data. <br /></td></tr>
+<tr class="memitem:a9405c46c7e7db13249704e4686c9b6bf" id="r_a9405c46c7e7db13249704e4686c9b6bf"><td class="memItemLeft"><a id="a9405c46c7e7db13249704e4686c9b6bf" name="a9405c46c7e7db13249704e4686c9b6bf"></a>
+std::pair&lt; uint32_t, uint32_t &gt;&#160;</td><td class="memItemRight"><b>getGameStartedProgress</b> () const</td></tr>
+<tr class="memitem:ab8cadab6ef1a377c8f55c490b8582944" id="r_ab8cadab6ef1a377c8f55c490b8582944"><td class="memItemLeft"><a id="ab8cadab6ef1a377c8f55c490b8582944" name="ab8cadab6ef1a377c8f55c490b8582944"></a>
+void&#160;</td><td class="memItemRight"><b>setGameStartedProgress</b> (const std::pair&lt; uint32_t, uint32_t &gt; &amp;p)</td></tr>
+<tr class="memitem:a7c8cc988688b384d29789dcd10a3bd75" id="r_a7c8cc988688b384d29789dcd10a3bd75"><td class="memItemLeft"><a id="a7c8cc988688b384d29789dcd10a3bd75" name="a7c8cc988688b384d29789dcd10a3bd75"></a>
+void&#160;</td><td class="memItemRight"><b>resetGameStartedProgress</b> ()</td></tr>
+<tr class="memitem:a7ac81fe563afb845d12eb460b31ea52b" id="r_a7ac81fe563afb845d12eb460b31ea52b"><td class="memItemLeft"><a id="a7ac81fe563afb845d12eb460b31ea52b" name="a7ac81fe563afb845d12eb460b31ea52b"></a>
+bool&#160;</td><td class="memItemRight"><b>hasLiveJoiningRecently</b> () const</td></tr>
+<tr class="memitem:a6b9c6064c2d5532b6b69ef03f198e9e3" id="r_a6b9c6064c2d5532b6b69ef03f198e9e3"><td class="memItemLeft"><a id="a6b9c6064c2d5532b6b69ef03f198e9e3" name="a6b9c6064c2d5532b6b69ef03f198e9e3"></a>
+void&#160;</td><td class="memItemRight"><b>storePlayingTrack</b> (const std::string &amp;track_ident)</td></tr>
+<tr class="memitem:a53790d7ebfc13eb575369a4c74caf706" id="r_a53790d7ebfc13eb575369a4c74caf706"><td class="memItemLeft"><a id="a53790d7ebfc13eb575369a4c74caf706" name="a53790d7ebfc13eb575369a4c74caf706"></a>
+std::string&#160;</td><td class="memItemRight"><b>getPlayingTrackIdent</b> () const</td></tr>
+<tr class="memitem:ae2c0439b1c6ccc072539787de925a0a3" id="r_ae2c0439b1c6ccc072539787de925a0a3"><td class="memItemLeft"><a id="ae2c0439b1c6ccc072539787de925a0a3" name="ae2c0439b1c6ccc072539787de925a0a3"></a>
+<a class="el" href="classTrack.html">Track</a> *&#160;</td><td class="memItemRight"><b>getPlayingTrack</b> () const</td></tr>
+<tr class="inherit_header pub_methods_classProtocol"><td colspan="2"><a class="el" href="classProtocol.html">Protocol</a>(으)로부터 상속된 Public 멤버 함수</td></tr>
+<tr class="memitem:a9a9842622d89020b1132e1f533a3494d pub_methods_classProtocol" id="r_a9a9842622d89020b1132e1f533a3494d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classProtocol.html#a9a9842622d89020b1132e1f533a3494d">Protocol</a> (ProtocolType type)</td></tr>
+<tr class="memdesc:a9a9842622d89020b1132e1f533a3494d pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor Sets the basic protocol parameters, as the callback object and the protocol type.  <br /></td></tr>
+<tr class="memitem:ae78a2bc284f521aa47f3fd7718e23ead pub_methods_classProtocol" id="r_ae78a2bc284f521aa47f3fd7718e23ead"><td class="memItemLeft">
+virtual&#160;</td><td class="memItemRight"><b>~Protocol</b> ()</td></tr>
+<tr class="memdesc:ae78a2bc284f521aa47f3fd7718e23ead pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
+<tr class="memitem:a167a53125339ef5359341108e7ff7390 pub_methods_classProtocol" id="r_a167a53125339ef5359341108e7ff7390"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classProtocol.html#a167a53125339ef5359341108e7ff7390">asynchronousUpdate</a> ()=0</td></tr>
+<tr class="memdesc:a167a53125339ef5359341108e7ff7390 pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the protocol listener as often as possible.  <br /></td></tr>
+<tr class="memitem:aed8faa385a8101fd11b38fcb14e4b2b5 pub_methods_classProtocol" id="r_aed8faa385a8101fd11b38fcb14e4b2b5"><td class="memItemLeft"><a class="el" href="classNetworkString.html">NetworkString</a> *&#160;</td><td class="memItemRight"><a class="el" href="classProtocol.html#aed8faa385a8101fd11b38fcb14e4b2b5">getNetworkString</a> (size_t capacity=16) const</td></tr>
+<tr class="memdesc:aed8faa385a8101fd11b38fcb14e4b2b5 pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">functions to check incoming data easily  <br /></td></tr>
+<tr class="memitem:a4afc157d7e6871c9e6439492b23c5cc7 pub_methods_classProtocol" id="r_a4afc157d7e6871c9e6439492b23c5cc7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classProtocol.html#a4afc157d7e6871c9e6439492b23c5cc7">checkDataSize</a> (<a class="el" href="classEvent.html">Event</a> *event, unsigned int minimum_size)</td></tr>
+<tr class="memdesc:a4afc157d7e6871c9e6439492b23c5cc7 pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the message has at least the specified size, and if not prints a warning message including the message content.  <br /></td></tr>
+<tr class="memitem:ab47e7e7ea4776be206af54e37c52318d pub_methods_classProtocol" id="r_ab47e7e7ea4776be206af54e37c52318d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classProtocol.html#ab47e7e7ea4776be206af54e37c52318d">sendMessageToPeers</a> (<a class="el" href="classNetworkString.html">NetworkString</a> *message, bool reliable=true)</td></tr>
+<tr class="memdesc:ab47e7e7ea4776be206af54e37c52318d pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a message to all validated peers in game, encrypt the message if needed.  <br /></td></tr>
+<tr class="memitem:acf5876835674d2a68276aa70e17d9de1 pub_methods_classProtocol" id="r_acf5876835674d2a68276aa70e17d9de1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classProtocol.html#acf5876835674d2a68276aa70e17d9de1">sendMessageToPeersInServer</a> (<a class="el" href="classNetworkString.html">NetworkString</a> *message, bool reliable=true)</td></tr>
+<tr class="memdesc:acf5876835674d2a68276aa70e17d9de1 pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a message to all validated peers in server, encrypt the message if needed.  <br /></td></tr>
+<tr class="memitem:af27fa278503444e6b02677e20e1c8e7f pub_methods_classProtocol" id="r_af27fa278503444e6b02677e20e1c8e7f"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>sendToServer</b> (<a class="el" href="classNetworkString.html">NetworkString</a> *message, bool reliable=true)</td></tr>
+<tr class="memdesc:af27fa278503444e6b02677e20e1c8e7f pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a message from a client to the server. <br /></td></tr>
+<tr class="memitem:af5e54fb8f2e015cebe12f7795fc2363f pub_methods_classProtocol" id="r_af5e54fb8f2e015cebe12f7795fc2363f"><td class="memItemLeft">
+virtual void&#160;</td><td class="memItemRight"><b>requestStart</b> ()</td></tr>
+<tr class="memdesc:af5e54fb8f2e015cebe12f7795fc2363f pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a request in the protocol manager to start this protocol. <br /></td></tr>
+<tr class="memitem:aa68a6cd2934d7c1ff17a159ac2112165 pub_methods_classProtocol" id="r_aa68a6cd2934d7c1ff17a159ac2112165"><td class="memItemLeft">
+virtual void&#160;</td><td class="memItemRight"><b>requestTerminate</b> ()</td></tr>
+<tr class="memdesc:aa68a6cd2934d7c1ff17a159ac2112165 pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Submits a request to the <a class="el" href="classProtocolManager.html" title="Manages the protocols at runtime.">ProtocolManager</a> to terminate this protocol. <br /></td></tr>
+<tr class="memitem:ac67831b83158cdd96f6af5864b6d6929 pub_methods_classProtocol" id="r_ac67831b83158cdd96f6af5864b6d6929"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classProtocol.html#ac67831b83158cdd96f6af5864b6d6929">notifyEvent</a> (<a class="el" href="classEvent.html">Event</a> *event)</td></tr>
+<tr class="memdesc:ac67831b83158cdd96f6af5864b6d6929 pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify a protocol matching the <a class="el" href="classEvent.html" title="Class representing an event that need to pass trough the system. This is used to remove ENet dependen...">Event</a> type of that event.  <br /></td></tr>
+<tr class="memitem:a5749bc2f656f47e71b270df56c570dc1 pub_methods_classProtocol" id="r_a5749bc2f656f47e71b270df56c570dc1"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classProtocol.html#a5749bc2f656f47e71b270df56c570dc1">notifyEventAsynchronous</a> (<a class="el" href="classEvent.html">Event</a> *event)</td></tr>
+<tr class="memdesc:a5749bc2f656f47e71b270df56c570dc1 pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify a protocol matching the <a class="el" href="classEvent.html" title="Class representing an event that need to pass trough the system. This is used to remove ENet dependen...">Event</a> type of that event.  <br /></td></tr>
+<tr class="memitem:acffb4153cf0cd5a8824b0e7bf5852144 pub_methods_classProtocol" id="r_acffb4153cf0cd5a8824b0e7bf5852144"><td class="memItemLeft">ProtocolType&#160;</td><td class="memItemRight"><a class="el" href="classProtocol.html#acffb4153cf0cd5a8824b0e7bf5852144">getProtocolType</a> () const</td></tr>
+<tr class="memdesc:acffb4153cf0cd5a8824b0e7bf5852144 pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method to get a protocol's type.  <br /></td></tr>
+<tr class="memitem:a716fd2a1e561d8e22fff688c0f866d20 pub_methods_classProtocol" id="r_a716fd2a1e561d8e22fff688c0f866d20"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>setHandleConnections</b> (bool b)</td></tr>
+<tr class="memdesc:a716fd2a1e561d8e22fff688c0f866d20 pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if this protocol should receive connection events. <br /></td></tr>
+<tr class="memitem:ac545202df67e00dc4bcd57aeab418100 pub_methods_classProtocol" id="r_ac545202df67e00dc4bcd57aeab418100"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>setHandleDisconnections</b> (bool b)</td></tr>
+<tr class="memdesc:ac545202df67e00dc4bcd57aeab418100 pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if this protocol should receive disconnection events. <br /></td></tr>
+<tr class="memitem:acdf0d6752a10998a7c153c84e8f71d69 pub_methods_classProtocol" id="r_acdf0d6752a10998a7c153c84e8f71d69"><td class="memItemLeft">
+virtual bool&#160;</td><td class="memItemRight"><b>handleConnects</b> () const</td></tr>
+<tr class="memdesc:acdf0d6752a10998a7c153c84e8f71d69 pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if this protocol should be informed about connects. <br /></td></tr>
+<tr class="memitem:ae7469e1a7b4793499a561c03cccd37d5 pub_methods_classProtocol" id="r_ae7469e1a7b4793499a561c03cccd37d5"><td class="memItemLeft">
+virtual bool&#160;</td><td class="memItemRight"><b>handleDisconnects</b> () const</td></tr>
+<tr class="memdesc:ae7469e1a7b4793499a561c03cccd37d5 pub_methods_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if this protocol should be informed about disconnects. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a729129d683785847a7bd79cab515cc56" id="r_a729129d683785847a7bd79cab515cc56"><td class="memTemplParams" colspan="2"><a id="a729129d683785847a7bd79cab515cc56" name="a729129d683785847a7bd79cab515cc56"></a>
+template&lt;typename <a class="el" href="classSingleton.html">Singleton</a>, typename... Types&gt; </td></tr>
+<tr class="memitem:a729129d683785847a7bd79cab515cc56 template"><td class="memItemLeft">static std::shared_ptr&lt; <a class="el" href="classSingleton.html">Singleton</a> &gt;&#160;</td><td class="memItemRight"><b>create</b> (Types ...args)</td></tr>
+<tr class="memdesc:a729129d683785847a7bd79cab515cc56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates either a client or server lobby protocol as a singleton. <br /></td></tr>
+<tr class="memitem:a479f4f2c8279082eaba66dcafa196be3" id="r_a479f4f2c8279082eaba66dcafa196be3"><td class="memTemplParams" colspan="2"><a id="a479f4f2c8279082eaba66dcafa196be3" name="a479f4f2c8279082eaba66dcafa196be3"></a>
+template&lt;class T&gt; </td></tr>
+<tr class="memitem:a479f4f2c8279082eaba66dcafa196be3 template"><td class="memItemLeft">static std::shared_ptr&lt; T &gt;&#160;</td><td class="memItemRight"><b>get</b> ()</td></tr>
+<tr class="memdesc:a479f4f2c8279082eaba66dcafa196be3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the singleton client or server lobby protocol. <br /></td></tr>
+<tr class="memitem:a7b9ced0f700a3b896a7cdc0c3108c8b9" id="r_a7b9ced0f700a3b896a7cdc0c3108c8b9"><td class="memTemplParams" colspan="2"><a id="a7b9ced0f700a3b896a7cdc0c3108c8b9" name="a7b9ced0f700a3b896a7cdc0c3108c8b9"></a>
+template&lt;class T&gt; </td></tr>
+<tr class="memitem:a7b9ced0f700a3b896a7cdc0c3108c8b9 template"><td class="memItemLeft">static std::shared_ptr&lt; T &gt;&#160;</td><td class="memItemRight"><b>getByType</b> (ProcessType pt)</td></tr>
+<tr class="memdesc:a7b9ced0f700a3b896a7cdc0c3108c8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns specific singleton client or server lobby protocol. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 멤버 함수</h2></td></tr>
+<tr class="memitem:a52f7002a9fe42cbd71c76a88d1e7fc2d" id="r_a52f7002a9fe42cbd71c76a88d1e7fc2d"><td class="memItemLeft"><a id="a52f7002a9fe42cbd71c76a88d1e7fc2d" name="a52f7002a9fe42cbd71c76a88d1e7fc2d"></a>
+void&#160;</td><td class="memItemRight"><b>configRemoteKart</b> (const std::vector&lt; std::shared_ptr&lt; <a class="el" href="classNetworkPlayerProfile.html">NetworkPlayerProfile</a> &gt; &gt; &amp;players, int local_player_size) const</td></tr>
+<tr class="memitem:a909289cd7c618398ffaccbdde3f96015" id="r_a909289cd7c618398ffaccbdde3f96015"><td class="memItemLeft"><a id="a909289cd7c618398ffaccbdde3f96015" name="a909289cd7c618398ffaccbdde3f96015"></a>
+void&#160;</td><td class="memItemRight"><b>joinStartGameThread</b> ()</td></tr>
+<tr class="memitem:a65d6e1a8a0dd0fcaf79f76ec1baa65c4" id="r_a65d6e1a8a0dd0fcaf79f76ec1baa65c4"><td class="memItemLeft"><a id="a65d6e1a8a0dd0fcaf79f76ec1baa65c4" name="a65d6e1a8a0dd0fcaf79f76ec1baa65c4"></a>
+void&#160;</td><td class="memItemRight"><b>addLiveJoiningKart</b> (int kart_id, const <a class="el" href="classRemoteKartInfo.html">RemoteKartInfo</a> &amp;rki, int live_join_util_ticks) const</td></tr>
+<tr class="memitem:aa4092c0ecf45cba4b86096ba2ffd0b3a" id="r_aa4092c0ecf45cba4b86096ba2ffd0b3a"><td class="memItemLeft"><a id="aa4092c0ecf45cba4b86096ba2ffd0b3a" name="aa4092c0ecf45cba4b86096ba2ffd0b3a"></a>
+void&#160;</td><td class="memItemRight"><b>exitGameState</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 속성</h2></td></tr>
+<tr class="memitem:a798ea7b62aa1bd658c51646835d80e33" id="r_a798ea7b62aa1bd658c51646835d80e33"><td class="memItemLeft"><a id="a798ea7b62aa1bd658c51646835d80e33" name="a798ea7b62aa1bd658c51646835d80e33"></a>
+const ProcessType&#160;</td><td class="memItemRight"><b>m_process_type</b></td></tr>
+<tr class="memitem:a14e09c3c4ab1bd64a84fda7394f56059" id="r_a14e09c3c4ab1bd64a84fda7394f56059"><td class="memItemLeft">std::map&lt; uint32_t, <a class="el" href="classPeerVote.html">PeerVote</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a14e09c3c4ab1bd64a84fda7394f56059">m_peers_votes</a></td></tr>
+<tr class="memdesc:a14e09c3c4ab1bd64a84fda7394f56059"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vote from each peer.  <br /></td></tr>
+<tr class="memitem:a789071efd90a2df824768fd571658af4" id="r_a789071efd90a2df824768fd571658af4"><td class="memItemLeft"><a id="a789071efd90a2df824768fd571658af4" name="a789071efd90a2df824768fd571658af4"></a>
+std::atomic&lt; uint64_t &gt;&#160;</td><td class="memItemRight"><b>m_end_voting_period</b></td></tr>
+<tr class="memdesc:a789071efd90a2df824768fd571658af4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer user for voting periods in both lobbies. <br /></td></tr>
+<tr class="memitem:a97b318d1e2c890c3cc33a51c63046e94" id="r_a97b318d1e2c890c3cc33a51c63046e94"><td class="memItemLeft"><a id="a97b318d1e2c890c3cc33a51c63046e94" name="a97b318d1e2c890c3cc33a51c63046e94"></a>
+uint64_t&#160;</td><td class="memItemRight"><b>m_max_voting_time</b></td></tr>
+<tr class="memdesc:a97b318d1e2c890c3cc33a51c63046e94"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum voting time. <br /></td></tr>
+<tr class="memitem:a4ad2d8af09128ae79681b91577bfc8b6" id="r_a4ad2d8af09128ae79681b91577bfc8b6"><td class="memItemLeft"><a id="a4ad2d8af09128ae79681b91577bfc8b6" name="a4ad2d8af09128ae79681b91577bfc8b6"></a>
+std::thread&#160;</td><td class="memItemRight"><b>m_start_game_thread</b></td></tr>
+<tr class="memitem:a2933c697ef2105b886876cf3bf3db0ec" id="r_a2933c697ef2105b886876cf3bf3db0ec"><td class="memItemLeft"><a id="a2933c697ef2105b886876cf3bf3db0ec" name="a2933c697ef2105b886876cf3bf3db0ec"></a>
+std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight"><b>m_estimated_remaining_time</b></td></tr>
+<tr class="memdesc:a2933c697ef2105b886876cf3bf3db0ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estimated current started game remaining time, uint32_t max if not available. <br /></td></tr>
+<tr class="memitem:ae270cecd048e2d8f0e9a512f305654d5" id="r_ae270cecd048e2d8f0e9a512f305654d5"><td class="memItemLeft"><a id="ae270cecd048e2d8f0e9a512f305654d5" name="ae270cecd048e2d8f0e9a512f305654d5"></a>
+std::atomic&lt; uint32_t &gt;&#160;</td><td class="memItemRight"><b>m_estimated_progress</b></td></tr>
+<tr class="memdesc:ae270cecd048e2d8f0e9a512f305654d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estimated current started game progress in 0-100%, uint32_t max if not available. <br /></td></tr>
+<tr class="memitem:a4a67f8c68cc93ce70e0e85e53a3366af" id="r_a4a67f8c68cc93ce70e0e85e53a3366af"><td class="memItemLeft"><a id="a4a67f8c68cc93ce70e0e85e53a3366af" name="a4a67f8c68cc93ce70e0e85e53a3366af"></a>
+int&#160;</td><td class="memItemRight"><b>m_last_live_join_util_ticks</b></td></tr>
+<tr class="memdesc:a4a67f8c68cc93ce70e0e85e53a3366af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the last live join ticks, for physical objects to update current transformation in server, and reset smooth network body in client. <br /></td></tr>
+<tr class="memitem:ab2b9cdef453e873c19d5b1a271344f19" id="r_ab2b9cdef453e873c19d5b1a271344f19"><td class="memItemLeft"><a id="ab2b9cdef453e873c19d5b1a271344f19" name="ab2b9cdef453e873c19d5b1a271344f19"></a>
+std::mutex&#160;</td><td class="memItemRight"><b>m_current_track_mutex</b></td></tr>
+<tr class="memdesc:ab2b9cdef453e873c19d5b1a271344f19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex to protect m_current_track. <br /></td></tr>
+<tr class="memitem:a77c9298c0e2205e6d5652c7ad1b5faed" id="r_a77c9298c0e2205e6d5652c7ad1b5faed"><td class="memItemLeft"><a id="a77c9298c0e2205e6d5652c7ad1b5faed" name="a77c9298c0e2205e6d5652c7ad1b5faed"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_current_track</b></td></tr>
+<tr class="memdesc:a77c9298c0e2205e6d5652c7ad1b5faed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store current playing track in name. <br /></td></tr>
+<tr class="memitem:a94c48cee451e232f516a0bdf4ec0f759" id="r_a94c48cee451e232f516a0bdf4ec0f759"><td class="memItemLeft"><a id="a94c48cee451e232f516a0bdf4ec0f759" name="a94c48cee451e232f516a0bdf4ec0f759"></a>
+<a class="el" href="classGameSetup.html">GameSetup</a> *&#160;</td><td class="memItemRight"><b>m_game_setup</b></td></tr>
+<tr class="memdesc:a94c48cee451e232f516a0bdf4ec0f759"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores data about the online game to play. <br /></td></tr>
+<tr class="inherit_header pro_attribs_classProtocol"><td colspan="2"><a class="el" href="classProtocol.html">Protocol</a>(으)로부터 상속된 Protected 속성</td></tr>
+<tr class="memitem:a10954bda6509ae95a52095645547abab pro_attribs_classProtocol" id="r_a10954bda6509ae95a52095645547abab"><td class="memItemLeft">
+ProtocolType&#160;</td><td class="memItemRight"><b>m_type</b></td></tr>
+<tr class="memdesc:a10954bda6509ae95a52095645547abab pro_attribs_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the protocol. <br /></td></tr>
+<tr class="memitem:ac21575beb6e5662d566ff7ed0cd780ed pro_attribs_classProtocol" id="r_ac21575beb6e5662d566ff7ed0cd780ed"><td class="memItemLeft">
+bool&#160;</td><td class="memItemRight"><b>m_handle_connections</b></td></tr>
+<tr class="memdesc:ac21575beb6e5662d566ff7ed0cd780ed pro_attribs_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if this protocol should receive connection events. <br /></td></tr>
+<tr class="memitem:a94d65d6277cb3c9a39f97463774ff639 pro_attribs_classProtocol" id="r_a94d65d6277cb3c9a39f97463774ff639"><td class="memItemLeft">
+bool&#160;</td><td class="memItemRight"><b>m_handle_disconnections</b></td></tr>
+<tr class="memdesc:a94d65d6277cb3c9a39f97463774ff639 pro_attribs_classProtocol"><td class="mdescLeft">&#160;</td><td class="mdescRight">TRue if this protocol should recceiver disconnection events. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-static-attribs" class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
+정적 Protected 속성</h2></td></tr>
+<tr class="memitem:a4685fc81272c86c65547041329abe218" id="r_a4685fc81272c86c65547041329abe218"><td class="memItemLeft"><a id="a4685fc81272c86c65547041329abe218" name="a4685fc81272c86c65547041329abe218"></a>
+static std::weak_ptr&lt; <a class="el" href="classLobbyProtocol.html">LobbyProtocol</a> &gt;&#160;</td><td class="memItemRight"><b>m_lobby</b> [PT_COUNT]</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Base class for both client and server lobby. The lobbies are started when a server opens a game, or when a client joins a game. It is used to exchange data about the race settings, like kart selection. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="acb91f093a1162b9cb1e669a008fa7902" name="acb91f093a1162b9cb1e669a008fa7902"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb91f093a1162b9cb1e669a008fa7902">&#9670;&#160;</a></span>addVote()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LobbyProtocol::addVote </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>host_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classPeerVote.html">PeerVote</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>vote</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a vote. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">host_id</td><td>Host id of this vote. </td></tr>
+    <tr><td class="paramname">vote</td><td>The vote to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a73e5705f734a49f01de84213bc8cd6cd" name="a73e5705f734a49f01de84213bc8cd6cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73e5705f734a49f01de84213bc8cd6cd">&#9670;&#160;</a></span>finishedLoadingWorld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void LobbyProtocol::finishedLoadingWorld </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classClientLobby.html#aeb4e4a7ef9f1773be75ff9a613dac033">ClientLobby</a>, <a class="el" href="classServerLobby.html#aeedae7aeb7fa8059cd73a67008003b9d">ServerLobby</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="aac8704bbf19a3a2a32c29843f75ec6e1" name="aac8704bbf19a3a2a32c29843f75ec6e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac8704bbf19a3a2a32c29843f75ec6e1">&#9670;&#160;</a></span>getVote()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classPeerVote.html">PeerVote</a> * LobbyProtocol::getVote </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>host_id</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the voting data for one host. </p>
+<p>Returns NULL if the vote from the given host id has not yet arrived (or if it is an invalid host id). </p>
+
+</div>
+</div>
+<a id="a547aea520abcd62b0298ac95887f5827" name="a547aea520abcd62b0298ac95887f5827"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a547aea520abcd62b0298ac95887f5827">&#9670;&#160;</a></span>loadWorld()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LobbyProtocol::loadWorld </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Starts the sychronization protocol and the <a class="el" href="classRaceEventManager.html" title="This is the interface between the main game and the online implementation.">RaceEventManager</a>. </p>
+<p>It then sets the player structures up, creates the active player, and loads the world. This is called on the client when the server informs them that the world can be loaded (LE_LOAD_WORLD) and on the server in state LOAD_WORLD (i.e. just after informing all clients). </p>
+
+</div>
+</div>
+<a id="a8c22051808aaa8725646f6631966dbd2" name="a8c22051808aaa8725646f6631966dbd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c22051808aaa8725646f6631966dbd2">&#9670;&#160;</a></span>setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LobbyProtocol::setup </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A previous <a class="el" href="classGameSetup.html" title="Used to store the needed data about the players that join a game. This class stores all the possible ...">GameSetup</a> is deleted and a new one is created. </p>
+<dl class="section return"><dt>반환값</dt><dd>Newly create <a class="el" href="classGameSetup.html" title="Used to store the needed data about the players that join a game. This class stores all the possible ...">GameSetup</a> object. </dd></dl>
+
+<p><a class="el" href="classProtocol.html#ac5be8c2106b4e1876b7504d53d3ba0e9">Protocol</a>를 구현.</p>
+
+<p><a class="el" href="classClientLobby.html#a6b4a002d371e9eac0305cf4ad7961a41">ClientLobby</a>, <a class="el" href="classServerLobby.html#a0023634b2fead3a79ccf00cdcf9a7b22">ServerLobby</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a0623f4828d264c131cee8e79d080c9c8" name="a0623f4828d264c131cee8e79d080c9c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0623f4828d264c131cee8e79d080c9c8">&#9670;&#160;</a></span>startVotingPeriod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LobbyProtocol::startVotingPeriod </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>max_time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Starts the voting period time with the specified maximum time. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">max_time</td><td>Maximum voting time in seconds </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0dd4a67057af14d9da2260e85fd5c7f6" name="a0dd4a67057af14d9da2260e85fd5c7f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dd4a67057af14d9da2260e85fd5c7f6">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void LobbyProtocol::update </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called by the protocol listener, synchronously with the main loop. </p>
+<p>Must be re-defined. </p>
+
+<p><a class="el" href="classProtocol.html#ae6e125d88a2659078074c6183a1803a9">Protocol</a>를 구현.</p>
+
+<p><a class="el" href="classClientLobby.html#aa73319c2ce2fede0078098fde24d8a97">ClientLobby</a>, <a class="el" href="classServerLobby.html#aaf6c01655025b424eeb115fbc55e3ef5">ServerLobby</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="a14e09c3c4ab1bd64a84fda7394f56059" name="a14e09c3c4ab1bd64a84fda7394f56059"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14e09c3c4ab1bd64a84fda7394f56059">&#9670;&#160;</a></span>m_peers_votes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;uint32_t, <a class="el" href="classPeerVote.html">PeerVote</a>&gt; LobbyProtocol::m_peers_votes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vote from each peer. </p>
+<p>The host id is used as a key. Note that host ids can be non-consecutive, so we cannot use std::vector. </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>network/protocols/<a class="el" href="lobby__protocol_8hpp_source.html">lobby_protocol.hpp</a></li>
+<li>network/protocols/<b>lobby_protocol.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

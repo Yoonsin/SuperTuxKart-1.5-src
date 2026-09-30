@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: karts/controller/soccer_ai.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>karts</b></li><li class="navelem"><b>controller</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">soccer_ai.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2016 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_SOCCER_AI_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_SOCCER_AI_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;karts/controller/arena_ai.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;LinearMath/btTransform.h&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#undef BALL_AIM_DEBUG</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#ifdef BALL_AIM_DEBUG</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;graphics/irr_driver.hpp&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">class </span><a class="code hl_class" href="classSoccerWorld.html">SoccerWorld</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classSoccerAI.html">   36</a></span><span class="keyword">class </span>SoccerAI : <span class="keyword">public</span> ArenaAI</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#ifdef BALL_AIM_DEBUG</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    irr::scene::ISceneNode *m_red_sphere;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    irr::scene::ISceneNode *m_blue_sphere;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classSoccerAI.html#ae269a97d3bab24c5d6704f85d4d001c6">   46</a></span>    <a class="code hl_class" href="classSoccerWorld.html">SoccerWorld</a> *<a class="code hl_variable" href="classSoccerAI.html#ae269a97d3bab24c5d6704f85d4d001c6">m_world</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classSoccerAI.html#acf84df7a1553302c2d7077f5f4332f63">   49</a></span>    KartTeam <a class="code hl_variable" href="classSoccerAI.html#acf84df7a1553302c2d7077f5f4332f63">m_cur_team</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classSoccerAI.html#aa1ec20783d1fced4b8d061dfa0d87858">   52</a></span>    KartTeam <a class="code hl_variable" href="classSoccerAI.html#aa1ec20783d1fced4b8d061dfa0d87858">m_opp_team</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classSoccerAI.html#a1bcfa3201622688407ba1c7f2210d144">   56</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classSoccerAI.html#a1bcfa3201622688407ba1c7f2210d144">m_overtake_ball</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classSoccerAI.html#a691e18a6abdaa5f1c462b6f1060aed5c">   59</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classSoccerAI.html#a691e18a6abdaa5f1c462b6f1060aed5c">m_force_brake</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classSoccerAI.html#a31b9ea42cb8de92c8e9a3180015d5414">   62</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classSoccerAI.html#a31b9ea42cb8de92c8e9a3180015d5414">m_chasing_ball</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classSoccerAI.html#ac9a0ea05369733e57e3534e9e36bdea2">   66</a></span>    btTransform <a class="code hl_variable" href="classSoccerAI.html#ac9a0ea05369733e57e3534e9e36bdea2">m_front_transform</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_class" href="classVec3.html">Vec3</a>  <a class="code hl_function" href="classSoccerAI.html#af11e980dafc723d295f350e3b2e54463">determineBallAimingPosition</a>();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">bool</span>  <a class="code hl_function" href="classSoccerAI.html#a4666c77e346be6cca5076e297b92f443">determineOvertakePosition</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a>&amp; ball_lc, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a>&amp; aim_lc,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                                    <a class="code hl_class" href="classVec3.html">Vec3</a>* overtake_lc);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">bool</span>  <a class="code hl_function" href="classSoccerAI.html#ac3c3e0e9e29a3613e34881a10d185d15">isOvertakable</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a>&amp; ball_lc);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classSoccerAI.html#a450c9d26f4d87bad0e685cf82641e718">rotateSlope</a>(<span class="keywordtype">float</span> old_slope, <span class="keywordtype">bool</span> rotate_up);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classSoccerAI.html#a008d8bb91d07ec41901448befc4444d8">   78</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span>  <a class="code hl_function" href="classSoccerAI.html#a008d8bb91d07ec41901448befc4444d8">canSkid</a>(<span class="keywordtype">float</span> steer_fraction) OVERRIDE</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                { <span class="keywordflow">return</span> <a class="code hl_variable" href="classArenaAI.html#a19af5b48c2e494837f3a74082c756424">m_mini_skid</a> &amp;&amp; !(<a class="code hl_variable" href="classSoccerAI.html#a1bcfa3201622688407ba1c7f2210d144">m_overtake_ball</a> || <a class="code hl_variable" href="classSoccerAI.html#a31b9ea42cb8de92c8e9a3180015d5414">m_chasing_ball</a>); }</div>
+</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>  <a class="code hl_function" href="classSoccerAI.html#a7337bc60ecb1972212642fed17a3ada4">findClosestKart</a>(<span class="keywordtype">bool</span> consider_difficulty,</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                                  <span class="keywordtype">bool</span> find_sta) OVERRIDE;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>  <a class="code hl_function" href="classSoccerAI.html#abf49af2b2ccca90aa860a9a758e5fcc6">findTarget</a>() OVERRIDE;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classSoccerAI.html#a454bbd175f69df931fdf368ee13bf37a">   86</a></span>    virtual <span class="keywordtype">bool</span>  <a class="code hl_function" href="classSoccerAI.html#a454bbd175f69df931fdf368ee13bf37a">forceBraking</a>() OVERRIDE             { <span class="keywordflow">return</span> <a class="code hl_variable" href="classSoccerAI.html#a691e18a6abdaa5f1c462b6f1060aed5c">m_force_brake</a>; }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span>   <a class="code hl_function" href="classSoccerAI.html#a63c5b404c0b657a29096f919a9bdc395">getCurrentNode</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    virtual <span class="keywordtype">float</span> <a class="code hl_function" href="classSoccerAI.html#a12ee5294054cd76709cecf4241841144">getKartDistance</a>(const <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart) const OVERRIDE;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00092" data-start="{" data-end="}">
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classSoccerAI.html#a66547ab2088bd14c09a828b88a9eca1f">   92</a></span>    virtual <span class="keywordtype">bool</span>  <a class="code hl_function" href="classSoccerAI.html#a66547ab2088bd14c09a828b88a9eca1f">ignorePathFinding</a>() OVERRIDE</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                                 { <span class="keywordflow">return</span>  <a class="code hl_variable" href="classSoccerAI.html#a1bcfa3201622688407ba1c7f2210d144">m_overtake_ball</a> || <a class="code hl_variable" href="classSoccerAI.html#a31b9ea42cb8de92c8e9a3180015d5414">m_chasing_ball</a>; }</div>
+</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span>  <a class="code hl_function" href="classSoccerAI.html#a501fccc75b67d0264a45f291cc411929">isKartOnRoad</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    virtual <span class="keywordtype">bool</span>  <a class="code hl_function" href="classSoccerAI.html#a5f0bec817b206be758d8ae9f869e99e3">isWaiting</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classSoccerAI.html#a99206bbf87a6808b8f27c5e161929143">   99</a></span>    virtual <span class="keywordtype">void</span>  <a class="code hl_function" href="classSoccerAI.html#a99206bbf87a6808b8f27c5e161929143">resetAfterStop</a>() OVERRIDE        { <a class="code hl_variable" href="classSoccerAI.html#a1bcfa3201622688407ba1c7f2210d144">m_overtake_ball</a> = <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                 <a class="code hl_class" href="classSoccerAI.html">SoccerAI</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                <a class="code hl_class" href="classSoccerAI.html">~SoccerAI</a>();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classSoccerAI.html#ade8753e40e0c528f6886ab64c5b5cdeb">update</a> (<span class="keywordtype">int</span> ticks) OVERRIDE;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classSoccerAI.html#a63f6d45428263b25a8aaecd4b67775c9">reset</a>() OVERRIDE;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>};</div>
+</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassArenaAI_html_a19af5b48c2e494837f3a74082c756424"><div class="ttname"><a href="classArenaAI.html#a19af5b48c2e494837f3a74082c756424">ArenaAI::m_mini_skid</a></div><div class="ttdeci">bool m_mini_skid</div><div class="ttdoc">True if AI can skid, currently only do when close to target, see doSkiddingTest().</div><div class="ttdef"><b>Definition</b> arena_ai.hpp:77</div></div>
+<div class="ttc" id="aclassSoccerAI_html"><div class="ttname"><a href="classSoccerAI.html">SoccerAI</a></div><div class="ttdoc">The actual soccer AI.</div><div class="ttdef"><b>Definition</b> soccer_ai.hpp:37</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a008d8bb91d07ec41901448befc4444d8"><div class="ttname"><a href="classSoccerAI.html#a008d8bb91d07ec41901448befc4444d8">SoccerAI::canSkid</a></div><div class="ttdeci">virtual bool canSkid(float steer_fraction) OVERRIDE</div><div class="ttdoc">Return true if AI can skid now.</div><div class="ttdef"><b>Definition</b> soccer_ai.hpp:78</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a12ee5294054cd76709cecf4241841144"><div class="ttname"><a href="classSoccerAI.html#a12ee5294054cd76709cecf4241841144">SoccerAI::getKartDistance</a></div><div class="ttdeci">virtual float getKartDistance(const AbstractKart *kart) const OVERRIDE</div><div class="ttdoc">Return the distance based on graph distance matrix to any kart.</div><div class="ttdef"><b>Definition</b> soccer_ai.cpp:507</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a1bcfa3201622688407ba1c7f2210d144"><div class="ttname"><a href="classSoccerAI.html#a1bcfa3201622688407ba1c7f2210d144">SoccerAI::m_overtake_ball</a></div><div class="ttdeci">bool m_overtake_ball</div><div class="ttdoc">Define which way to handle to ball, either steer with it, or overtake it (Defense).</div><div class="ttdef"><b>Definition</b> soccer_ai.hpp:56</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a31b9ea42cb8de92c8e9a3180015d5414"><div class="ttname"><a href="classSoccerAI.html#a31b9ea42cb8de92c8e9a3180015d5414">SoccerAI::m_chasing_ball</a></div><div class="ttdeci">bool m_chasing_ball</div><div class="ttdoc">True if AI should steer with the ball.</div><div class="ttdef"><b>Definition</b> soccer_ai.hpp:62</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a450c9d26f4d87bad0e685cf82641e718"><div class="ttname"><a href="classSoccerAI.html#a450c9d26f4d87bad0e685cf82641e718">SoccerAI::rotateSlope</a></div><div class="ttdeci">float rotateSlope(float old_slope, bool rotate_up)</div><div class="ttdoc">Used in determineOvertakePosition to adjust the overtake position which is calculated by slope of lin...</div><div class="ttdef"><b>Definition</b> soccer_ai.cpp:476</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a454bbd175f69df931fdf368ee13bf37a"><div class="ttname"><a href="classSoccerAI.html#a454bbd175f69df931fdf368ee13bf37a">SoccerAI::forceBraking</a></div><div class="ttdeci">virtual bool forceBraking() OVERRIDE</div><div class="ttdoc">If true, AI will always try to brake for this frame.</div><div class="ttdef"><b>Definition</b> soccer_ai.hpp:86</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a4666c77e346be6cca5076e297b92f443"><div class="ttname"><a href="classSoccerAI.html#a4666c77e346be6cca5076e297b92f443">SoccerAI::determineOvertakePosition</a></div><div class="ttdeci">bool determineOvertakePosition(const Vec3 &amp;ball_lc, const Vec3 &amp;aim_lc, Vec3 *overtake_lc)</div><div class="ttdoc">Used in determineBallAimingPosition to pick a correct point to overtake the ball</div><div class="ttdef"><b>Definition</b> soccer_ai.cpp:334</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a501fccc75b67d0264a45f291cc411929"><div class="ttname"><a href="classSoccerAI.html#a501fccc75b67d0264a45f291cc411929">SoccerAI::isKartOnRoad</a></div><div class="ttdeci">virtual bool isKartOnRoad() const OVERRIDE</div><div class="ttdoc">If true, AI stays on the ArenaNode correctly, otherwise RescueAnimation will be done after sometime.</div><div class="ttdef"><b>Definition</b> soccer_ai.cpp:514</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a5f0bec817b206be758d8ae9f869e99e3"><div class="ttname"><a href="classSoccerAI.html#a5f0bec817b206be758d8ae9f869e99e3">SoccerAI::isWaiting</a></div><div class="ttdeci">virtual bool isWaiting() const OVERRIDE</div><div class="ttdoc">If true, AI will stop moving.</div><div class="ttdef"><b>Definition</b> soccer_ai.cpp:501</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a63c5b404c0b657a29096f919a9bdc395"><div class="ttname"><a href="classSoccerAI.html#a63c5b404c0b657a29096f919a9bdc395">SoccerAI::getCurrentNode</a></div><div class="ttdeci">virtual int getCurrentNode() const OVERRIDE</div><div class="ttdoc">Return the current ArenaNode the AI located on.</div><div class="ttdef"><b>Definition</b> soccer_ai.cpp:495</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a63f6d45428263b25a8aaecd4b67775c9"><div class="ttname"><a href="classSoccerAI.html#a63f6d45428263b25a8aaecd4b67775c9">SoccerAI::reset</a></div><div class="ttdeci">virtual void reset() OVERRIDE</div><div class="ttdoc">Resets the AI when a race is restarted.</div><div class="ttdef"><b>Definition</b> soccer_ai.cpp:92</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a66547ab2088bd14c09a828b88a9eca1f"><div class="ttname"><a href="classSoccerAI.html#a66547ab2088bd14c09a828b88a9eca1f">SoccerAI::ignorePathFinding</a></div><div class="ttdeci">virtual bool ignorePathFinding() OVERRIDE</div><div class="ttdoc">If true, AI will drive directly to target without path finding.</div><div class="ttdef"><b>Definition</b> soccer_ai.hpp:92</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a691e18a6abdaa5f1c462b6f1060aed5c"><div class="ttname"><a href="classSoccerAI.html#a691e18a6abdaa5f1c462b6f1060aed5c">SoccerAI::m_force_brake</a></div><div class="ttdeci">bool m_force_brake</div><div class="ttdoc">True if forceBraking() is needed to be called.</div><div class="ttdef"><b>Definition</b> soccer_ai.hpp:59</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a7337bc60ecb1972212642fed17a3ada4"><div class="ttname"><a href="classSoccerAI.html#a7337bc60ecb1972212642fed17a3ada4">SoccerAI::findClosestKart</a></div><div class="ttdeci">virtual void findClosestKart(bool consider_difficulty, bool find_sta) OVERRIDE</div><div class="ttdoc">Find the closest kart around this AI, it won&#39;t find the kart with same team, consider_difficulty and ...</div><div class="ttdef"><b>Definition</b> soccer_ai.cpp:141</div></div>
+<div class="ttc" id="aclassSoccerAI_html_a99206bbf87a6808b8f27c5e161929143"><div class="ttname"><a href="classSoccerAI.html#a99206bbf87a6808b8f27c5e161929143">SoccerAI::resetAfterStop</a></div><div class="ttdeci">virtual void resetAfterStop() OVERRIDE</div><div class="ttdoc">Overridden if any action is needed to be done when AI stopped moving or changed driving direction.</div><div class="ttdef"><b>Definition</b> soccer_ai.hpp:99</div></div>
+<div class="ttc" id="aclassSoccerAI_html_aa1ec20783d1fced4b8d061dfa0d87858"><div class="ttname"><a href="classSoccerAI.html#aa1ec20783d1fced4b8d061dfa0d87858">SoccerAI::m_opp_team</a></div><div class="ttdeci">KartTeam m_opp_team</div><div class="ttdoc">Save the opposite team of this AI team.</div><div class="ttdef"><b>Definition</b> soccer_ai.hpp:52</div></div>
+<div class="ttc" id="aclassSoccerAI_html_abf49af2b2ccca90aa860a9a758e5fcc6"><div class="ttname"><a href="classSoccerAI.html#abf49af2b2ccca90aa860a9a758e5fcc6">SoccerAI::findTarget</a></div><div class="ttdeci">virtual void findTarget() OVERRIDE</div><div class="ttdoc">Find a suitable target to follow, it will first call SoccerWorld::getBallChaser to check if this AI s...</div><div class="ttdef"><b>Definition</b> soccer_ai.cpp:182</div></div>
+<div class="ttc" id="aclassSoccerAI_html_ac3c3e0e9e29a3613e34881a10d185d15"><div class="ttname"><a href="classSoccerAI.html#ac3c3e0e9e29a3613e34881a10d185d15">SoccerAI::isOvertakable</a></div><div class="ttdeci">bool isOvertakable(const Vec3 &amp;ball_lc)</div><div class="ttdoc">Used in determineBallAimingPosition to test if AI can overtake the ball by testing distance.</div><div class="ttdef"><b>Definition</b> soccer_ai.cpp:305</div></div>
+<div class="ttc" id="aclassSoccerAI_html_ac9a0ea05369733e57e3534e9e36bdea2"><div class="ttname"><a href="classSoccerAI.html#ac9a0ea05369733e57e3534e9e36bdea2">SoccerAI::m_front_transform</a></div><div class="ttdeci">btTransform m_front_transform</div><div class="ttdoc">The front point of kart with the same rotation of center mass, used to determine point for aiming wit...</div><div class="ttdef"><b>Definition</b> soccer_ai.hpp:66</div></div>
+<div class="ttc" id="aclassSoccerAI_html_acf84df7a1553302c2d7077f5f4332f63"><div class="ttname"><a href="classSoccerAI.html#acf84df7a1553302c2d7077f5f4332f63">SoccerAI::m_cur_team</a></div><div class="ttdeci">KartTeam m_cur_team</div><div class="ttdoc">Save the team this AI belongs to.</div><div class="ttdef"><b>Definition</b> soccer_ai.hpp:49</div></div>
+<div class="ttc" id="aclassSoccerAI_html_ade8753e40e0c528f6886ab64c5b5cdeb"><div class="ttname"><a href="classSoccerAI.html#ade8753e40e0c528f6886ab64c5b5cdeb">SoccerAI::update</a></div><div class="ttdeci">virtual void update(int ticks) OVERRIDE</div><div class="ttdoc">Update m_front_transform for ball aiming functions, also make AI stop after goal.</div><div class="ttdef"><b>Definition</b> soccer_ai.cpp:110</div></div>
+<div class="ttc" id="aclassSoccerAI_html_ae269a97d3bab24c5d6704f85d4d001c6"><div class="ttname"><a href="classSoccerAI.html#ae269a97d3bab24c5d6704f85d4d001c6">SoccerAI::m_world</a></div><div class="ttdeci">SoccerWorld * m_world</div><div class="ttdoc">Keep a pointer to world.</div><div class="ttdef"><b>Definition</b> soccer_ai.hpp:46</div></div>
+<div class="ttc" id="aclassSoccerAI_html_af11e980dafc723d295f350e3b2e54463"><div class="ttname"><a href="classSoccerAI.html#af11e980dafc723d295f350e3b2e54463">SoccerAI::determineBallAimingPosition</a></div><div class="ttdeci">Vec3 determineBallAimingPosition()</div><div class="ttdoc">Determine the point for aiming when try to steer or overtake the ball.</div><div class="ttdef"><b>Definition</b> soccer_ai.cpp:225</div></div>
+<div class="ttc" id="aclassSoccerWorld_html"><div class="ttname"><a href="classSoccerWorld.html">SoccerWorld</a></div><div class="ttdoc">An implementation of WorldWithRank, to provide the soccer game mode Notice: In soccer world,...</div><div class="ttdef"><b>Definition</b> soccer_world.hpp:40</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

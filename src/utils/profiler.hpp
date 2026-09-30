@@ -277,6 +277,14 @@ private:
     /** True if the profiler UI should be rendered */
     bool m_drawing;
 
+    /** Command-line profiling state for multiplayer races. */
+    bool        m_profile_log_enabled;
+    bool        m_profile_logging;
+    bool        m_initialized;
+    unsigned int m_profile_log_sequence;
+    std::string m_profile_log_directory;
+    std::string m_profile_log_track;
+
     /** The maximum number of frames to be buffered. Used to minimise
      *  reallocations. */
     int m_max_frames;
@@ -307,6 +315,7 @@ private:
 private:
     int  getThreadID();
     void drawBackground();
+    void writeToFile(const std::string& base_name);
 
 public:
              Profiler();
@@ -324,6 +333,13 @@ public:
     void     computeStableFPS();
     void     startBenchmark();
     void     writeToFile();
+    void     updateProfileLog(bool race_active);
+    void     finishProfileLog();
+
+    void setProfileLogEnabled(bool enabled)
+        { m_profile_log_enabled = enabled; }
+    void setProfileLogDirectory(const std::string& directory)
+        { m_profile_log_directory = directory; }
 
     // ------------------------------------------------------------------------
     bool isFrozen() const { return m_freeze_state == FROZEN; }

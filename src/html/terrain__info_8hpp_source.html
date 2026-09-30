@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: tracks/terrain_info.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>tracks</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">terrain_info.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2007-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTe ABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_TERRAIN_INFO_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_TERRAIN_INFO_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;utils/vec3.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">class </span>btTransform;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">class </span><a class="code hl_class" href="classMaterial.html">Material</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span></div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classTerrainInfo.html">   31</a></span><span class="keyword">class </span><a class="code hl_function" href="classTerrainInfo.html#a609a1767bdc271180f80f1eb20483026">TerrainInfo</a></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classTerrainInfo.html#a02978a6a2479876aef9337207e0eadea">   35</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a>              <a class="code hl_variable" href="classTerrainInfo.html#a02978a6a2479876aef9337207e0eadea">m_normal</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classTerrainInfo.html#a1c677fe0f99f2d0b9770a82481a79ecd">   37</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMaterial.html">Material</a>   *<a class="code hl_variable" href="classTerrainInfo.html#a1c677fe0f99f2d0b9770a82481a79ecd">m_material</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classTerrainInfo.html#aebd0f2ab53a12ccb017799a94c8d75a7">   39</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMaterial.html">Material</a>   *<a class="code hl_variable" href="classTerrainInfo.html#aebd0f2ab53a12ccb017799a94c8d75a7">m_last_material</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classTerrainInfo.html#aa4c20997dda269506509b7d131a0f853">   41</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a>              <a class="code hl_variable" href="classTerrainInfo.html#aa4c20997dda269506509b7d131a0f853">m_hit_point</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classTerrainInfo.html#a270a8a6935b581f542b5ec79427243a0">   44</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a> <a class="code hl_variable" href="classTerrainInfo.html#a270a8a6935b581f542b5ec79427243a0">m_origin_ray</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>             <a class="code hl_function" href="classTerrainInfo.html#a609a1767bdc271180f80f1eb20483026">TerrainInfo</a>();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>             <a class="code hl_function" href="classTerrainInfo.html#a609a1767bdc271180f80f1eb20483026">TerrainInfo</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;pos);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classTerrainInfo.html#a609a1767bdc271180f80f1eb20483026">~TerrainInfo</a>() {};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">bool</span>     <a class="code hl_function" href="classTerrainInfo.html#aa0a86c98da55bb0ac596e745443db1a5">getSurfaceInfo</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;from, <a class="code hl_class" href="classVec3.html">Vec3</a> *position,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                            <span class="keyword">const</span> <a class="code hl_class" href="classMaterial.html">Material</a> **m);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classTerrainInfo.html#a43ec390bf984cb0e9dc48e1d8172547d">update</a>(<span class="keyword">const</span> btMatrix3x3 &amp;rotation, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;from);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classTerrainInfo.html#a43ec390bf984cb0e9dc48e1d8172547d">update</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;from);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classTerrainInfo.html#a43ec390bf984cb0e9dc48e1d8172547d">update</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;from, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;towards);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classTerrainInfo.html#a14264d84633b5ba8cf8dab08339a8de9">   59</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classTerrainInfo.html#a14264d84633b5ba8cf8dab08339a8de9">update</a>(<span class="keyword">const</span> btMatrix3x3 &amp;rotation)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <a class="code hl_function" href="classTerrainInfo.html#a43ec390bf984cb0e9dc48e1d8172547d">update</a>(rotation, <a class="code hl_class" href="classVec3.html">Vec3</a>(0,0,0));</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
+</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classTerrainInfo.html#aa7ee172573e2a288068064182e95c9de">   65</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classTerrainInfo.html#aa7ee172573e2a288068064182e95c9de">getHoT</a>()<span class="keyword">                       const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classTerrainInfo.html#aa4c20997dda269506509b7d131a0f853">m_hit_point</a>.getY(); }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classTerrainInfo.html#a8dc122c8a6fc85df188c2d027380814f">   68</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMaterial.html">Material</a> *<a class="code hl_function" href="classTerrainInfo.html#a8dc122c8a6fc85df188c2d027380814f">getMaterial</a>()<span class="keyword">        const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classTerrainInfo.html#a1c677fe0f99f2d0b9770a82481a79ecd">m_material</a>;     }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classTerrainInfo.html#abdafd97dcc4daa204690ba46859a3ee3">   72</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classMaterial.html">Material</a> *<a class="code hl_function" href="classTerrainInfo.html#abdafd97dcc4daa204690ba46859a3ee3">getLastMaterial</a>()<span class="keyword">    const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classTerrainInfo.html#aebd0f2ab53a12ccb017799a94c8d75a7">m_last_material</a>;}</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classTerrainInfo.html#a4077769a3bdfffee53f4dd2eb0eed65b">   75</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;<a class="code hl_function" href="classTerrainInfo.html#a4077769a3bdfffee53f4dd2eb0eed65b">getNormal</a>()<span class="keyword">              const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classTerrainInfo.html#a02978a6a2479876aef9337207e0eadea">m_normal</a>;       }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classTerrainInfo.html#a99104ee44bfed4e003ae902a0831d47c">getTerrainPitch</a>(<span class="keywordtype">float</span> heading) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classTerrainInfo.html#ab18de1b540ba40ebb01f36a25cf3e501">   81</a></span>    <span class="keyword">const</span> btVector3&amp; <a class="code hl_function" href="classTerrainInfo.html#ab18de1b540ba40ebb01f36a25cf3e501">getHitPoint</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classTerrainInfo.html#aa4c20997dda269506509b7d131a0f853">m_hit_point</a>; }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a>&amp; getOrigin()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classTerrainInfo.html#a270a8a6935b581f542b5ec79427243a0">m_origin_ray</a>;  }</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>};  <span class="comment">// TerrainInfo</span></div>
+</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#endif </span><span class="comment">// HEADER_TERRAIN_INFO_HPP</span></div>
+<div class="ttc" id="aclassMaterial_html"><div class="ttname"><a href="classMaterial.html">Material</a></div><div class="ttdef"><b>Definition</b> material.hpp:48</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_a02978a6a2479876aef9337207e0eadea"><div class="ttname"><a href="classTerrainInfo.html#a02978a6a2479876aef9337207e0eadea">TerrainInfo::m_normal</a></div><div class="ttdeci">Vec3 m_normal</div><div class="ttdoc">Normal of the triangle under the object.</div><div class="ttdef"><b>Definition</b> terrain_info.hpp:35</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_a14264d84633b5ba8cf8dab08339a8de9"><div class="ttname"><a href="classTerrainInfo.html#a14264d84633b5ba8cf8dab08339a8de9">TerrainInfo::update</a></div><div class="ttdeci">virtual void update(const btMatrix3x3 &amp;rotation)</div><div class="ttdoc">Simple wrapper with no offset.</div><div class="ttdef"><b>Definition</b> terrain_info.hpp:59</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_a1c677fe0f99f2d0b9770a82481a79ecd"><div class="ttname"><a href="classTerrainInfo.html#a1c677fe0f99f2d0b9770a82481a79ecd">TerrainInfo::m_material</a></div><div class="ttdeci">const Material * m_material</div><div class="ttdoc">Material of the triangle under the object.</div><div class="ttdef"><b>Definition</b> terrain_info.hpp:37</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_a270a8a6935b581f542b5ec79427243a0"><div class="ttname"><a href="classTerrainInfo.html#a270a8a6935b581f542b5ec79427243a0">TerrainInfo::m_origin_ray</a></div><div class="ttdeci">Vec3 m_origin_ray</div><div class="ttdoc">DEBUG only: origin of raycast.</div><div class="ttdef"><b>Definition</b> terrain_info.hpp:44</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_a4077769a3bdfffee53f4dd2eb0eed65b"><div class="ttname"><a href="classTerrainInfo.html#a4077769a3bdfffee53f4dd2eb0eed65b">TerrainInfo::getNormal</a></div><div class="ttdeci">const Vec3 &amp; getNormal() const</div><div class="ttdoc">Returns the normal of the terrain the kart is on.</div><div class="ttdef"><b>Definition</b> terrain_info.hpp:75</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_a43ec390bf984cb0e9dc48e1d8172547d"><div class="ttname"><a href="classTerrainInfo.html#a43ec390bf984cb0e9dc48e1d8172547d">TerrainInfo::update</a></div><div class="ttdeci">virtual void update(const btMatrix3x3 &amp;rotation, const Vec3 &amp;from)</div><div class="ttdoc">Update the terrain information based on the latest position.</div><div class="ttdef"><b>Definition</b> terrain_info.cpp:74</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_a609a1767bdc271180f80f1eb20483026"><div class="ttname"><a href="classTerrainInfo.html#a609a1767bdc271180f80f1eb20483026">TerrainInfo::TerrainInfo</a></div><div class="ttdeci">TerrainInfo()</div><div class="ttdoc">Constructor to initialise terrain data.</div><div class="ttdef"><b>Definition</b> terrain_info.cpp:32</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_a8dc122c8a6fc85df188c2d027380814f"><div class="ttname"><a href="classTerrainInfo.html#a8dc122c8a6fc85df188c2d027380814f">TerrainInfo::getMaterial</a></div><div class="ttdeci">const Material * getMaterial() const</div><div class="ttdoc">Returns the current material the kart is on.</div><div class="ttdef"><b>Definition</b> terrain_info.hpp:68</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_a99104ee44bfed4e003ae902a0831d47c"><div class="ttname"><a href="classTerrainInfo.html#a99104ee44bfed4e003ae902a0831d47c">TerrainInfo::getTerrainPitch</a></div><div class="ttdeci">float getTerrainPitch(float heading) const</div><div class="ttdoc">Returns the pitch of the terrain depending on the heading.</div><div class="ttdef"><b>Definition</b> terrain_info.cpp:129</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_aa0a86c98da55bb0ac596e745443db1a5"><div class="ttname"><a href="classTerrainInfo.html#aa0a86c98da55bb0ac596e745443db1a5">TerrainInfo::getSurfaceInfo</a></div><div class="ttdeci">bool getSurfaceInfo(const Vec3 &amp;from, Vec3 *position, const Material **m)</div><div class="ttdoc">Does a raycast upwards from the given position If the raycast indicated that the kart is &#39;under somet...</div><div class="ttdef"><b>Definition</b> terrain_info.cpp:118</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_aa4c20997dda269506509b7d131a0f853"><div class="ttname"><a href="classTerrainInfo.html#aa4c20997dda269506509b7d131a0f853">TerrainInfo::m_hit_point</a></div><div class="ttdeci">Vec3 m_hit_point</div><div class="ttdoc">The point that was hit.</div><div class="ttdef"><b>Definition</b> terrain_info.hpp:41</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_aa7ee172573e2a288068064182e95c9de"><div class="ttname"><a href="classTerrainInfo.html#aa7ee172573e2a288068064182e95c9de">TerrainInfo::getHoT</a></div><div class="ttdeci">float getHoT() const</div><div class="ttdoc">Returns the height of the terrain.</div><div class="ttdef"><b>Definition</b> terrain_info.hpp:65</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_ab18de1b540ba40ebb01f36a25cf3e501"><div class="ttname"><a href="classTerrainInfo.html#ab18de1b540ba40ebb01f36a25cf3e501">TerrainInfo::getHitPoint</a></div><div class="ttdeci">const btVector3 &amp; getHitPoint() const</div><div class="ttdoc">Returns the hit point of the raycast.</div><div class="ttdef"><b>Definition</b> terrain_info.hpp:81</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_abdafd97dcc4daa204690ba46859a3ee3"><div class="ttname"><a href="classTerrainInfo.html#abdafd97dcc4daa204690ba46859a3ee3">TerrainInfo::getLastMaterial</a></div><div class="ttdeci">const Material * getLastMaterial() const</div><div class="ttdoc">Returns the previous material the kart was one (which might be the same as getMaterial() ).</div><div class="ttdef"><b>Definition</b> terrain_info.hpp:72</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_aebd0f2ab53a12ccb017799a94c8d75a7"><div class="ttname"><a href="classTerrainInfo.html#aebd0f2ab53a12ccb017799a94c8d75a7">TerrainInfo::m_last_material</a></div><div class="ttdeci">const Material * m_last_material</div><div class="ttdoc">The previous material a kart was on.</div><div class="ttdef"><b>Definition</b> terrain_info.hpp:39</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

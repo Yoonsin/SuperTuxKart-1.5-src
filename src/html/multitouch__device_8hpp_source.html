@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: input/multitouch_device.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>input</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">multitouch_device.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2013-2015 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_MULTITOUCH_DEVICE_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_MULTITOUCH_DEVICE_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;input/input_device.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">utils/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;IEventReceiver.h&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#define NUMBER_OF_MULTI_TOUCHES 10</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">enum</span> MultitouchButtonType</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    BUTTON_STEERING,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    BUTTON_UP_DOWN,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    BUTTON_FIRE,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    BUTTON_NITRO,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    BUTTON_SKIDDING,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    BUTTON_LOOK_BACKWARDS,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    BUTTON_RESCUE,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    BUTTON_ESCAPE,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    BUTTON_UP,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    BUTTON_DOWN,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    BUTTON_LEFT,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    BUTTON_RIGHT,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    BUTTON_CUSTOM</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>};</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="};">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structMultitouchEvent.html">   49</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structMultitouchEvent.html">MultitouchEvent</a></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">int</span> id;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">bool</span> touched;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">int</span> x;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">int</span> y;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>};</div>
+</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="};">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structMultitouchButton.html">   57</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structMultitouchButton.html">MultitouchButton</a></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>{</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    MultitouchButtonType type;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <a class="code hl_enumeration" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> action;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">bool</span> pressed;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> event_id;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">int</span> x;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">int</span> y;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">int</span> width;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">int</span> height;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">float</span> axis_x;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">float</span> axis_y;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> id;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    void (*callback)(<span class="keywordtype">unsigned</span> int, bool);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>};</div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">class </span><a class="code hl_class" href="classController.html">Controller</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="foldopen" id="foldopen00075" data-start="{" data-end="};">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classMultitouchDevice.html">   75</a></span><span class="keyword">class </span><a class="code hl_function" href="classMultitouchDevice.html#a17f355973fda9ec19a07ddd90e694f88">MultitouchDevice</a> : <span class="keyword">public</span> InputDevice</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>{</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classMultitouchDevice.html#a47660ae9d4917c3a9e6088ee0e5265fa">   79</a></span>    std::vector&lt;MultitouchButton*&gt; <a class="code hl_variable" href="classMultitouchDevice.html#a47660ae9d4917c3a9e6088ee0e5265fa">m_buttons</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <a class="code hl_class" href="classController.html">Controller</a>* m_controller;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classMultitouchDevice.html#a188acab4fe24aca27d31a9dd8dc31de8">   85</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classMultitouchDevice.html#a188acab4fe24aca27d31a9dd8dc31de8">m_deadzone</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classMultitouchDevice.html#adbf0a39c74c48e507e8e856e17eb8c1b">   88</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classMultitouchDevice.html#adbf0a39c74c48e507e8e856e17eb8c1b">m_sensitivity_x</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classMultitouchDevice.html#aa10542b4540d8d8269474b09ec6afcac">   91</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classMultitouchDevice.html#aa10542b4540d8d8269474b09ec6afcac">m_sensitivity_y</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">float</span> m_orientation;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    uint64_t m_gyro_time;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classMultitouchDevice.html#af528ab8233b0a4bb0668f2b224dc03ce">   97</a></span>    IrrlichtDevice* <a class="code hl_variable" href="classMultitouchDevice.html#af528ab8233b0a4bb0668f2b224dc03ce">m_irrlicht_device</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classMultitouchDevice.html#a82b752e6f83feb07ef7556cbdfd4aa79">getSteeringFactor</a>(<span class="keywordtype">float</span> value, <span class="keywordtype">float</span> sensitivity);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMultitouchDevice.html#aba457f3f0c59a4110b2030f7c41545f1">handleControls</a>(<a class="code hl_struct" href="structMultitouchButton.html">MultitouchButton</a>* button);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">bool</span> isGameRunning();</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    std::map&lt;unsigned, std::vector&lt;MultitouchButton*&gt; &gt; m_affected_linked_buttons;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classMultitouchDevice.html#aa4c406690821a2804ee7095b7d187cd8">  107</a></span>    std::array&lt;MultitouchEvent, NUMBER_OF_MULTI_TOUCHES&gt; <a class="code hl_variable" href="classMultitouchDevice.html#aa4c406690821a2804ee7095b7d187cd8">m_events</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_function" href="classMultitouchDevice.html#a17f355973fda9ec19a07ddd90e694f88">MultitouchDevice</a>();</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classMultitouchDevice.html#a232d9f6403e089ec8f9d275bc9c57407">~MultitouchDevice</a>();</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span></div>
+<div class="foldopen" id="foldopen00113" data-start="{" data-end="}">
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classMultitouchDevice.html#a1a858e95d951f8816dd559271c8d7226">  113</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classMultitouchDevice.html#a1a858e95d951f8816dd559271c8d7226">processAndMapInput</a>(Input::InputType type,  <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                            InputManager::InputDriverMode mode,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                            <a class="code hl_enumeration" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> *action, <span class="keywordtype">int</span>* value = NULL)</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                            {<span class="keywordflow">return</span> <span class="keyword">true</span>;}</div>
+</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classMultitouchDevice.html#aec5942084d26ad09c1d1a2e193bc885f">getActiveTouchesCount</a>();</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMultitouchDevice.html#ae029eb69aadab751138540221523410e">addButton</a>(MultitouchButtonType type, <span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">int</span> width,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                   <span class="keywordtype">int</span> height, <span class="keywordtype">void</span> (*callback)(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>, <span class="keywordtype">bool</span>) = NULL);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMultitouchDevice.html#a63901dc883bc5b4fdb226e803f2dafa1">clearButtons</a>();</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMultitouchDevice.html#a9e6946c855f89bc8feec7843d54507ab">reset</a>();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="classMultitouchDevice.html#ad5cbb3058ea08913f7ea94119ed18662">  126</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classMultitouchDevice.html#ad5cbb3058ea08913f7ea94119ed18662">getButtonsCount</a>() { <span class="keywordflow">return</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)<a class="code hl_variable" href="classMultitouchDevice.html#a47660ae9d4917c3a9e6088ee0e5265fa">m_buttons</a>.size();}</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classMultitouchDevice.html#a1fdd52aae43414bff440324dfe2c7eeb">  129</a></span>    <a class="code hl_struct" href="structMultitouchButton.html">MultitouchButton</a>* <a class="code hl_function" href="classMultitouchDevice.html#a1fdd52aae43414bff440324dfe2c7eeb">getButton</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i) {<span class="keywordflow">return</span> <a class="code hl_variable" href="classMultitouchDevice.html#a47660ae9d4917c3a9e6088ee0e5265fa">m_buttons</a>.at(i);}</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMultitouchDevice.html#a8e360a9f6ee29614afc71cc33a207fd2">activateAccelerometer</a>();</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMultitouchDevice.html#aa14db7fdbebbabb38e80d7ee4e7c04ca">deactivateAccelerometer</a>();</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classMultitouchDevice.html#a15b998f66915e3822b1e000f2d4524d1">isAccelerometerActive</a>();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMultitouchDevice.html#a602d6aaa6c444977ac041c36e2511e3a">activateGyroscope</a>();</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMultitouchDevice.html#a301b705e53a0308bb3c71275411ef552">deactivateGyroscope</a>();</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classMultitouchDevice.html#a673fc7d8ea5a956107eb2a216850dbc3">isGyroscopeActive</a>();</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordtype">void</span> updateAxisX(<span class="keywordtype">float</span> value);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordtype">void</span> updateAxisY(<span class="keywordtype">float</span> value);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classMultitouchDevice.html#a79bbbb73a860c983b6841f450b18e41d">getOrientation</a>();</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMultitouchDevice.html#ace904ca73f2cfa10ec299cc03306f8bb">updateOrientationFromAccelerometer</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMultitouchDevice.html#aa7246a2066fac1bf4a1f39de7837ea02">updateOrientationFromGyroscope</a>(<span class="keywordtype">float</span> z);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMultitouchDevice.html#a81d0b4c7e4ab50d5acadabb9739cb459">updateDeviceState</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> event_id);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordtype">void</span> updateController();</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMultitouchDevice.html#a705cfc0bcd4b01d4192c7c0e1fd5a639">updateConfigParams</a>();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>};   <span class="comment">// MultitouchDevice</span></div>
+</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassController_html"><div class="ttname"><a href="classController.html">Controller</a></div><div class="ttdoc">This is the base class for kart controller - that can be a player or a a robot.</div><div class="ttdef"><b>Definition</b> controller.hpp:46</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a15b998f66915e3822b1e000f2d4524d1"><div class="ttname"><a href="classMultitouchDevice.html#a15b998f66915e3822b1e000f2d4524d1">MultitouchDevice::isAccelerometerActive</a></div><div class="ttdeci">bool isAccelerometerActive()</div><div class="ttdoc">Get accelerometer state</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:208</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a17f355973fda9ec19a07ddd90e694f88"><div class="ttname"><a href="classMultitouchDevice.html#a17f355973fda9ec19a07ddd90e694f88">MultitouchDevice::MultitouchDevice</a></div><div class="ttdeci">MultitouchDevice()</div><div class="ttdoc">The multitouch device constructor</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:35</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a188acab4fe24aca27d31a9dd8dc31de8"><div class="ttname"><a href="classMultitouchDevice.html#a188acab4fe24aca27d31a9dd8dc31de8">MultitouchDevice::m_deadzone</a></div><div class="ttdeci">float m_deadzone</div><div class="ttdoc">The parameter that is used for steering button and determines dead area in a center of button</div><div class="ttdef"><b>Definition</b> multitouch_device.hpp:85</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a1a858e95d951f8816dd559271c8d7226"><div class="ttname"><a href="classMultitouchDevice.html#a1a858e95d951f8816dd559271c8d7226">MultitouchDevice::processAndMapInput</a></div><div class="ttdeci">bool processAndMapInput(Input::InputType type, const int id, InputManager::InputDriverMode mode, PlayerAction *action, int *value=NULL)</div><div class="ttdoc">Unused function</div><div class="ttdef"><b>Definition</b> multitouch_device.hpp:113</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a1fdd52aae43414bff440324dfe2c7eeb"><div class="ttname"><a href="classMultitouchDevice.html#a1fdd52aae43414bff440324dfe2c7eeb">MultitouchDevice::getButton</a></div><div class="ttdeci">MultitouchButton * getButton(unsigned int i)</div><div class="ttdoc">Returns pointer to the selected button</div><div class="ttdef"><b>Definition</b> multitouch_device.hpp:129</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a232d9f6403e089ec8f9d275bc9c57407"><div class="ttname"><a href="classMultitouchDevice.html#a232d9f6403e089ec8f9d275bc9c57407">MultitouchDevice::~MultitouchDevice</a></div><div class="ttdeci">virtual ~MultitouchDevice()</div><div class="ttdoc">The multitouch device destructor</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:51</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a301b705e53a0308bb3c71275411ef552"><div class="ttname"><a href="classMultitouchDevice.html#a301b705e53a0308bb3c71275411ef552">MultitouchDevice::deactivateGyroscope</a></div><div class="ttdeci">void deactivateGyroscope()</div><div class="ttdoc">Deativates gyroscope</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:229</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a47660ae9d4917c3a9e6088ee0e5265fa"><div class="ttname"><a href="classMultitouchDevice.html#a47660ae9d4917c3a9e6088ee0e5265fa">MultitouchDevice::m_buttons</a></div><div class="ttdeci">std::vector&lt; MultitouchButton * &gt; m_buttons</div><div class="ttdoc">The list of pointers to all created buttons</div><div class="ttdef"><b>Definition</b> multitouch_device.hpp:79</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a602d6aaa6c444977ac041c36e2511e3a"><div class="ttname"><a href="classMultitouchDevice.html#a602d6aaa6c444977ac041c36e2511e3a">MultitouchDevice::activateGyroscope</a></div><div class="ttdeci">void activateGyroscope()</div><div class="ttdoc">Activates gyroscope</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:216</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a63901dc883bc5b4fdb226e803f2dafa1"><div class="ttname"><a href="classMultitouchDevice.html#a63901dc883bc5b4fdb226e803f2dafa1">MultitouchDevice::clearButtons</a></div><div class="ttdeci">void clearButtons()</div><div class="ttdoc">Deletes all previously created buttons</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:146</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a673fc7d8ea5a956107eb2a216850dbc3"><div class="ttname"><a href="classMultitouchDevice.html#a673fc7d8ea5a956107eb2a216850dbc3">MultitouchDevice::isGyroscopeActive</a></div><div class="ttdeci">bool isGyroscopeActive()</div><div class="ttdoc">Get gyroscope state</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:241</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a705cfc0bcd4b01d4192c7c0e1fd5a639"><div class="ttname"><a href="classMultitouchDevice.html#a705cfc0bcd4b01d4192c7c0e1fd5a639">MultitouchDevice::updateConfigParams</a></div><div class="ttdeci">void updateConfigParams()</div><div class="ttdoc">Updates config parameters i.e.</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:422</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a79bbbb73a860c983b6841f450b18e41d"><div class="ttname"><a href="classMultitouchDevice.html#a79bbbb73a860c983b6841f450b18e41d">MultitouchDevice::getOrientation</a></div><div class="ttdeci">float getOrientation()</div><div class="ttdoc">Returns device orientation Z angle, in radians, where 0 is landscape orientation parallel to the floo...</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:511</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a81d0b4c7e4ab50d5acadabb9739cb459"><div class="ttname"><a href="classMultitouchDevice.html#a81d0b4c7e4ab50d5acadabb9739cb459">MultitouchDevice::updateDeviceState</a></div><div class="ttdeci">void updateDeviceState(unsigned int event_id)</div><div class="ttdoc">The function that is executed when touch event occurs.</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:251</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a82b752e6f83feb07ef7556cbdfd4aa79"><div class="ttname"><a href="classMultitouchDevice.html#a82b752e6f83feb07ef7556cbdfd4aa79">MultitouchDevice::getSteeringFactor</a></div><div class="ttdeci">float getSteeringFactor(float value, float sensitivity)</div><div class="ttdoc">Helper function that returns a steering factor for steering button.</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:439</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a8e360a9f6ee29614afc71cc33a207fd2"><div class="ttname"><a href="classMultitouchDevice.html#a8e360a9f6ee29614afc71cc33a207fd2">MultitouchDevice::activateAccelerometer</a></div><div class="ttdeci">void activateAccelerometer()</div><div class="ttdoc">Activates accelerometer</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:185</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_a9e6946c855f89bc8feec7843d54507ab"><div class="ttname"><a href="classMultitouchDevice.html#a9e6946c855f89bc8feec7843d54507ab">MultitouchDevice::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Sets all buttons and events to default state</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:159</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_aa10542b4540d8d8269474b09ec6afcac"><div class="ttname"><a href="classMultitouchDevice.html#aa10542b4540d8d8269474b09ec6afcac">MultitouchDevice::m_sensitivity_y</a></div><div class="ttdeci">float m_sensitivity_y</div><div class="ttdoc">A parameter in range that determines the sensitivity for y axis.</div><div class="ttdef"><b>Definition</b> multitouch_device.hpp:91</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_aa14db7fdbebbabb38e80d7ee4e7c04ca"><div class="ttname"><a href="classMultitouchDevice.html#aa14db7fdbebbabb38e80d7ee4e7c04ca">MultitouchDevice::deactivateAccelerometer</a></div><div class="ttdeci">void deactivateAccelerometer()</div><div class="ttdoc">Deativates accelerometer</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:196</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_aa4c406690821a2804ee7095b7d187cd8"><div class="ttname"><a href="classMultitouchDevice.html#aa4c406690821a2804ee7095b7d187cd8">MultitouchDevice::m_events</a></div><div class="ttdeci">std::array&lt; MultitouchEvent, NUMBER_OF_MULTI_TOUCHES &gt; m_events</div><div class="ttdoc">The array that contains data for all multitouch input events</div><div class="ttdef"><b>Definition</b> multitouch_device.hpp:107</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_aa7246a2066fac1bf4a1f39de7837ea02"><div class="ttname"><a href="classMultitouchDevice.html#aa7246a2066fac1bf4a1f39de7837ea02">MultitouchDevice::updateOrientationFromGyroscope</a></div><div class="ttdeci">void updateOrientationFromGyroscope(float z)</div><div class="ttdoc">Update device orientation from the gyroscope measurements.</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:568</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_aba457f3f0c59a4110b2030f7c41545f1"><div class="ttname"><a href="classMultitouchDevice.html#aba457f3f0c59a4110b2030f7c41545f1">MultitouchDevice::handleControls</a></div><div class="ttdeci">void handleControls(MultitouchButton *button)</div><div class="ttdoc">Sends proper action for player controller depending on the button type and state.</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:609</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_ace904ca73f2cfa10ec299cc03306f8bb"><div class="ttname"><a href="classMultitouchDevice.html#ace904ca73f2cfa10ec299cc03306f8bb">MultitouchDevice::updateOrientationFromAccelerometer</a></div><div class="ttdeci">void updateOrientationFromAccelerometer(float x, float y)</div><div class="ttdoc">Update device orientation from the accelerometer measurements.</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:523</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_ad5cbb3058ea08913f7ea94119ed18662"><div class="ttname"><a href="classMultitouchDevice.html#ad5cbb3058ea08913f7ea94119ed18662">MultitouchDevice::getButtonsCount</a></div><div class="ttdeci">unsigned int getButtonsCount()</div><div class="ttdoc">Returns the number of created buttons</div><div class="ttdef"><b>Definition</b> multitouch_device.hpp:126</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_adbf0a39c74c48e507e8e856e17eb8c1b"><div class="ttname"><a href="classMultitouchDevice.html#adbf0a39c74c48e507e8e856e17eb8c1b">MultitouchDevice::m_sensitivity_x</a></div><div class="ttdeci">float m_sensitivity_x</div><div class="ttdoc">A parameter in range that determines the sensitivity for x axis.</div><div class="ttdef"><b>Definition</b> multitouch_device.hpp:88</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_ae029eb69aadab751138540221523410e"><div class="ttname"><a href="classMultitouchDevice.html#ae029eb69aadab751138540221523410e">MultitouchDevice::addButton</a></div><div class="ttdeci">void addButton(MultitouchButtonType type, int x, int y, int width, int height, void(*callback)(unsigned int, bool)=NULL)</div><div class="ttdoc">Creates a button of specified type and position.</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:84</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_aec5942084d26ad09c1d1a2e193bc885f"><div class="ttname"><a href="classMultitouchDevice.html#aec5942084d26ad09c1d1a2e193bc885f">MultitouchDevice::getActiveTouchesCount</a></div><div class="ttdeci">unsigned int getActiveTouchesCount()</div><div class="ttdoc">Returns a number of fingers that are currently in use</div><div class="ttdef"><b>Definition</b> multitouch_device.cpp:59</div></div>
+<div class="ttc" id="aclassMultitouchDevice_html_af528ab8233b0a4bb0668f2b224dc03ce"><div class="ttname"><a href="classMultitouchDevice.html#af528ab8233b0a4bb0668f2b224dc03ce">MultitouchDevice::m_irrlicht_device</a></div><div class="ttdeci">IrrlichtDevice * m_irrlicht_device</div><div class="ttdoc">Pointer to the irrlicht device</div><div class="ttdef"><b>Definition</b> multitouch_device.hpp:97</div></div>
+<div class="ttc" id="agroup__input_html_gaea132397c26cad8f8637a9422260deca"><div class="ttname"><a href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a></div><div class="ttdeci">PlayerAction</div><div class="ttdoc">types of input events / what actions the players can do</div><div class="ttdef"><b>Definition</b> input.hpp:117</div></div>
+<div class="ttc" id="astructMultitouchButton_html"><div class="ttname"><a href="structMultitouchButton.html">MultitouchButton</a></div><div class="ttdef"><b>Definition</b> multitouch_device.hpp:58</div></div>
+<div class="ttc" id="astructMultitouchEvent_html"><div class="ttname"><a href="structMultitouchEvent.html">MultitouchEvent</a></div><div class="ttdef"><b>Definition</b> multitouch_device.hpp:50</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Declares the general types that are used by the network.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

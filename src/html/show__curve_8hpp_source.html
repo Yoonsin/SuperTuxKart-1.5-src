@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: graphics/show_curve.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>graphics</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">show_curve.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2012-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_SHOW_CURVE_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_SHOW_CURVE_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;SColor.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;S3DVertex.h&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">class </span><a class="code hl_class" href="classVec3.html">Vec3</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">namespace </span>SP</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">class </span><a class="code hl_class" href="classSP_1_1SPDynamicDrawCall.html">SPDynamicDrawCall</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span></div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="};">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classShowCurve.html">   45</a></span><span class="keyword">class </span><a class="code hl_function" href="classShowCurve.html#ad21e244f657ee7727aa1d39fac3c1e92">ShowCurve</a> : <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    LEAK_CHECK();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classShowCurve.html#ac66bda92b4c2a8f4c358ec28fe595b0f">   50</a></span>    std::shared_ptr&lt;SP::SPDynamicDrawCall&gt; <a class="code hl_variable" href="classShowCurve.html#ac66bda92b4c2a8f4c358ec28fe595b0f">m_dy_dc</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classShowCurve.html#a8a6f95af930dc4b54377c652d5565a55">   53</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classShowCurve.html#a8a6f95af930dc4b54377c652d5565a55">m_width</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classShowCurve.html#a9e1841706093341723494bf644a64470">   56</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classShowCurve.html#a9e1841706093341723494bf644a64470">m_height</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classShowCurve.html#a3c6f4b91b74a8b525b4870a50cac3b2d">   59</a></span>    irr::video::SColor <a class="code hl_variable" href="classShowCurve.html#a3c6f4b91b74a8b525b4870a50cac3b2d">m_color</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    std::array&lt;irr:: video::S3DVertexSkinnedMesh, 4&gt;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        m_current_vertices, m_previous_vertices;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">bool</span> m_first_vertices, m_visible;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>         <a class="code hl_function" href="classShowCurve.html#ad21e244f657ee7727aa1d39fac3c1e92">ShowCurve</a>(<span class="keywordtype">float</span> width, <span class="keywordtype">float</span> height,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                   <span class="keyword">const</span> irr::video::SColor &amp;color = irr::video::SColor(77, 0, 179, 0));</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <a class="code hl_function" href="classShowCurve.html#a2fa10ff7907a802118125437f0621a33">~ShowCurve</a>();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classShowCurve.html#a6f0c6b79243a0de7df35eea490800e95">addPoint</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;pnt);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classShowCurve.html#a53bfff5232d049e390e5990fa847b01d">makeCircle</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;center, <span class="keywordtype">float</span> radius);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span> update(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classShowCurve.html#a584ee93d832ec9900456c6b47885ab79">setVisible</a>(<span class="keywordtype">bool</span> v);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">bool</span> isVisible() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classShowCurve.html#a836b6e9709bd0bc23c48bf869330b710">setPosition</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;xyz);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classShowCurve.html#a003d27e960cf4e09df511c224d053241">setHeading</a>(<span class="keywordtype">float</span> heading);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span> clear();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};   <span class="comment">// ShowCurve</span></div>
+</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassSP_1_1SPDynamicDrawCall_html"><div class="ttname"><a href="classSP_1_1SPDynamicDrawCall.html">SP::SPDynamicDrawCall</a></div><div class="ttdef"><b>Definition</b> sp_dynamic_draw_call.hpp:42</div></div>
+<div class="ttc" id="aclassShowCurve_html_a003d27e960cf4e09df511c224d053241"><div class="ttname"><a href="classShowCurve.html#a003d27e960cf4e09df511c224d053241">ShowCurve::setHeading</a></div><div class="ttdeci">void setHeading(float heading)</div><div class="ttdoc">Sets the heading for the curve.</div><div class="ttdef"><b>Definition</b> show_curve.cpp:139</div></div>
+<div class="ttc" id="aclassShowCurve_html_a2fa10ff7907a802118125437f0621a33"><div class="ttname"><a href="classShowCurve.html#a2fa10ff7907a802118125437f0621a33">ShowCurve::~ShowCurve</a></div><div class="ttdeci">~ShowCurve()</div><div class="ttdoc">The destructor removes this scene node and frees the mesh.</div><div class="ttdef"><b>Definition</b> show_curve.cpp:44</div></div>
+<div class="ttc" id="aclassShowCurve_html_a3c6f4b91b74a8b525b4870a50cac3b2d"><div class="ttname"><a href="classShowCurve.html#a3c6f4b91b74a8b525b4870a50cac3b2d">ShowCurve::m_color</a></div><div class="ttdeci">irr::video::SColor m_color</div><div class="ttdoc">The color to use for the curve.</div><div class="ttdef"><b>Definition</b> show_curve.hpp:59</div></div>
+<div class="ttc" id="aclassShowCurve_html_a53bfff5232d049e390e5990fa847b01d"><div class="ttname"><a href="classShowCurve.html#a53bfff5232d049e390e5990fa847b01d">ShowCurve::makeCircle</a></div><div class="ttdeci">void makeCircle(const Vec3 &amp;center, float radius)</div><div class="ttdoc">Makes this curve to show a circle with given center point and radius.</div><div class="ttdef"><b>Definition</b> show_curve.cpp:122</div></div>
+<div class="ttc" id="aclassShowCurve_html_a584ee93d832ec9900456c6b47885ab79"><div class="ttname"><a href="classShowCurve.html#a584ee93d832ec9900456c6b47885ab79">ShowCurve::setVisible</a></div><div class="ttdeci">void setVisible(bool v)</div><div class="ttdoc">Makes this scene node visible or not.</div><div class="ttdef"><b>Definition</b> show_curve.cpp:147</div></div>
+<div class="ttc" id="aclassShowCurve_html_a6f0c6b79243a0de7df35eea490800e95"><div class="ttname"><a href="classShowCurve.html#a6f0c6b79243a0de7df35eea490800e95">ShowCurve::addPoint</a></div><div class="ttdeci">void addPoint(const Vec3 &amp;pnt)</div><div class="ttdoc">Adds a point to the curve (&#39;tunnel&#39;).</div><div class="ttdef"><b>Definition</b> show_curve.cpp:54</div></div>
+<div class="ttc" id="aclassShowCurve_html_a836b6e9709bd0bc23c48bf869330b710"><div class="ttname"><a href="classShowCurve.html#a836b6e9709bd0bc23c48bf869330b710">ShowCurve::setPosition</a></div><div class="ttdeci">void setPosition(const Vec3 &amp;xyz)</div><div class="ttdoc">Sets the origin of this scene node.</div><div class="ttdef"><b>Definition</b> show_curve.cpp:162</div></div>
+<div class="ttc" id="aclassShowCurve_html_a8a6f95af930dc4b54377c652d5565a55"><div class="ttname"><a href="classShowCurve.html#a8a6f95af930dc4b54377c652d5565a55">ShowCurve::m_width</a></div><div class="ttdeci">float m_width</div><div class="ttdoc">The width of the graph when it is displayed.</div><div class="ttdef"><b>Definition</b> show_curve.hpp:53</div></div>
+<div class="ttc" id="aclassShowCurve_html_a9e1841706093341723494bf644a64470"><div class="ttname"><a href="classShowCurve.html#a9e1841706093341723494bf644a64470">ShowCurve::m_height</a></div><div class="ttdeci">float m_height</div><div class="ttdoc">The height of the graph when it is displayed.</div><div class="ttdef"><b>Definition</b> show_curve.hpp:56</div></div>
+<div class="ttc" id="aclassShowCurve_html_ac66bda92b4c2a8f4c358ec28fe595b0f"><div class="ttname"><a href="classShowCurve.html#ac66bda92b4c2a8f4c358ec28fe595b0f">ShowCurve::m_dy_dc</a></div><div class="ttdeci">std::shared_ptr&lt; SP::SPDynamicDrawCall &gt; m_dy_dc</div><div class="ttdoc">The mesh of the curve.</div><div class="ttdef"><b>Definition</b> show_curve.hpp:50</div></div>
+<div class="ttc" id="aclassShowCurve_html_ad21e244f657ee7727aa1d39fac3c1e92"><div class="ttname"><a href="classShowCurve.html#ad21e244f657ee7727aa1d39fac3c1e92">ShowCurve::ShowCurve</a></div><div class="ttdeci">ShowCurve(float width, float height, const irr::video::SColor &amp;color=irr::video::SColor(77, 0, 179, 0))</div><div class="ttdoc">ShowCurve constructor.</div><div class="ttdef"><b>Definition</b> show_curve.cpp:30</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

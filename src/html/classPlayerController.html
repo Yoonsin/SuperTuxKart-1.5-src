@@ -1,0 +1,861 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: PlayerController 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pro-methods">Protected 멤버 함수</a> &#124;
+<a href="#pro-attribs">Protected 속성</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classPlayerController-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">PlayerController 클래스 참조</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+PlayerController에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classPlayerController__inherit__graph.png" border="0" usemap="#aPlayerController_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aPlayerController_inherit__map" id="aPlayerController_inherit__map">
+<area shape="rect" title=" " alt="" coords="188,80,302,107"/>
+<area shape="rect" href="classLocalPlayerController.html" title="PlayerKart manages control events from the player and moves them to the Kart" alt="" coords="5,155,151,181"/>
+<area shape="poly" title=" " alt="" coords="204,114,108,157,106,152,199,112"/>
+<area shape="rect" href="classNetworkAIController.html" title=" " alt="" coords="175,155,314,181"/>
+<area shape="poly" title=" " alt="" coords="247,121,247,156,242,153,243,124"/>
+<area shape="rect" href="classNetworkPlayerController.html" title=" " alt="" coords="339,155,502,181"/>
+<area shape="poly" title=" " alt="" coords="290,110,392,154,387,154,289,116"/>
+<area shape="rect" href="classController.html" title="This is the base class for kart controller &#45; that can be a player or a a robot." alt="" coords="206,5,283,32"/>
+<area shape="poly" title=" " alt="" coords="246,46,247,81,242,78,243,50"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:af41eb5bec7aef103754e26d5b702e57f" id="r_af41eb5bec7aef103754e26d5b702e57f"><td class="memItemLeft"><a id="af41eb5bec7aef103754e26d5b702e57f" name="af41eb5bec7aef103754e26d5b702e57f"></a>
+&#160;</td><td class="memItemRight"><b>PlayerController</b> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memitem:a27b597bc2dbe06e2464dea6cdb3fac96" id="r_a27b597bc2dbe06e2464dea6cdb3fac96"><td class="memItemLeft"><a id="a27b597bc2dbe06e2464dea6cdb3fac96" name="a27b597bc2dbe06e2464dea6cdb3fac96"></a>
+virtual&#160;</td><td class="memItemRight"><b>~PlayerController</b> ()</td></tr>
+<tr class="memdesc:a27b597bc2dbe06e2464dea6cdb3fac96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for a player kart. <br /></td></tr>
+<tr class="memitem:a951f1441064ec6172175330ec6d6359b" id="r_a951f1441064ec6172175330ec6d6359b"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a951f1441064ec6172175330ec6d6359b">update</a> (int ticks) OVERRIDE</td></tr>
+<tr class="memdesc:a951f1441064ec6172175330ec6d6359b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the player kart, called once each timestep.  <br /></td></tr>
+<tr class="memitem:a51b9ad9ee86b571a379b691f467f7fe1" id="r_a51b9ad9ee86b571a379b691f467f7fe1"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a51b9ad9ee86b571a379b691f467f7fe1">action</a> (<a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> action, int value, bool dry_run=false) OVERRIDE</td></tr>
+<tr class="memdesc:a51b9ad9ee86b571a379b691f467f7fe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function interprets a kart action and value, and set the corresponding entries in the kart control data structure.  <br /></td></tr>
+<tr class="memitem:a7b2b9dded907664e0092d636c8148f1b" id="r_a7b2b9dded907664e0092d636c8148f1b"><td class="memItemLeft"><a id="a7b2b9dded907664e0092d636c8148f1b" name="a7b2b9dded907664e0092d636c8148f1b"></a>
+virtual void&#160;</td><td class="memItemRight"><b>actionFromNetwork</b> (<a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> action, int value, int value_l, int value_r)</td></tr>
+<tr class="memitem:a4748883440b02ae9db7ebc64dc606525" id="r_a4748883440b02ae9db7ebc64dc606525"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a4748883440b02ae9db7ebc64dc606525">skidBonusTriggered</a> () OVERRIDE</td></tr>
+<tr class="memdesc:a4748883440b02ae9db7ebc64dc606525"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback when the skidding bonus is triggered.  <br /></td></tr>
+<tr class="memitem:a4a7b6d52b1333e84f432d76ed8e0c718" id="r_a4a7b6d52b1333e84f432d76ed8e0c718"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a4a7b6d52b1333e84f432d76ed8e0c718">reset</a> () OVERRIDE</td></tr>
+<tr class="memdesc:a4a7b6d52b1333e84f432d76ed8e0c718"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the player kart for a new or restarted race.  <br /></td></tr>
+<tr class="memitem:aa0ca80d6c2a159bf0915a49391c83d43" id="r_aa0ca80d6c2a159bf0915a49391c83d43"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#aa0ca80d6c2a159bf0915a49391c83d43">handleZipper</a> (bool play_sound) OVERRIDE</td></tr>
+<tr class="memdesc:aa0ca80d6c2a159bf0915a49391c83d43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a kart hits or uses a zipper.  <br /></td></tr>
+<tr class="memitem:a60efb410f477a89e9f2728a88c9a9376" id="r_a60efb410f477a89e9f2728a88c9a9376"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a60efb410f477a89e9f2728a88c9a9376">resetInputState</a> ()</td></tr>
+<tr class="memdesc:a60efb410f477a89e9f2728a88c9a9376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the state of control keys.  <br /></td></tr>
+<tr class="memitem:a09092708ce393ad2f406671de29e7e92" id="r_a09092708ce393ad2f406671de29e7e92"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a09092708ce393ad2f406671de29e7e92">saveState</a> (<a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer) const OVERRIDE</td></tr>
+<tr class="memitem:a6714af253e1321f3d3924d7daced878c" id="r_a6714af253e1321f3d3924d7daced878c"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a6714af253e1321f3d3924d7daced878c">rewindTo</a> (<a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer) OVERRIDE</td></tr>
+<tr class="memitem:a86028ffda19ad0a78ad3bc188af27090" id="r_a86028ffda19ad0a78ad3bc188af27090"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a86028ffda19ad0a78ad3bc188af27090">collectedItem</a> (const <a class="el" href="classItemState.html">ItemState</a> &amp;item, float previous_energy=0) OVERRIDE</td></tr>
+<tr class="memitem:a22450254320debf4b1929567438b3709" id="r_a22450254320debf4b1929567438b3709"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a22450254320debf4b1929567438b3709">isPlayerController</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:a22450254320debf4b1929567438b3709"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if this player is not an AI, i.e.  <br /></td></tr>
+<tr class="memitem:ae6869ab6acab008695d7c52b31130146" id="r_ae6869ab6acab008695d7c52b31130146"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#ae6869ab6acab008695d7c52b31130146">isLocalPlayerController</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:ae6869ab6acab008695d7c52b31130146"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if this is a local player.  <br /></td></tr>
+<tr class="memitem:a936e9c7545c21a4e374a5e0a441e7b42" id="r_a936e9c7545c21a4e374a5e0a441e7b42"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a936e9c7545c21a4e374a5e0a441e7b42">setPosition</a> (int p) OVERRIDE</td></tr>
+<tr class="memdesc:a936e9c7545c21a4e374a5e0a441e7b42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called just before the position of the kart is changed.  <br /></td></tr>
+<tr class="memitem:af7c7e10848784503e82ec09de01d7a32" id="r_af7c7e10848784503e82ec09de01d7a32"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#af7c7e10848784503e82ec09de01d7a32">crashed</a> (const <a class="el" href="classAbstractKart.html">AbstractKart</a> *k) OVERRIDE</td></tr>
+<tr class="memitem:ab929d7390f3507f0fb95097a3d3bd4a6" id="r_ab929d7390f3507f0fb95097a3d3bd4a6"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ab929d7390f3507f0fb95097a3d3bd4a6">crashed</a> (const <a class="el" href="classMaterial.html">Material</a> *m) OVERRIDE</td></tr>
+<tr class="memitem:a617a95878248daf2aaab6802d0ff6b4d" id="r_a617a95878248daf2aaab6802d0ff6b4d"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a617a95878248daf2aaab6802d0ff6b4d">newLap</a> (int lap) OVERRIDE</td></tr>
+<tr class="memdesc:a617a95878248daf2aaab6802d0ff6b4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback whenever a new lap is triggered.  <br /></td></tr>
+<tr class="memitem:a17f3e706c693f863fcd30ba3d2bcdb73" id="r_a17f3e706c693f863fcd30ba3d2bcdb73"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a17f3e706c693f863fcd30ba3d2bcdb73">disableSlipstreamBonus</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:a17f3e706c693f863fcd30ba3d2bcdb73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Player will always be able to get a slipstream bonus.  <br /></td></tr>
+<tr class="memitem:a2750e334a90c63550d46364de0141db9" id="r_a2750e334a90c63550d46364de0141db9"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a2750e334a90c63550d46364de0141db9">finishedRace</a> (float time) OVERRIDE</td></tr>
+<tr class="memdesc:a2750e334a90c63550d46364de0141db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a race is finished.  <br /></td></tr>
+<tr class="memitem:a085e55e55d98a1e6de71904144cb08c5" id="r_a085e55e55d98a1e6de71904144cb08c5"><td class="memItemLeft">core::stringw&#160;</td><td class="memItemRight"><a class="el" href="#a085e55e55d98a1e6de71904144cb08c5">getName</a> (bool include_handicap_string=true) const OVERRIDE</td></tr>
+<tr class="memdesc:a085e55e55d98a1e6de71904144cb08c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the player profile.  <br /></td></tr>
+<tr class="memitem:a92469b3059fe4d5b144909ed6432abeb" id="r_a92469b3059fe4d5b144909ed6432abeb"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a92469b3059fe4d5b144909ed6432abeb">displayPenaltyWarning</a> ()</td></tr>
+<tr class="memdesc:a92469b3059fe4d5b144909ed6432abeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when this kart started too early and got a start penalty.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classController"><td colspan="2"><a class="el" href="classController.html">Controller</a>(으)로부터 상속된 Public 멤버 함수</td></tr>
+<tr class="memitem:a674f8ab7dc87cea7a5ba52230c3bac2c pub_methods_classController" id="r_a674f8ab7dc87cea7a5ba52230c3bac2c"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>Controller</b> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memdesc:a674f8ab7dc87cea7a5ba52230c3bac2c pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor, saves the kart pointer and a pointer to the <a class="el" href="classKartControl.html">KartControl</a> of the kart. <br /></td></tr>
+<tr class="memitem:a2cf87d91dd41d4c10bf2d2c41ab509a7 pub_methods_classController" id="r_a2cf87d91dd41d4c10bf2d2c41ab509a7"><td class="memItemLeft">
+virtual void&#160;</td><td class="memItemRight"><b>rumble</b> (float strength_low, float strength_high, uint16_t duration)</td></tr>
+<tr class="memitem:a984b58f08d1563de569f48b44394da7d pub_methods_classController" id="r_a984b58f08d1563de569f48b44394da7d"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classController.html#a984b58f08d1563de569f48b44394da7d">setControllerName</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:a984b58f08d1563de569f48b44394da7d pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the controller name for this controller.  <br /></td></tr>
+<tr class="memitem:a6d6012ed58b347ceedd988ee338dba87 pub_methods_classController" id="r_a6d6012ed58b347ceedd988ee338dba87"><td class="memItemLeft">
+const std::string &amp;&#160;</td><td class="memItemRight"><b>getControllerName</b> () const</td></tr>
+<tr class="memdesc:a6d6012ed58b347ceedd988ee338dba87 pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of this controller. <br /></td></tr>
+<tr class="memitem:a66f485d0cb4dce29bf14801b076c9e8d pub_methods_classController" id="r_a66f485d0cb4dce29bf14801b076c9e8d"><td class="memItemLeft">
+virtual <a class="el" href="classKartControl.html">KartControl</a> *&#160;</td><td class="memItemRight"><b>getControls</b> ()</td></tr>
+<tr class="memdesc:a66f485d0cb4dce29bf14801b076c9e8d pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer on the kart controls. <br /></td></tr>
+<tr class="memitem:af55e937935cce2a1f205f94171b0cb38 pub_methods_classController" id="r_af55e937935cce2a1f205f94171b0cb38"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>setControls</b> (<a class="el" href="classKartControl.html">KartControl</a> *kc)</td></tr>
+<tr class="memitem:affece999cb286fa963091a1ca6456cd6 pub_methods_classController" id="r_affece999cb286fa963091a1ca6456cd6"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classController.html#affece999cb286fa963091a1ca6456cd6">canGetAchievements</a> () const</td></tr>
+<tr class="memdesc:affece999cb286fa963091a1ca6456cd6 pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Only local players can get achievements.  <br /></td></tr>
+<tr class="memitem:a32cb6445c30ca5fdbfa203ea621c2302 pub_methods_classController" id="r_a32cb6445c30ca5fdbfa203ea621c2302"><td class="memItemLeft">
+<a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><b>getKart</b> () const</td></tr>
+<tr class="memdesc:a32cb6445c30ca5fdbfa203ea621c2302 pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the kart controlled by this controller. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 멤버 함수</h2></td></tr>
+<tr class="memitem:ab29e838dc1b6e9d25a2e16598c654237" id="r_ab29e838dc1b6e9d25a2e16598c654237"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ab29e838dc1b6e9d25a2e16598c654237">steer</a> (int ticks, int steer_val)</td></tr>
+<tr class="memdesc:ab29e838dc1b6e9d25a2e16598c654237"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles steering for a player kart.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 속성</h2></td></tr>
+<tr class="memitem:a19fbdb0449fc4a25e8099c71297ab9cb" id="r_a19fbdb0449fc4a25e8099c71297ab9cb"><td class="memItemLeft"><a id="a19fbdb0449fc4a25e8099c71297ab9cb" name="a19fbdb0449fc4a25e8099c71297ab9cb"></a>
+int&#160;</td><td class="memItemRight"><b>m_steer_val</b></td></tr>
+<tr class="memitem:aef6ddd9e1fb2d79636d63f1ec1f5bb78" id="r_aef6ddd9e1fb2d79636d63f1ec1f5bb78"><td class="memItemLeft"><a id="aef6ddd9e1fb2d79636d63f1ec1f5bb78" name="aef6ddd9e1fb2d79636d63f1ec1f5bb78"></a>
+int&#160;</td><td class="memItemRight"><b>m_steer_val_l</b></td></tr>
+<tr class="memitem:a905e1c546badd81a6adeefff688da181" id="r_a905e1c546badd81a6adeefff688da181"><td class="memItemLeft"><a id="a905e1c546badd81a6adeefff688da181" name="a905e1c546badd81a6adeefff688da181"></a>
+int&#160;</td><td class="memItemRight"><b>m_steer_val_r</b></td></tr>
+<tr class="memitem:aa0a16e02c890b4acb96741090e07d72a" id="r_aa0a16e02c890b4acb96741090e07d72a"><td class="memItemLeft"><a id="aa0a16e02c890b4acb96741090e07d72a" name="aa0a16e02c890b4acb96741090e07d72a"></a>
+uint16_t&#160;</td><td class="memItemRight"><b>m_prev_accel</b></td></tr>
+<tr class="memitem:aa808c9a2361c83a0efab7c1312bd436b" id="r_aa808c9a2361c83a0efab7c1312bd436b"><td class="memItemLeft"><a id="aa808c9a2361c83a0efab7c1312bd436b" name="aa808c9a2361c83a0efab7c1312bd436b"></a>
+bool&#160;</td><td class="memItemRight"><b>m_prev_brake</b></td></tr>
+<tr class="memitem:a4e1ab4aae6fcda7b1c5db8158d3b9598" id="r_a4e1ab4aae6fcda7b1c5db8158d3b9598"><td class="memItemLeft"><a id="a4e1ab4aae6fcda7b1c5db8158d3b9598" name="a4e1ab4aae6fcda7b1c5db8158d3b9598"></a>
+bool&#160;</td><td class="memItemRight"><b>m_prev_nitro</b></td></tr>
+<tr class="memitem:a860fc47fd9dc20497fae19e61297621d" id="r_a860fc47fd9dc20497fae19e61297621d"><td class="memItemLeft"><a id="a860fc47fd9dc20497fae19e61297621d" name="a860fc47fd9dc20497fae19e61297621d"></a>
+int&#160;</td><td class="memItemRight"><b>m_penalty_ticks</b></td></tr>
+<tr class="inherit_header pro_attribs_classController"><td colspan="2"><a class="el" href="classController.html">Controller</a>(으)로부터 상속된 Protected 속성</td></tr>
+<tr class="memitem:a9106b1b073d659ea4f1f093afbb23701 pro_attribs_classController" id="r_a9106b1b073d659ea4f1f093afbb23701"><td class="memItemLeft">
+<a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><b>m_kart</b></td></tr>
+<tr class="memdesc:a9106b1b073d659ea4f1f093afbb23701 pro_attribs_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the kart that is controlled by this controller. <br /></td></tr>
+<tr class="memitem:a5e6110b327078cbfbb517420f738b34a pro_attribs_classController" id="r_a5e6110b327078cbfbb517420f738b34a"><td class="memItemLeft">
+<a class="el" href="classKartControl.html">KartControl</a> *&#160;</td><td class="memItemRight"><b>m_controls</b></td></tr>
+<tr class="memdesc:a5e6110b327078cbfbb517420f738b34a pro_attribs_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the main controller, from which the kart takes it commands. <br /></td></tr>
+<tr class="memitem:a127457a188a69cfd94bba627f07e2391 pro_attribs_classController" id="r_a127457a188a69cfd94bba627f07e2391"><td class="memItemLeft">
+std::string&#160;</td><td class="memItemRight"><b>m_controller_name</b></td></tr>
+<tr class="memdesc:a127457a188a69cfd94bba627f07e2391 pro_attribs_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the controller, mainly used for debugging purposes. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a415c6fded66885250aed8ff6cc39d609" id="r_a415c6fded66885250aed8ff6cc39d609"><td class="memItemLeft"><a id="a415c6fded66885250aed8ff6cc39d609" name="a415c6fded66885250aed8ff6cc39d609"></a>
+class&#160;</td><td class="memItemRight"><b>KartRewinder</b></td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a51b9ad9ee86b571a379b691f467f7fe1" name="a51b9ad9ee86b571a379b691f467f7fe1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51b9ad9ee86b571a379b691f467f7fe1">&#9670;&#160;</a></span>action()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PlayerController::action </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a></td>          <td class="paramname"><span class="paramname"><em>action</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>dry_run</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function interprets a kart action and value, and set the corresponding entries in the kart control data structure. </p>
+<p>This function handles esp. cases like 'press left, press right, release right' - in this case after releasing right, the steering must switch to left again. Similarly it handles 'press left, press right, release left' (in which case still right must be selected). Similarly for braking and acceleration. This function can be run in two modes: first, if 'dry_run' is set, it will return true if this action will cause a state change. This is sued in networking to avoid sending events to the server (and then to other clients) if they are just (e.g. auto) repeated events/ </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">action</td><td>The action to be executed. </td></tr>
+    <tr><td class="paramname">value</td><td>If 32768, it indicates a digital value of 'fully set' if between 1 and 32767, it indicates an analog value, and if it's 0 it indicates that the corresponding button was released. </td></tr>
+    <tr><td class="paramname">dry_run</td><td>If set, it will only test if the parameter will trigger a state change. If not set, the appropriate actions (i.e. input state change) will be done. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>If dry_run is set, will return true if this action will cause a state change. If dry_run is not set, will return false. </dd></dl>
+<p>If dry_run (parameter) is true, this macro tests if this action would trigger a state change in the specified variable (without actually doing it). If it will trigger a state change, the macro will immediatley return to the caller. If dry_run is false, it will only assign the new value to the variable (and not return to the user early). The do-while(0) helps using this macro e.g. in the 'then' clause of an if statement.</p>
+<p>Basically the same as the above macro, but is uses getter/setter functions. The name of the setter/getter is set'name'(value) and get'name'().</p>
+
+<p><a class="el" href="classController.html#ade6d98386df33ca267af6cd5ae59a560">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classLocalPlayerController.html#a3727cd73476c3351028490945e44a048">LocalPlayerController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a86028ffda19ad0a78ad3bc188af27090" name="a86028ffda19ad0a78ad3bc188af27090"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86028ffda19ad0a78ad3bc188af27090">&#9670;&#160;</a></span>collectedItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PlayerController::collectedItem </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classItemState.html">ItemState</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>item</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>previous_energy</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classLocalPlayerController.html#a2a81b705303285ce85e9f6d9ba1cea31">LocalPlayerController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="af7c7e10848784503e82ec09de01d7a32" name="af7c7e10848784503e82ec09de01d7a32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7c7e10848784503e82ec09de01d7a32">&#9670;&#160;</a></span>crashed() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PlayerController::crashed </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>k</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="ab929d7390f3507f0fb95097a3d3bd4a6" name="ab929d7390f3507f0fb95097a3d3bd4a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab929d7390f3507f0fb95097a3d3bd4a6">&#9670;&#160;</a></span>crashed() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PlayerController::crashed </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMaterial.html">Material</a> *</td>          <td class="paramname"><span class="paramname"><em>m</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a17f3e706c693f863fcd30ba3d2bcdb73" name="a17f3e706c693f863fcd30ba3d2bcdb73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17f3e706c693f863fcd30ba3d2bcdb73">&#9670;&#160;</a></span>disableSlipstreamBonus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool PlayerController::disableSlipstreamBonus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Player will always be able to get a slipstream bonus. </p>
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a92469b3059fe4d5b144909ed6432abeb" name="a92469b3059fe4d5b144909ed6432abeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92469b3059fe4d5b144909ed6432abeb">&#9670;&#160;</a></span>displayPenaltyWarning()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerController::displayPenaltyWarning </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called when this kart started too early and got a start penalty. </p>
+
+<p><a class="el" href="classLocalPlayerController.html#a65b567fcf89093337a06be986321dc86">LocalPlayerController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a2750e334a90c63550d46364de0141db9" name="a2750e334a90c63550d46364de0141db9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2750e334a90c63550d46364de0141db9">&#9670;&#160;</a></span>finishedRace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PlayerController::finishedRace </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called when a race is finished. </p>
+
+<p><a class="el" href="classController.html#a186aa01c4dbfda133d5a9c76028892ed">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classLocalPlayerController.html#a14fac5bf158c3fce15319f2d9e6c06de">LocalPlayerController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a085e55e55d98a1e6de71904144cb08c5" name="a085e55e55d98a1e6de71904144cb08c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a085e55e55d98a1e6de71904144cb08c5">&#9670;&#160;</a></span>getName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">core::stringw PlayerController::getName </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>include_handicap_string</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the name of the player profile. </p>
+
+<p><a class="el" href="classController.html#a7ba21663e9aaf2cf890532fdd1c1dabe">Controller</a>(으)로부터 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="aa0ca80d6c2a159bf0915a49391c83d43" name="aa0ca80d6c2a159bf0915a49391c83d43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0ca80d6c2a159bf0915a49391c83d43">&#9670;&#160;</a></span>handleZipper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerController::handleZipper </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>play_sound</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called when a kart hits or uses a zipper. </p>
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classLocalPlayerController.html#a639b065539314644dd05a63b04b92d0b">LocalPlayerController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="ae6869ab6acab008695d7c52b31130146" name="ae6869ab6acab008695d7c52b31130146"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6869ab6acab008695d7c52b31130146">&#9670;&#160;</a></span>isLocalPlayerController()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool PlayerController::isLocalPlayerController </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function checks if this is a local player. </p>
+<p>A local player will get special graphical effects enabled, has a camera, and sound effects will be played with normal volume. </p>
+
+<p><a class="el" href="classController.html#a273e803f8fc8bd5356a0800b44bf6050">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classLocalPlayerController.html#a1b606ff10a00d96cc39ae5ce169ef44b">LocalPlayerController</a>, <a class="el" href="classNetworkAIController.html#a0e4b86a02447bab22102b615ba9e0359">NetworkAIController</a>, <a class="el" href="classNetworkPlayerController.html#afbfc69c0ac8758fecc458d57aa060964">NetworkPlayerController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a22450254320debf4b1929567438b3709" name="a22450254320debf4b1929567438b3709"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22450254320debf4b1929567438b3709">&#9670;&#160;</a></span>isPlayerController()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool PlayerController::isPlayerController </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function checks if this player is not an AI, i.e. </p>
+<p>it is either a a local or a remote/networked player. This is tested e.g. by the AI for rubber-banding. </p>
+
+<p><a class="el" href="classController.html#af3f9fc5a6ffaec1ea5d59ee3441302fe">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classLocalPlayerController.html#ab5d45b9d167762bd9a44ea3d51f64345">LocalPlayerController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a617a95878248daf2aaab6802d0ff6b4d" name="a617a95878248daf2aaab6802d0ff6b4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a617a95878248daf2aaab6802d0ff6b4d">&#9670;&#160;</a></span>newLap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PlayerController::newLap </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lap</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback whenever a new lap is triggered. </p>
+<p>Used by the AI to trigger a recomputation of the way to use, not used for players. </p>
+
+<p><a class="el" href="classController.html#a3456d823c63ac632652f9fb756e6bd2b">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a4a7b6d52b1333e84f432d76ed8e0c718" name="a4a7b6d52b1333e84f432d76ed8e0c718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a7b6d52b1333e84f432d76ed8e0c718">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerController::reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets the player kart for a new or restarted race. </p>
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classLocalPlayerController.html#ab8b509507666df7e51fb9fa2096052fe">LocalPlayerController</a>, <a class="el" href="classNetworkAIController.html#a4c82026e16dcd201d9dc2e18079e69c0">NetworkAIController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a60efb410f477a89e9f2728a88c9a9376" name="a60efb410f477a89e9f2728a88c9a9376"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60efb410f477a89e9f2728a88c9a9376">&#9670;&#160;</a></span>resetInputState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerController::resetInputState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets the state of control keys. </p>
+<p>This is used after the in-game menu to avoid that any keys pressed at the time the menu is opened are still considered to be pressed. </p>
+
+<p><a class="el" href="classLocalPlayerController.html#ab3a448c65106d4b8d91d0e37979ce763">LocalPlayerController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a6714af253e1321f3d3924d7daced878c" name="a6714af253e1321f3d3924d7daced878c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6714af253e1321f3d3924d7daced878c">&#9670;&#160;</a></span>rewindTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerController::rewindTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classBareNetworkString.html">BareNetworkString</a> *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a09092708ce393ad2f406671de29e7e92" name="a09092708ce393ad2f406671de29e7e92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09092708ce393ad2f406671de29e7e92">&#9670;&#160;</a></span>saveState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PlayerController::saveState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classBareNetworkString.html">BareNetworkString</a> *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a936e9c7545c21a4e374a5e0a441e7b42" name="a936e9c7545c21a4e374a5e0a441e7b42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a936e9c7545c21a4e374a5e0a441e7b42">&#9670;&#160;</a></span>setPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PlayerController::setPosition </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called just before the position of the kart is changed. </p>
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classLocalPlayerController.html#af88c25a9a3fe6f8379bace43f0f41894">LocalPlayerController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a4748883440b02ae9db7ebc64dc606525" name="a4748883440b02ae9db7ebc64dc606525"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4748883440b02ae9db7ebc64dc606525">&#9670;&#160;</a></span>skidBonusTriggered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerController::skidBonusTriggered </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback when the skidding bonus is triggered. </p>
+<p>The player controller resets the current steering to 0, which makes the kart easier to control. </p>
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="ab29e838dc1b6e9d25a2e16598c654237" name="ab29e838dc1b6e9d25a2e16598c654237"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab29e838dc1b6e9d25a2e16598c654237">&#9670;&#160;</a></span>steer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerController::steer </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>steer_val</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handles steering for a player kart. </p>
+
+<p><a class="el" href="classLocalPlayerController.html#a585a097f6003bb7b12e48c9cbeff7cca">LocalPlayerController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a951f1441064ec6172175330ec6d6359b" name="a951f1441064ec6172175330ec6d6359b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a951f1441064ec6172175330ec6d6359b">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerController::update </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Updates the player kart, called once each timestep. </p>
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classLocalPlayerController.html#a67aea18cd08b350cad2710b72c5ef702">LocalPlayerController</a>, <a class="el" href="classNetworkAIController.html#a17bc38813657ef82d0a29e3a5ac36f33">NetworkAIController</a>, <a class="el" href="classNetworkPlayerController.html#ac5ac8af7b027771c0d1f83154afca745">NetworkPlayerController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>karts/controller/<a class="el" href="player__controller_8hpp_source.html">player_controller.hpp</a></li>
+<li>karts/controller/<b>player_controller.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
