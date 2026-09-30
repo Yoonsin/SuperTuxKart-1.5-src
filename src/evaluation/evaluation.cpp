@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "evaluation.hpp"
 
 #include <fstream>
@@ -6,7 +6,19 @@
 #include <numeric>
 #include <algorithm>
 
+#include <SMesh.h>
+#include <SMeshBuffer.h>
+#include <IMeshSceneNode.h>
+#include <IVideoDriver.h>
+
 #include "utils/log.hpp"
+#include "graphics/irr_driver.hpp"
+#include "graphics/central_settings.hpp"
+#include "tracks/terrain_info.hpp"
+
+#include "graphics/sp/sp_base.hpp"
+#include "graphics/sp/sp_mesh.hpp"
+#include "graphics/sp/sp_mesh_node.hpp"
 
 void Evaluation::loadWorldRecordCSV(const std::string& filename)
 {
@@ -15,7 +27,7 @@ void Evaluation::loadWorldRecordCSV(const std::string& filename)
 
 	if (!file.is_open())
 	{
-		Log::error("Failed to open world record CSV file: {}", filename.c_str());
+		Log::error("Failed to open world record CSV file: %s", filename.c_str());
 		return;
 	}
 
@@ -72,70 +84,98 @@ void Evaluation::loadWorldRecordCSV(const std::string& filename)
 		st_point.pos = Vec3(x, y, z);
 		m_st_point.push_back(st_point);
 	}
-	Log::info("Evaluation", "���������� %d���� WR ��ǥ�� �޸𸮿� �ε��߽��ϴ�!", m_wr_point.size());
+	Log::info("Evaluation", " 좌표 로드 완료 %d", m_wr_point.size());
 }
 
-Result Evaluation::getDistance(const Vec3& Player, const Vec3& wr_A, const Vec3& wr_B, const Vec3& st_A)
+Result Evaluation::getDistance(const Vec3& Player, const Vec3& wr_A, const Vec3& wr_B, const Vec3& st_A, const Vec3& st_B)
 {
 	float wr_A_y = wr_A.getY();
+	float st_A_y = st_A.getY();
 	float p_y = Player.getY();
-
+	/*
 	if(p_y - wr_A_y > 0.3f || wr_A_y - p_y > 0.3f)
 	{
-		return { true, 0.2 };
+		return { true, 0.01 };
 	}
-
+	*/
+	if (p_y - st_A_y > 0.5f || st_A_y - p_y > 0.5f)
+	{
+		return { true, 0.01 };
+	}
+	/*
 	Vec3 LineAB = wr_B - wr_A;
 	float dot_AB = LineAB.dot(LineAB);
 	if(dot_AB == 0.0f || LineAB.length() < 0.001f)
 	{
 		float distance = (wr_A - Player).length();
-		if (distance > 1.8f)
+		if (distance > 2.5f)
 		{
-			//�뷫������ 0.2�� ����, ���Ŀ� ���� ����
-			return { true, 0.2 };
+			//대략적으로 0.2점 감점, 추후에 변경 가능
+			return { true, 0.01 };
 		}
-		//���
+		//통과
 		return { false, 0.0 };
 	}
-
+	*/
+	Vec3 LineAB = st_B - st_A;
+	float dot_AB = LineAB.dot(LineAB);
+	if (dot_AB == 0.0f || LineAB.length() < 0.001f)
+	{
+		float distance = (st_A - Player).length();
+		if (distance > 2.0f)
+		{
+			//대략적으로 0.2점 감점, 추후에 변경 가능
+			return { true, 0.01 };
+		}
+		//통과
+		return { false, 0.0 };
+	}
+	/*
 	Vec3 LineAP = Player - wr_A;
 	float dot_AP_AB = LineAP.dot(LineAB);
-	//����� �켱 ����
+	//여기는 우선 냅둠
 	if ((LineAB - dot_AP_AB).length() < 0.0f)
 	{
 
 	}
-
-	Vec3 LineAA = (wr_A - st_A);
-	//���� ����
-	if (LineAA.length() <= 1.2f || LineAA.length() > 4.0f)
+	*/
+	Vec3 LineAP = Player - st_A;
+	float dot_AP_AB = LineAP.dot(LineAB);
+	//여기는 우선 냅둠
+	if ((LineAB - dot_AP_AB).length() < 0.0f)
 	{
-		float distance = 1.8f;
+
+	}
+	/*
+	Vec3 LineAA = (wr_A - st_A);
+	//라인 보정
+	if (LineAA.length() <= 2.4f || LineAA.length() > 5.0f)
+	{
+		float distance = 2.5f;
 		if((wr_A - Player).length() > distance)
 		{
-			return { true, 0.2 };
+			return { true, 0.01 };
 		}
 		return { false, 0.0 };
 	}
-
+	
 	float dot_AP_AA = LineAP.dot(LineAA);
 	if(dot_AP_AA < 0.0f)
 	{
-		if(LineAP.length() > 1.8f)
+		if(LineAP.length() > 2.5f)
 		{
-			return { true, 0.2 };
+			return { true, 0.01 };
 		}
 	}
-
+	
 	if(dot_AP_AA - LineAA.length() > 0.0f)
 	{
-		if(LineAP.length() > 1.8f)
+		if(LineAP.length() > 2.5f)
 		{
-			return { true, 0.2 };
+			return { true, 0.01 };
 		}
 	}
-
+	*/
 	return { false, 0.0 };
 }
 
@@ -147,7 +187,7 @@ void Evaluation::update(float delta_time, const Vec3& Player)
 	}
 
 	m_time_offset += delta_time;
-	if(m_time_offset >= 0.1f)
+	if(m_time_offset >= 10.0f)
 	{
 		m_time_offset = 0.0f;
 
@@ -167,11 +207,25 @@ void Evaluation::update(float delta_time, const Vec3& Player)
 		}
 	}
 
-	Vec3 wr_A = m_wr_point[m_wr_index].pos;
-	Vec3 wr_B = m_wr_point[m_wr_index + 1].pos;
-	Vec3 st_A = m_st_point[m_wr_index].pos;
 
-	m_result = getDistance(Player, wr_A, wr_B, st_A);
+	Vec3 wr_A = m_wr_point[m_wr_index].pos;
+	Vec3 wr_B = wr_A;
+	Vec3 st_A = m_st_point[m_wr_index].pos;
+	Vec3 st_B = st_A;
+
+	if (m_wr_index < (int)m_wr_point.size() - 1) {
+		wr_B = m_wr_point[m_wr_index + 1].pos;
+		st_B = m_st_point[m_wr_index + 1].pos;
+	}
+	else if (m_wr_index > 0) {
+		// 맨 마지막 점이라면, 이전 점과 현재 점을 이용해 계산 (에러 방지)
+		wr_A = m_wr_point[m_wr_index - 1].pos;
+		wr_B = m_wr_point[m_wr_index].pos;
+		st_A = m_st_point[m_wr_index - 1].pos;
+		st_B = m_st_point[m_wr_index].pos;
+	}
+
+	m_result = getDistance(Player, wr_A, wr_B, st_A, st_B);
 
 	if(m_result.RouteDeviation)
 	{
@@ -183,4 +237,143 @@ void Evaluation::update(float delta_time, const Vec3& Player)
 		}
 		Log::info("Current Score", "%f", m_current_score);
 	}
+}
+
+void Evaluation::renderMesh()
+{
+	Log::info("Evaluation", "WR: %d, ST: %d", m_wr_point.size(), m_st_point.size());
+	if (m_wr_point.size() < 2 || m_st_point.size() < 2)
+		return;
+
+	if (!irr_driver)
+	{
+		Log::error("Evaluation", "irr_driver is null");
+		return;
+	}
+
+	irr::scene::ISceneManager* smgr = irr_driver->getSceneManager();
+	if (!smgr)
+	{
+		Log::error("Evaluation", "Scene manager is null");
+		return;
+	}
+
+	irr::scene::SMeshBuffer* buffer = new irr::scene::SMeshBuffer();
+	buffer->Material.Lighting = false;
+	buffer->Material.BackfaceCulling = false;
+
+	const irr::video::SColor lineColor(255, 255, 0, 0);
+
+	const float width = 2.0f;
+	const float lift = 0.5f;
+
+	for (size_t i = 0; i < m_st_point.size(); ++i)
+	{
+		const Vec3 pos = m_st_point[i].pos;
+
+		// 해당 좌표 위에서 트랙 표면을 찾습니다.
+		TerrainInfo terrain;
+		terrain.update(pos + Vec3(0.0f, 5.0f, 0.0f));
+
+		Vec3 surface_pos(terrain.getHitPoint());
+		Vec3 normal = terrain.getNormal();
+
+		// 표면 정보를 얻지 못한 경우 Y축 기준으로 대체합니다.
+		if (normal.length() < 0.001f)
+		{
+			surface_pos = pos;
+			normal = Vec3(0.0f, 1.0f, 0.0f);
+		}
+		else
+		{
+			normal.normalize();
+		}
+
+		Vec3 direction;
+		if (i + 1 < m_st_point.size())
+			direction = m_st_point[i + 1].pos - pos;
+		else
+			direction = pos - m_st_point[i - 1].pos;
+
+		// 경사면에 수직인 성분을 제거해 표면을 따라가는 방향으로 만듭니다.
+		direction -= normal * direction.dot(normal);
+
+		if (direction.length() < 0.001f)
+			continue;
+
+		direction.normalize();
+
+		Vec3 right = direction.cross(normal);
+		if (right.length() < 0.001f)
+			continue;
+
+		right.normalize();
+
+		const Vec3 center = surface_pos + normal * lift;
+		const Vec3 left_pos = center - right * width;
+		const Vec3 right_pos = center + right * width;
+
+		buffer->Vertices.push_back(irr::video::S3DVertex(left_pos.getX(), left_pos.getY(), left_pos.getZ(), normal.getX(), normal.getY(), normal.getZ(), lineColor, 0, 0));
+		buffer->Vertices.push_back(irr::video::S3DVertex(right_pos.getX(), right_pos.getY(), right_pos.getZ(), normal.getX(), normal.getY(), normal.getZ(), lineColor, 1, 0));
+	}
+
+	Log::info("Evaluation", "Building vertices: %d",buffer->Vertices.size());
+
+	const irr::u32 segment_count = buffer->Vertices.size() / 2;
+	for (irr::u32 i = 0; i + 1 < segment_count; ++i)
+	{
+		const irr::u32 idx = i * 2;
+		buffer->Indices.push_back(idx);
+		buffer->Indices.push_back(idx + 2);
+		buffer->Indices.push_back(idx + 1);
+		buffer->Indices.push_back(idx + 1);
+		buffer->Indices.push_back(idx + 2);
+		buffer->Indices.push_back(idx + 3);
+	}
+
+	buffer->recalculateBoundingBox();
+	irr::scene::SMesh* mesh = new irr::scene::SMesh();
+	mesh->addMeshBuffer(buffer);
+	mesh->recalculateBoundingBox();
+
+	Log::info("Evaluation", "Mesh ready: vertices=%d indices=%d", buffer->getVertexCount(), buffer->getIndexCount());
+
+	irr::scene::ISceneNode* node = nullptr;
+    bool using_spmesh = false;
+#ifndef SERVER_ONLY
+    if (CVS->isGLSL())
+    {
+        Log::info("Evaluation", "Converting route mesh to SPMesh");
+        SP::SPMesh* spm = SP::convertEVTStandard(mesh, &lineColor);
+        if (spm)
+        {
+            SP::SPMeshNode* spmn = new SP::SPMeshNode(
+                spm, smgr->getRootSceneNode(), smgr, -1, "evaluation_route");
+            spmn->setMesh(spm);
+            spm->drop();
+            node = spmn;
+            spmn->drop();
+            using_spmesh = true;
+        }
+    } 
+    else
+#endif
+    {
+        node = smgr->addMeshSceneNode(mesh);
+    }
+
+    Log::info("Evaluation", "Route node: %s", node ? "created" : "null");
+    if (node && !using_spmesh)
+    {
+        node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+        node->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, false);
+        node->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, true);
+        node->setAutomaticCulling(irr::scene::EAC_OFF);
+    }
+
+    if (!using_spmesh)
+    {
+        buffer->drop();
+        mesh->drop();
+    }
 }

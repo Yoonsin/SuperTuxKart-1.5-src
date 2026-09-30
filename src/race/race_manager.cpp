@@ -710,6 +710,10 @@ void RaceManager::startNextRace()
     // Calling this here reduces code duplication in init and restartRace()
     // functions.
     World::getWorld()->reset();
+    //임시 추가
+    if (UserConfigParams::m_course_evaluation) {
+        Evaluation::get()->renderMesh();
+    }
 
     if (NetworkConfig::get()->isNetworking())
     {
