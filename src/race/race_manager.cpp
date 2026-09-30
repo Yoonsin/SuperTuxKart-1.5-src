@@ -1,4 +1,4 @@
-//
+﻿//
 //  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2006-2015 SuperTuxKart-Team
 //
@@ -21,6 +21,7 @@
 #include <iostream>
 #include <algorithm>
 #include <random>
+
 
 #include "challenges/unlock_manager.hpp"
 #include "config/player_manager.hpp"
@@ -66,6 +67,7 @@
 #include "utils/string_utils.hpp"
 #include "utils/translation.hpp"
 #include "io/rich_presence.hpp"
+#include "evaluation/evaluation.hpp"
 
 #include <IrrlichtDevice.h>
 
@@ -385,6 +387,17 @@ void RaceManager::computeRandomKartList()
  */
 void RaceManager::startNew(bool from_overworld)
 {
+    //모든 설정 여기서
+    if (UserConfigParams::m_course_evaluation)
+    {
+       //m_major_mode = MAJOR_MODE_SINGLE;
+       //m_minor_mode = MINOR_MODE_LAP_TRIAL;
+
+        Evaluation::get()->reset();
+		Evaluation::get()->loadWorldRecordCSV("../../../data/evaluation/hacienda(1)_comparison.csv");
+
+    }
+
     m_num_ghost_karts = 0;
     if (m_has_ghost_karts)
         m_num_ghost_karts = ReplayPlay::get()->getNumGhostKart();
@@ -697,6 +710,10 @@ void RaceManager::startNextRace()
     // Calling this here reduces code duplication in init and restartRace()
     // functions.
     World::getWorld()->reset();
+    //임시 추가
+    if (UserConfigParams::m_course_evaluation) {
+        Evaluation::get()->render();
+    }
 
     if (NetworkConfig::get()->isNetworking())
     {
@@ -1345,3 +1362,4 @@ void RaceManager::scheduleBenchmark()
 {
     m_scheduled_benchmark = true;
 }   // scheduleBenchmark
+
