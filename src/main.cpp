@@ -623,6 +623,8 @@ void cmdLineHelp()
     "       --benchmark        Start Benchmark Mode, save results and exit. \n"
     "       --rtt-log          Save RTT (Round Trip Time) log data.\n"
     "       --rtt-log-dir=DIR  Set the RTT log output directory.\n"
+    "       --discrepancy-log  Save gameplay discrepancy (spatial, collision, event) log data.\n"
+    "       --discrepancy-log-dir=DIR Set the discrepancy log output directory.\n"
     "       --profile-log      Save profiler data for each multiplayer race.\n"
     "       --profile-log-dir=DIR  Set the profile log output directory.\n"
     "       --auto-input       Generate deterministic input during multiplayer races.\n"
@@ -1313,6 +1315,14 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         std::string rtt_log_directory;
 		if (CommandLine::has("--rtt-log-dir", &rtt_log_directory))
 			STKHost::setRTTLogDirectory(rtt_log_directory);
+    }
+
+    if (CommandLine::has("--discrepancy-log"))
+    {
+        STKHost::setDiscrepancyLogEnabled(true);
+        std::string discrepancy_log_directory;
+        if (CommandLine::has("--discrepancy-log-dir", &discrepancy_log_directory))
+            STKHost::setDiscrepancyLogDirectory(discrepancy_log_directory);
     }
 
     if (CommandLine::has("--profile-log"))

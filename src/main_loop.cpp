@@ -694,6 +694,7 @@ void MainLoop::run()
                 network_race_active = world != nullptr &&
                     world->isActiveRacePhaseIncludingPause();
                 STKHost::get()->updateRTTLogging(network_race_active);
+                STKHost::get()->updateDiscrepancyLogging(network_race_active);
             }
             profiler.updateProfileLog(network_race_active);
 
