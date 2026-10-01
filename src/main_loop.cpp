@@ -59,6 +59,10 @@
 #include "utils/time.hpp"
 #include "utils/translation.hpp"
 #include "io/rich_presence.hpp"
+#include "utils/item_latency_logger.hpp"   // [item-latency]
+#include "utils/wall_crash_logger.hpp"     // [wall-test]
+#include "utils/fall_test_logger.hpp"      // [fall-test]
+#include "utils/banana_test_logger.hpp"    // [banana-test]
 
 #include <thread>
 
@@ -646,6 +650,9 @@ void MainLoop::run()
                 bool race_tick_active = world != nullptr && world->isActiveRacePhaseIncludingPause();
                 input_manager->updateAutoInput(race_tick_active);
                 input_manager->updateAutoAccel(race_tick_active);
+                ItemLatencyLogger::onTick(race_tick_active);   // [item-latency]
+                WallCrashLogger::onTick(race_tick_active);     // [wall-test]
+                BananaTestLogger::onTick(race_tick_active);    // [banana-test]
 
                 PROFILER_PUSH_CPU_MARKER("Race simulation", 0, 255, 255);
                 if (World::getWorld())
@@ -699,6 +706,10 @@ void MainLoop::run()
                 STKHost::get()->updateRTTLogging(race_active);
             }
             profiler.updateProfileLog(race_active);
+            ItemLatencyLogger::onFrame(race_active);   // [item-latency]
+            WallCrashLogger::onFrame(race_active);     // [wall-test]
+            FallTestLogger::onFrame(race_active);      // [fall-test]
+            BananaTestLogger::onFrame(race_active);    // [banana-test]
 
             // Do it after all pending rewinding is done
             if (World::getWorld() && RewindManager::isEnabled())
@@ -767,6 +778,10 @@ void MainLoop::run()
     }  // while !m_abort
 
     profiler.finishProfileLog();
+    ItemLatencyLogger::finish();   // [item-latency]
+    WallCrashLogger::finish();     // [wall-test]
+    FallTestLogger::finish();      // [fall-test]
+    BananaTestLogger::finish();    // [banana-test]
 
 #ifdef WIN32
     if (parent != 0 && parent != INVALID_HANDLE_VALUE)

@@ -36,6 +36,7 @@
 #include "tracks/arena_node.hpp"
 #include "tracks/track.hpp"
 #include "utils/string_utils.hpp"
+#include "utils/item_latency_logger.hpp"   // [item-latency]
 
 #include <IMesh.h>
 #include <IAnimatedMesh.h>
@@ -379,6 +380,9 @@ void ItemManager::collectedItem(ItemState *item, AbstractKart *kart)
     // Inform the world - used for Easter egg hunt
     World::getWorld()->collectedItem(kart, item);
     kart->collectedItem(item);
+    // [item-latency] remember when the bowling ball was picked up
+    if (ItemLatencyLogger::isActive())
+        ItemLatencyLogger::onBowlingCollected(kart);
 }   // collectedItem
 
 //-----------------------------------------------------------------------------

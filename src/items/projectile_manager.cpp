@@ -34,6 +34,7 @@
 #include "network/rewind_manager.hpp"
 #include "utils/stk_process.hpp"
 #include "utils/string_utils.hpp"
+#include "utils/item_latency_logger.hpp"   // [item-latency]
 
 #include <typeinfo>
 
@@ -203,6 +204,9 @@ std::shared_ptr<Flyable>
     // This cannot be done in constructor because of virtual function
     f->onFireFlyable();
     m_active_projectiles[uid] = f;
+    // [item-latency] T2: projectile created and fired
+    if (ItemLatencyLogger::isActive())
+        ItemLatencyLogger::onProjectileCreated(kart, type);
     if (RewindManager::get()->isEnabled())
         f->addForRewind(uid);
 

@@ -40,6 +40,7 @@
 #include "utils/log.hpp"
 #include "utils/string_utils.hpp"
 #include "utils/translation.hpp"
+#include "utils/item_latency_logger.hpp"   // [item-latency]
 
 #include <cstdlib>
 
@@ -217,6 +218,10 @@ bool PlayerController::action(PlayerAction action, int value, bool dry_run)
         SET_OR_TEST_GETTER(Rescue, value!=0);
         break;
     case PA_FIRE:
+        // [item-latency] T1: rising edge of the fire button
+        if (!dry_run && value != 0 && !m_controls->getFire() &&
+            ItemLatencyLogger::isActive())
+            ItemLatencyLogger::onFireInput(m_kart);
         SET_OR_TEST_GETTER(Fire, value!=0);
         break;
     case PA_LOOK_BACK:

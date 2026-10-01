@@ -46,6 +46,8 @@
 #include "utils/constants.hpp"
 #include "utils/log.hpp"
 #include "utils/vs.hpp"
+#include "utils/banana_test_logger.hpp"    // [banana-test]
+#include "utils/item_latency_logger.hpp"   // [item-latency]
 
 #include <line2d.h>
 
@@ -59,6 +61,7 @@
 #include <ctime>
 #include <cstdio>
 #include <iostream>
+#include <map>
 
 SkiddingAI::SkiddingAI(AbstractKart *kart)
                    : AIBaseLapController(kart)
@@ -222,6 +225,39 @@ unsigned int SkiddingAI::getNextSector(unsigned int index)
  *  It is called once per frame for each AI and determines the behaviour of
  *  the AI, e.g. steering, accelerating/braking, firing.
  */
+// [item-latency] --item-test: the AI fires its bowling ball exactly 1 second
+// after picking it up. Only used when --item-test is given.
+namespace
+{
+    std::map<const AbstractKart*, int> g_item_test_pickup_tick;
+
+    void itemTestFire(AbstractKart* kart, KartControl* controls)
+    {
+        controls->setFire(false);
+        const int now = World::getWorld()->getTicksSinceStart();
+        if (kart->getPowerup()->getType() != PowerupManager::POWERUP_BOWLING)
+        {
+            g_item_test_pickup_tick.erase(kart);
+            return;
+        }
+        auto it = g_item_test_pickup_tick.find(kart);
+        if (it == g_item_test_pickup_tick.end())
+        {
+            // Bowling ball just picked up
+            g_item_test_pickup_tick[kart] = now;
+            ItemLatencyLogger::onBowlingCollected(kart);
+            return;
+        }
+        if (now - it->second >= stk_config->time2Ticks(1.0f))
+        {
+            ItemLatencyLogger::onFireInput(kart);   // T1
+            controls->setFire(true);
+            g_item_test_pickup_tick.erase(it);
+        }
+    }   // itemTestFire
+}   // namespace
+
+//-----------------------------------------------------------------------------
 void SkiddingAI::update(int ticks)
 {
     float dt = stk_config->ticks2Time(ticks);
@@ -353,6 +389,10 @@ void SkiddingAI::update(int ticks)
     // time in time trial at start up, so disable it during the 5 first seconds
     if(RaceManager::get()->isTimeTrialMode() && (m_world->getTime()<5.0f) )
         m_controls->setFire(false);
+
+    // [item-latency] --item-test: fire 1 s after picking up the bowling ball
+    if (ItemLatencyLogger::isActive())
+        itemTestFire(m_kart, m_controls);
 
     /*And obviously general kart stuff*/
     AIBaseLapController::update(ticks);
@@ -491,7 +531,11 @@ void SkiddingAI::handleSteering(float dt)
 
         // Potentially adjust the point to aim for in order to either
         // aim to collect item, or steer to avoid a bad item.
-        if(m_ai_properties->m_collect_avoid_items && m_kart->getBlockedByPlungerTicks()<=0)
+        // [banana-test] / [item-latency] use item collect/avoid logic
+        // regardless of difficulty
+        if((m_ai_properties->m_collect_avoid_items ||
+            BananaTestLogger::isActive() || ItemLatencyLogger::isActive())
+           && m_kart->getBlockedByPlungerTicks()<=0)
             handleItemCollectionAndAvoidance(&aim_point, last_node);
 
         steer_angle = steerToPoint(aim_point);
@@ -669,6 +713,9 @@ void SkiddingAI::handleItemCollectionAndAvoidance(Vec3 *aim_point,
         {
             int p = (int)(100.0f*m_ai_properties->
                           getItemCollectProbability(m_distance_to_player));
+            // [banana-test] / [item-latency] always go for items to collect
+            if (BananaTestLogger::isActive() || ItemLatencyLogger::isActive())
+                p = 100;
             m_really_collect_item = m_random_collect_item.get(100)<p;
             m_last_item_random = items_to_collect[0];
         }
@@ -991,8 +1038,11 @@ void SkiddingAI::evaluateItems(const ItemState *item, Vec3 kart_aim_direction,
     switch(type)
     {
         // Negative items: avoid them
-        case Item::ITEM_BUBBLEGUM: // fallthrough
-        case Item::ITEM_BANANA: avoid = true;  break;
+        case Item::ITEM_BUBBLEGUM: avoid = true;  break;
+        case Item::ITEM_BANANA:
+            // [banana-test] drive over bananas instead of avoiding them
+            avoid = !BananaTestLogger::isActive();
+            break;
 
         // Positive items: try to collect
         case Item::ITEM_NITRO_BIG:
@@ -1008,6 +1058,8 @@ void SkiddingAI::evaluateItems(const ItemState *item, Vec3 kart_aim_direction,
                   return;
             break;
         case Item::ITEM_BONUS_BOX:
+            // [banana-test] avoid all bonus boxes
+            if (BananaTestLogger::isActive()) avoid = true;
             break;
         default: assert(false); break;
     }    // switch
@@ -1081,6 +1133,9 @@ void SkiddingAI::evaluateItems(const ItemState *item, Vec3 kart_aim_direction,
 void SkiddingAI::handleItems(const float dt, const Vec3 *aim_point, int last_node, int item_skill)
 {
     m_controls->setFire(false);
+    // [item-latency] --item-test: firing is done by itemTestFire() only
+    if (ItemLatencyLogger::isActive())
+        return;
     if(m_kart->getKartAnimation() ||
         m_kart->getPowerup()->getType() == PowerupManager::POWERUP_NOTHING )
         return;

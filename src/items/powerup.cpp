@@ -37,6 +37,7 @@
 #include "tracks/track.hpp"
 #include "utils/string_utils.hpp"
 #include "utils/log.hpp" //TODO: remove after debugging is done
+#include "utils/item_latency_logger.hpp"   // [item-latency]
 
 //-----------------------------------------------------------------------------
 /** Constructor, stores the kart to which this powerup belongs.
@@ -246,6 +247,8 @@ void Powerup::adjustSound()
  */
 void Powerup::use()
 {
+    // [item-latency] processing time of use() -> use_duration_us
+    ItemLatencyLogger::UseScope item_latency_scope(m_kart, m_type);
     const int ticks = World::getWorld()->getTicksSinceStart();
     bool has_played_sound = false;
     auto it = m_played_sound_ticks.find(ticks);
@@ -572,6 +575,15 @@ void Powerup::hitBonusBox(const ItemState &item_state)
 
     new_powerup = powerup_manager->getRandomPowerup(position, &n, 
                                                     random_number);
+
+    // [item-latency] --item-test: exactly one bowling ball per box
+    if (ItemLatencyLogger::shouldForceBowling(m_kart))
+    {
+        if (m_type != PowerupManager::POWERUP_NOTHING)
+            return;   // still holding an item: ignore this box
+        set(PowerupManager::POWERUP_BOWLING, 1);
+        return;
+    }
 
     // Always add a new powerup in ITEM_MODE_NEW (or if the kart
     // doesn't have a powerup atm).

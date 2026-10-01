@@ -89,6 +89,9 @@
 #include "utils/string_utils.hpp"
 #include "utils/translation.hpp"
 #include "utils/vs.hpp"
+#include "utils/wall_crash_logger.hpp"   // [wall-test]
+#include "utils/fall_test_logger.hpp"    // [fall-test]
+#include "utils/banana_test_logger.hpp"  // [banana-test]
 
 #include <ICameraSceneNode.h>
 #include <IDummyTransformationSceneNode.h>
@@ -1144,6 +1147,10 @@ void Kart::collectedItem(ItemState *item_state)
     switch (type)
     {
     case Item::ITEM_BANANA:
+        // [banana-test] always a parachute, T1: banana hit
+        if (BananaTestLogger::isActive() &&
+            BananaTestLogger::onBananaHit(this, m_speed))
+            break;
         m_attachment->hitBanana(item_state);
         break;
     case Item::ITEM_NITRO_SMALL:
@@ -1446,6 +1453,15 @@ void Kart::update(int ticks)
     // Update the locally maintained speed of the kart (m_speed), which 
     // is used furthermore for engine power, camera distance etc
     updateSpeed();
+    // [wall-test] check speed recovery after a wall crash
+    if (WallCrashLogger::isActive())
+        WallCrashLogger::onSpeedUpdate(this, m_speed);
+    // [fall-test] track exit -> respawn (first rescue only)
+    if (FallTestLogger::isActive())
+        FallTestLogger::onKartUpdate(this, m_speed);
+    // [banana-test] speed under the parachute
+    if (BananaTestLogger::isActive())
+        BananaTestLogger::onKartUpdate(this, m_speed);
     // Make the restitution depend on speed: this avoids collision issues,
     // otherwise a collision with high speed can see a kart being push
     // high up in the air (and out of control). So for higher speed we
@@ -2333,6 +2349,9 @@ void Kart::crashed(AbstractKart *k, bool update_attachments)
  */
 void Kart::crashed(const Material *m, const Vec3 &normal)
 {
+    // [wall-test] T1: wall crash (m_speed is still the pre-crash speed)
+    if (WallCrashLogger::isActive())
+        WallCrashLogger::onCrash(this, normal, m_speed);
     if (m && !(m->getCollisionReaction() == Material::RESCUE))
         playCrashSFX(m, NULL);
 #ifdef DEBUG

@@ -293,6 +293,10 @@ extern "C" {
 #include "utils/string_utils.hpp"
 #include "utils/translation.hpp"
 #include "io/rich_presence.hpp"
+#include "utils/item_latency_logger.hpp"   // [item-latency]
+#include "utils/wall_crash_logger.hpp"     // [wall-test]
+#include "utils/fall_test_logger.hpp"      // [fall-test]
+#include "utils/banana_test_logger.hpp"    // [banana-test]
 
 #include <IrrlichtDevice.h>
 
@@ -630,6 +634,11 @@ void cmdLineHelp()
     "       --quad-log-dir=DIR Set the quad log output directory.\n"
     "       --auto-input       Generate deterministic input during multiplayer races.\n"
     "       --auto-accel       Hold acceleration during multiplayer races.\n"
+    "       --item-test[=DIR]  Every bonus box gives 1 bowling ball (fired by hand)\n"
+    "                          and fire->launch latency is saved as CSV in DIR.\n"
+    "       --wall-test[=DIR]  Wall crash -> speed recovery time is saved as CSV in DIR.\n"
+    "       --fall-test[=DIR]  First track exit -> respawn time is saved as CSV in DIR.\n"
+    "       --banana-test[=DIR] Banana always gives a parachute, hit -> slowdown time is saved as CSV in DIR.\n"
     "       --unlock-all       Permanently unlock all karts and tracks for testing.\n"
     "       --no-unlock-all    Disable unlock-all (i.e. base unlocking on player achievement).\n"
     "       --xmas=n           Toggle Xmas/Christmas mode. n=0 Use current date, n=1, Always enable,\n"
@@ -1341,6 +1350,50 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
 
     if (CommandLine::has("--auto-accel"))
         input_manager->setAutoAccelEnabled(true);
+
+    // [item-latency] --item-test or --item-test=DIR
+    if (CommandLine::has("--item-test", &s))
+    {
+        ItemLatencyLogger::setEnabled(true);
+        ItemLatencyLogger::setLogDirectory(s);
+    }
+    else if (CommandLine::has("--item-test"))
+    {
+        ItemLatencyLogger::setEnabled(true);
+    }
+
+    // [wall-test] --wall-test or --wall-test=DIR
+    if (CommandLine::has("--wall-test", &s))
+    {
+        WallCrashLogger::setEnabled(true);
+        WallCrashLogger::setLogDirectory(s);
+    }
+    else if (CommandLine::has("--wall-test"))
+    {
+        WallCrashLogger::setEnabled(true);
+    }
+
+    // [fall-test] --fall-test or --fall-test=DIR
+    if (CommandLine::has("--fall-test", &s))
+    {
+        FallTestLogger::setEnabled(true);
+        FallTestLogger::setLogDirectory(s);
+    }
+    else if (CommandLine::has("--fall-test"))
+    {
+        FallTestLogger::setEnabled(true);
+    }
+
+    // [banana-test] --banana-test or --banana-test=DIR
+    if (CommandLine::has("--banana-test", &s))
+    {
+        BananaTestLogger::setEnabled(true);
+        BananaTestLogger::setLogDirectory(s);
+    }
+    else if (CommandLine::has("--banana-test"))
+    {
+        BananaTestLogger::setEnabled(true);
+    }
 
     if (CommandLine::has("--fixed-kart", &s))
         ServerConfig::m_fixed_kart = s;
