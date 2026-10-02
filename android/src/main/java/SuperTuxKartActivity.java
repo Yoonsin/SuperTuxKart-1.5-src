@@ -1,6 +1,6 @@
-package org.supertuxkart.stk;
+package org.supertuxkart.stk_dbg;
 
-import org.supertuxkart.stk.STKEditText;
+import org.supertuxkart.stk_dbg.STKEditText;
 import org.libsdl.app.SDLActivity;
 import org.libsdl.app.SDL;
 

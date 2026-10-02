@@ -100,7 +100,7 @@ Result Evaluation::getDistance(const Vec3& Player, const Vec3& wr_A, const Vec3&
 	*/
 	if (p_y - st_A_y > 0.5f || st_A_y - p_y > 0.5f)
 	{
-		return { true, 0.2 };
+		return { true, 0.15 };
 	}
 	/*
 	Vec3 LineAB = wr_B - wr_A;
@@ -125,7 +125,7 @@ Result Evaluation::getDistance(const Vec3& Player, const Vec3& wr_A, const Vec3&
 		if (distance > 1.8f)
 		{
 			//대략적으로 0.2점 감점, 추후에 변경 가능
-			return { true, 0.2 };
+			return { true, 0.15 };
 		}
 		//통과
 		return { false, 0.0 };
@@ -142,10 +142,10 @@ Result Evaluation::getDistance(const Vec3& Player, const Vec3& wr_A, const Vec3&
 	Vec3 LineAP = Player - st_A;
 	float dot_AP_AB = LineAP.dot(LineAB);
 	//여기는 우선 냅둠
-	if ((LineAB - dot_AP_AB).length() < 0.0f)
-	{
+	//if ((LineAB - dot_AP_AB).length() < 0.0f)
+	//{
 
-	}
+	//}
 	/*
 	Vec3 LineAA = (wr_A - st_A);
 	//라인 보정

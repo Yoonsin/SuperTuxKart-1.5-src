@@ -321,7 +321,9 @@ void LinearWorld::updateTrackSectors()
         kart_info.m_overall_distance = kart_info.m_finished_laps
                                      * Track::getCurrentTrack()->getTrackLength()
                         + getDistanceDownTrackForKart(kart->getWorldKartId(), true);
-        //Log::info("Quad", "kart=%u quad=%d on_road=%d",n, getTrackSector(n)->getCurrentGraphNode(), getTrackSector(n)->isOnRoad());
+        
+        if(UserConfigParams::m_track_debug)
+            Log::info("Quad", "kart=%u quad=%d on_road=%d",n, getTrackSector(n)->getCurrentGraphNode(), getTrackSector(n)->isOnRoad());
     }   // for n
 }   // updateTrackSectors
 

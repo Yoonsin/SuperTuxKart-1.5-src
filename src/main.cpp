@@ -1349,10 +1349,7 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         ServerConfig::m_fixed_kart = s;
 
     if (CommandLine::has("--fixed-track", &s))
-    {
         ServerConfig::m_fixed_track = s;
-        ServerConfig::m_track_voting = false;
-    }
  
     if (CommandLine::has("--network-console"))
     {

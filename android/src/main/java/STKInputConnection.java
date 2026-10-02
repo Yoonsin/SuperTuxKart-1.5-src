@@ -1,6 +1,6 @@
-package org.supertuxkart.stk;
+package org.supertuxkart.stk_dbg;
 
-import org.supertuxkart.stk.STKEditText;
+import org.supertuxkart.stk_dbg.STKEditText;
 
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;

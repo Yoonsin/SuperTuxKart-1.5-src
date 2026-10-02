@@ -76,7 +76,7 @@ void GECompressorASTC4x4::init()
         astcenc_context* context = NULL;
 
         //�� ���� nullptr���ŵ�
-        if (astcenc_context_alloc(&cfg, 1, &context) != ASTCENC_SUCCESS)
+        if (allocAstcContext(&astcenc_context_alloc, &cfg, 1, &context) != ASTCENC_SUCCESS)
         {
             destroy();
             return;
