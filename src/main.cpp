@@ -272,6 +272,9 @@ extern "C" {
 #include "replay/replay_play.hpp"
 #include "replay/replay_recorder.hpp"
 #include "states_screens/main_menu_screen.hpp"
+
+#include "states_screens/race_setup_screen.hpp"
+
 #include "states_screens/online/networking_lobby.hpp"
 #include "states_screens/online/register_screen.hpp"
 #include "states_screens/state_manager.hpp"
@@ -1801,6 +1804,14 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         UserConfigParams::m_no_start_screen = true;
         UserConfigParams::m_benchmark = true;
     }   // --benchmark
+
+    if(CommandLine::has("--course-evaluation"))
+    {
+        Log::verbose("main", "Course evaluation mode requested from command-line");
+
+        //UserConfigParams::m_no_start_screen = true;
+        UserConfigParams::m_course_evaluation = true;
+	}   // --course-evaluation
     
     if(CommandLine::has("--unlock-all"))
     {
@@ -2583,12 +2594,8 @@ int main(int argc, char *argv[])
                 PlayerManager::get()->enforceCurrentPlayer();
             }
 
-            // If there is a current player, it was saved in the config file,
-            // so we immediately start the main menu (unless it was requested
-            // to always show the login screen). Otherwise show the login
-            // screen first.
-            if(PlayerManager::getCurrentPlayer() && !
-                UserConfigParams::m_always_show_login_screen)
+            // 화면 전환
+            if (PlayerManager::getCurrentPlayer() && !UserConfigParams::m_always_show_login_screen)
             {
                 MainMenuScreen::getInstance()->push();
             }

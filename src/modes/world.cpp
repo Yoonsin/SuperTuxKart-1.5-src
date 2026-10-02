@@ -1,4 +1,4 @@
-//
+﻿//
 //  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2006-2015 SuperTuxKart-Team
 //
@@ -84,6 +84,10 @@
 #include "utils/translation.hpp"
 #include "utils/string_utils.hpp"
 
+//새로 추가
+#include "evaluation/evaluation.hpp"
+#include "karts/abstract_kart.hpp"
+
 #include <IrrlichtDevice.h>
 #include <ISceneManager.h>
 
@@ -161,7 +165,8 @@ void World::init()
     m_eliminated_players  = 0;
     m_num_players         = 0;
     unsigned int gk       = 0;
-    m_red_ai = m_blue_ai = 0;
+    m_red_ai = m_blue_ai  = 0;
+	m_timer               = 0;
     if (RaceManager::get()->hasGhostKarts())
         gk = ReplayPlay::get()->getNumGhostKart();
 
@@ -1218,6 +1223,21 @@ void World::update(int ticks)
     PROFILER_PUSH_CPU_MARKER("World::update (physics)", 0xa0, 0x7F, 0x00);
     Physics::get()->update(ticks);
     PROFILER_POP_CPU_MARKER();
+    //eval로 위치 받아오기
+    AbstractKart* player_kart = getLocalPlayerKart(0);
+    if (player_kart)
+    {
+        m_timer += stk_config->ticks2Time(ticks);
+
+        if (m_timer >= 0.1f)
+        {
+            m_timer -= 0.1f;
+            const Vec3& pos = player_kart->getXYZ();
+            Evaluation::get()->update(pos);
+        }
+        // tick == ticks, position == pos
+    }
+    //eval로 위치받아오기
 
     PROFILER_POP_CPU_MARKER();
     updateTimeTargetSound();
