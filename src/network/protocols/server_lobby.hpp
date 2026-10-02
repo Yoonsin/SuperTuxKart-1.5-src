@@ -331,7 +331,7 @@ public:
     virtual bool isRacing() const OVERRIDE { return m_state.load() == RACING; }
     bool allowJoinedPlayersWaiting() const;
     void setSaveServerConfig(bool val)          { m_save_server_config = val; }
-    float getStartupBoostOrPenaltyForKart(uint32_t ping, unsigned kart_id);
+    float getStartupBoostOrForKart(uint32_t ping, unsigned kart_id);
     int getDifficulty() const                   { return m_difficulty.load(); }
     int getGameMode() const                      { return m_game_mode.load(); }
     int getLobbyPlayers() const              { return m_lobby_players.load(); }
@@ -348,6 +348,7 @@ public:
     void setClientServerHostId(uint32_t id)   { m_client_server_host_id = id; }
     static int m_fixed_laps;
     bool playerReportsTableExists() const;
+    float getStartupBoostOrPenaltyForKart(uint32_t ping, unsigned kart_id);
 };   // class ServerLobby
 
 #endif // SERVER_LOBBY_HPP
