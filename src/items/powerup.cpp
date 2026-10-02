@@ -37,7 +37,7 @@
 #include "tracks/track.hpp"
 #include "utils/string_utils.hpp"
 #include "utils/log.hpp" //TODO: remove after debugging is done
-#include "utils/item_latency_logger.hpp"   // [item-latency]
+#include "utils/latency_tests.hpp"   // [latency tests]
 
 //-----------------------------------------------------------------------------
 /** Constructor, stores the kart to which this powerup belongs.
@@ -248,7 +248,8 @@ void Powerup::adjustSound()
 void Powerup::use()
 {
     // [item-latency] processing time of use() -> use_duration_us
-    ItemLatencyLogger::UseScope item_latency_scope(m_kart, m_type);
+    if (ItemLatencyLogger::isActive())
+        ItemLatencyLogger::onUseStart(m_kart, m_type);
     const int ticks = World::getWorld()->getTicksSinceStart();
     bool has_played_sound = false;
     auto it = m_played_sound_ticks.find(ticks);
@@ -496,6 +497,9 @@ void Powerup::use()
         m_number = 0;
         m_type   = PowerupManager::POWERUP_NOTHING;
     }
+    // [item-latency] end of use() (bowling ball never takes the early return)
+    if (ItemLatencyLogger::isActive())
+        ItemLatencyLogger::onUseEnd();
 }   // use
 
 //-----------------------------------------------------------------------------

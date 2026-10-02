@@ -46,8 +46,7 @@
 #include "utils/constants.hpp"
 #include "utils/log.hpp"
 #include "utils/vs.hpp"
-#include "utils/banana_test_logger.hpp"    // [banana-test]
-#include "utils/item_latency_logger.hpp"   // [item-latency]
+#include "utils/latency_tests.hpp"   // [latency tests]
 
 #include <line2d.h>
 
@@ -245,7 +244,6 @@ namespace
         {
             // Bowling ball just picked up
             g_item_test_pickup_tick[kart] = now;
-            ItemLatencyLogger::onBowlingCollected(kart);
             return;
         }
         if (now - it->second >= stk_config->time2Ticks(1.0f))
@@ -531,11 +529,13 @@ void SkiddingAI::handleSteering(float dt)
 
         // Potentially adjust the point to aim for in order to either
         // aim to collect item, or steer to avoid a bad item.
+        if(m_ai_properties->m_collect_avoid_items && m_kart->getBlockedByPlungerTicks()<=0)
+            handleItemCollectionAndAvoidance(&aim_point, last_node);
         // [banana-test] / [item-latency] use item collect/avoid logic
         // regardless of difficulty
-        if((m_ai_properties->m_collect_avoid_items ||
-            BananaTestLogger::isActive() || ItemLatencyLogger::isActive())
-           && m_kart->getBlockedByPlungerTicks()<=0)
+        else if ((BananaTestLogger::isActive() ||
+                  ItemLatencyLogger::isActive()) &&
+                 m_kart->getBlockedByPlungerTicks() <= 0)
             handleItemCollectionAndAvoidance(&aim_point, last_node);
 
         steer_angle = steerToPoint(aim_point);
@@ -1038,11 +1038,8 @@ void SkiddingAI::evaluateItems(const ItemState *item, Vec3 kart_aim_direction,
     switch(type)
     {
         // Negative items: avoid them
-        case Item::ITEM_BUBBLEGUM: avoid = true;  break;
-        case Item::ITEM_BANANA:
-            // [banana-test] drive over bananas instead of avoiding them
-            avoid = !BananaTestLogger::isActive();
-            break;
+        case Item::ITEM_BUBBLEGUM: // fallthrough
+        case Item::ITEM_BANANA: avoid = true;  break;
 
         // Positive items: try to collect
         case Item::ITEM_NITRO_BIG:
@@ -1063,6 +1060,9 @@ void SkiddingAI::evaluateItems(const ItemState *item, Vec3 kart_aim_direction,
             break;
         default: assert(false); break;
     }    // switch
+    // [banana-test] drive over bananas instead of avoiding them
+    if (BananaTestLogger::isActive() && type == Item::ITEM_BANANA)
+        avoid = false;
 
 
     // Ignore items to be collected that are out of our way (though all items

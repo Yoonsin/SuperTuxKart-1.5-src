@@ -293,10 +293,7 @@ extern "C" {
 #include "utils/string_utils.hpp"
 #include "utils/translation.hpp"
 #include "io/rich_presence.hpp"
-#include "utils/item_latency_logger.hpp"   // [item-latency]
-#include "utils/wall_crash_logger.hpp"     // [wall-test]
-#include "utils/fall_test_logger.hpp"      // [fall-test]
-#include "utils/banana_test_logger.hpp"    // [banana-test]
+#include "utils/latency_tests.hpp"   // [latency tests]
 
 #include <IrrlichtDevice.h>
 
@@ -1351,48 +1348,25 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
     if (CommandLine::has("--auto-accel"))
         input_manager->setAutoAccelEnabled(true);
 
-    // [item-latency] --item-test or --item-test=DIR
-    if (CommandLine::has("--item-test", &s))
+    // [item-latency] [wall-test] [fall-test] [banana-test]
+    // --xxx-test or --xxx-test=DIR (DIR: folder for the result csv files)
     {
-        ItemLatencyLogger::setEnabled(true);
-        ItemLatencyLogger::setLogDirectory(s);
-    }
-    else if (CommandLine::has("--item-test"))
-    {
-        ItemLatencyLogger::setEnabled(true);
-    }
-
-    // [wall-test] --wall-test or --wall-test=DIR
-    if (CommandLine::has("--wall-test", &s))
-    {
-        WallCrashLogger::setEnabled(true);
-        WallCrashLogger::setLogDirectory(s);
-    }
-    else if (CommandLine::has("--wall-test"))
-    {
-        WallCrashLogger::setEnabled(true);
-    }
-
-    // [fall-test] --fall-test or --fall-test=DIR
-    if (CommandLine::has("--fall-test", &s))
-    {
-        FallTestLogger::setEnabled(true);
-        FallTestLogger::setLogDirectory(s);
-    }
-    else if (CommandLine::has("--fall-test"))
-    {
-        FallTestLogger::setEnabled(true);
-    }
-
-    // [banana-test] --banana-test or --banana-test=DIR
-    if (CommandLine::has("--banana-test", &s))
-    {
-        BananaTestLogger::setEnabled(true);
-        BananaTestLogger::setLogDirectory(s);
-    }
-    else if (CommandLine::has("--banana-test"))
-    {
-        BananaTestLogger::setEnabled(true);
+        std::string dir;
+        if (CommandLine::has("--item-test", &dir) ||
+            CommandLine::has("--item-test"))
+            ItemLatencyLogger::enable(dir);
+        dir.clear();
+        if (CommandLine::has("--wall-test", &dir) ||
+            CommandLine::has("--wall-test"))
+            WallCrashLogger::enable(dir);
+        dir.clear();
+        if (CommandLine::has("--fall-test", &dir) ||
+            CommandLine::has("--fall-test"))
+            FallTestLogger::enable(dir);
+        dir.clear();
+        if (CommandLine::has("--banana-test", &dir) ||
+            CommandLine::has("--banana-test"))
+            BananaTestLogger::enable(dir);
     }
 
     if (CommandLine::has("--fixed-kart", &s))

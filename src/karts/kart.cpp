@@ -89,9 +89,7 @@
 #include "utils/string_utils.hpp"
 #include "utils/translation.hpp"
 #include "utils/vs.hpp"
-#include "utils/wall_crash_logger.hpp"   // [wall-test]
-#include "utils/fall_test_logger.hpp"    // [fall-test]
-#include "utils/banana_test_logger.hpp"  // [banana-test]
+#include "utils/latency_tests.hpp"   // [latency tests]
 
 #include <ICameraSceneNode.h>
 #include <IDummyTransformationSceneNode.h>

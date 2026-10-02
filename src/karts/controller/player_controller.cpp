@@ -40,7 +40,7 @@
 #include "utils/log.hpp"
 #include "utils/string_utils.hpp"
 #include "utils/translation.hpp"
-#include "utils/item_latency_logger.hpp"   // [item-latency]
+#include "utils/latency_tests.hpp"   // [latency tests]
 
 #include <cstdlib>
 

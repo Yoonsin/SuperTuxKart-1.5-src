@@ -59,10 +59,7 @@
 #include "utils/time.hpp"
 #include "utils/translation.hpp"
 #include "io/rich_presence.hpp"
-#include "utils/item_latency_logger.hpp"   // [item-latency]
-#include "utils/wall_crash_logger.hpp"     // [wall-test]
-#include "utils/fall_test_logger.hpp"      // [fall-test]
-#include "utils/banana_test_logger.hpp"    // [banana-test]
+#include "utils/latency_tests.hpp"   // [latency tests]
 
 #include <thread>
 
@@ -778,10 +775,11 @@ void MainLoop::run()
     }  // while !m_abort
 
     profiler.finishProfileLog();
-    ItemLatencyLogger::finish();   // [item-latency]
-    WallCrashLogger::finish();     // [wall-test]
-    FallTestLogger::finish();      // [fall-test]
-    BananaTestLogger::finish();    // [banana-test]
+    // Save results of a race that is still running
+    ItemLatencyLogger::onFrame(false);   // [item-latency]
+    WallCrashLogger::onFrame(false);     // [wall-test]
+    FallTestLogger::onFrame(false);      // [fall-test]
+    BananaTestLogger::onFrame(false);    // [banana-test]
 
 #ifdef WIN32
     if (parent != 0 && parent != INVALID_HANDLE_VALUE)

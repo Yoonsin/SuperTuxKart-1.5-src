@@ -34,7 +34,7 @@
 #include "network/rewind_manager.hpp"
 #include "utils/stk_process.hpp"
 #include "utils/string_utils.hpp"
-#include "utils/item_latency_logger.hpp"   // [item-latency]
+#include "utils/latency_tests.hpp"   // [latency tests]
 
 #include <typeinfo>
 
