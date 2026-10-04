@@ -29,6 +29,7 @@
 #include "audio/sfx_base.hpp"
 #include "achievements/achievements_status.hpp"
 #include "config/player_manager.hpp"
+#include "config/user_config.hpp"
 #include "graphics/explosion.hpp"
 #include "graphics/irr_driver.hpp"
 #include "graphics/material.hpp"
@@ -593,11 +594,21 @@ void Flyable::explode(AbstractKart *kart_hit, PhysicalObject *object,
         // Handle the actual explosion. The kart that fired a flyable will
         // only be affected if it's a direct hit. This allows karts to use
         // rockets on short distance.
-        if( (m_owner!=kart || m_owner==kart_hit) && !kart->getKartAnimation())
+        if ((m_owner != kart || m_owner == kart_hit) && !kart->getKartAnimation())
         {
             // The explosion animation will register itself with the kart
             // and will free it later.
-            ExplosionAnimation::create(kart, getXYZ(), kart==kart_hit);
+            ExplosionAnimation::create(kart, getXYZ(), kart == kart_hit);
+
+            // 추가: FFA에서는 근처 폭발(직접 명중이 아닌 경우)에도 점수 처리
+            if (UserConfigParams::m_auto_item_fire && 
+                RaceManager::get()->getMinorMode() == RaceManager::MINOR_MODE_FREE_FOR_ALL
+                && kart != m_owner && kart != kart_hit)
+            {
+                world->kartHit(kart->getWorldKartId(),
+                    m_owner->getWorldKartId());
+            }
+
             if (kart == kart_hit)
             {
                 world->kartHit(kart->getWorldKartId(),

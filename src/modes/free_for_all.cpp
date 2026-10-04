@@ -88,21 +88,9 @@ void FreeForAll::init()
     m_duel_ticks = 0;
     m_duel_fired = false;
 
-    // [auto-item-fire] 플래그가 켜진 경우에만 init 시 스폰 위치를 C++ 로 조정
-    // (scene_score.xml 의 스폰 좌표가 이미 올바른 위치를 잡아주지만,
-    //  혹시라도 물리 초기화 전 보정이 필요할 때를 대비한 보험 코드)
-    if (UserConfigParams::m_auto_item_fire && getNumKarts() >= 2)
-    {
-        // 첫 번째 카트 (인덱스 0)
-        getKart(0)->setXYZ(Vec3(0.0f, 0.5f, 0.0f));
-        getKart(0)->setRotation(btQuaternion(btVector3(0.0f, 1.0f, 0.0f), 0.0f));
-
-        // 두 번째 카트 (인덱스 1)
-        getKart(1)->setXYZ(Vec3(0.0f, 0.5f, 30.0f));
-        getKart(1)->setRotation(btQuaternion(btVector3(0.0f, 1.0f, 0.0f), 3.14159265f));
-    }
-}   // init
-
+    // C++ 하드코딩 스폰 강제 고정 코드는 삭제! 
+    // 이제 위치와 방향은 오직 scene_score.xml 의 완벽한 설정만을 따릅니다.
+}
 // ----------------------------------------------------------------------------
 /** Called when a battle is restarted.
  */
@@ -141,6 +129,9 @@ void FreeForAll::countdownReachedZero()
  */
 bool FreeForAll::kartHit(int kart_id, int hitter)
 {
+    std::cout << "[FFA_DEBUG] kartHit ENTER kart_id=" << kart_id
+        << " hitter=" << hitter << std::endl;
+
     if (NetworkConfig::get()->isNetworking() &&
         NetworkConfig::get()->isClient())
         return false;
@@ -159,8 +150,15 @@ bool FreeForAll::kartHit(int kart_id, int hitter)
  */
 void FreeForAll::handleScoreInServer(int kart_id, int hitter)
 {
+    std::cout << "[FFA_DEBUG] kartHit Triggered! Target (kart_id): " << kart_id << ", Attacker (hitter): " << hitter << std::endl;
+
     int new_score = 0;
     int score_delta = 0;
+
+    // 피격자 감점용 (공격자가 따로 있을 때만 사용)
+    bool victim_penalized = false;
+    int victim_score = 0;
+
     if (kart_id == hitter || hitter == -1)
     {
         new_score = --m_scores[kart_id];
@@ -168,15 +166,24 @@ void FreeForAll::handleScoreInServer(int kart_id, int hitter)
     }
     else
     {
-        new_score = ++m_scores[hitter];
+        new_score = ++m_scores[hitter];       // 공격자 +1
         score_delta = 1;
+
+        victim_score = --m_scores[kart_id];   // 피격자 -1
+        victim_penalized = true;
     }
 
     long long timestamp = World::getWorld()->getTicksSinceStart();
     std::string platform = getCurrentPlatform();
 
-    // 로컬 멀티플레이에서도 로그가 찍히도록 if문 바깥으로 빼냈습니다.
+    // 공격자 득점 (또는 자폭/공격자 불명 감점)
     ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "HIT_SERVER", platform, hitter, kart_id, score_delta);
+
+    // 피격자 감점
+    if (victim_penalized)
+    {
+        ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "HIT_SERVER_DEDUCT", platform, hitter, kart_id, -1);
+    }
 
     if (NetworkConfig::get()->isNetworking() && NetworkConfig::get()->isServer())
     {
@@ -188,6 +195,16 @@ void FreeForAll::handleScoreInServer(int kart_id, int hitter)
         else
             p.addUInt8((uint8_t)hitter).addUInt16((int16_t)new_score);
         STKHost::get()->sendPacketToAllPeers(&p, true);
+
+        // 피격자 점수도 클라이언트에 전송 (없으면 클라이언트 화면은 안 깎임)
+        if (victim_penalized)
+        {
+            NetworkString p2(PROTOCOL_GAME_EVENTS);
+            p2.setSynchronous(true);
+            p2.addUInt8(GameEventsProtocol::GE_BATTLE_KART_SCORE);
+            p2.addUInt8((uint8_t)kart_id).addUInt16((int16_t)victim_score);
+            STKHost::get()->sendPacketToAllPeers(&p2, true);
+        }
     }
 } // handleScoreInServer
 
