@@ -1,7 +1,8 @@
 #include "utils/experiment_logger.hpp"
+#include "config/user_config.hpp"
 #include <iostream>
 #include <cstdlib>
-#include <mutex>        // 필요하면 추가
+#include <mutex>
 
 ExperimentLogger* ExperimentLogger::get() {
     static ExperimentLogger instance;
@@ -11,40 +12,39 @@ ExperimentLogger* ExperimentLogger::get() {
 ExperimentLogger::ExperimentLogger() : m_event_counter(1), m_enabled(false) {
     std::string log_path_str;
 #if defined(__ANDROID__)
-    // Android: use external storage or app‑specific directory
     const char* external = std::getenv("EXTERNAL_STORAGE");
     log_path_str = external ? std::string(external) + "/experiment_log.csv" : "/sdcard/experiment_log.csv";
 #elif defined(_WIN32) || defined(_WIN64)
-    // Windows: use simple string manipulation of __FILE__ to avoid <filesystem> error
     std::string file_path = __FILE__;
     size_t pos = file_path.find_last_of("\\/");
     if (pos != std::string::npos) {
-        file_path = file_path.substr(0, pos); // -> src/utils
+        file_path = file_path.substr(0, pos);
         pos = file_path.find_last_of("\\/");
         if (pos != std::string::npos) {
-            file_path = file_path.substr(0, pos); // -> src
+            file_path = file_path.substr(0, pos);
             pos = file_path.find_last_of("\\/");
             if (pos != std::string::npos) {
-                file_path = file_path.substr(0, pos); // -> project root
+                file_path = file_path.substr(0, pos);
             }
         }
     }
     log_path_str = file_path + "/experiment_log.csv";
+#elif defined(__linux__)
+    // 리눅스 서버를 위한 경로 설정
+    log_path_str = "experiment_log.csv";
 #else
-    // Fallback: current working directory
     log_path_str = "experiment_log.csv";
 #endif
 
     m_log_file.open(log_path_str, std::ios::app);
     if (m_log_file.is_open()) {
-        // Write CSV header if file is new/empty
         m_log_file.seekp(0, std::ios::end);
         if (m_log_file.tellp() == 0) {
-            m_log_file << "RoundID,EventID,ServerTimestamp,Platform,TargetPlatform,ScoreDelta\n";
+            m_log_file << "RoundID,EventID,Timestamp,EventType,Platform,ActorID,VictimID,ScoreDelta\n";
             m_log_file.flush();
         }
         std::cout << "[ExperimentLogger] Log file created at: " << log_path_str << std::endl;
-        m_enabled = true;          // enable logging after successful open
+        m_enabled = true;
     }
     else {
         std::cerr << "[ExperimentLogger] Failed to open " << log_path_str << std::endl;
@@ -58,20 +58,25 @@ ExperimentLogger::~ExperimentLogger() {
 }
 
 void ExperimentLogger::logEvent(int roundId,
-                                long long serverTimestamp,
-                                const std::string& platform,
-                                const std::string& targetPlatform,
-                                int scoreDelta) {
+    long long serverTimestamp,
+    const std::string& eventType,
+    const std::string& platform,
+    int actorId,
+    int victimId,
+    int scoreDelta) {
+    if (!UserConfigParams::m_score_log) return;
     if (!m_enabled) return;
 
     std::lock_guard<std::mutex> lock(m_mutex);
     if (m_log_file.is_open()) {
         m_log_file << roundId << ","
-                   << m_event_counter++ << ","
-                   << serverTimestamp << ","
-                   << platform << ","
-                   << targetPlatform << ","
-                   << scoreDelta << "\n";
+            << m_event_counter++ << ","
+            << serverTimestamp << ","
+            << eventType << ","
+            << platform << ","
+            << actorId << ","
+            << victimId << ","
+            << scoreDelta << "\n";
         m_log_file.flush();
     }
 }

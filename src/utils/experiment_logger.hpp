@@ -22,10 +22,12 @@ public:
     bool isEnabled() const { return m_enabled; }
 
     void logEvent(int roundId,
-                  long long serverTimestamp, 
-                  const std::string& platform, 
-                  const std::string& targetPlatform, 
-                  int scoreDelta);
+        long long serverTimestamp,
+        const std::string& eventType,
+        const std::string& platform,
+        int actorId,
+        int victimId,
+        int scoreDelta);
 };
 
 #endif // HEADER_EXPERIMENT_LOGGER_HPP

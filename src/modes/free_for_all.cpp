@@ -16,6 +16,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "modes/free_for_all.hpp"
+#include "config/user_config.hpp"
 #include "karts/abstract_kart.hpp"
 #include "karts/controller/controller.hpp"
 #include "network/network_config.hpp"
@@ -60,7 +61,19 @@ FreeForAll::~FreeForAll()
 }   // ~FreeForAll
 
 static int s_ffa_round_id = 0; // 판을 구분하기 위한 전역 변수
-
+// --- 플랫폼 확인 헬퍼 함수 ---
+static std::string getCurrentPlatform() {
+#if defined(__ANDROID__)
+    return "Android";
+#elif defined(_WIN32) || defined(_WIN64)
+    return "Windows";
+#elif defined(__linux__)
+    return "Linux";
+#else
+    return "Unknown";
+#endif
+}
+// -----------------------------
 // ----------------------------------------------------------------------------
 void FreeForAll::init()
 {
@@ -75,7 +88,10 @@ void FreeForAll::init()
     m_duel_ticks = 0;
     m_duel_fired = false;
 
-    if (getNumKarts() >= 2)
+    // [auto-item-fire] 플래그가 켜진 경우에만 init 시 스폰 위치를 C++ 로 조정
+    // (scene_score.xml 의 스폰 좌표가 이미 올바른 위치를 잡아주지만,
+    //  혹시라도 물리 초기화 전 보정이 필요할 때를 대비한 보험 코드)
+    if (UserConfigParams::m_auto_item_fire && getNumKarts() >= 2)
     {
         // 첫 번째 카트 (인덱스 0)
         getKart(0)->setXYZ(Vec3(0.0f, 0.5f, 0.0f));
@@ -156,25 +172,14 @@ void FreeForAll::handleScoreInServer(int kart_id, int hitter)
         score_delta = 1;
     }
 
-    // 싱글플레이/멀티플레이 상관없이 점수가 변동될 때마다 로그를 기록합니다.
     long long timestamp = World::getWorld()->getTicksSinceStart();
-#if defined(__ANDROID__)
-    std::string platform = "Android";
-    std::string targetPlatform = "Android"; // opponent platform can be derived similarly
-#elif defined(_WIN32) || defined(_WIN64)
-    std::string platform = "Windows";
-    std::string targetPlatform = "Windows"; // opponent platform can be derived similarly
-#else
-    std::string platform = "Unknown";
-    std::string targetPlatform = "Unknown";
-#endif
-// logEvent moved inside server‑only block
+    std::string platform = getCurrentPlatform();
 
-    if (NetworkConfig::get()->isNetworking() &&
-        NetworkConfig::get()->isServer())
+    // 로컬 멀티플레이에서도 로그가 찍히도록 if문 바깥으로 빼냈습니다.
+    ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "HIT_SERVER", platform, hitter, kart_id, score_delta);
+
+    if (NetworkConfig::get()->isNetworking() && NetworkConfig::get()->isServer())
     {
-        // 서버(호스트)일 때만 로그를 남깁니다.
-        ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, platform, targetPlatform, score_delta);
         NetworkString p(PROTOCOL_GAME_EVENTS);
         p.setSynchronous(true);
         p.addUInt8(GameEventsProtocol::GE_BATTLE_KART_SCORE);
@@ -184,16 +189,23 @@ void FreeForAll::handleScoreInServer(int kart_id, int hitter)
             p.addUInt8((uint8_t)hitter).addUInt16((int16_t)new_score);
         STKHost::get()->sendPacketToAllPeers(&p, true);
     }
-}   // handleScoreInServer
+} // handleScoreInServer
 
 // ----------------------------------------------------------------------------
 void FreeForAll::setKartScoreFromServer(NetworkString& ns)
 {
     int kart_id = ns.getUInt8();
     int16_t score = ns.getUInt16();
-    m_scores.at(kart_id) = score;
-}   // setKartScoreFromServer
 
+    int score_delta = score - m_scores.at(kart_id);
+    m_scores.at(kart_id) = score;
+
+    long long timestamp = World::getWorld()->getTicksSinceStart();
+    std::string platform = getCurrentPlatform();
+
+    // 클라이언트가 서버로부터 점수가 깎였다는 통보를 받은 시간 기록
+    ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "UPDATE_CLIENT", platform, -1, kart_id, score_delta);
+}
 // ----------------------------------------------------------------------------
 /** Returns the internal identifier for this race.
  */
@@ -228,8 +240,8 @@ void FreeForAll::update(int ticks)
     endSetKartPositions();
 
     // ====================================================================
- // [2] 듀얼 모드: 무한 반복 장전 및 동시 발사 (물리 고정 해제)
-    if (getNumKarts() >= 2)
+ // [2] 듀얼 모드: 무한 반복 장전 및 동시 발사 (--auto-item-fire 플래그 전용)
+    if (UserConfigParams::m_auto_item_fire && getNumKarts() >= 2)
     {
         for (int i = 0; i < 2; i++)
         {
@@ -252,6 +264,19 @@ void FreeForAll::update(int ticks)
                     getKart(i)->setPowerup(PowerupManager::POWERUP_CAKE, 1);
                 }
             }
+
+            // --- [4단계 추가된 부분: 발사 순간 FIRE 로깅] ---
+            // 1200틱이 되는 순간에 딱 한 번 '발사' 시간 기록
+            if (old_ticks < 1200 && m_duel_ticks >= 1200)
+            {
+                long long timestamp = World::getWorld()->getTicksSinceStart();
+                std::string platform = getCurrentPlatform();
+                for (int i = 0; i < 2; i++)
+                {
+                    ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "FIRE", platform, i, -1, 0);
+                }
+            }
+            // ------------------------------------------------
 
             // [확실한 발사] 10초 ~ 10.5초(1200~1230틱) 동안 발사 신호 지속 주입
             if (m_duel_ticks >= 1200 && m_duel_ticks <= 1230)

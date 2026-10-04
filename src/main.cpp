@@ -1050,6 +1050,19 @@ int handleCmdLinePreliminary()
     if (CommandLine::has("--disable-addon-tracks"))
         UserConfigParams::m_disable_addon_tracks = true;
 
+    // Experimental duel mode: fixed spawn positions + infinite auto item fire
+    if (CommandLine::has("--auto-item-fire"))
+    {
+        UserConfigParams::m_auto_item_fire = true;
+        Log::info("main", "[auto-item-fire] Experimental duel mode enabled.");
+    }
+
+    if (CommandLine::has("--score-log"))
+    {
+        UserConfigParams::m_score_log = true;
+        Log::info("main", "[score-log] Logging enabled.");
+    }
+
     return 0;
 }   // handleCmdLinePreliminary
 
