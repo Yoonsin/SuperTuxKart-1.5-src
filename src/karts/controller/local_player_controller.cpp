@@ -320,7 +320,8 @@ void LocalPlayerController::setParticleEmitterPosition(const btTransform& t)
 }   // setParticleEmitterPosition
 
 //-----------------------------------------------------------------------------
-/** Displays a penalty warning for player controlled karts. Called from
+/** Displays a 
+warning for player controlled karts. Called from
  *  LocalPlayerKart::update() if necessary.
  */
 void LocalPlayerController::displayPenaltyWarning()

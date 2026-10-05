@@ -626,11 +626,15 @@ void MainLoop::run()
             bool fast_forward = NetworkConfig::get()->isNetworking() &&
                 NetworkConfig::get()->isClient() &&
                 num_steps > stk_config->time2Ticks(1.0f);
+
+            //check history end flag
+			bool history_end = false;
             for (int i = 0; i < num_steps; i++)
             {
-                if (World::getWorld() && history->replayHistory())
+                const World* world = World::getWorld();
+                if (world && history->replayHistory())
                 {
-                    history->updateReplay(
+                    history_end = history->updateReplay(
                                        World::getWorld()->getTicksSinceStart());
                 }
 
@@ -642,7 +646,7 @@ void MainLoop::run()
                 }
                 PROFILER_POP_CPU_MARKER();
 
-                const World* world = World::getWorld();
+                world = World::getWorld();
                 bool race_tick_active = world != nullptr && world->isActiveRacePhaseIncludingPause();
                 input_manager->updateAutoInput(race_tick_active);
                 input_manager->updateAutoAccel(race_tick_active);
@@ -654,6 +658,13 @@ void MainLoop::run()
                 }
                 PROFILER_POP_CPU_MARKER();
 
+                if (history_end)
+                {
+                    LinearWorld* linear_world =
+                        dynamic_cast<LinearWorld*>(World::getWorld());
+                    if (linear_world)
+                        linear_world->finishQuadLog();
+                }
                 // We need to check again because update_race may have requested
                 // the main loop to abort; and it's not a good idea to continue
                 // since the GUI engine is no more to be called then.
@@ -693,7 +704,9 @@ void MainLoop::run()
             }   // for i < num_steps
 
             const World* world = World::getWorld();
-            bool race_active = world != nullptr && world->isActiveRacePhaseIncludingPause();
+            bool race_active = world != nullptr &&
+                world->isActiveRacePhaseIncludingPause() &&
+                (!history_end);
             if (NetworkConfig::get()->isNetworking() && STKHost::existHost())
             {
                 STKHost::get()->updateRTTLogging(race_active);

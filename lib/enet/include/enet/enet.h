@@ -187,6 +187,7 @@ typedef struct _ENetOutgoingCommand
    enet_uint16  fragmentLength;
    enet_uint16  sendAttempts;
    enet_uint8   isRTTProbe;
+   enet_uint32  rttProbeQueuedTime;
    ENetProtocol command;
    ENetPacket * packet;
 } ENetOutgoingCommand;
@@ -374,9 +375,11 @@ typedef struct _ENetRTTSample
 {
     enet_uint32 rawRTT;
     enet_uint32 sentTime;
-    enet_uint32 timeStamp;
+    enet_uint32 recvTime;
     enet_uint16 sendAttempts;
     enet_uint32 isRTTProbe;
+    enet_uint32 queuedTime;
+    enet_uint32 recordTime;
 } ENetRTTSample;
 
 typedef void (ENET_CALLBACK* ENetRawRTTCallback) (

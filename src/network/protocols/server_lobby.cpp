@@ -2101,7 +2101,7 @@ void ServerLobby::startSelection(const Event *event)
                 if (m_default_vote->m_num_laps > 15)
                     m_default_vote->m_num_laps = (uint8_t)7;
             }
-            m_default_vote->m_reverse = rg.get(2) == 0;
+            m_default_vote->m_reverse = false; // rg.get(2) == 0;
             break;
         }
         default:

@@ -457,11 +457,13 @@ enet_peer_ping_tracked(ENetPeer* peer, enet_uint16* reliableSequenceNumber)
     command.header.command = ENET_PROTOCOL_COMMAND_PING | ENET_PROTOCOL_COMMAND_FLAG_ACKNOWLEDGE;
     command.header.channelID = 0xFF;
 
+    enet_uint32 t = enet_time_get(); 
     outgoingCommand = enet_peer_queue_outgoing_command(peer, &command, NULL, 0, 0);
 
     if (outgoingCommand == NULL) return -1;
 
     outgoingCommand->isRTTProbe = 1;
+    outgoingCommand->rttProbeQueuedTime = t;
 
     if (reliableSequenceNumber != NULL)
     {
@@ -716,6 +718,7 @@ enet_peer_queue_outgoing_command (ENetPeer * peer, const ENetProtocol * command,
     outgoingCommand -> fragmentLength = length;
     outgoingCommand -> packet = packet;
     outgoingCommand -> isRTTProbe = 0;
+    outgoingCommand -> rttProbeQueuedTime = 0;
 
     if (packet != NULL)
       ++ packet -> referenceCount;

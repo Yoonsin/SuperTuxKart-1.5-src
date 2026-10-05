@@ -67,7 +67,7 @@ public:
     void  initRecording  ();
     void  Save           ();
     void  Load           ();
-    void  updateReplay(int world_ticks);
+    bool  updateReplay(int world_ticks);
     void  addEvent(int kart_id, PlayerAction pa, int value);
 
     // -------------------I-----------------------------------------------------
