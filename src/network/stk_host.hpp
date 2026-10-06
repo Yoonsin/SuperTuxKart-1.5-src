@@ -25,6 +25,7 @@
 #include "utils/stk_process.hpp"
 #include "utils/synchronised.hpp"
 #include "utils/time.hpp"
+#include "utils/vec3.hpp"
 
 #include "irrString.h"
 
@@ -77,6 +78,8 @@ private:
 
     static bool m_rtt_log_enabled;
     static std::string m_rtt_log_directory;
+    static bool m_discrepancy_log_enabled;
+    static std::string m_discrepancy_log_directory;
 
     /** Separate process of server instance. */
     ChildLoop* m_client_loop;
@@ -184,6 +187,12 @@ public:
     static void setRTTLogDirectory(const std::string& directory)
         { m_rtt_log_directory = directory; }
     static bool isRTTLoggingEnabled() { return m_rtt_log_enabled; }
+
+    static void setDiscrepancyLogEnabled(bool enabled)
+        { m_discrepancy_log_enabled = enabled; }
+    static void setDiscrepancyLogDirectory(const std::string& directory)
+        { m_discrepancy_log_directory = directory; }
+    static bool isDiscrepancyLoggingEnabled() { return m_discrepancy_log_enabled; }
 
     /** Creates the STKHost. It takes all confifguration parameters from
      *  NetworkConfig. This STKHost can either be a client or a server.
@@ -424,6 +433,36 @@ public:
     std::mutex m_rtt_mutex;
     static constexpr uint64_t RTT_PROBE_INTERVAL_MS = 1000;
     uint64_t m_next_rtt_probe_ms;
+
+    enum class DiscrepancyType { SPATIAL = 0, COLLISION_ROLLBACK, EVENT_HIT };
+    struct DiscrepancyRecord
+    {
+        int race_ticks;
+        DiscrepancyType type;
+        int kart_id;
+        std::string player_name;
+        Vec3 client_pos;
+        Vec3 server_pos;
+        float error_distance;
+        float rotation_diff_deg;
+        int rewound_ticks;
+        std::string event_name;
+        std::string status;
+    };
+    void recordSpatialError(int kart_id, const std::string& name,
+                            const Vec3& client_pos, const Vec3& server_pos,
+                            float error_dist, float rotation_diff_deg = 0.0f);
+    void recordRollback(int now_ticks, int exact_rewind_ticks);
+    void recordKartCollision(int kart_a_id, const std::string& kart_a_name,
+                             int kart_b_id, const std::string& kart_b_name,
+                             const Vec3& pos_a, const Vec3& pos_b);
+    void recordEventDiscrepancy(const std::string& event_name,
+                                int shooter_id, int target_id, const std::string& status);
+    void updateDiscrepancyLogging(bool race_active);
+    void finishDiscrepancyLogging();
+    std::atomic_bool m_discrepancy_logging;
+    std::vector<DiscrepancyRecord> m_discrepancy_records;
+    std::mutex m_discrepancy_mutex;
 };   // class STKHost
 
 #endif // STK_HOST_HPP
