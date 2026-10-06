@@ -436,6 +436,7 @@ STK_SOURCE_DIRS := achievements \
                    audio         \
                    challenges    \
                    config        \
+                   evaluation \
                    font          \
                    guiengine     \
                    input         \

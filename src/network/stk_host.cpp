@@ -72,6 +72,7 @@
 #include <string>
 #include <utility>
 #include <fstream>
+#include "enet/time.h"
 
 STKHost *STKHost::m_stk_host[PT_COUNT];
 bool     STKHost::m_enable_console = false;
@@ -1066,6 +1067,7 @@ void STKHost::mainLoop(ProcessType pt)
         bool need_ping_update = false;
         while (enet_host_service(host, &event, 10) != 0)
         {
+            updateRTTProbes();
             auto lp = LobbyProtocol::get<LobbyProtocol>();
             if (!is_server &&
                 last_ping_time_update_for_client < StkTime::getMonoTimeMs())
@@ -1679,6 +1681,8 @@ void STKHost::recordRTT(ENetPeer* enet_peer, const ENetRTTSample& sample)
             record.player_name = StringUtils::wideToUtf8(profiles.front()->getName());
     }
 
+    record.sample.recordTime = enet_time_get();
+
     {
         std::lock_guard<std::mutex> lock(m_rtt_mutex);
         if (!m_rtt_logging.load(std::memory_order_relaxed))return;
@@ -1735,20 +1739,24 @@ void STKHost::finishRTTLogging()
         Log::error("RawRTT", "Failed to open RTT CSV file: %s", file_path.c_str());
         return;
     }
-	out << "Remote Address,Player Name,Platform,Sent Time,Record TimeStamp,RTT Sample (ms),Probe Attempts,Probe Lost\n";
+	out << "Remote Address,Player Name,Platform,Sent RTT ping Time,Receive RTT ping Time,RTT Sample (ms),Probe Attempts,Probe Lost,Processing Queue Time,Processing Record Time\n";
     for (const RTTRecord& record : records)
     {
         const uint16_t attempts = record.sample.sendAttempts;
         const uint16_t lost = attempts > 0 ? attempts - 1 : 0;
+		enet_uint32 queueProcessingTime = ENET_TIME_DIFFERENCE(record.sample.sentTime, record.sample.queuedTime);
+		enet_uint32 recordProcessingTime = ENET_TIME_DIFFERENCE(record.sample.recordTime, record.sample.recvTime);
 
 		out << record.remote_address << ","
             << record.player_name << ","
 			<< record.platform << ","
             << record.sample.sentTime << ","
-			<< record.sample.timeStamp << ","
+			<< record.sample.recvTime << ","
 			<< record.sample.rawRTT << ","
             << attempts << ","
-            << lost << "\n";
+            << lost << "," 
+            << queueProcessingTime << ","
+            << recordProcessingTime << "\n";
     }
     out.close();
 }

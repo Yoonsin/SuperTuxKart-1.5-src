@@ -244,6 +244,7 @@ extern "C" {
 #include "karts/official_karts.hpp"
 #include "modes/cutscene_world.hpp"
 #include "modes/demo_world.hpp"
+#include "modes/linear_world.hpp"
 #include "network/protocols/connect_to_server.hpp"
 #include "network/protocols/client_lobby.hpp"
 #include "network/protocols/server_lobby.hpp"
@@ -271,6 +272,9 @@ extern "C" {
 #include "replay/replay_play.hpp"
 #include "replay/replay_recorder.hpp"
 #include "states_screens/main_menu_screen.hpp"
+
+#include "states_screens/race_setup_screen.hpp"
+
 #include "states_screens/online/networking_lobby.hpp"
 #include "states_screens/online/register_screen.hpp"
 #include "states_screens/state_manager.hpp"
@@ -627,6 +631,8 @@ void cmdLineHelp()
     "       --discrepancy-log-dir=DIR Set the discrepancy log output directory.\n"
     "       --profile-log      Save profiler data for each multiplayer race.\n"
     "       --profile-log-dir=DIR  Set the profile log output directory.\n"
+    "       --quad-log         Save first visits to track quads as CSV.\n"
+    "       --quad-log-dir=DIR Set the quad log output directory.\n"
     "       --auto-input       Generate deterministic input during multiplayer races.\n"
     "       --auto-accel       Hold acceleration during multiplayer races.\n"
     "       --unlock-all       Permanently unlock all karts and tracks for testing.\n"
@@ -1335,6 +1341,14 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         }
     }
 
+    if (CommandLine::has("--quad-log"))
+    {
+        LinearWorld::setQuadLogEnabled(true);
+        std::string quad_log_directory;
+        if (CommandLine::has("--quad-log-dir", &quad_log_directory))
+            LinearWorld::setQuadLogDirectory(quad_log_directory);
+    }
+
     if (CommandLine::has("--auto-input"))
         input_manager->setAutoInputEnabled(true);
 
@@ -1345,10 +1359,7 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         ServerConfig::m_fixed_kart = s;
 
     if (CommandLine::has("--fixed-track", &s))
-    {
         ServerConfig::m_fixed_track = s;
-        ServerConfig::m_track_voting = false;
-    }
  
     if (CommandLine::has("--network-console"))
     {
@@ -1803,6 +1814,14 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         UserConfigParams::m_no_start_screen = true;
         UserConfigParams::m_benchmark = true;
     }   // --benchmark
+
+    if(CommandLine::has("--course-evaluation"))
+    {
+        Log::verbose("main", "Course evaluation mode requested from command-line");
+
+        //UserConfigParams::m_no_start_screen = true;
+        UserConfigParams::m_course_evaluation = true;
+	}   // --course-evaluation
     
     if(CommandLine::has("--unlock-all"))
     {
@@ -2585,12 +2604,8 @@ int main(int argc, char *argv[])
                 PlayerManager::get()->enforceCurrentPlayer();
             }
 
-            // If there is a current player, it was saved in the config file,
-            // so we immediately start the main menu (unless it was requested
-            // to always show the login screen). Otherwise show the login
-            // screen first.
-            if(PlayerManager::getCurrentPlayer() && !
-                UserConfigParams::m_always_show_login_screen)
+            // 화면 전환
+            if (PlayerManager::getCurrentPlayer() && !UserConfigParams::m_always_show_login_screen)
             {
                 MainMenuScreen::getInstance()->push();
             }

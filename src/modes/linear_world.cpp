@@ -23,6 +23,7 @@
 #include "audio/sfx_base.hpp"
 #include "audio/sfx_manager.hpp"
 #include "config/user_config.hpp"
+#include "io/file_manager.hpp"
 #include "karts/abstract_kart.hpp"
 #include "karts/cannon_animation.hpp"
 #include "karts/controller/controller.hpp"
@@ -48,11 +49,19 @@
 #include "tracks/track_sector.hpp"
 #include "tracks/track.hpp"
 #include "utils/constants.hpp"
+#include "utils/file_utils.hpp"
 #include "utils/string_utils.hpp"
+#include "utils/time.hpp"
 #include "utils/translation.hpp"
 
+#include <algorithm>
 #include <climits>
+#include <fstream>
+#include <iomanip>
 #include <iostream>
+
+bool LinearWorld::m_quad_log_enabled = false;
+std::string LinearWorld::m_quad_log_directory;
 
 //-----------------------------------------------------------------------------
 /** Constructs the linear world. Note that here no functions can be called
@@ -68,6 +77,7 @@ LinearWorld::LinearWorld() : WorldWithRank()
     m_live_time_difference = 0.0f;
     m_fastest_lap_kart_name = "";
     m_check_structure_compatible = false;
+    m_quad_log_saved = false;
 }   // LinearWorld
 
 // ----------------------------------------------------------------------------
@@ -107,6 +117,9 @@ LinearWorld::~LinearWorld()
 void LinearWorld::reset(bool restart)
 {
     WorldWithRank::reset(restart);
+    m_quad_log_entries.clear();
+    m_seen_quads.clear();
+    m_quad_log_saved = false;
     m_finish_timeout = std::numeric_limits<float>::max();
     m_last_lap_sfx_played  = false;
     m_last_lap_sfx_playing = false;
@@ -290,11 +303,76 @@ void LinearWorld::updateTrackSectors()
              !kart->isGhostKart())
             continue;
         getTrackSector(n)->update(kart->getFrontXYZ());
+        if (m_quad_log_enabled && isActiveRacePhase() &&
+            (!NetworkConfig::get()->isNetworking() ||
+             NetworkConfig::get()->isServer()) &&
+            !kart->isGhostKart() && !kart->hasFinishedRace() &&
+            getTrackSector(n)->isOnRoad())
+        {
+            const int quad = getTrackSector(n)->getCurrentGraphNode();
+            const int lap = std::max(0, kart_info.m_finished_laps) + 1;
+            if (m_seen_quads.emplace(n, lap, quad).second)
+            {
+                const Vec3& p = kart->getFrontXYZ();
+                m_quad_log_entries.push_back({n, lap, quad,
+                    getTicksSinceStart(), p.getX(), p.getY(), p.getZ()});
+            }
+        }
         kart_info.m_overall_distance = kart_info.m_finished_laps
                                      * Track::getCurrentTrack()->getTrackLength()
                         + getDistanceDownTrackForKart(kart->getWorldKartId(), true);
+        
+        if(UserConfigParams::m_track_debug)
+            Log::info("Quad", "kart=%u quad=%d on_road=%d",n, getTrackSector(n)->getCurrentGraphNode(), getTrackSector(n)->isOnRoad());
     }   // for n
 }   // updateTrackSectors
+
+//-----------------------------------------------------------------------------
+void LinearWorld::finishQuadLog()
+{
+    if (!m_quad_log_enabled || m_quad_log_saved)
+        return;
+    m_quad_log_saved = true;
+
+    if (m_quad_log_entries.empty())
+        return;
+
+    const std::string file_name = "quad_log_" +
+        Track::getCurrentTrack()->getIdent() + "_" +
+        StringUtils::toString(StkTime::getTimeSinceEpoch()) + "_" +
+        StringUtils::toString(StkTime::getMonoTimeMs()) + ".csv";
+    const std::string file_path = m_quad_log_directory.empty() ?
+        file_manager->getUserConfigFile(file_name) :
+        m_quad_log_directory + "/" + file_name;
+    std::ofstream out(FileUtils::getPortableWritingPath(file_path));
+    if (!out.is_open())
+    {
+        Log::error("QuadLog", "Failed to open CSV file: %s",
+            file_path.c_str());
+        return;
+    }
+
+    out << "kart_id,lap,quad_id,tick,time_s,x,y,z\n";
+    out << std::fixed << std::setprecision(6);
+    for (const QuadLogEntry& entry : m_quad_log_entries)
+    {
+        out << entry.m_kart_id << ',' << entry.m_lap << ','
+            << entry.m_quad << ',' << entry.m_tick << ','
+            << stk_config->ticks2Time(entry.m_tick) << ','
+            << entry.m_x << ',' << entry.m_y << ',' << entry.m_z << '\n';
+    }
+    out.close();
+    if (!out)
+    {
+        Log::error("QuadLog", "Failed to write CSV file: %s",
+            file_path.c_str());
+        return;
+    }
+
+    Log::info("QuadLog", "Saved CSV file: %s", file_path.c_str());
+    m_quad_log_entries.clear();
+    m_seen_quads.clear();
+}   // finishQuadLog
 
 //-----------------------------------------------------------------------------
 /** This updates all only graphical elements.It is only called once per

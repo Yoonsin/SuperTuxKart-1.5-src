@@ -35,6 +35,7 @@
 #include "guiengine/modaldialog.hpp"
 #include "guiengine/screen_keyboard.hpp"
 #include "input/input_manager.hpp"
+#include "modes/linear_world.hpp"
 #include "modes/world.hpp"
 #include "modes/profile_world.hpp"
 #include "network/network_config.hpp"
@@ -304,7 +305,7 @@ double MainLoop::getLimitedDt()
     {
         /* time 3 internal substeps take */
         const double MAX_ELAPSED_TIME = 3.0f*1.0f / 60.0f*1000.0f;
-        if (dt > MAX_ELAPSED_TIME) dt = MAX_ELAPSED_TIME;
+        if (dt > MAX_ELAPSED_TIME) dt = MAX_ELAPSED_TIME; 
     }
 
     dt *= 0.001;
@@ -625,11 +626,15 @@ void MainLoop::run()
             bool fast_forward = NetworkConfig::get()->isNetworking() &&
                 NetworkConfig::get()->isClient() &&
                 num_steps > stk_config->time2Ticks(1.0f);
+
+            //check history end flag
+			bool history_end = false;
             for (int i = 0; i < num_steps; i++)
             {
-                if (World::getWorld() && history->replayHistory())
+                const World* world = World::getWorld();
+                if (world && history->replayHistory())
                 {
-                    history->updateReplay(
+                    history_end = history->updateReplay(
                                        World::getWorld()->getTicksSinceStart());
                 }
 
@@ -641,15 +646,10 @@ void MainLoop::run()
                 }
                 PROFILER_POP_CPU_MARKER();
 
-                bool network_race_tick_active = false;
-                if (NetworkConfig::get()->isNetworking() && STKHost::existHost())
-                {
-                    const World* world = World::getWorld();
-                    network_race_tick_active = world != nullptr &&
-                        world->isActiveRacePhaseIncludingPause();
-                }
-                input_manager->updateAutoInput(network_race_tick_active);
-                input_manager->updateAutoAccel(network_race_tick_active);
+                world = World::getWorld();
+                bool race_tick_active = world != nullptr && world->isActiveRacePhaseIncludingPause();
+                input_manager->updateAutoInput(race_tick_active);
+                input_manager->updateAutoAccel(race_tick_active);
 
                 PROFILER_PUSH_CPU_MARKER("Race simulation", 0, 255, 255);
                 if (World::getWorld())
@@ -658,6 +658,13 @@ void MainLoop::run()
                 }
                 PROFILER_POP_CPU_MARKER();
 
+                if (history_end)
+                {
+                    LinearWorld* linear_world =
+                        dynamic_cast<LinearWorld*>(World::getWorld());
+                    if (linear_world)
+                        linear_world->finishQuadLog();
+                }
                 // We need to check again because update_race may have requested
                 // the main loop to abort; and it's not a good idea to continue
                 // since the GUI engine is no more to be called then.
@@ -684,19 +691,28 @@ void MainLoop::run()
                         break;
                     }
                     World::getWorld()->updateTime(1);
+                    if (World::getWorld() &&
+                        World::getWorld()->getPhase() ==
+                            WorldStatus::RESULT_DISPLAY_PHASE)
+                    {
+                        LinearWorld* linear_world =
+                            dynamic_cast<LinearWorld*>(World::getWorld());
+                        if (linear_world)
+                            linear_world->finishQuadLog();
+                    }
                 }
             }   // for i < num_steps
 
-            bool network_race_active = false;
+            const World* world = World::getWorld();
+            bool race_active = world != nullptr &&
+                world->isActiveRacePhaseIncludingPause() &&
+                (!history_end);
             if (NetworkConfig::get()->isNetworking() && STKHost::existHost())
             {
-                const World* world = World::getWorld();
-                network_race_active = world != nullptr &&
-                    world->isActiveRacePhaseIncludingPause();
-                STKHost::get()->updateRTTLogging(network_race_active);
-                STKHost::get()->updateDiscrepancyLogging(network_race_active);
+                STKHost::get()->updateRTTLogging(race_active);
+                STKHost::get()->updateDiscrepancyLogging(race_active);
             }
-            profiler.updateProfileLog(network_race_active);
+            profiler.updateProfileLog(race_active);
 
             // Do it after all pending rewinding is done
             if (World::getWorld() && RewindManager::isEnabled())
