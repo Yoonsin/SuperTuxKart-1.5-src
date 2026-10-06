@@ -719,6 +719,7 @@ void MainLoop::run()
             if (NetworkConfig::get()->isNetworking() && STKHost::existHost())
             {
                 STKHost::get()->updateRTTLogging(race_active);
+                STKHost::get()->updateDiscrepancyLogging(race_active);
             }
             profiler.updateProfileLog(race_active);
 

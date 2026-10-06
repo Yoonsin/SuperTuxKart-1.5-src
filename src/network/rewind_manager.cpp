@@ -26,6 +26,7 @@
 #include "network/rewinder.hpp"
 #include "network/rewind_info.hpp"
 #include "network/smooth_network_body.hpp"
+#include "network/stk_host.hpp"
 #include "physics/physics.hpp"
 #include "race/history.hpp"
 #include "tracks/check_manager.hpp"
@@ -314,6 +315,11 @@ void RewindManager::rewindTo(int rewind_ticks, int now_ticks,
     // This will go back till the first confirmed state is found before
     // the specified rewind ticks.
     int exact_rewind_ticks = m_rewind_queue.undoUntil(rewind_ticks);
+
+    if (STKHost::isDiscrepancyLoggingEnabled() && STKHost::existHost())
+    {
+        STKHost::get()->recordRollback(now_ticks, exact_rewind_ticks);
+    }
 
     // Rewind the required state(s)
     // ----------------------------
