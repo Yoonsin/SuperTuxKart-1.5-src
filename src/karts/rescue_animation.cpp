@@ -27,6 +27,7 @@
 #include "modes/three_strikes_battle.hpp"
 #include "network/network_string.hpp"
 #include "mini_glm.hpp"
+#include "utils/latency_tests.hpp"
 
 #include <IAnimatedMeshSceneNode.h>
 
@@ -51,6 +52,9 @@ RescueAnimation* RescueAnimation::create(AbstractKart* kart,
 RescueAnimation::RescueAnimation(AbstractKart* kart, bool is_auto_rescue)
                : AbstractKartAnimation(kart, "RescueAnimation")
 {
+    // [fall-test] T1 of rescue_us
+    if (FallTestLogger::isActive())
+        FallTestLogger::onRescueBegin(kart);
     m_referee = NULL;
     btTransform prev_trans = kart->getTrans();
     // Get the required final physical transform for network, then reset back
@@ -102,6 +106,9 @@ RescueAnimation::RescueAnimation(AbstractKart* kart, bool is_auto_rescue)
     if (RaceManager::get()->getMinorMode() ==
         RaceManager::MINOR_MODE_CAPTURE_THE_FLAG)
         resetPowerUp();
+    // [fall-test] T2 of rescue_us
+    if (FallTestLogger::isActive())
+        FallTestLogger::onRescueEnd();
 }   // RescueAnimation
 
 //-----------------------------------------------------------------------------

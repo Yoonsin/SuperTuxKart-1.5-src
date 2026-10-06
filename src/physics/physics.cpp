@@ -37,6 +37,7 @@
 #include "physics/irr_debug_drawer.hpp"
 #include "physics/physical_object.hpp"
 #include "physics/stk_dynamics_world.hpp"
+#include "utils/latency_tests.hpp"   // [fall-test]
 #include "physics/triangle_mesh.hpp"
 #include "race/race_manager.hpp"
 #include "scriptengine/script_engine.hpp"
@@ -267,6 +268,8 @@ void Physics::update(int ticks)
             if (obj->isCrashReset())
             {
                 RescueAnimation::create(kart);
+                if (FallTestLogger::isActive())
+                    FallTestLogger::onRescueStart(kart);   // [fall-test] T1
             }
             else if (obj->isExplodeKartObject())
             {
@@ -304,6 +307,8 @@ void Physics::update(int ticks)
             {
                 AbstractKart *kart = p->getUserPointer(1)->getPointerKart();
                 RescueAnimation::create(kart);
+                if (FallTestLogger::isActive())
+                    FallTestLogger::onRescueStart(kart);   // [fall-test] T1
             }
             else if (anim->isExplodeKartObject())
             {

@@ -1,0 +1,228 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="로컬 레이턴시 테스트 1~4 (압축)" id="latency-tests-compact">
+    <mxGraphModel dx="1907" dy="2153" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="flag" parent="1" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=40;fillColor=#B3B3B3;" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;0. 플래그 읽기&lt;/font&gt;" vertex="1">
+          <mxGeometry height="830" width="820" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" parent="flag" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#000000;" value="실행 인수 확인&lt;br&gt;handleCmdLine()  (main.cpp)&lt;br&gt;XxxLogger::enable()" vertex="1">
+          <mxGeometry height="120" width="300" x="100" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" parent="flag" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" value="--xxx-test&lt;br&gt;플래그가 있나?" vertex="1">
+          <mxGeometry height="120" width="230" x="135" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" parent="flag" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;" value="테스트 켜기 (m_enabled = true)&lt;br&gt;XxxLogger::enable(dir)&lt;br&gt;(latency_tests.hpp)" vertex="1">
+          <mxGeometry height="100" width="300" x="100" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="f4" parent="flag" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#000000;" value="게임 루프&lt;br&gt;MainLoop::run()  (main_loop.cpp)&lt;br&gt;XxxLogger::onTick() / onFrame()" vertex="1">
+          <mxGeometry height="120" width="300" x="100" y="545" as="geometry" />
+        </mxCell>
+        <mxCell id="f1-f2" edge="1" parent="flag" source="f1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="f2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2-f3" edge="1" parent="flag" source="f2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="f3" value="예">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3-f4" edge="1" parent="flag" source="f3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="f4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2n" parent="flag" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;" value="테스트 꺼짐&lt;br&gt;(원래 게임과 동일)" vertex="1">
+          <mxGeometry height="100" width="250" x="505" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="f2-f2n" edge="1" parent="flag" source="f2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="f2n" value="아니오">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2n-f4" edge="1" parent="flag" source="f2n" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="f4" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="605" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lg3" parent="flag" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;fillColor=#FFF2CC;strokeColor=#D6B656;" value="노란색 = 측정하는 곳" vertex="1">
+          <mxGeometry height="60" width="250" x="20" y="690" as="geometry" />
+        </mxCell>
+
+        <mxCell id="item" parent="1" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=40;fillColor=#B3B3B3;" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;1. Item Test (--item-test)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="1350" width="820" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="i1" parent="item" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;" value="레이스 시작, 기록 초기화&lt;br&gt;ItemLatencyLogger::onFrame()" vertex="1">
+          <mxGeometry height="100" width="300" x="100" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="i2" parent="item" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#000000;" value="아이템 상자 획득 → 볼링공 지급&lt;br&gt;Kart::collectedItem() → Powerup::hitBonusBox()&lt;br&gt;(kart.cpp, powerup.cpp)&lt;br&gt;ItemLatencyLogger::shouldForceBowling()" vertex="1">
+          <mxGeometry height="130" width="300" x="100" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="i3" parent="item" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;fillColor=#FFF2CC;strokeColor=#D6B656;" value="[측정 시작] 1초 뒤 발사 → Powerup::use() 시작&lt;br&gt;itemTestFire()→onFireInput() / onUseStart()&lt;br&gt;(skidding_ai.cpp, powerup.cpp)" vertex="1">
+          <mxGeometry height="130" width="300" x="100" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="i4" parent="item" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" value="1초 안에&lt;br&gt;볼링공 생성?&lt;br&gt;(아니오=timeout)" vertex="1">
+          <mxGeometry height="120" width="230" x="135" y="565" as="geometry" />
+        </mxCell>
+        <mxCell id="i5" parent="item" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;fillColor=#FFF2CC;strokeColor=#D6B656;" value="[측정 끝] 볼링공 생성 / Powerup::use() 끝&lt;br&gt;onProjectileCreated() / onUseEnd()&lt;br&gt;→ delta_ticks, local_ticks, use_duration_us" vertex="1">
+          <mxGeometry height="130" width="300" x="100" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="i6" parent="item" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" value="레이스 종료?" vertex="1">
+          <mxGeometry height="120" width="230" x="135" y="905" as="geometry" />
+        </mxCell>
+        <mxCell id="i7" parent="item" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;" value="CSV 저장 item_latency_*.csv" vertex="1">
+          <mxGeometry height="100" width="300" x="100" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="i8" parent="item" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" value="종료" vertex="1">
+          <mxGeometry height="60" width="100" x="200" y="1215" as="geometry" />
+        </mxCell>
+        <mxCell id="i1-i2" edge="1" parent="item" source="i1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="i2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i2-i3" edge="1" parent="item" source="i2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="i3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i3-i4" edge="1" parent="item" source="i3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="i4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i4-i5" edge="1" parent="item" source="i4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="i5" value="예 / 아니오"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i5-i6" edge="1" parent="item" source="i5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="i6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i6-i7" edge="1" parent="item" source="i6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="i7" value="예"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i7-i8" edge="1" parent="item" source="i7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="i8"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="i6-i2L" edge="1" parent="item" source="i6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="i2" value="아니오">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="40" y="965" /><mxPoint x="40" y="280" /></Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="wall" parent="1" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=40;fillColor=#B3B3B3;" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;2. Wall Test (--wall-test)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="1680" width="820" x="880" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="w1" parent="wall" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;" value="레이스 시작, 기록 초기화&lt;br&gt;WallCrashLogger::onFrame()" vertex="1">
+          <mxGeometry height="100" width="300" x="100" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="w2" parent="wall" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#000000;" value="자동 가속 중 벽 충돌&lt;br&gt;Kart::update()→onSpeedUpdate() /&lt;br&gt;Physics::solveGroup()→Kart::crashed()&lt;br&gt;(kart.cpp, physics.cpp)" vertex="1">
+          <mxGeometry height="130" width="300" x="100" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="w3" parent="wall" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;" value="측정할&lt;br&gt;충돌인가?" vertex="1">
+          <mxGeometry height="120" width="230" x="135" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="w4" parent="wall" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;fillColor=#FFF2CC;strokeColor=#D6B656;" value="[측정] Kart::crashed() 처리시간&lt;br&gt;onCrash() / onCrashEnd()&lt;br&gt;→ crash_us" vertex="1">
+          <mxGeometry height="120" width="300" x="100" y="565" as="geometry" />
+        </mxCell>
+        <mxCell id="w5" parent="wall" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#000000;" value="후진 후 재가속, 속도 회복 대기&lt;br&gt;onSpeedUpdate()→Controller::action(PA_BRAKE/PA_ACCEL)&lt;br&gt;(player_controller.cpp)" vertex="1">
+          <mxGeometry height="130" width="300" x="100" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="w6" parent="wall" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" value="80% 속도&lt;br&gt;회복?&lt;br&gt;(아니오=timeout/reset)" vertex="1">
+          <mxGeometry height="120" width="230" x="135" y="905" as="geometry" />
+        </mxCell>
+        <mxCell id="w7" parent="wall" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;" value="recovery_ticks, local_ticks 기록 → 리셋&lt;br&gt;WallCrashLogger::onTick()→Kart::reset()" vertex="1">
+          <mxGeometry height="120" width="300" x="100" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="w8" parent="wall" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" value="레이스 종료?" vertex="1">
+          <mxGeometry height="120" width="230" x="135" y="1235" as="geometry" />
+        </mxCell>
+        <mxCell id="w9" parent="wall" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;" value="CSV 저장 wall_recovery_*.csv" vertex="1">
+          <mxGeometry height="100" width="300" x="100" y="1400" as="geometry" />
+        </mxCell>
+        <mxCell id="w10" parent="wall" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" value="종료" vertex="1">
+          <mxGeometry height="60" width="100" x="200" y="1545" as="geometry" />
+        </mxCell>
+        <mxCell id="w1-w2" edge="1" parent="wall" source="w1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="w2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="w2-w3" edge="1" parent="wall" source="w2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="w3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="w3-w4" edge="1" parent="wall" source="w3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="w4" value="예"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="w3-w2L" edge="1" parent="wall" source="w3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="w2" value="아니오(무시)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="630" y="450" /><mxPoint x="630" y="280" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w4-w5" edge="1" parent="wall" source="w4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="w5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="w5-w6" edge="1" parent="wall" source="w5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="w6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="w6-w7" edge="1" parent="wall" source="w6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="w7" value="예 / 아니오"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="w7-w8" edge="1" parent="wall" source="w7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="w8"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="w8-w9" edge="1" parent="wall" source="w8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="w9" value="예"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="w9-w10" edge="1" parent="wall" source="w9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="w10"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="w8-w2L" edge="1" parent="wall" source="w8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="w2" value="아니오">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="40" y="1295" /><mxPoint x="40" y="280" /></Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="fall" parent="1" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=40;fillColor=#B3B3B3;" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;3. Fall Test (--fall-test)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="1200" width="820" x="1760" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" parent="fall" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;" value="레이스 시작, 기록 초기화&lt;br&gt;FallTestLogger::onFrame()" vertex="1">
+          <mxGeometry height="100" width="300" x="100" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" parent="fall" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#000000;" value="자동 주행 중 트랙 이탈&lt;br&gt;Kart::update()→RescueAnimation::create()&lt;br&gt;(kart.cpp)" vertex="1">
+          <mxGeometry height="130" width="300" x="100" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" parent="fall" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;fillColor=#FFF2CC;strokeColor=#D6B656;" value="[측정] RescueAnimation 생성자 처리시간 +&lt;br&gt;리스폰 시작 기록&lt;br&gt;onRescueBegin()/onRescueEnd() / onRescueStart()&lt;br&gt;(rescue_animation.cpp, kart.cpp) → rescue_us" vertex="1">
+          <mxGeometry height="130" width="300" x="100" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" parent="fall" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" value="리스폰&lt;br&gt;끝났나?&lt;br&gt;(아니오=timeout)" vertex="1">
+          <mxGeometry height="120" width="230" x="135" y="565" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" parent="fall" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" value="10m&lt;br&gt;주행?&lt;br&gt;(아니오=no_drive)" vertex="1">
+          <mxGeometry height="120" width="230" x="135" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="r6" parent="fall" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;" value="CSV 저장 fall_respawn_*.csv&lt;br&gt;→ respawn_ticks, local_ticks, rescue_us&lt;br&gt;게임 종료 (1회 측정)" vertex="1">
+          <mxGeometry height="130" width="300" x="100" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="r7" parent="fall" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" value="종료" vertex="1">
+          <mxGeometry height="60" width="100" x="200" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="r1-r2" edge="1" parent="fall" source="r1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="r2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="r2-r3" edge="1" parent="fall" source="r2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="r3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="r3-r4" edge="1" parent="fall" source="r3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="r4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="r4-r5" edge="1" parent="fall" source="r4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="r5" value="예"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="r4-r6" edge="1" parent="fall" source="r4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.2;entryDx=0;entryDy=0;" target="r6" value="아니오(timeout)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="505" y="625" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r5-r6" edge="1" parent="fall" source="r5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="r6" value="예 / 아니오(no_drive)"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="r6-r7" edge="1" parent="fall" source="r6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="r7"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="banana" parent="1" style="swimlane;whiteSpace=wrap;html=1;swimlaneFillColor=default;startSize=40;fillColor=#B3B3B3;" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;4. Banana Test (--banana-test)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="1500" width="820" x="2640" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" parent="banana" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;" value="레이스 시작, 기록 초기화&lt;br&gt;BananaTestLogger::onFrame()" vertex="1">
+          <mxGeometry height="100" width="300" x="100" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" parent="banana" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;fillColor=#FFFFFF;strokeColor=#000000;" value="AI가 상자는 피하고 바나나를 밟음&lt;br&gt;SkiddingAI::evaluateItems()→Kart::collectedItem()&lt;br&gt;→onBananaHit() (skidding_ai.cpp, kart.cpp)" vertex="1">
+          <mxGeometry height="130" width="300" x="100" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" parent="banana" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;" value="측정 가능한&lt;br&gt;상태인가?" vertex="1">
+          <mxGeometry height="120" width="230" x="135" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" parent="banana" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;fillColor=#FFF2CC;strokeColor=#D6B656;" value="[측정] 낙하산 부착 처리시간&lt;br&gt;Attachment::set()  (onBananaHit() 내부, kart.cpp)&lt;br&gt;→ apply_us" vertex="1">
+          <mxGeometry height="120" width="300" x="100" y="565" as="geometry" />
+        </mxCell>
+        <mxCell id="b5" parent="banana" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" value="낙하산이&lt;br&gt;떨어졌나?&lt;br&gt;(아니오=timeout)" vertex="1">
+          <mxGeometry height="120" width="230" x="135" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="b6" parent="banana" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;" value="react_ticks, local_ticks 기록 → 리셋&lt;br&gt;BananaTestLogger::onTick()→Kart::reset()" vertex="1">
+          <mxGeometry height="120" width="300" x="100" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="b7" parent="banana" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.decision;whiteSpace=wrap;" value="레이스 종료?" vertex="1">
+          <mxGeometry height="120" width="230" x="135" y="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="b8" parent="banana" style="strokeWidth=2;html=1;shape=label;whiteSpace=wrap;rounded=1;absoluteArcSize=1;arcSize=14;" value="CSV 저장 banana_debuff_*.csv" vertex="1">
+          <mxGeometry height="100" width="300" x="100" y="1225" as="geometry" />
+        </mxCell>
+        <mxCell id="b9" parent="banana" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" value="종료" vertex="1">
+          <mxGeometry height="60" width="100" x="200" y="1370" as="geometry" />
+        </mxCell>
+        <mxCell id="b1-b2" edge="1" parent="banana" source="b1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="b2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="b2-b3" edge="1" parent="banana" source="b2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="b3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="b3-b4" edge="1" parent="banana" source="b3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="b4" value="예"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="b3-b2L" edge="1" parent="banana" source="b3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="b2" value="아니오(무시)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="630" y="450" /><mxPoint x="630" y="280" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="b4-b5" edge="1" parent="banana" source="b4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="b5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="b5-b6" edge="1" parent="banana" source="b5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="b6" value="예 / 아니오(timeout)"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="b6-b7" edge="1" parent="banana" source="b6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="b7"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="b7-b8" edge="1" parent="banana" source="b7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="b8" value="예"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="b8-b9" edge="1" parent="banana" source="b8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="b9"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="b7-b2L" edge="1" parent="banana" source="b7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="b2" value="아니오">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="40" y="1120" /><mxPoint x="40" y="280" /></Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1626,6 +1626,8 @@ void Kart::update(int ticks)
             fabs(getSpeed()) < 3.0f)
         {
             RescueAnimation::create(this, /*is_auto_rescue*/true);
+            if (FallTestLogger::isActive())
+                FallTestLogger::onRescueStart(this);   // [fall-test] T1
             m_last_factor_engine_sound = 0.0f;
         }
     }
@@ -1717,6 +1719,8 @@ void Kart::update(int ticks)
            !has_animation_before)
         {
             RescueAnimation::create(this);
+            if (FallTestLogger::isActive())
+                FallTestLogger::onRescueStart(this);   // [fall-test] T1
             m_last_factor_engine_sound = 0.0f;
         }
     }
@@ -1725,6 +1729,8 @@ void Kart::update(int ticks)
         if (!has_animation_before && material->isDriveReset() && isOnGround())
         {
             RescueAnimation::create(this);
+            if (FallTestLogger::isActive())
+                FallTestLogger::onRescueStart(this);   // [fall-test] T1
             m_last_factor_engine_sound = 0.0f;
         }
         else if(material->isZipper()     && isOnGround())
@@ -2462,6 +2468,8 @@ void Kart::crashed(const Material *m, const Vec3 &normal)
         if (m->getCollisionReaction() == Material::RESCUE)
         {
             RescueAnimation::create(this);
+            if (FallTestLogger::isActive())
+                FallTestLogger::onRescueStart(this);   // [fall-test] T1
             m_last_factor_engine_sound = 0.0f;
         }
         else if (m->getCollisionReaction() == Material::PUSH_BACK)
@@ -2478,6 +2486,9 @@ void Kart::crashed(const Material *m, const Vec3 &normal)
     }   // if(m && m->getCollisionReaction() != Material::NORMAL &&
         //   !getKartAnimation())
     m_controller->crashed(m);
+    // [wall-test] T2 of crash_us
+    if (WallCrashLogger::isActive())
+        WallCrashLogger::onCrashEnd();
 }   // crashed(Material)
 
 // -----------------------------------------------------------------------------

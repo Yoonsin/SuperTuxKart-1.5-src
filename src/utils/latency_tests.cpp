@@ -22,7 +22,6 @@
 #include "utils/profiler.hpp"
 #include "utils/time.hpp"
 
-#include <algorithm>
 #include <cmath>
 #include <ctime>
 #include <fstream>
@@ -43,6 +42,15 @@ namespace
     const float MAX_SPEED_TOLERANCE = 0.995f;
 
     int  tick()  { return World::getWorld()->getTicksSinceStart(); }
+
+    /** Tick shown by the next rendered frame. Called from onFrame(), i.e.
+     *  after all physics ticks of this frame: main_loop renders the state of
+     *  this tick at the start of the next frame. -1: no world.
+     *  local_ticks = this - start tick: the event span plus the ticks that
+     *  wait in the same frame batch before they are drawn. The batch size
+     *  depends on the frame rate, so local_ticks differs between platforms
+     *  while the physics (all other *_ticks) stay the same. */
+    int  frameTick() { return World::getWorld() ? tick() : -1; }
     double ms()  { return getTimeMilliseconds(); }
 
     /** Local player kart in an active, not rewinding race. */
@@ -74,7 +82,6 @@ namespace
             return;
         }
         out << header << "\n" << rows;
-        Log::info("LatencyTest", "Saved '%s'", path.c_str());
     }
 
     /** Clears the rows of a race, 3 decimals for floating point values. */
@@ -88,392 +95,393 @@ namespace
 // ============================================================================
 // --item-test: fire input (T1) -> bowling ball launch (T2), and the
 // processing time of Powerup::use().
-namespace
-{
-namespace item
-{
-    struct Event
-    {
-        int    id = 0, input_tick = -1, launch_tick = -1;
-        double input_ms = 0.0, launch_ms = 0.0, use_us = -1.0;
-        std::string status;
-    };
-    std::vector<Event> g_events;
-    Event              g_cur;
-    AbstractKart*      g_kart      = NULL;   // NULL: not waiting for T2
-    int                g_wait      = 0;
-    double             g_use_start = -1.0;
-    bool               g_race      = false;
+std::vector<ItemLatencyLogger::Event> ItemLatencyLogger::m_events;
+ItemLatencyLogger::Event              ItemLatencyLogger::m_cur;
+AbstractKart*                         ItemLatencyLogger::m_kart      = NULL;
+int                                   ItemLatencyLogger::m_wait      = 0;
+double                                ItemLatencyLogger::m_use_start = -1.0;
+bool                                  ItemLatencyLogger::m_race      = false;
 
-    /** Local player (fires by hand) or AI kart (fires in skidding_ai.cpp). */
-    bool isTarget(const AbstractKart* kart)
-    {
-        const Controller* c = kart ? kart->getController() : NULL;
-        return c && (c->isLocalPlayerController() || !c->isPlayerController());
-    }
+/** Local player (fires by hand) or AI kart (fires in skidding_ai.cpp). */
+bool ItemLatencyLogger::isTarget(const AbstractKart* kart)
+{
+    const Controller* c = kart ? kart->getController() : NULL;
+    return c && (c->isLocalPlayerController() || !c->isPlayerController());
+}
 
-    void closeEvent(const char* status, bool keep = false)
-    {
-        g_cur.status = status;
-        g_events.push_back(g_cur);
-        if (!keep) g_cur = Event();
-        g_kart = NULL;
-        g_wait = 0;
-    }
-}   // namespace item
-}   // namespace
+void ItemLatencyLogger::closeEvent(const char* status, bool keep)
+{
+    m_cur.status = status;
+    m_events.push_back(m_cur);
+    if (!keep) m_cur = Event();
+    m_kart = NULL;
+    m_wait = 0;
+}
 
 bool ItemLatencyLogger::shouldForceBowling(const AbstractKart* kart)
 {
-    return m_enabled && item::isTarget(kart);
+    return m_enabled && isTarget(kart);
 }
 
 void ItemLatencyLogger::onFireInput(AbstractKart* kart)
 {
-    using namespace item;
-    if (g_kart || !isTarget(kart) ||
+    if (m_kart || !isTarget(kart) ||
         kart->getPowerup()->getType() != PowerupManager::POWERUP_BOWLING)
         return;
-    g_cur            = Event();
-    g_cur.id         = (int)g_events.size() + 1;
-    g_cur.input_tick = tick();
-    g_cur.input_ms   = ms();
-    g_kart           = kart;
-    g_wait           = 0;
+    m_cur            = Event();
+    m_cur.id         = (int)m_events.size() + 1;
+    m_cur.input_tick = tick();
+    m_kart           = kart;
+    m_wait           = 0;
 }
 
 void ItemLatencyLogger::onProjectileCreated(AbstractKart* kart,
                                             PowerupManager::PowerupType type)
 {
-    using namespace item;
-    if (!g_kart || kart != g_kart || type != PowerupManager::POWERUP_BOWLING)
+    if (!m_kart || kart != m_kart || type != PowerupManager::POWERUP_BOWLING)
         return;
-    g_cur.launch_tick = tick();
-    g_cur.launch_ms   = ms();
+    m_cur.launch_tick = tick();
     closeEvent("ok", /*keep for onUseEnd*/true);
 }
 
 void ItemLatencyLogger::onUseStart(const AbstractKart* kart,
                                    PowerupManager::PowerupType type)
 {
-    item::g_use_start = type == PowerupManager::POWERUP_BOWLING &&
-                        item::isTarget(kart) ? ms() : -1.0;
+    m_use_start = type == PowerupManager::POWERUP_BOWLING &&
+                  isTarget(kart) ? ms() : -1.0;
 }
 
 void ItemLatencyLogger::onUseEnd()
 {
-    using namespace item;
-    if (g_use_start >= 0.0 && !g_events.empty() &&
-        g_events.back().id == g_cur.id && g_events.back().use_us < 0.0)
-        g_events.back().use_us = (ms() - g_use_start) * 1000.0;
-    g_use_start = -1.0;
+    if (m_use_start >= 0.0 && !m_events.empty() &&
+        m_events.back().id == m_cur.id && m_events.back().use_us < 0.0)
+        m_events.back().use_us = (ms() - m_use_start) * 1000.0;
+    m_use_start = -1.0;
 }
 
 void ItemLatencyLogger::onTick(bool race_active)
 {
-    using namespace item;
     if (!m_enabled) return;
     if (!race_active)
     {
-        if (g_kart) closeEvent("race_end");
-        g_cur = Event();
+        if (m_kart) closeEvent("race_end");
+        m_cur = Event();
     }
-    else if (g_kart && ++g_wait > stk_config->time2Ticks(1.0f))
+    else if (m_kart && ++m_wait > stk_config->time2Ticks(1.0f))
         closeEvent("timeout");
 }
 
 void ItemLatencyLogger::onFrame(bool race_active)
 {
-    using namespace item;
-    if (!m_enabled || race_active == g_race) return;
-    g_race = race_active;
+    if (!m_enabled) return;
+    for (Event& e : m_events)
+        if (e.launch_tick >= 0 && e.shown_tick < 0) e.shown_tick = frameTick();
+    if (race_active == m_race) return;
+    m_race = race_active;
     std::ostringstream rows;
     clearRows(rows);
-    for (const Event& e : g_events)
+    for (const Event& e : m_events)
     {
         const bool ok = e.launch_tick >= 0;
-        rows << e.id << "," << e.status << ","
-             << (ok ? e.launch_tick - e.input_tick : -1) << ","
-             << (ok ? (e.launch_ms - e.input_ms) * 1000.0 : -1.0) << ","
-             << e.use_us << "\n";
+        const int delta_ticks = ok ? e.launch_tick - e.input_tick : -1;
+        rows << e.id << "," << e.status << "," << delta_ticks << ","
+             << (ok && e.shown_tick >= 0 ? e.shown_tick - e.input_tick : -1)
+             << "," << e.use_us << "\n";
     }
     if (!race_active)
         writeCsv("item_latency", m_log_dir,
-                 "event_id,status,delta_ticks,delta_us,use_duration_us",
+                 "event_id,status,delta_ticks,local_ticks,use_duration_us",
                  rows.str());
-    g_events.clear();
+    m_events.clear();
 }
 
 // ============================================================================
-// --wall-test: the distance from standstill to max speed is measured at race
-// start. After a wall crash the kart reverses that distance * 1.3 + 2 m, then
-// accelerates again: crash -> back at max speed. After every event the kart
-// is reset to its start position.
-namespace
+// --wall-test: the distance from standstill to the target speed (80% of max
+// speed) is measured at race start. After a wall crash the kart reverses that
+// distance * 1.3 + 2 m, then accelerates again: crash -> back at the target
+// speed. After every event the kart is reset to its start position.
+WallCrashLogger::State     WallCrashLogger::m_state = S_LEARN;
+AbstractKart*              WallCrashLogger::m_kart  = NULL;
+std::ostringstream         WallCrashLogger::m_rows;
+int                        WallCrashLogger::m_count = 0;
+bool                       WallCrashLogger::m_race = false, WallCrashLogger::m_reset = false,
+                           WallCrashLogger::m_start_set = false;
+float                      WallCrashLogger::m_accel_dist = -1.0f;
+Vec3                       WallCrashLogger::m_start_xyz, WallCrashLogger::m_crash_xyz,
+                           WallCrashLogger::m_last_xyz;
+int                        WallCrashLogger::m_crash_tick = -1, WallCrashLogger::m_release_tick = -1;
+float                      WallCrashLogger::m_max_speed = 0.0f, WallCrashLogger::m_back_dist = 0.0f;
+bool                       WallCrashLogger::m_fast = false;
+std::string                WallCrashLogger::m_pending;
+int                        WallCrashLogger::m_pending_start = -1;
+double                     WallCrashLogger::m_pending_crash_us = -1.0;
+double                     WallCrashLogger::m_crash_start_ms = -1.0;
+double                     WallCrashLogger::m_crash_us = -1.0;
+
+void WallCrashLogger::brake(bool on)
 {
-namespace wall
+    m_kart->getController()->action(PA_BRAKE, on ? Input::MAX_VALUE : 0);
+}
+
+bool WallCrashLogger::isMeasuring()
 {
-    enum State { S_LEARN, S_IDLE, S_CRASHED, S_BACKING, S_RECOVERING };
+    return m_state == S_CRASHED || m_state == S_BACKING ||
+           m_state == S_RECOVERING;
+}
 
-    const float BACK_FACTOR       = 1.3f;   // reverse dist = accel_dist *
-    const float BACK_MARGIN       = 2.0f;   // this + this margin
-    const float DEFAULT_BACK_DIST = 30.0f;  // used if accel_dist unknown
-    const float TIMEOUT_SECONDS   = 20.0f;  // give up an event after this
-
-    State              g_state = S_LEARN;
-    AbstractKart*      g_kart  = NULL;
-    std::ostringstream g_rows;
-    int                g_count = 0;
-    bool               g_race = false, g_reset = false, g_start_set = false;
-    float              g_accel_dist = -1.0f;
-    Vec3               g_start_xyz, g_crash_xyz, g_last_xyz;
-    int                g_crash_tick = -1, g_release_tick = -1;
-    double             g_crash_ms = 0.0, g_release_ms = 0.0;
-    float              g_speed_ratio = 0.0f, g_front_dot = 0.0f;
-    float              g_max_speed = 0.0f, g_back_dist = 0.0f;
-    bool               g_at_max = false;
-
-    void brake(bool on)
+/** recover_tick < 0: the kart did not get back to the target speed. */
+void WallCrashLogger::closeEvent(const char* status, int recover_tick)
+{
+    if (m_state == S_BACKING) brake(false);
+    const bool ok = recover_tick >= 0;
+    const int recovery_ticks = ok ? recover_tick - m_release_tick : -1;
+    std::ostringstream row;
+    clearRows(row);
+    row << ++m_count << "," << status << "," << recovery_ticks;
+    // local_ticks (release -> shown at target speed) and crash_us (this
+    // event's Kart::crashed() time) are added after, in onFrame
+    if (ok)
     {
-        g_kart->getController()->action(PA_BRAKE, on ? Input::MAX_VALUE : 0);
+        m_pending          = row.str();
+        m_pending_start    = m_release_tick;
+        m_pending_crash_us = m_crash_us;
     }
-
-    bool isMeasuring()
-    {
-        return g_state == S_CRASHED || g_state == S_BACKING ||
-               g_state == S_RECOVERING;
-    }
-
-    /** recover_tick < 0: the kart did not get back to max speed. */
-    void closeEvent(const char* status, int recover_tick = -1,
-                    double now_ms = 0.0)
-    {
-        if (g_state == S_BACKING) brake(false);
-        const bool ok = recover_tick >= 0;
-        g_rows << ++g_count << "," << status << ","
-               << (ok ? recover_tick - g_crash_tick   : -1) << ","
-               << (ok ? recover_tick - g_release_tick : -1) << ","
-               << (ok ? now_ms - g_crash_ms   : -1.0) << ","
-               << (ok ? now_ms - g_release_ms : -1.0) << ","
-               << g_speed_ratio << "," << g_front_dot << "\n";
-        g_state = S_IDLE;
-        g_reset = std::string(status) != "race_end";
-    }
-}   // namespace wall
-}   // namespace
+    else
+        m_rows << row.str() << ",-1," << m_crash_us << "\n";
+    m_state = S_IDLE;
+    m_reset = std::string(status) != "race_end";
+}
 
 void WallCrashLogger::onCrash(AbstractKart* kart, const Vec3& normal,
                               float speed_before)
 {
-    using namespace wall;
+    // T1 of crash_us, consumed by onCrashEnd(); -1 unless accepted below
+    m_crash_start_ms = -1.0;
     // Only a new crash into a wall (not floor / ceiling) while driving
     const btVector3 up = kart->getTrans().getBasis().getColumn(1);
-    if (!g_race || isMeasuring() || g_reset || !isPlayerInRace(kart) ||
+    if (!m_race || isMeasuring() || m_reset || !isPlayerInRace(kart) ||
         std::fabs(normal.dot(up)) > 0.7f || speed_before < 1.0f)
         return;
-    g_max_speed    = kart->getCurrentMaxSpeed();
-    g_crash_tick   = tick();
-    g_crash_ms     = ms();
-    g_release_tick = -1;
-    g_release_ms   = 0.0;
-    g_speed_ratio  = g_max_speed > 0.0f ? speed_before / g_max_speed : 0.0f;
-    g_front_dot    = kart->getTrans().getBasis().getColumn(2).dot(normal);
-    g_at_max       = speed_before >= g_max_speed * MAX_SPEED_TOLERANCE;
-    g_back_dist    = g_accel_dist > 0.0f
-                   ? g_accel_dist * BACK_FACTOR + BACK_MARGIN
-                   : DEFAULT_BACK_DIST;
-    g_kart         = kart;
-    g_crash_xyz    = g_last_xyz = kart->getXYZ();
-    g_state        = S_CRASHED;
+    m_max_speed      = kart->getCurrentMaxSpeed();
+    m_crash_tick     = tick();
+    m_crash_start_ms = ms();
+    m_release_tick   = -1;
+    m_fast           = speed_before >= m_max_speed * TARGET_FRACTION;
+    m_back_dist      = m_accel_dist > 0.0f
+                     ? m_accel_dist * BACK_FACTOR + BACK_MARGIN
+                     : DEFAULT_BACK_DIST;
+    m_kart           = kart;
+    m_crash_xyz      = m_last_xyz = kart->getXYZ();
+    m_state          = S_CRASHED;
+}
+
+void WallCrashLogger::onCrashEnd()
+{
+    if (m_crash_start_ms >= 0.0)
+        m_crash_us = (ms() - m_crash_start_ms) * 1000.0;
+    m_crash_start_ms = -1.0;
 }
 
 void WallCrashLogger::onSpeedUpdate(AbstractKart* kart, float speed)
 {
-    using namespace wall;
-    if (!g_race || !isPlayerInRace(kart)) return;
-    g_kart = kart;
-    if (g_reset) return;
+    if (!m_race || !isPlayerInRace(kart)) return;
+    m_kart = kart;
+    if (m_reset) return;
 
     // --auto-accel presses only once per race and the kart reset releases
     // all keys, so accelerate here (except while reversing)
-    if (g_state != S_CRASHED && g_state != S_BACKING)
+    if (m_state != S_CRASHED && m_state != S_BACKING)
         kart->getController()->action(PA_ACCEL, Input::MAX_VALUE);
 
-    if (g_state == S_LEARN)
+    if (m_state == S_LEARN)
     {
-        if (!g_start_set && speed > 0.2f)
+        if (!m_start_set && speed > 0.2f)
         {
-            g_start_xyz = kart->getXYZ();
-            g_start_set = true;
+            m_start_xyz = kart->getXYZ();
+            m_start_set = true;
         }
-        if (g_start_set &&
-            speed >= kart->getCurrentMaxSpeed() * MAX_SPEED_TOLERANCE)
+        if (m_start_set &&
+            speed >= kart->getCurrentMaxSpeed() * TARGET_FRACTION)
         {
-            g_accel_dist = (kart->getXYZ() - g_start_xyz).length();
-            g_state = S_IDLE;
-            g_reset = true;
+            m_accel_dist = (kart->getXYZ() - m_start_xyz).length();
+            m_state = S_IDLE;
+            m_reset = true;
         }
         return;
     }
-    if (g_state == S_IDLE) return;
+    if (m_state == S_IDLE) return;
 
     // A rescue teleports the kart, more than 3 m in one tick
-    if ((kart->getXYZ() - g_last_xyz).length() > 3.0f)
+    if ((kart->getXYZ() - m_last_xyz).length() > 3.0f)
         return closeEvent("reset");
-    g_last_xyz = kart->getXYZ();
+    m_last_xyz = kart->getXYZ();
 
-    if (g_state == S_CRASHED)
+    if (m_state == S_CRASHED)
     {
         brake(true);
-        g_state = S_BACKING;
+        m_state = S_BACKING;
     }
-    else if (g_state == S_BACKING)
+    else if (m_state == S_BACKING)
     {
         const bool far_enough =
-            (kart->getXYZ() - g_crash_xyz).length() >= g_back_dist;
+            (kart->getXYZ() - m_crash_xyz).length() >= m_back_dist;
         // Pressed again every tick, a key repeat of accel would cancel it
         brake(!far_enough);
         if (far_enough)
         {
-            g_release_tick = tick();
-            g_release_ms   = ms();
-            g_state        = S_RECOVERING;
+            m_release_tick = tick();
+            m_state        = S_RECOVERING;
         }
     }
-    else if (speed >= g_max_speed * MAX_SPEED_TOLERANCE)
-        return closeEvent(g_at_max ? "ok" : "not_max", tick(), ms());
-    if (tick() - g_crash_tick > stk_config->time2Ticks(TIMEOUT_SECONDS))
+    else if (speed >= m_max_speed * TARGET_FRACTION)
+        return closeEvent(m_fast ? "ok" : "slow", tick());
+    if (tick() - m_crash_tick > stk_config->time2Ticks(TIMEOUT_SECONDS))
         closeEvent("timeout");
 }
 
 /** Done before the race update of this tick, not inside Kart::update(). */
 void WallCrashLogger::onTick(bool race_active)
 {
-    using namespace wall;
-    if (!m_enabled || !race_active || !g_reset || !g_kart ||
+    if (!m_enabled || !race_active || !m_reset || !m_kart ||
         !World::getWorld()->isActiveRacePhase())
         return;
-    g_kart->reset();
-    g_kart->getController()->action(PA_ACCEL, Input::MAX_VALUE);
-    g_reset = false;
+    m_kart->reset();
+    m_kart->getController()->action(PA_ACCEL, Input::MAX_VALUE);
+    m_reset = false;
 }
 
 void WallCrashLogger::onFrame(bool race_active)
 {
-    using namespace wall;
-    if (!m_enabled || race_active == g_race) return;
-    g_race = race_active;
+    if (!m_enabled) return;
+    if (!m_pending.empty())
+    {
+        const int shown = frameTick();
+        m_rows << m_pending << ","
+               << (shown >= 0 ? shown - m_pending_start : -1) << ","
+               << m_pending_crash_us << "\n";
+        m_pending.clear();
+    }
+    if (race_active == m_race) return;
+    m_race = race_active;
     if (!race_active)
     {
         if (isMeasuring()) closeEvent("race_end");
-        writeCsv("wall_recovery", m_log_dir, "event_id,status,total_ticks,"
-                 "recovery_ticks,total_ms,recovery_ms,speed_ratio,front_dot",
-                 g_rows.str());
+        writeCsv("wall_recovery", m_log_dir,
+                 "event_id,status,recovery_ticks,local_ticks,crash_us",
+                 m_rows.str());
     }
-    clearRows(g_rows);
-    g_count      = 0;
-    g_state      = S_LEARN;
-    g_kart       = NULL;
-    g_start_set  = g_reset = false;
-    g_accel_dist = -1.0f;
+    clearRows(m_rows);
+    m_count      = 0;
+    m_state      = S_LEARN;
+    m_kart       = NULL;
+    m_start_set  = m_reset = false;
+    m_accel_dist = -1.0f;
+    m_crash_start_ms = m_crash_us = m_pending_crash_us = -1.0;
 }
 
 // ============================================================================
 // --fall-test: the first rescue of a race, track exit -> rescue animation
 // over. The kart then drives on 10 m, the result is saved and the game quits.
-namespace
+FallTestLogger::State FallTestLogger::m_state = S_DRIVING;
+bool                  FallTestLogger::m_race  = false;
+Vec3                  FallTestLogger::m_respawn_xyz;
+int                   FallTestLogger::m_start_tick = -1, FallTestLogger::m_respawn_ticks = -1,
+                      FallTestLogger::m_shown_tick = -1;
+double                FallTestLogger::m_rescue_start_ms = -1.0, FallTestLogger::m_rescue_us = -1.0;
+
+void FallTestLogger::save(const std::string& dir, const char* status, bool quit)
 {
-namespace fall
+    std::ostringstream row;
+    clearRows(row);
+    row << status << "," << m_respawn_ticks << ","
+        << (m_shown_tick >= 0 ? m_shown_tick - m_start_tick : -1) << ","
+        << m_rescue_us << "\n";
+    writeCsv("fall_respawn", dir, "status,respawn_ticks,local_ticks,rescue_us",
+             row.str());
+    m_state = S_DONE;
+    if (quit) main_loop->requestAbort();
+}
+
+// T1, called directly from the RescueAnimation::create() call sites
+// (kart.cpp, physics.cpp, player_controller.cpp) instead of being inferred
+// a tick later by polling getKartAnimation() in onKartUpdate.
+void FallTestLogger::onRescueStart(AbstractKart* kart)
 {
-    enum State { S_DRIVING, S_RESCUING, S_DRIVING_ON, S_DONE };
+    if (!m_race || m_state != S_DRIVING || !isPlayerInRace(kart)) return;
+    m_start_tick = tick();
+    m_state      = S_RESCUING;
+}
 
-    const float TIMEOUT_SECONDS       = 10.0f; // give up if respawn too slow
-    const float DRIVE_DISTANCE        = 10.0f; // drive this far before saving
-    const float DRIVE_TIMEOUT_SECONDS = 10.0f; // give up driving on
+// T1/T2 of rescue_us, around the RescueAnimation(kart, bool) constructor
+// body. Only the target kart's first (measured) rescue of the race counts;
+// other RescueAnimation constructions (AI karts, a later rescue) leave
+// m_rescue_us untouched since m_rescue_start_ms stays < 0 for them.
+void FallTestLogger::onRescueBegin(AbstractKart* kart)
+{
+    m_rescue_start_ms = (m_race && m_state == S_DRIVING && isPlayerInRace(kart))
+                       ? ms() : -1.0;
+}
 
-    State  g_state = S_DRIVING;
-    bool   g_race  = false;
-    float  g_last_speed = 0.0f, g_speed_before = 0.0f;
-    Vec3   g_last_xyz, g_fall_xyz, g_respawn_xyz;
-    int    g_start_tick = -1, g_respawn_ticks = -1;
-    double g_start_ms = 0.0, g_respawn_ms = -1.0;
-
-    void save(const std::string& dir, const char* status, bool quit)
-    {
-        std::ostringstream row;
-        clearRows(row);
-        row << status << "," << g_respawn_ticks << "," << g_respawn_ms << ","
-            << g_speed_before << "," << g_fall_xyz.getX() << ","
-            << g_fall_xyz.getZ() << "\n";
-        writeCsv("fall_respawn", dir, "status,respawn_ticks,respawn_ms,"
-                 "speed_before,fall_x,fall_z", row.str());
-        g_state = S_DONE;
-        if (quit) main_loop->requestAbort();
-    }
-}   // namespace fall
-}   // namespace
+void FallTestLogger::onRescueEnd()
+{
+    if (m_rescue_start_ms >= 0.0)
+        m_rescue_us = (ms() - m_rescue_start_ms) * 1000.0;
+    m_rescue_start_ms = -1.0;
+}
 
 void FallTestLogger::onKartUpdate(AbstractKart* kart, float speed)
 {
-    using namespace fall;
-    if (!g_race || g_state == S_DONE || !isPlayerInRace(kart)) return;
+    if (!m_race || m_state == S_DONE || !isPlayerInRace(kart)) return;
 
     const bool rescuing =
         dynamic_cast<RescueAnimation*>(kart->getKartAnimation()) != NULL;
     if (!rescuing)
         kart->getController()->action(PA_ACCEL, Input::MAX_VALUE);
 
-    if (g_state == S_DRIVING && !rescuing)
+    if (m_state == S_DRIVING && !rescuing) return;
+
+    if (m_state == S_DRIVING && rescuing)
     {
-        if (!kart->getKartAnimation())
-        {
-            g_last_speed = speed;
-            g_last_xyz   = kart->getXYZ();
-        }
+        m_start_tick = tick();
+        m_state      = S_RESCUING;
     }
-    else if (g_state == S_DRIVING)
+    else if (m_state == S_RESCUING && !rescuing)
     {
-        g_start_tick   = tick();
-        g_start_ms     = ms();
-        g_speed_before = g_last_speed;
-        g_fall_xyz     = g_last_xyz;
-        g_state        = S_RESCUING;
+        m_respawn_ticks = tick() - m_start_tick;
+        m_respawn_xyz   = kart->getXYZ();
+        m_state         = S_DRIVING_ON;
     }
-    else if (g_state == S_RESCUING && !rescuing)
+    else if (m_state == S_RESCUING)
     {
-        g_respawn_ticks = tick() - g_start_tick;
-        g_respawn_ms    = ms() - g_start_ms;
-        g_respawn_xyz   = kart->getXYZ();
-        g_state         = S_DRIVING_ON;
-    }
-    else if (g_state == S_RESCUING)
-    {
-        if (tick() - g_start_tick > stk_config->time2Ticks(TIMEOUT_SECONDS))
+        if (tick() - m_start_tick > stk_config->time2Ticks(TIMEOUT_SECONDS))
             save(m_log_dir, "timeout", true);
     }
-    else if ((kart->getXYZ() - g_respawn_xyz).length() >= DRIVE_DISTANCE)
+    else if ((kart->getXYZ() - m_respawn_xyz).length() >= DRIVE_DISTANCE)
         save(m_log_dir, "ok", true);
-    else if (tick() - (g_start_tick + g_respawn_ticks) >
+    else if (tick() - (m_start_tick + m_respawn_ticks) >
              stk_config->time2Ticks(DRIVE_TIMEOUT_SECONDS))
         save(m_log_dir, "no_drive", true);
 }
 
 void FallTestLogger::onFrame(bool race_active)
 {
-    using namespace fall;
-    if (!m_enabled || race_active == g_race) return;
-    g_race = race_active;
+    if (!m_enabled) return;
+    // Respawn over: the next rendered frame shows the kart back on track
+    if (m_state == S_DRIVING_ON && m_shown_tick < 0)
+        m_shown_tick = frameTick();
+    if (race_active == m_race) return;
+    m_race = race_active;
     if (!race_active)
     {
-        if (g_state == S_RESCUING)   save(m_log_dir, "race_end", false);
-        if (g_state == S_DRIVING_ON) save(m_log_dir, "no_drive", false);
-        g_state = S_DONE;
+        if (m_state == S_RESCUING)   save(m_log_dir, "race_end", false);
+        if (m_state == S_DRIVING_ON) save(m_log_dir, "no_drive", false);
+        m_state = S_DONE;
         return;
     }
-    g_state         = S_DRIVING;
-    g_last_speed    = 0.0f;
-    g_start_tick    = g_respawn_ticks = -1;
-    g_respawn_ms    = -1.0;
+    m_state      = S_DRIVING;
+    m_start_tick = m_respawn_ticks = -1;
+    m_shown_tick = -1;
+    m_rescue_start_ms = m_rescue_us = -1.0;
 }
 
 // ============================================================================
@@ -481,76 +489,61 @@ void FallTestLogger::onFrame(bool race_active)
 // speed starts to drop (T2), and a check that the speed drops to 70%. After
 // every hit the kart drives on until max speed, then it is reset to its
 // start position.
-namespace
+std::vector<BananaTestLogger::Sample> BananaTestLogger::m_samples;
+std::ostringstream   BananaTestLogger::m_rows;
+int                  BananaTestLogger::m_count = 0;
+bool                 BananaTestLogger::m_race  = false;
+AbstractKart*        BananaTestLogger::m_kart  = NULL;
+AbstractKart*        BananaTestLogger::m_reset_kart = NULL, *BananaTestLogger::m_recover_kart = NULL;
+int                  BananaTestLogger::m_recover_start = -1, BananaTestLogger::m_hit_tick = -1;
+double               BananaTestLogger::m_apply_us = -1.0;
+float                BananaTestLogger::m_speed_before = 0.0f;
+std::vector<int>     BananaTestLogger::m_frame_ticks;
+
+void BananaTestLogger::closeEvent(std::string status)
 {
-namespace banana
-{
-    const float TARGET_FRACTION = 0.70f;  // "applied" speed threshold
-    const float REACT_DROP      = 0.001f; // speed drop counted as "reacting"
-    const float DISTURB_DROP    = 1.0f;   // bigger 1-tick drop = not the chute
-    const float TIMEOUT_SECONDS = 15.0f;  // give up if chute still attached
-    const float RECOVER_SECONDS = 15.0f;  // give up waiting for max speed
-
-    struct Sample { int tick; double ms; float speed; };
-
-    std::vector<Sample> g_samples;
-    std::ostringstream  g_rows;
-    int                 g_count = 0;
-    bool                g_race  = false;
-    AbstractKart*       g_kart  = NULL;   // NULL: not measuring
-    AbstractKart*       g_reset_kart = NULL, *g_recover_kart = NULL;
-    int                 g_recover_start = -1, g_hit_tick = -1;
-    double              g_hit_ms = 0.0, g_apply_us = -1.0;
-    float               g_speed_before = 0.0f;
-
-    void closeEvent(std::string status)
+    int    react_tick = -1;
+    const char* result = NULL;
+    float prev = m_speed_before;
+    for (const Sample& s : m_samples)
     {
-        float  speed_min  = g_samples.empty() ? 0.0f : g_samples[0].speed;
-        int    react_tick = -1;
-        double react_ms   = 0.0;
-        const char* result = NULL;
-        float prev = g_speed_before;
-        for (const Sample& s : g_samples)
-        {
-            speed_min = std::min(speed_min, s.speed);
-            if (react_tick < 0 && s.speed < g_speed_before - REACT_DROP)
-            {
-                react_tick = s.tick;
-                react_ms   = s.ms;
-            }
-            if (!result && prev - s.speed > DISTURB_DROP)
-                result = "disturbed";   // sudden drop: not the parachute
-            else if (!result && s.speed <= g_speed_before * TARGET_FRACTION)
-                result = "ok";
-            prev = s.speed;
-        }
-        if (status == "ok" && !g_samples.empty())
-            status = result ? result : "not_reached";
-        const bool ok = status == "ok" && react_tick >= 0;
-        g_rows << ++g_count << "," << status << ","
-               << (ok ? react_tick - g_hit_tick : -1) << ","
-               << (ok ? (react_ms - g_hit_ms) * 1000.0 : -1.0) << ","
-               << g_apply_us << "," << g_speed_before << "," << speed_min
-               << "\n";
-        g_samples.clear();
-        if (status != "race_end")
-        {
-            g_recover_kart  = g_kart;
-            g_recover_start = tick();
-        }
-        g_kart = NULL;
+        if (react_tick < 0 && s.speed < m_speed_before - REACT_DROP)
+            react_tick = s.tick;
+        if (!result && prev - s.speed > DISTURB_DROP)
+            result = "disturbed";   // sudden drop: not the parachute
+        else if (!result && s.speed <= m_speed_before * TARGET_FRACTION)
+            result = "ok";
+        prev = s.speed;
     }
-}   // namespace banana
-}   // namespace
+    if (status == "ok" && !m_samples.empty())
+        status = result ? result : "not_reached";
+    const bool ok = status == "ok" && react_tick >= 0;
+    const int react_ticks = ok ? react_tick - m_hit_tick : -1;
+    // First frame that draws the react tick
+    int shown = -1;
+    for (int f : m_frame_ticks)
+        if (f > react_tick) { shown = f; break; }
+    m_rows << ++m_count << "," << status << ","
+           << react_ticks << ","
+           << (ok && shown >= 0 ? shown - m_hit_tick : -1) << ","
+           << m_apply_us << "\n";
+    m_samples.clear();
+    m_frame_ticks.clear();
+    if (status != "race_end")
+    {
+        m_recover_kart  = m_kart;
+        m_recover_start = tick();
+    }
+    m_kart = NULL;
+}
 
 bool BananaTestLogger::onBananaHit(AbstractKart* kart, float speed)
 {
-    using namespace banana;
     if (!kart->getController() || kart->getController()->isPlayerController() ||
         RewindManager::get()->isRewinding())
         return false;
     // Only the first banana after a reset is measured
-    if (g_reset_kart || g_recover_kart || g_kart ||
+    if (m_reset_kart || m_recover_kart || m_kart ||
         kart->getAttachment()->getType() != Attachment::ATTACH_NOTHING)
         return true;
 
@@ -558,63 +551,64 @@ bool BananaTestLogger::onBananaHit(AbstractKart* kart, float speed)
     kart->getAttachment()->set(Attachment::ATTACH_PARACHUTE,
         stk_config->time2Ticks(kart->getKartProperties()->getParachuteDuration()));
     const double apply_us = (ms() - hit_ms) * 1000.0;
-    if (!g_race) return true;
-    g_apply_us     = apply_us;
-    g_hit_tick     = tick();
-    g_hit_ms       = hit_ms;
-    g_speed_before = speed;
-    g_kart         = kart;
-    g_samples.clear();
+    if (!m_race) return true;
+    m_apply_us     = apply_us;
+    m_hit_tick     = tick();
+    m_speed_before = speed;
+    m_kart         = kart;
+    m_samples.clear();
+    m_frame_ticks.clear();
     return true;
 }
 
 void BananaTestLogger::onKartUpdate(AbstractKart* kart, float speed)
 {
-    using namespace banana;
     if (RewindManager::get()->isRewinding()) return;
-    if (kart == g_recover_kart)
+    if (kart == m_recover_kart)
     {
         if ((kart->getAttachment()->getType() == Attachment::ATTACH_NOTHING &&
              speed >= kart->getCurrentMaxSpeed() * MAX_SPEED_TOLERANCE) ||
-            tick() - g_recover_start > stk_config->time2Ticks(RECOVER_SECONDS))
+            tick() - m_recover_start > stk_config->time2Ticks(RECOVER_SECONDS))
         {
-            g_reset_kart   = kart;
-            g_recover_kart = NULL;
+            m_reset_kart   = kart;
+            m_recover_kart = NULL;
         }
         return;
     }
-    if (kart != g_kart) return;
+    if (kart != m_kart) return;
     if (kart->getAttachment()->getType() != Attachment::ATTACH_PARACHUTE)
         return closeEvent("ok");
-    g_samples.push_back({tick(), ms(), speed});
-    if (tick() - g_hit_tick > stk_config->time2Ticks(TIMEOUT_SECONDS))
+    m_samples.push_back({tick(), speed});
+    if (tick() - m_hit_tick > stk_config->time2Ticks(TIMEOUT_SECONDS))
         closeEvent("timeout");
 }
 
 /** Done before the race update of this tick, not inside Kart::update(). */
 void BananaTestLogger::onTick(bool race_active)
 {
-    using namespace banana;
-    if (!m_enabled || !race_active || !g_reset_kart ||
+    if (!m_enabled || !race_active || !m_reset_kart ||
         !World::getWorld()->isActiveRacePhase())
         return;
-    g_reset_kart->reset();
-    g_reset_kart = NULL;
+    m_reset_kart->reset();
+    m_reset_kart = NULL;
 }
 
 void BananaTestLogger::onFrame(bool race_active)
 {
-    using namespace banana;
-    if (!m_enabled || race_active == g_race) return;
-    g_race = race_active;
+    if (!m_enabled) return;
+    if (m_kart && frameTick() >= 0) m_frame_ticks.push_back(frameTick());
+    if (race_active == m_race) return;
+    m_race = race_active;
     if (!race_active)
     {
-        if (g_kart) closeEvent("race_end");
-        writeCsv("banana_debuff", m_log_dir, "event_id,status,react_ticks,"
-                 "react_us,apply_us,speed_before,speed_min", g_rows.str());
+        if (m_kart) closeEvent("race_end");
+        writeCsv("banana_debuff", m_log_dir,
+                 "event_id,status,react_ticks,local_ticks,apply_us",
+                 m_rows.str());
     }
-    clearRows(g_rows);
-    g_count = 0;
-    g_samples.clear();
-    g_kart = g_reset_kart = g_recover_kart = NULL;
+    clearRows(m_rows);
+    m_count = 0;
+    m_samples.clear();
+    m_frame_ticks.clear();
+    m_kart = m_reset_kart = m_recover_kart = NULL;
 }

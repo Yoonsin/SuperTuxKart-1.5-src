@@ -366,6 +366,8 @@ void PlayerController::update(int ticks)
     if ( m_controls->getRescue() && !m_kart->getKartAnimation() )
     {
         RescueAnimation::create(m_kart);
+        if (FallTestLogger::isActive())
+            FallTestLogger::onRescueStart(m_kart);   // [fall-test] T1
         m_controls->setRescue(false);
     }
 }   // update
