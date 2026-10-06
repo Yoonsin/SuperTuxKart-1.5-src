@@ -439,6 +439,7 @@ void Kart::reset()
     applyEngineForce (0.0f);
 
     AbstractKart::reset();
+    SmoothNetworkBody::setNetworkKartInfo(getWorldKartId(), getIdent());
 #ifndef SERVER_ONLY
     if (m_skidmarks)
     {

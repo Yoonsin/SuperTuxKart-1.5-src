@@ -32,6 +32,7 @@
 #include "modes/soccer_world.hpp"
 #include "modes/world.hpp"
 #include "network/network_config.hpp"
+#include "network/stk_host.hpp"
 #include "karts/explosion_animation.hpp"
 #include "physics/btKart.hpp"
 #include "physics/irr_debug_drawer.hpp"
@@ -444,6 +445,18 @@ void Physics::KartKartCollision(AbstractKart *kart_a,
     // fix the attachments for the other kart.
     kart_a->crashed(kart_b, /*handle_attachments*/true);
     kart_b->crashed(kart_a, /*handle_attachments*/false);
+
+    if (STKHost::isDiscrepancyLoggingEnabled() && STKHost::existHost())
+    {
+        STKHost::get()->recordKartCollision(
+            kart_a->getWorldKartId(),
+            kart_a->getIdent(),
+            kart_b->getWorldKartId(),
+            kart_b->getIdent(),
+            kart_a->getXYZ(),
+            kart_b->getXYZ()
+        );
+    }
 
     AbstractKart *left_kart, *right_kart;
 

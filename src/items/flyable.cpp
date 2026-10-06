@@ -38,6 +38,7 @@
 #include "items/projectile_manager.hpp"
 #include "karts/abstract_kart.hpp"
 #include "karts/cannon_animation.hpp"
+#include "network/stk_host.hpp"
 #include "karts/controller/controller.hpp"
 #include "karts/explosion_animation.hpp"
 #include "modes/linear_world.hpp"
@@ -602,6 +603,17 @@ void Flyable::explode(AbstractKart *kart_hit, PhysicalObject *object,
             {
                 world->kartHit(kart->getWorldKartId(),
                     m_owner->getWorldKartId());
+
+                if (STKHost::isDiscrepancyLoggingEnabled() && STKHost::existHost() &&
+                    RewindManager::get() && !RewindManager::get()->isRewinding())
+                {
+                    STKHost::get()->recordEventDiscrepancy(
+                        "FLYABLE_HIT",
+                        m_owner ? m_owner->getWorldKartId() : -1,
+                        kart->getWorldKartId(),
+                        "HIT_CONFIRMED"
+                    );
+                }
 
                 if (m_owner->getController()->canGetAchievements())
                 {
