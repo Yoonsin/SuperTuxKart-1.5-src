@@ -272,6 +272,7 @@ enet_protocol_remove_sent_reliable_command (ENetPeer * peer, enet_uint16 reliabl
     if (sample != NULL) {
         sample->isRTTProbe = outgoingCommand->isRTTProbe;
         sample->sendAttempts = outgoingCommand->sendAttempts;
+        sample->queuedTime = outgoingCommand->rttProbeQueuedTime;
     }
 
     enet_free (outgoingCommand);
@@ -900,7 +901,7 @@ enet_protocol_handle_acknowledge (ENetHost * host, ENetEvent * event, ENetPeer *
     
     if (sample.isRTTProbe && host->rawRTTCallback != NULL) {
         sample.rawRTT = roundTripTime;
-        sample.timeStamp = host->serviceTime;
+        sample.recvTime = host->serviceTime;
         sample.sentTime = receivedSentTime;
         host->rawRTTCallback(host->rawRTTCallbackData, peer, &sample);
     }

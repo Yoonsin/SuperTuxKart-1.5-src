@@ -20,6 +20,7 @@
 
 #include <stdio.h>
 
+#include "main_loop.hpp"
 #include "io/file_manager.hpp"
 #include "modes/world.hpp"
 #include "karts/abstract_kart.hpp"
@@ -91,10 +92,12 @@ void History::addEvent(int kart_id, PlayerAction pa, int value)
 /** Sets the kart position and controls to the recorded history value.
  *  \param world_ticks WOrld time in ticks.
  *  \param ticks Number of time steps.
+ *  \return True if the replay has finished, false otherwise.
  */
-void History::updateReplay(int world_ticks)
+bool History::updateReplay(int world_ticks)
 {
     World *world = World::getWorld();
+	bool replay_finished = false;
 
     while (m_event_index < m_all_input_events.size() &&
         m_all_input_events[m_event_index].m_world_ticks <= world_ticks)
@@ -120,10 +123,12 @@ void History::updateReplay(int world_ticks)
         RewindManager::get()->rewindTo(5.0f);
         exit(-1);
 #else
-        world->reset();
+        main_loop->requestAbort();
+        replay_finished = true;
+        //world->reset();
 #endif
     }   // if m_event_index >= m_all_input_events.size()
-
+	return replay_finished;
 }   // updateReplay
 
 //-----------------------------------------------------------------------------
