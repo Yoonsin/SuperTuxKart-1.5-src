@@ -25,6 +25,7 @@
 #include <memory>
 
 class AbstractKart;
+class AIBaseController;
 class SFXBase;
 class SFXBuffer;
 class btTransform;
@@ -44,6 +45,7 @@ private:
 
     /** Stores the active player data structure. */
     StateManager::ActivePlayer *m_player;
+    AIBaseController           *m_ai_controller;
 
     bool           m_sound_schedule;
     bool           m_has_started;

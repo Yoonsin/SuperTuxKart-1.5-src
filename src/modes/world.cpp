@@ -1,4 +1,4 @@
-﻿//
+//
 //  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2006-2015 SuperTuxKart-Team
 //
@@ -514,36 +514,13 @@ std::shared_ptr<AbstractKart> World::createKart
     {
     case RaceManager::KT_PLAYER:
     {
-        int local_player_count = 99999;
-        if (NetworkConfig::get()->isNetworking() &&
-            NetworkConfig::get()->isClient())
+        controller = new LocalPlayerController(new_kart.get(),
+            local_player_id, handicap);
+        const PlayerProfile* p = StateManager::get()
+            ->getActivePlayer(local_player_id)->getConstProfile();
+        if (p && p->getDefaultKartColor() > 0.0f)
         {
-            local_player_count =
-                (int)NetworkConfig::get()->getNetworkPlayers().size();
-        }
-        // local_player_id >= local_player_count for fixed AI defined in create
-        // server screen
-        if (NetworkConfig::get()->isNetworkAIInstance() ||
-            local_player_id >= local_player_count)
-        {
-            AIBaseController* ai = NULL;
-            if (RaceManager::get()->isBattleMode())
-                ai = new BattleAI(new_kart.get());
-            else
-                ai = new SkiddingAI(new_kart.get());
-            controller = new NetworkAIController(new_kart.get(),
-                local_player_id, ai);
-        }
-        else
-        {
-            controller = new LocalPlayerController(new_kart.get(),
-                local_player_id, handicap);
-            const PlayerProfile* p = StateManager::get()
-                ->getActivePlayer(local_player_id)->getConstProfile();
-            if (p && p->getDefaultKartColor() > 0.0f)
-            {
-                ri->setHue(p->getDefaultKartColor());
-            }
+            ri->setHue(p->getDefaultKartColor());
         }
         m_num_players ++;
         break;

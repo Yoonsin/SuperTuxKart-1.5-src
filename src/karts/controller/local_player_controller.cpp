@@ -18,6 +18,8 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "karts/controller/local_player_controller.hpp"
+#include "karts/controller/skidding_ai.hpp"
+#include "karts/controller/battle_ai.hpp"
 
 #include "audio/sfx_base.hpp"
 #include "config/player_manager.hpp"
@@ -94,6 +96,12 @@ LocalPlayerController::LocalPlayerController(AbstractKart *kart,
 
     m_is_above_nitro_target = false;
     initParticleEmitter();
+
+    if (RaceManager::get()->isBattleMode())
+        m_ai_controller = new BattleAI(kart);
+    else
+        m_ai_controller = new SkiddingAI(kart);
+    m_ai_controller->setControls(m_controls);
 }   // LocalPlayerController
 
 //-----------------------------------------------------------------------------
@@ -101,6 +109,7 @@ LocalPlayerController::LocalPlayerController(AbstractKart *kart,
  */
 LocalPlayerController::~LocalPlayerController()
 {
+    delete m_ai_controller;
     m_wee_sound->deleteSFX();
 }   // ~LocalPlayerController
 
@@ -136,6 +145,11 @@ void LocalPlayerController::initParticleEmitter()
 void LocalPlayerController::reset()
 {
     PlayerController::reset();
+    if (m_ai_controller)
+    {
+        m_ai_controller->reset();
+        m_ai_controller->setControls(m_controls);
+    }
     m_last_crash = 0;
     m_sound_schedule = false;
     m_has_started = false;
@@ -255,6 +269,33 @@ void LocalPlayerController::update(int ticks)
     }
 
     PlayerController::update(ticks);
+
+    if (m_ai_controller && !RewindManager::get()->isRewinding())
+    {
+        m_ai_controller->update(ticks);
+
+        if (NetworkConfig::get()->isNetworking() &&
+            NetworkConfig::get()->isClient())
+        {
+            if (auto gp = GameProtocol::lock())
+            {
+                if (m_controls->getSteer() < 0.0f)
+                    gp->controllerAction(m_kart->getWorldKartId(), PA_STEER_LEFT, int(fabsf(m_controls->getSteer()) * 32768), m_steer_val_l, m_steer_val_r);
+                else
+                    gp->controllerAction(m_kart->getWorldKartId(), PA_STEER_RIGHT, int(fabsf(m_controls->getSteer()) * 32768), m_steer_val_l, m_steer_val_r);
+
+                gp->controllerAction(m_kart->getWorldKartId(), PA_ACCEL, int(m_controls->getAccel() * 32768), m_steer_val_l, m_steer_val_r);
+                if (m_controls->getBrake())
+                    gp->controllerAction(m_kart->getWorldKartId(), PA_BRAKE, 32768, m_steer_val_l, m_steer_val_r);
+                if (m_controls->getNitro())
+                    gp->controllerAction(m_kart->getWorldKartId(), PA_NITRO, 32768, m_steer_val_l, m_steer_val_r);
+                if (m_controls->getFire())
+                    gp->controllerAction(m_kart->getWorldKartId(), PA_FIRE, 32768, m_steer_val_l, m_steer_val_r);
+                if (m_controls->getRescue())
+                    gp->controllerAction(m_kart->getWorldKartId(), PA_RESCUE, 32768, m_steer_val_l, m_steer_val_r);
+            }
+        }
+    }
 
     // look backward when the player requests or
     // if automatic reverse camera is active
