@@ -809,6 +809,11 @@ namespace UserConfigParams
     /** True if arena (battle/soccer) ai profiling. */
     PARAM_PREFIX bool m_arena_ai_stats PARAM_DEFAULT(false);
 
+    /** True if experimental auto-item-fire duel mode is enabled (--auto-item-fire). */
+    PARAM_PREFIX bool m_auto_item_fire PARAM_DEFAULT(false);
+
+    PARAM_PREFIX bool m_score_log PARAM_DEFAULT(false);
+
     /** True if slipstream debugging is activated. */
     PARAM_PREFIX bool m_slipstream_debug  PARAM_DEFAULT( false );
 

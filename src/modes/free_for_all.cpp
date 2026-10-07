@@ -16,6 +16,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "modes/free_for_all.hpp"
+#include "config/user_config.hpp"
 #include "karts/abstract_kart.hpp"
 #include "karts/controller/controller.hpp"
 #include "network/network_config.hpp"
@@ -24,9 +25,19 @@
 #include "network/stk_host.hpp"
 #include "tracks/track.hpp"
 #include "utils/string_utils.hpp"
+#include "utils/experiment_logger.hpp"
 
+#include "items/powerup_manager.hpp"
+#include "items/attachment.hpp"
+#include "karts/kart_properties.hpp"
+#include "utils/vec3.hpp"
+
+#include <limits>
 #include <algorithm>
 #include <utility>
+#include <sstream>
+#include <ctime>
+#include <iostream>
 
 // ----------------------------------------------------------------------------
 /** Constructor. Sets up the clock mode etc.
@@ -49,6 +60,20 @@ FreeForAll::~FreeForAll()
 {
 }   // ~FreeForAll
 
+static int s_ffa_round_id = 0; // 판을 구분하기 위한 전역 변수
+// --- 플랫폼 확인 헬퍼 함수 ---
+static std::string getCurrentPlatform() {
+#if defined(__ANDROID__)
+    return "Android";
+#elif defined(_WIN32) || defined(_WIN64)
+    return "Windows";
+#elif defined(__linux__)
+    return "Linux";
+#else
+    return "Unknown";
+#endif
+}
+// -----------------------------
 // ----------------------------------------------------------------------------
 void FreeForAll::init()
 {
@@ -56,8 +81,16 @@ void FreeForAll::init()
     m_display_rank = false;
     m_count_down_reached_zero = false;
     m_use_highscores = false;
-}   // init
 
+    // 새 게임이 시작될 때마다 라운드 ID 증가
+    s_ffa_round_id++;
+
+    m_duel_ticks = 0;
+    m_duel_fired = false;
+
+    // C++ 하드코딩 스폰 강제 고정 코드는 삭제! 
+    // 이제 위치와 방향은 오직 scene_score.xml 의 완벽한 설정만을 따릅니다.
+}
 // ----------------------------------------------------------------------------
 /** Called when a battle is restarted.
  */
@@ -75,7 +108,7 @@ void FreeForAll::reset(bool restart)
         WorldStatus::setClockMode(CLOCK_CHRONO);
     }
     m_scores.clear();
-    m_scores.resize(m_karts.size(), 0);
+    m_scores.resize(getNumKarts(), 0);
 }   // reset
 
 // ----------------------------------------------------------------------------
@@ -96,6 +129,9 @@ void FreeForAll::countdownReachedZero()
  */
 bool FreeForAll::kartHit(int kart_id, int hitter)
 {
+    std::cout << "[FFA_DEBUG] kartHit ENTER kart_id=" << kart_id
+        << " hitter=" << hitter << std::endl;
+
     if (NetworkConfig::get()->isNetworking() &&
         NetworkConfig::get()->isClient())
         return false;
@@ -114,14 +150,42 @@ bool FreeForAll::kartHit(int kart_id, int hitter)
  */
 void FreeForAll::handleScoreInServer(int kart_id, int hitter)
 {
-    int new_score = 0;
-    if (kart_id == hitter || hitter == -1)
-        new_score = --m_scores[kart_id];
-    else
-        new_score = ++m_scores[hitter];
+    std::cout << "[FFA_DEBUG] kartHit Triggered! Target (kart_id): " << kart_id << ", Attacker (hitter): " << hitter << std::endl;
 
-    if (NetworkConfig::get()->isNetworking() &&
-        NetworkConfig::get()->isServer())
+    int new_score = 0;
+    int score_delta = 0;
+
+    // 피격자 감점용 (공격자가 따로 있을 때만 사용)
+    bool victim_penalized = false;
+    int victim_score = 0;
+
+    if (kart_id == hitter || hitter == -1)
+    {
+        new_score = --m_scores[kart_id];
+        score_delta = -1;
+    }
+    else
+    {
+        new_score = ++m_scores[hitter];       // 공격자 +1
+        score_delta = 1;
+
+        victim_score = --m_scores[kart_id];   // 피격자 -1
+        victim_penalized = true;
+    }
+
+    long long timestamp = World::getWorld()->getTicksSinceStart();
+    std::string platform = getCurrentPlatform();
+
+    // 공격자 득점 (또는 자폭/공격자 불명 감점)
+    ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "HIT_SERVER", platform, hitter, kart_id, score_delta);
+
+    // 피격자 감점
+    if (victim_penalized)
+    {
+        ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "HIT_SERVER_DEDUCT", platform, hitter, kart_id, -1);
+    }
+
+    if (NetworkConfig::get()->isNetworking() && NetworkConfig::get()->isServer())
     {
         NetworkString p(PROTOCOL_GAME_EVENTS);
         p.setSynchronous(true);
@@ -131,17 +195,34 @@ void FreeForAll::handleScoreInServer(int kart_id, int hitter)
         else
             p.addUInt8((uint8_t)hitter).addUInt16((int16_t)new_score);
         STKHost::get()->sendPacketToAllPeers(&p, true);
+
+        // 피격자 점수도 클라이언트에 전송 (없으면 클라이언트 화면은 안 깎임)
+        if (victim_penalized)
+        {
+            NetworkString p2(PROTOCOL_GAME_EVENTS);
+            p2.setSynchronous(true);
+            p2.addUInt8(GameEventsProtocol::GE_BATTLE_KART_SCORE);
+            p2.addUInt8((uint8_t)kart_id).addUInt16((int16_t)victim_score);
+            STKHost::get()->sendPacketToAllPeers(&p2, true);
+        }
     }
-}   // handleScoreInServer
+} // handleScoreInServer
 
 // ----------------------------------------------------------------------------
 void FreeForAll::setKartScoreFromServer(NetworkString& ns)
 {
     int kart_id = ns.getUInt8();
     int16_t score = ns.getUInt16();
-    m_scores.at(kart_id) = score;
-}   // setKartScoreFromServer
 
+    int score_delta = score - m_scores.at(kart_id);
+    m_scores.at(kart_id) = score;
+
+    long long timestamp = World::getWorld()->getTicksSinceStart();
+    std::string platform = getCurrentPlatform();
+
+    // 클라이언트가 서버로부터 점수가 깎였다는 통보를 받은 시간 기록
+    ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "UPDATE_CLIENT", platform, -1, kart_id, score_delta);
+}
 // ----------------------------------------------------------------------------
 /** Returns the internal identifier for this race.
  */
@@ -161,8 +242,6 @@ void FreeForAll::update(int ticks)
     std::vector<std::pair<int, int> > ranks;
     for (unsigned i = 0; i < m_scores.size(); i++)
     {
-        // For eliminated (disconnected or reserved player) make his score
-        // int min so always last in rank
         int cur_score = getKart(i)->isEliminated() ?
             std::numeric_limits<int>::min() : m_scores[i];
         ranks.emplace_back(i, cur_score);
@@ -176,6 +255,98 @@ void FreeForAll::update(int ticks)
     for (unsigned i = 0; i < ranks.size(); i++)
         setKartPosition(ranks[i].first, i + 1);
     endSetKartPositions();
+
+    // ====================================================================
+ // [2] 듀얼 모드: 무한 반복 장전 및 동시 발사 (--auto-item-fire 플래그 전용)
+    if (UserConfigParams::m_auto_item_fire && getNumKarts() >= 2)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            getKart(i)->getControls().setSteer(0.0f);     // 조향(회전) 차단
+            getKart(i)->getControls().setAccel(false);    // 가속 차단
+            getKart(i)->getControls().setBrake(false);    // 브레이크 차단
+            getKart(i)->getControls().setLookBack(false); // 뒤보기 차단
+        }
+
+        if (isActiveRacePhase())
+        {
+            int old_ticks = m_duel_ticks;
+            m_duel_ticks += ticks;
+
+            // [무한 장전] 8초(960틱) 시점에 양쪽에 볼링공 대신 컵케이크(미사일) 강제 장착
+            if (old_ticks < 960 && m_duel_ticks >= 960)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    getKart(i)->setPowerup(PowerupManager::POWERUP_CAKE, 1);
+                }
+            }
+
+            // --- [4단계 추가된 부분: 발사 순간 FIRE 로깅] ---
+            // 1200틱이 되는 순간에 딱 한 번 '발사' 시간 기록
+            if (old_ticks < 1200 && m_duel_ticks >= 1200)
+            {
+                long long timestamp = World::getWorld()->getTicksSinceStart();
+                std::string platform = getCurrentPlatform();
+                for (int i = 0; i < 2; i++)
+                {
+                    ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "FIRE", platform, i, -1, 0);
+                }
+            }
+            // ------------------------------------------------
+
+            // [확실한 발사] 10초 ~ 10.5초(1200~1230틱) 동안 발사 신호 지속 주입
+            if (m_duel_ticks >= 1200 && m_duel_ticks <= 1230)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    getKart(i)->getControls().setFire(true);
+                    if (getKart(i)->getController())
+                    {
+                        getKart(i)->getController()->action(PlayerAction::PA_FIRE, 1);
+                    }
+                }
+            }
+
+            // 10.5초 이후 발사 버튼 완전 해제
+            if (old_ticks <= 1230 && m_duel_ticks > 1230)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    getKart(i)->getControls().setFire(false);
+                    if (getKart(i)->getController())
+                    {
+                        getKart(i)->getController()->action(PlayerAction::PA_FIRE, 0);
+                    }
+                }
+            }
+
+            // [타이머 리셋] 15초(1800틱)가 되면 0으로 되돌아가 무한 반복
+            if (m_duel_ticks >= 1800) m_duel_ticks = 0;
+        }
+    }
+    // ====================================================================
+
+    if (isRaceOver())
+    {
+        static bool already_saved = false;
+        if (!already_saved)
+        {
+            already_saved = true;
+            static int round_id = 0;
+            round_id++;
+
+            const char* platform = "Windows";
+
+            std::ostringstream out;
+            for (unsigned int i = 0; i < getNumKarts(); i++)
+            {
+                out << round_id << "," << platform << ","
+                    << getKart(i)->getIdent() << ","
+                    << getKartScore(i) << "\n";
+            }
+        }
+    }
 }   // update
 
 // ----------------------------------------------------------------------------
@@ -201,10 +372,10 @@ bool FreeForAll::isRaceOver()
 /** Returns the data to display in the race gui.
  */
 void FreeForAll::getKartsDisplayInfo(
-                           std::vector<RaceGUIBase::KartIconDisplayInfo> *info)
+    std::vector<RaceGUIBase::KartIconDisplayInfo>* info)
 {
     const unsigned int kart_amount = getNumKarts();
-    for (unsigned int i = 0; i < kart_amount ; i++)
+    for (unsigned int i = 0; i < kart_amount; i++)
     {
         RaceGUIBase::KartIconDisplayInfo& rank_info = (*info)[i];
         rank_info.lap = -1;
@@ -228,15 +399,15 @@ void FreeForAll::getKartsDisplayInfo(
 
 //-----------------------------------------------------------------------------
 std::pair<int, video::SColor> FreeForAll::getSpeedometerDigit(
-                                                const AbstractKart *kart) const
+    const AbstractKart* kart) const
 {
     if (kart->isEliminated()) // m_scores[id] is INT_MIN
     {
         return std::make_pair(0, video::SColor(255, 128, 128, 128));
     }
-    
+
     int id = kart->getWorldKartId();
-    
+
     // Fade from green to red
     std::vector<int> sorted_scores;
     for (unsigned int i = 0; i < m_scores.size(); i++)
@@ -258,24 +429,25 @@ std::pair<int, video::SColor> FreeForAll::getSpeedometerDigit(
     int rank = std::lower_bound(
         sorted_scores.begin(), sorted_scores.end(),
         m_scores[id], std::greater<int>()) - sorted_scores.begin();
-    
+
     float value = (float)rank / (sorted_scores.size() - 1);
     int r = std::min(int(value * 510), 255);
     int g = std::min(int((1.0 - value) * 510), 255);
-    
+
     return std::make_pair(m_scores[id], video::SColor(255, r, g, 0));
 }   // getSpeedometerDigit
 
-// ----------------------------------------------------------------------------
 void FreeForAll::terminateRace()
 {
     const unsigned int kart_amount = getNumKarts();
-    for (unsigned int i = 0; i < kart_amount ; i++)
+
+    for (unsigned int i = 0; i < kart_amount; i++)
     {
         getKart(i)->finishedRace(0.0f, true/*from_server*/);
-    }   // i<kart_amount
+    }
+
     WorldWithRank::terminateRace();
-}   // terminateRace
+}
 
 // ----------------------------------------------------------------------------
 video::SColor FreeForAll::getColor(unsigned int kart_id) const

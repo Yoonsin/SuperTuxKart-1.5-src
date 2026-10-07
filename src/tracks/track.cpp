@@ -1978,7 +1978,25 @@ void Track::loadTrackModel(bool reverse_track, unsigned int mode_id)
     // Start building the scene graph
     // Soccer field with navmesh requires it
     // for two goal line to be drawn them in minimap
-    std::string path = m_root + m_all_modes[mode_id].m_scene;
+    std::string scene_file = m_all_modes[mode_id].m_scene;
+    // [auto-item-fire] 플래그가 켜져 있으면 실험용 scene_score.xml 을 우선 사용
+    if (UserConfigParams::m_auto_item_fire)
+    {
+        std::string score_scene = m_root + "scene_score.xml";
+        if (file_manager->fileExists(score_scene))
+        {
+            scene_file = "scene_score.xml";
+            Log::info("Track", "[auto-item-fire] Using scene_score.xml for track '%s'.",
+                      m_name.c_str());
+        }
+        else
+        {
+            Log::warn("Track", "[auto-item-fire] scene_score.xml not found in '%s', "
+                               "falling back to '%s'.",
+                      m_root.c_str(), scene_file.c_str());
+        }
+    }
+    std::string path = m_root + scene_file;
     XMLNode *root    = file_manager->createXMLTree(path);
 
     // Make sure that we have a track (which is used for raycasts to
