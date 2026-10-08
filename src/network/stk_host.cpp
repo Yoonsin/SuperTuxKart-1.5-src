@@ -1854,7 +1854,9 @@ void STKHost::finishDiscrepancyLogging()
     {
         file_manager->checkAndCreateDirectoryP(m_discrepancy_log_directory);
     }
-    const std::string file_path = ((!m_discrepancy_log_directory.empty()) ? m_discrepancy_log_directory + "/" : "./") + file_name;
+    const std::string file_path = m_discrepancy_log_directory.empty() ?
+        (file_manager ? file_manager->getUserConfigFile(file_name) : "./" + file_name) :
+        m_discrepancy_log_directory + "/" + file_name;
 
     std::ofstream out(file_path.c_str(), std::ios::out | std::ios::trunc);
     if (!out.is_open())
