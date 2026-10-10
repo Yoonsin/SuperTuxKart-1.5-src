@@ -2623,7 +2623,7 @@ int main(int argc, char *argv[])
                 PlayerManager::get()->enforceCurrentPlayer();
             }
 
-            // ȭ�� ��ȯ
+            // È­¸é ÀüÈ¯
             if (PlayerManager::getCurrentPlayer() && !UserConfigParams::m_always_show_login_screen)
             {
                 MainMenuScreen::getInstance()->push();

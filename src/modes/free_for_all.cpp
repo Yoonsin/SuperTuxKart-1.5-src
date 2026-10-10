@@ -196,6 +196,16 @@ void FreeForAll::handleScoreInServer(int kart_id, int hitter)
         else
             p.addUInt8((uint8_t)hitter).addUInt16((int16_t)new_score);
         STKHost::get()->sendPacketToAllPeers(&p, true);
+
+        // 피격자 점수도 클라이언트에 전송 (없으면 클라이언트 화면은 안 깎임)
+        if (victim_penalized)
+        {
+            NetworkString p2(PROTOCOL_GAME_EVENTS);
+            p2.setSynchronous(true);
+            p2.addUInt8(GameEventsProtocol::GE_BATTLE_KART_SCORE);
+            p2.addUInt8((uint8_t)kart_id).addUInt16((int16_t)victim_score);
+            STKHost::get()->sendPacketToAllPeers(&p2, true);
+        }
     }
 } // handleScoreInServer
 
