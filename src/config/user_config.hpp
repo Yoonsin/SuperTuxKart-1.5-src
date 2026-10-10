@@ -814,6 +814,8 @@ namespace UserConfigParams
 
     PARAM_PREFIX bool m_score_log PARAM_DEFAULT(false);
 
+    PARAM_PREFIX bool m_timing_log PARAM_DEFAULT(false);
+
     /** True if slipstream debugging is activated. */
     PARAM_PREFIX bool m_slipstream_debug  PARAM_DEFAULT( false );
 

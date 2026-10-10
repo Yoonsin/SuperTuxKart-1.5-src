@@ -39,6 +39,7 @@
 #include "items/projectile_manager.hpp"
 #include "karts/abstract_kart.hpp"
 #include "karts/cannon_animation.hpp"
+#include "network/stk_host.hpp"
 #include "karts/controller/controller.hpp"
 #include "karts/explosion_animation.hpp"
 #include "modes/linear_world.hpp"
@@ -600,19 +601,21 @@ void Flyable::explode(AbstractKart *kart_hit, PhysicalObject *object,
             // and will free it later.
             ExplosionAnimation::create(kart, getXYZ(), kart == kart_hit);
 
-            // 추가: FFA에서는 근처 폭발(직접 명중이 아닌 경우)에도 점수 처리
-            if (UserConfigParams::m_auto_item_fire && 
-                RaceManager::get()->getMinorMode() == RaceManager::MINOR_MODE_FREE_FOR_ALL
-                && kart != m_owner && kart != kart_hit)
-            {
-                world->kartHit(kart->getWorldKartId(),
-                    m_owner->getWorldKartId());
-            }
-
             if (kart == kart_hit)
             {
                 world->kartHit(kart->getWorldKartId(),
                     m_owner->getWorldKartId());
+
+                if (STKHost::isDiscrepancyLoggingEnabled() && STKHost::existHost() &&
+                    RewindManager::get() && !RewindManager::get()->isRewinding())
+                {
+                    STKHost::get()->recordEventDiscrepancy(
+                        "FLYABLE_HIT",
+                        m_owner ? m_owner->getWorldKartId() : -1,
+                        kart->getWorldKartId(),
+                        "HIT_CONFIRMED"
+                    );
+                }
 
                 if (m_owner->getController()->canGetAchievements())
                 {
