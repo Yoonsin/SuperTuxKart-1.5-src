@@ -601,15 +601,6 @@ void Flyable::explode(AbstractKart *kart_hit, PhysicalObject *object,
             // and will free it later.
             ExplosionAnimation::create(kart, getXYZ(), kart == kart_hit);
 
-            // 추가: FFA에서는 근처 폭발(직접 명중이 아닌 경우)에도 점수 처리
-            if (UserConfigParams::m_auto_item_fire && 
-                RaceManager::get()->getMinorMode() == RaceManager::MINOR_MODE_FREE_FOR_ALL
-                && kart != m_owner && kart != kart_hit)
-            {
-                world->kartHit(kart->getWorldKartId(),
-                    m_owner->getWorldKartId());
-            }
-
             if (kart == kart_hit)
             {
                 world->kartHit(kart->getWorldKartId(),

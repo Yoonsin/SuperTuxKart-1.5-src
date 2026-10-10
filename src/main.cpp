@@ -1068,6 +1068,12 @@ int handleCmdLinePreliminary()
         Log::info("main", "[score-log] Logging enabled.");
     }
 
+    if (CommandLine::has("--timing-log"))
+    {
+        UserConfigParams::m_timing_log = true;
+        Log::info("main", "[timing-log] Logging enabled.");
+    }
+
     return 0;
 }   // handleCmdLinePreliminary
 

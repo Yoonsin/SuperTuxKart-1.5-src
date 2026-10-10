@@ -19,7 +19,6 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "karts/controller/battle_ai.hpp"
-
 #include "items/attachment.hpp"
 #include "items/powerup.hpp"
 #include "karts/abstract_kart.hpp"
@@ -28,6 +27,7 @@
 #include "modes/three_strikes_battle.hpp"
 #include "tracks/arena_graph.hpp"
 #include "tracks/track.hpp"
+#include "config/user_config.hpp"
 
 #ifdef AI_DEBUG
 #include "irrlicht.h"
@@ -65,6 +65,22 @@ BattleAI::~BattleAI()
     irr_driver->removeNode(m_debug_sphere_next);
 #endif
 }   //  ~BattleAI
+
+/** Keep experimental duel AI stationary and let FreeForAll time its shots. */
+void BattleAI::update(int ticks)
+{
+    if (UserConfigParams::m_auto_item_fire &&
+        RaceManager::get()->getMinorMode() == RaceManager::MINOR_MODE_FREE_FOR_ALL &&
+        m_kart->getWorldKartId() < 2)
+    {
+        const bool fire = m_controls->getFire();
+        m_controls->reset();
+        m_controls->setFire(fire);
+        return;
+    }
+
+    ArenaAI::update(ticks);
+}   // update
 
 //-----------------------------------------------------------------------------
 /** Find the closest kart around this AI, if consider_difficulty is true, AI
