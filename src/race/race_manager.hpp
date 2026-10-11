@@ -812,6 +812,8 @@ public:
      */
     bool allPlayerFinished() const
     {
+        if (m_player_karts.empty())
+            return false;
         return m_num_finished_players == m_player_karts.size();
     }   // allPlayerFinished
     // ----------------------------------------------------------------------------------------

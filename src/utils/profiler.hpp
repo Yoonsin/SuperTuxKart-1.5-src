@@ -285,6 +285,23 @@ private:
     std::string m_profile_log_directory;
     std::string m_profile_log_track;
 
+	//one physics step in main loop can have multiple physics steps in physics update.
+    struct PhysicsData
+    {
+        //use m_outer_dt_list.size()
+		//int m_outer_num_steps; //in main_loop.cpp, number of physics steps in the main loop
+        
+		//use m_inner_dt_list.size()
+		//int m_inner_num_steps; //in physics.cpp, number of physics steps in the physics update
+
+        std::vector<double> m_outer_dt_list;
+
+        std::vector<double> m_inner_dt_list;
+    };
+	std::map<int,PhysicsData> m_physics_data_list;
+
+    int m_render_frames;
+
     /** The maximum number of frames to be buffered. Used to minimise
      *  reallocations. */
     int m_max_frames;
@@ -335,9 +352,20 @@ public:
     void     writeToFile();
     void     updateProfileLog(bool race_active);
     void     finishProfileLog();
+    void     setPhysicsData(int frame, const double outer_dt, const double inner_dt)
+            { 
+              if (!m_profile_logging) return;
+              PhysicsData& data = m_physics_data_list[frame];
+              data.m_outer_dt_list.push_back(outer_dt);
+	          data.m_inner_dt_list.push_back(inner_dt);
+	        }
 
     void setProfileLogEnabled(bool enabled)
         { m_profile_log_enabled = enabled; }
+	bool getProfileLogEnabled() const 
+        { return m_profile_log_enabled; }
+	bool getProfileLogging() const
+        { return m_profile_logging; }
     void setProfileLogDirectory(const std::string& directory)
         { m_profile_log_directory = directory; }
 
@@ -351,5 +379,7 @@ public:
     int getFPSMetricsHigh() { return m_fps_metrics_high; }
     int getFPSMetricsMid()  { return m_fps_metrics_mid;  }
     int getFPSMetricsLow()  { return m_fps_metrics_low;  }
+	int getCurrentFrame()   { return m_current_frame;    }
+	int getRenderFrames() { return m_render_frames; }
 };
 #endif // PROFILER_HPP

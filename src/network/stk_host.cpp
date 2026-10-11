@@ -21,6 +21,7 @@
 #include "config/stk_config.hpp"
 #include "config/user_config.hpp"
 #include "io/file_manager.hpp"
+#include "modes/world.hpp"
 #include "network/event.hpp"
 #include "network/game_setup.hpp"
 #include "network/network.hpp"
@@ -77,6 +78,8 @@ STKHost *STKHost::m_stk_host[PT_COUNT];
 bool     STKHost::m_enable_console = false;
 bool     STKHost::m_rtt_log_enabled = false;
 std::string  STKHost::m_rtt_log_directory = "";
+bool     STKHost::m_discrepancy_log_enabled = false;
+std::string  STKHost::m_discrepancy_log_directory = "";
 
 std::shared_ptr<LobbyProtocol> STKHost::create(ChildLoop* cl)
 {
@@ -329,6 +332,7 @@ void STKHost::init()
     m_network          = NULL;
 	m_rtt_logging      = false;
 	m_next_rtt_probe_ms = 0;
+	m_discrepancy_logging = false;
     m_exit_timeout.store(std::numeric_limits<uint64_t>::max());
     m_client_ping.store(0);
 
@@ -372,6 +376,7 @@ STKHost::~STKHost()
     Network::closeLog();
     stopListening();
     finishRTTLogging();
+    finishDiscrepancyLogging();
 
     // Drop all unsent packets
     for (auto& p : m_enet_cmd)
@@ -1800,4 +1805,163 @@ void ENET_CALLBACK STKHost::rawRTTCallback(void* user_data, ENetPeer* enet_peer,
     {
         Log::error("RawRTT", "Failed to record RTT: %s", e.what());
     }
+}
+
+void STKHost::updateDiscrepancyLogging(bool race_active)
+{
+    if (!isDiscrepancyLoggingEnabled())
+        return;
+
+    if (!race_active)
+    {
+        finishDiscrepancyLogging();
+        return;
+    }
+
+    std::lock_guard<std::mutex> lock(m_discrepancy_mutex);
+
+    if (m_discrepancy_logging.load(std::memory_order_relaxed))
+        return;
+
+    m_discrepancy_records.clear();
+    m_discrepancy_logging.store(true, std::memory_order_release);
+}
+
+void STKHost::finishDiscrepancyLogging()
+{
+    std::vector<DiscrepancyRecord> records;
+
+    {
+        std::lock_guard<std::mutex> lock(m_discrepancy_mutex);
+
+        if (!m_discrepancy_logging.load(std::memory_order_relaxed))
+            return;
+
+        m_discrepancy_logging.store(false, std::memory_order_release);
+        records.swap(m_discrepancy_records);
+    }
+
+    if (records.empty())
+        return;
+
+    StkTime::TimeType t = StkTime::getTimeSinceEpoch();
+    struct tm* now = std::localtime(&t);
+    char buffer[32];
+    std::strftime(buffer, sizeof(buffer), "%Y%m%d_%H%M%S", now);
+    const std::string role = NetworkConfig::get()->isServer() ? "server" : "client";
+    const std::string file_name = "discrepancy_log_" + role + "_" + std::string(buffer) + ".csv";
+    if (!m_discrepancy_log_directory.empty() && file_manager)
+    {
+        file_manager->checkAndCreateDirectoryP(m_discrepancy_log_directory);
+    }
+    const std::string file_path = ((!m_discrepancy_log_directory.empty()) ? m_discrepancy_log_directory + "/" : "./") + file_name;
+
+    std::ofstream out(file_path.c_str(), std::ios::out | std::ios::trunc);
+    if (!out.is_open())
+    {
+        Log::error("Discrepancy", "Failed to open discrepancy CSV file: %s", file_path.c_str());
+        return;
+    }
+
+    out << "Race_Ticks,Category,Kart_ID,Player_Name,Client_X,Client_Y,Client_Z,"
+        << "Server_X,Server_Y,Server_Z,Error_Distance_m,Rotation_Diff_deg,Rewound_Ticks,Event_Name,Status\n";
+
+    for (const auto& r : records)
+    {
+        std::string cat = (r.type == DiscrepancyType::SPATIAL) ? "SPATIAL" :
+                          (r.type == DiscrepancyType::COLLISION_ROLLBACK) ? "COLLISION_ROLLBACK" : "EVENT_HIT";
+
+        out << r.race_ticks << ","
+            << cat << ","
+            << r.kart_id << ","
+            << "\"" << r.player_name << "\","
+            << r.client_pos.getX() << "," << r.client_pos.getY() << "," << r.client_pos.getZ() << ","
+            << r.server_pos.getX() << "," << r.server_pos.getY() << "," << r.server_pos.getZ() << ","
+            << r.error_distance << ","
+            << r.rotation_diff_deg << ","
+            << r.rewound_ticks << ","
+            << "\"" << r.event_name << "\","
+            << "\"" << r.status << "\"\n";
+    }
+    out.close();
+    Log::info("Discrepancy", "Discrepancy log saved: %s (%zu rows)", file_path.c_str(), records.size());
+}
+
+void STKHost::recordSpatialError(int kart_id, const std::string& name,
+                                 const Vec3& client_pos, const Vec3& server_pos,
+                                 float error_dist, float rotation_diff_deg)
+{
+    if (!m_discrepancy_logging.load(std::memory_order_acquire))
+        return;
+
+    DiscrepancyRecord r{};
+    r.race_ticks = World::getWorld() ? World::getWorld()->getTicksSinceStart() : 0;
+    r.type = DiscrepancyType::SPATIAL;
+    r.kart_id = kart_id;
+    r.player_name = name;
+    r.client_pos = client_pos;
+    r.server_pos = server_pos;
+    r.error_distance = error_dist;
+    r.rotation_diff_deg = rotation_diff_deg;
+
+    std::lock_guard<std::mutex> lock(m_discrepancy_mutex);
+    m_discrepancy_records.push_back(r);
+}
+
+void STKHost::recordRollback(int now_ticks, int exact_rewind_ticks)
+{
+    if (!m_discrepancy_logging.load(std::memory_order_acquire))
+        return;
+
+    DiscrepancyRecord r{};
+    r.race_ticks = now_ticks;
+    r.type = DiscrepancyType::COLLISION_ROLLBACK;
+    r.kart_id = -1;
+    r.player_name = "network_world";
+    r.rewound_ticks = now_ticks - exact_rewind_ticks;
+    r.event_name = "ROLLBACK";
+    r.status = "EXECUTED";
+
+    std::lock_guard<std::mutex> lock(m_discrepancy_mutex);
+    m_discrepancy_records.push_back(r);
+}
+
+void STKHost::recordKartCollision(int kart_a_id, const std::string& kart_a_name,
+                                  int kart_b_id, const std::string& kart_b_name,
+                                  const Vec3& pos_a, const Vec3& pos_b)
+{
+    if (!m_discrepancy_logging.load(std::memory_order_acquire))
+        return;
+
+    DiscrepancyRecord r{};
+    r.race_ticks = World::getWorld() ? World::getWorld()->getTicksSinceStart() : 0;
+    r.type = DiscrepancyType::COLLISION_ROLLBACK;
+    r.kart_id = kart_a_id;
+    r.player_name = kart_a_name + "_vs_" + kart_b_name;
+    r.client_pos = pos_a;
+    r.server_pos = pos_b;
+    r.error_distance = (pos_a - pos_b).length();
+    r.event_name = "KART_COLLISION";
+    r.status = "COLLIDED";
+
+    std::lock_guard<std::mutex> lock(m_discrepancy_mutex);
+    m_discrepancy_records.push_back(r);
+}
+
+void STKHost::recordEventDiscrepancy(const std::string& event_name,
+                                     int shooter_id, int target_id, const std::string& status)
+{
+    if (!m_discrepancy_logging.load(std::memory_order_acquire))
+        return;
+
+    DiscrepancyRecord r{};
+    r.race_ticks = World::getWorld() ? World::getWorld()->getTicksSinceStart() : 0;
+    r.type = DiscrepancyType::EVENT_HIT;
+    r.kart_id = shooter_id;
+    r.player_name = "Target_" + StringUtils::toString(target_id);
+    r.event_name = event_name;
+    r.status = status;
+
+    std::lock_guard<std::mutex> lock(m_discrepancy_mutex);
+    m_discrepancy_records.push_back(r);
 }

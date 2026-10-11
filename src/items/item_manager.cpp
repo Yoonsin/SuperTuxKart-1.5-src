@@ -31,6 +31,7 @@
 #include "modes/profile_world.hpp"
 #include "network/network_config.hpp"
 #include "network/race_event_manager.hpp"
+#include "network/stk_host.hpp"
 #include "physics/triangle_mesh.hpp"
 #include "tracks/arena_graph.hpp"
 #include "tracks/arena_node.hpp"
@@ -422,6 +423,15 @@ void  ItemManager::checkItemHit(AbstractKart* kart)
         // we pass the kart and the position separately.
         if((*i)->hitKart(kart->getXYZ(), kart))
         {
+            if (STKHost::isDiscrepancyLoggingEnabled() && STKHost::existHost())
+            {
+                STKHost::get()->recordEventDiscrepancy(
+                    "ITEM_HIT_COLLECTED",
+                    kart->getWorldKartId(),
+                    (int)(*i)->getType(),
+                    "COLLECTED"
+                );
+            }
             collectedItem(*i, kart);
         }   // if hit
     }   // for m_all_items

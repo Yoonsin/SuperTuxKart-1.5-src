@@ -17,6 +17,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "network/smooth_network_body.hpp"
+#include "network/stk_host.hpp"
 #include "config/stk_config.hpp"
 
 #include <algorithm>
@@ -64,6 +65,19 @@ void SmoothNetworkBody::checkSmoothing(const btTransform& current_transform,
 
     float adjust_length = (current_transform.getOrigin() -
         m_prev_position_data.first.getOrigin()).length();
+
+    if (STKHost::isDiscrepancyLoggingEnabled() && STKHost::existHost())
+    {
+        float rot_diff = current_transform.getRotation().angle(
+            m_prev_position_data.first.getRotation()) * (180.0f / 3.14f);
+        STKHost::get()->recordSpatialError(
+            m_network_kart_id, m_network_kart_name,
+            Vec3(m_prev_position_data.first.getOrigin()),
+            Vec3(current_transform.getOrigin()),
+            adjust_length, rot_diff
+        );
+    }
+
     if (adjust_length < m_min_adjust_length ||
         adjust_length > m_max_adjust_length)
         return;

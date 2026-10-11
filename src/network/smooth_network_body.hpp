@@ -70,10 +70,20 @@ private:
     float m_min_adjust_length, m_max_adjust_length, m_min_adjust_speed,
         m_max_adjust_time, m_adjust_length_threshold;
 
+protected:
+    int m_network_kart_id = 0;
+    std::string m_network_kart_name = "kart";
+
 public:
     SmoothNetworkBody(bool enable = false);
     // ------------------------------------------------------------------------
     virtual ~SmoothNetworkBody() {}
+    // ------------------------------------------------------------------------
+    void setNetworkKartInfo(int kart_id, const std::string& name)
+    {
+        m_network_kart_id = kart_id;
+        m_network_kart_name = name;
+    }
     // ------------------------------------------------------------------------
     void reset()
     {

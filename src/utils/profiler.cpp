@@ -143,10 +143,11 @@ void Profiler::reset()
     m_all_threads_data.clear();
     m_gpu_times.clear();
     m_all_event_names.clear();
+    m_physics_data_list.clear();
     m_current_frame       = 0;
     m_has_wrapped_around  = false;
     m_freeze_state        = UNFROZEN;
-    
+	m_render_frames       = 0;
     init();
 }   // reset
 
@@ -289,6 +290,7 @@ void Profiler::synchronizeFrame()
         next_frame = 0;
         m_has_wrapped_around = true;
     }
+    m_render_frames++;
 
     // First finish all markers that are currently in progress, and add
     // a new start marker for the next frame. So e.g. if a thread is busy in
@@ -819,8 +821,27 @@ void Profiler::writeToFile(const std::string& base_name)
         start = (start + 1) % m_max_frames;
     }
     f_gpu.close();
-    m_lock.unlock();
 
+	// 4: Save Physics data
+	std::ofstream f_phys(FileUtils::getPortableWritingPath(base_name + ".profile-"
+		+ (Track::getCurrentTrack() != NULL ? Track::getCurrentTrack()->getIdent() : "menu") + "-physics" + ".csv"));
+
+    f_phys << "Render Frame, outer dt (ms), inner dt (ms),";
+    f_phys << std::endl;
+    for (const auto& pair : m_physics_data_list) 
+	{
+        const PhysicsData& pd = pair.second;
+        int max_idx = std::max(pd.m_outer_dt_list.size(), pd.m_inner_dt_list.size());
+		for (int i = 0; i < max_idx; i++)
+		{
+			float outer_dt = (i < pd.m_outer_dt_list.size()) ? pd.m_outer_dt_list[i] : -1.0f;
+			float inner_dt = (i < pd.m_inner_dt_list.size()) ? pd.m_inner_dt_list[i] : -1.0f;
+			f_phys << pair.first << ", " << outer_dt << ", " << inner_dt << ",";
+			f_phys << std::endl;
+		}
+	}
+	f_phys.close();
+    m_lock.unlock();
 }   // writeFile
 
 //-----------------------------------------------------------------------------

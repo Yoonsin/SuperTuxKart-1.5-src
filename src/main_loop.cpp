@@ -629,8 +629,10 @@ void MainLoop::run()
 
             //check history end flag
 			bool history_end = false;
+            double outer_dt = 0; double inner_dt = 0;
             for (int i = 0; i < num_steps; i++)
             {
+                if(profiler.getProfileLogging()) outer_dt = getTimeMilliseconds();
                 const World* world = World::getWorld();
                 if (world && history->replayHistory())
                 {
@@ -652,10 +654,12 @@ void MainLoop::run()
                 input_manager->updateAutoAccel(race_tick_active);
 
                 PROFILER_PUSH_CPU_MARKER("Race simulation", 0, 255, 255);
+                if (profiler.getProfileLogging()) inner_dt = getTimeMilliseconds();
                 if (World::getWorld())
                 {
                     updateRace(1, fast_forward);
                 }
+                if (profiler.getProfileLogging()) inner_dt = getTimeMilliseconds() - inner_dt;
                 PROFILER_POP_CPU_MARKER();
 
                 if (history_end)
@@ -701,6 +705,11 @@ void MainLoop::run()
                             linear_world->finishQuadLog();
                     }
                 }
+                if (profiler.getProfileLogging())
+                {
+                    outer_dt = getTimeMilliseconds() - outer_dt;
+                    profiler.setPhysicsData(profiler.getRenderFrames(), outer_dt, inner_dt);
+                }
             }   // for i < num_steps
 
             const World* world = World::getWorld();
@@ -710,6 +719,7 @@ void MainLoop::run()
             if (NetworkConfig::get()->isNetworking() && STKHost::existHost())
             {
                 STKHost::get()->updateRTTLogging(race_active);
+                STKHost::get()->updateDiscrepancyLogging(race_active);
             }
             profiler.updateProfileLog(race_active);
 
