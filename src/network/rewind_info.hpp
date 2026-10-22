@@ -54,6 +54,8 @@ private:
      *  object.  */
     bool m_is_confirmed;
 
+    bool m_merge_inspected;
+
 public:
     RewindInfo(int ticks, bool is_confirmed);
 
@@ -83,6 +85,10 @@ public:
     // ------------------------------------------------------------------------
     /** If this RewindInfo is an event. Subclasses will overwrite this. */
     virtual bool isState() const { return false; }
+    // ------------------------------------------------------------------------
+    void setMergeInspected(bool b) { m_merge_inspected = b; }
+    // ------------------------------------------------------------------------
+    bool isMergeInspected() const { return m_merge_inspected; }
     // ------------------------------------------------------------------------
 };   // RewindInfo
 

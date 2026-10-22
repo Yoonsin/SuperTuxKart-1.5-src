@@ -19,8 +19,10 @@
 #include "config/user_config.hpp"
 #include "karts/abstract_kart.hpp"
 #include "karts/controller/controller.hpp"
+#include "karts/controller/ai_base_controller.hpp"
 #include "network/network_config.hpp"
 #include "network/network_string.hpp"
+#include "network/rewind_manager.hpp"
 #include "network/protocols/game_events_protocol.hpp"
 #include "network/stk_host.hpp"
 #include "tracks/track.hpp"
@@ -30,6 +32,7 @@
 #include "utils/profiler.hpp"
 
 #include "items/powerup_manager.hpp"
+#include "items/powerup.hpp"
 #include "items/attachment.hpp"
 #include "karts/kart_properties.hpp"
 #include "utils/vec3.hpp"
@@ -101,6 +104,17 @@ void FreeForAll::reset(bool restart)
 {
     if (restart) TimingLogger::get()->saveCsv();
     WorldWithRank::reset(restart);
+    if (UserConfigParams::m_auto_item_fire && UserConfigParams::m_timing_log && getNumKarts() == 2)
+    {
+        for (int i = 0; i < 2; i++) {
+            auto type = (i == 0) ? PowerupManager::POWERUP_BUBBLEGUM : PowerupManager::POWERUP_BOWLING;
+            auto kart = getKart(i);
+            kart->setPowerup(type, 255);
+            kart->makeKartRest();
+            kart->getBody()->setLinearFactor(Vec3(0.0f));
+            kart->getBody()->setAngularFactor(Vec3(0.0f));
+        }
+    }
     m_duel_ticks = 0;
     m_duel_fired = false;
     m_count_down_reached_zero = false;
@@ -175,7 +189,8 @@ void FreeForAll::handleScoreInServer(int kart_id, int hitter)
     {
         //점수 득점일 때만 체크
         if (UserConfigParams::m_auto_item_fire && UserConfigParams::m_timing_log) {
-            TimingLogger::get()->logEvent(getTimeMilliseconds(), ticks, TimingLogger::TimingType::Hit, "name", platform);
+            std::string topology = (NetworkConfig::get()->isNetworking() && NetworkConfig::get()->isServer()) ? "SERVER" : "CLIENT";
+            TimingLogger::get()->logEvent(getTimeMilliseconds(), ticks, -1, TimingLogger::TimingType::Hit_Bowling, topology, platform);
         }
         new_score = ++m_scores[hitter]; 
         score_delta = 1;
@@ -252,13 +267,24 @@ void FreeForAll::update(int ticks)
     // [2] 듀얼 모드: 무한 반복 장전 및 동시 발사 (--auto-item-fire 플래그 전용)
     if (UserConfigParams::m_auto_item_fire && getNumKarts() == 2)
     {
-        setKartTimingEvent(ticks);
+        if (NetworkConfig::get()->isNetworking()) 
+        {
+            if(NetworkConfig::get()->isClient())
+                setKartTimingEvent(ticks);
+        }
+        else 
+        {
+            setKartTimingEvent(ticks);
+        }
     }
     // ====================================================================
 }   // update
 
 void FreeForAll::setKartTimingEvent(int ticks)
 {
+    if (RewindManager::get()->isRewinding()) // rewind 중일 때는 재생 X
+        return;
+
     if (isActiveRacePhase())
     {
         int old_ticks = m_duel_ticks;
@@ -268,23 +294,34 @@ void FreeForAll::setKartTimingEvent(int ticks)
         int reset_tick = 1200; // 10초 (1200틱) 단위로 반복
 
         for (int kart_id = 0; kart_id < 2; kart_id++) {
+            // 만약 네트워크 게임이고 내 로컬 플레이어가 아니면 입력 제외
+            if (NetworkConfig::get()->isNetworking() && !getKart(kart_id)->getController()->isLocalPlayerController())
+                continue;
+
             getKart(kart_id)->getControls().setSteer(0.0f);     // 조향(회전) 차단
             getKart(kart_id)->getControls().setAccel(false);    // 가속 차단
             getKart(kart_id)->getControls().setBrake(false);    // 브레이크 차단
             getKart(kart_id)->getControls().setLookBack(false); // 뒤보기 차단
-            
+            PowerupManager::PowerupType powerupType = getKart(kart_id)->getPowerup()->getType();
+
             int player_kart_id = (getKart(kart_id)->getController()->isPlayerController()) ? kart_id : -1;
 			//if (player_kart_id != kart_id) continue; //플레이어만 던지고 싶을 때 주석 해제
 			if (!getKart(kart_id)->getController()) continue;
 
             // ready_tick 시점에 양쪽에 볼링공 강제 장전
-            if (old_ticks < ready_tick && m_duel_ticks >= ready_tick)
+            if (UserConfigParams::m_score_log && old_ticks < ready_tick && m_duel_ticks >= ready_tick)
             {
-                if(player_kart_id != kart_id) getKart(kart_id)->setPowerup(PowerupManager::POWERUP_BOWLING, 1);
-                else getKart(kart_id)->setPowerup(PowerupManager::POWERUP_BOWLING, 1);
+                if(player_kart_id != kart_id) 
+                    getKart(kart_id)->setPowerup(PowerupManager::POWERUP_BOWLING, 1);
+                else 
+                    getKart(kart_id)->setPowerup(PowerupManager::POWERUP_BOWLING, 1);
 
                 if (UserConfigParams::m_timing_log) {
-                    TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(), TimingLogger::TimingType::Ready, "name", getCurrentPlatform());
+                    TimingLogger::TimingType timingType = (powerupType == PowerupManager::POWERUP_BOWLING) ? TimingLogger::TimingType::Ready_Bowling : TimingLogger::TimingType::Ready_Gum;
+                    if (NetworkConfig::get()->isNetworking() && NetworkConfig::get()->isClient())
+                        TimingLogger::get()->logEvent(getTimeMilliseconds(), -1, World::getWorld()->getTicksSinceStart(), timingType, "CLIENT", getCurrentPlatform());
+                    else
+                        TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(),-1, timingType, "CLIENT", getCurrentPlatform());
                 }
             }
 
@@ -293,16 +330,33 @@ void FreeForAll::setKartTimingEvent(int ticks)
             {
                 long long timestamp = World::getWorld()->getTicksSinceStart();
                 std::string platform = getCurrentPlatform();
+                bool input_changed;
                 
-                getKart(kart_id)->getControls().setFire(true);
-                getKart(kart_id)->getController()->action(PlayerAction::PA_FIRE, 1);
-                
-                if (UserConfigParams::m_score_log) {
-                    ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "FIRE", platform, kart_id, -1, 0);
+                if (dynamic_cast<AIBaseController*>(getKart(kart_id)->getController()))
+                {
+                    input_changed = !getKart(kart_id)->getControls().getFire();
+                    getKart(kart_id)->getControls().setFire(true);
                 }
-                
-                if (UserConfigParams::m_timing_log) {
-                    TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(), TimingLogger::TimingType::Throw, "name", getCurrentPlatform());
+                else
+                {
+                    input_changed = getKart(kart_id)->getController()->action(PlayerAction::PA_FIRE, 1);
+                }
+
+                if (UserConfigParams::m_score_log) 
+                    ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "FIRE", platform, kart_id, -1, 0);
+
+                if (UserConfigParams::m_timing_log &&
+                    input_changed &&
+                    (powerupType == PowerupManager::POWERUP_BOWLING || powerupType == PowerupManager::POWERUP_BUBBLEGUM)) 
+                {
+                    TimingLogger::TimingType timingType = (powerupType == PowerupManager::POWERUP_BOWLING)
+                        ? TimingLogger::TimingType::Fire_Bowling
+                        : TimingLogger::TimingType::Fire_Gum;
+                    
+                    if (NetworkConfig::get()->isNetworking() && NetworkConfig::get()->isClient())
+                        TimingLogger::get()->logEvent(getTimeMilliseconds(), -1, World::getWorld()->getTicksSinceStart(), timingType, "CLIENT", getCurrentPlatform());
+                    else
+                        TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(), -1, timingType, "CLIENT", getCurrentPlatform());
                 }
                 //Log::info("kart ID", "%s", getKart(i)->getController()->getControllerName());
                 // //Log::info("ticks", "%d", m_duel_ticks);
@@ -311,8 +365,10 @@ void FreeForAll::setKartTimingEvent(int ticks)
 			// shoot_tick 이후 1틱이 지나면 발사 버튼을 떼도록 처리 (연속 발사 방지)
             if (old_ticks <= shoot_tick + 1 && m_duel_ticks > shoot_tick + 1)
             {
-                getKart(kart_id)->getControls().setFire(false);
-                getKart(kart_id)->getController()->action(PlayerAction::PA_FIRE, 0);
+                if (dynamic_cast<AIBaseController*>(getKart(kart_id)->getController()))
+                    getKart(kart_id)->getControls().setFire(false);
+                else 
+                    getKart(kart_id)->getController()->action(PlayerAction::PA_FIRE, 0);
             }
         }
         if (m_duel_ticks >= reset_tick) m_duel_ticks = 0;

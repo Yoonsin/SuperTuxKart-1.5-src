@@ -815,6 +815,8 @@ namespace UserConfigParams
     PARAM_PREFIX bool m_score_log PARAM_DEFAULT(false);
 
     PARAM_PREFIX bool m_timing_log PARAM_DEFAULT(false);
+    PARAM_PREFIX std::string m_timing_player_0 PARAM_DEFAULT("");
+    PARAM_PREFIX std::string m_timing_player_1 PARAM_DEFAULT("");
 
     /** True if slipstream debugging is activated. */
     PARAM_PREFIX bool m_slipstream_debug  PARAM_DEFAULT( false );

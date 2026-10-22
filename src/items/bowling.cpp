@@ -16,8 +16,9 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+#include "config/user_config.hpp"
 #include "items/bowling.hpp"
-
+#include "network/network_config.hpp"
 #include "audio/sfx_base.hpp"
 #include "audio/sfx_manager.hpp"
 #include "graphics/hit_sfx.hpp"
@@ -27,6 +28,8 @@
 #include "modes/linear_world.hpp"
 
 #include "utils/log.hpp" //TODO: remove after debugging is done
+#include "utils/timing_logger.hpp"
+#include "utils/profiler.hpp"
 
 float Bowling::m_st_max_distance;   // maximum distance for a bowling ball to be attracted
 float Bowling::m_st_max_distance_squared;
@@ -159,6 +162,22 @@ bool Bowling::hit(AbstractKart* kart, PhysicalObject* obj)
     {
         if(kart && kart->isShielded())
         {
+            if (UserConfigParams::m_auto_item_fire && UserConfigParams::m_timing_log) {
+                if (NetworkConfig::get()->isServer()) {
+                    TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(), -1, TimingLogger::TimingType::Hit_Gum, "SERVER", "Linux");
+                }
+                else {
+                    if (!NetworkConfig::get()->isNetworking()) {
+                        std::string platform = "Unknown";
+#if defined(__ANDROID__)
+                        platform = "Android";
+#elif defined(_WIN32) || defined(_WIN64)
+                        platform = "Windows";
+#endif
+                        TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(), -1, TimingLogger::TimingType::Hit_Gum, "CLIENT", platform);
+                    }
+                }
+            }
             kart->decreaseShieldTime();
             return true;
         }

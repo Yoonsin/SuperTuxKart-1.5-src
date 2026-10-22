@@ -2,6 +2,7 @@
 #include "config/user_config.hpp"
 #include "io/file_manager.hpp"
 #include "utils/file_utils.hpp"
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -30,8 +31,30 @@ TimingLogger::~TimingLogger() {
     saveCsv();
 }
 
+bool TimingLogger::setLogDirectory(const std::string& directory)
+{
+    std::string dir = directory;
+#ifdef _WIN32
+    std::replace(dir.begin(), dir.end(), '\\', '/');
+#endif
+    if (dir.empty())
+    {
+        m_log_prefix = file_manager->getUserConfigFile("timing_log_");
+        return true;
+    }
+    if (!file_manager->checkAndCreateDirectoryP(dir) ||
+        !FileManager::isDirectory(dir))
+        return false;
+
+    if (dir.back() != '/')
+        dir += '/';
+    m_log_prefix = dir + "timing_log_";
+    return true;
+}
+
 void TimingLogger::logEvent(double timeStamp,
-                            int tick,
+                            int real_tick,
+                            int predict_tick,
                             TimingType type,
                             const std::string& accountName,
                             const std::string& platform) 
@@ -39,7 +62,7 @@ void TimingLogger::logEvent(double timeStamp,
     if (!m_enabled) return;
     if (!UserConfigParams::m_auto_item_fire) return;
     
-	m_timing_data.push_back({timeStamp,tick,type,accountName,platform});
+	m_timing_data.push_back({timeStamp,real_tick,predict_tick,type,accountName,platform});
 }
 
 void TimingLogger::update() {
@@ -65,11 +88,34 @@ bool TimingLogger::saveCsv() {
     if (out) {
         out.seekp(0, std::ios::end);
         if (out.tellp() == 0)
-            out << "TimestampMs,Tick,EventType,AccountName,Platform\n";
+            out << "TimestampMs,RealTick,PredictTick,EventType,AccountName,Platform\n";
         out << std::setprecision(17);
         for (const auto& event : m_timing_data) {
-			std::string type = (event.type == TimingType::Ready) ? "Ready" : (event.type == TimingType::Throw) ? "Throw" : (event.type == TimingType::Hit) ? "Hit" : "Unknown";
-            out << event.timeStamp << ',' << event.tick << ',';
+            std::string type;
+            switch(event.type){
+            case TimingType::Ready_Bowling:
+                type = "Ready_Bowling";
+                break;
+            case TimingType::Ready_Gum:
+                type = "Ready_Gum";
+                break;
+            case TimingType::Fire_Bowling:
+                type = "Fire_Bowling";
+                break;
+            case TimingType::Fire_Gum:
+                type = "Fire_Gum";
+                break;
+            case TimingType::Hit_Bowling:
+                type = "Hit_Bowling";
+                break;
+            case TimingType::Hit_Gum:
+                type = "Hit_Gum";
+                break;
+            default:
+                type = "Unknown";
+                break;
+            }
+            out << event.timeStamp << ',' << event.real_tick << ',' << event.predict_tick << ',';
             writeCsvField(out, type);
             out << ',';
             writeCsvField(out, event.accountName);

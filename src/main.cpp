@@ -294,6 +294,7 @@ extern "C" {
 #include "utils/profiler.hpp"
 #include "utils/stk_process.hpp"
 #include "utils/string_utils.hpp"
+#include "utils/timing_logger.hpp"
 #include "utils/translation.hpp"
 #include "io/rich_presence.hpp"
 
@@ -631,6 +632,9 @@ void cmdLineHelp()
     "       --discrepancy-log-dir=DIR Set the discrepancy log output directory.\n"
     "       --profile-log      Save profiler data for each multiplayer race.\n"
     "       --profile-log-dir=DIR  Set the profile log output directory.\n"
+    "       --timing-log-dir=DIR Set the timing log output directory (default: config directory).\n"
+    "       --timing-player-0=NAME Assign NAME to timing-test kart 0 (server only).\n"
+    "       --timing-player-1=NAME Assign NAME to timing-test kart 1 (server only).\n"
     "       --quad-log         Save first visits to track quads as CSV.\n"
     "       --quad-log-dir=DIR Set the quad log output directory.\n"
     "       --auto-input       Generate deterministic input during multiplayer races.\n"
@@ -1074,6 +1078,9 @@ int handleCmdLinePreliminary()
         Log::info("main", "[timing-log] Logging enabled.");
     }
 
+    CommandLine::has("--timing-player-0", &UserConfigParams::m_timing_player_0);
+    CommandLine::has("--timing-player-1", &UserConfigParams::m_timing_player_1);
+
     return 0;
 }   // handleCmdLinePreliminary
 
@@ -1358,6 +1365,14 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         {
             profiler.setProfileLogDirectory(profile_log_directory);
         }
+    }
+
+    std::string timing_log_directory;
+    if (CommandLine::has("--timing-log-dir", &timing_log_directory) &&
+        !TimingLogger::get()->setLogDirectory(timing_log_directory))
+    {
+        Log::warn("main", "Cannot use timing log directory '%s'; using the config directory.",
+            timing_log_directory.c_str());
     }
 
     if (CommandLine::has("--quad-log"))

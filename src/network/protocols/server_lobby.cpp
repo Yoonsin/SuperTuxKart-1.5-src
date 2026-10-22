@@ -1063,6 +1063,24 @@ void ServerLobby::asynchronousUpdate()
             }
             m_game_setup->sortPlayersForGrandPrix(players);
             m_game_setup->sortPlayersForGame(players);
+
+            const auto& name0 = UserConfigParams::m_timing_player_0;
+            const auto& name1 = UserConfigParams::m_timing_player_1;
+            if (UserConfigParams::m_auto_item_fire && UserConfigParams::m_timing_log &&
+                players.size() == 2 && (!name0.empty() || !name1.empty()))
+            {
+                const auto current0 = StringUtils::wideToUtf8(players[0]->getName());
+                const auto current1 = StringUtils::wideToUtf8(players[1]->getName());
+                const bool valid_names =
+                    !name0.empty() && !name1.empty() && name0 != name1;
+
+                if (valid_names && current0 == name1 && current1 == name0)
+                    std::swap(players[0], players[1]);
+                else if (!valid_names || current0 != name0 || current1 != name1)
+                    Log::warn("ServerLobby",
+                        "Timing player names do not match; keeping random order.");
+            }
+
             for (unsigned i = 0; i < players.size(); i++)
             {
                 std::shared_ptr<NetworkPlayerProfile>& player = players[i];

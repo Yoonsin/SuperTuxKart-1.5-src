@@ -17,8 +17,9 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "network/rewind_queue.hpp"
-
+#include "config/user_config.hpp"
 #include "config/stk_config.hpp"
+#include "karts/abstract_kart.hpp"
 #include "modes/world.hpp"
 #include "network/dummy_rewinder.hpp"
 #include "network/network.hpp"
@@ -26,6 +27,9 @@
 #include "network/rewinder.hpp"
 #include "network/rewind_info.hpp"
 #include "network/rewind_manager.hpp"
+#include "utils/timing_logger.hpp"
+#include "utils/profiler.hpp"
+#include "items/powerup.hpp"
 
 #include <algorithm>
 
@@ -220,6 +224,35 @@ void RewindQueue::mergeNetworkData(int world_ticks, bool *needs_rewind,
     AllNetworkRewindInfo::iterator i = m_network_events.getData().begin();
     while (i != m_network_events.getData().end())
     {
+        if ((*i)->isEvent() && 
+            UserConfigParams::m_auto_item_fire &&
+            UserConfigParams::m_timing_log &&
+            NetworkConfig::get()->isServer() &&
+            !(*i)->isMergeInspected())
+        {
+            (*i)->setMergeInspected(true);
+            int server_ticks = world_ticks;
+            int client_ticks = (*i)->getTicks();
+            auto* input = dynamic_cast<RewindInfoEvent*>(*i);
+            BareNetworkString data;
+            data.getBuffer() = input->getBuffer()->getBuffer();
+            if (data.size() >= 8)
+            {
+                const int kart_id = data.getUInt8();
+                const uint8_t w = data.getUInt8();
+                const int value = data.getUInt16();
+                const PlayerAction action = static_cast<PlayerAction>(w & 63);
+                if (action == PlayerAction::PA_FIRE && value != 0) {
+                    auto* kart = World::getWorld()->getKart(kart_id);
+                    auto  powerupType = kart->getPowerup()->getType();
+                    if (powerupType == PowerupManager::POWERUP_BOWLING) 
+                        TimingLogger::get()->logEvent(getTimeMilliseconds(), server_ticks, client_ticks, TimingLogger::TimingType::Fire_Bowling, "SERVER", "Linux");
+                    else if (powerupType == PowerupManager::POWERUP_BUBBLEGUM)
+                        TimingLogger::get()->logEvent(getTimeMilliseconds(), server_ticks, client_ticks, TimingLogger::TimingType::Fire_Gum, "SERVER", "Linux");
+                }
+            }
+        }
+
         // Ignore any events that will happen in the future. The current
         // time step is world_ticks.
         if ((*i)->getTicks() > world_ticks)

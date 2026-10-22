@@ -97,6 +97,4 @@ public:
     // ------------------------------------------------------------------------
     virtual void restoreCompleteState(const BareNetworkString& b) OVERRIDE;
 };   // FreeForAll
-
-
 #endif

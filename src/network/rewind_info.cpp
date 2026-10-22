@@ -32,6 +32,7 @@ RewindInfo::RewindInfo(int ticks, bool is_confirmed)
 {
     m_ticks        = ticks;
     m_is_confirmed = is_confirmed;
+    m_merge_inspected = false;
 }   // RewindInfo
 
 // ----------------------------------------------------------------------------
