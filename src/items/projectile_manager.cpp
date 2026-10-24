@@ -33,6 +33,7 @@
 #include "network/network_string.hpp"
 #include "network/rewind_manager.hpp"
 #include "utils/stk_process.hpp"
+#include "utils/experiment_logger.hpp"
 #include "utils/string_utils.hpp"
 
 #include <typeinfo>
@@ -151,6 +152,14 @@ void ProjectileManager::updateServer(int ticks)
             HitEffect* he = p->second->getHitEffect();
             if (he)
                 addHitEffect(he);
+
+            // [score-log] 득점하지 못하고 사라지는 볼링공은 MISS 기록
+            if (p->second->getType() == PowerupManager::POWERUP_BOWLING &&
+                !p->second->hasScored() && ExperimentLogger::shouldLogShot())
+            {
+                ExperimentLogger::get()->logShot(p->second->getCreatedTicks(),
+                    p->second->getOwnerId(), -1);
+            }
 
             p->second->onDeleteFlyable();
             // Flyables will be deleted by computeError in client

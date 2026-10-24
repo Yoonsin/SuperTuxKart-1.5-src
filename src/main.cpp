@@ -294,6 +294,7 @@ extern "C" {
 #include "utils/profiler.hpp"
 #include "utils/stk_process.hpp"
 #include "utils/string_utils.hpp"
+#include "utils/experiment_logger.hpp"
 #include "utils/translation.hpp"
 #include "io/rich_presence.hpp"
 
@@ -631,6 +632,8 @@ void cmdLineHelp()
     "       --discrepancy-log-dir=DIR Set the discrepancy log output directory.\n"
     "       --profile-log      Save profiler data for each multiplayer race.\n"
     "       --profile-log-dir=DIR  Set the profile log output directory.\n"
+    "       --score-log        Save bowling HIT/MISS score log in --auto-item-fire mode.\n"
+    "       --score-log-dir=DIR Set the score log output directory (default: config directory).\n"
     "       --quad-log         Save first visits to track quads as CSV.\n"
     "       --quad-log-dir=DIR Set the quad log output directory.\n"
     "       --auto-input       Generate deterministic input during multiplayer races.\n"
@@ -1357,6 +1360,18 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         if (CommandLine::has("--profile-log-dir", &profile_log_directory))
         {
             profiler.setProfileLogDirectory(profile_log_directory);
+        }
+    }
+
+    // --score-log 는 handleCmdLinePreliminary() 에서 이미 처리됨 (인자가 지워짐)
+    if (UserConfigParams::m_score_log)
+    {
+        std::string score_log_directory;
+        if (CommandLine::has("--score-log-dir", &score_log_directory) &&
+            !ExperimentLogger::get()->setLogDirectory(score_log_directory))
+        {
+            Log::warn("main", "Cannot use score log directory '%s'; using the config directory.",
+                score_log_directory.c_str());
         }
     }
 

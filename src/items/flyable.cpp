@@ -50,6 +50,7 @@
 #include "physics/physics.hpp"
 #include "tracks/track.hpp"
 #include "utils/constants.hpp"
+#include "utils/experiment_logger.hpp"
 #include "utils/string_utils.hpp"
 #include "utils/vs.hpp"
 
@@ -86,6 +87,7 @@ Flyable::Flyable(AbstractKart *kart, PowerupManager::PowerupType type,
     m_owner_has_temporary_immunity = true;
     m_do_terrain_info              = true;
     m_deleted_once                 = false;
+    m_scored                       = false;
     m_max_lifespan                 = -1;
     m_compressed_gravity_vector    = 0;
     // It will be reset for each state restore
@@ -603,8 +605,17 @@ void Flyable::explode(AbstractKart *kart_hit, PhysicalObject *object,
 
             if (kart == kart_hit)
             {
-                world->kartHit(kart->getWorldKartId(),
+                const bool scored = world->kartHit(kart->getWorldKartId(),
                     m_owner->getWorldKartId());
+
+                // [score-log] 볼링공으로 상대 카트에게 득점했을 때 HIT 기록
+                if (scored && !m_scored && m_type == PowerupManager::POWERUP_BOWLING &&
+                    kart != m_owner && ExperimentLogger::shouldLogShot())
+                {
+                    m_scored = true;
+                    ExperimentLogger::get()->logShot(m_created_ticks,
+                        m_owner->getWorldKartId(), kart->getWorldKartId());
+                }
 
                 if (STKHost::isDiscrepancyLoggingEnabled() && STKHost::existHost() &&
                     RewindManager::get() && !RewindManager::get()->isRewinding())
@@ -801,6 +812,7 @@ void Flyable::onFireFlyable()
     m_has_hit_something = false;
     m_has_server_state = true;
     m_deleted_once = false;
+    m_scored = false;
     m_last_deleted_ticks = -1;
     // Reset the speed each time for (re-)firing, so subclass access with same
     // initial value

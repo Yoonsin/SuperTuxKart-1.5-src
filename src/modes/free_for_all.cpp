@@ -64,6 +64,7 @@ FreeForAll::FreeForAll() : WorldWithRank()
 FreeForAll::~FreeForAll()
 {
     TimingLogger::get()->saveCsv();
+    ExperimentLogger::get()->saveCsv();
 }   // ~FreeForAll
 
 static int s_ffa_round_id = 0; // 판을 구분하기 위한 전역 변수
@@ -102,7 +103,11 @@ void FreeForAll::init()
  */
 void FreeForAll::reset(bool restart)
 {
-    if (restart) TimingLogger::get()->saveCsv();
+    if (restart)
+    {
+        TimingLogger::get()->saveCsv();
+        ExperimentLogger::get()->saveCsv();
+    }
     WorldWithRank::reset(restart);
     if (UserConfigParams::m_auto_item_fire && getNumKarts() == 2)
     {
@@ -194,11 +199,6 @@ void FreeForAll::handleScoreInServer(int kart_id, int hitter)
         score_delta = 1;
     }
 
-    // 공격자 득점 (또는 자폭/공격자 불명 감점)
-    if (UserConfigParams::m_auto_item_fire && UserConfigParams::m_score_log) {
-        ExperimentLogger::get()->logEvent(s_ffa_round_id, ticks, "HIT_SERVER", platform, hitter, kart_id, score_delta);
-    }
-    
     if (NetworkConfig::get()->isNetworking() && NetworkConfig::get()->isServer())
     {
         NetworkString p(PROTOCOL_GAME_EVENTS);
@@ -218,15 +218,7 @@ void FreeForAll::setKartScoreFromServer(NetworkString& ns)
     int kart_id = ns.getUInt8();
     int16_t score = ns.getUInt16();
 
-    int score_delta = score - m_scores.at(kart_id);
     m_scores.at(kart_id) = score;
-
-    // 클라이언트가 서버로부터 점수가 깎였다는 통보를 받은 시간 기록
-    if (UserConfigParams::m_auto_item_fire && UserConfigParams::m_score_log) {
-        long long timestamp = World::getWorld()->getTicksSinceStart();
-        std::string platform = getCurrentPlatform();
-        ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "UPDATE_CLIENT", platform, -1, kart_id, score_delta);
-    }
 }
 // ----------------------------------------------------------------------------
 /** Returns the internal identifier for this race.
@@ -307,17 +299,10 @@ void FreeForAll::setKartTimingEvent(int ticks)
             // shoot_tick이 되는 순간에 딱 한 번 '발사' 시간 기록
             if (old_ticks < shoot_tick && m_duel_ticks >= shoot_tick)
             {
-                long long timestamp = World::getWorld()->getTicksSinceStart();
-                std::string platform = getCurrentPlatform();
-                
                 if (dynamic_cast<AIBaseController*>(getKart(kart_id)->getController()))
                     getKart(kart_id)->getControls().setFire(true);
                 else
                     getKart(kart_id)->getController()->action(PlayerAction::PA_FIRE, 1);
-                
-                if (UserConfigParams::m_score_log) {
-                    ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "FIRE", platform, kart_id, -1, 0);
-                }
                 
                 if (UserConfigParams::m_timing_log) {
                     TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(), TimingLogger::TimingType::Throw, "name", getCurrentPlatform());
@@ -430,6 +415,7 @@ std::pair<int, video::SColor> FreeForAll::getSpeedometerDigit(
 void FreeForAll::terminateRace()
 {
     TimingLogger::get()->saveCsv();
+    ExperimentLogger::get()->saveCsv();
     const unsigned int kart_amount = getNumKarts();
 
     for (unsigned int i = 0; i < kart_amount; i++)

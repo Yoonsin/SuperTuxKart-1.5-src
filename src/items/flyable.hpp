@@ -126,6 +126,10 @@ protected:
      * only once. */
     bool              m_deleted_once;
 
+    /* [score-log] True if this flyable gave a score to its owner, used to
+     * log a MISS when it is deleted without scoring. */
+    bool              m_scored;
+
     /* Save the locally detected deleted ticks, if the confirmed state world
      * ticks in computeError > this, the flyable can be deleted in client. */
     int               m_last_deleted_ticks;
@@ -274,6 +278,10 @@ public:
     virtual void onDeleteFlyable();
     // ------------------------------------------------------------------------
     void setCreatedTicks(int ticks)                { m_created_ticks = ticks; }
+    // ------------------------------------------------------------------------
+    int getCreatedTicks() const                    { return m_created_ticks; }
+    // ------------------------------------------------------------------------
+    bool hasScored() const                         { return m_scored; }
 };   // Flyable
 
 #endif
