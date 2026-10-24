@@ -19,8 +19,10 @@
 #include "config/user_config.hpp"
 #include "karts/abstract_kart.hpp"
 #include "karts/controller/controller.hpp"
+#include "karts/controller/ai_base_controller.hpp"
 #include "network/network_config.hpp"
 #include "network/network_string.hpp"
+#include "network/rewind_manager.hpp"
 #include "network/protocols/game_events_protocol.hpp"
 #include "network/stk_host.hpp"
 #include "tracks/track.hpp"
@@ -30,6 +32,7 @@
 #include "utils/profiler.hpp"
 
 #include "items/powerup_manager.hpp"
+#include "items/powerup.hpp"
 #include "items/attachment.hpp"
 #include "karts/kart_properties.hpp"
 #include "utils/vec3.hpp"
@@ -101,6 +104,16 @@ void FreeForAll::reset(bool restart)
 {
     if (restart) TimingLogger::get()->saveCsv();
     WorldWithRank::reset(restart);
+    if (UserConfigParams::m_auto_item_fire && getNumKarts() == 2)
+    {
+        for (int i = 0; i < 2; i++) {
+            auto kart = getKart(i);
+            kart->setPowerup(PowerupManager::POWERUP_BOWLING, 255);
+            kart->makeKartRest();
+            kart->getBody()->setLinearFactor(Vec3(0.0f));
+            kart->getBody()->setAngularFactor(Vec3(0.0f));
+        }
+    }
     m_duel_ticks = 0;
     m_duel_fired = false;
     m_count_down_reached_zero = false;
@@ -252,22 +265,36 @@ void FreeForAll::update(int ticks)
     // [2] 듀얼 모드: 무한 반복 장전 및 동시 발사 (--auto-item-fire 플래그 전용)
     if (UserConfigParams::m_auto_item_fire && getNumKarts() == 2)
     {
-        setKartTimingEvent(ticks);
+        if (NetworkConfig::get()->isNetworking()) 
+        {
+            if(NetworkConfig::get()->isClient())
+                setKartTimingEvent(ticks);
+        }
+        else 
+        {
+            setKartTimingEvent(ticks);
+        }
     }
     // ====================================================================
 }   // update
 
 void FreeForAll::setKartTimingEvent(int ticks)
 {
+    if (RewindManager::get()->isRewinding()) // rewind 중일 때는 재생 X
+        return;
+
     if (isActiveRacePhase())
     {
         int old_ticks = m_duel_ticks;
         m_duel_ticks += ticks;
-        int ready_tick = 120; // 1초 (120틱) 단위로 반복
         int shoot_tick = 240; // 2초 (240틱) 단위로 반복
         int reset_tick = 1200; // 10초 (1200틱) 단위로 반복
 
         for (int kart_id = 0; kart_id < 2; kart_id++) {
+            // 만약 네트워크 게임이고 내 로컬 플레이어가 아니면 입력 제외
+            if (NetworkConfig::get()->isNetworking() && !getKart(kart_id)->getController()->isLocalPlayerController())
+                continue;
+
             getKart(kart_id)->getControls().setSteer(0.0f);     // 조향(회전) 차단
             getKart(kart_id)->getControls().setAccel(false);    // 가속 차단
             getKart(kart_id)->getControls().setBrake(false);    // 브레이크 차단
@@ -277,25 +304,16 @@ void FreeForAll::setKartTimingEvent(int ticks)
 			//if (player_kart_id != kart_id) continue; //플레이어만 던지고 싶을 때 주석 해제
 			if (!getKart(kart_id)->getController()) continue;
 
-            // ready_tick 시점에 양쪽에 볼링공 강제 장전
-            if (old_ticks < ready_tick && m_duel_ticks >= ready_tick)
-            {
-                if(player_kart_id != kart_id) getKart(kart_id)->setPowerup(PowerupManager::POWERUP_BOWLING, 1);
-                else getKart(kart_id)->setPowerup(PowerupManager::POWERUP_BOWLING, 1);
-
-                if (UserConfigParams::m_timing_log) {
-                    TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(), TimingLogger::TimingType::Ready, "name", getCurrentPlatform());
-                }
-            }
-
             // shoot_tick이 되는 순간에 딱 한 번 '발사' 시간 기록
             if (old_ticks < shoot_tick && m_duel_ticks >= shoot_tick)
             {
                 long long timestamp = World::getWorld()->getTicksSinceStart();
                 std::string platform = getCurrentPlatform();
                 
-                getKart(kart_id)->getControls().setFire(true);
-                getKart(kart_id)->getController()->action(PlayerAction::PA_FIRE, 1);
+                if (dynamic_cast<AIBaseController*>(getKart(kart_id)->getController()))
+                    getKart(kart_id)->getControls().setFire(true);
+                else
+                    getKart(kart_id)->getController()->action(PlayerAction::PA_FIRE, 1);
                 
                 if (UserConfigParams::m_score_log) {
                     ExperimentLogger::get()->logEvent(s_ffa_round_id, timestamp, "FIRE", platform, kart_id, -1, 0);
@@ -311,8 +329,10 @@ void FreeForAll::setKartTimingEvent(int ticks)
 			// shoot_tick 이후 1틱이 지나면 발사 버튼을 떼도록 처리 (연속 발사 방지)
             if (old_ticks <= shoot_tick + 1 && m_duel_ticks > shoot_tick + 1)
             {
-                getKart(kart_id)->getControls().setFire(false);
-                getKart(kart_id)->getController()->action(PlayerAction::PA_FIRE, 0);
+                if (dynamic_cast<AIBaseController*>(getKart(kart_id)->getController()))
+                    getKart(kart_id)->getControls().setFire(false);
+                else 
+                    getKart(kart_id)->getController()->action(PlayerAction::PA_FIRE, 0);
             }
         }
         if (m_duel_ticks >= reset_tick) m_duel_ticks = 0;
