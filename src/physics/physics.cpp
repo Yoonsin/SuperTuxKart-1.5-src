@@ -49,6 +49,44 @@
 #include <IVideoDriver.h>
 
 //=============================================================================
+/** [auto-item-fire] Broadphase filter that lets two bowling balls pass
+ *  through each other, so that simultaneously fired balls are not cancelled
+ *  and both can reach the opposing kart. Everything else collides as usual.
+ */
+struct BowlingPassThroughFilter : public btOverlapFilterCallback
+{
+    virtual bool needBroadphaseCollision(btBroadphaseProxy* proxy0,
+                                         btBroadphaseProxy* proxy1) const OVERRIDE
+    {
+        // Default bullet group/mask test
+        bool collides =
+            (proxy0->m_collisionFilterGroup & proxy1->m_collisionFilterMask) != 0 &&
+            (proxy1->m_collisionFilterGroup & proxy0->m_collisionFilterMask) != 0;
+        if (!collides || !UserConfigParams::m_auto_item_fire)
+            return collides;
+
+        const btCollisionObject* obj0 =
+            static_cast<const btCollisionObject*>(proxy0->m_clientObject);
+        const btCollisionObject* obj1 =
+            static_cast<const btCollisionObject*>(proxy1->m_clientObject);
+        if (!obj0 || !obj1) return collides;
+
+        const UserPointer* up0 = (UserPointer*)(obj0->getUserPointer());
+        const UserPointer* up1 = (UserPointer*)(obj1->getUserPointer());
+        if (up0 && up1 &&
+            up0->is(UserPointer::UP_FLYABLE) &&
+            up1->is(UserPointer::UP_FLYABLE) &&
+            up0->getPointerFlyable()->getType() == PowerupManager::POWERUP_BOWLING &&
+            up1->getPointerFlyable()->getType() == PowerupManager::POWERUP_BOWLING)
+            return false;
+
+        return collides;
+    }   // needBroadphaseCollision
+};   // BowlingPassThroughFilter
+
+static BowlingPassThroughFilter g_bowling_pass_through_filter;
+
+//=============================================================================
 Physics* g_physics[PT_COUNT];
 // ----------------------------------------------------------------------------
 Physics* Physics::get()
@@ -95,6 +133,9 @@ void Physics::init(const Vec3 &world_min, const Vec3 &world_max)
                                                  m_axis_sweep,
                                                  this,
                                                  m_collision_conf);
+    // [auto-item-fire] Bowling balls pass through each other
+    m_dynamics_world->getPairCache()
+        ->setOverlapFilterCallback(&g_bowling_pass_through_filter);
     m_karts_to_delete.clear();
     m_dynamics_world->setGravity(
         btVector3(0.0f,
