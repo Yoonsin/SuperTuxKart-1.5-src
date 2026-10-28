@@ -63,7 +63,7 @@ namespace irr
 class AbortWorldUpdateException : public std::runtime_error
 {
 public:
-    AbortWorldUpdateException() : std::runtime_error("race abort") { };
+    AbortWorldUpdateException() : std::runtime_error("race abort") {};
 };
 
 /**
@@ -90,12 +90,12 @@ public:
     typedef std::vector<std::shared_ptr<AbstractKart> > KartList;
 private:
     /** A pointer to the global world object for a race. */
-    static World *m_world[PT_COUNT];
+    static World* m_world[PT_COUNT];
     // ------------------------------------------------------------------------
     void setAITeam();
     // ------------------------------------------------------------------------
     std::shared_ptr<AbstractKart> createKartWithTeam
-        (const std::string &kart_ident, int index, int local_player_id,
+    (const std::string& kart_ident, int index, int local_player_id,
         int global_player_id, RaceManager::KartType type,
         HandicapLevel handicap);
 
@@ -134,25 +134,25 @@ protected:
     */
     bool        m_use_highscores;
 
-    void  updateHighscores  (int* best_highscore_rank);
-    void  resetAllKarts     ();
+    void  updateHighscores(int* best_highscore_rank);
+    void  resetAllKarts();
     Controller*
-          loadAIController  (AbstractKart *kart);
+        loadAIController(AbstractKart* kart);
 
     virtual std::shared_ptr<AbstractKart> createKart
-        (const std::string &kart_ident, int index, int local_player_id,
+    (const std::string& kart_ident, int index, int local_player_id,
         int global_player_id, RaceManager::KartType type,
         HandicapLevel handicap);
 
     /** Pointer to the race GUI. The race GUI is handled by world. */
-    RaceGUIBase *m_race_gui;
+    RaceGUIBase* m_race_gui;
 
     /** The actual race gui needs to be saved when the race result gui is
         displayed since it is still needed in case of a restart, and it
         can't simply be created again (since it assumes that it can render
         to texture without having any scene nodes, but in case of a restart
         there are scene nodes). */
-    RaceGUIBase *m_saved_race_gui;
+    RaceGUIBase* m_saved_race_gui;
 
     /** Pausing/unpausing are not done immediately, but at next udpdate. The
      *  use of this is when switching between screens : if we leave a screen
@@ -186,7 +186,9 @@ protected:
 
     bool m_ended_early;
 
-    float m_timer;
+    double m_timer;
+
+    double m_last_timer;
 
     virtual void  onGo() OVERRIDE;
     /** Returns true if the race is over. Must be defined by all modes. */
@@ -214,7 +216,7 @@ public:
     // =================================
     // ------------------------------------------------------------------------
     /** Returns a pointer to the (singleton) world object. */
-    static World*   getWorld()
+    static World* getWorld()
     {
         ProcessType type = STKProcess::getType();
         return m_world[type];
@@ -232,7 +234,7 @@ public:
     // ------------------------------------------------------------------------
     /** Sets the pointer to the world object. This is only used by
      *  the race_manager.*/
-    static void     setWorld(World *world)
+    static void     setWorld(World* world)
     {
         ProcessType type = STKProcess::getType();
         m_world[type] = world;
@@ -253,7 +255,7 @@ public:
     virtual unsigned int getNumberOfRescuePositions() const;
     // ------------------------------------------------------------------------
     /** Determines the rescue position index of the specified kart. */
-    virtual unsigned int getRescuePositionIndex(AbstractKart *kart) = 0;
+    virtual unsigned int getRescuePositionIndex(AbstractKart* kart) = 0;
     // ------------------------------------------------------------------------
     /** Returns the bullet transformation for the specified rescue index. */
     virtual btTransform getRescueTransform(unsigned int index) const;
@@ -277,7 +279,7 @@ public:
     /** Called by the code that draws the list of karts on the race GUI
       * to know what needs to be drawn in the current mode. */
     virtual void getKartsDisplayInfo(
-                       std::vector<RaceGUIBase::KartIconDisplayInfo> *info)= 0;
+        std::vector<RaceGUIBase::KartIconDisplayInfo>* info) = 0;
     // ------------------------------------------------------------------------
 
     // Virtual functions
@@ -285,15 +287,15 @@ public:
     virtual void    init();
     virtual void    updateGraphics(float dt);
     virtual void    terminateRace() OVERRIDE;
-    virtual void    reset(bool restart=false) OVERRIDE;
+    virtual void    reset(bool restart = false) OVERRIDE;
     virtual void    pause(Phase phase) OVERRIDE;
     virtual void    unpause() OVERRIDE;
-    virtual void    getDefaultCollectibles(int *collectible_type,
-                                           int *amount );
+    virtual void    getDefaultCollectibles(int* collectible_type,
+                                           int* amount);
     // ------------------------------------------------------------------------
     /** Receives notification if an item is collected. Used for easter eggs. */
-    virtual void collectedItem(const AbstractKart *kart, 
-                               const ItemState *item    ) {}
+    virtual void collectedItem(const AbstractKart* kart,
+                               const ItemState* item    ) {}
     // ------------------------------------------------------------------------
     virtual void endRaceEarly() { return; }
     // ------------------------------------------------------------------------
@@ -321,34 +323,34 @@ public:
 
     // Other functions
     // ===============
-    Highscores     *getHighscores() const;
-    Highscores     *getGPHighscores() const; 
+    Highscores*     getHighscores() const;
+    Highscores*     getGPHighscores() const;
     void            schedulePause(Phase phase);
     void            scheduleUnpause();
     void            scheduleExitRace() { m_schedule_exit_race = true; }
     void            scheduleTutorial();
     void            updateWorld(int ticks);
-    void            handleExplosion(const Vec3 &xyz, AbstractKart *kart_hit,
-                                    PhysicalObject *object);
-    AbstractKart*   getPlayerKart(unsigned int player) const;
-    AbstractKart*   getLocalPlayerKart(unsigned int n) const;
-    virtual const btTransform &getStartTransform(int index);
-    void moveKartTo(AbstractKart* kart, const btTransform &t);
+    void            handleExplosion(const Vec3& xyz, AbstractKart* kart_hit,
+                                    PhysicalObject* object);
+    AbstractKart* getPlayerKart(unsigned int player) const;
+    AbstractKart* getLocalPlayerKart(unsigned int n) const;
+    virtual const btTransform& getStartTransform(int index);
+    void moveKartTo(AbstractKart* kart, const btTransform& t);
     void updateTimeTargetSound();
     // ------------------------------------------------------------------------
     /** Returns a pointer to the race gui. */
-    RaceGUIBase    *getRaceGUI() const { return m_race_gui;}
+    RaceGUIBase* getRaceGUI() const { return m_race_gui; }
     // ------------------------------------------------------------------------
     /** Returns the number of karts in the race. */
-    unsigned int    getNumKarts() const { return (unsigned int) m_karts.size(); }
+    unsigned int    getNumKarts() const { return (unsigned int)m_karts.size(); }
     // ------------------------------------------------------------------------
     /** Returns the kart with a given world id. */
-    AbstractKart       *getKart(int kartId) const {
-                        assert(kartId >= 0 && kartId < int(m_karts.size()));
-                        return m_karts[kartId].get();                              }
+    AbstractKart* getKart(int kartId) const {
+                  assert(kartId >= 0 && kartId < int(m_karts.size()));
+                  return m_karts[kartId].get();                                  }
     // ------------------------------------------------------------------------
     /** Returns all karts. */
-    const KartList & getKarts() const { return m_karts; }
+    const KartList& getKarts() const { return m_karts; }
     // ------------------------------------------------------------------------
     /** Returns the number of currently active (i.e.non-elikminated) karts. */
     unsigned int    getCurrentNumKarts() const { return (int)m_karts.size() -
@@ -356,7 +358,7 @@ public:
     // ------------------------------------------------------------------------
     /** Returns the number of currently active (i.e. non-eliminated) players.*/
     unsigned int    getCurrentNumPlayers() const { return m_num_players -
-                                                         m_eliminated_players;}
+                                                          m_eliminated_players;}
     // ------------------------------------------------------------------------
     void resetElimination()
     {
@@ -377,14 +379,14 @@ public:
     /** The code that draws the timer should call this first to know
      *  whether the game mode wants a timer drawn. */
     virtual bool shouldDrawTimer() const
-                    { return isActiveRacePhase() && getClockMode() != CLOCK_NONE; }
+    {        return isActiveRacePhase() && getClockMode() != CLOCK_NONE;    }
     // ------------------------------------------------------------------------
     /** \return whether this world should draw the digit on the center of speedometer */
     virtual bool shouldDrawSpeedometerDigit() const { return false; }
     // ------------------------------------------------------------------------
     /** \return a pair consists of the digit and the color of the digit */
-    virtual std::pair<int, video::SColor> getSpeedometerDigit(const AbstractKart *kart) const 
-                { return std::make_pair(0, video::SColor(255, 255, 255, 255)); }
+    virtual std::pair<int, video::SColor> getSpeedometerDigit(const AbstractKart* kart) const
+    {        return std::make_pair(0, video::SColor(255, 255, 255, 255));    }
     // ------------------------------------------------------------------------
     /** \return whether this world can generate/have highscores */
     bool useHighScores() const { return m_use_highscores; }
