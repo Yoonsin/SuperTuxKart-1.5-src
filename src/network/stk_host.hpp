@@ -1,4 +1,4 @@
-//
+﻿//
 //  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2013-2015 SuperTuxKart-Team
 //
@@ -28,9 +28,9 @@
 
 #include "irrString.h"
 
-// enet.h includes win32.h, which without lean_and_mean includes
-// winspool.h, which defines MAX_PRIORITY as a macro, which then
-// results in request_manager.hpp not being compilable.
+ // enet.h includes win32.h, which without lean_and_mean includes
+ // winspool.h, which defines MAX_PRIORITY as a macro, which then
+ // results in request_manager.hpp not being compilable.
 #define WIN32_LEAN_AND_MEAN
 #include <enet/enet.h>
 
@@ -180,9 +180,11 @@ public:
     static bool m_enable_console;
 
     static void setRTTLogEnabled(bool enabled)
-        { m_rtt_log_enabled = enabled; }
+    { m_rtt_log_enabled = enabled; }
     static void setRTTLogDirectory(const std::string& directory)
-        { m_rtt_log_directory = directory; }
+    { m_rtt_log_directory = directory; }
+    static std::string getRTTLogDirectory()
+    { return m_rtt_log_directory; }
     static bool isRTTLoggingEnabled() { return m_rtt_log_enabled; }
 
     /** Creates the STKHost. It takes all confifguration parameters from
@@ -191,14 +193,14 @@ public:
     static std::shared_ptr<LobbyProtocol> create(ChildLoop* cl = NULL);
     // ------------------------------------------------------------------------
     /** Returns the instance of STKHost. */
-    static STKHost *get()
+    static STKHost* get()
     {
         ProcessType pt = STKProcess::getType();
         assert(m_stk_host[pt] != NULL);
         return m_stk_host[pt];
     }   // get
     // ------------------------------------------------------------------------
-    static STKHost *getByType(ProcessType pt)
+    static STKHost* getByType(ProcessType pt)
     {
         assert(m_stk_host[pt] != NULL);
         return m_stk_host[pt];
@@ -214,9 +216,9 @@ public:
     // ------------------------------------------------------------------------
     /** Checks if the STKHost has been created. */
     static bool existHost()
-                       { return m_stk_host[STKProcess::getType()] != NULL; }
+                       { return m_stk_host[STKProcess::getType()] != NULL;  }
     // ------------------------------------------------------------------------
-    static void clear()          { memset(m_stk_host, 0, sizeof(m_stk_host)); }
+    static void clear()         { memset(m_stk_host, 0, sizeof(m_stk_host)); }
     // ------------------------------------------------------------------------
     const SocketAddress& getPublicAddress() const
                                             { return *m_public_address.get(); }
@@ -252,13 +254,13 @@ public:
     //-------------------------------------------------------------------------
     void shutdown();
     //-------------------------------------------------------------------------
-    void sendPacketToAllPeersInServer(NetworkString *data,
-                                      bool reliable = true);
+    void sendPacketToAllPeersInServer(NetworkString* data,
+        bool reliable = true);
     // ------------------------------------------------------------------------
-    void sendPacketToAllPeers(NetworkString *data, bool reliable = true);
+    void sendPacketToAllPeers(NetworkString* data, bool reliable = true);
     // ------------------------------------------------------------------------
     void sendPacketToAllPeersWith(std::function<bool(STKPeer*)> predicate,
-                                  NetworkString* data, bool reliable = true);
+        NetworkString* data, bool reliable = true);
     // ------------------------------------------------------------------------
     /** Returns true if this client instance is allowed to control the server.
      *  It will auto transfer ownership if previous server owner disconnected.
@@ -267,10 +269,10 @@ public:
     // ------------------------------------------------------------------------
     /** Sets if this local host is authorised to control the server. */
     void setAuthorisedToControl(bool authorised)
-                                            { m_authorised.store(authorised); }
+                                             { m_authorised.store(authorised); }
     // ------------------------------------------------------------------------
     std::vector<std::shared_ptr<NetworkPlayerProfile> >
-                                                  getAllPlayerProfiles() const;
+        getAllPlayerProfiles() const;
     // ------------------------------------------------------------------------
     std::set<uint32_t> getAllPlayerOnlineIds() const;
     // ------------------------------------------------------------------------
@@ -278,7 +280,7 @@ public:
     // ------------------------------------------------------------------------
     std::shared_ptr<STKPeer> findPeerByName(const core::stringw& name) const;
     // ------------------------------------------------------------------------
-    void sendPacketExcept(STKPeer* peer, NetworkString *data,
+    void sendPacketExcept(STKPeer* peer, NetworkString* data,
                           bool reliable = true);
     // ------------------------------------------------------------------------
     void setupClient(int peer_count, int channel_limit,
@@ -293,7 +295,7 @@ public:
     // ------------------------------------------------------------------------
     std::shared_ptr<STKPeer> getServerPeerForClient() const;
     // ------------------------------------------------------------------------
-    void setErrorMessage(const irr::core::stringw &message);
+    void setErrorMessage(const irr::core::stringw& message);
     // ------------------------------------------------------------------------
     void addEnetCommand(ENetPeer* peer, ENetPacket* packet, uint32_t i,
                         ENetCommandType ect, ENetAddress ea)
@@ -310,10 +312,10 @@ public:
      *  requested. */
     bool requestedShutdown() const                { return m_shutdown.load(); }
     // ------------------------------------------------------------------------
-    int receiveRawPacket(char *buffer, int buffer_len,
+    int receiveRawPacket(char* buffer, int buffer_len,
                          SocketAddress* sender, int max_tries = -1);
     // ------------------------------------------------------------------------
-    void sendRawPacket(const BareNetworkString &buffer,
+    void sendRawPacket(const BareNetworkString& buffer,
                        const SocketAddress& dst);
     // ------------------------------------------------------------------------
     Network* getNetwork() const                           { return m_network; }
@@ -352,7 +354,7 @@ public:
     /** Returns the host id of this host. */
     uint32_t getMyHostId() const                          { return m_host_id; }
     // ------------------------------------------------------------------------
-    void sendToServer(NetworkString *data, bool reliable = true);
+    void sendToServer(NetworkString* data, bool reliable = true);
     // ------------------------------------------------------------------------
     bool isClientServer() const;
     // ------------------------------------------------------------------------
@@ -362,7 +364,7 @@ public:
                                            { return m_peer_pings.getAtomic(); }
     // ------------------------------------------------------------------------
     uint32_t getClientPingToServer() const
-                      { return m_client_ping.load(std::memory_order_relaxed); }
+                       { return m_client_ping.load(std::memory_order_relaxed);}
     // ------------------------------------------------------------------------
     NetworkTimerSynchronizer* getNetworkTimerSynchronizer() const
                                                         { return m_nts.get(); }
@@ -407,7 +409,7 @@ public:
     ChildLoop* getChildLoop() const { return m_client_loop; }
 
     static void ENET_CALLBACK rawRTTCallback(void* user_data, ENetPeer* enet_peer, const ENetRTTSample* sample) noexcept;
- 
+
     struct RTTRecord
     {
         ENetRTTSample sample;
@@ -415,7 +417,7 @@ public:
         std::string platform;
         std::string player_name;
     };
-	void recordRTT(ENetPeer* enet_peer, const ENetRTTSample& sample); //raw RTT
+    void recordRTT(ENetPeer* enet_peer, const ENetRTTSample& sample); //raw RTT
     void updateRTTLogging(bool race_active);
     void finishRTTLogging();
     void updateRTTProbes();

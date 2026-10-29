@@ -42,9 +42,9 @@
  *  \param camera_index Index of this camera.
  *  \param Kart Pointer to the kart for which this camera is used.
  */
-CameraNormal::CameraNormal(Camera::CameraType type,  int camera_index, 
-                           AbstractKart* kart) 
-            : Camera(type, camera_index, kart), m_camera_offset(0., 0., 0.)
+CameraNormal::CameraNormal(Camera::CameraType type, int camera_index,
+    AbstractKart* kart)
+    : Camera(type, camera_index, kart), m_camera_offset(0., 0., 0.)
 {
     m_distance = kart ? UserConfigParams::m_camera_distance : 1000.0f;
     m_ambient_light = Track::getCurrentTrack()->getDefaultAmbientColor();
@@ -55,7 +55,7 @@ CameraNormal::CameraNormal(Camera::CameraType type,  int camera_index,
     //       the extra camera rotation so they could set m_rotation_range to
     //       zero to disable it for themselves).
     m_position_speed = 8.0f;
-    m_target_speed   = 10.0f;
+    m_target_speed = 10.0f;
     m_rotation_range = 0.4f;
     m_rotation_range = 0.0f;
     m_kart_position = btVector3(0, 0, 0);
@@ -70,15 +70,15 @@ CameraNormal::CameraNormal(Camera::CameraType type,  int camera_index,
 //-----------------------------------------------------------------------------
 /** Moves the camera smoothly from the current camera position (and target)
  *  to the new position and target.
- *  \param dt Delta time, 
+ *  \param dt Delta time,
  *  \param smooth Updates the camera if true, only calculate smooth state parameter if false
  *  \param if false, the camera instantly moves to the endpoint, or else it smoothly moves
  */
 void CameraNormal::moveCamera(float dt, bool smooth, float cam_angle, float distance)
 {
-    if(!m_kart) return;
+    if (!m_kart) return;
 
-    Kart *kart = dynamic_cast<Kart*>(m_kart);
+    Kart* kart = dynamic_cast<Kart*>(m_kart);
     if (smooth && kart->isFlying())
     {
         Vec3 vec3 = m_kart->getSmoothedXYZ() + Vec3(sinf(m_kart->getHeading()) * -4.0f,
@@ -91,11 +91,11 @@ void CameraNormal::moveCamera(float dt, bool smooth, float cam_angle, float dist
 
     core::vector3df current_position = m_camera->getPosition();
     // Smoothly interpolate towards the position and target
-    const KartProperties *kp = m_kart->getKartProperties();
+    const KartProperties* kp = m_kart->getKartProperties();
     float max_speed_without_zipper = kp->getEngineMaxSpeed();
     float current_speed = m_kart->getSpeed();
 
-    const Skidding *ks = m_kart->getSkidding();
+    const Skidding* ks = m_kart->getSkidding();
     float skid_factor = ks->getVisualSkidRotation();
 
     float skid_angle = asinf(skid_factor);
@@ -153,7 +153,7 @@ void CameraNormal::moveCamera(float dt, bool smooth, float cam_angle, float dist
 
     if (smooth)
     {
-        if(getMode()!=CM_FALLING)
+        if (getMode() != CM_FALLING)
             m_camera->setPosition(current_position);
         m_camera->setTarget(current_target.toIrrVector());//set new target
     }
@@ -190,105 +190,105 @@ void CameraNormal::restart()
  *  \param cam_roll_angle Roll camera for gyroscope steering effect.
  */
 void CameraNormal::getCameraSettings(Mode mode,
-                                     float *above_kart, float *cam_angle,
-                                     float *sideway, float *distance,
-                                     bool *smoothing, float *cam_roll_angle)
+    float* above_kart, float* cam_angle,
+    float* sideway, float* distance,
+    bool* smoothing, float* cam_roll_angle)
 {
-    switch(mode)
+    switch (mode)
     {
     case CM_NORMAL:
     case CM_FALLING:
+    {
+        *above_kart = 0.75f;
+        *cam_angle = UserConfigParams::m_camera_forward_up_angle * DEGREE_TO_RAD;
+        *distance = -m_distance;
+        float steering = m_kart->getSteerPercent()
+            * (1.0f + (m_kart->getSkidding()->getSkidFactor()
+                - 1.0f) / 2.3f);
+        // quadratically to dampen small variations (but keep sign)
+        float dampened_steer = fabsf(steering) * steering;
+        *sideway = -m_rotation_range * dampened_steer * 0.5f;
+        *smoothing = UserConfigParams::m_camera_forward_smooth_position != 0.
+            || UserConfigParams::m_camera_forward_smooth_rotation != 0.;
+        *cam_roll_angle = 0.0f;
+        if (UserConfigParams::m_multitouch_controls == MULTITOUCH_CONTROLS_GYROSCOPE)
         {
-            *above_kart = 0.75f;
-            *cam_angle = UserConfigParams::m_camera_forward_up_angle * DEGREE_TO_RAD;
-            *distance = -m_distance;
-            float steering = m_kart->getSteerPercent()
-                           * (1.0f + (m_kart->getSkidding()->getSkidFactor()
-                                      - 1.0f)/2.3f );
-            // quadratically to dampen small variations (but keep sign)
-            float dampened_steer = fabsf(steering) * steering;
-            *sideway             = -m_rotation_range*dampened_steer*0.5f;
-            *smoothing           = UserConfigParams::m_camera_forward_smooth_position != 0.
-                                || UserConfigParams::m_camera_forward_smooth_rotation != 0.;
-            *cam_roll_angle      = 0.0f;
-            if (UserConfigParams::m_multitouch_controls == MULTITOUCH_CONTROLS_GYROSCOPE)
+            MultitouchDevice* device = input_manager->getDeviceManager()->getMultitouchDevice();
+            if (device)
             {
-                MultitouchDevice* device = input_manager->getDeviceManager()->getMultitouchDevice();
-                if (device)
-                {
-                    *cam_roll_angle = device->getOrientation();
-                }
+                *cam_roll_angle = device->getOrientation();
             }
-            break;
-        }   // CM_FALLING
+        }
+        break;
+    }   // CM_FALLING
     case CM_REVERSE: // Same as CM_NORMAL except it looks backwards
+    {
+        *above_kart = 0.75f;
+        *cam_angle = UserConfigParams::m_camera_backward_up_angle * DEGREE_TO_RAD;
+        *sideway = 0;
+        *distance = UserConfigParams::m_camera_backward_distance;
+        *smoothing = false;
+        *cam_roll_angle = 0.0f;
+        if (UserConfigParams::m_multitouch_controls == MULTITOUCH_CONTROLS_GYROSCOPE)
         {
-            *above_kart = 0.75f;
-            *cam_angle  = UserConfigParams::m_camera_backward_up_angle * DEGREE_TO_RAD;
-            *sideway    = 0;
-            *distance   = UserConfigParams::m_camera_backward_distance;
-            *smoothing  = false;
-            *cam_roll_angle = 0.0f;
-            if (UserConfigParams::m_multitouch_controls == MULTITOUCH_CONTROLS_GYROSCOPE)
+            MultitouchDevice* device = input_manager->getDeviceManager()->getMultitouchDevice();
+            if (device)
             {
-                MultitouchDevice* device = input_manager->getDeviceManager()->getMultitouchDevice();
-                if (device)
-                {
-                    *cam_roll_angle = -device->getOrientation();
-                }
+                *cam_roll_angle = -device->getOrientation();
             }
-            break;
         }
+        break;
+    }
     case CM_CLOSEUP: // Lower to the ground and closer to the kart
+    {
+        *above_kart = 0.75f;
+        *cam_angle = 20.0f * DEGREE_TO_RAD;
+        *sideway = m_rotation_range
+            * m_kart->getSteerPercent()
+            * m_kart->getSkidding()->getSkidFactor();
+        *distance = -0.5f * m_distance;
+        *smoothing = false;
+        *cam_roll_angle = 0.0f;
+        if (UserConfigParams::m_multitouch_controls == MULTITOUCH_CONTROLS_GYROSCOPE)
         {
-            *above_kart = 0.75f;
-            *cam_angle  = 20.0f*DEGREE_TO_RAD;
-            *sideway    = m_rotation_range
-                        * m_kart->getSteerPercent()
-                        * m_kart->getSkidding()->getSkidFactor();
-            *distance   = -0.5f*m_distance;
-            *smoothing  = false;
-            *cam_roll_angle = 0.0f;
-            if (UserConfigParams::m_multitouch_controls == MULTITOUCH_CONTROLS_GYROSCOPE)
+            MultitouchDevice* device = input_manager->getDeviceManager()->getMultitouchDevice();
+            if (device)
             {
-                MultitouchDevice* device = input_manager->getDeviceManager()->getMultitouchDevice();
-                if (device)
-                {
-                    *cam_roll_angle = -device->getOrientation();
-                }
+                *cam_roll_angle = -device->getOrientation();
             }
-            break;
         }
+        break;
+    }
     case CM_LEADER_MODE:
-        {
-            *above_kart = 0.0f;
-            *cam_angle  = 40*DEGREE_TO_RAD;
-            *sideway    = 0;
-            *distance   = 2.0f*m_distance;
-            *smoothing  = true;
-            *cam_roll_angle = 0.0f;
-            break;
-        }
+    {
+        *above_kart = 0.0f;
+        *cam_angle = 40 * DEGREE_TO_RAD;
+        *sideway = 0;
+        *distance = 2.0f * m_distance;
+        *smoothing = true;
+        *cam_roll_angle = 0.0f;
+        break;
+    }
     case CM_SPECTATOR_SOCCER:
-        {
-            *above_kart = 0.0f;
-            *cam_angle  = UserConfigParams::m_spectator_camera_angle*DEGREE_TO_RAD;
-            *sideway    = 0;
-            *distance   = -UserConfigParams::m_spectator_camera_distance;
-            *smoothing  = true;
-            *cam_roll_angle = 0.0f;
-            break;
-        }
+    {
+        *above_kart = 0.0f;
+        *cam_angle = UserConfigParams::m_spectator_camera_angle * DEGREE_TO_RAD;
+        *sideway = 0;
+        *distance = -UserConfigParams::m_spectator_camera_distance;
+        *smoothing = true;
+        *cam_roll_angle = 0.0f;
+        break;
+    }
     case CM_SPECTATOR_TOP_VIEW:
-        {
-            *above_kart = 0.0f;
-            *cam_angle  = 0;
-            *sideway    = 0;
-            *distance   = UserConfigParams::m_spectator_camera_distance;
-            *smoothing  = true;
-            *cam_roll_angle = 0.0f;
-            break;
-        }
+    {
+        *above_kart = 0.0f;
+        *cam_angle = 0;
+        *sideway = 0;
+        *distance = UserConfigParams::m_spectator_camera_distance;
+        *smoothing = true;
+        *cam_roll_angle = 0.0f;
+        break;
+    }
     case CM_SIMPLE_REPLAY:
         // TODO: Implement
         break;
@@ -302,17 +302,18 @@ void CameraNormal::getCameraSettings(Mode mode,
  */
 void CameraNormal::update(float dt)
 {
+
+
     Camera::update(dt);
-    if(!m_kart) return;
+    if (!m_kart) return;
 
     m_camera->setNearValue(1.0f);
 
     float above_kart, cam_angle, side_way, distance, cam_roll_angle;
     bool  smoothing;
 
-    getCameraSettings(getMode(), &above_kart, &cam_angle, &side_way, 
-                                 &distance, &smoothing, &cam_roll_angle);
-
+    getCameraSettings(getMode(), &above_kart, &cam_angle, &side_way,
+        &distance, &smoothing, &cam_roll_angle);
     // If an explosion is happening, stop moving the camera,
     // but keep it target on the kart.
     ExplosionAnimation* ea =
@@ -327,7 +328,7 @@ void CameraNormal::update(float dt)
         // Note: this code is replicated from smoothMoveCamera so that
         // the camera keeps on pointing to the same spot.
         core::vector3df current_target = (m_kart->getSmoothedXYZ().toIrrVector()
-                                       +  core::vector3df(0, above_kart, 0));
+            + core::vector3df(0, above_kart, 0));
         m_camera->setTarget(current_target);
     }
     else // no kart animation
@@ -343,8 +344,8 @@ void CameraNormal::update(float dt)
 
     if (!smoothing)
     {
-        getCameraSettings(m_last_smooth_mode, &above_kart, &cam_angle, &side_way, 
-                                              &distance, &smoothing, &cam_roll_angle);
+        getCameraSettings(m_last_smooth_mode, &above_kart, &cam_angle, &side_way,
+            &distance, &smoothing, &cam_roll_angle);
         moveCamera(dt, false, cam_angle, distance);
     }
 }   // update
@@ -359,8 +360,8 @@ void CameraNormal::update(float dt)
  *  \param cam_roll_angle Roll camera for gyroscope steering effect.
 */
 void CameraNormal::positionCamera(float dt, float above_kart, float cam_angle,
-                           float side_way, float distance, float smoothing,
-                           float cam_roll_angle)
+    float side_way, float distance, float smoothing,
+    float cam_roll_angle)
 {
     Vec3 wanted_position;
     Vec3 wanted_target = m_kart->getSmoothedTrans()(Vec3(0, above_kart, 0));
@@ -368,42 +369,42 @@ void CameraNormal::positionCamera(float dt, float above_kart, float cam_angle,
     float tan_up = tanf(cam_angle);
 
     Camera::Mode mode = getMode();
-    if (UserConfigParams::m_reverse_look_use_soccer_cam && getMode() == CM_REVERSE) mode=CM_SPECTATOR_SOCCER;
+    if (UserConfigParams::m_reverse_look_use_soccer_cam && getMode() == CM_REVERSE) mode = CM_SPECTATOR_SOCCER;
 
-    switch(mode)
+    switch (mode)
     {
     case CM_SPECTATOR_SOCCER:
+    {
+        SoccerWorld* soccer_world = dynamic_cast<SoccerWorld*> (World::getWorld());
+        if (soccer_world)
         {
-            SoccerWorld *soccer_world = dynamic_cast<SoccerWorld*> (World::getWorld());
-            if (soccer_world)
-            {
-                Vec3 ball_pos = soccer_world->getBallPosition();
-                Vec3 to_target=(ball_pos-wanted_target);
-                wanted_position = wanted_target + Vec3(0,  fabsf(distance)*tan_up+above_kart, 0) + (to_target.normalize() * distance * (getMode() == CM_REVERSE ? -1:1));
-                m_camera->setPosition(wanted_position.toIrrVector());
-                m_camera->setTarget(wanted_target.toIrrVector());
-                return;
-            }
-            break;
-        }
-    case CM_SPECTATOR_TOP_VIEW:
-        {
-            SoccerWorld *soccer_world = dynamic_cast<SoccerWorld*> (World::getWorld());
-            if (soccer_world) wanted_target = soccer_world->getBallPosition();
-            wanted_position = wanted_target + Vec3(0,  distance+above_kart, 0);
+            Vec3 ball_pos = soccer_world->getBallPosition();
+            Vec3 to_target = (ball_pos - wanted_target);
+            wanted_position = wanted_target + Vec3(0, fabsf(distance) * tan_up + above_kart, 0) + (to_target.normalize() * distance * (getMode() == CM_REVERSE ? -1 : 1));
             m_camera->setPosition(wanted_position.toIrrVector());
             m_camera->setTarget(wanted_target.toIrrVector());
             return;
         }
+        break;
+    }
+    case CM_SPECTATOR_TOP_VIEW:
+    {
+        SoccerWorld* soccer_world = dynamic_cast<SoccerWorld*> (World::getWorld());
+        if (soccer_world) wanted_target = soccer_world->getBallPosition();
+        wanted_position = wanted_target + Vec3(0, distance + above_kart, 0);
+        m_camera->setPosition(wanted_position.toIrrVector());
+        m_camera->setTarget(wanted_target.toIrrVector());
+        return;
+    }
     default: break;
     }
 
     Vec3 relative_position(side_way,
-                           fabsf(distance)*tan_up+above_kart,
-                           distance);
-    btTransform t=m_kart->getSmoothedTrans();
-    if(stk_config->m_camera_follow_skid &&
-        m_kart->getSkidding()->getVisualSkidRotation()!=0)
+        fabsf(distance) * tan_up + above_kart,
+        distance);
+    btTransform t = m_kart->getSmoothedTrans();
+    if (stk_config->m_camera_follow_skid &&
+        m_kart->getSkidding()->getVisualSkidRotation() != 0)
     {
         // If the camera should follow the graphical skid, add the
         // visual rotation to the relative vector:
@@ -411,22 +412,22 @@ void CameraNormal::positionCamera(float dt, float above_kart, float cam_angle,
         t.setBasis(t.getBasis() * btMatrix3x3(q));
     }
     wanted_position = t(relative_position);
-    
+
     if (!smoothing)
     {
-        if (getMode()!=CM_FALLING)
+        if (getMode() != CM_FALLING)
             m_camera->setPosition(wanted_position.toIrrVector());
         m_camera->setTarget(wanted_target.toIrrVector());
 
         if (RaceManager::get()->getNumLocalPlayers() < 2)
         {
             SFXManager::get()->positionListener(m_camera->getPosition(),
-                                      wanted_target - m_camera->getPosition(),
-                                      Vec3(0, 1, 0));
+                wanted_target - m_camera->getPosition(),
+                Vec3(0, 1, 0));
         }
     }
 
-    Kart *kart = dynamic_cast<Kart*>(m_kart);
+    Kart* kart = dynamic_cast<Kart*>(m_kart);
 
     // Rotate the up vector (0,1,0) by the rotation ... which is just column 1
     const Vec3& up = m_kart->getSmoothedTrans().getBasis().getColumn(1);
@@ -435,8 +436,8 @@ void CameraNormal::positionCamera(float dt, float above_kart, float cam_angle,
     if (kart && !kart->isFlying())
     {
         float f = 0.04f;  // weight for new up vector to reduce shaking
-        m_camera->setUpVector(        f  * up.toIrrVector() +
-                              (1.0f - f) * m_camera->getUpVector());
+        m_camera->setUpVector(f * up.toIrrVector() +
+            (1.0f - f) * m_camera->getUpVector());
     }   // kart && !flying
     else
         m_camera->setUpVector(straight_up);
