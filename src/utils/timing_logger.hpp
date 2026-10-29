@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <cstdint>
 
 class TimingLogger {
 private:
@@ -25,6 +26,8 @@ public:
 
     struct TimingData
     {
+        uint32_t cycle_id;
+
         //타임스탬프
         double timeStamp;
         
@@ -59,7 +62,8 @@ public:
         int predict_tick,
         TimingType type,
         const std::string& accountName,
-        const std::string& platform);
+        const std::string& platform,
+        uint32_t cycle_id = 0);
     void update();
     bool saveCsv();
 };

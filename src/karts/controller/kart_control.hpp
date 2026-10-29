@@ -49,6 +49,8 @@ private:
     bool  m_rescue;
     /** True if fire is selected. */
     bool  m_fire;
+    /** Experiment cycle attached to the current fire input; zero if untagged. */
+    uint32_t m_timing_cycle_id;
     /** True if the kart looks (and shoots) backwards. */
     bool  m_look_back;
 public:
@@ -77,6 +79,7 @@ public:
         m_skid      = SC_NONE;
         m_rescue    = false;
         m_fire      = false;
+        m_timing_cycle_id = 0;
         m_look_back = false;
     }   // reset
     // ------------------------------------------------------------------------
@@ -91,6 +94,7 @@ public:
                m_skid      == other.m_skid    &&
                m_rescue    == other.m_rescue  &&
                m_fire      == other.m_fire    &&
+               m_timing_cycle_id == other.m_timing_cycle_id &&
                m_look_back == other.m_look_back;
     }    // operator==
     // ------------------------------------------------------------------------
@@ -146,6 +150,8 @@ public:
     // ------------------------------------------------------------------------
     /** Returns if fire is selected. */
     bool getFire() const { return m_fire; }
+    uint32_t getTimingCycleId() const { return m_timing_cycle_id; }
+    void setTimingCycleId(uint32_t id) { m_timing_cycle_id = id; }
     // ------------------------------------------------------------------------
     /** Returns if the kart wants to look back (which also implies that it
      *  will fire backwards. */

@@ -33,6 +33,7 @@ protected:
     std::vector<int> m_scores;
 
     int m_duel_ticks;
+    uint32_t m_cycle_id = 0;
     bool m_duel_fired;
 
 

@@ -236,19 +236,21 @@ void RewindQueue::mergeNetworkData(int world_ticks, bool *needs_rewind,
             auto* input = dynamic_cast<RewindInfoEvent*>(*i);
             BareNetworkString data;
             data.getBuffer() = input->getBuffer()->getBuffer();
-            if (data.size() >= 8)
+            if (data.size() >= 12)
             {
                 const int kart_id = data.getUInt8();
                 const uint8_t w = data.getUInt8();
                 const int value = data.getUInt16();
+                data.skip(4); // Left and right steering values.
+                const uint32_t cycle_id = data.getUInt32();
                 const PlayerAction action = static_cast<PlayerAction>(w & 63);
                 if (action == PlayerAction::PA_FIRE && value != 0) {
                     auto* kart = World::getWorld()->getKart(kart_id);
                     auto  powerupType = kart->getPowerup()->getType();
                     if (powerupType == PowerupManager::POWERUP_BOWLING) 
-                        TimingLogger::get()->logEvent(getTimeMilliseconds(), server_ticks, client_ticks, TimingLogger::TimingType::Fire_Bowling, "SERVER", "Linux");
+                        TimingLogger::get()->logEvent(getTimeMilliseconds(), server_ticks, client_ticks, TimingLogger::TimingType::Fire_Bowling, "SERVER", "Linux", cycle_id);
                     else if (powerupType == PowerupManager::POWERUP_BUBBLEGUM)
-                        TimingLogger::get()->logEvent(getTimeMilliseconds(), server_ticks, client_ticks, TimingLogger::TimingType::Fire_Gum, "SERVER", "Linux");
+                        TimingLogger::get()->logEvent(getTimeMilliseconds(), server_ticks, client_ticks, TimingLogger::TimingType::Fire_Gum, "SERVER", "Linux", cycle_id);
                 }
             }
         }

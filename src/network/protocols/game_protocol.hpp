@@ -49,7 +49,8 @@ private:
            GP_STATE,
            GP_ITEM_UPDATE,
            GP_ITEM_CONFIRMATION,
-           GP_ADJUST_TIME
+           GP_ADJUST_TIME,
+           GP_CONTROLLER_ACTION_WITH_CYCLE
     };
 
     /** A network string that collects all information from the server to be sent
@@ -69,12 +70,13 @@ private:
         int          m_value;
         int          m_value_l;
         int          m_value_r;
+        uint32_t     m_cycle_id;
     };   // struct Action
 
     // List of all kart actions to send to the server
     std::vector<Action> m_all_actions;
 
-    void handleControllerAction(Event *event);
+    void handleControllerAction(Event *event, bool with_cycle = false);
     void handleState(Event *event);
     void handleAdjustTime(Event *event);
     void handleItemEventConfirmation(Event *event);

@@ -57,12 +57,14 @@ void TimingLogger::logEvent(double timeStamp,
                             int predict_tick,
                             TimingType type,
                             const std::string& accountName,
-                            const std::string& platform) 
+                            const std::string& platform,
+                            uint32_t cycle_id)
 {
     if (!m_enabled) return;
     if (!UserConfigParams::m_auto_item_fire) return;
     
-	m_timing_data.push_back({timeStamp,real_tick,predict_tick,type,accountName,platform});
+    m_timing_data.push_back({cycle_id, timeStamp, real_tick, predict_tick,
+                             type, accountName, platform});
 }
 
 void TimingLogger::update() {
@@ -88,7 +90,7 @@ bool TimingLogger::saveCsv() {
     if (out) {
         out.seekp(0, std::ios::end);
         if (out.tellp() == 0)
-            out << "TimestampMs,RealTick,PredictTick,EventType,AccountName,Platform\n";
+            out << "CycleId,TimestampMs,RealTick,PredictTick,EventType,AccountName,Platform\n";
         out << std::setprecision(17);
         for (const auto& event : m_timing_data) {
             std::string type;
@@ -115,7 +117,7 @@ bool TimingLogger::saveCsv() {
                 type = "Unknown";
                 break;
             }
-            out << event.timeStamp << ',' << event.real_tick << ',' << event.predict_tick << ',';
+            out << event.cycle_id << ',' << event.timeStamp << ',' << event.real_tick << ',' << event.predict_tick << ',';
             writeCsvField(out, type);
             out << ',';
             writeCsvField(out, event.accountName);

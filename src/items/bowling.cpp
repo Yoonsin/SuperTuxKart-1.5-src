@@ -26,6 +26,8 @@
 #include "io/xml_node.hpp"
 #include "karts/abstract_kart.hpp"
 #include "modes/linear_world.hpp"
+#include "modes/free_for_all.hpp"
+#include "network/network_string.hpp"
 
 #include "utils/log.hpp" //TODO: remove after debugging is done
 #include "utils/timing_logger.hpp"
@@ -157,38 +159,64 @@ bool Bowling::updateAndDelete(int ticks)
  */
 bool Bowling::hit(AbstractKart* kart, PhysicalObject* obj)
 {
-    bool was_real_hit = Flyable::hit(kart, obj);
-    if(was_real_hit)
+    if (!Flyable::hit(kart, obj))
+        return false;
+
+    bool log_hit = kart && kart->isShielded();
+    auto timing_type = TimingLogger::TimingType::Hit_Gum;
+    if (log_hit)
     {
-        if(kart && kart->isShielded())
-        {
-            if (UserConfigParams::m_auto_item_fire && UserConfigParams::m_timing_log) {
-                if (NetworkConfig::get()->isServer()) {
-                    TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(), -1, TimingLogger::TimingType::Hit_Gum, "SERVER", "Linux");
-                }
-                else {
-                    if (!NetworkConfig::get()->isNetworking()) {
-                        std::string platform = "Unknown";
-#if defined(__ANDROID__)
-                        platform = "Android";
-#elif defined(_WIN32) || defined(_WIN64)
-                        platform = "Windows";
-#endif
-                        TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(), -1, TimingLogger::TimingType::Hit_Gum, "CLIENT", platform);
-                    }
-                }
-            }
-            kart->decreaseShieldTime();
-            return true;
-        }
-        else
-        {
-            m_has_hit_kart = kart != NULL;
-            explode(kart, obj, /*hit_secondary*/false);
-        }
+        kart->decreaseShieldTime();
     }
-    return was_real_hit;
+    else
+    {
+        auto* ffa = dynamic_cast<FreeForAll*>(World::getWorld());
+        const int owner_id = m_owner->getWorldKartId();
+        const int old_score = ffa ? ffa->getKartScore(owner_id) : 0;
+        m_has_hit_kart = kart != NULL;
+        explode(kart, obj, /*hit_secondary*/false);
+        // Record only an actual score increase, using this ball's cycle.
+        log_hit = ffa && ffa->getKartScore(owner_id) > old_score;
+        timing_type = TimingLogger::TimingType::Hit_Bowling;
+    }
+
+    if (log_hit && m_timing_cycle_id != 0 &&
+        UserConfigParams::m_auto_item_fire && UserConfigParams::m_timing_log &&
+        (!NetworkConfig::get()->isNetworking() || NetworkConfig::get()->isServer()))
+    {
+        const char* platform = "Unknown";
+#if defined(__ANDROID__)
+        platform = "Android";
+#elif defined(_WIN32) || defined(_WIN64)
+        platform = "Windows";
+#elif defined(__linux__)
+        platform = "Linux";
+#endif
+        const char* topology = NetworkConfig::get()->isNetworking() ? "SERVER" : "CLIENT";
+        TimingLogger::get()->logEvent(getTimeMilliseconds(),
+            World::getWorld()->getTicksSinceStart(), -1, timing_type,
+            topology, platform, m_timing_cycle_id);
+    }
+    return true;
 }   // hit
+
+// -----------------------------------------------------------------------------
+BareNetworkString* Bowling::saveState(std::vector<std::string>* ru)
+{
+    BareNetworkString* buffer = Flyable::saveState(ru);
+    if (buffer && m_timing_cycle_id)
+        buffer->addUInt32(m_timing_cycle_id);
+    return buffer;
+}
+
+// -----------------------------------------------------------------------------
+void Bowling::restoreState(BareNetworkString* buffer, int count)
+{
+    const int start = buffer->getCurrentOffset();
+    Flyable::restoreState(buffer, count);
+    m_timing_cycle_id = buffer->getCurrentOffset() - start + 4 <= count
+        ? buffer->getUInt32() : 0;
+}
 
 // ----------------------------------------------------------------------------
 void Bowling::removeRollSfx()
@@ -220,6 +248,7 @@ HitEffect* Bowling::getHitEffect() const
 void Bowling::onFireFlyable()
 {
     Flyable::onFireFlyable();
+    m_timing_cycle_id = m_owner->getControls().getTimingCycleId();
 
     m_has_hit_kart = false;
     float y_offset = 0.5f*m_owner->getKartLength() + m_extend.getZ()*0.5f;

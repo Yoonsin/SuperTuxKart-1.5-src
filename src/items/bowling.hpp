@@ -46,6 +46,9 @@ private:
      *  kart was hit. */
     bool m_has_hit_kart;
 
+    /** Cycle of the input that created this ball, retained until impact. */
+    uint32_t m_timing_cycle_id = 0;
+
     /** A sound effect for rolling ball. */
     SFXBase     *m_roll_sfx;
     void removeRollSfx();
@@ -59,6 +62,8 @@ public:
     virtual HitEffect *getHitEffect() const OVERRIDE;
     // ------------------------------------------------------------------------
     virtual void onFireFlyable() OVERRIDE;
+    virtual BareNetworkString* saveState(std::vector<std::string>* ru) OVERRIDE;
+    virtual void restoreState(BareNetworkString* buffer, int count) OVERRIDE;
 
 };   // Bowling
 

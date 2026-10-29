@@ -189,6 +189,7 @@ extern "C" {
 
 #include <stdexcept>
 #include <cstdio>
+#include <cstdlib>
 #include <string>
 #include <cstring>
 #include <sstream>
@@ -632,7 +633,8 @@ void cmdLineHelp()
     "       --discrepancy-log-dir=DIR Set the discrepancy log output directory.\n"
     "       --profile-log      Save profiler data for each multiplayer race.\n"
     "       --profile-log-dir=DIR  Set the profile log output directory.\n"
-    "       --timing-log-dir=DIR Set the timing log output directory (default: config directory).\n"
+    "       --timing-log-dir=DIR Set the timing log output directory.\n"
+    "       (if Android) RTT/profile/timing logs default to Download/SuperTuxKart (config fallback).\n"
     "       --timing-player-0=NAME Assign NAME to timing-test kart 0 (server only).\n"
     "       --timing-player-1=NAME Assign NAME to timing-test kart 1 (server only).\n"
     "       --quad-log         Save first visits to track quads as CSV.\n"
@@ -1085,6 +1087,64 @@ int handleCmdLinePreliminary()
 }   // handleCmdLinePreliminary
 
 // ============================================================================
+/** Default directory for optional RTT, profile and timing logs. */
+static std::string getDefaultLogDirectory()
+{
+#ifdef ANDROID
+    std::string directory;
+    JNIEnv* env = (JNIEnv*)SDL_AndroidGetJNIEnv();
+    if (SDL_GetAndroidSDKVersion() >= 30 && env && env->PushLocalFrame(6) == 0)
+    {
+        jclass environment = env->FindClass("android/os/Environment");
+        jmethodID get_downloads = environment ? env->GetStaticMethodID(environment,
+            "getExternalStoragePublicDirectory", "(Ljava/lang/String;)Ljava/io/File;") : nullptr;
+        jstring name = get_downloads ? env->NewStringUTF("Download") : nullptr;
+        jobject downloads = name ? env->CallStaticObjectMethod(environment, get_downloads, name) : nullptr;
+        jclass file_class = downloads ? env->GetObjectClass(downloads) : nullptr;
+        jmethodID get_path = file_class ? env->GetMethodID(file_class,
+            "getAbsolutePath", "()Ljava/lang/String;") : nullptr;
+        jstring path = get_path ? (jstring)env->CallObjectMethod(downloads, get_path) : nullptr;
+        if (path)
+        {
+            const char* utf8 = env->GetStringUTFChars(path, nullptr);
+            if (utf8)
+            {
+                directory = utf8;
+                env->ReleaseStringUTFChars(path, utf8);
+            }
+        }
+        env->PopLocalFrame(nullptr);
+    }
+    if (env && env->ExceptionCheck())
+    {
+        env->ExceptionClear();
+        directory.clear();
+    }
+    if (!directory.empty())
+    {
+        directory += "/SuperTuxKart";
+        if (file_manager->checkAndCreateDirectoryP(directory))
+        {
+            std::string probe = directory + "/stk-log-XXXXXX";
+            const int fd = mkstemp(&probe[0]);
+            if (fd >= 0)
+            {
+                const bool writable = write(fd, "1", 1) == 1;
+                const int closed = close(fd);
+                unlink(probe.c_str());
+                if (writable && closed == 0)
+                    return directory;
+            }
+        }
+    }
+    Log::warn("main", "Downloads unavailable for logs; using the config directory.");
+    return file_manager->getUserConfigDir();
+#else
+    return "";
+#endif
+}
+
+// ============================================================================
 /** Handles command line options.
  *  \param argc Number of command line options
  */
@@ -1345,8 +1405,9 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
     {
         STKHost::setRTTLogEnabled(true);
         std::string rtt_log_directory;
-		if (CommandLine::has("--rtt-log-dir", &rtt_log_directory))
-			STKHost::setRTTLogDirectory(rtt_log_directory);
+        if (!CommandLine::has("--rtt-log-dir", &rtt_log_directory))
+            rtt_log_directory = getDefaultLogDirectory();
+        STKHost::setRTTLogDirectory(rtt_log_directory);
     }
 
     if (CommandLine::has("--discrepancy-log"))
@@ -1357,18 +1418,20 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
             STKHost::setDiscrepancyLogDirectory(discrepancy_log_directory);
     }
 
-    if (CommandLine::has("--profile-log"))
-    {
+    //if (CommandLine::has("--profile-log"))
+    //{
         profiler.setProfileLogEnabled(true);
         std::string profile_log_directory;
-        if (CommandLine::has("--profile-log-dir", &profile_log_directory))
-        {
-            profiler.setProfileLogDirectory(profile_log_directory);
-        }
-    }
+        if (!CommandLine::has("--profile-log-dir", &profile_log_directory))
+            profile_log_directory = getDefaultLogDirectory();
+        profiler.setProfileLogDirectory(profile_log_directory);
+    //}
 
     std::string timing_log_directory;
-    if (CommandLine::has("--timing-log-dir", &timing_log_directory) &&
+    if (!CommandLine::has("--timing-log-dir", &timing_log_directory) &&
+        UserConfigParams::m_timing_log)
+        timing_log_directory = getDefaultLogDirectory();
+    if (!timing_log_directory.empty() &&
         !TimingLogger::get()->setLogDirectory(timing_log_directory))
     {
         Log::warn("main", "Cannot use timing log directory '%s'; using the config directory.",

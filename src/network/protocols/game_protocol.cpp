@@ -39,6 +39,8 @@
 #include "utils/time.hpp"
 #include "main_loop.hpp"
 
+#include <algorithm>
+
 // ============================================================================
 std::weak_ptr<GameProtocol> GameProtocol::m_game_protocol[PT_COUNT];
 // ============================================================================
@@ -88,7 +90,10 @@ void GameProtocol::sendActions()
             "Too many actions unsent %d.", (int)m_all_actions.size());
         m_all_actions.resize(255);
     }
-    m_data_to_send->addUInt8(GP_CONTROLLER_ACTION)
+    const bool with_cycle = std::any_of(m_all_actions.begin(), m_all_actions.end(),
+        [](const Action& a) { return a.m_cycle_id != 0; });
+    m_data_to_send->addUInt8(with_cycle ? GP_CONTROLLER_ACTION_WITH_CYCLE
+                                      : GP_CONTROLLER_ACTION)
                    .addUInt8(uint8_t(m_all_actions.size()));
 
     // Add all actions
@@ -106,6 +111,8 @@ void GameProtocol::sendActions()
         const auto& c = compressAction(a);
         m_data_to_send->addUInt8(std::get<0>(c)).addUInt16(std::get<1>(c))
             .addUInt16(std::get<2>(c)).addUInt16(std::get<3>(c));
+        if (with_cycle)
+            m_data_to_send->addUInt32(a.m_cycle_id);
     }   // for a in m_all_actions
 
     // FIXME: for now send reliable
@@ -130,6 +137,8 @@ bool GameProtocol::notifyEventAsynchronous(Event* event)
     switch (message_type)
     {
     case GP_CONTROLLER_ACTION: handleControllerAction(event); break;
+    case GP_CONTROLLER_ACTION_WITH_CYCLE:
+        handleControllerAction(event, true);                 break;
     case GP_STATE:             handleState(event);            break;
     case GP_ITEM_CONFIRMATION: handleItemEventConfirmation(event); break;
     case GP_ADJUST_TIME:
@@ -163,14 +172,18 @@ void GameProtocol::controllerAction(int kart_id, PlayerAction action,
     a.m_value_l = val_l;
     a.m_value_r = val_r;
     a.m_ticks   = World::getWorld()->getTicksSinceStart();
+    a.m_cycle_id = action == PA_FIRE && value != 0
+        ? World::getWorld()->getKart(kart_id)->getControls().getTimingCycleId()
+        : 0;
 
     m_all_actions.push_back(a);
     const auto& c = compressAction(a);
     // Store the event in the rewind manager, which is responsible
     // for freeing the allocated memory
-    BareNetworkString *s = new BareNetworkString(4);
+    BareNetworkString *s = new BareNetworkString(12);
     s->addUInt8(kart_id).addUInt8(std::get<0>(c)).addUInt16(std::get<1>(c))
-        .addUInt16(std::get<2>(c)).addUInt16(std::get<3>(c));
+        .addUInt16(std::get<2>(c)).addUInt16(std::get<3>(c))
+        .addUInt32(a.m_cycle_id);
 
     RewindManager::get()->addEvent(this, s, /*confirmed*/true,
                                    World::getWorld()->getTicksSinceStart());
@@ -182,14 +195,21 @@ void GameProtocol::controllerAction(int kart_id, PlayerAction action,
  *  RewindManager's network event queue. The server will also send this 
  *  event immediately to all clients (except to the original sender).
  */
-void GameProtocol::handleControllerAction(Event *event)
+void GameProtocol::handleControllerAction(Event *event, bool with_cycle)
 {
     STKPeer* peer = event->getPeer();
     if (NetworkConfig::get()->isServer() && (peer->isWaitingForGame() ||
         peer->getAvailableKartIDs().empty()))
         return;
     NetworkString &data = event->data();
+    if (!checkDataSize(event, 1))
+        return;
     uint8_t count = data.getUInt8();
+    if (data.size() != count * (with_cycle ? 16 : 12))
+    {
+        Log::warn("GameProtocol", "Invalid controller action packet size.");
+        return;
+    }
     bool will_trigger_rewind = false;
     //int rewind_delta = 0;
     int cur_ticks = 0;
@@ -219,6 +239,7 @@ void GameProtocol::handleControllerAction(Event *event)
         uint16_t x = data.getUInt16();
         uint16_t y = data.getUInt16();
         uint16_t z = data.getUInt16();
+        const uint32_t cycle_id = with_cycle ? data.getUInt32() : 0;
         if (Network::m_connection_debug)
         {
             const auto& a = decompressAction(w, x, y, z);
@@ -227,9 +248,9 @@ void GameProtocol::handleControllerAction(Event *event)
                 cur_ticks, kart_id, std::get<0>(a), std::get<1>(a),
                 std::get<2>(a), std::get<3>(a));
         }
-        BareNetworkString *s = new BareNetworkString(3);
+        BareNetworkString *s = new BareNetworkString(12);
         s->addUInt8(kart_id).addUInt8(w).addUInt16(x).addUInt16(y)
-            .addUInt16(z);
+            .addUInt16(z).addUInt32(cycle_id);
         RewindManager::get()->addNetworkEvent(this, s, cur_ticks);
     }
 
@@ -383,6 +404,7 @@ void GameProtocol::rewind(BareNetworkString *buffer)
     uint16_t x = buffer->getUInt16();
     uint16_t y = buffer->getUInt16();
     uint16_t z = buffer->getUInt16();
+    const uint32_t cycle_id = buffer->getUInt32();
     const auto& a = decompressAction(w, x, y, z);
     Controller *c = World::getWorld()->getKart(kart_id)->getController();
     PlayerController *pc = dynamic_cast<PlayerController*>(c);
@@ -391,6 +413,8 @@ void GameProtocol::rewind(BareNetworkString *buffer)
     {
         pc->actionFromNetwork(std::get<0>(a), std::get<1>(a), std::get<2>(a),
             std::get<3>(a));
+        if (std::get<0>(a) == PA_FIRE)
+            pc->getControls()->setTimingCycleId(cycle_id);
     }
 }   // rewind
 

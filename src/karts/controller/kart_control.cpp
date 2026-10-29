@@ -71,6 +71,8 @@ void KartControl::setRescue(bool b)
 void KartControl::setFire(bool b)
 { 
     m_fire        = b; 
+    if (!b)
+        m_timing_cycle_id = 0;
 }   // setFire
 
 // ----------------------------------------------------------------------------
@@ -85,7 +87,10 @@ void KartControl::saveState(BareNetworkString *buffer) const
 {
     buffer->addUInt16(m_steer);
     buffer->addUInt16(m_accel);
-    buffer->addChar(getButtonsCompressed());
+    // The unused high bit marks the optional experiment metadata.
+    buffer->addUInt8(getButtonsCompressed() | (m_timing_cycle_id ? 128 : 0));
+    if (m_timing_cycle_id)
+        buffer->addUInt32(m_timing_cycle_id);
 }   // saveState
 
 // ----------------------------------------------------------------------------
@@ -94,5 +99,7 @@ void KartControl::rewindTo(BareNetworkString *buffer)
 {
     m_steer = buffer->getUInt16();
     m_accel = buffer->getUInt16();
-    setButtonsCompressed(buffer->getUInt8());
+    const uint8_t buttons = buffer->getUInt8();
+    setButtonsCompressed(buttons);
+    m_timing_cycle_id = (buttons & 128) ? buffer->getUInt32() : 0;
 }   // setFromMemory

@@ -92,6 +92,7 @@ void FreeForAll::init()
     s_ffa_round_id++;
 
     m_duel_ticks = 0;
+    m_cycle_id = 0;
     m_duel_fired = false;
 
     // C++ 하드코딩 스폰 강제 고정 코드는 삭제! 
@@ -116,6 +117,7 @@ void FreeForAll::reset(bool restart)
         }
     }
     m_duel_ticks = 0;
+    m_cycle_id = 0;
     m_duel_fired = false;
     m_count_down_reached_zero = false;
     if (RaceManager::get()->hasTimeTarget())
@@ -188,10 +190,6 @@ void FreeForAll::handleScoreInServer(int kart_id, int hitter)
     else
     {
         //점수 득점일 때만 체크
-        if (UserConfigParams::m_auto_item_fire && UserConfigParams::m_timing_log) {
-            std::string topology = (NetworkConfig::get()->isNetworking() && NetworkConfig::get()->isServer()) ? "SERVER" : "CLIENT";
-            TimingLogger::get()->logEvent(getTimeMilliseconds(), ticks, -1, TimingLogger::TimingType::Hit_Bowling, topology, platform);
-        }
         new_score = ++m_scores[hitter]; 
         score_delta = 1;
     }
@@ -289,9 +287,13 @@ void FreeForAll::setKartTimingEvent(int ticks)
     {
         int old_ticks = m_duel_ticks;
         m_duel_ticks += ticks;
-        int ready_tick = 120; // 1초 (120틱) 단위로 반복
-        int shoot_tick = 240; // 2초 (240틱) 단위로 반복
-        int reset_tick = 1200; // 10초 (1200틱) 단위로 반복
+        int ready_tick = 0; // 1초 (0틱) 단위로 반복
+        int shoot_tick = 1; // 2초 (1틱) 단위로 반복
+        int reset_tick = 480; // 10초 (360틱) 단위로 반복
+
+        const bool fire_now = old_ticks < shoot_tick && m_duel_ticks >= shoot_tick;
+        if (fire_now && UserConfigParams::m_timing_log)
+            ++m_cycle_id;
 
         for (int kart_id = 0; kart_id < 2; kart_id++) {
             // 만약 네트워크 게임이고 내 로컬 플레이어가 아니면 입력 제외
@@ -319,18 +321,19 @@ void FreeForAll::setKartTimingEvent(int ticks)
                 if (UserConfigParams::m_timing_log) {
                     TimingLogger::TimingType timingType = (powerupType == PowerupManager::POWERUP_BOWLING) ? TimingLogger::TimingType::Ready_Bowling : TimingLogger::TimingType::Ready_Gum;
                     if (NetworkConfig::get()->isNetworking() && NetworkConfig::get()->isClient())
-                        TimingLogger::get()->logEvent(getTimeMilliseconds(), -1, World::getWorld()->getTicksSinceStart(), timingType, "CLIENT", getCurrentPlatform());
+                        TimingLogger::get()->logEvent(getTimeMilliseconds(), -1, World::getWorld()->getTicksSinceStart(), timingType, "CLIENT", getCurrentPlatform(), m_cycle_id + 1);
                     else
-                        TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(),-1, timingType, "CLIENT", getCurrentPlatform());
+                        TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(),-1, timingType, "CLIENT", getCurrentPlatform(), m_cycle_id + 1);
                 }
             }
 
             // shoot_tick이 되는 순간에 딱 한 번 '발사' 시간 기록
-            if (old_ticks < shoot_tick && m_duel_ticks >= shoot_tick)
+            if (fire_now)
             {
                 long long timestamp = World::getWorld()->getTicksSinceStart();
                 std::string platform = getCurrentPlatform();
                 bool input_changed;
+                getKart(kart_id)->getControls().setTimingCycleId(m_cycle_id);
                 
                 if (dynamic_cast<AIBaseController*>(getKart(kart_id)->getController()))
                 {
@@ -354,9 +357,9 @@ void FreeForAll::setKartTimingEvent(int ticks)
                         : TimingLogger::TimingType::Fire_Gum;
                     
                     if (NetworkConfig::get()->isNetworking() && NetworkConfig::get()->isClient())
-                        TimingLogger::get()->logEvent(getTimeMilliseconds(), -1, World::getWorld()->getTicksSinceStart(), timingType, "CLIENT", getCurrentPlatform());
+                        TimingLogger::get()->logEvent(getTimeMilliseconds(), -1, World::getWorld()->getTicksSinceStart(), timingType, "CLIENT", getCurrentPlatform(), m_cycle_id);
                     else
-                        TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(), -1, timingType, "CLIENT", getCurrentPlatform());
+                        TimingLogger::get()->logEvent(getTimeMilliseconds(), World::getWorld()->getTicksSinceStart(), -1, timingType, "CLIENT", getCurrentPlatform(), m_cycle_id);
                 }
                 //Log::info("kart ID", "%s", getKart(i)->getController()->getControllerName());
                 // //Log::info("ticks", "%d", m_duel_ticks);

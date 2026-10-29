@@ -74,8 +74,10 @@ void BattleAI::update(int ticks)
         m_kart->getWorldKartId() < 2)
     {
         const bool fire = m_controls->getFire();
+        const uint32_t cycle_id = m_controls->getTimingCycleId();
         m_controls->reset();
         m_controls->setFire(fire);
+        m_controls->setTimingCycleId(cycle_id);
         return;
     }
 
