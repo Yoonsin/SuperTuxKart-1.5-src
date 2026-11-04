@@ -79,6 +79,7 @@ bool     STKHost::m_enable_console = false;
 bool     STKHost::m_rtt_log_enabled = false;
 std::string  STKHost::m_rtt_log_directory = "";
 bool     STKHost::m_discrepancy_log_enabled = false;
+bool     STKHost::m_auto_drive_enabled = false;
 std::string  STKHost::m_discrepancy_log_directory = "";
 
 std::shared_ptr<LobbyProtocol> STKHost::create(ChildLoop* cl)

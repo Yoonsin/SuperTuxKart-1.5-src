@@ -20,6 +20,8 @@
 #include "karts/controller/local_player_controller.hpp"
 #include "karts/controller/skidding_ai.hpp"
 #include "karts/controller/battle_ai.hpp"
+#include "karts/controller/kart_control.hpp"
+#include "network/stk_host.hpp"
 
 #include "audio/sfx_base.hpp"
 #include "config/player_manager.hpp"
@@ -97,11 +99,21 @@ LocalPlayerController::LocalPlayerController(AbstractKart *kart,
     m_is_above_nitro_target = false;
     initParticleEmitter();
 
-    if (RaceManager::get()->isBattleMode())
-        m_ai_controller = new BattleAI(kart);
+    if (STKHost::isAutoDriveEnabled())
+    {
+        m_ai_controls = new KartControl;
+        if (RaceManager::get()->isBattleMode())
+            m_ai_controller = new BattleAI(kart);
+        else
+            m_ai_controller = new SkiddingAI(kart);
+        m_ai_controller->setControls(m_ai_controls);
+        m_ai_controller->setNetworkAI(true);
+    }
     else
-        m_ai_controller = new SkiddingAI(kart);
-    m_ai_controller->setControls(m_controls);
+    {
+        m_ai_controller = nullptr;
+        m_ai_controls = nullptr;
+    }
 }   // LocalPlayerController
 
 //-----------------------------------------------------------------------------
@@ -110,6 +122,7 @@ LocalPlayerController::LocalPlayerController(AbstractKart *kart,
 LocalPlayerController::~LocalPlayerController()
 {
     delete m_ai_controller;
+    delete m_ai_controls;
     m_wee_sound->deleteSFX();
 }   // ~LocalPlayerController
 
@@ -148,7 +161,12 @@ void LocalPlayerController::reset()
     if (m_ai_controller)
     {
         m_ai_controller->reset();
-        m_ai_controller->setControls(m_controls);
+        m_ai_controller->setNetworkAI(true);
+        if (m_ai_controls)
+        {
+            m_ai_controls->reset();
+            m_ai_controller->setControls(m_ai_controls);
+        }
     }
     m_last_crash = 0;
     m_sound_schedule = false;
@@ -237,6 +255,67 @@ bool LocalPlayerController::action(PlayerAction action, int value,
 //-----------------------------------------------------------------------------
 /** Handles steering for a player kart.
  */
+
+//-----------------------------------------------------------------------------
+void LocalPlayerController::convertAIToPlayerActions()
+{
+    if (!m_ai_controls || m_kart->hasFinishedRace() ||
+        World::getWorld()->getPhase() >= WorldStatus::DELAY_FINISH_PHASE)
+        return;
+
+    std::vector<std::pair<PlayerAction, int> > all_actions;
+
+    float steer_val = m_ai_controls->getSteer();
+    if (steer_val < 0.0f)
+    {
+        all_actions.emplace_back(PA_STEER_RIGHT, 0);
+        all_actions.emplace_back(PA_STEER_LEFT,
+            int(fabsf(steer_val) * 32768));
+    }
+    else if (steer_val > 0.0f)
+    {
+        all_actions.emplace_back(PA_STEER_LEFT, 0);
+        all_actions.emplace_back(PA_STEER_RIGHT,
+            int(fabsf(steer_val) * 32768));
+    }
+    else
+    {
+        all_actions.emplace_back(PA_STEER_LEFT, 0);
+        all_actions.emplace_back(PA_STEER_RIGHT, 0);
+    }
+
+    all_actions.emplace_back(PA_ACCEL,
+        int(m_ai_controls->getAccel() * 32768));
+    all_actions.emplace_back(PA_BRAKE,
+        m_ai_controls->getBrake() ? 32768 : 0);
+    all_actions.emplace_back(PA_FIRE,
+        m_ai_controls->getFire() ? 32768 : 0);
+    all_actions.emplace_back(PA_NITRO,
+        m_ai_controls->getNitro() ? 32768 : 0);
+    all_actions.emplace_back(PA_DRIFT,
+        m_ai_controls->getSkidControl() == KartControl::SC_NONE ? 0 : 32768);
+    all_actions.emplace_back(PA_RESCUE,
+        m_ai_controls->getRescue() ? 32768 : 0);
+    all_actions.emplace_back(PA_LOOK_BACK,
+        m_ai_controls->getLookBack() ? 32768 : 0);
+
+    for (const auto& a : all_actions)
+    {
+        if (NetworkConfig::get()->isNetworking() &&
+            NetworkConfig::get()->isClient() &&
+            !RewindManager::get()->isRewinding())
+        {
+            if (auto gp = GameProtocol::lock())
+            {
+                gp->controllerAction(m_kart->getWorldKartId(),
+                    a.first, a.second,
+                    m_steer_val_l, m_steer_val_r);
+            }
+        }
+        PlayerController::action(a.first, a.second, false);
+    }
+}   // convertAIToPlayerActions
+
 void LocalPlayerController::steer(int ticks, int steer_val)
 {
     RaceGUIBase* gui_base = World::getWorld()->getRaceGUI();
@@ -270,31 +349,24 @@ void LocalPlayerController::update(int ticks)
 
     PlayerController::update(ticks);
 
-    if (m_ai_controller && !RewindManager::get()->isRewinding())
+    if (m_ai_controller && !RewindManager::get()->isRewinding() &&
+        !m_kart->hasFinishedRace() &&
+        World::getWorld()->getPhase() < WorldStatus::DELAY_FINISH_PHASE)
     {
         m_ai_controller->update(ticks);
+        convertAIToPlayerActions();
 
-        if (NetworkConfig::get()->isNetworking() &&
-            NetworkConfig::get()->isClient())
-        {
-            if (auto gp = GameProtocol::lock())
-            {
-                if (m_controls->getSteer() < 0.0f)
-                    gp->controllerAction(m_kart->getWorldKartId(), PA_STEER_LEFT, int(fabsf(m_controls->getSteer()) * 32768), m_steer_val_l, m_steer_val_r);
-                else
-                    gp->controllerAction(m_kart->getWorldKartId(), PA_STEER_RIGHT, int(fabsf(m_controls->getSteer()) * 32768), m_steer_val_l, m_steer_val_r);
-
-                gp->controllerAction(m_kart->getWorldKartId(), PA_ACCEL, int(m_controls->getAccel() * 32768), m_steer_val_l, m_steer_val_r);
-                if (m_controls->getBrake())
-                    gp->controllerAction(m_kart->getWorldKartId(), PA_BRAKE, 32768, m_steer_val_l, m_steer_val_r);
-                if (m_controls->getNitro())
-                    gp->controllerAction(m_kart->getWorldKartId(), PA_NITRO, 32768, m_steer_val_l, m_steer_val_r);
-                if (m_controls->getFire())
-                    gp->controllerAction(m_kart->getWorldKartId(), PA_FIRE, 32768, m_steer_val_l, m_steer_val_r);
-                if (m_controls->getRescue())
-                    gp->controllerAction(m_kart->getWorldKartId(), PA_RESCUE, 32768, m_steer_val_l, m_steer_val_r);
-            }
-        }
+        // Ensure AI control directly overrides PlayerController's keyboard neutralizer
+        m_controls->setSteer(m_ai_controls->getSteer());
+        m_controls->setSkidControl(m_ai_controls->getSkidControl());
+        m_controls->setAccel(m_ai_controls->getAccel());
+        m_controls->setBrake(m_ai_controls->getBrake());
+        if (m_ai_controls->getFire())
+            m_controls->setFire(true);
+        if (m_ai_controls->getNitro())
+            m_controls->setNitro(true);
+        if (m_ai_controls->getRescue())
+            m_controls->setRescue(true);
     }
 
     // look backward when the player requests or
@@ -413,6 +485,10 @@ void LocalPlayerController::setPosition(int p)
  d*/
 void LocalPlayerController::finishedRace(float time)
 {
+    if (m_ai_controls)
+        m_ai_controls->reset();
+    resetInputState();
+
     // This will implicitly trigger setting the first end camera to be active
     if (!GUIEngine::isNoGraphics())
         Camera::changeCamera(m_camera_index, Camera::CM_TYPE_END);
@@ -553,11 +629,17 @@ void LocalPlayerController::rumble(float strength_low, float strength_high, uint
 void LocalPlayerController::crashed(const AbstractKart* k) {
     doCrashHaptics();
 
+    if (m_ai_controller)
+        m_ai_controller->crashed(k);
+
     PlayerController::crashed(k);
 }
 
 void LocalPlayerController::crashed(const Material *m) {
     doCrashHaptics();
+
+    if (m_ai_controller)
+        m_ai_controller->crashed(m);
 
     PlayerController::crashed(m);
 }

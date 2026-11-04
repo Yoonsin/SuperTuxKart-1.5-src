@@ -18,6 +18,8 @@
 
 #include "network/smooth_network_body.hpp"
 #include "network/stk_host.hpp"
+#include <cmath>
+#include <cstdlib>
 #include "config/stk_config.hpp"
 
 #include <algorithm>
@@ -63,13 +65,19 @@ void SmoothNetworkBody::checkSmoothing(const btTransform& current_transform,
     //if (m_smoothing != SS_NONE)
     //    return;
 
+    if (!m_is_kart)
+		return;
+
     float adjust_length = (current_transform.getOrigin() -
         m_prev_position_data.first.getOrigin()).length();
 
     if (STKHost::isDiscrepancyLoggingEnabled() && STKHost::existHost())
     {
-        float rot_diff = current_transform.getRotation().angle(
-            m_prev_position_data.first.getRotation()) * (180.0f / 3.14f);
+        btQuaternion q1 = current_transform.getRotation().normalized();
+        btQuaternion q2 = m_prev_position_data.first.getRotation().normalized();
+        float dot = std::abs(q1.dot(q2));
+        if (dot > 1.0f) dot = 1.0f;
+        float rot_diff = 2.0f * std::acos(dot) * (180.0f / 3.14159265f);
         STKHost::get()->recordSpatialError(
             m_network_kart_id, m_network_kart_name,
             Vec3(m_prev_position_data.first.getOrigin()),

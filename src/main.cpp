@@ -629,6 +629,7 @@ void cmdLineHelp()
     "       --rtt-log-dir=DIR  Set the RTT log output directory.\n"
     "       --discrepancy-log  Save gameplay discrepancy (spatial, collision, event) log data.\n"
     "       --discrepancy-log-dir=DIR Set the discrepancy log output directory.\n"
+    "       --auto-drive       Enable AI auto-driving controller for local players.\n"
     "       --profile-log      Save profiler data for each multiplayer race.\n"
     "       --profile-log-dir=DIR  Set the profile log output directory.\n"
     "       --quad-log         Save first visits to track quads as CSV.\n"
@@ -1329,6 +1330,11 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         std::string discrepancy_log_directory;
         if (CommandLine::has("--discrepancy-log-dir", &discrepancy_log_directory))
             STKHost::setDiscrepancyLogDirectory(discrepancy_log_directory);
+    }
+
+    if (CommandLine::has("--auto-drive"))
+    {
+        STKHost::setAutoDriveEnabled(true);
     }
 
     if (CommandLine::has("--profile-log"))
@@ -2604,7 +2610,7 @@ int main(int argc, char *argv[])
                 PlayerManager::get()->enforceCurrentPlayer();
             }
 
-            // 화면 전환
+            // 화 환
             if (PlayerManager::getCurrentPlayer() && !UserConfigParams::m_always_show_login_screen)
             {
                 MainMenuScreen::getInstance()->push();

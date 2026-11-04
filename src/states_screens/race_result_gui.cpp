@@ -891,6 +891,8 @@ void RaceResultGUI::determineTableLayout()
         position <= RaceManager::get()->getNumberOfKarts() - sta; position++)
     {
         const AbstractKart *kart = rank_world->getKartAtPosition(position);
+        if (!kart)
+            continue;
 
         if (ffa && kart->isEliminated())
             continue;

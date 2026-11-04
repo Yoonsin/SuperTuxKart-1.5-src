@@ -46,6 +46,9 @@ private:
     /** Stores the active player data structure. */
     StateManager::ActivePlayer *m_player;
     AIBaseController           *m_ai_controller;
+    KartControl                *m_ai_controls;
+
+    void convertAIToPlayerActions();
 
     bool           m_sound_schedule;
     bool           m_has_started;

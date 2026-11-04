@@ -73,6 +73,7 @@ private:
 protected:
     int m_network_kart_id = 0;
     std::string m_network_kart_name = "kart";
+    bool m_is_kart = false;
 
 public:
     SmoothNetworkBody(bool enable = false);
@@ -81,6 +82,7 @@ public:
     // ------------------------------------------------------------------------
     void setNetworkKartInfo(int kart_id, const std::string& name)
     {
+		m_is_kart = true;
         m_network_kart_id = kart_id;
         m_network_kart_name = name;
     }
