@@ -1,0 +1,853 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: WorldStatus 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 타입</a> &#124;
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pro-attribs">Protected 속성</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="classWorldStatus-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">WorldStatus 클래스 참조<div class="ingroups"><a class="el" href="group__modes.html">Modes</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>A class that manages the clock (countdown, chrono, etc.) Also manages stuff like the 'ready/set/go' text at the beginning or the delay at the end of a race.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="world__status_8hpp_source.html">world_status.hpp</a>&gt;</code></p>
+<div class="dynheader">
+WorldStatus에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classWorldStatus__inherit__graph.png" border="0" usemap="#aWorldStatus_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aWorldStatus_inherit__map" id="aWorldStatus_inherit__map">
+<area shape="rect" title="A class that manages the clock (countdown, chrono, etc.) Also manages stuff like the &#39;ready/set/go&#39; t..." alt="" coords="244,5,337,32"/>
+<area shape="rect" href="classWorld.html" title="base class for all game modes This class is responsible for running the actual race." alt="" coords="263,80,318,107"/>
+<area shape="poly" title=" " alt="" coords="291,45,293,80,288,79,290,50"/>
+<area shape="rect" href="classCutsceneWorld.html" title="An implementation of World, to provide animated 3D cutscenes" alt="" coords="115,155,226,181"/>
+<area shape="poly" title=" " alt="" coords="255,117,193,156,190,152,258,113"/>
+<area shape="rect" href="classOverWorld.html" title=" " alt="" coords="249,155,332,181"/>
+<area shape="poly" title=" " alt="" coords="292,120,293,155,288,153,289,125"/>
+<area shape="rect" href="classWorldWithRank.html" title="A WorldWithRank is a world where the karts are ranked." alt="" coords="356,155,468,181"/>
+<area shape="poly" title=" " alt="" coords="325,112,393,153,388,155,325,118"/>
+<area shape="rect" href="classFreeForAll.html" title=" " alt="" coords="112,229,194,256"/>
+<area shape="poly" title=" " alt="" coords="351,188,195,232,193,227,354,184"/>
+<area shape="rect" href="classLinearWorld.html" title=" " alt="" coords="308,229,398,256"/>
+<area shape="poly" title=" " alt="" coords="394,192,365,231,361,227,390,195"/>
+<area shape="rect" href="classSoccerWorld.html" title="An implementation of WorldWithRank, to provide the soccer game mode Notice: In soccer world,..." alt="" coords="422,229,517,256"/>
+<area shape="poly" title=" " alt="" coords="432,191,462,229,457,229,431,196"/>
+<area shape="rect" href="classThreeStrikesBattle.html" title="An implementation of WorldWithRank, to provide the 3 strikes battle game mode" alt="" coords="540,229,670,256"/>
+<area shape="poly" title=" " alt="" coords="460,184,574,228,569,229,460,190"/>
+<area shape="rect" href="classCaptureTheFlag.html" title=" " alt="" coords="5,304,120,331"/>
+<area shape="poly" title=" " alt="" coords="124,268,80,305,76,302,127,263"/>
+<area shape="rect" href="classEasterEggHunt.html" title="An implementation of World to provide an easter egg hunt like mode" alt="" coords="143,304,254,331"/>
+<area shape="poly" title=" " alt="" coords="310,265,227,306,224,301,315,261"/>
+<area shape="rect" href="classFollowTheLeaderRace.html" title="An implementation of World, based on LinearWorld, to provide the Follow&#45;the&#45;leader game mode" alt="" coords="278,304,429,331"/>
+<area shape="poly" title=" " alt="" coords="355,270,356,305,351,302,352,274"/>
+<area shape="rect" href="classLapTrial.html" title=" " alt="" coords="453,304,520,331"/>
+<area shape="poly" title=" " alt="" coords="390,261,466,303,460,304,389,266"/>
+<area shape="rect" href="classStandardRace.html" title="Represents a standard race, i.e." alt="" coords="544,304,648,331"/>
+<area shape="poly" title=" " alt="" coords="410,258,556,303,551,304,410,263"/>
+<area shape="rect" href="classProfileWorld.html" title="An implementation of World, used for profiling only" alt="" coords="490,379,582,405"/>
+<area shape="poly" title=" " alt="" coords="578,341,548,381,545,376,574,344"/>
+<area shape="rect" href="classTutorialWorld.html" title=" " alt="" coords="606,379,703,405"/>
+<area shape="poly" title=" " alt="" coords="617,341,647,379,642,377,615,346"/>
+<area shape="rect" href="classDemoWorld.html" title="This class is used to show a demo of STK (e.g." alt="" coords="491,453,580,480"/>
+<area shape="poly" title=" " alt="" coords="538,419,538,455,534,451,534,423"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 타입</h2></td></tr>
+<tr class="memitem:ab961d800d2316f67c680405c922d42b3" id="r_ab961d800d2316f67c680405c922d42b3"><td class="memItemLeft"><a id="ab961d800d2316f67c680405c922d42b3" name="ab961d800d2316f67c680405c922d42b3"></a>enum &#160;</td><td class="memItemRight"><a class="el" href="#ab961d800d2316f67c680405c922d42b3">ClockType</a> { <b>CLOCK_NONE</b>
+, <b>CLOCK_CHRONO</b>
+, <b>CLOCK_COUNTDOWN</b>
+ }</td></tr>
+<tr class="memdesc:ab961d800d2316f67c680405c922d42b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Different clock types for a race. <br /></td></tr>
+<tr class="memitem:a2515209ec35ccb60e7aaa9789f7dcac4" id="r_a2515209ec35ccb60e7aaa9789f7dcac4"><td class="memItemLeft"><a id="a2515209ec35ccb60e7aaa9789f7dcac4" name="a2515209ec35ccb60e7aaa9789f7dcac4"></a>enum &#160;</td><td class="memItemRight"><b>Phase</b> { <br />
+&#160;&#160;<b>TRACK_INTRO_PHASE</b>
+, <b>SETUP_PHASE</b>
+, <b>WAIT_FOR_SERVER_PHASE</b>
+, <b>SERVER_READY_PHASE</b>
+, <br />
+&#160;&#160;<b>READY_PHASE</b>
+, <b>SET_PHASE</b>
+, <b>GO_PHASE</b>
+, <b>MUSIC_PHASE</b>
+, <br />
+&#160;&#160;<b>RACE_PHASE</b>
+, <b>DELAY_FINISH_PHASE</b>
+, <b>RESULT_DISPLAY_PHASE</b>
+, <b>FINISH_PHASE</b>
+, <br />
+&#160;&#160;<b>IN_GAME_MENU_PHASE</b>
+, <b>UNDEFINED_PHASE</b>
+<br />
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a227f3ca838c72666f8ad68f964ec13e1" id="r_a227f3ca838c72666f8ad68f964ec13e1"><td class="memItemLeft"><a id="a227f3ca838c72666f8ad68f964ec13e1" name="a227f3ca838c72666f8ad68f964ec13e1"></a>
+virtual&#160;</td><td class="memItemRight"><b>~WorldStatus</b> ()</td></tr>
+<tr class="memdesc:a227f3ca838c72666f8ad68f964ec13e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of <a class="el" href="classWorldStatus.html" title="A class that manages the clock (countdown, chrono, etc.) Also manages stuff like the &#39;ready/set/go&#39; t...">WorldStatus</a>. <br /></td></tr>
+<tr class="memitem:a5c42e9e0b3a221f29a576c2d6c5525c2" id="r_a5c42e9e0b3a221f29a576c2d6c5525c2"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a5c42e9e0b3a221f29a576c2d6c5525c2">reset</a> (bool restart)</td></tr>
+<tr class="memdesc:a5c42e9e0b3a221f29a576c2d6c5525c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets all status information, used when starting a new race.  <br /></td></tr>
+<tr class="memitem:ab48542068aa4c7fe9972a2aa7d87afaf" id="r_ab48542068aa4c7fe9972a2aa7d87afaf"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ab48542068aa4c7fe9972a2aa7d87afaf">updateTime</a> (int ticks)</td></tr>
+<tr class="memdesc:ab48542068aa4c7fe9972a2aa7d87afaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the world time and clock (which might be running backwards), and all status information, called once per frame at the end of the main loop.  <br /></td></tr>
+<tr class="memitem:a4ceb2c4b0c5f07f77f3e4c2ff20d14b5" id="r_a4ceb2c4b0c5f07f77f3e4c2ff20d14b5"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a4ceb2c4b0c5f07f77f3e4c2ff20d14b5">update</a> (int ticks)</td></tr>
+<tr class="memdesc:a4ceb2c4b0c5f07f77f3e4c2ff20d14b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update, called once per frame.  <br /></td></tr>
+<tr class="memitem:a3e00c4f2427f897ec2ea5f35dd7e98d0" id="r_a3e00c4f2427f897ec2ea5f35dd7e98d0"><td class="memItemLeft"><a id="a3e00c4f2427f897ec2ea5f35dd7e98d0" name="a3e00c4f2427f897ec2ea5f35dd7e98d0"></a>
+void&#160;</td><td class="memItemRight"><b>startReadySetGo</b> ()</td></tr>
+<tr class="memitem:af1918e2baa09a0dfd8ab093873e399b2" id="r_af1918e2baa09a0dfd8ab093873e399b2"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#af1918e2baa09a0dfd8ab093873e399b2">pause</a> (Phase phase)</td></tr>
+<tr class="memdesc:af1918e2baa09a0dfd8ab093873e399b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses the game and switches to the specified phase.  <br /></td></tr>
+<tr class="memitem:a2e54852361fd170d687b05904a3d21ca" id="r_a2e54852361fd170d687b05904a3d21ca"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a2e54852361fd170d687b05904a3d21ca">unpause</a> ()</td></tr>
+<tr class="memdesc:a2e54852361fd170d687b05904a3d21ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switches back from a pause state to the previous state.  <br /></td></tr>
+<tr class="memitem:a928ec612f737a3c8154e1f155105aea0" id="r_a928ec612f737a3c8154e1f155105aea0"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a928ec612f737a3c8154e1f155105aea0">enterRaceOverState</a> ()</td></tr>
+<tr class="memdesc:a928ec612f737a3c8154e1f155105aea0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the race is finished, but it still leaves some time for an end of race animation, and potentially let some more AI karts finish the race.  <br /></td></tr>
+<tr class="memitem:a97139dd4923daf48c75dc3354759e67c" id="r_a97139dd4923daf48c75dc3354759e67c"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a97139dd4923daf48c75dc3354759e67c">terminateRace</a> ()</td></tr>
+<tr class="memdesc:a97139dd4923daf48c75dc3354759e67c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when it's really over (delay over if any).  <br /></td></tr>
+<tr class="memitem:a7bec8d61c4b2d1f128cd790268997f43" id="r_a7bec8d61c4b2d1f128cd790268997f43"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7bec8d61c4b2d1f128cd790268997f43">setTime</a> (const float time)</td></tr>
+<tr class="memdesc:a7bec8d61c4b2d1f128cd790268997f43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the time for the clock.  <br /></td></tr>
+<tr class="memitem:a6c2a1513a21f0fd475a5ecdcce1a1a1e" id="r_a6c2a1513a21f0fd475a5ecdcce1a1a1e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6c2a1513a21f0fd475a5ecdcce1a1a1e">setTicks</a> (int ticks)</td></tr>
+<tr class="memdesc:a6c2a1513a21f0fd475a5ecdcce1a1a1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a new time for the world time, measured in ticks.  <br /></td></tr>
+<tr class="memitem:af49f898c34c88380a0832deb2af546e2" id="r_af49f898c34c88380a0832deb2af546e2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af49f898c34c88380a0832deb2af546e2">setTicksForRewind</a> (int ticks)</td></tr>
+<tr class="memdesc:af49f898c34c88380a0832deb2af546e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a new time for the world time (used by rewind), measured in ticks.  <br /></td></tr>
+<tr class="memitem:a4ab841bc91a11575568b5dc6efa9e038" id="r_a4ab841bc91a11575568b5dc6efa9e038"><td class="memItemLeft"><a id="a4ab841bc91a11575568b5dc6efa9e038" name="a4ab841bc91a11575568b5dc6efa9e038"></a>
+bool&#160;</td><td class="memItemRight"><b>isStartPhase</b> () const</td></tr>
+<tr class="memitem:afe9275ac14ec6f97761ef247272c0ba5" id="r_afe9275ac14ec6f97761ef247272c0ba5"><td class="memItemLeft"><a id="afe9275ac14ec6f97761ef247272c0ba5" name="afe9275ac14ec6f97761ef247272c0ba5"></a>
+bool&#160;</td><td class="memItemRight"><b>isRacePhase</b> () const</td></tr>
+<tr class="memitem:a83335b14ba3f3abcf2727382444b4f1a" id="r_a83335b14ba3f3abcf2727382444b4f1a"><td class="memItemLeft"><a id="a83335b14ba3f3abcf2727382444b4f1a" name="a83335b14ba3f3abcf2727382444b4f1a"></a>
+bool&#160;</td><td class="memItemRight"><b>isActiveRacePhase</b> () const</td></tr>
+<tr class="memitem:ab41c6b6fa8e1bdffd972f85249a15dfb" id="r_ab41c6b6fa8e1bdffd972f85249a15dfb"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab41c6b6fa8e1bdffd972f85249a15dfb">isFinishPhase</a> () const</td></tr>
+<tr class="memdesc:ab41c6b6fa8e1bdffd972f85249a15dfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">While the race menu is being displayed, m_phase is limbo, and m_previous_phase is finish.  <br /></td></tr>
+<tr class="memitem:adfd5783da8c1ef8eed87e926f018e5f4" id="r_adfd5783da8c1ef8eed87e926f018e5f4"><td class="memItemLeft"><a id="adfd5783da8c1ef8eed87e926f018e5f4" name="adfd5783da8c1ef8eed87e926f018e5f4"></a>
+const Phase&#160;</td><td class="memItemRight"><b>getPhase</b> () const</td></tr>
+<tr class="memdesc:adfd5783da8c1ef8eed87e926f018e5f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current race phase. <br /></td></tr>
+<tr class="memitem:aa67e8492fafe2def81dc06188a556e88" id="r_aa67e8492fafe2def81dc06188a556e88"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa67e8492fafe2def81dc06188a556e88">setPhase</a> (Phase phase)</td></tr>
+<tr class="memdesc:aa67e8492fafe2def81dc06188a556e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current race phase.  <br /></td></tr>
+<tr class="memitem:a29d7234a017b74c3f20d4f25f7a087cb" id="r_a29d7234a017b74c3f20d4f25f7a087cb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a29d7234a017b74c3f20d4f25f7a087cb">setClockMode</a> (const <a class="el" href="#ab961d800d2316f67c680405c922d42b3">ClockType</a> mode, const float initial_time=0.0f)</td></tr>
+<tr class="memdesc:a29d7234a017b74c3f20d4f25f7a087cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call to specify what kind of clock you want.  <br /></td></tr>
+<tr class="memitem:a5bf7a05e86695915042e9346c30082d1" id="r_a5bf7a05e86695915042e9346c30082d1"><td class="memItemLeft"><a id="a5bf7a05e86695915042e9346c30082d1" name="a5bf7a05e86695915042e9346c30082d1"></a>
+int&#160;</td><td class="memItemRight"><b>getClockMode</b> () const</td></tr>
+<tr class="memdesc:a5bf7a05e86695915042e9346c30082d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current clock mode. <br /></td></tr>
+<tr class="memitem:a0b1a1ed183546ec4058774cc8a04039e" id="r_a0b1a1ed183546ec4058774cc8a04039e"><td class="memItemLeft"><a id="a0b1a1ed183546ec4058774cc8a04039e" name="a0b1a1ed183546ec4058774cc8a04039e"></a>
+float&#160;</td><td class="memItemRight"><b>getTime</b> () const</td></tr>
+<tr class="memdesc:a0b1a1ed183546ec4058774cc8a04039e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current race time. <br /></td></tr>
+<tr class="memitem:a543058a65651b9ad0262f2ba6a2fdbd3" id="r_a543058a65651b9ad0262f2ba6a2fdbd3"><td class="memItemLeft"><a id="a543058a65651b9ad0262f2ba6a2fdbd3" name="a543058a65651b9ad0262f2ba6a2fdbd3"></a>
+uint64_t&#160;</td><td class="memItemRight"><b>getStart</b> () const</td></tr>
+<tr class="memdesc:a543058a65651b9ad0262f2ba6a2fdbd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the start time. <br /></td></tr>
+<tr class="memitem:ae5a660aa7a51e96c5d02b48360e415a1" id="r_ae5a660aa7a51e96c5d02b48360e415a1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae5a660aa7a51e96c5d02b48360e415a1">getTimeTicks</a> () const</td></tr>
+<tr class="memdesc:ae5a660aa7a51e96c5d02b48360e415a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current race time in time ticks (i.e.  <br /></td></tr>
+<tr class="memitem:ad613d5efcb346624d352b98489647e97" id="r_ad613d5efcb346624d352b98489647e97"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ad613d5efcb346624d352b98489647e97">countdownReachedZero</a> ()</td></tr>
+<tr class="memdesc:ad613d5efcb346624d352b98489647e97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will be called to notify your derived class that the clock, which is in COUNTDOWN mode, has reached zero.  <br /></td></tr>
+<tr class="memitem:a1e91e0ccae92bbd918fab2d72515ae8d" id="r_a1e91e0ccae92bbd918fab2d72515ae8d"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a1e91e0ccae92bbd918fab2d72515ae8d">onGo</a> ()</td></tr>
+<tr class="memdesc:a1e91e0ccae92bbd918fab2d72515ae8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the race actually starts.  <br /></td></tr>
+<tr class="memitem:aa465d71fa31fcfb6184343c0f8b7f00e" id="r_aa465d71fa31fcfb6184343c0f8b7f00e"><td class="memItemLeft"><a id="aa465d71fa31fcfb6184343c0f8b7f00e" name="aa465d71fa31fcfb6184343c0f8b7f00e"></a>
+int&#160;</td><td class="memItemRight"><b>getTicksSinceStart</b> () const</td></tr>
+<tr class="memdesc:aa465d71fa31fcfb6184343c0f8b7f00e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ticks since start regardless of which way the clock counts <br /></td></tr>
+<tr class="memitem:a363e1301b4916f308da6f166f585aeb2" id="r_a363e1301b4916f308da6f166f585aeb2"><td class="memItemLeft"><a id="a363e1301b4916f308da6f166f585aeb2" name="a363e1301b4916f308da6f166f585aeb2"></a>
+int&#160;</td><td class="memItemRight"><b>getAuxiliaryTicks</b> () const</td></tr>
+<tr class="memitem:a41318ed258d5169d08b6a09d4b9394b4" id="r_a41318ed258d5169d08b6a09d4b9394b4"><td class="memItemLeft"><a id="a41318ed258d5169d08b6a09d4b9394b4" name="a41318ed258d5169d08b6a09d4b9394b4"></a>
+bool&#160;</td><td class="memItemRight"><b>isLiveJoinWorld</b> () const</td></tr>
+<tr class="memitem:acda12f01f4a5c9b73b32497c379ad13a" id="r_acda12f01f4a5c9b73b32497c379ad13a"><td class="memItemLeft"><a id="acda12f01f4a5c9b73b32497c379ad13a" name="acda12f01f4a5c9b73b32497c379ad13a"></a>
+void&#160;</td><td class="memItemRight"><b>setLiveJoinWorld</b> (bool val)</td></tr>
+<tr class="memitem:a5ee70fb3e786a295bee0f285213ddfeb" id="r_a5ee70fb3e786a295bee0f285213ddfeb"><td class="memItemLeft"><a id="a5ee70fb3e786a295bee0f285213ddfeb" name="a5ee70fb3e786a295bee0f285213ddfeb"></a>
+int&#160;</td><td class="memItemRight"><b>getMusicDescriptionTicks</b> () const</td></tr>
+<tr class="memitem:a051aa41062d1c3cf15fed78ac0d0b046" id="r_a051aa41062d1c3cf15fed78ac0d0b046"><td class="memItemLeft"><a id="a051aa41062d1c3cf15fed78ac0d0b046" name="a051aa41062d1c3cf15fed78ac0d0b046"></a>
+void&#160;</td><td class="memItemRight"><b>endLiveJoinWorld</b> (int ticks_now)</td></tr>
+<tr class="memdesc:a051aa41062d1c3cf15fed78ac0d0b046"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base on the network timer set current world count up ticks to tick_now. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 속성</h2></td></tr>
+<tr class="memitem:a0e901996b9ec191a26348ad21c2b58f3" id="r_a0e901996b9ec191a26348ad21c2b58f3"><td class="memItemLeft"><a id="a0e901996b9ec191a26348ad21c2b58f3" name="a0e901996b9ec191a26348ad21c2b58f3"></a>
+double&#160;</td><td class="memItemRight"><b>m_time</b></td></tr>
+<tr class="memdesc:a0e901996b9ec191a26348ad21c2b58f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elasped/remaining time in seconds. <br /></td></tr>
+<tr class="memitem:a2b23126ebb32dde307b2019de40d5ebc" id="r_a2b23126ebb32dde307b2019de40d5ebc"><td class="memItemLeft"><a id="a2b23126ebb32dde307b2019de40d5ebc" name="a2b23126ebb32dde307b2019de40d5ebc"></a>
+int&#160;</td><td class="memItemRight"><b>m_time_ticks</b></td></tr>
+<tr class="memdesc:a2b23126ebb32dde307b2019de40d5ebc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time in number of ticks (in terms of physics time steps). <br /></td></tr>
+<tr class="memitem:ac6e672237ef1889007027735ec811248" id="r_ac6e672237ef1889007027735ec811248"><td class="memItemLeft"><a id="ac6e672237ef1889007027735ec811248" name="ac6e672237ef1889007027735ec811248"></a>
+bool&#160;</td><td class="memItemRight"><b>m_play_racestart_sounds</b></td></tr>
+<tr class="memdesc:ac6e672237ef1889007027735ec811248"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the start race should be played, disabled in cutscenes. <br /></td></tr>
+<tr class="memitem:abcf01e2c93d87d273ffbf4d5e214c894" id="r_abcf01e2c93d87d273ffbf4d5e214c894"><td class="memItemLeft"><a id="abcf01e2c93d87d273ffbf4d5e214c894" name="abcf01e2c93d87d273ffbf4d5e214c894"></a>
+const ProcessType&#160;</td><td class="memItemRight"><b>m_process_type</b></td></tr>
+<tr class="memdesc:abcf01e2c93d87d273ffbf4d5e214c894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process type of this world (main or child). <br /></td></tr>
+<tr class="memitem:aa4ac81b84a5e71d7a02f79e58755d493" id="r_aa4ac81b84a5e71d7a02f79e58755d493"><td class="memItemLeft"><a id="aa4ac81b84a5e71d7a02f79e58755d493" name="aa4ac81b84a5e71d7a02f79e58755d493"></a>
+bool&#160;</td><td class="memItemRight"><b>m_play_track_intro_sound</b></td></tr>
+<tr class="memitem:a526bb7eff93009b85be7546b3062479a" id="r_a526bb7eff93009b85be7546b3062479a"><td class="memItemLeft"><a id="a526bb7eff93009b85be7546b3062479a" name="a526bb7eff93009b85be7546b3062479a"></a>
+bool&#160;</td><td class="memItemRight"><b>m_play_ready_set_go_sounds</b></td></tr>
+<tr class="memitem:a5c14afc4a454473dd9ee73e5f46091e5" id="r_a5c14afc4a454473dd9ee73e5f46091e5"><td class="memItemLeft"><a id="a5c14afc4a454473dd9ee73e5f46091e5" name="a5c14afc4a454473dd9ee73e5f46091e5"></a>
+std::atomic&lt; Phase &gt;&#160;</td><td class="memItemRight"><b>m_phase</b></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:abebce1c316df4b9872e69f684f23d934" id="r_abebce1c316df4b9872e69f684f23d934"><td class="memItemLeft"><a id="abebce1c316df4b9872e69f684f23d934" name="abebce1c316df4b9872e69f684f23d934"></a>
+void&#160;</td><td class="memItemRight"><b>startEngines</b> ()</td></tr>
+<tr class="memdesc:abebce1c316df4b9872e69f684f23d934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the kart engines. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:ac82f00f02bf44e017459d8a05ad3d35e" id="r_ac82f00f02bf44e017459d8a05ad3d35e"><td class="memItemLeft"><a id="ac82f00f02bf44e017459d8a05ad3d35e" name="ac82f00f02bf44e017459d8a05ad3d35e"></a>
+<a class="el" href="classSFXBase.html">SFXBase</a> *&#160;</td><td class="memItemRight"><b>m_track_intro_sound</b></td></tr>
+<tr class="memdesc:ac82f00f02bf44e017459d8a05ad3d35e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sound to play at the beginning of a race, during which a a camera intro of the track can be shown. <br /></td></tr>
+<tr class="memitem:ae4d3501f34f6f2c414f70b51d1f5ae09" id="r_ae4d3501f34f6f2c414f70b51d1f5ae09"><td class="memItemLeft"><a id="ae4d3501f34f6f2c414f70b51d1f5ae09" name="ae4d3501f34f6f2c414f70b51d1f5ae09"></a>
+<a class="el" href="classSFXBase.html">SFXBase</a> *&#160;</td><td class="memItemRight"><b>m_prestart_sound</b></td></tr>
+<tr class="memdesc:ae4d3501f34f6f2c414f70b51d1f5ae09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sound used for the first two 'beeps' in ready, set, go. <br /></td></tr>
+<tr class="memitem:a2296b43086f0b5f6852a0d894a9d15fe" id="r_a2296b43086f0b5f6852a0d894a9d15fe"><td class="memItemLeft"><a id="a2296b43086f0b5f6852a0d894a9d15fe" name="a2296b43086f0b5f6852a0d894a9d15fe"></a>
+<a class="el" href="classSFXBase.html">SFXBase</a> *&#160;</td><td class="memItemRight"><b>m_start_sound</b></td></tr>
+<tr class="memdesc:a2296b43086f0b5f6852a0d894a9d15fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The third sound to be played in ready, set, go. <br /></td></tr>
+<tr class="memitem:aeb03f9d5f1cf632f696994bdaa9adc92" id="r_aeb03f9d5f1cf632f696994bdaa9adc92"><td class="memItemLeft"><a id="aeb03f9d5f1cf632f696994bdaa9adc92" name="aeb03f9d5f1cf632f696994bdaa9adc92"></a>
+uint64_t&#160;</td><td class="memItemRight"><b>m_started_at</b></td></tr>
+<tr class="memdesc:aeb03f9d5f1cf632f696994bdaa9adc92"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Unix) time when we started <br /></td></tr>
+<tr class="memitem:a64abb764139f9b2eac47df80a302c439" id="r_a64abb764139f9b2eac47df80a302c439"><td class="memItemLeft"><a id="a64abb764139f9b2eac47df80a302c439" name="a64abb764139f9b2eac47df80a302c439"></a>
+<a class="el" href="#ab961d800d2316f67c680405c922d42b3">ClockType</a>&#160;</td><td class="memItemRight"><b>m_clock_mode</b></td></tr>
+<tr class="memdesc:a64abb764139f9b2eac47df80a302c439"><td class="mdescLeft">&#160;</td><td class="mdescRight">The clock mode: normal counting forwards, or countdown <br /></td></tr>
+<tr class="memitem:ad38f60f08e355fd54c0c0937c4ec3666" id="r_ad38f60f08e355fd54c0c0937c4ec3666"><td class="memItemLeft">Phase&#160;</td><td class="memItemRight"><a class="el" href="#ad38f60f08e355fd54c0c0937c4ec3666">m_previous_phase</a></td></tr>
+<tr class="memdesc:ad38f60f08e355fd54c0c0937c4ec3666"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remember previous phase e.g.  <br /></td></tr>
+<tr class="memitem:ac37df5d96d73bf9d73332016fe45f925" id="r_ac37df5d96d73bf9d73332016fe45f925"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ac37df5d96d73bf9d73332016fe45f925">m_auxiliary_ticks</a></td></tr>
+<tr class="memdesc:ac37df5d96d73bf9d73332016fe45f925"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts time during the initial 'ready/set/go' phase, or at the end of a race.  <br /></td></tr>
+<tr class="memitem:aba26cdf6bd837f7179a830094380839d" id="r_aba26cdf6bd837f7179a830094380839d"><td class="memItemLeft"><a id="aba26cdf6bd837f7179a830094380839d" name="aba26cdf6bd837f7179a830094380839d"></a>
+int&#160;</td><td class="memItemRight"><b>m_start_music_ticks</b></td></tr>
+<tr class="memitem:a2800901970c6a6fb1828e52b0de87de9" id="r_a2800901970c6a6fb1828e52b0de87de9"><td class="memItemLeft"><a id="a2800901970c6a6fb1828e52b0de87de9" name="a2800901970c6a6fb1828e52b0de87de9"></a>
+int&#160;</td><td class="memItemRight"><b>m_race_ticks</b></td></tr>
+<tr class="memitem:ab82e92fbb8c6a1aa94f31eafe723730e" id="r_ab82e92fbb8c6a1aa94f31eafe723730e"><td class="memItemLeft"><a id="ab82e92fbb8c6a1aa94f31eafe723730e" name="ab82e92fbb8c6a1aa94f31eafe723730e"></a>
+int&#160;</td><td class="memItemRight"><b>m_live_join_ticks</b></td></tr>
+<tr class="memitem:a906984cb78dc685c525707cc31f05008" id="r_a906984cb78dc685c525707cc31f05008"><td class="memItemLeft"><a id="a906984cb78dc685c525707cc31f05008" name="a906984cb78dc685c525707cc31f05008"></a>
+int&#160;</td><td class="memItemRight"><b>m_count_up_ticks</b></td></tr>
+<tr class="memdesc:a906984cb78dc685c525707cc31f05008"><td class="mdescLeft">&#160;</td><td class="mdescRight">Special counter to count ticks since start (in terms of physics timestep size). <br /></td></tr>
+<tr class="memitem:a1cb242b64384b1fb554d36f3e668994e" id="r_a1cb242b64384b1fb554d36f3e668994e"><td class="memItemLeft"><a id="a1cb242b64384b1fb554d36f3e668994e" name="a1cb242b64384b1fb554d36f3e668994e"></a>
+bool&#160;</td><td class="memItemRight"><b>m_engines_started</b></td></tr>
+<tr class="memitem:a5522b12a00d9209a45deb31385ed7a5b" id="r_a5522b12a00d9209a45deb31385ed7a5b"><td class="memItemLeft"><a id="a5522b12a00d9209a45deb31385ed7a5b" name="a5522b12a00d9209a45deb31385ed7a5b"></a>
+bool&#160;</td><td class="memItemRight"><b>m_live_join_world</b></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>A class that manages the clock (countdown, chrono, etc.) Also manages stuff like the 'ready/set/go' text at the beginning or the delay at the end of a race. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="ad613d5efcb346624d352b98489647e97" name="ad613d5efcb346624d352b98489647e97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad613d5efcb346624d352b98489647e97">&#9670;&#160;</a></span>countdownReachedZero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void WorldStatus::countdownReachedZero </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Will be called to notify your derived class that the clock, which is in COUNTDOWN mode, has reached zero. </p>
+
+<p><a class="el" href="classFollowTheLeaderRace.html#a68118e43c2511f089e08fdcae218a493">FollowTheLeaderRace</a>, <a class="el" href="classFreeForAll.html#a603a8d19243465b5637de5265a4b4e13">FreeForAll</a>, <a class="el" href="classLapTrial.html#ac850330d3baa9fe9bd5fce3abe76418f">LapTrial</a>, <a class="el" href="classSoccerWorld.html#aee7a884b907627606666b2a81b086eda">SoccerWorld</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a928ec612f737a3c8154e1f155105aea0" name="a928ec612f737a3c8154e1f155105aea0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a928ec612f737a3c8154e1f155105aea0">&#9670;&#160;</a></span>enterRaceOverState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldStatus::enterRaceOverState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called when the race is finished, but it still leaves some time for an end of race animation, and potentially let some more AI karts finish the race. </p>
+
+<p><a class="el" href="classCutsceneWorld.html#a5c79d6e7200462008ca04fe402b63da7">CutsceneWorld</a>, <a class="el" href="classDemoWorld.html#a8f67740457115ec4f2147039a65d1808">DemoWorld</a>, <a class="el" href="classProfileWorld.html#aaf4fbf9b96712cfa719461248e980444">ProfileWorld</a>, <a class="el" href="classSoccerWorld.html#ab371fdf7ae5ebec5de21ef9505d82a11">SoccerWorld</a>, <a class="el" href="classThreeStrikesBattle.html#a6b14ef79525fdc7f6db6e9df1cd59a09">ThreeStrikesBattle</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="ae5a660aa7a51e96c5d02b48360e415a1" name="ae5a660aa7a51e96c5d02b48360e415a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5a660aa7a51e96c5d02b48360e415a1">&#9670;&#160;</a></span>getTimeTicks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int WorldStatus::getTimeTicks </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the current race time in time ticks (i.e. </p>
+<p>based on the physics time step size). </p>
+
+</div>
+</div>
+<a id="ab41c6b6fa8e1bdffd972f85249a15dfb" name="ab41c6b6fa8e1bdffd972f85249a15dfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab41c6b6fa8e1bdffd972f85249a15dfb">&#9670;&#160;</a></span>isFinishPhase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool WorldStatus::isFinishPhase </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>While the race menu is being displayed, m_phase is limbo, and m_previous_phase is finish. </p>
+<p>So we have to test this case, too. </p>
+
+</div>
+</div>
+<a id="a1e91e0ccae92bbd918fab2d72515ae8d" name="a1e91e0ccae92bbd918fab2d72515ae8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e91e0ccae92bbd918fab2d72515ae8d">&#9670;&#160;</a></span>onGo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void WorldStatus::onGo </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called when the race actually starts. </p>
+
+<p><a class="el" href="classSoccerWorld.html#aa0ea09779a61bf3ff7cd4cd533d6206e">SoccerWorld</a>, <a class="el" href="classWorld.html#a7eadf39a84ccb1c96c77c3ac9178448a">World</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="af1918e2baa09a0dfd8ab093873e399b2" name="af1918e2baa09a0dfd8ab093873e399b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1918e2baa09a0dfd8ab093873e399b2">&#9670;&#160;</a></span>pause()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldStatus::pause </td>
+          <td>(</td>
+          <td class="paramtype">Phase</td>          <td class="paramname"><span class="paramname"><em>phase</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pauses the game and switches to the specified phase. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phase</td><td>Phase to switch to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classWorld.html#a7e2a16aaa4cbbc4544adcb910b0fa6c2">World</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a5c42e9e0b3a221f29a576c2d6c5525c2" name="a5c42e9e0b3a221f29a576c2d6c5525c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c42e9e0b3a221f29a576c2d6c5525c2">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldStatus::reset </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>restart</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets all status information, used when starting a new race. </p>
+
+<p><a class="el" href="classCaptureTheFlag.html#a4ed50e599177e49aa3c97eee94acdcea">CaptureTheFlag</a>, <a class="el" href="classCutsceneWorld.html#afe95d8430984abbd0e5baeca3cf32f34">CutsceneWorld</a>, <a class="el" href="classEasterEggHunt.html#aaf9a6e457547de369e86b014c83285fa">EasterEggHunt</a>, <a class="el" href="classFollowTheLeaderRace.html#a9f0895fff053fec5ba42a51efd5e785c">FollowTheLeaderRace</a>, <a class="el" href="classFreeForAll.html#a2bb6092f39f13e42b3eaf71777331572">FreeForAll</a>, <a class="el" href="classLapTrial.html#a9e70b52d388aa95198caf8bd154a1781">LapTrial</a>, <a class="el" href="classLinearWorld.html#a44d928686451c6232a23eff36a54f07d">LinearWorld</a>, <a class="el" href="classSoccerWorld.html#a02c054aae0c8b0bbe0d946f94aae043a">SoccerWorld</a>, <a class="el" href="classThreeStrikesBattle.html#a4a543030b802c7347c22fff3ebe0cacc">ThreeStrikesBattle</a>, <a class="el" href="classWorld.html#ac5fd2328d02d6083679ee020dd8832e3">World</a>, <a class="el" href="classWorldWithRank.html#a832dfd180f6c367e5057e975ddb8f435">WorldWithRank</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a29d7234a017b74c3f20d4f25f7a087cb" name="a29d7234a017b74c3f20d4f25f7a087cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29d7234a017b74c3f20d4f25f7a087cb">&#9670;&#160;</a></span>setClockMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldStatus::setClockMode </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#ab961d800d2316f67c680405c922d42b3">ClockType</a></td>          <td class="paramname"><span class="paramname"><em>mode</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>initial_time</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.0f</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Call to specify what kind of clock you want. </p>
+<p>Sets the clock mode and the initial time of the world clock.</p>
+<p>The second argument can be used to specify the initial time value (especially useful for countdowns).</p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>The new clock mode. </td></tr>
+    <tr><td class="paramname">initial_time</td><td>The new initial time for the world clock. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa67e8492fafe2def81dc06188a556e88" name="aa67e8492fafe2def81dc06188a556e88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa67e8492fafe2def81dc06188a556e88">&#9670;&#160;</a></span>setPhase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldStatus::setPhase </td>
+          <td>(</td>
+          <td class="paramtype">Phase</td>          <td class="paramname"><span class="paramname"><em>phase</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the current race phase. </p>
+<p>Canbe used to e.g. avoid the count down etc. </p>
+
+</div>
+</div>
+<a id="a6c2a1513a21f0fd475a5ecdcce1a1a1e" name="a6c2a1513a21f0fd475a5ecdcce1a1a1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c2a1513a21f0fd475a5ecdcce1a1a1e">&#9670;&#160;</a></span>setTicks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldStatus::setTicks </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets a new time for the world time, measured in ticks. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks</td><td>New time in ticks to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af49f898c34c88380a0832deb2af546e2" name="af49f898c34c88380a0832deb2af546e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af49f898c34c88380a0832deb2af546e2">&#9670;&#160;</a></span>setTicksForRewind()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldStatus::setTicksForRewind </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets a new time for the world time (used by rewind), measured in ticks. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks</td><td>New time in ticks to set (always count upwards). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7bec8d61c4b2d1f128cd790268997f43" name="a7bec8d61c4b2d1f128cd790268997f43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bec8d61c4b2d1f128cd790268997f43">&#9670;&#160;</a></span>setTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldStatus::setTime </td>
+          <td>(</td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the time for the clock. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>New time to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a97139dd4923daf48c75dc3354759e67c" name="a97139dd4923daf48c75dc3354759e67c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97139dd4923daf48c75dc3354759e67c">&#9670;&#160;</a></span>terminateRace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldStatus::terminateRace </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called when it's really over (delay over if any). </p>
+<p>This function must be called after all stats were updated from the different modes! </p>
+
+<p><a class="el" href="classEasterEggHunt.html#af7954ebd5d82483c4f7c43c022f2452b">EasterEggHunt</a>, <a class="el" href="classFollowTheLeaderRace.html#a96a9fa93ca661697d778c212e137281d">FollowTheLeaderRace</a>, <a class="el" href="classFreeForAll.html#a601091f75662d0bb3e533f90a2019244">FreeForAll</a>, <a class="el" href="classLapTrial.html#a4686b2d5a6e2069a2d4c58dbb5680b26">LapTrial</a>, <a class="el" href="classSoccerWorld.html#a9cd286dd01c20811240edbcb95ee7408">SoccerWorld</a>, <a class="el" href="classThreeStrikesBattle.html#a20e153ede1d06245b67b5926b0f2f225">ThreeStrikesBattle</a>, <a class="el" href="classWorld.html#a20b4f1cd0a19429d3e75d740f39637c6">World</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a2e54852361fd170d687b05904a3d21ca" name="a2e54852361fd170d687b05904a3d21ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e54852361fd170d687b05904a3d21ca">&#9670;&#160;</a></span>unpause()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldStatus::unpause </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Switches back from a pause state to the previous state. </p>
+
+<p><a class="el" href="classWorld.html#ac840af270ecc29e0917138d647e2db89">World</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a4ceb2c4b0c5f07f77f3e4c2ff20d14b5" name="a4ceb2c4b0c5f07f77f3e4c2ff20d14b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ceb2c4b0c5f07f77f3e4c2ff20d14b5">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldStatus::update </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update, called once per frame. </p>
+<p>Called early on before physics are updated. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>Time step. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classCaptureTheFlag.html#abed2fa0f9bc16266dc01417471f99ee5">CaptureTheFlag</a>, <a class="el" href="classCutsceneWorld.html#a016aebba43d2d639fe8262597be09202">CutsceneWorld</a>, <a class="el" href="classDemoWorld.html#a3c775e5514a923b14516e422e83b625c">DemoWorld</a>, <a class="el" href="classEasterEggHunt.html#a37aa8eebe5885fcf68c143f698616e56">EasterEggHunt</a>, <a class="el" href="classFreeForAll.html#a2ae8a1bbdcf17d8e1f48cfc726df3cd9">FreeForAll</a>, <a class="el" href="classLapTrial.html#a24bc4b89a0538bccf0d0c7d0e3f93d0d">LapTrial</a>, <a class="el" href="classLinearWorld.html#a434fe4d4543e7eca47a0e9f27e866f55">LinearWorld</a>, <a class="el" href="classOverWorld.html#a2c4b4a7ec19810669e82e29601ffb742">OverWorld</a>, <a class="el" href="classProfileWorld.html#ac1b41e893f1e34bf52445d72cc34f061">ProfileWorld</a>, <a class="el" href="classSoccerWorld.html#a70d6a0403b2c6a3bff2205d8afb94561">SoccerWorld</a>, <a class="el" href="classThreeStrikesBattle.html#aabd90895ea44fbfc2178261a6bc94670">ThreeStrikesBattle</a>, <a class="el" href="classWorld.html#aee4ccbf57a455d2bc52b2405f949df80">World</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="ab48542068aa4c7fe9972a2aa7d87afaf" name="ab48542068aa4c7fe9972a2aa7d87afaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab48542068aa4c7fe9972a2aa7d87afaf">&#9670;&#160;</a></span>updateTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WorldStatus::updateTime </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Updates the world time and clock (which might be running backwards), and all status information, called once per frame at the end of the main loop. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks</td><td>Number of ticks (physics time steps) - should be 1. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="ac37df5d96d73bf9d73332016fe45f925" name="ac37df5d96d73bf9d73332016fe45f925"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac37df5d96d73bf9d73332016fe45f925">&#9670;&#160;</a></span>m_auxiliary_ticks</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int WorldStatus::m_auxiliary_ticks</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Counts time during the initial 'ready/set/go' phase, or at the end of a race. </p>
+<p>This timer basically kicks in when we need to calculate non-race time like labels. </p>
+
+</div>
+</div>
+<a id="ad38f60f08e355fd54c0c0937c4ec3666" name="ad38f60f08e355fd54c0c0937c4ec3666"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad38f60f08e355fd54c0c0937c4ec3666">&#9670;&#160;</a></span>m_previous_phase</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Phase WorldStatus::m_previous_phase</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remember previous phase e.g. </p>
+<p>on pause </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>modes/<a class="el" href="world__status_8hpp_source.html">world_status.hpp</a></li>
+<li>modes/<b>world_status.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

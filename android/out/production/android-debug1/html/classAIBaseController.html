@@ -1,0 +1,1025 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: AIBaseController 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-static-methods">정적 Public 멤버 함수</a> &#124;
+<a href="#pro-methods">Protected 멤버 함수</a> &#124;
+<a href="#pro-attribs">Protected 속성</a> &#124;
+<a href="#pro-static-attribs">정적 Protected 속성</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="classAIBaseController-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">AIBaseController 클래스 참조<span class="mlabels"><span class="mlabel abstract">abstract</span></span><div class="ingroups"><a class="el" href="group__controller.html">Karts/controller</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>A base class for all AI karts.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ai__base__controller_8hpp_source.html">ai_base_controller.hpp</a>&gt;</code></p>
+<div class="dynheader">
+AIBaseController에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classAIBaseController__inherit__graph.png" border="0" usemap="#aAIBaseController_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aAIBaseController_inherit__map" id="aAIBaseController_inherit__map">
+<area shape="rect" title="A base class for all AI karts." alt="" coords="203,80,324,107"/>
+<area shape="rect" href="classAIBaseLapController.html" title="A base class for all AI karts." alt="" coords="129,155,270,181"/>
+<area shape="poly" title=" " alt="" coords="244,117,212,156,209,152,240,121"/>
+<area shape="rect" href="classArenaAI.html" title="A base class for AI that use navmesh to work." alt="" coords="321,155,390,181"/>
+<area shape="poly" title=" " alt="" coords="292,114,342,154,337,154,291,119"/>
+<area shape="rect" href="classController.html" title="This is the base class for kart controller &#45; that can be a player or a a robot." alt="" coords="225,5,302,32"/>
+<area shape="poly" title=" " alt="" coords="265,45,266,81,261,79,262,50"/>
+<area shape="rect" href="classEndController.html" title=" " alt="" coords="5,229,106,256"/>
+<area shape="poly" title=" " alt="" coords="159,191,82,231,79,226,162,186"/>
+<area shape="rect" href="classSkiddingAI.html" title="This is the actual racing AI." alt="" coords="129,229,214,256"/>
+<area shape="poly" title=" " alt="" coords="191,194,178,230,174,227,187,198"/>
+<area shape="rect" href="classTestAI.html" title="This is a test version of the AI, which can be used to create new AIs, and compare them with the curr..." alt="" coords="238,229,297,256"/>
+<area shape="poly" title=" " alt="" coords="223,190,258,229,253,229,221,196"/>
+<area shape="rect" href="classBattleAI.html" title="The actual battle AI." alt="" coords="321,229,390,256"/>
+<area shape="poly" title=" " alt="" coords="357,195,358,230,353,228,354,199"/>
+<area shape="rect" href="classSoccerAI.html" title="The actual soccer AI." alt="" coords="414,229,489,256"/>
+<area shape="poly" title=" " alt="" coords="385,188,438,229,432,229,383,193"/>
+<area shape="rect" href="classSpareTireAI.html" title="The AI for spare tire karts in battle mode, allowing kart to gain life." alt="" coords="310,304,401,331"/>
+<area shape="poly" title=" " alt="" coords="357,270,358,305,353,302,354,274"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a49b892449aa3b59c4952ec3992009ab5" id="r_a49b892449aa3b59c4952ec3992009ab5"><td class="memItemLeft"><a id="a49b892449aa3b59c4952ec3992009ab5" name="a49b892449aa3b59c4952ec3992009ab5"></a>
+&#160;</td><td class="memItemRight"><b>AIBaseController</b> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memitem:afa5eafe4504eb3d67af8ef4f84a28066" id="r_afa5eafe4504eb3d67af8ef4f84a28066"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#afa5eafe4504eb3d67af8ef4f84a28066">reset</a> () OVERRIDE</td></tr>
+<tr class="memitem:a75450c20a06c2bf542e5e713ecc09c63" id="r_a75450c20a06c2bf542e5e713ecc09c63"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a75450c20a06c2bf542e5e713ecc09c63">disableSlipstreamBonus</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:a75450c20a06c2bf542e5e713ecc09c63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Certain AI levels will not receive a slipstream bonus in order to be not as hard.  <br /></td></tr>
+<tr class="memitem:adfe63141b87801674dda575e104afe0f" id="r_adfe63141b87801674dda575e104afe0f"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#adfe63141b87801674dda575e104afe0f">crashed</a> (const <a class="el" href="classMaterial.html">Material</a> *m) OVERRIDE</td></tr>
+<tr class="memdesc:adfe63141b87801674dda575e104afe0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is called when the kart crashed with the terrain.  <br /></td></tr>
+<tr class="memitem:a44249fb1598653960235e5516af0cbfc" id="r_a44249fb1598653960235e5516af0cbfc"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a44249fb1598653960235e5516af0cbfc">crashed</a> (const <a class="el" href="classAbstractKart.html">AbstractKart</a> *k) OVERRIDE</td></tr>
+<tr class="memitem:ae2f64ff858494735ab104cc9045e4ad9" id="r_ae2f64ff858494735ab104cc9045e4ad9"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ae2f64ff858494735ab104cc9045e4ad9">handleZipper</a> (bool play_sound) OVERRIDE</td></tr>
+<tr class="memitem:a9755070fd3dece3be4d470001c448fe6" id="r_a9755070fd3dece3be4d470001c448fe6"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a9755070fd3dece3be4d470001c448fe6">finishedRace</a> (float time) OVERRIDE</td></tr>
+<tr class="memdesc:a9755070fd3dece3be4d470001c448fe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called whan this controller's kart finishes the last lap.  <br /></td></tr>
+<tr class="memitem:a431fdc3ba1942ccfb07f8136fd8e03c9" id="r_a431fdc3ba1942ccfb07f8136fd8e03c9"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a431fdc3ba1942ccfb07f8136fd8e03c9">collectedItem</a> (const <a class="el" href="classItemState.html">ItemState</a> &amp;item, float previous_energy=0) OVERRIDE</td></tr>
+<tr class="memitem:a64659acabc8d383bc40553c01435d239" id="r_a64659acabc8d383bc40553c01435d239"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a64659acabc8d383bc40553c01435d239">setPosition</a> (int p) OVERRIDE</td></tr>
+<tr class="memitem:a4713e814a176be8c80e6ea95fac43472" id="r_a4713e814a176be8c80e6ea95fac43472"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a4713e814a176be8c80e6ea95fac43472">isPlayerController</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:a4713e814a176be8c80e6ea95fac43472"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if this player is not an AI, i.e.  <br /></td></tr>
+<tr class="memitem:a844eb4c260ae0466656c45905aa97470" id="r_a844eb4c260ae0466656c45905aa97470"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a844eb4c260ae0466656c45905aa97470">isLocalPlayerController</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:a844eb4c260ae0466656c45905aa97470"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if this is a local player.  <br /></td></tr>
+<tr class="memitem:a1dd177462be6923a74c9c7d817e75123" id="r_a1dd177462be6923a74c9c7d817e75123"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a1dd177462be6923a74c9c7d817e75123">action</a> (<a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> action, int value, bool dry_run=false) OVERRIDE</td></tr>
+<tr class="memdesc:a1dd177462be6923a74c9c7d817e75123"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default: ignore actions.  <br /></td></tr>
+<tr class="memitem:aa979a5f3ec80cd5347de9f864a079a09" id="r_aa979a5f3ec80cd5347de9f864a079a09"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#aa979a5f3ec80cd5347de9f864a079a09">skidBonusTriggered</a> () OVERRIDE</td></tr>
+<tr class="memitem:a3baff5d9ae3153820aa49e1496e7ee0c" id="r_a3baff5d9ae3153820aa49e1496e7ee0c"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a3baff5d9ae3153820aa49e1496e7ee0c">saveState</a> (<a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer) const OVERRIDE</td></tr>
+<tr class="memitem:a4dd08509e6a29ede05534609b24253d5" id="r_a4dd08509e6a29ede05534609b24253d5"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a4dd08509e6a29ede05534609b24253d5">rewindTo</a> (<a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer) OVERRIDE</td></tr>
+<tr class="memitem:af237afc7fcda0e9f87ef0aa51ae7687a" id="r_af237afc7fcda0e9f87ef0aa51ae7687a"><td class="memItemLeft"><a id="af237afc7fcda0e9f87ef0aa51ae7687a" name="af237afc7fcda0e9f87ef0aa51ae7687a"></a>
+void&#160;</td><td class="memItemRight"><b>setNetworkAI</b> (bool val)</td></tr>
+<tr class="memitem:a3757e7e2aa280e2de1d0d61fac20cc28" id="r_a3757e7e2aa280e2de1d0d61fac20cc28"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a3757e7e2aa280e2de1d0d61fac20cc28">update</a> (int ticks) OVERRIDE</td></tr>
+<tr class="inherit_header pub_methods_classController"><td colspan="2"><a class="el" href="classController.html">Controller</a>(으)로부터 상속된 Public 멤버 함수</td></tr>
+<tr class="memitem:a674f8ab7dc87cea7a5ba52230c3bac2c pub_methods_classController" id="r_a674f8ab7dc87cea7a5ba52230c3bac2c"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>Controller</b> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memdesc:a674f8ab7dc87cea7a5ba52230c3bac2c pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor, saves the kart pointer and a pointer to the <a class="el" href="classKartControl.html">KartControl</a> of the kart. <br /></td></tr>
+<tr class="memitem:a2cf87d91dd41d4c10bf2d2c41ab509a7 pub_methods_classController" id="r_a2cf87d91dd41d4c10bf2d2c41ab509a7"><td class="memItemLeft">
+virtual void&#160;</td><td class="memItemRight"><b>rumble</b> (float strength_low, float strength_high, uint16_t duration)</td></tr>
+<tr class="memitem:a6d6012ed58b347ceedd988ee338dba87 pub_methods_classController" id="r_a6d6012ed58b347ceedd988ee338dba87"><td class="memItemLeft">
+const std::string &amp;&#160;</td><td class="memItemRight"><b>getControllerName</b> () const</td></tr>
+<tr class="memdesc:a6d6012ed58b347ceedd988ee338dba87 pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of this controller. <br /></td></tr>
+<tr class="memitem:a3456d823c63ac632652f9fb756e6bd2b pub_methods_classController" id="r_a3456d823c63ac632652f9fb756e6bd2b"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classController.html#a3456d823c63ac632652f9fb756e6bd2b">newLap</a> (int lap)=0</td></tr>
+<tr class="memdesc:a3456d823c63ac632652f9fb756e6bd2b pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback whenever a new lap is triggered.  <br /></td></tr>
+<tr class="memitem:a66f485d0cb4dce29bf14801b076c9e8d pub_methods_classController" id="r_a66f485d0cb4dce29bf14801b076c9e8d"><td class="memItemLeft">
+virtual <a class="el" href="classKartControl.html">KartControl</a> *&#160;</td><td class="memItemRight"><b>getControls</b> ()</td></tr>
+<tr class="memdesc:a66f485d0cb4dce29bf14801b076c9e8d pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer on the kart controls. <br /></td></tr>
+<tr class="memitem:af55e937935cce2a1f205f94171b0cb38 pub_methods_classController" id="r_af55e937935cce2a1f205f94171b0cb38"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>setControls</b> (<a class="el" href="classKartControl.html">KartControl</a> *kc)</td></tr>
+<tr class="memitem:affece999cb286fa963091a1ca6456cd6 pub_methods_classController" id="r_affece999cb286fa963091a1ca6456cd6"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classController.html#affece999cb286fa963091a1ca6456cd6">canGetAchievements</a> () const</td></tr>
+<tr class="memdesc:affece999cb286fa963091a1ca6456cd6 pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Only local players can get achievements.  <br /></td></tr>
+<tr class="memitem:a7ba21663e9aaf2cf890532fdd1c1dabe pub_methods_classController" id="r_a7ba21663e9aaf2cf890532fdd1c1dabe"><td class="memItemLeft">virtual core::stringw&#160;</td><td class="memItemRight"><a class="el" href="classController.html#a7ba21663e9aaf2cf890532fdd1c1dabe">getName</a> (bool include_handicap_string=true) const</td></tr>
+<tr class="memdesc:a7ba21663e9aaf2cf890532fdd1c1dabe pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display name of the controller.  <br /></td></tr>
+<tr class="memitem:a32cb6445c30ca5fdbfa203ea621c2302 pub_methods_classController" id="r_a32cb6445c30ca5fdbfa203ea621c2302"><td class="memItemLeft">
+<a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><b>getKart</b> () const</td></tr>
+<tr class="memdesc:a32cb6445c30ca5fdbfa203ea621c2302 pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the kart controlled by this controller. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a619b190610899bebf757aa245d30b775" id="r_a619b190610899bebf757aa245d30b775"><td class="memItemLeft"><a id="a619b190610899bebf757aa245d30b775" name="a619b190610899bebf757aa245d30b775"></a>
+static void&#160;</td><td class="memItemRight"><b>enableDebug</b> ()</td></tr>
+<tr class="memitem:ac7be8ce71ceebc5d2daf62cd23a89a6c" id="r_ac7be8ce71ceebc5d2daf62cd23a89a6c"><td class="memItemLeft"><a id="ac7be8ce71ceebc5d2daf62cd23a89a6c" name="ac7be8ce71ceebc5d2daf62cd23a89a6c"></a>
+static void&#160;</td><td class="memItemRight"><b>setTestAI</b> (int n)</td></tr>
+<tr class="memitem:a16e565576e28221132c08b7edb0cb683" id="r_a16e565576e28221132c08b7edb0cb683"><td class="memItemLeft"><a id="a16e565576e28221132c08b7edb0cb683" name="a16e565576e28221132c08b7edb0cb683"></a>
+static int&#160;</td><td class="memItemRight"><b>getTestAI</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 멤버 함수</h2></td></tr>
+<tr class="memitem:a7286e21b0589e42d0774764470375ba8" id="r_a7286e21b0589e42d0774764470375ba8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7286e21b0589e42d0774764470375ba8">setControllerName</a> (const std::string &amp;name) OVERRIDE</td></tr>
+<tr class="memdesc:a7286e21b0589e42d0774764470375ba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">In debug mode when the user specified &ndash;ai-debug on the command line set the name of the controller as on-screen text, so that the different AI controllers can be distinguished.  <br /></td></tr>
+<tr class="memitem:ac2a0279951974f3924484e1235b92492" id="r_ac2a0279951974f3924484e1235b92492"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ac2a0279951974f3924484e1235b92492">steerToPoint</a> (const <a class="el" href="classVec3.html">Vec3</a> &amp;point)</td></tr>
+<tr class="memdesc:ac2a0279951974f3924484e1235b92492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the steering angle to reach a certain point.  <br /></td></tr>
+<tr class="memitem:ab76d3633530d643681516fc886cbf914" id="r_ab76d3633530d643681516fc886cbf914"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ab76d3633530d643681516fc886cbf914">normalizeAngle</a> (float angle)</td></tr>
+<tr class="memdesc:ab76d3633530d643681516fc886cbf914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalises an angle to be between -pi and _ pi.  <br /></td></tr>
+<tr class="memitem:a4dc064b2ef76fa9f981df2ddbd37d8f5" id="r_a4dc064b2ef76fa9f981df2ddbd37d8f5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4dc064b2ef76fa9f981df2ddbd37d8f5">isStuck</a> () const</td></tr>
+<tr class="memdesc:a4dc064b2ef76fa9f981df2ddbd37d8f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This can be called to detect if the kart is stuck (i.e.  <br /></td></tr>
+<tr class="memitem:ab78f45544a6ea5b46741bb16921951eb" id="r_ab78f45544a6ea5b46741bb16921951eb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab78f45544a6ea5b46741bb16921951eb">determineTurnRadius</a> (const <a class="el" href="classVec3.html">Vec3</a> &amp;end, <a class="el" href="classVec3.html">Vec3</a> *center, float *radius) const</td></tr>
+<tr class="memdesc:ab78f45544a6ea5b46741bb16921951eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine the center point and radius of a circle given two points on the circle and the tangent at the first point.  <br /></td></tr>
+<tr class="memitem:aad587af243f9b3f35440dc066fdac48b" id="r_aad587af243f9b3f35440dc066fdac48b"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#aad587af243f9b3f35440dc066fdac48b">setSteering</a> (float angle, float dt)</td></tr>
+<tr class="memdesc:aad587af243f9b3f35440dc066fdac48b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the steering angle to a lr steering in the range of -1 to 1.  <br /></td></tr>
+<tr class="memitem:aeec7b1cfc176d35af18f97a296235347" id="r_aeec7b1cfc176d35af18f97a296235347"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#aeec7b1cfc176d35af18f97a296235347">canSkid</a> (float steer_fraction)=0</td></tr>
+<tr class="memdesc:aeec7b1cfc176d35af18f97a296235347"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if AI can skid now.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 속성</h2></td></tr>
+<tr class="memitem:a3346aad1c0770ed934b93a6db22f3b9b" id="r_a3346aad1c0770ed934b93a6db22f3b9b"><td class="memItemLeft"><a id="a3346aad1c0770ed934b93a6db22f3b9b" name="a3346aad1c0770ed934b93a6db22f3b9b"></a>
+bool&#160;</td><td class="memItemRight"><b>m_enabled_network_ai</b></td></tr>
+<tr class="memitem:afb834ce42bd50e263d7c1e70183de615" id="r_afb834ce42bd50e263d7c1e70183de615"><td class="memItemLeft"><a id="afb834ce42bd50e263d7c1e70183de615" name="afb834ce42bd50e263d7c1e70183de615"></a>
+float&#160;</td><td class="memItemRight"><b>m_kart_length</b></td></tr>
+<tr class="memdesc:afb834ce42bd50e263d7c1e70183de615"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the kart, storing it here saves many function calls. <br /></td></tr>
+<tr class="memitem:a262fdf83aad94a6d20fd6d083dcdaaa0" id="r_a262fdf83aad94a6d20fd6d083dcdaaa0"><td class="memItemLeft"><a id="a262fdf83aad94a6d20fd6d083dcdaaa0" name="a262fdf83aad94a6d20fd6d083dcdaaa0"></a>
+float&#160;</td><td class="memItemRight"><b>m_kart_width</b></td></tr>
+<tr class="memdesc:a262fdf83aad94a6d20fd6d083dcdaaa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cache width of kart. <br /></td></tr>
+<tr class="memitem:aacffd1df73ff4384e06ce118e344c7ea" id="r_aacffd1df73ff4384e06ce118e344c7ea"><td class="memItemLeft"><a id="aacffd1df73ff4384e06ce118e344c7ea" name="aacffd1df73ff4384e06ce118e344c7ea"></a>
+<a class="el" href="classTrack.html">Track</a> *&#160;</td><td class="memItemRight"><b>m_track</b></td></tr>
+<tr class="memdesc:aacffd1df73ff4384e06ce118e344c7ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keep a pointer to the track to reduce calls <br /></td></tr>
+<tr class="memitem:a4bd682aebec5bc365a136250c141d3a5" id="r_a4bd682aebec5bc365a136250c141d3a5"><td class="memItemLeft"><a id="a4bd682aebec5bc365a136250c141d3a5" name="a4bd682aebec5bc365a136250c141d3a5"></a>
+const <a class="el" href="classAIProperties.html">AIProperties</a> *&#160;</td><td class="memItemRight"><b>m_ai_properties</b></td></tr>
+<tr class="memdesc:a4bd682aebec5bc365a136250c141d3a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the AI properties for this kart. <br /></td></tr>
+<tr class="inherit_header pro_attribs_classController"><td colspan="2"><a class="el" href="classController.html">Controller</a>(으)로부터 상속된 Protected 속성</td></tr>
+<tr class="memitem:a9106b1b073d659ea4f1f093afbb23701 pro_attribs_classController" id="r_a9106b1b073d659ea4f1f093afbb23701"><td class="memItemLeft">
+<a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><b>m_kart</b></td></tr>
+<tr class="memdesc:a9106b1b073d659ea4f1f093afbb23701 pro_attribs_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the kart that is controlled by this controller. <br /></td></tr>
+<tr class="memitem:a5e6110b327078cbfbb517420f738b34a pro_attribs_classController" id="r_a5e6110b327078cbfbb517420f738b34a"><td class="memItemLeft">
+<a class="el" href="classKartControl.html">KartControl</a> *&#160;</td><td class="memItemRight"><b>m_controls</b></td></tr>
+<tr class="memdesc:a5e6110b327078cbfbb517420f738b34a pro_attribs_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the main controller, from which the kart takes it commands. <br /></td></tr>
+<tr class="memitem:a127457a188a69cfd94bba627f07e2391 pro_attribs_classController" id="r_a127457a188a69cfd94bba627f07e2391"><td class="memItemLeft">
+std::string&#160;</td><td class="memItemRight"><b>m_controller_name</b></td></tr>
+<tr class="memdesc:a127457a188a69cfd94bba627f07e2391 pro_attribs_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the controller, mainly used for debugging purposes. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-static-attribs" class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
+정적 Protected 속성</h2></td></tr>
+<tr class="memitem:a8294f52e604235b21564f0a7933ed626" id="r_a8294f52e604235b21564f0a7933ed626"><td class="memItemLeft"><a id="a8294f52e604235b21564f0a7933ed626" name="a8294f52e604235b21564f0a7933ed626"></a>
+static bool&#160;</td><td class="memItemRight"><b>m_ai_debug</b> = false</td></tr>
+<tr class="memitem:ad3dce1783b89892c88ce7bcc58bbb1a6" id="r_ad3dce1783b89892c88ce7bcc58bbb1a6"><td class="memItemLeft">static int&#160;</td><td class="memItemRight"><a class="el" href="#ad3dce1783b89892c88ce7bcc58bbb1a6">m_test_ai</a> = 0</td></tr>
+<tr class="memdesc:ad3dce1783b89892c88ce7bcc58bbb1a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the '&ndash;test-ai=n' command line parameter: It indicates which fraction of the AIs are going to be the test AI: 1 means only to use the <a class="el" href="classTestAI.html" title="This is a test version of the AI, which can be used to create new AIs, and compare them with the curr...">TestAI</a>, 2 means every second AI will be test etc.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:a928204da896f98b65d3cc48c0453b97d" id="r_a928204da896f98b65d3cc48c0453b97d"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a928204da896f98b65d3cc48c0453b97d">m_collision_ticks</a></td></tr>
+<tr class="memdesc:a928204da896f98b65d3cc48c0453b97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the last N times when a collision happened.  <br /></td></tr>
+<tr class="memitem:a2a98abffa543cf4e64a6d11d749819e0" id="r_a2a98abffa543cf4e64a6d11d749819e0"><td class="memItemLeft"><a id="a2a98abffa543cf4e64a6d11d749819e0" name="a2a98abffa543cf4e64a6d11d749819e0"></a>
+bool&#160;</td><td class="memItemRight"><b>m_stuck</b></td></tr>
+<tr class="memdesc:a2a98abffa543cf4e64a6d11d749819e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A flag that is set during the physics processing to indicate that this kart is stuck and needs to be rescued. <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>A base class for all AI karts. </p>
+<p>This class basically provides some common low level functions. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a1dd177462be6923a74c9c7d817e75123" name="a1dd177462be6923a74c9c7d817e75123"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dd177462be6923a74c9c7d817e75123">&#9670;&#160;</a></span>action()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool AIBaseController::action </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a></td>          <td class="paramname"><span class="paramname"><em>action</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>dry_run</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default: ignore actions. </p>
+<p>Only <a class="el" href="classPlayerController.html">PlayerController</a> get them. </p>
+
+<p><a class="el" href="classController.html#ade6d98386df33ca267af6cd5ae59a560">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classEndController.html#ada0baaacdd094d1edf89a61ab13fae65">EndController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="aeec7b1cfc176d35af18f97a296235347" name="aeec7b1cfc176d35af18f97a296235347"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeec7b1cfc176d35af18f97a296235347">&#9670;&#160;</a></span>canSkid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool AIBaseController::canSkid </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>steer_fraction</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return true if AI can skid now. </p>
+
+<p><a class="el" href="classArenaAI.html#a2a3ceb64a7a388b7965650a5ba11726a">ArenaAI</a>, <a class="el" href="classEndController.html#a182b4e3933e920a43356608996b496fe">EndController</a>, <a class="el" href="classSkiddingAI.html#a32ef0314028631452a421efa19b68b71">SkiddingAI</a>, <a class="el" href="classSoccerAI.html#a008d8bb91d07ec41901448befc4444d8">SoccerAI</a>, <a class="el" href="classTestAI.html#a7e9960742617efc71227b3df473bbc11">TestAI</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a431fdc3ba1942ccfb07f8136fd8e03c9" name="a431fdc3ba1942ccfb07f8136fd8e03c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a431fdc3ba1942ccfb07f8136fd8e03c9">&#9670;&#160;</a></span>collectedItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AIBaseController::collectedItem </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classItemState.html">ItemState</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>item</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>previous_energy</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a44249fb1598653960235e5516af0cbfc" name="a44249fb1598653960235e5516af0cbfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44249fb1598653960235e5516af0cbfc">&#9670;&#160;</a></span>crashed() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AIBaseController::crashed </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>k</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classSpareTireAI.html#a7a1b25a4d8b042f8baeaee979c2d3cf3">SpareTireAI</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="adfe63141b87801674dda575e104afe0f" name="adfe63141b87801674dda575e104afe0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfe63141b87801674dda575e104afe0f">&#9670;&#160;</a></span>crashed() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AIBaseController::crashed </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMaterial.html">Material</a> *</td>          <td class="paramname"><span class="paramname"><em>m</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This is called when the kart crashed with the terrain. </p>
+<p>This subroutine tries to detect if the AI is stuck by determining if a certain number of collisions happened in a certain amount of time, and if so rescues the kart. \paran m Pointer to the material that was hit (NULL if no specific material was used for the part of the track that was hit). </p>
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="ab78f45544a6ea5b46741bb16921951eb" name="ab78f45544a6ea5b46741bb16921951eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab78f45544a6ea5b46741bb16921951eb">&#9670;&#160;</a></span>determineTurnRadius()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AIBaseController::determineTurnRadius </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>end</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classVec3.html">Vec3</a> *</td>          <td class="paramname"><span class="paramname"><em>center</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>radius</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determine the center point and radius of a circle given two points on the circle and the tangent at the first point. </p>
+<p>This is done as follows:</p><ol type="1">
+<li>Determine the line going through the center point start+end, which is orthogonal to the vector from start to end. This line goes through the center of the circle.</li>
+<li>Determine the line going through the first point and is orthogonal to the given tangent.</li>
+<li>The intersection of these two lines is the center of the circle. <dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">end</td><td>Second point on circle. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">center</td><td>Center point of the circle (local coordinate). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">radius</td><td>Radius of the circle. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ol>
+
+</div>
+</div>
+<a id="a75450c20a06c2bf542e5e713ecc09c63" name="a75450c20a06c2bf542e5e713ecc09c63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75450c20a06c2bf542e5e713ecc09c63">&#9670;&#160;</a></span>disableSlipstreamBonus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AIBaseController::disableSlipstreamBonus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Certain AI levels will not receive a slipstream bonus in order to be not as hard. </p>
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a9755070fd3dece3be4d470001c448fe6" name="a9755070fd3dece3be4d470001c448fe6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9755070fd3dece3be4d470001c448fe6">&#9670;&#160;</a></span>finishedRace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AIBaseController::finishedRace </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called whan this controller's kart finishes the last lap. </p>
+
+<p><a class="el" href="classController.html#a186aa01c4dbfda133d5a9c76028892ed">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="ae2f64ff858494735ab104cc9045e4ad9" name="ae2f64ff858494735ab104cc9045e4ad9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2f64ff858494735ab104cc9045e4ad9">&#9670;&#160;</a></span>handleZipper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AIBaseController::handleZipper </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>play_sound</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a844eb4c260ae0466656c45905aa97470" name="a844eb4c260ae0466656c45905aa97470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a844eb4c260ae0466656c45905aa97470">&#9670;&#160;</a></span>isLocalPlayerController()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool AIBaseController::isLocalPlayerController </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function checks if this is a local player. </p>
+<p>A local player will get special graphical effects enabled, has a camera, and sound effects will be played with normal volume. </p>
+
+<p><a class="el" href="classController.html#a273e803f8fc8bd5356a0800b44bf6050">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classEndController.html#af9df679086872c7d5550e44db3693725">EndController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a4713e814a176be8c80e6ea95fac43472" name="a4713e814a176be8c80e6ea95fac43472"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4713e814a176be8c80e6ea95fac43472">&#9670;&#160;</a></span>isPlayerController()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool AIBaseController::isPlayerController </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function checks if this player is not an AI, i.e. </p>
+<p>it is either a a local or a remote/networked player. This is tested e.g. by the AI for rubber-banding. </p>
+
+<p><a class="el" href="classController.html#af3f9fc5a6ffaec1ea5d59ee3441302fe">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classEndController.html#a9b1fda314c6fd509717acee456a1bf5c">EndController</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a4dc064b2ef76fa9f981df2ddbd37d8f5" name="a4dc064b2ef76fa9f981df2ddbd37d8f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dc064b2ef76fa9f981df2ddbd37d8f5">&#9670;&#160;</a></span>isStuck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AIBaseController::isStuck </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This can be called to detect if the kart is stuck (i.e. </p>
+<p>repeatedly hitting part of the track). </p>
+
+</div>
+</div>
+<a id="ab76d3633530d643681516fc886cbf914" name="ab76d3633530d643681516fc886cbf914"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab76d3633530d643681516fc886cbf914">&#9670;&#160;</a></span>normalizeAngle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float AIBaseController::normalizeAngle </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>angle</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Normalises an angle to be between -pi and _ pi. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>Angle to normalise. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>Normalised angle. </dd></dl>
+
+</div>
+</div>
+<a id="afa5eafe4504eb3d67af8ef4f84a28066" name="afa5eafe4504eb3d67af8ef4f84a28066"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa5eafe4504eb3d67af8ef4f84a28066">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AIBaseController::reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classArenaAI.html#a4ce55c4865616eebcfd49872ec382b26">ArenaAI</a>, <a class="el" href="classSkiddingAI.html#a63b16e59652015903e67561f4d920a24">SkiddingAI</a>, <a class="el" href="classSoccerAI.html#a63f6d45428263b25a8aaecd4b67775c9">SoccerAI</a>, <a class="el" href="classSpareTireAI.html#abc4cd344dd43d79360e2513a2d261f32">SpareTireAI</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a4dd08509e6a29ede05534609b24253d5" name="a4dd08509e6a29ede05534609b24253d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4dd08509e6a29ede05534609b24253d5">&#9670;&#160;</a></span>rewindTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AIBaseController::rewindTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classBareNetworkString.html">BareNetworkString</a> *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a3baff5d9ae3153820aa49e1496e7ee0c" name="a3baff5d9ae3153820aa49e1496e7ee0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3baff5d9ae3153820aa49e1496e7ee0c">&#9670;&#160;</a></span>saveState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AIBaseController::saveState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classBareNetworkString.html">BareNetworkString</a> *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a7286e21b0589e42d0774764470375ba8" name="a7286e21b0589e42d0774764470375ba8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7286e21b0589e42d0774764470375ba8">&#9670;&#160;</a></span>setControllerName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AIBaseController::setControllerName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>In debug mode when the user specified &ndash;ai-debug on the command line set the name of the controller as on-screen text, so that the different AI controllers can be distinguished. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of the controller. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classController.html#a984b58f08d1563de569f48b44394da7d">Controller</a>(으)로부터 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a64659acabc8d383bc40553c01435d239" name="a64659acabc8d383bc40553c01435d239"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64659acabc8d383bc40553c01435d239">&#9670;&#160;</a></span>setPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AIBaseController::setPosition </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="aad587af243f9b3f35440dc066fdac48b" name="aad587af243f9b3f35440dc066fdac48b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad587af243f9b3f35440dc066fdac48b">&#9670;&#160;</a></span>setSteering()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AIBaseController::setSteering </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>angle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts the steering angle to a lr steering in the range of -1 to 1. </p>
+<p>If the steering angle is too great, it will also trigger skidding. This function uses a 'time till full steer' value specifying the time it takes for the wheel to reach full left/right steering similar to player karts when using a digital input device. The parameter is defined in the kart properties and helps somewhat to make AI karts more 'pushable' (since otherwise the karts counter-steer to fast). It also takes the effect of a plunger into account by restricting the actual steer angle to 50% of the maximum. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>Steering angle. </td></tr>
+    <tr><td class="paramname">dt</td><td>Time step. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classSkiddingAI.html#a53970bd8c6f1b768ee10440037c459a4">SkiddingAI</a>, <a class="el" href="classTestAI.html#a2bfb934f860387e97d4edcf219cc7720">TestAI</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="aa979a5f3ec80cd5347de9f864a079a09" name="aa979a5f3ec80cd5347de9f864a079a09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa979a5f3ec80cd5347de9f864a079a09">&#9670;&#160;</a></span>skidBonusTriggered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AIBaseController::skidBonusTriggered </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+</div>
+</div>
+<a id="ac2a0279951974f3924484e1235b92492" name="ac2a0279951974f3924484e1235b92492"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2a0279951974f3924484e1235b92492">&#9670;&#160;</a></span>steerToPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float AIBaseController::steerToPoint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>point</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the steering angle to reach a certain point. </p>
+<p>The function will request steering by setting the steering angle to maximum steer angle times skidding factor. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">point</td><td>Point to steer towards. </td></tr>
+    <tr><td class="paramname">skidding_factor</td><td>Increase factor for steering when skidding. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>Steer angle to use to reach this point. </dd></dl>
+
+</div>
+</div>
+<a id="a3757e7e2aa280e2de1d0d61fac20cc28" name="a3757e7e2aa280e2de1d0d61fac20cc28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3757e7e2aa280e2de1d0d61fac20cc28">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AIBaseController::update </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classController.html">Controller</a>를 구현.</p>
+
+<p><a class="el" href="classAIBaseLapController.html#a864c5369385ac134b53b505bdfdf9ab7">AIBaseLapController</a>, <a class="el" href="classArenaAI.html#af087432eb35e1d33ff56d084ebbb8cd8">ArenaAI</a>, <a class="el" href="classEndController.html#a4cdb95d7180b7769c1f50a000366b4ee">EndController</a>, <a class="el" href="classSkiddingAI.html#ad70ba8c85e74b8aceeba12f559afb8c8">SkiddingAI</a>, <a class="el" href="classSoccerAI.html#ade8753e40e0c528f6886ab64c5b5cdeb">SoccerAI</a>, <a class="el" href="classSpareTireAI.html#aa58690e5ef442a8e8b9d15e51acc4933">SpareTireAI</a>, <a class="el" href="classTestAI.html#a32763b0d70d731c144d4ec1bb242b4f4">TestAI</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="a928204da896f98b65d3cc48c0453b97d" name="a928204da896f98b65d3cc48c0453b97d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a928204da896f98b65d3cc48c0453b97d">&#9670;&#160;</a></span>m_collision_ticks</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;int&gt; AIBaseController::m_collision_ticks</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stores the last N times when a collision happened. </p>
+<p>This is used to detect when the AI is stuck, i.e. N collisions happened in a certain period of time. </p>
+
+</div>
+</div>
+<a id="ad3dce1783b89892c88ce7bcc58bbb1a6" name="ad3dce1783b89892c88ce7bcc58bbb1a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3dce1783b89892c88ce7bcc58bbb1a6">&#9670;&#160;</a></span>m_test_ai</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AIBaseController::m_test_ai = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stores the '&ndash;test-ai=n' command line parameter: It indicates which fraction of the AIs are going to be the test AI: 1 means only to use the <a class="el" href="classTestAI.html" title="This is a test version of the AI, which can be used to create new AIs, and compare them with the curr...">TestAI</a>, 2 means every second AI will be test etc. </p>
+<p>Used for AI testing only. </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>karts/controller/<a class="el" href="ai__base__controller_8hpp_source.html">ai_base_controller.hpp</a></li>
+<li>karts/controller/<b>ai_base_controller.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: karts/controller/test_ai.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>karts</b></li><li class="navelem"><b>controller</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">test_ai.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  Copyright (C) 2004-2015  Steve Baker &lt;sjbaker1@airmail.net&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  Copyright (C) 2006-2015  Eduardo Hernandez Munoz</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  Copyright (C) 2010-2015  Joerg Henrichs</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef HEADER_TEST_AI_HPP</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define HEADER_TEST_AI_HPP</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">// Some debugging features for the AI. For example you can visualise the</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">// point the AI is aiming at, or visualise the curve the AI is predicting.</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// It works best with just 1 AI kart, so set the number of karts</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// to 2 in main.cpp with quickstart and run supertuxkart with the arg -N.</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">// Or use --profile-laps=99 and run just one AI. Using the debug camera</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// (top view) is useful, too</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#ifdef DEBUG</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>   <span class="comment">// Enable AI graphical debugging</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#  undef AI_DEBUG</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>   <span class="comment">// Shows left and right lines when using new findNonCrashing function</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#  undef AI_DEBUG_NEW_FIND_NON_CRASHING</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>   <span class="comment">// Show the predicted turn circles</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#  undef AI_DEBUG_CIRCLES</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>   <span class="comment">// Show the heading of the kart</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#  undef AI_DEBUG_KART_HEADING</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>   <span class="comment">// Shows line from kart to its aim point</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#  undef AI_DEBUG_KART_AIM</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#include &quot;karts/controller/ai_base_lap_controller.hpp&quot;</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#include &quot;race/race_manager.hpp&quot;</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#include &quot;tracks/drive_node.hpp&quot;</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#include &quot;utils/random_generator.hpp&quot;</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#include &lt;line3d.h&gt;</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">class </span><a class="code hl_class" href="classItemState.html">ItemState</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#ifdef AI_DEBUG</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keyword">class </span><a class="code hl_class" href="classShowCurve.html">ShowCurve</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>{</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">namespace </span>scene</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keyword">class </span>ISceneNode;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="};">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classTestAI.html">   74</a></span><span class="keyword">class </span>TestAI : <span class="keyword">public</span> <a class="code hl_function" href="classAIBaseLapController.html#a75146c3f9740e40d6a3d941a59d12539">AIBaseLapController</a></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>{</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="};">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classTestAI_1_1CrashTypes.html">   78</a></span>    <span class="keyword">class </span>CrashTypes</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordtype">bool</span> m_road; <span class="comment">//true if we are going to &#39;crash&#39; with the bounds of the road</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordtype">int</span> m_kart; <span class="comment">//-1 if no crash, pos numbers are the kart it crashes with</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        CrashTypes() : m_road(<span class="keyword">false</span>), <a class="code hl_variable" href="classController.html#a9106b1b073d659ea4f1f093afbb23701">m_kart</a>(-1) {};</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordtype">void</span> clear() {m_road = <span class="keyword">false</span>; m_kart = -1;}</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    } m_crashes;</div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <a class="code hl_enumeration" href="classRaceManager.html#aa6f02bae44655cf562f29cfc4a754334">RaceManager::AISuperPower</a> m_superpower;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="comment">/*General purpose variables*/</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classTestAI.html#a62fd889e6f4f6c26fb6f241039a14690">   94</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *<a class="code hl_variable" href="classTestAI.html#a62fd889e6f4f6c26fb6f241039a14690">m_kart_ahead</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classTestAI.html#a6e861cfb064ba2b8580deb8e16f623c4">   97</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classTestAI.html#a6e861cfb064ba2b8580deb8e16f623c4">m_distance_ahead</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classTestAI.html#aa3a0e7127cace639d2cc97b843945f70">  101</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *<a class="code hl_variable" href="classTestAI.html#aa3a0e7127cace639d2cc97b843945f70">m_kart_behind</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classTestAI.html#a790186aab7a83c66036ca32d7a3a73b0">  104</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classTestAI.html#a790186aab7a83c66036ca32d7a3a73b0">m_distance_behind</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classTestAI.html#a911015fc84c2fda5cc277bd754a646f0">  107</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classTestAI.html#a911015fc84c2fda5cc277bd754a646f0">m_start_delay</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classTestAI.html#af2a0f944850c85e1058e7d2337ae50e6">  110</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classTestAI.html#af2a0f944850c85e1058e7d2337ae50e6">m_time_since_last_shot</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordtype">float</span> m_time_since_stuck;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classTestAI.html#a03e02db048b7f4bea4f2813c1ea6c2b8">  115</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classTestAI.html#a03e02db048b7f4bea4f2813c1ea6c2b8">m_start_kart_crash_direction</a>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classTestAI.html#ac657947bcd5b58bbc30821b973a87ed0">  118</a></span>    <a class="code hl_enumeration" href="classDriveNode.html#a91dde10a23b5402b2fc36ffe3bff18dc">DriveNode::DirectionType</a> <a class="code hl_variable" href="classTestAI.html#ac657947bcd5b58bbc30821b973a87ed0">m_current_track_direction</a>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classTestAI.html#a507fa670dc41694f5156a242491b943b">  122</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classTestAI.html#a507fa670dc41694f5156a242491b943b">m_current_curve_radius</a>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="classTestAI.html#aa35cb01b74b18d5d36d7d72a3eec4562">  126</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a>  <a class="code hl_variable" href="classTestAI.html#aa35cb01b74b18d5d36d7d72a3eec4562">m_curve_center</a>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classTestAI.html#a7662b6501e14c29b741b0fb6b90ddeed">  131</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classTestAI.html#a7662b6501e14c29b741b0fb6b90ddeed">m_last_direction_node</a>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classTestAI.html#acfeadbf8e194ed8ee85391ebfbadd104">  134</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classItemState.html">ItemState</a> *<a class="code hl_variable" href="classTestAI.html#acfeadbf8e194ed8ee85391ebfbadd104">m_item_to_collect</a>;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classTestAI.html#ad46cefea6d5903fe9dad09426fd66ea5">  138</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classTestAI.html#ad46cefea6d5903fe9dad09426fd66ea5">m_avoid_item_close</a>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="classTestAI.html#ad32c17519124a331132c83ad98dd44f2">  141</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classTestAI.html#ad32c17519124a331132c83ad98dd44f2">m_distance_to_player</a>;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classTestAI.html#a0374c8cabfe67cd08262a3e076272748">  144</a></span>    <a class="code hl_class" href="classRandomGenerator.html">RandomGenerator</a> <a class="code hl_variable" href="classTestAI.html#a0374c8cabfe67cd08262a3e076272748">m_random_skid</a>;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">enum</span> {SKID_PROBAB_NOT_YET, SKID_PROBAB_NO_SKID, SKID_PROBAB_SKID}</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classTestAI.html#a75c9dd6d90405cb56c9d008237fc0d07">  155</a></span>          <a class="code hl_variable" href="classTestAI.html#a75c9dd6d90405cb56c9d008237fc0d07">m_skid_probability_state</a>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classTestAI.html#a67c47429584e623a32a48fe38211586c">  159</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classItemState.html">ItemState</a> *<a class="code hl_variable" href="classTestAI.html#a67c47429584e623a32a48fe38211586c">m_last_item_random</a>;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="classTestAI.html#ae13088f3a8c67e75556b4f8a70766953">  162</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classTestAI.html#ae13088f3a8c67e75556b4f8a70766953">m_really_collect_item</a>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="classTestAI.html#a364a3fbc089ff0d8c9306915ebc01c31">  165</a></span>    <a class="code hl_class" href="classRandomGenerator.html">RandomGenerator</a> <a class="code hl_variable" href="classTestAI.html#a364a3fbc089ff0d8c9306915ebc01c31">m_random_collect_item</a>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keyword">enum</span> {PSA_DEFAULT, PSA_FIXED, PSA_NEW}</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classTestAI.html#a0cd464a83dfed7d7da49a0a9d9984cd0">  181</a></span>          <a class="code hl_variable" href="classTestAI.html#a0cd464a83dfed7d7da49a0a9d9984cd0">m_point_selection_algorithm</a>;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">#ifdef AI_DEBUG</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <a class="code hl_class" href="classShowCurve.html">ShowCurve</a> **m_curve;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    irr::scene::ISceneNode *m_debug_sphere[4];</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    irr::scene::ISceneNode *m_item_sphere;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="comment">/*Functions called directly from update(). They all represent an action</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="comment">     *that can be done, and end up setting their respective m_controls</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="comment">     *variable, except handle_race_start() that isn&#39;t associated with any</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="comment">     *specific action (more like, associated with inaction).</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="comment">     */</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keywordtype">void</span>  handleRaceStart();</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordtype">void</span>  handleAcceleration(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordtype">void</span>  handleSteering(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordtype">void</span>  handleItems(<span class="keyword">const</span> <span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordtype">void</span>  handleRescue(<span class="keyword">const</span> <span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordtype">void</span>  handleBraking();</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordtype">void</span>  handleNitroAndZipper();</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordtype">void</span>  computeNearestKarts();</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordtype">void</span>  handleItemCollectionAndAvoidance(<a class="code hl_class" href="classVec3.html">Vec3</a> *aim_point,</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                                           <span class="keywordtype">int</span> last_node);</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordtype">bool</span>  handleSelectedItem(<a class="code hl_class" href="classVec3.html">Vec3</a> kart_aim_direction, <a class="code hl_class" href="classVec3.html">Vec3</a> *aim_point);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordtype">bool</span>  steerToAvoid(<span class="keyword">const</span> std::vector&lt;const ItemState *&gt; &amp;items_to_avoid,</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                       <span class="keyword">const</span> core::line3df &amp;line_to_target,</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>                       <a class="code hl_class" href="classVec3.html">Vec3</a> *aim_point);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordtype">bool</span>  hitBadItemWhenAimAt(<span class="keyword">const</span> <a class="code hl_class" href="classItemState.html">ItemState</a> *item,</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                              <span class="keyword">const</span> std::vector&lt;const ItemState *&gt; &amp;items_to_avoid);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordtype">void</span>  evaluateItems(<span class="keyword">const</span> <a class="code hl_class" href="classItemState.html">ItemState</a> *item, <a class="code hl_class" href="classVec3.html">Vec3</a> kart_aim_direction,</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                        std::vector&lt;const ItemState *&gt; *items_to_avoid,</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>                        std::vector&lt;const ItemState *&gt; *items_to_collect);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="keywordtype">void</span>  checkCrashes(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a>&amp; pos);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keywordtype">void</span>  findNonCrashingPointFixed(<a class="code hl_class" href="classVec3.html">Vec3</a> *result, <span class="keywordtype">int</span> *last_node);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keywordtype">void</span>  findNonCrashingPointNew(<a class="code hl_class" href="classVec3.html">Vec3</a> *result, <span class="keywordtype">int</span> *last_node);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="keywordtype">void</span>  findNonCrashingPoint(<a class="code hl_class" href="classVec3.html">Vec3</a> *result, <span class="keywordtype">int</span> *last_node);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordtype">void</span>  determineTrackDirection();</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno"><a class="line" href="classTestAI.html#a7e9960742617efc71227b3df473bbc11">  228</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classTestAI.html#a7e9960742617efc71227b3df473bbc11">canSkid</a>(<span class="keywordtype">float</span> steer_fraction);</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="classTestAI.html#a2bfb934f860387e97d4edcf219cc7720">  229</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classTestAI.html#a2bfb934f860387e97d4edcf219cc7720">setSteering</a>(<span class="keywordtype">float</span> angle, <span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordtype">void</span> handleCurve();</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="classTestAI.html#aec652185c5bc686cf4a984441c43669e">  233</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classTestAI.html#aec652185c5bc686cf4a984441c43669e">getNextSector</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                 TestAI(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                ~TestAI();</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="classTestAI.html#a32763b0d70d731c144d4ec1bb242b4f4">  238</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classTestAI.html#a32763b0d70d731c144d4ec1bb242b4f4">update</a>      (<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> reset       ();</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> irr::core::stringw&amp; getNamePostfix() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>};</div>
+</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="comment">/* EOF */</span></div>
+<div class="ttc" id="aclassAIBaseLapController_html_a75146c3f9740e40d6a3d941a59d12539"><div class="ttname"><a href="classAIBaseLapController.html#a75146c3f9740e40d6a3d941a59d12539">AIBaseLapController::AIBaseLapController</a></div><div class="ttdeci">AIBaseLapController(AbstractKart *kart)</div><div class="ttdoc">This is the base class for all AIs.</div><div class="ttdef"><b>Definition</b> ai_base_lap_controller.cpp:86</div></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassController_html_a9106b1b073d659ea4f1f093afbb23701"><div class="ttname"><a href="classController.html#a9106b1b073d659ea4f1f093afbb23701">Controller::m_kart</a></div><div class="ttdeci">AbstractKart * m_kart</div><div class="ttdoc">Pointer to the kart that is controlled by this controller.</div><div class="ttdef"><b>Definition</b> controller.hpp:51</div></div>
+<div class="ttc" id="aclassDriveNode_html_a91dde10a23b5402b2fc36ffe3bff18dc"><div class="ttname"><a href="classDriveNode.html#a91dde10a23b5402b2fc36ffe3bff18dc">DriveNode::DirectionType</a></div><div class="ttdeci">DirectionType</div><div class="ttdoc">To indiciate in which direction the track is going: straight, left, right.</div><div class="ttdef"><b>Definition</b> drive_node.hpp:37</div></div>
+<div class="ttc" id="aclassItemState_html"><div class="ttname"><a href="classItemState.html">ItemState</a></div><div class="ttdoc">Contains the state information of an item, i.e.</div><div class="ttdef"><b>Definition</b> item.hpp:53</div></div>
+<div class="ttc" id="aclassRaceManager_html_aa6f02bae44655cf562f29cfc4a754334"><div class="ttname"><a href="classRaceManager.html#aa6f02bae44655cf562f29cfc4a754334">RaceManager::AISuperPower</a></div><div class="ttdeci">AISuperPower</div><div class="ttdoc">True if the AI should have additional abbilities, e.g.</div><div class="ttdef"><b>Definition</b> race_manager.hpp:135</div></div>
+<div class="ttc" id="aclassRandomGenerator_html"><div class="ttname"><a href="classRandomGenerator.html">RandomGenerator</a></div><div class="ttdoc">A random number generator.</div><div class="ttdef"><b>Definition</b> random_generator.hpp:33</div></div>
+<div class="ttc" id="aclassShowCurve_html"><div class="ttname"><a href="classShowCurve.html">ShowCurve</a></div><div class="ttdoc">This class is used for debugging.</div><div class="ttdef"><b>Definition</b> show_curve.hpp:46</div></div>
+<div class="ttc" id="aclassTestAI_html_a0374c8cabfe67cd08262a3e076272748"><div class="ttname"><a href="classTestAI.html#a0374c8cabfe67cd08262a3e076272748">TestAI::m_random_skid</a></div><div class="ttdeci">RandomGenerator m_random_skid</div><div class="ttdoc">A random number generator to decide if the AI should skid or not.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:144</div></div>
+<div class="ttc" id="aclassTestAI_html_a03e02db048b7f4bea4f2813c1ea6c2b8"><div class="ttname"><a href="classTestAI.html#a03e02db048b7f4bea4f2813c1ea6c2b8">TestAI::m_start_kart_crash_direction</a></div><div class="ttdeci">int m_start_kart_crash_direction</div><div class="ttdoc">Direction of crash: -1 = left, 1 = right, 0 = no crash.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:115</div></div>
+<div class="ttc" id="aclassTestAI_html_a0cd464a83dfed7d7da49a0a9d9984cd0"><div class="ttname"><a href="classTestAI.html#a0cd464a83dfed7d7da49a0a9d9984cd0">TestAI::m_point_selection_algorithm</a></div><div class="ttdeci">enum TestAI::@064221215076320255114011155154272066101344340041 m_point_selection_algorithm</div><div class="ttdoc">Determines the algorithm to use to select the point-to-aim-for There are three different Point Select...</div></div>
+<div class="ttc" id="aclassTestAI_html_a2bfb934f860387e97d4edcf219cc7720"><div class="ttname"><a href="classTestAI.html#a2bfb934f860387e97d4edcf219cc7720">TestAI::setSteering</a></div><div class="ttdeci">virtual void setSteering(float angle, float dt)</div><div class="ttdoc">Converts the steering angle to a lr steering in the range of -1 to 1.</div></div>
+<div class="ttc" id="aclassTestAI_html_a32763b0d70d731c144d4ec1bb242b4f4"><div class="ttname"><a href="classTestAI.html#a32763b0d70d731c144d4ec1bb242b4f4">TestAI::update</a></div><div class="ttdeci">virtual void update(int ticks)</div><div class="ttdoc">Updates the ai base controller each time step.</div></div>
+<div class="ttc" id="aclassTestAI_html_a364a3fbc089ff0d8c9306915ebc01c31"><div class="ttname"><a href="classTestAI.html#a364a3fbc089ff0d8c9306915ebc01c31">TestAI::m_random_collect_item</a></div><div class="ttdeci">RandomGenerator m_random_collect_item</div><div class="ttdoc">A random number generator for collecting items.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:165</div></div>
+<div class="ttc" id="aclassTestAI_html_a507fa670dc41694f5156a242491b943b"><div class="ttname"><a href="classTestAI.html#a507fa670dc41694f5156a242491b943b">TestAI::m_current_curve_radius</a></div><div class="ttdeci">float m_current_curve_radius</div><div class="ttdoc">The radius of the curve the kart is currently driving.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:122</div></div>
+<div class="ttc" id="aclassTestAI_html_a62fd889e6f4f6c26fb6f241039a14690"><div class="ttname"><a href="classTestAI.html#a62fd889e6f4f6c26fb6f241039a14690">TestAI::m_kart_ahead</a></div><div class="ttdeci">AbstractKart * m_kart_ahead</div><div class="ttdoc">Pointer to the closest kart ahead of this kart.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:94</div></div>
+<div class="ttc" id="aclassTestAI_html_a67c47429584e623a32a48fe38211586c"><div class="ttname"><a href="classTestAI.html#a67c47429584e623a32a48fe38211586c">TestAI::m_last_item_random</a></div><div class="ttdeci">const ItemState * m_last_item_random</div><div class="ttdoc">The last item selected for collection, for which a probability was determined.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:159</div></div>
+<div class="ttc" id="aclassTestAI_html_a6e861cfb064ba2b8580deb8e16f623c4"><div class="ttname"><a href="classTestAI.html#a6e861cfb064ba2b8580deb8e16f623c4">TestAI::m_distance_ahead</a></div><div class="ttdeci">float m_distance_ahead</div><div class="ttdoc">Distance to the kart ahead.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:97</div></div>
+<div class="ttc" id="aclassTestAI_html_a75c9dd6d90405cb56c9d008237fc0d07"><div class="ttname"><a href="classTestAI.html#a75c9dd6d90405cb56c9d008237fc0d07">TestAI::m_skid_probability_state</a></div><div class="ttdeci">enum TestAI::@104212174250107153233000321221302361334064072226 m_skid_probability_state</div><div class="ttdoc">This implements a simple finite state machine: it starts in NOT_YET.</div></div>
+<div class="ttc" id="aclassTestAI_html_a7662b6501e14c29b741b0fb6b90ddeed"><div class="ttname"><a href="classTestAI.html#a7662b6501e14c29b741b0fb6b90ddeed">TestAI::m_last_direction_node</a></div><div class="ttdeci">unsigned int m_last_direction_node</div><div class="ttdoc">The index of the last node with the same direction as the current node the kart is on.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:131</div></div>
+<div class="ttc" id="aclassTestAI_html_a790186aab7a83c66036ca32d7a3a73b0"><div class="ttname"><a href="classTestAI.html#a790186aab7a83c66036ca32d7a3a73b0">TestAI::m_distance_behind</a></div><div class="ttdeci">float m_distance_behind</div><div class="ttdoc">Distance to the kard behind.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:104</div></div>
+<div class="ttc" id="aclassTestAI_html_a7e9960742617efc71227b3df473bbc11"><div class="ttname"><a href="classTestAI.html#a7e9960742617efc71227b3df473bbc11">TestAI::canSkid</a></div><div class="ttdeci">virtual bool canSkid(float steer_fraction)</div><div class="ttdoc">Return true if AI can skid now.</div></div>
+<div class="ttc" id="aclassTestAI_html_a911015fc84c2fda5cc277bd754a646f0"><div class="ttname"><a href="classTestAI.html#a911015fc84c2fda5cc277bd754a646f0">TestAI::m_start_delay</a></div><div class="ttdeci">int m_start_delay</div><div class="ttdoc">The actual start delay used in ticks.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:107</div></div>
+<div class="ttc" id="aclassTestAI_html_aa35cb01b74b18d5d36d7d72a3eec4562"><div class="ttname"><a href="classTestAI.html#aa35cb01b74b18d5d36d7d72a3eec4562">TestAI::m_curve_center</a></div><div class="ttdeci">Vec3 m_curve_center</div><div class="ttdoc">Stores the center of the curve (if the kart is in a curve, otherwise undefined).</div><div class="ttdef"><b>Definition</b> test_ai.hpp:126</div></div>
+<div class="ttc" id="aclassTestAI_html_aa3a0e7127cace639d2cc97b843945f70"><div class="ttname"><a href="classTestAI.html#aa3a0e7127cace639d2cc97b843945f70">TestAI::m_kart_behind</a></div><div class="ttdeci">AbstractKart * m_kart_behind</div><div class="ttdoc">Pointer to the closest kart behind this kart.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:101</div></div>
+<div class="ttc" id="aclassTestAI_html_ac657947bcd5b58bbc30821b973a87ed0"><div class="ttname"><a href="classTestAI.html#ac657947bcd5b58bbc30821b973a87ed0">TestAI::m_current_track_direction</a></div><div class="ttdeci">DriveNode::DirectionType m_current_track_direction</div><div class="ttdoc">The direction of the track where the kart is on atm.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:118</div></div>
+<div class="ttc" id="aclassTestAI_html_acfeadbf8e194ed8ee85391ebfbadd104"><div class="ttname"><a href="classTestAI.html#acfeadbf8e194ed8ee85391ebfbadd104">TestAI::m_item_to_collect</a></div><div class="ttdeci">const ItemState * m_item_to_collect</div><div class="ttdoc">If set an item that the AI should aim for.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:134</div></div>
+<div class="ttc" id="aclassTestAI_html_ad32c17519124a331132c83ad98dd44f2"><div class="ttname"><a href="classTestAI.html#ad32c17519124a331132c83ad98dd44f2">TestAI::m_distance_to_player</a></div><div class="ttdeci">float m_distance_to_player</div><div class="ttdoc">Distance to the player, used for rubber-banding.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:141</div></div>
+<div class="ttc" id="aclassTestAI_html_ad46cefea6d5903fe9dad09426fd66ea5"><div class="ttname"><a href="classTestAI.html#ad46cefea6d5903fe9dad09426fd66ea5">TestAI::m_avoid_item_close</a></div><div class="ttdeci">bool m_avoid_item_close</div><div class="ttdoc">True if items to avoid are close by.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:138</div></div>
+<div class="ttc" id="aclassTestAI_html_ae13088f3a8c67e75556b4f8a70766953"><div class="ttname"><a href="classTestAI.html#ae13088f3a8c67e75556b4f8a70766953">TestAI::m_really_collect_item</a></div><div class="ttdeci">bool m_really_collect_item</div><div class="ttdoc">True if m_last_item_random was randomly selected to be collected.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:162</div></div>
+<div class="ttc" id="aclassTestAI_html_aec652185c5bc686cf4a984441c43669e"><div class="ttname"><a href="classTestAI.html#aec652185c5bc686cf4a984441c43669e">TestAI::getNextSector</a></div><div class="ttdeci">virtual unsigned int getNextSector(unsigned int index)</div><div class="ttdoc">Returns the next sector of the given sector index.</div></div>
+<div class="ttc" id="aclassTestAI_html_af2a0f944850c85e1058e7d2337ae50e6"><div class="ttname"><a href="classTestAI.html#af2a0f944850c85e1058e7d2337ae50e6">TestAI::m_time_since_last_shot</a></div><div class="ttdeci">float m_time_since_last_shot</div><div class="ttdoc">Time an item has been collected and not used.</div><div class="ttdef"><b>Definition</b> test_ai.hpp:110</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

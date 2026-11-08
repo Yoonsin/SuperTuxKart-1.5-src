@@ -1,0 +1,537 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: DeviceManager 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="classDeviceManager-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">DeviceManager 클래스 참조<div class="ingroups"><a class="el" href="group__input.html">Input</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>This class holds the list of all known devices (ands their configurations), as well as the list of currently plugged (used) devices.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="device__manager_8hpp_source.html">device_manager.hpp</a>&gt;</code></p>
+<div class="dynheader">
+DeviceManager에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classDeviceManager__inherit__graph.png" border="0" usemap="#aDeviceManager_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aDeviceManager_inherit__map" id="aDeviceManager_inherit__map">
+<area shape="rect" title="This class holds the list of all known devices (ands their configurations), as well as the list of cu..." alt="" coords="5,80,118,107"/>
+<area shape="rect" href="classNoCopy.html" title="Utility class, you can inherit from this class to disallow the assignment operator and copy construct..." alt="" coords="27,5,96,32"/>
+<area shape="poly" title=" " alt="" coords="63,46,64,80,59,79,60,50"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a441410bdcdb71b3e64cd138e5e5873ce" id="r_a441410bdcdb71b3e64cd138e5e5873ce"><td class="memItemLeft"><a id="a441410bdcdb71b3e64cd138e5e5873ce" name="a441410bdcdb71b3e64cd138e5e5873ce"></a>
+PlayerAssignMode&#160;</td><td class="memItemRight"><b>getAssignMode</b> () const</td></tr>
+<tr class="memitem:af0b415b5c23937dd4e1d7545edd7cbd8" id="r_af0b415b5c23937dd4e1d7545edd7cbd8"><td class="memItemLeft"><a id="af0b415b5c23937dd4e1d7545edd7cbd8" name="af0b415b5c23937dd4e1d7545edd7cbd8"></a>
+void&#160;</td><td class="memItemRight"><b>setAssignMode</b> (const PlayerAssignMode assignMode)</td></tr>
+<tr class="memitem:a438b09d196aa652aacf44a39e8495989" id="r_a438b09d196aa652aacf44a39e8495989"><td class="memItemLeft"><a id="a438b09d196aa652aacf44a39e8495989" name="a438b09d196aa652aacf44a39e8495989"></a>
+void&#160;</td><td class="memItemRight"><b>addGamepad</b> (<a class="el" href="classGamePadDevice.html">GamePadDevice</a> *d)</td></tr>
+<tr class="memitem:ac2e9fb12ee2cd7816c21e368fc51868c" id="r_ac2e9fb12ee2cd7816c21e368fc51868c"><td class="memItemLeft"><a id="ac2e9fb12ee2cd7816c21e368fc51868c" name="ac2e9fb12ee2cd7816c21e368fc51868c"></a>
+int&#160;</td><td class="memItemRight"><b>getGamePadAmount</b> () const</td></tr>
+<tr class="memitem:a2b15eb5ebe0f2f85535c25092ac64809" id="r_a2b15eb5ebe0f2f85535c25092ac64809"><td class="memItemLeft"><a id="a2b15eb5ebe0f2f85535c25092ac64809" name="a2b15eb5ebe0f2f85535c25092ac64809"></a>
+int&#160;</td><td class="memItemRight"><b>getGamePadConfigAmount</b> () const</td></tr>
+<tr class="memitem:a2779ee51ea87242f9b2992f4b8495fff" id="r_a2779ee51ea87242f9b2992f4b8495fff"><td class="memItemLeft"><a id="a2779ee51ea87242f9b2992f4b8495fff" name="a2779ee51ea87242f9b2992f4b8495fff"></a>
+<a class="el" href="classGamePadDevice.html">GamePadDevice</a> *&#160;</td><td class="memItemRight"><b>getGamePad</b> (const int i)</td></tr>
+<tr class="memitem:ac3fcd4ad077ff23d4d5023155874d6cc" id="r_ac3fcd4ad077ff23d4d5023155874d6cc"><td class="memItemLeft"><a id="ac3fcd4ad077ff23d4d5023155874d6cc" name="ac3fcd4ad077ff23d4d5023155874d6cc"></a>
+<a class="el" href="classGamepadConfig.html">GamepadConfig</a> *&#160;</td><td class="memItemRight"><b>getGamepadConfig</b> (const int i)</td></tr>
+<tr class="memitem:ae9f8ac79f05519601fe16e9b6344a57a" id="r_ae9f8ac79f05519601fe16e9b6344a57a"><td class="memItemLeft"><a id="ae9f8ac79f05519601fe16e9b6344a57a" name="ae9f8ac79f05519601fe16e9b6344a57a"></a>
+<a class="el" href="classGamePadDevice.html">GamePadDevice</a> *&#160;</td><td class="memItemRight"><b>getGamePadFromIrrID</b> (const int i)</td></tr>
+<tr class="memitem:a5eab5e00dbd30ab9c62647c5b6f80985" id="r_a5eab5e00dbd30ab9c62647c5b6f80985"><td class="memItemLeft"><a id="a5eab5e00dbd30ab9c62647c5b6f80985" name="a5eab5e00dbd30ab9c62647c5b6f80985"></a>
+void&#160;</td><td class="memItemRight"><b>clearGamepads</b> ()</td></tr>
+<tr class="memitem:a731273bc86804e5ed28e5df48557aacd" id="r_a731273bc86804e5ed28e5df48557aacd"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a731273bc86804e5ed28e5df48557aacd">getConfigForGamepad</a> (const int sdl_id, const std::string &amp;name, <a class="el" href="classGamepadConfig.html">GamepadConfig</a> **config)</td></tr>
+<tr class="memdesc:a731273bc86804e5ed28e5df48557aacd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the keyboard that has a binding for this button, or NULL if none  <br /></td></tr>
+<tr class="memitem:a3166333ed1c710c643a5afef3acc3352" id="r_a3166333ed1c710c643a5afef3acc3352"><td class="memItemLeft"><a id="a3166333ed1c710c643a5afef3acc3352" name="a3166333ed1c710c643a5afef3acc3352"></a>
+void&#160;</td><td class="memItemRight"><b>addEmptyKeyboard</b> ()</td></tr>
+<tr class="memitem:aa335fd1be94006b2afe9e38c7fc1af39" id="r_aa335fd1be94006b2afe9e38c7fc1af39"><td class="memItemLeft"><a id="aa335fd1be94006b2afe9e38c7fc1af39" name="aa335fd1be94006b2afe9e38c7fc1af39"></a>
+void&#160;</td><td class="memItemRight"><b>addKeyboard</b> (<a class="el" href="classKeyboardDevice.html">KeyboardDevice</a> *d)</td></tr>
+<tr class="memitem:aaaf07c0ba6a8566ad0a7b76bff181399" id="r_aaaf07c0ba6a8566ad0a7b76bff181399"><td class="memItemLeft"><a id="aaaf07c0ba6a8566ad0a7b76bff181399" name="aaaf07c0ba6a8566ad0a7b76bff181399"></a>
+void&#160;</td><td class="memItemRight"><b>clearKeyboard</b> ()</td></tr>
+<tr class="memitem:ab17d52aba60ea82396971c744229376b" id="r_ab17d52aba60ea82396971c744229376b"><td class="memItemLeft"><a id="ab17d52aba60ea82396971c744229376b" name="ab17d52aba60ea82396971c744229376b"></a>
+int&#160;</td><td class="memItemRight"><b>getKeyboardAmount</b> ()</td></tr>
+<tr class="memitem:a2e8b87815228b69e77e73a1984b9848c" id="r_a2e8b87815228b69e77e73a1984b9848c"><td class="memItemLeft"><a id="a2e8b87815228b69e77e73a1984b9848c" name="a2e8b87815228b69e77e73a1984b9848c"></a>
+int&#160;</td><td class="memItemRight"><b>getActiveKeyboardAmount</b> ()</td></tr>
+<tr class="memitem:adb4ab37d610b3db3bb1b15c2dbf5e9f3" id="r_adb4ab37d610b3db3bb1b15c2dbf5e9f3"><td class="memItemLeft"><a id="adb4ab37d610b3db3bb1b15c2dbf5e9f3" name="adb4ab37d610b3db3bb1b15c2dbf5e9f3"></a>
+int&#160;</td><td class="memItemRight"><b>getKeyboardConfigAmount</b> () const</td></tr>
+<tr class="memitem:a0ae5e70249459d2287b46e5dad968326" id="r_a0ae5e70249459d2287b46e5dad968326"><td class="memItemLeft"><a id="a0ae5e70249459d2287b46e5dad968326" name="a0ae5e70249459d2287b46e5dad968326"></a>
+<a class="el" href="classKeyboardDevice.html">KeyboardDevice</a> *&#160;</td><td class="memItemRight"><b>getKeyboard</b> (const int i)</td></tr>
+<tr class="memitem:a52177fde2b8630b29602450530d278ae" id="r_a52177fde2b8630b29602450530d278ae"><td class="memItemLeft"><a id="a52177fde2b8630b29602450530d278ae" name="a52177fde2b8630b29602450530d278ae"></a>
+<a class="el" href="classKeyboardConfig.html">KeyboardConfig</a> *&#160;</td><td class="memItemRight"><b>getKeyboardConfig</b> (const int i)</td></tr>
+<tr class="memitem:a37bbdd5512160e4bd537a8fb1d51ed13" id="r_a37bbdd5512160e4bd537a8fb1d51ed13"><td class="memItemLeft"><a id="a37bbdd5512160e4bd537a8fb1d51ed13" name="a37bbdd5512160e4bd537a8fb1d51ed13"></a>
+<a class="el" href="classKeyboardDevice.html">KeyboardDevice</a> *&#160;</td><td class="memItemRight"><b>getKeyboardFromBtnID</b> (const int btnID)</td></tr>
+<tr class="memitem:a51c282a03848e4b1c11d8f94d4ad2e8b" id="r_a51c282a03848e4b1c11d8f94d4ad2e8b"><td class="memItemLeft"><a id="a51c282a03848e4b1c11d8f94d4ad2e8b" name="a51c282a03848e4b1c11d8f94d4ad2e8b"></a>
+<a class="el" href="classMultitouchDevice.html">MultitouchDevice</a> *&#160;</td><td class="memItemRight"><b>getMultitouchDevice</b> ()</td></tr>
+<tr class="memitem:aa618657e667f7b3af622f8cc81861dec" id="r_aa618657e667f7b3af622f8cc81861dec"><td class="memItemLeft"><a id="aa618657e667f7b3af622f8cc81861dec" name="aa618657e667f7b3af622f8cc81861dec"></a>
+void&#160;</td><td class="memItemRight"><b>clearMultitouchDevices</b> ()</td></tr>
+<tr class="memitem:a8045078091e9b7b3c7b88a8eaa9700a2" id="r_a8045078091e9b7b3c7b88a8eaa9700a2"><td class="memItemLeft"><a id="a8045078091e9b7b3c7b88a8eaa9700a2" name="a8045078091e9b7b3c7b88a8eaa9700a2"></a>
+void&#160;</td><td class="memItemRight"><b>updateMultitouchDevice</b> ()</td></tr>
+<tr class="memitem:ad5222f8315c959409f81a8b09ac2c677" id="r_ad5222f8315c959409f81a8b09ac2c677"><td class="memItemLeft"><a id="ad5222f8315c959409f81a8b09ac2c677" name="ad5222f8315c959409f81a8b09ac2c677"></a>
+bool&#160;</td><td class="memItemRight"><b>deleteConfig</b> (<a class="el" href="classDeviceConfig.html">DeviceConfig</a> *config)</td></tr>
+<tr class="memdesc:ad5222f8315c959409f81a8b09ac2c677"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete the given config and removes <a class="el" href="classDeviceManager.html" title="This class holds the list of all known devices (ands their configurations), as well as the list of cu...">DeviceManager</a> references to it. <br /></td></tr>
+<tr class="memitem:a6790668d6127b79d00db238802726322" id="r_a6790668d6127b79d00db238802726322"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a6790668d6127b79d00db238802726322">translateInput</a> (Input::InputType type, int deviceID, int btnID, int axisDir, int *value, InputManager::InputDriverMode mode, <a class="el" href="classStateManager_1_1ActivePlayer.html">StateManager::ActivePlayer</a> **player, <a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> *action)</td></tr>
+<tr class="memdesc:a6790668d6127b79d00db238802726322"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given some input, finds to which device it belongs and, using the corresponding device object, maps this input to the corresponding player and game action.  <br /></td></tr>
+<tr class="memitem:a900b7a7be721aba23d6cbeb27b66b4a3" id="r_a900b7a7be721aba23d6cbeb27b66b4a3"><td class="memItemLeft"><a id="a900b7a7be721aba23d6cbeb27b66b4a3" name="a900b7a7be721aba23d6cbeb27b66b4a3"></a>
+void&#160;</td><td class="memItemRight"><b>clearLatestUsedDevice</b> ()</td></tr>
+<tr class="memitem:a935740cc170896835e331234906ddd0f" id="r_a935740cc170896835e331234906ddd0f"><td class="memItemLeft"><a id="a935740cc170896835e331234906ddd0f" name="a935740cc170896835e331234906ddd0f"></a>
+<a class="el" href="classInputDevice.html">InputDevice</a> *&#160;</td><td class="memItemRight"><b>getLatestUsedDevice</b> ()</td></tr>
+<tr class="memitem:a319a6b86a96b6d32732021d79a686f25" id="r_a319a6b86a96b6d32732021d79a686f25"><td class="memItemLeft"><a id="a319a6b86a96b6d32732021d79a686f25" name="a319a6b86a96b6d32732021d79a686f25"></a>
+bool&#160;</td><td class="memItemRight"><b>initialize</b> ()</td></tr>
+<tr class="memitem:a6a65a3f02743d4168f82b54047dd2ba9" id="r_a6a65a3f02743d4168f82b54047dd2ba9"><td class="memItemLeft"><a id="a6a65a3f02743d4168f82b54047dd2ba9" name="a6a65a3f02743d4168f82b54047dd2ba9"></a>
+void&#160;</td><td class="memItemRight"><b>save</b> ()</td></tr>
+<tr class="memitem:a1c19ceec65bb56fb7f9c2d6913c6c8c7" id="r_a1c19ceec65bb56fb7f9c2d6913c6c8c7"><td class="memItemLeft"><a class="el" href="classStateManager_1_1ActivePlayer.html">StateManager::ActivePlayer</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a1c19ceec65bb56fb7f9c2d6913c6c8c7">getSinglePlayer</a> ()</td></tr>
+<tr class="memdesc:a1c19ceec65bb56fb7f9c2d6913c6c8c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the active player if there is only a single local player.  <br /></td></tr>
+<tr class="memitem:a05f991769ddc7df75eaf3ff56ee4a167" id="r_a05f991769ddc7df75eaf3ff56ee4a167"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a05f991769ddc7df75eaf3ff56ee4a167">setSinglePlayer</a> (<a class="el" href="classStateManager_1_1ActivePlayer.html">StateManager::ActivePlayer</a> *p)</td></tr>
+<tr class="memdesc:a05f991769ddc7df75eaf3ff56ee4a167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the ActivePlayer if there is only a single local player.  <br /></td></tr>
+<tr class="memitem:ae9331ff2119986d4243957d926326b11" id="r_ae9331ff2119986d4243957d926326b11"><td class="memItemLeft"><a id="ae9331ff2119986d4243957d926326b11" name="ae9331ff2119986d4243957d926326b11"></a>
+void&#160;</td><td class="memItemRight"><b>mapFireToSelect</b> (bool v)</td></tr>
+<tr class="memdesc:ae9331ff2119986d4243957d926326b11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets or reset the 'map fire to select' option. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:a028abf46aaa517e352a97ef36e805e73" id="r_a028abf46aaa517e352a97ef36e805e73"><td class="memItemLeft"><a class="el" href="classInputDevice.html">InputDevice</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a028abf46aaa517e352a97ef36e805e73">mapGamepadInput</a> (Input::InputType type, int deviceID, int btnID, int axisDir, int *value, InputManager::InputDriverMode mode, <a class="el" href="classStateManager_1_1ActivePlayer.html">StateManager::ActivePlayer</a> **player, <a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> *action)</td></tr>
+<tr class="memdesc:a028abf46aaa517e352a97ef36e805e73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method, only used internally.  <br /></td></tr>
+<tr class="memitem:af0b2b36a5f3017d557d32a04f51f6107" id="r_af0b2b36a5f3017d557d32a04f51f6107"><td class="memItemLeft"><a class="el" href="classInputDevice.html">InputDevice</a> *&#160;</td><td class="memItemRight"><a class="el" href="#af0b2b36a5f3017d557d32a04f51f6107">mapKeyboardInput</a> (int button_id, InputManager::InputDriverMode mode, <a class="el" href="classStateManager_1_1ActivePlayer.html">StateManager::ActivePlayer</a> **player, <a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> *action)</td></tr>
+<tr class="memdesc:af0b2b36a5f3017d557d32a04f51f6107"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method, only used internally.  <br /></td></tr>
+<tr class="memitem:a7acb75fee16ab3a8d92a9608ce252889" id="r_a7acb75fee16ab3a8d92a9608ce252889"><td class="memItemLeft"><a id="a7acb75fee16ab3a8d92a9608ce252889" name="a7acb75fee16ab3a8d92a9608ce252889"></a>
+bool&#160;</td><td class="memItemRight"><b>load</b> ()</td></tr>
+<tr class="memdesc:a7acb75fee16ab3a8d92a9608ce252889"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the configuration from the user's input.xml file. <br /></td></tr>
+<tr class="memitem:acb1693f829b23c8345bd4ac0c87feed2" id="r_acb1693f829b23c8345bd4ac0c87feed2"><td class="memItemLeft"><a id="acb1693f829b23c8345bd4ac0c87feed2" name="acb1693f829b23c8345bd4ac0c87feed2"></a>
+void&#160;</td><td class="memItemRight"><b>shutdown</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:ae92b669777fbe5e09b2ca131e6bafe2a" id="r_ae92b669777fbe5e09b2ca131e6bafe2a"><td class="memItemLeft"><a id="ae92b669777fbe5e09b2ca131e6bafe2a" name="ae92b669777fbe5e09b2ca131e6bafe2a"></a>
+<a class="el" href="classPtrVector.html">PtrVector</a>&lt; <a class="el" href="classKeyboardDevice.html">KeyboardDevice</a>, HOLD &gt;&#160;</td><td class="memItemRight"><b>m_keyboards</b></td></tr>
+<tr class="memitem:a94b79ec989a33353ca413ee9c9c9a9e3" id="r_a94b79ec989a33353ca413ee9c9c9a9e3"><td class="memItemLeft"><a id="a94b79ec989a33353ca413ee9c9c9a9e3" name="a94b79ec989a33353ca413ee9c9c9a9e3"></a>
+<a class="el" href="classPtrVector.html">PtrVector</a>&lt; <a class="el" href="classGamePadDevice.html">GamePadDevice</a>, HOLD &gt;&#160;</td><td class="memItemRight"><b>m_gamepads</b></td></tr>
+<tr class="memitem:a407274b32048bff609b0eba37e6ea239" id="r_a407274b32048bff609b0eba37e6ea239"><td class="memItemLeft"><a id="a407274b32048bff609b0eba37e6ea239" name="a407274b32048bff609b0eba37e6ea239"></a>
+<a class="el" href="classPtrVector.html">PtrVector</a>&lt; <a class="el" href="classKeyboardConfig.html">KeyboardConfig</a>, HOLD &gt;&#160;</td><td class="memItemRight"><b>m_keyboard_configs</b></td></tr>
+<tr class="memitem:a50d93f0729239a52b3f634ce324629e8" id="r_a50d93f0729239a52b3f634ce324629e8"><td class="memItemLeft"><a id="a50d93f0729239a52b3f634ce324629e8" name="a50d93f0729239a52b3f634ce324629e8"></a>
+<a class="el" href="classPtrVector.html">PtrVector</a>&lt; <a class="el" href="classGamepadConfig.html">GamepadConfig</a>, HOLD &gt;&#160;</td><td class="memItemRight"><b>m_gamepad_configs</b></td></tr>
+<tr class="memitem:a7b36b50abbddfb13891b8c3ccbb861b3" id="r_a7b36b50abbddfb13891b8c3ccbb861b3"><td class="memItemLeft"><a id="a7b36b50abbddfb13891b8c3ccbb861b3" name="a7b36b50abbddfb13891b8c3ccbb861b3"></a>
+<a class="el" href="classMultitouchDevice.html">MultitouchDevice</a> *&#160;</td><td class="memItemRight"><b>m_multitouch_device</b></td></tr>
+<tr class="memitem:a5cf2a990d45852dddf5bb89b9916c083" id="r_a5cf2a990d45852dddf5bb89b9916c083"><td class="memItemLeft"><a id="a5cf2a990d45852dddf5bb89b9916c083" name="a5cf2a990d45852dddf5bb89b9916c083"></a>
+<a class="el" href="classInputDevice.html">InputDevice</a> *&#160;</td><td class="memItemRight"><b>m_latest_used_device</b></td></tr>
+<tr class="memitem:aa1f0b86be574e439fbf34e608a16e62d" id="r_aa1f0b86be574e439fbf34e608a16e62d"><td class="memItemLeft"><a id="aa1f0b86be574e439fbf34e608a16e62d" name="aa1f0b86be574e439fbf34e608a16e62d"></a>
+PlayerAssignMode&#160;</td><td class="memItemRight"><b>m_assign_mode</b></td></tr>
+<tr class="memitem:a4aa336b5bb2e74bb9f5b4ae152941fc8" id="r_a4aa336b5bb2e74bb9f5b4ae152941fc8"><td class="memItemLeft"><a id="a4aa336b5bb2e74bb9f5b4ae152941fc8" name="a4aa336b5bb2e74bb9f5b4ae152941fc8"></a>
+<a class="el" href="classStateManager_1_1ActivePlayer.html">StateManager::ActivePlayer</a> *&#160;</td><td class="memItemRight"><b>m_single_player</b></td></tr>
+<tr class="memdesc:a4aa336b5bb2e74bb9f5b4ae152941fc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will be non-null in single-player mode <br /></td></tr>
+<tr class="memitem:a6f29bae03d0ce137b86f67143f949912" id="r_a6f29bae03d0ce137b86f67143f949912"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a6f29bae03d0ce137b86f67143f949912">m_map_fire_to_select</a></td></tr>
+<tr class="memdesc:a6f29bae03d0ce137b86f67143f949912"><td class="mdescLeft">&#160;</td><td class="mdescRight">If this is flag is set the next fire event (if the fire key is not mapped to anything else) will be mapped to 'select'.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>This class holds the list of all known devices (ands their configurations), as well as the list of currently plugged (used) devices. </p>
+<p>It thus takes care of finding to which device any given input belongs, and what action each keypress is bound to, if any (and, since each device is associated to a player, it also finds which player triggered this action) These input mapping capabilities should <em>only</em> be used through the <a class="el" href="classInputManager.html" title="Class to handle input.">InputManager</a>, not directly.</p>
+<p>The device manager starts in "no-assign" mode, which means no input configuration is associated to any player. So all devices will react. This is used in menus before player set-up is done. Switching back to no-assign mode will also clear anything in devices that was associated with players in assign mode. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a731273bc86804e5ed28e5df48557aacd" name="a731273bc86804e5ed28e5df48557aacd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a731273bc86804e5ed28e5df48557aacd">&#9670;&#160;</a></span>getConfigForGamepad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DeviceManager::getConfigForGamepad </td>
+          <td>(</td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>irr_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classGamepadConfig.html">GamepadConfig</a> **</td>          <td class="paramname"><span class="paramname"><em>config</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the keyboard that has a binding for this button, or NULL if none </p>
+<p>Check if we already have a config object for gamepad 'irr_id' as reported by irrLicht, If no, create one.</p>
+<p>Returns true if new configuration was created, otherwise false. </p>
+
+</div>
+</div>
+<a id="a1c19ceec65bb56fb7f9c2d6913c6c8c7" name="a1c19ceec65bb56fb7f9c2d6913c6c8c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c19ceec65bb56fb7f9c2d6913c6c8c7">&#9670;&#160;</a></span>getSinglePlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classStateManager_1_1ActivePlayer.html">StateManager::ActivePlayer</a> * DeviceManager::getSinglePlayer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the active player if there is only a single local player. </p>
+<p>It returns NULL if multiplayer is active. </p>
+
+</div>
+</div>
+<a id="a028abf46aaa517e352a97ef36e805e73" name="a028abf46aaa517e352a97ef36e805e73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a028abf46aaa517e352a97ef36e805e73">&#9670;&#160;</a></span>mapGamepadInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classInputDevice.html">InputDevice</a> * DeviceManager::mapGamepadInput </td>
+          <td>(</td>
+          <td class="paramtype">Input::InputType</td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>device_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>button_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>axis_dir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputManager::InputDriverMode</td>          <td class="paramname"><span class="paramname"><em>mode</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classStateManager_1_1ActivePlayer.html">StateManager::ActivePlayer</a> **</td>          <td class="paramname"><span class="paramname"><em>player</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> *</td>          <td class="paramname"><span class="paramname"><em>action</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Helper method, only used internally. </p>
+<p>Takes care of analyzing gamepad input. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>Type of gamepad event (IT_STICKMOTION etc). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">player</td><td>Which player this input belongs to (only set in ASSIGN mode) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">action</td><td>Which action is related to this input trigger </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">mode</td><td>Used to determine whether to determine menu actions or game actions </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>The device to which this input belongs </dd></dl>
+
+</div>
+</div>
+<a id="af0b2b36a5f3017d557d32a04f51f6107" name="af0b2b36a5f3017d557d32a04f51f6107"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0b2b36a5f3017d557d32a04f51f6107">&#9670;&#160;</a></span>mapKeyboardInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classInputDevice.html">InputDevice</a> * DeviceManager::mapKeyboardInput </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>button_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputManager::InputDriverMode</td>          <td class="paramname"><span class="paramname"><em>mode</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classStateManager_1_1ActivePlayer.html">StateManager::ActivePlayer</a> **</td>          <td class="paramname"><span class="paramname"><em>player</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> *</td>          <td class="paramname"><span class="paramname"><em>action</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Helper method, only used internally. </p>
+<p>Takes care of analyzing keyboard input. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">button_id</td><td>Id of the key pressed. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mode</td><td>Used to determine whether to determine menu actions or game actions </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">player</td><td>Which player this input belongs to (only set in ASSIGN mode). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">action</td><td>Which action is related to this input trigger. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>The device to which this input belongs </dd></dl>
+
+</div>
+</div>
+<a id="a05f991769ddc7df75eaf3ff56ee4a167" name="a05f991769ddc7df75eaf3ff56ee4a167"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05f991769ddc7df75eaf3ff56ee4a167">&#9670;&#160;</a></span>setSinglePlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DeviceManager::setSinglePlayer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classStateManager_1_1ActivePlayer.html">StateManager::ActivePlayer</a> *</td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the ActivePlayer if there is only a single local player. </p>
+<p>p must be NULL in case of splitscreen. A single player will receive events from all connected devices. This allows for example a single player to select a kart with the keyboard, but then use a gamepad for the actual racing. In splitscreen each player will only receive events from the device used to connect in the kart selection screen. </p>
+
+</div>
+</div>
+<a id="a6790668d6127b79d00db238802726322" name="a6790668d6127b79d00db238802726322"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6790668d6127b79d00db238802726322">&#9670;&#160;</a></span>translateInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DeviceManager::translateInput </td>
+          <td>(</td>
+          <td class="paramtype">Input::InputType</td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>deviceID</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>btnID</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>axisDir</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputManager::InputDriverMode</td>          <td class="paramname"><span class="paramname"><em>mode</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classStateManager_1_1ActivePlayer.html">StateManager::ActivePlayer</a> **</td>          <td class="paramname"><span class="paramname"><em>player</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> *</td>          <td class="paramname"><span class="paramname"><em>action</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Given some input, finds to which device it belongs and, using the corresponding device object, maps this input to the corresponding player and game action. </p>
+<dl class="section return"><dt>반환값</dt><dd>false if player/action could not be set. </dd></dl>
+<dl class="section note"><dt>주의</dt><dd>Special case : can return 'true' but set action to PA_BEFORE_FIRST if the input was used but is not associated to an action and a player</dd></dl>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>used to determine whether to map game actions or menu actions </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="a6f29bae03d0ce137b86f67143f949912" name="a6f29bae03d0ce137b86f67143f949912"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f29bae03d0ce137b86f67143f949912">&#9670;&#160;</a></span>m_map_fire_to_select</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DeviceManager::m_map_fire_to_select</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If this is flag is set the next fire event (if the fire key is not mapped to anything else) will be mapped to 'select'. </p>
+<p>This is used in the kart select GUI to support the old way of adding players by pressing fire. </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>input/<a class="el" href="device__manager_8hpp_source.html">device_manager.hpp</a></li>
+<li>input/<b>device_manager.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

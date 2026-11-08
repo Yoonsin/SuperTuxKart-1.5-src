@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: karts/max_speed.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>karts</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">max_speed.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2010-2015  Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_MAX_SPEED_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_MAX_SPEED_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">utils/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">class </span><a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classMaxSpeed.html">   30</a></span><span class="keyword">class </span><a class="code hl_function" href="classMaxSpeed.html#a8f5073688ad6924b3e6a48c0452d8197">MaxSpeed</a></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">friend</span> <span class="keyword">class </span>KartRewinder;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">enum</span>  {MS_INCREASE_MIN,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>           MS_INCREASE_ZIPPER = MS_INCREASE_MIN,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>           MS_INCREASE_SLIPSTREAM,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>           MS_INCREASE_NITRO,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>           MS_INCREASE_RUBBER,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>           MS_INCREASE_SKIDDING,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>           MS_INCREASE_RED_SKIDDING,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>           MS_INCREASE_MAX};</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">enum</span> {MS_DECREASE_MIN,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>          MS_DECREASE_TERRAIN = MS_DECREASE_MIN,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>          MS_DECREASE_AI,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>          MS_DECREASE_BUBBLE,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>          MS_DECREASE_SQUASH,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>          MS_DECREASE_MAX};</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classMaxSpeed.html#a80dacbf34c767f31a7f1e129ebddbc52">   57</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *<a class="code hl_variable" href="classMaxSpeed.html#a80dacbf34c767f31a7f1e129ebddbc52">m_kart</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classMaxSpeed.html#a60c929c3b8c96beb8e88fc237692199c">   60</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classMaxSpeed.html#a60c929c3b8c96beb8e88fc237692199c">m_current_max_speed</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classMaxSpeed.html#aa3c88f22de11a9a0d1293ba1fb93baea">   63</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classMaxSpeed.html#aa3c88f22de11a9a0d1293ba1fb93baea">m_add_engine_force</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classMaxSpeed.html#a0b4fc13f1de1d0e126f53d5b81e0ace7">   66</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classMaxSpeed.html#a0b4fc13f1de1d0e126f53d5b81e0ace7">m_min_speed</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="};">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedIncrease.html">   70</a></span>    <span class="keyword">class </span><a class="code hl_function" href="classMaxSpeed_1_1SpeedIncrease.html#aa389e087052257ef3067d0e2979a2f90">SpeedIncrease</a></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedIncrease.html#a7592a7b41cb0cc9c7e1122574be4aebd">   74</a></span>        uint16_t <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a7592a7b41cb0cc9c7e1122574be4aebd">m_max_add_speed</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedIncrease.html#a5426bba513f7132ce72da637c1d49361">   79</a></span>        int16_t <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a5426bba513f7132ce72da637c1d49361">m_duration</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedIncrease.html#a83c01f71fb7115068073e02f1da1f368">   81</a></span>        int16_t <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a83c01f71fb7115068073e02f1da1f368">m_fade_out_time</a>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedIncrease.html#a192d9b109bbec817e752ac96479680fd">   83</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a192d9b109bbec817e752ac96479680fd">m_current_speedup</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedIncrease.html#a8f0ce3593fb653e98132ecff4664ca86">   85</a></span>        uint16_t <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a8f0ce3593fb653e98132ecff4664ca86">m_engine_force</a>;</div>
+<div class="foldopen" id="foldopen00088" data-start="{" data-end="}">
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedIncrease.html#aa389e087052257ef3067d0e2979a2f90">   88</a></span>        <a class="code hl_function" href="classMaxSpeed_1_1SpeedIncrease.html#aa389e087052257ef3067d0e2979a2f90">SpeedIncrease</a>()</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <a class="code hl_function" href="classMaxSpeed_1_1SpeedIncrease.html#af04dd3d28d94084753ac116c3a3d4d41">reset</a>();</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        }   <span class="comment">// SpeedIncrease</span></div>
+</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedIncrease.html#af04dd3d28d94084753ac116c3a3d4d41">   94</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMaxSpeed_1_1SpeedIncrease.html#af04dd3d28d94084753ac116c3a3d4d41">reset</a>()</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a7592a7b41cb0cc9c7e1122574be4aebd">m_max_add_speed</a>   = 0;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a5426bba513f7132ce72da637c1d49361">m_duration</a>        = std::numeric_limits&lt;int16_t&gt;::min();</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a83c01f71fb7115068073e02f1da1f368">m_fade_out_time</a>   = 0;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a192d9b109bbec817e752ac96479680fd">m_current_speedup</a> = 0;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a8f0ce3593fb653e98132ecff4664ca86">m_engine_force</a>    = 0;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        }   <span class="comment">// reset</span></div>
+</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMaxSpeed_1_1SpeedIncrease.html#ac50582cee757552ee082f550b5f8cf8d">update</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMaxSpeed.html#ae13b05d6ee9437c8b9ecfb9aa0341703">saveState</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMaxSpeed.html#abafb90fff26811be2ed5ac083e7e1df4">rewindTo</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer, <span class="keywordtype">bool</span> is_active);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedIncrease.html#a68e3bd4bf2f879418d3b8e9a40775fcd">  108</a></span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classMaxSpeed_1_1SpeedIncrease.html#a68e3bd4bf2f879418d3b8e9a40775fcd">getSpeedIncrease</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a192d9b109bbec817e752ac96479680fd">m_current_speedup</a>;}</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedIncrease.html#a5ee99becb12bdf0dde114c46315942a6">  114</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classMaxSpeed_1_1SpeedIncrease.html#a5ee99becb12bdf0dde114c46315942a6">getTimeLeft</a>()<span class="keyword"> const      </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a5426bba513f7132ce72da637c1d49361">m_duration</a>;       }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="}">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedIncrease.html#ae01f95b5e61d7c424cfb41abe1da4e4a">  117</a></span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classMaxSpeed_1_1SpeedIncrease.html#ae01f95b5e61d7c424cfb41abe1da4e4a">getEngineForce</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keyword">        </span>{</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a5426bba513f7132ce72da637c1d49361">m_duration</a> &gt; 0 ? (float)<a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a8f0ce3593fb653e98132ecff4664ca86">m_engine_force</a> / 10.0f : 0;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        }   <span class="comment">// getEngineForce</span></div>
+</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedIncrease.html#a281c2884b8e5763dbde27edf0fe13ab4">  123</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classMaxSpeed_1_1SpeedIncrease.html#a281c2884b8e5763dbde27edf0fe13ab4">isActive</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a5426bba513f7132ce72da637c1d49361">m_duration</a> &gt; -<a class="code hl_variable" href="classMaxSpeed_1_1SpeedIncrease.html#a83c01f71fb7115068073e02f1da1f368">m_fade_out_time</a>; }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    };   <span class="comment">// SpeedIncrease</span></div>
+</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00128" data-start="{" data-end="};">
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedDecrease.html">  128</a></span>    <span class="keyword">class </span><a class="code hl_function" href="classMaxSpeed_1_1SpeedDecrease.html#a8207616f17129c68df33fecd184aadad">SpeedDecrease</a></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedDecrease.html#aed35dcf64dd1fae20abd0e0c74cfc044">  132</a></span>        uint16_t <a class="code hl_variable" href="classMaxSpeed_1_1SpeedDecrease.html#aed35dcf64dd1fae20abd0e0c74cfc044">m_max_speed_fraction</a>;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedDecrease.html#a0fb2b8a682a26769eb053b9443c92d0a">  135</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="classMaxSpeed_1_1SpeedDecrease.html#a0fb2b8a682a26769eb053b9443c92d0a">m_current_fraction</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedDecrease.html#ae48a21f16b35eda4b797008fe610bb56">  138</a></span>        int16_t <a class="code hl_variable" href="classMaxSpeed_1_1SpeedDecrease.html#ae48a21f16b35eda4b797008fe610bb56">m_fade_in_ticks</a>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedDecrease.html#af0e2e636e262414d06c915e95b205293">  142</a></span>        int16_t <a class="code hl_variable" href="classMaxSpeed_1_1SpeedDecrease.html#af0e2e636e262414d06c915e95b205293">m_duration</a>;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span></div>
+<div class="foldopen" id="foldopen00146" data-start="{" data-end="}">
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedDecrease.html#a8207616f17129c68df33fecd184aadad">  146</a></span>        <a class="code hl_function" href="classMaxSpeed_1_1SpeedDecrease.html#a8207616f17129c68df33fecd184aadad">SpeedDecrease</a>()</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            <a class="code hl_function" href="classMaxSpeed_1_1SpeedDecrease.html#ab57f06d65cd3bac8b84106bd14342c56">reset</a>();</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        }   <span class="comment">// SpeedDecrease</span></div>
+</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00152" data-start="{" data-end="}">
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedDecrease.html#ab57f06d65cd3bac8b84106bd14342c56">  152</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMaxSpeed_1_1SpeedDecrease.html#ab57f06d65cd3bac8b84106bd14342c56">reset</a>()</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        {</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            <a class="code hl_variable" href="classMaxSpeed_1_1SpeedDecrease.html#aed35dcf64dd1fae20abd0e0c74cfc044">m_max_speed_fraction</a> = 1000;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            <a class="code hl_variable" href="classMaxSpeed_1_1SpeedDecrease.html#a0fb2b8a682a26769eb053b9443c92d0a">m_current_fraction</a>   = 1.0f;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            <a class="code hl_variable" href="classMaxSpeed_1_1SpeedDecrease.html#ae48a21f16b35eda4b797008fe610bb56">m_fade_in_ticks</a>      = 0;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            <a class="code hl_variable" href="classMaxSpeed_1_1SpeedDecrease.html#af0e2e636e262414d06c915e95b205293">m_duration</a>           = 0;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        }   <span class="comment">//reset</span></div>
+</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMaxSpeed_1_1SpeedDecrease.html#af58a74196363c602120d3d174021572a">update</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMaxSpeed_1_1SpeedDecrease.html#a74d3e6635ee32aee2defa5eb7a9d9a34">saveState</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classMaxSpeed_1_1SpeedDecrease.html#a5d8fe2d96be8c8f28a6722d0d13c7af6">rewindTo</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer, <span class="keywordtype">bool</span> is_active);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedDecrease.html#ac7009a3afeb0cfe1de32cfcddd2a2aff">  166</a></span>        <span class="keywordtype">float</span> <a class="code hl_function" href="classMaxSpeed_1_1SpeedDecrease.html#ac7009a3afeb0cfe1de32cfcddd2a2aff">getSlowdownFraction</a>()<span class="keyword"> const        </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaxSpeed_1_1SpeedDecrease.html#a0fb2b8a682a26769eb053b9443c92d0a">m_current_fraction</a>; }</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        <span class="keywordtype">int</span> getTimeLeft()<span class="keyword"> const                          </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaxSpeed_1_1SpeedDecrease.html#af0e2e636e262414d06c915e95b205293">m_duration</a>; }</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="classMaxSpeed_1_1SpeedDecrease.html#aa0d7d14fc82b2a23e325aecca587b98f">  172</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classMaxSpeed_1_1SpeedDecrease.html#aa0d7d14fc82b2a23e325aecca587b98f">isActive</a>()<span class="keyword"> const    </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaxSpeed_1_1SpeedDecrease.html#af0e2e636e262414d06c915e95b205293">m_duration</a> &gt; 0 || <a class="code hl_variable" href="classMaxSpeed_1_1SpeedDecrease.html#af0e2e636e262414d06c915e95b205293">m_duration</a> &lt;= -1; }</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    };   <span class="comment">// SpeedDecrease</span></div>
+</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="classMaxSpeed.html#a729ed4cde4fc4417742523339ac5cc04">  178</a></span>    <a class="code hl_class" href="classMaxSpeed_1_1SpeedDecrease.html">SpeedDecrease</a>  <a class="code hl_variable" href="classMaxSpeed.html#a729ed4cde4fc4417742523339ac5cc04">m_speed_decrease</a>[MS_DECREASE_MAX];</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classMaxSpeed.html#a66736c2a3da2982707d2a53a8028f8ce">  182</a></span>    <a class="code hl_class" href="classMaxSpeed_1_1SpeedIncrease.html">SpeedIncrease</a>  <a class="code hl_variable" href="classMaxSpeed.html#a66736c2a3da2982707d2a53a8028f8ce">m_speed_increase</a>[MS_INCREASE_MAX];</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>          <a class="code hl_function" href="classMaxSpeed.html#a8f5073688ad6924b3e6a48c0452d8197">MaxSpeed</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classMaxSpeed.html#ad6f0782070ea5639c9cffa23643f2140">increaseMaxSpeed</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> category, <span class="keywordtype">float</span> add_speed,</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                           <span class="keywordtype">float</span> engine_force, <span class="keywordtype">int</span> duration,</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>                           <span class="keywordtype">int</span> fade_out_time);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classMaxSpeed.html#a3b9aad0b41e556e2fbdfd3d17596e91d">instantSpeedIncrease</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> category,</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                               <span class="keywordtype">float</span> add_speed, <span class="keywordtype">float</span> speed_boost,</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>                               <span class="keywordtype">float</span> engine_force, <span class="keywordtype">int</span> duration,</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>                               <span class="keywordtype">int</span> fade_out_time);</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classMaxSpeed.html#ac557c256c27a4262bcccacc59feb6180">setSlowdown</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> category, <span class="keywordtype">float</span> max_speed_fraction,</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                      <span class="keywordtype">int</span> fade_in_time, <span class="keywordtype">int</span> duration=-1);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordtype">int</span>   <a class="code hl_function" href="classMaxSpeed.html#a3af3f976c832ca26c534cf0c01c59c2c">getSpeedIncreaseTicksLeft</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> category);</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keywordtype">int</span>   <a class="code hl_function" href="classMaxSpeed.html#a710b4667bf6f5ca5ce9defb8ff06c148">isSpeedIncreaseActive</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> category);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordtype">int</span>   <a class="code hl_function" href="classMaxSpeed.html#a93dff66054acb3e020c85fc64c858d3f">isSpeedDecreaseActive</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> category);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classMaxSpeed.html#aede9271a1082b97910fbc2c69dde58e8">update</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classMaxSpeed.html#a9e38f18f7f85d2719df3b4e5d4e26676">reset</a>();</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classMaxSpeed.html#ae13b05d6ee9437c8b9ecfb9aa0341703">saveState</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordtype">void</span>  <a class="code hl_function" href="classMaxSpeed.html#abafb90fff26811be2ed5ac083e7e1df4">rewindTo</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="classMaxSpeed.html#ad17ad11458f807cd54fbe78a830c7aaa">  209</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMaxSpeed.html#ad17ad11458f807cd54fbe78a830c7aaa">setMinSpeed</a>(<span class="keywordtype">float</span> s) { <a class="code hl_variable" href="classMaxSpeed.html#a0b4fc13f1de1d0e126f53d5b81e0ace7">m_min_speed</a> = s; }</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="classMaxSpeed.html#a878c1da867a7e923b12d3ac6586360f2">  212</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classMaxSpeed.html#a878c1da867a7e923b12d3ac6586360f2">getCurrentMaxSpeed</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaxSpeed.html#a60c929c3b8c96beb8e88fc237692199c">m_current_max_speed</a>; }</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="classMaxSpeed.html#ad82136a4c7cbfdda4d9a032a423d3e59">  215</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classMaxSpeed.html#ad82136a4c7cbfdda4d9a032a423d3e59">getCurrentAdditionalEngineForce</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMaxSpeed.html#aa3c88f22de11a9a0d1293ba1fb93baea">m_add_engine_force</a>;}</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>};   <span class="comment">// MaxSpeed</span></div>
+</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedDecrease_html"><div class="ttname"><a href="classMaxSpeed_1_1SpeedDecrease.html">MaxSpeed::SpeedDecrease</a></div><div class="ttdoc">An internal class to store and handle speed decrease related data.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:129</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedDecrease_html_a0fb2b8a682a26769eb053b9443c92d0a"><div class="ttname"><a href="classMaxSpeed_1_1SpeedDecrease.html#a0fb2b8a682a26769eb053b9443c92d0a">MaxSpeed::SpeedDecrease::m_current_fraction</a></div><div class="ttdeci">float m_current_fraction</div><div class="ttdoc">The current slowdown fraction, taking the fade-in time into account.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:135</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedDecrease_html_a5d8fe2d96be8c8f28a6722d0d13c7af6"><div class="ttname"><a href="classMaxSpeed_1_1SpeedDecrease.html#a5d8fe2d96be8c8f28a6722d0d13c7af6">MaxSpeed::SpeedDecrease::rewindTo</a></div><div class="ttdeci">void rewindTo(BareNetworkString *buffer, bool is_active)</div><div class="ttdoc">Restores a previously saved state for an active speed decrease category.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:350</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedDecrease_html_a74d3e6635ee32aee2defa5eb7a9d9a34"><div class="ttname"><a href="classMaxSpeed_1_1SpeedDecrease.html#a74d3e6635ee32aee2defa5eb7a9d9a34">MaxSpeed::SpeedDecrease::saveState</a></div><div class="ttdeci">void saveState(BareNetworkString *buffer) const</div><div class="ttdoc">Saves the state of an (active) speed decrease category.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:339</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedDecrease_html_a8207616f17129c68df33fecd184aadad"><div class="ttname"><a href="classMaxSpeed_1_1SpeedDecrease.html#a8207616f17129c68df33fecd184aadad">MaxSpeed::SpeedDecrease::SpeedDecrease</a></div><div class="ttdeci">SpeedDecrease()</div><div class="ttdoc">The constructor initialises the data with data that won&#39;t affect top speed at all.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:146</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedDecrease_html_aa0d7d14fc82b2a23e325aecca587b98f"><div class="ttname"><a href="classMaxSpeed_1_1SpeedDecrease.html#aa0d7d14fc82b2a23e325aecca587b98f">MaxSpeed::SpeedDecrease::isActive</a></div><div class="ttdeci">bool isActive() const</div><div class="ttdoc">Returns if this speed decrease is active atm.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:172</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedDecrease_html_ab57f06d65cd3bac8b84106bd14342c56"><div class="ttname"><a href="classMaxSpeed_1_1SpeedDecrease.html#ab57f06d65cd3bac8b84106bd14342c56">MaxSpeed::SpeedDecrease::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Resets the state to be inactive.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:152</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedDecrease_html_ac7009a3afeb0cfe1de32cfcddd2a2aff"><div class="ttname"><a href="classMaxSpeed_1_1SpeedDecrease.html#ac7009a3afeb0cfe1de32cfcddd2a2aff">MaxSpeed::SpeedDecrease::getSlowdownFraction</a></div><div class="ttdeci">float getSlowdownFraction() const</div><div class="ttdoc">Returns the current slowdown fracftion, taking a &#39;fade in&#39; into account.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:166</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedDecrease_html_ae48a21f16b35eda4b797008fe610bb56"><div class="ttname"><a href="classMaxSpeed_1_1SpeedDecrease.html#ae48a21f16b35eda4b797008fe610bb56">MaxSpeed::SpeedDecrease::m_fade_in_ticks</a></div><div class="ttdeci">int16_t m_fade_in_ticks</div><div class="ttdoc">How long it should take for the full slowdown to take effect.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:138</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedDecrease_html_aed35dcf64dd1fae20abd0e0c74cfc044"><div class="ttname"><a href="classMaxSpeed_1_1SpeedDecrease.html#aed35dcf64dd1fae20abd0e0c74cfc044">MaxSpeed::SpeedDecrease::m_max_speed_fraction</a></div><div class="ttdeci">uint16_t m_max_speed_fraction</div><div class="ttdoc">The maximum slowdown to apply, 3 digits precision.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:132</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedDecrease_html_af0e2e636e262414d06c915e95b205293"><div class="ttname"><a href="classMaxSpeed_1_1SpeedDecrease.html#af0e2e636e262414d06c915e95b205293">MaxSpeed::SpeedDecrease::m_duration</a></div><div class="ttdeci">int16_t m_duration</div><div class="ttdoc">How long the effect should last.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:142</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedDecrease_html_af58a74196363c602120d3d174021572a"><div class="ttname"><a href="classMaxSpeed_1_1SpeedDecrease.html#af58a74196363c602120d3d174021572a">MaxSpeed::SpeedDecrease::update</a></div><div class="ttdeci">void update(int ticks)</div><div class="ttdoc">Handles the speed increase for a certain category.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:306</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedIncrease_html"><div class="ttname"><a href="classMaxSpeed_1_1SpeedIncrease.html">MaxSpeed::SpeedIncrease</a></div><div class="ttdoc">An internal class to store and handle speed increase related data.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:71</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedIncrease_html_a192d9b109bbec817e752ac96479680fd"><div class="ttname"><a href="classMaxSpeed_1_1SpeedIncrease.html#a192d9b109bbec817e752ac96479680fd">MaxSpeed::SpeedIncrease::m_current_speedup</a></div><div class="ttdeci">float m_current_speedup</div><div class="ttdoc">The current max speed increase value, updated with duration.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:83</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedIncrease_html_a281c2884b8e5763dbde27edf0fe13ab4"><div class="ttname"><a href="classMaxSpeed_1_1SpeedIncrease.html#a281c2884b8e5763dbde27edf0fe13ab4">MaxSpeed::SpeedIncrease::isActive</a></div><div class="ttdeci">bool isActive() const</div><div class="ttdoc">Returns if this speed increase is active atm.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:123</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedIncrease_html_a5426bba513f7132ce72da637c1d49361"><div class="ttname"><a href="classMaxSpeed_1_1SpeedIncrease.html#a5426bba513f7132ce72da637c1d49361">MaxSpeed::SpeedIncrease::m_duration</a></div><div class="ttdeci">int16_t m_duration</div><div class="ttdoc">How long this speed will apply.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:79</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedIncrease_html_a5ee99becb12bdf0dde114c46315942a6"><div class="ttname"><a href="classMaxSpeed_1_1SpeedIncrease.html#a5ee99becb12bdf0dde114c46315942a6">MaxSpeed::SpeedIncrease::getTimeLeft</a></div><div class="ttdeci">int getTimeLeft() const</div><div class="ttdoc">Returns the remaining time till the fade out time starts.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:114</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedIncrease_html_a68e3bd4bf2f879418d3b8e9a40775fcd"><div class="ttname"><a href="classMaxSpeed_1_1SpeedIncrease.html#a68e3bd4bf2f879418d3b8e9a40775fcd">MaxSpeed::SpeedIncrease::getSpeedIncrease</a></div><div class="ttdeci">float getSpeedIncrease() const</div><div class="ttdoc">Returns the current speedup for this category.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:108</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedIncrease_html_a7592a7b41cb0cc9c7e1122574be4aebd"><div class="ttname"><a href="classMaxSpeed_1_1SpeedIncrease.html#a7592a7b41cb0cc9c7e1122574be4aebd">MaxSpeed::SpeedIncrease::m_max_add_speed</a></div><div class="ttdeci">uint16_t m_max_add_speed</div><div class="ttdoc">The maximum additional speed allowed, 3 digits precision.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:74</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedIncrease_html_a83c01f71fb7115068073e02f1da1f368"><div class="ttname"><a href="classMaxSpeed_1_1SpeedIncrease.html#a83c01f71fb7115068073e02f1da1f368">MaxSpeed::SpeedIncrease::m_fade_out_time</a></div><div class="ttdeci">int16_t m_fade_out_time</div><div class="ttdoc">The fadeout time.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:81</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedIncrease_html_a8f0ce3593fb653e98132ecff4664ca86"><div class="ttname"><a href="classMaxSpeed_1_1SpeedIncrease.html#a8f0ce3593fb653e98132ecff4664ca86">MaxSpeed::SpeedIncrease::m_engine_force</a></div><div class="ttdeci">uint16_t m_engine_force</div><div class="ttdoc">Additional engine force, 1 digit precision.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:85</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedIncrease_html_aa389e087052257ef3067d0e2979a2f90"><div class="ttname"><a href="classMaxSpeed_1_1SpeedIncrease.html#aa389e087052257ef3067d0e2979a2f90">MaxSpeed::SpeedIncrease::SpeedIncrease</a></div><div class="ttdeci">SpeedIncrease()</div><div class="ttdoc">The constructor initialised the values with a no-increase entry, i.e.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:88</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedIncrease_html_ac50582cee757552ee082f550b5f8cf8d"><div class="ttname"><a href="classMaxSpeed_1_1SpeedIncrease.html#ac50582cee757552ee082f550b5f8cf8d">MaxSpeed::SpeedIncrease::update</a></div><div class="ttdeci">void update(int ticks)</div><div class="ttdoc">Handles the update of speed increase objects.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:194</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedIncrease_html_ae01f95b5e61d7c424cfb41abe1da4e4a"><div class="ttname"><a href="classMaxSpeed_1_1SpeedIncrease.html#ae01f95b5e61d7c424cfb41abe1da4e4a">MaxSpeed::SpeedIncrease::getEngineForce</a></div><div class="ttdeci">float getEngineForce() const</div><div class="ttdoc">Returns the additional engine force for this speed increase.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:117</div></div>
+<div class="ttc" id="aclassMaxSpeed_1_1SpeedIncrease_html_af04dd3d28d94084753ac116c3a3d4d41"><div class="ttname"><a href="classMaxSpeed_1_1SpeedIncrease.html#af04dd3d28d94084753ac116c3a3d4d41">MaxSpeed::SpeedIncrease::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Resets this increase category to be not active.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:94</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_a0b4fc13f1de1d0e126f53d5b81e0ace7"><div class="ttname"><a href="classMaxSpeed.html#a0b4fc13f1de1d0e126f53d5b81e0ace7">MaxSpeed::m_min_speed</a></div><div class="ttdeci">float m_min_speed</div><div class="ttdoc">If &gt;0 then the minimum speed a kart should have (used for zippers).</div><div class="ttdef"><b>Definition</b> max_speed.hpp:66</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_a3af3f976c832ca26c534cf0c01c59c2c"><div class="ttname"><a href="classMaxSpeed.html#a3af3f976c832ca26c534cf0c01c59c2c">MaxSpeed::getSpeedIncreaseTicksLeft</a></div><div class="ttdeci">int getSpeedIncreaseTicksLeft(unsigned int category)</div><div class="ttdoc">Returns how much increased speed time is left over in the given category.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:370</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_a3b9aad0b41e556e2fbdfd3d17596e91d"><div class="ttname"><a href="classMaxSpeed.html#a3b9aad0b41e556e2fbdfd3d17596e91d">MaxSpeed::instantSpeedIncrease</a></div><div class="ttdeci">void instantSpeedIncrease(unsigned int category, float add_speed, float speed_boost, float engine_force, int duration, int fade_out_time)</div><div class="ttdoc">This adjusts the top speed using increaseMaxSpeed, but additionally causes an instant speed boost,...</div><div class="ttdef"><b>Definition</b> max_speed.cpp:166</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_a60c929c3b8c96beb8e88fc237692199c"><div class="ttname"><a href="classMaxSpeed.html#a60c929c3b8c96beb8e88fc237692199c">MaxSpeed::m_current_max_speed</a></div><div class="ttdeci">float m_current_max_speed</div><div class="ttdoc">The current maximum speed.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:60</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_a66736c2a3da2982707d2a53a8028f8ce"><div class="ttname"><a href="classMaxSpeed.html#a66736c2a3da2982707d2a53a8028f8ce">MaxSpeed::m_speed_increase</a></div><div class="ttdeci">SpeedIncrease m_speed_increase[MS_INCREASE_MAX]</div><div class="ttdoc">Stores all speed increase related information for each possible category.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:182</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_a710b4667bf6f5ca5ce9defb8ff06c148"><div class="ttname"><a href="classMaxSpeed.html#a710b4667bf6f5ca5ce9defb8ff06c148">MaxSpeed::isSpeedIncreaseActive</a></div><div class="ttdeci">int isSpeedIncreaseActive(unsigned int category)</div><div class="ttdoc">Returns if increased speed is active in the given category.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:379</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_a729ed4cde4fc4417742523339ac5cc04"><div class="ttname"><a href="classMaxSpeed.html#a729ed4cde4fc4417742523339ac5cc04">MaxSpeed::m_speed_decrease</a></div><div class="ttdeci">SpeedDecrease m_speed_decrease[MS_DECREASE_MAX]</div><div class="ttdoc">Stores all speed decrease related information for each possible category.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:178</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_a80dacbf34c767f31a7f1e129ebddbc52"><div class="ttname"><a href="classMaxSpeed.html#a80dacbf34c767f31a7f1e129ebddbc52">MaxSpeed::m_kart</a></div><div class="ttdeci">AbstractKart * m_kart</div><div class="ttdoc">A pointer to the kart to which this speed handling object belongs.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:57</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_a878c1da867a7e923b12d3ac6586360f2"><div class="ttname"><a href="classMaxSpeed.html#a878c1da867a7e923b12d3ac6586360f2">MaxSpeed::getCurrentMaxSpeed</a></div><div class="ttdeci">float getCurrentMaxSpeed() const</div><div class="ttdoc">Returns the current maximum speed for this kart.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:212</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_a8f5073688ad6924b3e6a48c0452d8197"><div class="ttname"><a href="classMaxSpeed.html#a8f5073688ad6924b3e6a48c0452d8197">MaxSpeed::MaxSpeed</a></div><div class="ttdeci">MaxSpeed(AbstractKart *kart)</div><div class="ttdoc">This class handles maximum speed for karts.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:51</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_a93dff66054acb3e020c85fc64c858d3f"><div class="ttname"><a href="classMaxSpeed.html#a93dff66054acb3e020c85fc64c858d3f">MaxSpeed::isSpeedDecreaseActive</a></div><div class="ttdeci">int isSpeedDecreaseActive(unsigned int category)</div><div class="ttdoc">Returns if decreased speed is active in the given category.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:388</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_a9e38f18f7f85d2719df3b4e5d4e26676"><div class="ttname"><a href="classMaxSpeed.html#a9e38f18f7f85d2719df3b4e5d4e26676">MaxSpeed::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Reset to prepare for a restart.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:66</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_aa3c88f22de11a9a0d1293ba1fb93baea"><div class="ttname"><a href="classMaxSpeed.html#aa3c88f22de11a9a0d1293ba1fb93baea">MaxSpeed::m_add_engine_force</a></div><div class="ttdeci">float m_add_engine_force</div><div class="ttdoc">Additional engine force, summed from all SpeedIncrease engine forces.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:63</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_abafb90fff26811be2ed5ac083e7e1df4"><div class="ttname"><a href="classMaxSpeed.html#abafb90fff26811be2ed5ac083e7e1df4">MaxSpeed::rewindTo</a></div><div class="ttdeci">void rewindTo(BareNetworkString *buffer)</div><div class="ttdoc">Restore a saved state.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:510</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_ac557c256c27a4262bcccacc59feb6180"><div class="ttname"><a href="classMaxSpeed.html#ac557c256c27a4262bcccacc59feb6180">MaxSpeed::setSlowdown</a></div><div class="ttdeci">void setSlowdown(unsigned int category, float max_speed_fraction, int fade_in_time, int duration=-1)</div><div class="ttdoc">Defines a slowdown, which is in fraction of top speed.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:256</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_ad17ad11458f807cd54fbe78a830c7aaa"><div class="ttname"><a href="classMaxSpeed.html#ad17ad11458f807cd54fbe78a830c7aaa">MaxSpeed::setMinSpeed</a></div><div class="ttdeci">void setMinSpeed(float s)</div><div class="ttdoc">Sets the minimum speed a kart should have.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:209</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_ad6f0782070ea5639c9cffa23643f2140"><div class="ttname"><a href="classMaxSpeed.html#ad6f0782070ea5639c9cffa23643f2140">MaxSpeed::increaseMaxSpeed</a></div><div class="ttdeci">void increaseMaxSpeed(unsigned int category, float add_speed, float engine_force, int duration, int fade_out_time)</div><div class="ttdoc">Sets an increased maximum speed for a category.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:93</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_ad82136a4c7cbfdda4d9a032a423d3e59"><div class="ttname"><a href="classMaxSpeed.html#ad82136a4c7cbfdda4d9a032a423d3e59">MaxSpeed::getCurrentAdditionalEngineForce</a></div><div class="ttdeci">float getCurrentAdditionalEngineForce() const</div><div class="ttdoc">Returns the additional engine force.</div><div class="ttdef"><b>Definition</b> max_speed.hpp:215</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_ae13b05d6ee9437c8b9ecfb9aa0341703"><div class="ttname"><a href="classMaxSpeed.html#ae13b05d6ee9437c8b9ecfb9aa0341703">MaxSpeed::saveState</a></div><div class="ttdeci">void saveState(BareNetworkString *buffer) const</div><div class="ttdoc">Saves the speed data in a network string for rewind.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:461</div></div>
+<div class="ttc" id="aclassMaxSpeed_html_aede9271a1082b97910fbc2c69dde58e8"><div class="ttname"><a href="classMaxSpeed.html#aede9271a1082b97910fbc2c69dde58e8">MaxSpeed::update</a></div><div class="ttdeci">void update(int ticks)</div><div class="ttdoc">Updates all speed increase and decrease objects, and determines the current maximum speed.</div><div class="ttdef"><b>Definition</b> max_speed.cpp:400</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Declares the general types that are used by the network.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: tracks/check_sphere.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>tracks</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">check_sphere.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2009-2015  Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_CHECK_SPHERE_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_CHECK_SPHERE_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;tracks/check_structure.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">class </span><a class="code hl_class" href="classXMLNode.html">XMLNode</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">class </span><a class="code hl_class" href="classCheckManager.html">CheckManager</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span></div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classCheckSphere.html">   35</a></span><span class="keyword">class </span><a class="code hl_function" href="classCheckSphere.html#a3f46f3abbd2b828e343afed23a9c04d7">CheckSphere</a> : <span class="keyword">public</span> <a class="code hl_function" href="classCheckStructure.html#a43aaf77991e05abbee49cb199018bf84">CheckStructure</a></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classCheckSphere.html#a222ff00b9716dcc40b7199596bc2c469">   39</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a>         <a class="code hl_variable" href="classCheckSphere.html#a222ff00b9716dcc40b7199596bc2c469">m_center_point</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classCheckSphere.html#a3a406dc441299fd61f78ea7810efd6c9">   41</a></span>    <span class="keywordtype">float</span>        <a class="code hl_variable" href="classCheckSphere.html#a3a406dc441299fd61f78ea7810efd6c9">m_radius2</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classCheckSphere.html#a4022ff081d35394778d1b9e5d5004252">   43</a></span>    std::vector&lt;bool&gt; <a class="code hl_variable" href="classCheckSphere.html#a4022ff081d35394778d1b9e5d5004252">m_is_inside</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classCheckSphere.html#a2de78929515ed8e11168609c5eafe3e9">   46</a></span>    std::vector&lt;float&gt; <a class="code hl_variable" href="classCheckSphere.html#a2de78929515ed8e11168609c5eafe3e9">m_distance2</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                 <a class="code hl_function" href="classCheckSphere.html#a3f46f3abbd2b828e343afed23a9c04d7">CheckSphere</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> &amp;node, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">virtual</span>     <a class="code hl_function" href="classCheckSphere.html#a3f46f3abbd2b828e343afed23a9c04d7">~CheckSphere</a>() {};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classCheckSphere.html#addf2edbcf287dd6a878e5d7b44bd0d47">isTriggered</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;old_pos, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;new_pos,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                             <span class="keywordtype">int</span> kart_id);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classCheckSphere.html#a342448dbcb1438df4dc14655765e9f87">   54</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classCheckSphere.html#a342448dbcb1438df4dc14655765e9f87">isInside</a>(<span class="keywordtype">int</span> index)<span class="keyword"> const            </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classCheckSphere.html#a4022ff081d35394778d1b9e5d5004252">m_is_inside</a>[index]; }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="comment">// -------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classCheckSphere.html#a14c69b90363123e8c4008348592d7028">   58</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classCheckSphere.html#a14c69b90363123e8c4008348592d7028">getDistance2ForKart</a>(<span class="keywordtype">int</span> index)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classCheckSphere.html#a2de78929515ed8e11168609c5eafe3e9">m_distance2</a>[index];}</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">// -------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classCheckSphere.html#a68beeb6b1712da9f3a17f8e8e763f274">   61</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classCheckSphere.html#a68beeb6b1712da9f3a17f8e8e763f274">getRadius2</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classCheckSphere.html#a3a406dc441299fd61f78ea7810efd6c9">m_radius2</a>; }</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classCheckSphere.html#ad43211ee68973355bc61ad735b7cc3d3">   63</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classCheckStructure.html#a43aaf77991e05abbee49cb199018bf84">CheckStructure</a>* <a class="code hl_function" href="classCheckSphere.html#ad43211ee68973355bc61ad735b7cc3d3">clone</a>()          { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_function" href="classCheckSphere.html#a3f46f3abbd2b828e343afed23a9c04d7">CheckSphere</a>(*<span class="keyword">this</span>); }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>};   <span class="comment">// CheckSphere</span></div>
+</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="ttc" id="aclassCheckManager_html"><div class="ttname"><a href="classCheckManager.html">CheckManager</a></div><div class="ttdoc">Controls all checks structures of a track.</div><div class="ttdef"><b>Definition</b> check_manager.hpp:40</div></div>
+<div class="ttc" id="aclassCheckSphere_html_a14c69b90363123e8c4008348592d7028"><div class="ttname"><a href="classCheckSphere.html#a14c69b90363123e8c4008348592d7028">CheckSphere::getDistance2ForKart</a></div><div class="ttdeci">float getDistance2ForKart(int index) const</div><div class="ttdoc">Returns the squared distance of kart index from the enter of this sphere.</div><div class="ttdef"><b>Definition</b> check_sphere.hpp:58</div></div>
+<div class="ttc" id="aclassCheckSphere_html_a222ff00b9716dcc40b7199596bc2c469"><div class="ttname"><a href="classCheckSphere.html#a222ff00b9716dcc40b7199596bc2c469">CheckSphere::m_center_point</a></div><div class="ttdeci">Vec3 m_center_point</div><div class="ttdoc">Center of the sphere.</div><div class="ttdef"><b>Definition</b> check_sphere.hpp:39</div></div>
+<div class="ttc" id="aclassCheckSphere_html_a2de78929515ed8e11168609c5eafe3e9"><div class="ttname"><a href="classCheckSphere.html#a2de78929515ed8e11168609c5eafe3e9">CheckSphere::m_distance2</a></div><div class="ttdeci">std::vector&lt; float &gt; m_distance2</div><div class="ttdoc">Stores the distance of each kart from the center of this sphere.</div><div class="ttdef"><b>Definition</b> check_sphere.hpp:46</div></div>
+<div class="ttc" id="aclassCheckSphere_html_a342448dbcb1438df4dc14655765e9f87"><div class="ttname"><a href="classCheckSphere.html#a342448dbcb1438df4dc14655765e9f87">CheckSphere::isInside</a></div><div class="ttdeci">bool isInside(int index) const</div><div class="ttdoc">Returns if kart indx is currently inside of the sphere.</div><div class="ttdef"><b>Definition</b> check_sphere.hpp:54</div></div>
+<div class="ttc" id="aclassCheckSphere_html_a3a406dc441299fd61f78ea7810efd6c9"><div class="ttname"><a href="classCheckSphere.html#a3a406dc441299fd61f78ea7810efd6c9">CheckSphere::m_radius2</a></div><div class="ttdeci">float m_radius2</div><div class="ttdoc">Squared radius of the sphere.</div><div class="ttdef"><b>Definition</b> check_sphere.hpp:41</div></div>
+<div class="ttc" id="aclassCheckSphere_html_a3f46f3abbd2b828e343afed23a9c04d7"><div class="ttname"><a href="classCheckSphere.html#a3f46f3abbd2b828e343afed23a9c04d7">CheckSphere::CheckSphere</a></div><div class="ttdeci">CheckSphere(const XMLNode &amp;node, unsigned int index)</div><div class="ttdoc">Constructor for a checksphere.</div><div class="ttdef"><b>Definition</b> check_sphere.cpp:33</div></div>
+<div class="ttc" id="aclassCheckSphere_html_a4022ff081d35394778d1b9e5d5004252"><div class="ttname"><a href="classCheckSphere.html#a4022ff081d35394778d1b9e5d5004252">CheckSphere::m_is_inside</a></div><div class="ttdeci">std::vector&lt; bool &gt; m_is_inside</div><div class="ttdoc">A flag for each kart to indicate if it&#39;s inside of the sphere.</div><div class="ttdef"><b>Definition</b> check_sphere.hpp:43</div></div>
+<div class="ttc" id="aclassCheckSphere_html_a68beeb6b1712da9f3a17f8e8e763f274"><div class="ttname"><a href="classCheckSphere.html#a68beeb6b1712da9f3a17f8e8e763f274">CheckSphere::getRadius2</a></div><div class="ttdeci">float getRadius2() const</div><div class="ttdoc">Returns the square of the radius of this sphere.</div><div class="ttdef"><b>Definition</b> check_sphere.hpp:61</div></div>
+<div class="ttc" id="aclassCheckSphere_html_ad43211ee68973355bc61ad735b7cc3d3"><div class="ttname"><a href="classCheckSphere.html#ad43211ee68973355bc61ad735b7cc3d3">CheckSphere::clone</a></div><div class="ttdeci">virtual CheckStructure * clone()</div><div class="ttdoc">Clone to child process for server usage (atm no sound or scripting).</div><div class="ttdef"><b>Definition</b> check_sphere.hpp:63</div></div>
+<div class="ttc" id="aclassCheckSphere_html_addf2edbcf287dd6a878e5d7b44bd0d47"><div class="ttname"><a href="classCheckSphere.html#addf2edbcf287dd6a878e5d7b44bd0d47">CheckSphere::isTriggered</a></div><div class="ttdeci">virtual bool isTriggered(const Vec3 &amp;old_pos, const Vec3 &amp;new_pos, int kart_id)</div><div class="ttdoc">True if going from old_pos to new_pos enters or leaves this sphere.</div><div class="ttdef"><b>Definition</b> check_sphere.cpp:59</div></div>
+<div class="ttc" id="aclassCheckStructure_html_a43aaf77991e05abbee49cb199018bf84"><div class="ttname"><a href="classCheckStructure.html#a43aaf77991e05abbee49cb199018bf84">CheckStructure::CheckStructure</a></div><div class="ttdeci">CheckStructure()</div><div class="ttdoc">For CheckTrigger or CheckCylinder</div><div class="ttdef"><b>Definition</b> check_structure.cpp:78</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

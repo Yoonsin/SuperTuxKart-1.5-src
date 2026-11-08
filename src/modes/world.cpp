@@ -1226,7 +1226,6 @@ void World::update(int ticks)
     PROFILER_POP_CPU_MARKER();
 
     //eval로 위치 받아오기
-    /*
     AbstractKart* player_kart = getLocalPlayerKart(0);
     if (player_kart)
     {
@@ -1240,10 +1239,9 @@ void World::update(int ticks)
         }
         // tick == ticks, position == pos
     }
-    */
-    //eval로 위치받아오기
-
+    
     //eval로 위치 받아오기
+    /*
     AbstractKart* player_kart = getLocalPlayerKart(0);
     if (player_kart)
     {
@@ -1256,8 +1254,7 @@ void World::update(int ticks)
             Evaluation::get()->update(pos);
         }
     }
-    //eval로 위치받아오기
-
+    */
     PROFILER_POP_CPU_MARKER();
     updateTimeTargetSound();
 

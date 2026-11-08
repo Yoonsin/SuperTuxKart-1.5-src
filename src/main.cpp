@@ -1,4 +1,4 @@
-
+ï»¿
 //
 //  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2004-2015 Steve Baker <sjbaker1@airmail.net>
@@ -647,7 +647,7 @@ void cmdLineHelp()
     "                          spaces are allowed in the track names.\n"
     "       --demo-laps=n      Number of laps to use in a demo.\n"
     "       --demo-karts=n     Number of karts to use in a demo.\n"
-    "       --history          Replay history file 'history.dat'.\n"
+    "       --history[=FILE]   Replay a history file (default: history.dat).\n"
     "       --server-config=file Specify the server_config.xml for server hosting, it will create\n"
     "                            one if not found.\n"
     "       --fixed-kart=NAME Force all server players to use this kart.\n"
@@ -1708,7 +1708,9 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         }
     }   // --track
 
-    // used only for debugging/testing
+    // u
+    // 
+    // ed only for debugging/testing
     if (CommandLine::has("--cutscene", &s))
     {
         UserConfigParams::m_no_start_screen = true; // Purple menu background otherwise
@@ -1831,14 +1833,28 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         RaceManager::get()->setNumLaps(999999); // profile end depends on time
     }   // --profile-time
 
-    if(CommandLine::has("--history"))
+    s.clear();
+    const bool has_named_history = CommandLine::has("--history", &s);
+
+    const bool has_plain_history = CommandLine::has("--history");
+
+    if (has_named_history || has_plain_history)
     {
+        if (has_named_history && !s.empty())
+        {
+            history->setReplayFilename(s);
+        }
+        else
+            history->setReplayFilename("history.dat");
+
         history->setReplayHistory(true);
-        // Force the no-start screen flag, since this initialises
-        // the player structures correctly.
+
         if (!History::m_online_history_replay)
+        {
             UserConfigParams::m_no_start_screen = true;
+        }
     }   // --history
+
 
     // Demo mode
     if(CommandLine::has("--demo-mode", &s))
@@ -2594,7 +2610,7 @@ int main(int argc, char *argv[])
                 PlayerManager::get()->enforceCurrentPlayer();
             }
 
-            // È­¸é ÀüÈ¯
+            // í™”ë©´ ì „í™˜
             if (PlayerManager::getCurrentPlayer() && !UserConfigParams::m_always_show_login_screen)
             {
                 MainMenuScreen::getInstance()->push();

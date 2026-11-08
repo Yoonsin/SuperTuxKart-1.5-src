@@ -1,0 +1,888 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: PlayerProfile 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 타입</a> &#124;
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="classPlayerProfile-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">PlayerProfile 클래스 참조<span class="mlabels"><span class="mlabel abstract">abstract</span></span><div class="ingroups"><a class="el" href="group__config.html">Config</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Class for managing player profiles (name, usage frequency, etc.).  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="player__profile_8hpp_source.html">player_profile.hpp</a>&gt;</code></p>
+<div class="dynheader">
+PlayerProfile에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classPlayerProfile__inherit__graph.png" border="0" usemap="#aPlayerProfile_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aPlayerProfile_inherit__map" id="aPlayerProfile_inherit__map">
+<area shape="rect" title="Class for managing player profiles (name, usage frequency, etc.)." alt="" coords="46,80,142,107"/>
+<area shape="rect" href="classOnline_1_1OnlinePlayerProfile.html" title="Class that represents an online registered user" alt="" coords="5,155,183,181"/>
+<area shape="poly" title=" " alt="" coords="96,121,96,155,92,153,92,124"/>
+<area shape="rect" href="classNoCopy.html" title="Utility class, you can inherit from this class to disallow the assignment operator and copy construct..." alt="" coords="59,5,129,32"/>
+<area shape="poly" title=" " alt="" coords="95,45,97,80,91,79,93,50"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 타입</h2></td></tr>
+<tr class="memitem:aa56094aa8ccfa69f01a60a32e1f5cdf6" id="r_aa56094aa8ccfa69f01a60a32e1f5cdf6"><td class="memItemLeft"><a id="aa56094aa8ccfa69f01a60a32e1f5cdf6" name="aa56094aa8ccfa69f01a60a32e1f5cdf6"></a>enum &#160;</td><td class="memItemRight"><a class="el" href="#aa56094aa8ccfa69f01a60a32e1f5cdf6">OnlineState</a> { <br />
+&#160;&#160;<b>OS_SIGNED_OUT</b> = 0
+, <b>OS_SIGNED_IN</b>
+, <b>OS_GUEST</b>
+, <b>OS_SIGNING_IN</b>
+, <br />
+&#160;&#160;<b>OS_SIGNING_OUT</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:aa56094aa8ccfa69f01a60a32e1f5cdf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The online state a player can be in. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:afad2947e00914bfc8a01056d641a4c9d" id="r_afad2947e00914bfc8a01056d641a4c9d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#afad2947e00914bfc8a01056d641a4c9d">PlayerProfile</a> (const core::stringw &amp;name, bool is_guest=false)</td></tr>
+<tr class="memdesc:afad2947e00914bfc8a01056d641a4c9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to create a new player that didn't exist before.  <br /></td></tr>
+<tr class="memitem:a7a48c0e4e553f8da41ba3efdf2200947" id="r_a7a48c0e4e553f8da41ba3efdf2200947"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7a48c0e4e553f8da41ba3efdf2200947">PlayerProfile</a> (const <a class="el" href="classXMLNode.html">XMLNode</a> *node)</td></tr>
+<tr class="memdesc:a7a48c0e4e553f8da41ba3efdf2200947"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to deserialize player data that was saved to a XML file.  <br /></td></tr>
+<tr class="memitem:adb82c35ca380235e8bde990c990b8267" id="r_adb82c35ca380235e8bde990c990b8267"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adb82c35ca380235e8bde990c990b8267">save</a> (<a class="el" href="classUTFWriter.html">UTFWriter</a> &amp;out)</td></tr>
+<tr class="memdesc:adb82c35ca380235e8bde990c990b8267"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the data for this player to the specified <a class="el" href="classUTFWriter.html" title="utility class used to write wide (UTF-16 or UTF-32, depending of size of wchar_t) XML files">UTFWriter</a>.  <br /></td></tr>
+<tr class="memitem:a93305f92ba820f5178403f4b44b12010" id="r_a93305f92ba820f5178403f4b44b12010"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a93305f92ba820f5178403f4b44b12010">loadRemainingData</a> (const <a class="el" href="classXMLNode.html">XMLNode</a> *node)</td></tr>
+<tr class="memdesc:a93305f92ba820f5178403f4b44b12010"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function loads the achievement, story mode and favorites data.  <br /></td></tr>
+<tr class="memitem:ae32cf0f9c0143189d9b11d77bf0b09ba" id="r_ae32cf0f9c0143189d9b11d77bf0b09ba"><td class="memItemLeft"><a id="ae32cf0f9c0143189d9b11d77bf0b09ba" name="ae32cf0f9c0143189d9b11d77bf0b09ba"></a>
+void&#160;</td><td class="memItemRight"><b>initRemainingData</b> ()</td></tr>
+<tr class="memdesc:ae32cf0f9c0143189d9b11d77bf0b09ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the story- and achievement data structure in case of the first start of STK. <br /></td></tr>
+<tr class="memitem:a144e7b12bfa41c22ba48325c40a91bc9" id="r_a144e7b12bfa41c22ba48325c40a91bc9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a144e7b12bfa41c22ba48325c40a91bc9">incrementUseFrequency</a> ()</td></tr>
+<tr class="memdesc:a144e7b12bfa41c22ba48325c40a91bc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments how often that account was used.  <br /></td></tr>
+<tr class="memitem:a38f04b5f537f2f1967764b954b3c27a1" id="r_a38f04b5f537f2f1967764b954b3c27a1"><td class="memItemLeft"><a id="a38f04b5f537f2f1967764b954b3c27a1" name="a38f04b5f537f2f1967764b954b3c27a1"></a>
+int&#160;</td><td class="memItemRight"><b>getUseFrequency</b> () const</td></tr>
+<tr class="memitem:a9955d3169ffede3ea39a30ff8dd647cd" id="r_a9955d3169ffede3ea39a30ff8dd647cd"><td class="memItemLeft"><a id="a9955d3169ffede3ea39a30ff8dd647cd" name="a9955d3169ffede3ea39a30ff8dd647cd"></a>
+bool&#160;</td><td class="memItemRight"><b>operator&lt;</b> (const <a class="el" href="classPlayerProfile.html">PlayerProfile</a> &amp;other)</td></tr>
+<tr class="memdesc:a9955d3169ffede3ea39a30ff8dd647cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison used to sort players. <br /></td></tr>
+<tr class="memitem:aa546d8c00c75c1033815f07a67d0da4f" id="r_aa546d8c00c75c1033815f07a67d0da4f"><td class="memItemLeft"><a id="aa546d8c00c75c1033815f07a67d0da4f" name="aa546d8c00c75c1033815f07a67d0da4f"></a>
+void&#160;</td><td class="memItemRight"><b>raceFinished</b> ()</td></tr>
+<tr class="memdesc:aa546d8c00c75c1033815f07a67d0da4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notification of a finished race, which can trigger fulfilling challenges. <br /></td></tr>
+<tr class="memitem:a1690414acdb6446ebd8f84b65de7794b" id="r_a1690414acdb6446ebd8f84b65de7794b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1690414acdb6446ebd8f84b65de7794b">saveSession</a> (int user_id, const std::string &amp;token)</td></tr>
+<tr class="memdesc:a1690414acdb6446ebd8f84b65de7794b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the online data, so that it will automatically re-connect next time this profile is loaded.  <br /></td></tr>
+<tr class="memitem:a001531342943b50face59e569deff17c" id="r_a001531342943b50face59e569deff17c"><td class="memItemLeft"><a id="a001531342943b50face59e569deff17c" name="a001531342943b50face59e569deff17c"></a>
+void&#160;</td><td class="memItemRight"><b>clearSession</b> (bool save=true)</td></tr>
+<tr class="memdesc:a001531342943b50face59e569deff17c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsets any saved session data. <br /></td></tr>
+<tr class="memitem:a2373424b84471037dc8f29479f41e5fe" id="r_a2373424b84471037dc8f29479f41e5fe"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2373424b84471037dc8f29479f41e5fe">addIcon</a> ()</td></tr>
+<tr class="memdesc:a2373424b84471037dc8f29479f41e5fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an icon for a player if non exist so far.  <br /></td></tr>
+<tr class="memitem:aee6d278065e0524b8c215bc1ec583737" id="r_aee6d278065e0524b8c215bc1ec583737"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#aee6d278065e0524b8c215bc1ec583737">setUserDetails</a> (std::shared_ptr&lt; <a class="el" href="classOnline_1_1HTTPRequest.html">Online::HTTPRequest</a> &gt; request, const std::string &amp;action, const std::string &amp;url_path=&quot;&quot;) const =0</td></tr>
+<tr class="memdesc:aee6d278065e0524b8c215bc1ec583737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract virtual classes, to be implemented by the OnlinePlayer.  <br /></td></tr>
+<tr class="memitem:a4167cb7d52f66d3eb5fe10e7fa3be8e9" id="r_a4167cb7d52f66d3eb5fe10e7fa3be8e9"><td class="memItemLeft">virtual uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a4167cb7d52f66d3eb5fe10e7fa3be8e9">getOnlineId</a> () const =0</td></tr>
+<tr class="memitem:a3478460e7954a51c47462a347dd55790" id="r_a3478460e7954a51c47462a347dd55790"><td class="memItemLeft">virtual <a class="el" href="#aa56094aa8ccfa69f01a60a32e1f5cdf6">PlayerProfile::OnlineState</a>&#160;</td><td class="memItemRight"><a class="el" href="#a3478460e7954a51c47462a347dd55790">getOnlineState</a> () const =0</td></tr>
+<tr class="memitem:aca854167d5fc3efc57cd11279f8df3ce" id="r_aca854167d5fc3efc57cd11279f8df3ce"><td class="memItemLeft">virtual <a class="el" href="classOnline_1_1OnlineProfile.html">Online::OnlineProfile</a> *&#160;</td><td class="memItemRight"><a class="el" href="#aca854167d5fc3efc57cd11279f8df3ce">getProfile</a> () const =0</td></tr>
+<tr class="memitem:ae3bc9f37427045541684d19c2d08f5ee" id="r_ae3bc9f37427045541684d19c2d08f5ee"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ae3bc9f37427045541684d19c2d08f5ee">requestPoll</a> () const =0</td></tr>
+<tr class="memitem:ade82583268912e7f4fc15e0649c68d03" id="r_ade82583268912e7f4fc15e0649c68d03"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ade82583268912e7f4fc15e0649c68d03">requestSavedSession</a> ()=0</td></tr>
+<tr class="memitem:ac68aab4b9494564f37b50b2cef797266" id="r_ac68aab4b9494564f37b50b2cef797266"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ac68aab4b9494564f37b50b2cef797266">requestSignIn</a> (const irr::core::stringw &amp;username, const irr::core::stringw &amp;password)=0</td></tr>
+<tr class="memitem:afc8c6c929a67a33b57eb04a600370df9" id="r_afc8c6c929a67a33b57eb04a600370df9"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#afc8c6c929a67a33b57eb04a600370df9">signIn</a> (bool success, const <a class="el" href="classXMLNode.html">XMLNode</a> *input)=0</td></tr>
+<tr class="memitem:a240a5bec29ff24d9c870cd10879823b3" id="r_a240a5bec29ff24d9c870cd10879823b3"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a240a5bec29ff24d9c870cd10879823b3">signOut</a> (bool success, const <a class="el" href="classXMLNode.html">XMLNode</a> *input, const irr::core::stringw &amp;info)=0</td></tr>
+<tr class="memitem:a650fcf698edb9d5234e88c21b34c3bc1" id="r_a650fcf698edb9d5234e88c21b34c3bc1"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a650fcf698edb9d5234e88c21b34c3bc1">requestSignOut</a> ()=0</td></tr>
+<tr class="memitem:a39fb1161bd522092f689c4eb1f9206b0" id="r_a39fb1161bd522092f689c4eb1f9206b0"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a39fb1161bd522092f689c4eb1f9206b0">isLoggedIn</a> () const</td></tr>
+<tr class="memitem:a62e2b228228c098afafc60782fd96a3b" id="r_a62e2b228228c098afafc60782fd96a3b"><td class="memItemLeft">const std::string&#160;</td><td class="memItemRight"><a class="el" href="#a62e2b228228c098afafc60782fd96a3b">getIconFilename</a> () const</td></tr>
+<tr class="memdesc:a62e2b228228c098afafc60782fd96a3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the icon file for this player.  <br /></td></tr>
+<tr class="memitem:a711e4217b26e6e4872829aa7420b6266" id="r_a711e4217b26e6e4872829aa7420b6266"><td class="memItemLeft"><a id="a711e4217b26e6e4872829aa7420b6266" name="a711e4217b26e6e4872829aa7420b6266"></a>
+void&#160;</td><td class="memItemRight"><b>setName</b> (const core::stringw &amp;name)</td></tr>
+<tr class="memdesc:a711e4217b26e6e4872829aa7420b6266"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of this player. <br /></td></tr>
+<tr class="memitem:a7f54ac1fc3dbd5a8a3fce9367fa6d702" id="r_a7f54ac1fc3dbd5a8a3fce9367fa6d702"><td class="memItemLeft"><a id="a7f54ac1fc3dbd5a8a3fce9367fa6d702" name="a7f54ac1fc3dbd5a8a3fce9367fa6d702"></a>
+const core::stringw &amp;&#160;</td><td class="memItemRight"><b>getName</b> () const</td></tr>
+<tr class="memdesc:a7f54ac1fc3dbd5a8a3fce9367fa6d702"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of this player. <br /></td></tr>
+<tr class="memitem:aae92725711815d22641c83fd6ce2f78f" id="r_aae92725711815d22641c83fd6ce2f78f"><td class="memItemLeft"><a id="aae92725711815d22641c83fd6ce2f78f" name="aae92725711815d22641c83fd6ce2f78f"></a>
+bool&#160;</td><td class="memItemRight"><b>isGuestAccount</b> () const</td></tr>
+<tr class="memdesc:aae92725711815d22641c83fd6ce2f78f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if this player is a guest account. <br /></td></tr>
+<tr class="memitem:a0619dc16851da2a91ddbf0cae478027c" id="r_a0619dc16851da2a91ddbf0cae478027c"><td class="memItemLeft"><a id="a0619dc16851da2a91ddbf0cae478027c" name="a0619dc16851da2a91ddbf0cae478027c"></a>
+const core::stringw &amp;&#160;</td><td class="memItemRight"><b>getLastOnlineName</b> () const</td></tr>
+<tr class="memdesc:a0619dc16851da2a91ddbf0cae478027c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the last used online name. <br /></td></tr>
+<tr class="memitem:a583a88808d2ca76e56c4f24567bba48a" id="r_a583a88808d2ca76e56c4f24567bba48a"><td class="memItemLeft"><a id="a583a88808d2ca76e56c4f24567bba48a" name="a583a88808d2ca76e56c4f24567bba48a"></a>
+void&#160;</td><td class="memItemRight"><b>setLastOnlineName</b> (const core::stringw &amp;name)</td></tr>
+<tr class="memdesc:a583a88808d2ca76e56c4f24567bba48a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the last used online name. <br /></td></tr>
+<tr class="memitem:a090f24cbfbc9ea6e3852f2180c9b5260" id="r_a090f24cbfbc9ea6e3852f2180c9b5260"><td class="memItemLeft"><a id="a090f24cbfbc9ea6e3852f2180c9b5260" name="a090f24cbfbc9ea6e3852f2180c9b5260"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>getUniqueID</b> () const</td></tr>
+<tr class="memdesc:a090f24cbfbc9ea6e3852f2180c9b5260"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the unique id of this player. <br /></td></tr>
+<tr class="memitem:aaa07f35ab8d3ba6d745a38ef2c6570d1" id="r_aaa07f35ab8d3ba6d745a38ef2c6570d1"><td class="memItemLeft"><a id="aaa07f35ab8d3ba6d745a38ef2c6570d1" name="aaa07f35ab8d3ba6d745a38ef2c6570d1"></a>
+bool&#160;</td><td class="memItemRight"><b>isLocked</b> (const std::string &amp;feature) const</td></tr>
+<tr class="memdesc:aaa07f35ab8d3ba6d745a38ef2c6570d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returnes if the feature (kart, track) is locked. <br /></td></tr>
+<tr class="memitem:ac7c53ce887e480907417fada7e558312" id="r_ac7c53ce887e480907417fada7e558312"><td class="memItemLeft"><a id="ac7c53ce887e480907417fada7e558312" name="ac7c53ce887e480907417fada7e558312"></a>
+void&#160;</td><td class="memItemRight"><b>computeActive</b> ()</td></tr>
+<tr class="memdesc:ac7c53ce887e480907417fada7e558312"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns all active challenges. <br /></td></tr>
+<tr class="memitem:ac05edcb0d9ef70084dc33d7635421054" id="r_ac05edcb0d9ef70084dc33d7635421054"><td class="memItemLeft"><a id="ac05edcb0d9ef70084dc33d7635421054" name="ac05edcb0d9ef70084dc33d7635421054"></a>
+std::vector&lt; const <a class="el" href="classChallengeData.html">ChallengeData</a> * &gt;&#160;</td><td class="memItemRight"><b>getRecentlyCompletedChallenges</b> ()</td></tr>
+<tr class="memdesc:ac05edcb0d9ef70084dc33d7635421054"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the list of recently completed challenges. <br /></td></tr>
+<tr class="memitem:a30b6e460708afdb4d69b3c6fe56466db" id="r_a30b6e460708afdb4d69b3c6fe56466db"><td class="memItemLeft"><a id="a30b6e460708afdb4d69b3c6fe56466db" name="a30b6e460708afdb4d69b3c6fe56466db"></a>
+void&#160;</td><td class="memItemRight"><b>setCurrentChallenge</b> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:a30b6e460708afdb4d69b3c6fe56466db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the currently active challenge. <br /></td></tr>
+<tr class="memitem:a0ff000e00a9e1adb6691a4bcac9aa450" id="r_a0ff000e00a9e1adb6691a4bcac9aa450"><td class="memItemLeft"><a id="a0ff000e00a9e1adb6691a4bcac9aa450" name="a0ff000e00a9e1adb6691a4bcac9aa450"></a>
+void&#160;</td><td class="memItemRight"><b>grandPrixFinished</b> ()</td></tr>
+<tr class="memdesc:a0ff000e00a9e1adb6691a4bcac9aa450"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback when a GP is finished (to test if a challenge was fulfilled). <br /></td></tr>
+<tr class="memitem:a1525d141101eca2dfab2e7b3d3cc301b" id="r_a1525d141101eca2dfab2e7b3d3cc301b"><td class="memItemLeft"><a id="a1525d141101eca2dfab2e7b3d3cc301b" name="a1525d141101eca2dfab2e7b3d3cc301b"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>getNumCompletedChallenges</b> () const</td></tr>
+<tr class="memitem:a1874f767302fbac86cabd6389f02c710" id="r_a1874f767302fbac86cabd6389f02c710"><td class="memItemLeft"><a id="a1874f767302fbac86cabd6389f02c710" name="a1874f767302fbac86cabd6389f02c710"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>getPoints</b> () const</td></tr>
+<tr class="memitem:aad720132b8b19d39c9a837e8b72bd408" id="r_aad720132b8b19d39c9a837e8b72bd408"><td class="memItemLeft"><a id="aad720132b8b19d39c9a837e8b72bd408" name="aad720132b8b19d39c9a837e8b72bd408"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>getPointsBefore</b> () const</td></tr>
+<tr class="memitem:a940696d05a97f3ed76f24ccd4b90f4c3" id="r_a940696d05a97f3ed76f24ccd4b90f4c3"><td class="memItemLeft"><a id="a940696d05a97f3ed76f24ccd4b90f4c3" name="a940696d05a97f3ed76f24ccd4b90f4c3"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>getNextUnlockPoints</b> () const</td></tr>
+<tr class="memitem:a0795351e65807f5a8065b844c18a9f80" id="r_a0795351e65807f5a8065b844c18a9f80"><td class="memItemLeft"><a id="a0795351e65807f5a8065b844c18a9f80" name="a0795351e65807f5a8065b844c18a9f80"></a>
+void&#160;</td><td class="memItemRight"><b>setFirstTime</b> (bool b)</td></tr>
+<tr class="memitem:ae3f24fe5dae1cae973721dac192a257b" id="r_ae3f24fe5dae1cae973721dac192a257b"><td class="memItemLeft"><a id="ae3f24fe5dae1cae973721dac192a257b" name="ae3f24fe5dae1cae973721dac192a257b"></a>
+bool&#160;</td><td class="memItemRight"><b>isFirstTime</b> () const</td></tr>
+<tr class="memitem:a5225ff68a0cdbfd3787a1cf6280db17d" id="r_a5225ff68a0cdbfd3787a1cf6280db17d"><td class="memItemLeft"><a id="a5225ff68a0cdbfd3787a1cf6280db17d" name="a5225ff68a0cdbfd3787a1cf6280db17d"></a>
+void&#160;</td><td class="memItemRight"><b>setFinished</b> ()</td></tr>
+<tr class="memitem:a6439ac602f10b804259398392852cac4" id="r_a6439ac602f10b804259398392852cac4"><td class="memItemLeft"><a id="a6439ac602f10b804259398392852cac4" name="a6439ac602f10b804259398392852cac4"></a>
+bool&#160;</td><td class="memItemRight"><b>isFinished</b> () const</td></tr>
+<tr class="memitem:a9664a993f429caf9710d660fd7f1c1f4" id="r_a9664a993f429caf9710d660fd7f1c1f4"><td class="memItemLeft"><a id="a9664a993f429caf9710d660fd7f1c1f4" name="a9664a993f429caf9710d660fd7f1c1f4"></a>
+void&#160;</td><td class="memItemRight"><b>setSpeedrunFinished</b> ()</td></tr>
+<tr class="memitem:a993912014f4dcea1045c57d51b4cac9f" id="r_a993912014f4dcea1045c57d51b4cac9f"><td class="memItemLeft"><a id="a993912014f4dcea1045c57d51b4cac9f" name="a993912014f4dcea1045c57d51b4cac9f"></a>
+bool&#160;</td><td class="memItemRight"><b>isSpeedrunFinished</b> ()</td></tr>
+<tr class="memitem:adeddabd78e4fc538a909b7f451474393" id="r_adeddabd78e4fc538a909b7f451474393"><td class="memItemLeft"><a id="adeddabd78e4fc538a909b7f451474393" name="adeddabd78e4fc538a909b7f451474393"></a>
+void&#160;</td><td class="memItemRight"><b>setStoryModeTimer</b> (int ms)</td></tr>
+<tr class="memitem:ae6c763c5778928e1a046c3cef68d67c3" id="r_ae6c763c5778928e1a046c3cef68d67c3"><td class="memItemLeft"><a id="ae6c763c5778928e1a046c3cef68d67c3" name="ae6c763c5778928e1a046c3cef68d67c3"></a>
+int&#160;</td><td class="memItemRight"><b>getStoryModeTimer</b> ()</td></tr>
+<tr class="memitem:abb7dc37a176c35815adf4e15a261c927" id="r_abb7dc37a176c35815adf4e15a261c927"><td class="memItemLeft"><a id="abb7dc37a176c35815adf4e15a261c927" name="abb7dc37a176c35815adf4e15a261c927"></a>
+void&#160;</td><td class="memItemRight"><b>setSpeedrunTimer</b> (int ms)</td></tr>
+<tr class="memitem:a20e9258223536b2de0dab5297cf2451b" id="r_a20e9258223536b2de0dab5297cf2451b"><td class="memItemLeft"><a id="a20e9258223536b2de0dab5297cf2451b" name="a20e9258223536b2de0dab5297cf2451b"></a>
+int&#160;</td><td class="memItemRight"><b>getSpeedrunTimer</b> ()</td></tr>
+<tr class="memitem:a8eff67d60455888cf135e303bfe334d2" id="r_a8eff67d60455888cf135e303bfe334d2"><td class="memItemLeft"><a id="a8eff67d60455888cf135e303bfe334d2" name="a8eff67d60455888cf135e303bfe334d2"></a>
+void&#160;</td><td class="memItemRight"><b>clearUnlocked</b> ()</td></tr>
+<tr class="memitem:a279359f6b3455d9a3d5670606e917c61" id="r_a279359f6b3455d9a3d5670606e917c61"><td class="memItemLeft"><a id="a279359f6b3455d9a3d5670606e917c61" name="a279359f6b3455d9a3d5670606e917c61"></a>
+const <a class="el" href="classChallengeStatus.html">ChallengeStatus</a> *&#160;</td><td class="memItemRight"><b>getCurrentChallengeStatus</b> () const</td></tr>
+<tr class="memdesc:a279359f6b3455d9a3d5670606e917c61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current challenge for this player. <br /></td></tr>
+<tr class="memitem:aba2bd1d053a9323de9cdc350373cdd1d" id="r_aba2bd1d053a9323de9cdc350373cdd1d"><td class="memItemLeft"><a id="aba2bd1d053a9323de9cdc350373cdd1d" name="aba2bd1d053a9323de9cdc350373cdd1d"></a>
+const <a class="el" href="classChallengeStatus.html">ChallengeStatus</a> *&#160;</td><td class="memItemRight"><b>getChallengeStatus</b> (const std::string &amp;id)</td></tr>
+<tr class="memitem:a4f01dda5a5d0425cf6ac2deb06e1e413" id="r_a4f01dda5a5d0425cf6ac2deb06e1e413"><td class="memItemLeft"><a id="a4f01dda5a5d0425cf6ac2deb06e1e413" name="a4f01dda5a5d0425cf6ac2deb06e1e413"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>getNumEasyTrophies</b> () const</td></tr>
+<tr class="memitem:a8be38c593bf3e1d4409ea3181d1e69da" id="r_a8be38c593bf3e1d4409ea3181d1e69da"><td class="memItemLeft"><a id="a8be38c593bf3e1d4409ea3181d1e69da" name="a8be38c593bf3e1d4409ea3181d1e69da"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>getNumMediumTrophies</b> () const</td></tr>
+<tr class="memitem:a2f8924cd3e9e127f89f6203528955977" id="r_a2f8924cd3e9e127f89f6203528955977"><td class="memItemLeft"><a id="a2f8924cd3e9e127f89f6203528955977" name="a2f8924cd3e9e127f89f6203528955977"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>getNumHardTrophies</b> () const</td></tr>
+<tr class="memitem:a1e0f6bd0e03eaa979db6272413520670" id="r_a1e0f6bd0e03eaa979db6272413520670"><td class="memItemLeft"><a id="a1e0f6bd0e03eaa979db6272413520670" name="a1e0f6bd0e03eaa979db6272413520670"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>getNumBestTrophies</b> () const</td></tr>
+<tr class="memitem:af77de8b160c843439b9694b2764877d3" id="r_af77de8b160c843439b9694b2764877d3"><td class="memItemLeft"><a id="af77de8b160c843439b9694b2764877d3" name="af77de8b160c843439b9694b2764877d3"></a>
+<a class="el" href="classAchievementsStatus.html">AchievementsStatus</a> *&#160;</td><td class="memItemRight"><b>getAchievementsStatus</b> ()</td></tr>
+<tr class="memitem:a101fc04055fbcb0780ed849ed3f7d040" id="r_a101fc04055fbcb0780ed849ed3f7d040"><td class="memItemLeft"><a id="a101fc04055fbcb0780ed849ed3f7d040" name="a101fc04055fbcb0780ed849ed3f7d040"></a>
+bool&#160;</td><td class="memItemRight"><b>hasSavedSession</b> () const</td></tr>
+<tr class="memdesc:a101fc04055fbcb0780ed849ed3f7d040"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if a session was saved for this player. <br /></td></tr>
+<tr class="memitem:abe387c15d03c0c67fa41da44cab7c1f5" id="r_abe387c15d03c0c67fa41da44cab7c1f5"><td class="memItemLeft"><a id="abe387c15d03c0c67fa41da44cab7c1f5" name="abe387c15d03c0c67fa41da44cab7c1f5"></a>
+<a class="el" href="classStoryModeStatus.html">StoryModeStatus</a> *&#160;</td><td class="memItemRight"><b>getStoryModeStatus</b> ()</td></tr>
+<tr class="memitem:a33345a0924091d9d96b8aa2a82324e68" id="r_a33345a0924091d9d96b8aa2a82324e68"><td class="memItemLeft"><a id="a33345a0924091d9d96b8aa2a82324e68" name="a33345a0924091d9d96b8aa2a82324e68"></a>
+<a class="el" href="classFavoriteStatus.html">FavoriteStatus</a> *&#160;</td><td class="memItemRight"><b>getFavoriteTrackStatus</b> ()</td></tr>
+<tr class="memitem:ab67e4e83ecdc5321d5011080124f87fd" id="r_ab67e4e83ecdc5321d5011080124f87fd"><td class="memItemLeft"><a id="ab67e4e83ecdc5321d5011080124f87fd" name="ab67e4e83ecdc5321d5011080124f87fd"></a>
+<a class="el" href="classFavoriteStatus.html">FavoriteStatus</a> *&#160;</td><td class="memItemRight"><b>getFavoriteKartStatus</b> ()</td></tr>
+<tr class="memitem:a9bba960ab90d64903276d64d4708f6ec" id="r_a9bba960ab90d64903276d64d4708f6ec"><td class="memItemLeft"><a id="a9bba960ab90d64903276d64d4708f6ec" name="a9bba960ab90d64903276d64d4708f6ec"></a>
+bool&#160;</td><td class="memItemRight"><b>isFavoriteTrack</b> (std::string ident)</td></tr>
+<tr class="memitem:a87b4544b66224cf9cda1c69c01eed3c2" id="r_a87b4544b66224cf9cda1c69c01eed3c2"><td class="memItemLeft"><a id="a87b4544b66224cf9cda1c69c01eed3c2" name="a87b4544b66224cf9cda1c69c01eed3c2"></a>
+void&#160;</td><td class="memItemRight"><b>addFavoriteTrack</b> (std::string ident, std::string group=FavoriteStatus::DEFAULT_FAVORITE_GROUP_NAME)</td></tr>
+<tr class="memitem:a574a5105f86224374b3a828b862844ab" id="r_a574a5105f86224374b3a828b862844ab"><td class="memItemLeft"><a id="a574a5105f86224374b3a828b862844ab" name="a574a5105f86224374b3a828b862844ab"></a>
+void&#160;</td><td class="memItemRight"><b>removeFavoriteTrack</b> (std::string ident, std::string group=FavoriteStatus::DEFAULT_FAVORITE_GROUP_NAME)</td></tr>
+<tr class="memitem:a88798f1aac2d28b64f14bca7ef410c5c" id="r_a88798f1aac2d28b64f14bca7ef410c5c"><td class="memItemLeft"><a id="a88798f1aac2d28b64f14bca7ef410c5c" name="a88798f1aac2d28b64f14bca7ef410c5c"></a>
+bool&#160;</td><td class="memItemRight"><b>isFavoriteKart</b> (std::string ident)</td></tr>
+<tr class="memitem:a6645f7649a30147b03a87470a811a6c4" id="r_a6645f7649a30147b03a87470a811a6c4"><td class="memItemLeft"><a id="a6645f7649a30147b03a87470a811a6c4" name="a6645f7649a30147b03a87470a811a6c4"></a>
+void&#160;</td><td class="memItemRight"><b>addFavoriteKart</b> (std::string ident, std::string group=FavoriteStatus::DEFAULT_FAVORITE_GROUP_NAME)</td></tr>
+<tr class="memitem:ada0369957ca735c9ad56a18fdb94a0c6" id="r_ada0369957ca735c9ad56a18fdb94a0c6"><td class="memItemLeft"><a id="ada0369957ca735c9ad56a18fdb94a0c6" name="ada0369957ca735c9ad56a18fdb94a0c6"></a>
+void&#160;</td><td class="memItemRight"><b>removeFavoriteKart</b> (std::string ident, std::string group=FavoriteStatus::DEFAULT_FAVORITE_GROUP_NAME)</td></tr>
+<tr class="memitem:a2cf47e36a2babe96969b39ef615727ea" id="r_a2cf47e36a2babe96969b39ef615727ea"><td class="memItemLeft"><a id="a2cf47e36a2babe96969b39ef615727ea" name="a2cf47e36a2babe96969b39ef615727ea"></a>
+int&#160;</td><td class="memItemRight"><b>getSavedUserId</b> () const</td></tr>
+<tr class="memdesc:a2cf47e36a2babe96969b39ef615727ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">If a session was saved, return the id of the saved user. <br /></td></tr>
+<tr class="memitem:a8ff65f302c6bd3307cd1469bb76da910" id="r_a8ff65f302c6bd3307cd1469bb76da910"><td class="memItemLeft"><a id="a8ff65f302c6bd3307cd1469bb76da910" name="a8ff65f302c6bd3307cd1469bb76da910"></a>
+const std::string &amp;&#160;</td><td class="memItemRight"><b>getSavedToken</b> () const</td></tr>
+<tr class="memdesc:a8ff65f302c6bd3307cd1469bb76da910"><td class="mdescLeft">&#160;</td><td class="mdescRight">If a session was saved, return the token to use. <br /></td></tr>
+<tr class="memitem:aeb96d19ad7d0aa087be47851324bc533" id="r_aeb96d19ad7d0aa087be47851324bc533"><td class="memItemLeft"><a id="aeb96d19ad7d0aa087be47851324bc533" name="aeb96d19ad7d0aa087be47851324bc533"></a>
+bool&#160;</td><td class="memItemRight"><b>wasOnlineLastTime</b> () const</td></tr>
+<tr class="memdesc:aeb96d19ad7d0aa087be47851324bc533"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the last time this player was used it was used online or offline. <br /></td></tr>
+<tr class="memitem:ac5261c0e12801f773731ff63378ec908" id="r_ac5261c0e12801f773731ff63378ec908"><td class="memItemLeft"><a id="ac5261c0e12801f773731ff63378ec908" name="ac5261c0e12801f773731ff63378ec908"></a>
+void&#160;</td><td class="memItemRight"><b>setWasOnlineLastTime</b> (bool b)</td></tr>
+<tr class="memdesc:ac5261c0e12801f773731ff63378ec908"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if this player was logged in last time it was used. <br /></td></tr>
+<tr class="memitem:ad4095703090c8e9ff8c5ce7b93657f98" id="r_ad4095703090c8e9ff8c5ce7b93657f98"><td class="memItemLeft"><a id="ad4095703090c8e9ff8c5ce7b93657f98" name="ad4095703090c8e9ff8c5ce7b93657f98"></a>
+bool&#160;</td><td class="memItemRight"><b>rememberPassword</b> () const</td></tr>
+<tr class="memdesc:ad4095703090c8e9ff8c5ce7b93657f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the last time this player was used it was used online or offline. <br /></td></tr>
+<tr class="memitem:a7334fd06cbc231ff5a24de6c0eca4b6f" id="r_a7334fd06cbc231ff5a24de6c0eca4b6f"><td class="memItemLeft"><a id="a7334fd06cbc231ff5a24de6c0eca4b6f" name="a7334fd06cbc231ff5a24de6c0eca4b6f"></a>
+void&#160;</td><td class="memItemRight"><b>setRememberPassword</b> (bool b)</td></tr>
+<tr class="memdesc:a7334fd06cbc231ff5a24de6c0eca4b6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets if this player was logged in last time it was used. <br /></td></tr>
+<tr class="memitem:a4c4e3577879fdb7626bcd9ea3f5e3684" id="r_a4c4e3577879fdb7626bcd9ea3f5e3684"><td class="memItemLeft"><a id="a4c4e3577879fdb7626bcd9ea3f5e3684" name="a4c4e3577879fdb7626bcd9ea3f5e3684"></a>
+void&#160;</td><td class="memItemRight"><b>setDefaultKartColor</b> (float c)</td></tr>
+<tr class="memitem:ae02e9d57140d5962e369a32335a3f024" id="r_ae02e9d57140d5962e369a32335a3f024"><td class="memItemLeft"><a id="ae02e9d57140d5962e369a32335a3f024" name="ae02e9d57140d5962e369a32335a3f024"></a>
+float&#160;</td><td class="memItemRight"><b>getDefaultKartColor</b> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:a9f7fb177f20530b9142ce31af15156c0" id="r_a9f7fb177f20530b9142ce31af15156c0"><td class="memItemLeft"><a id="a9f7fb177f20530b9142ce31af15156c0" name="a9f7fb177f20530b9142ce31af15156c0"></a>
+core::stringw&#160;</td><td class="memItemRight"><b>m_local_name</b></td></tr>
+<tr class="memdesc:a9f7fb177f20530b9142ce31af15156c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the player (wide string, so it can be in native language). <br /></td></tr>
+<tr class="memitem:ab8828b9922e28015fb7b292a7f229344" id="r_ab8828b9922e28015fb7b292a7f229344"><td class="memItemLeft"><a id="ab8828b9922e28015fb7b292a7f229344" name="ab8828b9922e28015fb7b292a7f229344"></a>
+bool&#160;</td><td class="memItemRight"><b>m_is_guest_account</b></td></tr>
+<tr class="memdesc:ab8828b9922e28015fb7b292a7f229344"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if this account is a guest account. <br /></td></tr>
+<tr class="memitem:a44ed0cc6520cee65105e1185db9722b2" id="r_a44ed0cc6520cee65105e1185db9722b2"><td class="memItemLeft"><a id="a44ed0cc6520cee65105e1185db9722b2" name="a44ed0cc6520cee65105e1185db9722b2"></a>
+int&#160;</td><td class="memItemRight"><b>m_use_frequency</b></td></tr>
+<tr class="memdesc:a44ed0cc6520cee65105e1185db9722b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts how often this player was used (always -1 for guests). <br /></td></tr>
+<tr class="memitem:ab5e620f44020c59467da683e27552be3" id="r_ab5e620f44020c59467da683e27552be3"><td class="memItemLeft"><a id="ab5e620f44020c59467da683e27552be3" name="ab5e620f44020c59467da683e27552be3"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>m_unique_id</b></td></tr>
+<tr class="memdesc:ab5e620f44020c59467da683e27552be3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A unique number for this player, used to link it to challenges etc. <br /></td></tr>
+<tr class="memitem:a59f6d1d69b25a199fd40033c5876763a" id="r_a59f6d1d69b25a199fd40033c5876763a"><td class="memItemLeft"><a id="a59f6d1d69b25a199fd40033c5876763a" name="a59f6d1d69b25a199fd40033c5876763a"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_icon_filename</b></td></tr>
+<tr class="memdesc:a59f6d1d69b25a199fd40033c5876763a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absolute path of the icon file for this player. <br /></td></tr>
+<tr class="memitem:a102a6f9ae8a068ec49c9ceb610ba9657" id="r_a102a6f9ae8a068ec49c9ceb610ba9657"><td class="memItemLeft"><a id="a102a6f9ae8a068ec49c9ceb610ba9657" name="a102a6f9ae8a068ec49c9ceb610ba9657"></a>
+bool&#160;</td><td class="memItemRight"><b>m_saved_session</b></td></tr>
+<tr class="memdesc:a102a6f9ae8a068ec49c9ceb610ba9657"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if this user has a saved session. <br /></td></tr>
+<tr class="memitem:ae9245b6711ba71fb1b05823e29177348" id="r_ae9245b6711ba71fb1b05823e29177348"><td class="memItemLeft"><a id="ae9245b6711ba71fb1b05823e29177348" name="ae9245b6711ba71fb1b05823e29177348"></a>
+int&#160;</td><td class="memItemRight"><b>m_saved_user_id</b></td></tr>
+<tr class="memdesc:ae9245b6711ba71fb1b05823e29177348"><td class="mdescLeft">&#160;</td><td class="mdescRight">If a session was saved, this will be the online user id to use. <br /></td></tr>
+<tr class="memitem:a6ac7ca0763160d4df37677d517a9e952" id="r_a6ac7ca0763160d4df37677d517a9e952"><td class="memItemLeft"><a id="a6ac7ca0763160d4df37677d517a9e952" name="a6ac7ca0763160d4df37677d517a9e952"></a>
+std::string&#160;</td><td class="memItemRight"><b>m_saved_token</b></td></tr>
+<tr class="memdesc:a6ac7ca0763160d4df37677d517a9e952"><td class="mdescLeft">&#160;</td><td class="mdescRight">The token of the saved session. <br /></td></tr>
+<tr class="memitem:afdcdc6f6a7f961d5f70187aa25e5b89d" id="r_afdcdc6f6a7f961d5f70187aa25e5b89d"><td class="memItemLeft"><a id="afdcdc6f6a7f961d5f70187aa25e5b89d" name="afdcdc6f6a7f961d5f70187aa25e5b89d"></a>
+core::stringw&#160;</td><td class="memItemRight"><b>m_last_online_name</b></td></tr>
+<tr class="memdesc:afdcdc6f6a7f961d5f70187aa25e5b89d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The online user name used last (empty if not used online). <br /></td></tr>
+<tr class="memitem:a9617e97c7346bc84f0fb45712b230816" id="r_a9617e97c7346bc84f0fb45712b230816"><td class="memItemLeft"><a id="a9617e97c7346bc84f0fb45712b230816" name="a9617e97c7346bc84f0fb45712b230816"></a>
+bool&#160;</td><td class="memItemRight"><b>m_last_was_online</b></td></tr>
+<tr class="memdesc:a9617e97c7346bc84f0fb45712b230816"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the last time this player was used as online. <br /></td></tr>
+<tr class="memitem:afe4f5a57e94f601d2852f90a15cecb35" id="r_afe4f5a57e94f601d2852f90a15cecb35"><td class="memItemLeft"><a id="afe4f5a57e94f601d2852f90a15cecb35" name="afe4f5a57e94f601d2852f90a15cecb35"></a>
+bool&#160;</td><td class="memItemRight"><b>m_remember_password</b></td></tr>
+<tr class="memdesc:afe4f5a57e94f601d2852f90a15cecb35"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the login data are saved. <br /></td></tr>
+<tr class="memitem:ac52bca4f1bebc0bb71b00097e48f4040" id="r_ac52bca4f1bebc0bb71b00097e48f4040"><td class="memItemLeft"><a id="ac52bca4f1bebc0bb71b00097e48f4040" name="ac52bca4f1bebc0bb71b00097e48f4040"></a>
+float&#160;</td><td class="memItemRight"><b>m_default_kart_color</b></td></tr>
+<tr class="memdesc:ac52bca4f1bebc0bb71b00097e48f4040"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default kart color (in hue) used in game, 0.0f to use the original. <br /></td></tr>
+<tr class="memitem:a5eb64ad63872371269b97be637c20fee" id="r_a5eb64ad63872371269b97be637c20fee"><td class="memItemLeft"><a id="a5eb64ad63872371269b97be637c20fee" name="a5eb64ad63872371269b97be637c20fee"></a>
+<a class="el" href="classStoryModeStatus.html">StoryModeStatus</a> *&#160;</td><td class="memItemRight"><b>m_story_mode_status</b></td></tr>
+<tr class="memdesc:a5eb64ad63872371269b97be637c20fee"><td class="mdescLeft">&#160;</td><td class="mdescRight">The complete challenge state. <br /></td></tr>
+<tr class="memitem:a2c6abcc23aad17025613a08c3a4208a4" id="r_a2c6abcc23aad17025613a08c3a4208a4"><td class="memItemLeft"><a id="a2c6abcc23aad17025613a08c3a4208a4" name="a2c6abcc23aad17025613a08c3a4208a4"></a>
+<a class="el" href="classAchievementsStatus.html">AchievementsStatus</a> *&#160;</td><td class="memItemRight"><b>m_achievements_status</b></td></tr>
+<tr class="memdesc:a2c6abcc23aad17025613a08c3a4208a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The complete achievement data. <br /></td></tr>
+<tr class="memitem:ada2c6277ec2d1aa9deb19ff53e46d6d3" id="r_ada2c6277ec2d1aa9deb19ff53e46d6d3"><td class="memItemLeft"><a id="ada2c6277ec2d1aa9deb19ff53e46d6d3" name="ada2c6277ec2d1aa9deb19ff53e46d6d3"></a>
+<a class="el" href="classFavoriteStatus.html">FavoriteStatus</a> *&#160;</td><td class="memItemRight"><b>m_favorite_track_status</b></td></tr>
+<tr class="memdesc:ada2c6277ec2d1aa9deb19ff53e46d6d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The favorite tracks selected by this player. <br /></td></tr>
+<tr class="memitem:a9a843f8c75630c89c5d44be0a187eecc" id="r_a9a843f8c75630c89c5d44be0a187eecc"><td class="memItemLeft"><a id="a9a843f8c75630c89c5d44be0a187eecc" name="a9a843f8c75630c89c5d44be0a187eecc"></a>
+<a class="el" href="classFavoriteStatus.html">FavoriteStatus</a> *&#160;</td><td class="memItemRight"><b>m_favorite_kart_status</b></td></tr>
+<tr class="memdesc:a9a843f8c75630c89c5d44be0a187eecc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The favorite karts selected by this player. <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Class for managing player profiles (name, usage frequency, etc.). </p>
+<p>All PlayerProfiles are managed by the <a class="el" href="classPlayerManager.html" title="A special class that manages all local player accounts.">PlayerManager</a>. A <a class="el" href="classPlayerProfile.html" title="Class for managing player profiles (name, usage frequency, etc.).">PlayerProfile</a> keeps track of the story mode progress using an instance of <a class="el" href="classStoryModeStatus.html" title="This class contains the progression through challenges for the story mode.">StoryModeStatus</a>, and achievements with <a class="el" href="classAchievementsStatus.html" title="This class keeps tracks of all achievements of one player.">AchievementsStatus</a>. All data is saved in the players.xml file. This class also defines the interface for handling online data. All of the online handling is done in the derived class OnlinePlayerProfile, where the interface is fully implemented. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">생성자 &amp; 소멸자 문서화</h2>
+<a id="afad2947e00914bfc8a01056d641a4c9d" name="afad2947e00914bfc8a01056d641a4c9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afad2947e00914bfc8a01056d641a4c9d">&#9670;&#160;</a></span>PlayerProfile() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PlayerProfile::PlayerProfile </td>
+          <td>(</td>
+          <td class="paramtype">const core::stringw &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_guest</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor to create a new player that didn't exist before. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name of the player. </td></tr>
+    <tr><td class="paramname">is_guest</td><td>True if this is a guest account. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7a48c0e4e553f8da41ba3efdf2200947" name="a7a48c0e4e553f8da41ba3efdf2200947"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a48c0e4e553f8da41ba3efdf2200947">&#9670;&#160;</a></span>PlayerProfile() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PlayerProfile::PlayerProfile </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classXMLNode.html">XMLNode</a> *</td>          <td class="paramname"><span class="paramname"><em>node</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor to deserialize player data that was saved to a XML file. </p>
+<p>The constructor will only load the main player data (like name, id, saved online data), but not the achievements and story mode data. Reason is that the achievement and story mode data depends on other data to be read first (challenges and achievement files), which in turn can only be created later in the startup process (they depend on e.g. all tracks to be known). On the other hand, automatic login needs to happen asap (i.e. as soon as the network thread is started) to avoid the player having to wait for the login to finish , which needs the main player data (i.e. the default player, and saved session data). So the constructor only reads this data, the rest of the player data is handled in loadRemainingData later in the initialisation process. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td>The XML node representing this player. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a2373424b84471037dc8f29479f41e5fe" name="a2373424b84471037dc8f29479f41e5fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2373424b84471037dc8f29479f41e5fe">&#9670;&#160;</a></span>addIcon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerProfile::addIcon </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates an icon for a player if non exist so far. </p>
+<p>It takes the unique player id modulo the number of karts to pick an icon from the karts. It then uses the unique number plus the extentsion of the original icon as the file name (it's not possible to use the player name, since the name is in utf-16, but typically the file systems are not, resulting in incorrect file names). The icon is then copied to the user config directory, so that it can be replaced by an icon made by the user. If there should be an error copying the file, the icon filename is set to "". Every time stk is started, it will try to fix missing icons (which allows it to start from old/incompatible config files). </p><dl class="section pre"><dt>전제조건</dt><dd>This function must only be called after all karts are read in. </dd></dl>
+
+</div>
+</div>
+<a id="a62e2b228228c098afafc60782fd96a3b" name="a62e2b228228c098afafc60782fd96a3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62e2b228228c098afafc60782fd96a3b">&#9670;&#160;</a></span>getIconFilename()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string PlayerProfile::getIconFilename </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the name of the icon file for this player. </p>
+<p>If the player icon file is undefined, it returns a "?" mark texture. Note, getAsset does not return a reference, but only a temporary string. So we must return a copy of the string (not a reference to). </p>
+
+</div>
+</div>
+<a id="a4167cb7d52f66d3eb5fe10e7fa3be8e9" name="a4167cb7d52f66d3eb5fe10e7fa3be8e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4167cb7d52f66d3eb5fe10e7fa3be8e9">&#9670;&#160;</a></span>getOnlineId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint32_t PlayerProfile::getOnlineId </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classOnline_1_1OnlinePlayerProfile.html#ab6d720a25a12c9258aa204466744d0fe">Online::OnlinePlayerProfile</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a3478460e7954a51c47462a347dd55790" name="a3478460e7954a51c47462a347dd55790"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3478460e7954a51c47462a347dd55790">&#9670;&#160;</a></span>getOnlineState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="#aa56094aa8ccfa69f01a60a32e1f5cdf6">PlayerProfile::OnlineState</a> PlayerProfile::getOnlineState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classOnline_1_1OnlinePlayerProfile.html#a7c0a87ba77e5e642b35c389fb22f7707">Online::OnlinePlayerProfile</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="aca854167d5fc3efc57cd11279f8df3ce" name="aca854167d5fc3efc57cd11279f8df3ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca854167d5fc3efc57cd11279f8df3ce">&#9670;&#160;</a></span>getProfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classOnline_1_1OnlineProfile.html">Online::OnlineProfile</a> * PlayerProfile::getProfile </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classOnline_1_1OnlinePlayerProfile.html#a32fb1062866e547b09de3d5dd5e0fd50">Online::OnlinePlayerProfile</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a144e7b12bfa41c22ba48325c40a91bc9" name="a144e7b12bfa41c22ba48325c40a91bc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a144e7b12bfa41c22ba48325c40a91bc9">&#9670;&#160;</a></span>incrementUseFrequency()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerProfile::incrementUseFrequency </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Increments how often that account was used. </p>
+<p>Guest accounts are not counted. </p>
+
+</div>
+</div>
+<a id="a39fb1161bd522092f689c4eb1f9206b0" name="a39fb1161bd522092f689c4eb1f9206b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39fb1161bd522092f689c4eb1f9206b0">&#9670;&#160;</a></span>isLoggedIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool PlayerProfile::isLoggedIn </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classOnline_1_1OnlinePlayerProfile.html#ac006e04ad687e08504ae501027f8cc51">Online::OnlinePlayerProfile</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a93305f92ba820f5178403f4b44b12010" name="a93305f92ba820f5178403f4b44b12010"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93305f92ba820f5178403f4b44b12010">&#9670;&#160;</a></span>loadRemainingData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerProfile::loadRemainingData </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classXMLNode.html">XMLNode</a> *</td>          <td class="paramname"><span class="paramname"><em>node</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function loads the achievement, story mode and favorites data. </p>
+<p>These can only be loaded after the karts and tracks. </p>
+
+</div>
+</div>
+<a id="ae3bc9f37427045541684d19c2d08f5ee" name="ae3bc9f37427045541684d19c2d08f5ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3bc9f37427045541684d19c2d08f5ee">&#9670;&#160;</a></span>requestPoll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PlayerProfile::requestPoll </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classOnline_1_1OnlinePlayerProfile.html#a6dd45a3833e3b68818992266cc6b2ab5">Online::OnlinePlayerProfile</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="ade82583268912e7f4fc15e0649c68d03" name="ade82583268912e7f4fc15e0649c68d03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade82583268912e7f4fc15e0649c68d03">&#9670;&#160;</a></span>requestSavedSession()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PlayerProfile::requestSavedSession </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classOnline_1_1OnlinePlayerProfile.html#a81b08847356c0e55fd3000bd09379bda">Online::OnlinePlayerProfile</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="ac68aab4b9494564f37b50b2cef797266" name="ac68aab4b9494564f37b50b2cef797266"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac68aab4b9494564f37b50b2cef797266">&#9670;&#160;</a></span>requestSignIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PlayerProfile::requestSignIn </td>
+          <td>(</td>
+          <td class="paramtype">const irr::core::stringw &amp;</td>          <td class="paramname"><span class="paramname"><em>username</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const irr::core::stringw &amp;</td>          <td class="paramname"><span class="paramname"><em>password</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classOnline_1_1OnlinePlayerProfile.html#aa561ee231bf4820828f565a571f335e6">Online::OnlinePlayerProfile</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a650fcf698edb9d5234e88c21b34c3bc1" name="a650fcf698edb9d5234e88c21b34c3bc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a650fcf698edb9d5234e88c21b34c3bc1">&#9670;&#160;</a></span>requestSignOut()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PlayerProfile::requestSignOut </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classOnline_1_1OnlinePlayerProfile.html#ad431968d22f9c3d2d739ac9a8d5c6000">Online::OnlinePlayerProfile</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="adb82c35ca380235e8bde990c990b8267" name="adb82c35ca380235e8bde990c990b8267"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb82c35ca380235e8bde990c990b8267">&#9670;&#160;</a></span>save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerProfile::save </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classUTFWriter.html">UTFWriter</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>out</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes the data for this player to the specified <a class="el" href="classUTFWriter.html" title="utility class used to write wide (UTF-16 or UTF-32, depending of size of wchar_t) XML files">UTFWriter</a>. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>The utf writer to write the data to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1690414acdb6446ebd8f84b65de7794b" name="a1690414acdb6446ebd8f84b65de7794b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1690414acdb6446ebd8f84b65de7794b">&#9670;&#160;</a></span>saveSession()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlayerProfile::saveSession </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>user_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>token</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Saves the online data, so that it will automatically re-connect next time this profile is loaded. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">user_id</td><td>Id of the online profile. </td></tr>
+    <tr><td class="paramname">token</td><td>Token used for authentication. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aee6d278065e0524b8c215bc1ec583737" name="aee6d278065e0524b8c215bc1ec583737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee6d278065e0524b8c215bc1ec583737">&#9670;&#160;</a></span>setUserDetails()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PlayerProfile::setUserDetails </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classOnline_1_1HTTPRequest.html">Online::HTTPRequest</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>request</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>action</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>url_path</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Abstract virtual classes, to be implemented by the OnlinePlayer. </p>
+
+<p><a class="el" href="classOnline_1_1OnlinePlayerProfile.html#aa04aeccc34b4e5dc4fadac78268bd73b">Online::OnlinePlayerProfile</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="afc8c6c929a67a33b57eb04a600370df9" name="afc8c6c929a67a33b57eb04a600370df9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc8c6c929a67a33b57eb04a600370df9">&#9670;&#160;</a></span>signIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PlayerProfile::signIn </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classXMLNode.html">XMLNode</a> *</td>          <td class="paramname"><span class="paramname"><em>input</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classOnline_1_1OnlinePlayerProfile.html#a4256b9189e3ad5158e0972eaa5716798">Online::OnlinePlayerProfile</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a240a5bec29ff24d9c870cd10879823b3" name="a240a5bec29ff24d9c870cd10879823b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a240a5bec29ff24d9c870cd10879823b3">&#9670;&#160;</a></span>signOut()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void PlayerProfile::signOut </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classXMLNode.html">XMLNode</a> *</td>          <td class="paramname"><span class="paramname"><em>input</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const irr::core::stringw &amp;</td>          <td class="paramname"><span class="paramname"><em>info</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classOnline_1_1OnlinePlayerProfile.html#a0d32f3a4475854333b5734fc18bb3c78">Online::OnlinePlayerProfile</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>config/<a class="el" href="player__profile_8hpp_source.html">player_profile.hpp</a></li>
+<li>config/<b>player_profile.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,4 +1,4 @@
-//
+﻿//
 //  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2006-2015 SuperTuxKart-Team
 //
@@ -944,6 +944,7 @@ public:
             m_minor_mode == MINOR_MODE_CAPTURE_THE_FLAG ||
             m_minor_mode == MINOR_MODE_FREE_FOR_ALL;
     }
+
 };   // RaceManager
 
 #endif

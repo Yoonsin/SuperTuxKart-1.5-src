@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: utils/interpolation_array.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>utils</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">interpolation_array.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2012-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef HEADER_INTERPOLATION_ARRAY_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HEADER_INTERPOLATION_ARRAY_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classInterpolationArray.html">   31</a></span><span class="keyword">class </span>InterpolationArray</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">   35</a></span>    std::vector&lt;float&gt; <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">   38</a></span>    std::vector&lt;float&gt; <a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">/* Pre-computed (x[i+1]-x[i])/(y[i+1]/-y[i]) . */</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::vector&lt;float&gt; m_delta;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    InterpolationArray() {};</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classInterpolationArray.html#aff818eff2abe5940bcacde27bb18d3d9">   47</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classInterpolationArray.html#aff818eff2abe5940bcacde27bb18d3d9">clear</a>()</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>.clear();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>.clear();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        m_delta.clear();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="foldopen" id="foldopen00058" data-start="{" data-end="}">
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classInterpolationArray.html#af96834fc4ffc362bad5c8486f7e11310">   58</a></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classInterpolationArray.html#af96834fc4ffc362bad5c8486f7e11310">push_back</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>.size()&gt;0 &amp;&amp; x &lt; <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>.size()-1])</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>.push_back(x);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>.push_back(y);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>.size()&gt;1)</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> last=(<span class="keywordtype">unsigned</span> int) <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>.size()-1;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            <span class="comment">// Avoid division by zero, just set m_delta to a large</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <span class="comment">// value with the right sign</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[last]==<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[last-1])</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                m_delta.push_back( (<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[last]-<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[last-1])</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                                  / 0.001f                 );</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                m_delta.push_back( (<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[last]-<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[last-1])</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                                 /(<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[last]-<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[last-1])  );</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }   <span class="comment">// push_back</span></div>
+</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classInterpolationArray.html#a8be6a195a470cdc168c5468b9419fe4a">   80</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classInterpolationArray.html#a8be6a195a470cdc168c5468b9419fe4a">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>) <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>.size(); }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classInterpolationArray.html#a2af77a8db983683364f6b65a3d44ef13">   83</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classInterpolationArray.html#a2af77a8db983683364f6b65a3d44ef13">getX</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[i]; }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classInterpolationArray.html#aa6a3710c4a903e7510ad8e9f480ce6c9">   86</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classInterpolationArray.html#aa6a3710c4a903e7510ad8e9f480ce6c9">getY</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[i]; }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00089" data-start="{" data-end="}">
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classInterpolationArray.html#a20ea93af129ab93c98237258e1f8dde3">   89</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classInterpolationArray.html#a20ea93af129ab93c98237258e1f8dde3">setY</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i, <span class="keywordtype">float</span> y)</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[i] = y;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">if</span>(i&gt;0)</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            m_delta[i-1] = (<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[i]-<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[i-1])</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                          /(<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[i]-<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[i-1]);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">if</span>(i&lt;<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>.size()-1)</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            m_delta[i] = (<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[i+1]-<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[i])</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                        /(<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[i+1]-<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[i]);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    }</div>
+</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00101" data-start="{" data-end="}">
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classInterpolationArray.html#a70ad097ed596954bef58641bdbb0b574">  101</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classInterpolationArray.html#a70ad097ed596954bef58641bdbb0b574">get</a>(<span class="keywordtype">float</span> x)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>.size()==1 || x&lt;<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[0])</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[0];</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">if</span>(x&gt;<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>.size()-1])</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>.size()-1];</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="comment">// Now x must be between two points in m_x</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="comment">// The array size in STK are pretty small (typically 3 or 4),</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="comment">// so not worth the effort to do a binary search</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=1; i&lt;<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>.size(); i++)</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            <span class="keywordflow">if</span>(x &gt;<a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[i]) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[i-1] + m_delta[i-1] * (x - <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[i-1]);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        assert(<span class="keyword">false</span>); <span class="keywordflow">return</span> 0;  <span class="comment">// keep compiler happy</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }   <span class="comment">// get</span></div>
+</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00124" data-start="{" data-end="}">
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classInterpolationArray.html#a2ad0c644ea043ef9bf36c7a33e814fd6">  124</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classInterpolationArray.html#a2ad0c644ea043ef9bf36c7a33e814fd6">getReverse</a>(<span class="keywordtype">float</span> y)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>.size()==1) <span class="keywordflow">return</span> <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[0];</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[1]&lt;<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[0])   <span class="comment">// if decreasing values</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>            <span class="keywordflow">if</span>(y &gt; <a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[0]) <span class="keywordflow">return</span> <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[0];</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> last = (<span class="keywordtype">unsigned</span> int) <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>.size();</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=1; i&lt;last; i++)</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>            {</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                <span class="keywordflow">if</span>(y &lt; <a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[i]) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                <span class="keywordflow">return</span> <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[i-1] + (y-<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[i-1])/ m_delta[i-1];</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>            }   <span class="comment">// for i &lt; last</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[last-1];</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        }</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <span class="keywordflow">else</span>   <span class="comment">// increasing</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        {</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>            <span class="keywordflow">if</span>(y &lt; <a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[0]) <span class="keywordflow">return</span> <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[0];</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> last = (<span class="keywordtype">unsigned</span> int) <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>.size();</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=1; i&lt;last; i++)</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                <span class="keywordflow">if</span>(y &gt; <a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[i]) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                <span class="keywordflow">return</span> <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[i-1] + (y-<a class="code hl_variable" href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">m_y</a>[i-1]) / m_delta[i-1];</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>            }   <span class="comment">// for i &lt; last</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">m_x</a>[last-1];</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        }   <span class="comment">// increasing</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    }   <span class="comment">// getReverse</span></div>
+</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>};    <span class="comment">// InterpolationArray</span></div>
+</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassInterpolationArray_html_a20ea93af129ab93c98237258e1f8dde3"><div class="ttname"><a href="classInterpolationArray.html#a20ea93af129ab93c98237258e1f8dde3">InterpolationArray::setY</a></div><div class="ttdeci">void setY(unsigned int i, float y)</div><div class="ttdoc">Sets the Y value for a specified point.</div><div class="ttdef"><b>Definition</b> interpolation_array.hpp:89</div></div>
+<div class="ttc" id="aclassInterpolationArray_html_a2ad0c644ea043ef9bf36c7a33e814fd6"><div class="ttname"><a href="classInterpolationArray.html#a2ad0c644ea043ef9bf36c7a33e814fd6">InterpolationArray::getReverse</a></div><div class="ttdeci">float getReverse(float y) const</div><div class="ttdoc">Returns the X value necessary for a specified Y value.</div><div class="ttdef"><b>Definition</b> interpolation_array.hpp:124</div></div>
+<div class="ttc" id="aclassInterpolationArray_html_a2af77a8db983683364f6b65a3d44ef13"><div class="ttname"><a href="classInterpolationArray.html#a2af77a8db983683364f6b65a3d44ef13">InterpolationArray::getX</a></div><div class="ttdeci">float getX(unsigned int i) const</div><div class="ttdoc">Returns the X value for a specified point.</div><div class="ttdef"><b>Definition</b> interpolation_array.hpp:83</div></div>
+<div class="ttc" id="aclassInterpolationArray_html_a70ad097ed596954bef58641bdbb0b574"><div class="ttname"><a href="classInterpolationArray.html#a70ad097ed596954bef58641bdbb0b574">InterpolationArray::get</a></div><div class="ttdeci">float get(float x) const</div><div class="ttdoc">Returns the interpolated Y value for a given x.</div><div class="ttdef"><b>Definition</b> interpolation_array.hpp:101</div></div>
+<div class="ttc" id="aclassInterpolationArray_html_a8be6a195a470cdc168c5468b9419fe4a"><div class="ttname"><a href="classInterpolationArray.html#a8be6a195a470cdc168c5468b9419fe4a">InterpolationArray::size</a></div><div class="ttdeci">unsigned int size() const</div><div class="ttdoc">Returns the number of X/Y points.</div><div class="ttdef"><b>Definition</b> interpolation_array.hpp:80</div></div>
+<div class="ttc" id="aclassInterpolationArray_html_a9f353483937307242ae98bff5314122f"><div class="ttname"><a href="classInterpolationArray.html#a9f353483937307242ae98bff5314122f">InterpolationArray::m_y</a></div><div class="ttdeci">std::vector&lt; float &gt; m_y</div><div class="ttdoc">The y values.</div><div class="ttdef"><b>Definition</b> interpolation_array.hpp:38</div></div>
+<div class="ttc" id="aclassInterpolationArray_html_aa6a3710c4a903e7510ad8e9f480ce6c9"><div class="ttname"><a href="classInterpolationArray.html#aa6a3710c4a903e7510ad8e9f480ce6c9">InterpolationArray::getY</a></div><div class="ttdeci">float getY(unsigned int i) const</div><div class="ttdoc">Returns the Y value for a specified point.</div><div class="ttdef"><b>Definition</b> interpolation_array.hpp:86</div></div>
+<div class="ttc" id="aclassInterpolationArray_html_aaf950f5915b5316beafdcea1b40991ae"><div class="ttname"><a href="classInterpolationArray.html#aaf950f5915b5316beafdcea1b40991ae">InterpolationArray::m_x</a></div><div class="ttdeci">std::vector&lt; float &gt; m_x</div><div class="ttdoc">The sorted x values.</div><div class="ttdef"><b>Definition</b> interpolation_array.hpp:35</div></div>
+<div class="ttc" id="aclassInterpolationArray_html_af96834fc4ffc362bad5c8486f7e11310"><div class="ttname"><a href="classInterpolationArray.html#af96834fc4ffc362bad5c8486f7e11310">InterpolationArray::push_back</a></div><div class="ttdeci">int push_back(float x, float y)</div><div class="ttdoc">Adds the value pair x/y to the list of all points.</div><div class="ttdef"><b>Definition</b> interpolation_array.hpp:58</div></div>
+<div class="ttc" id="aclassInterpolationArray_html_aff818eff2abe5940bcacde27bb18d3d9"><div class="ttname"><a href="classInterpolationArray.html#aff818eff2abe5940bcacde27bb18d3d9">InterpolationArray::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Removes all saved values from this object.</div><div class="ttdef"><b>Definition</b> interpolation_array.hpp:47</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

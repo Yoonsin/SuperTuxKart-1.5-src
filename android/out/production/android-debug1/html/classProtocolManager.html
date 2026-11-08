@@ -1,0 +1,524 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: ProtocolManager 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">클래스</a> &#124;
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-static-methods">정적 Public 멤버 함수</a> &#124;
+<a href="#pri-types">Private 타입</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="#pri-static-attribs">정적 Private 속성</a> &#124;
+<a href="classProtocolManager-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">ProtocolManager 클래스 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Manages the protocols at runtime.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="protocol__manager_8hpp_source.html">protocol_manager.hpp</a>&gt;</code></p>
+<div class="dynheader">
+ProtocolManager에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classProtocolManager__inherit__graph.png" border="0" usemap="#aProtocolManager_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aProtocolManager_inherit__map" id="aProtocolManager_inherit__map">
+<area shape="rect" title="Manages the protocols at runtime." alt="" coords="5,80,125,107"/>
+<area shape="rect" href="classNoCopy.html" title="Utility class, you can inherit from this class to disallow the assignment operator and copy construct..." alt="" coords="30,5,100,32"/>
+<area shape="poly" title=" " alt="" coords="67,46,68,80,62,79,63,50"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+클래스</h2></td></tr>
+<tr class="memitem:OneProtocolType" id="r_OneProtocolType"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classProtocolManager_1_1OneProtocolType.html">OneProtocolType</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple class that stores all protocols of a certain type.  <a href="classProtocolManager_1_1OneProtocolType.html#details">더 자세히 ...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a1be3c8e4810de3710f63f10ca4185d45" id="r_a1be3c8e4810de3710f63f10ca4185d45"><td class="memItemLeft"><a id="a1be3c8e4810de3710f63f10ca4185d45" name="a1be3c8e4810de3710f63f10ca4185d45"></a>
+void&#160;</td><td class="memItemRight"><b>abort</b> ()</td></tr>
+<tr class="memdesc:a1be3c8e4810de3710f63f10ca4185d45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the protocol manager. <br /></td></tr>
+<tr class="memitem:ae6ac84591f7bc69ccbb35c74263ba1eb" id="r_ae6ac84591f7bc69ccbb35c74263ba1eb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae6ac84591f7bc69ccbb35c74263ba1eb">propagateEvent</a> (<a class="el" href="classEvent.html">Event</a> *event)</td></tr>
+<tr class="memdesc:ae6ac84591f7bc69ccbb35c74263ba1eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that processes incoming events.  <br /></td></tr>
+<tr class="memitem:a5d0d4a52ad12f0241e4b7b563d3e402f" id="r_a5d0d4a52ad12f0241e4b7b563d3e402f"><td class="memItemLeft">std::shared_ptr&lt; <a class="el" href="classProtocol.html">Protocol</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5d0d4a52ad12f0241e4b7b563d3e402f">getProtocol</a> (ProtocolType type)</td></tr>
+<tr class="memdesc:a5d0d4a52ad12f0241e4b7b563d3e402f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a protocol using its type.  <br /></td></tr>
+<tr class="memitem:ab53883ea6924e4f9b8a3804995e8a8e1" id="r_ab53883ea6924e4f9b8a3804995e8a8e1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab53883ea6924e4f9b8a3804995e8a8e1">requestStart</a> (std::shared_ptr&lt; <a class="el" href="classProtocol.html">Protocol</a> &gt; protocol)</td></tr>
+<tr class="memdesc:ab53883ea6924e4f9b8a3804995e8a8e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asks the manager to start a protocol.  <br /></td></tr>
+<tr class="memitem:ab9f702a4d61b878f61d9cf90192e14c4" id="r_ab9f702a4d61b878f61d9cf90192e14c4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab9f702a4d61b878f61d9cf90192e14c4">requestTerminate</a> (std::shared_ptr&lt; <a class="el" href="classProtocol.html">Protocol</a> &gt; protocol)</td></tr>
+<tr class="memdesc:ab9f702a4d61b878f61d9cf90192e14c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies the manager that a protocol is terminated.  <br /></td></tr>
+<tr class="memitem:a1f2272327affb15f84fb9445da97ce12" id="r_a1f2272327affb15f84fb9445da97ce12"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1f2272327affb15f84fb9445da97ce12">findAndTerminate</a> (ProtocolType type)</td></tr>
+<tr class="memdesc:a1f2272327affb15f84fb9445da97ce12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a protocol with the given type and requests it to be terminated.  <br /></td></tr>
+<tr class="memitem:ad13c44d41131a3cb24345fba4670ec34" id="r_ad13c44d41131a3cb24345fba4670ec34"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad13c44d41131a3cb24345fba4670ec34">update</a> (int ticks)</td></tr>
+<tr class="memdesc:ad13c44d41131a3cb24345fba4670ec34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the manager.  <br /></td></tr>
+<tr class="memitem:a2330cd18e1dbc7dd96b1d2affb107025" id="r_a2330cd18e1dbc7dd96b1d2affb107025"><td class="memItemLeft"><a id="a2330cd18e1dbc7dd96b1d2affb107025" name="a2330cd18e1dbc7dd96b1d2affb107025"></a>
+bool&#160;</td><td class="memItemRight"><b>isExiting</b> () const</td></tr>
+<tr class="memitem:a09df9fe17b9d24b63a144d612acb0d39" id="r_a09df9fe17b9d24b63a144d612acb0d39"><td class="memItemLeft"><a id="a09df9fe17b9d24b63a144d612acb0d39" name="a09df9fe17b9d24b63a144d612acb0d39"></a>
+const std::thread &amp;&#160;</td><td class="memItemRight"><b>getThread</b> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:af8c93f558e395cdb5516b9fde7bcb822" id="r_af8c93f558e395cdb5516b9fde7bcb822"><td class="memItemLeft"><a id="af8c93f558e395cdb5516b9fde7bcb822" name="af8c93f558e395cdb5516b9fde7bcb822"></a>
+static std::shared_ptr&lt; <a class="el" href="classProtocolManager.html">ProtocolManager</a> &gt;&#160;</td><td class="memItemRight"><b>createInstance</b> ()</td></tr>
+<tr class="memitem:abf7327077537a5c93ce265efc7c8822c" id="r_abf7327077537a5c93ce265efc7c8822c"><td class="memItemLeft"><a id="abf7327077537a5c93ce265efc7c8822c" name="abf7327077537a5c93ce265efc7c8822c"></a>
+static bool&#160;</td><td class="memItemRight"><b>emptyInstance</b> ()</td></tr>
+<tr class="memitem:af6ed6fbcea7ba34c2ae19dd47f9475b2" id="r_af6ed6fbcea7ba34c2ae19dd47f9475b2"><td class="memItemLeft"><a id="af6ed6fbcea7ba34c2ae19dd47f9475b2" name="af6ed6fbcea7ba34c2ae19dd47f9475b2"></a>
+static std::shared_ptr&lt; <a class="el" href="classProtocolManager.html">ProtocolManager</a> &gt;&#160;</td><td class="memItemRight"><b>lock</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private 타입</h2></td></tr>
+<tr class="memitem:a5a34a15d7b0b338ab57d586f143116b1" id="r_a5a34a15d7b0b338ab57d586f143116b1"><td class="memItemLeft"><a id="a5a34a15d7b0b338ab57d586f143116b1" name="a5a34a15d7b0b338ab57d586f143116b1"></a>
+typedef std::list&lt; <a class="el" href="classEvent.html">Event</a> * &gt;&#160;</td><td class="memItemRight"><b>EventList</b></td></tr>
+<tr class="memdesc:a5a34a15d7b0b338ab57d586f143116b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of network events - messages, disconnect and disconnects. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:a76c2b68bb792ea0430437877d0b4dd6b" id="r_a76c2b68bb792ea0430437877d0b4dd6b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a76c2b68bb792ea0430437877d0b4dd6b">sendEvent</a> (<a class="el" href="classEvent.html">Event</a> *event, std::array&lt; <a class="el" href="classProtocolManager_1_1OneProtocolType.html">OneProtocolType</a>, PROTOCOL_MAX &gt; &amp;protocols)</td></tr>
+<tr class="memdesc:a76c2b68bb792ea0430437877d0b4dd6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the event to the corresponding protocol.  <br /></td></tr>
+<tr class="memitem:a65be1e5c8fdf46288b84723960cdf73a" id="r_a65be1e5c8fdf46288b84723960cdf73a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a65be1e5c8fdf46288b84723960cdf73a">asynchronousUpdate</a> ()</td></tr>
+<tr class="memdesc:a65be1e5c8fdf46288b84723960cdf73a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the manager.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:aca1f684668979a8b9c820ad85d062350" id="r_aca1f684668979a8b9c820ad85d062350"><td class="memItemLeft"><a id="aca1f684668979a8b9c820ad85d062350" name="aca1f684668979a8b9c820ad85d062350"></a>
+std::array&lt; <a class="el" href="classProtocolManager_1_1OneProtocolType.html">OneProtocolType</a>, PROTOCOL_MAX &gt;&#160;</td><td class="memItemRight"><b>m_all_protocols</b></td></tr>
+<tr class="memdesc:aca1f684668979a8b9c820ad85d062350"><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of all protocol types, each one containing a (potentially empty) list of protocols. <br /></td></tr>
+<tr class="memitem:ad205dbf46d2b701019ff14fef417a147" id="r_ad205dbf46d2b701019ff14fef417a147"><td class="memItemLeft"><a class="el" href="classSynchronised.html">Synchronised</a>&lt; <a class="el" href="#a5a34a15d7b0b338ab57d586f143116b1">EventList</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad205dbf46d2b701019ff14fef417a147">m_sync_events_to_process</a></td></tr>
+<tr class="memdesc:ad205dbf46d2b701019ff14fef417a147"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the network events to pass synchronously to protocols (i.e.  <br /></td></tr>
+<tr class="memitem:abc32619d9b3e6092e5bcaa1ad7896a42" id="r_abc32619d9b3e6092e5bcaa1ad7896a42"><td class="memItemLeft"><a class="el" href="classSynchronised.html">Synchronised</a>&lt; <a class="el" href="#a5a34a15d7b0b338ab57d586f143116b1">EventList</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#abc32619d9b3e6092e5bcaa1ad7896a42">m_async_events_to_process</a></td></tr>
+<tr class="memdesc:abc32619d9b3e6092e5bcaa1ad7896a42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains the network events to pass asynchronously to protocols (i.e.  <br /></td></tr>
+<tr class="memitem:a32fe10859bbed77e6fe808e2e7a322e5" id="r_a32fe10859bbed77e6fe808e2e7a322e5"><td class="memItemLeft"><a id="a32fe10859bbed77e6fe808e2e7a322e5" name="a32fe10859bbed77e6fe808e2e7a322e5"></a>
+std::atomic_bool&#160;</td><td class="memItemRight"><b>m_exit</b></td></tr>
+<tr class="memdesc:a32fe10859bbed77e6fe808e2e7a322e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">When set to true, the main thread will exit. <br /></td></tr>
+<tr class="memitem:af93d0d98180f6840cdc65491437f1d32" id="r_af93d0d98180f6840cdc65491437f1d32"><td class="memItemLeft">std::thread&#160;</td><td class="memItemRight"><a class="el" href="#af93d0d98180f6840cdc65491437f1d32">m_asynchronous_update_thread</a></td></tr>
+<tr class="memitem:ad78fd17a823accc0f00e72465983dd5c" id="r_ad78fd17a823accc0f00e72465983dd5c"><td class="memItemLeft"><a id="ad78fd17a823accc0f00e72465983dd5c" name="ad78fd17a823accc0f00e72465983dd5c"></a>
+std::thread&#160;</td><td class="memItemRight"><b>m_game_protocol_thread</b></td></tr>
+<tr class="memdesc:ad78fd17a823accc0f00e72465983dd5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asynchronous game protocol thread to handle controller action as fast as possible. <br /></td></tr>
+<tr class="memitem:ac638e203dfd2058008b11da25fe95117" id="r_ac638e203dfd2058008b11da25fe95117"><td class="memItemLeft"><a id="ac638e203dfd2058008b11da25fe95117" name="ac638e203dfd2058008b11da25fe95117"></a>
+std::condition_variable&#160;</td><td class="memItemRight"><b>m_game_protocol_cv</b></td></tr>
+<tr class="memitem:a4998305be29c3e7ef55f52d6f7bdbda6" id="r_a4998305be29c3e7ef55f52d6f7bdbda6"><td class="memItemLeft"><a id="a4998305be29c3e7ef55f52d6f7bdbda6" name="a4998305be29c3e7ef55f52d6f7bdbda6"></a>
+std::mutex&#160;</td><td class="memItemRight"><b>m_game_protocol_mutex</b></td></tr>
+<tr class="memitem:a8cac15bd9c1a1930bffde50c81a6db44" id="r_a8cac15bd9c1a1930bffde50c81a6db44"><td class="memItemLeft"><a id="a8cac15bd9c1a1930bffde50c81a6db44" name="a8cac15bd9c1a1930bffde50c81a6db44"></a>
+std::mutex&#160;</td><td class="memItemRight"><b>m_protocols_mutex</b></td></tr>
+<tr class="memitem:a4f6d8a86ead6a7e963c716e6d140fb28" id="r_a4f6d8a86ead6a7e963c716e6d140fb28"><td class="memItemLeft"><a id="a4f6d8a86ead6a7e963c716e6d140fb28" name="a4f6d8a86ead6a7e963c716e6d140fb28"></a>
+<a class="el" href="#a5a34a15d7b0b338ab57d586f143116b1">EventList</a>&#160;</td><td class="memItemRight"><b>m_controller_events_list</b></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+정적 Private 속성</h2></td></tr>
+<tr class="memitem:a2d75a4243fb74f0e14ea259dfb256298" id="r_a2d75a4243fb74f0e14ea259dfb256298"><td class="memItemLeft">static std::weak_ptr&lt; <a class="el" href="classProtocolManager.html">ProtocolManager</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a2d75a4243fb74f0e14ea259dfb256298">m_protocol_manager</a> [PT_COUNT]</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Manages the protocols at runtime. </p>
+<p>This class is in charge of storing and managing protocols. It is a singleton as there can be only one protocol manager per game instance. Any game object that wants to start a protocol must create a protocol and give it to this singleton. The protocols are updated in two different ways: 1) Asynchronous updates: A separate threads runs that delivers asynchronous events (i.e. messages), updates each protocol, and handles new requests (start/stop protocol etc). Protocols are updated using the <a class="el" href="classProtocol.html#a167a53125339ef5359341108e7ff7390" title="Called by the protocol listener as often as possible.">Protocol::asynchronousUpdate()</a> function.</p>
+<p>2) Synchronous updates: This is called from the main game thread, and will deliver synchronous events (i.e. messages), and updates each protocol using <a class="el" href="classProtocol.html#ae6e125d88a2659078074c6183a1803a9" title="Called by the protocol listener, synchronously with the main loop.">Protocol::update()</a>.</p>
+<p>Since the STK main loop is not thread safe, any game changing events must (e.g. events that push a new screen, ...) be processed synchronoysly. On the other hand, asynchronous updates will be handled much more frequently, so synchronous updates should be avoided as much as possible. The sender selects if a message is synchronous or asynchronous. The network layer (separate thread) calls propagateEvent in the <a class="el" href="classProtocolManager.html" title="Manages the protocols at runtime.">ProtocolManager</a>, which will add the event to the synchronous or asynchornous queue. <a class="el" href="classProtocol.html" title="Abstract class used to define the global protocol functions.">Protocol</a> start/pause/... requests are also stored in a separate queue, which is thread-safe, and requests will be handled by the <a class="el" href="classProtocolManager.html" title="Manages the protocols at runtime.">ProtocolManager</a> thread, to ensure that they are processed independently from the frames per second.</p>
+<p>Events received by ENET are queried and then handled by <a class="el" href="classSTKHost.html#a18cad24b5f261fa6a7acc0a1fe15ac02" title="Thread function checking if data is received.">STKHost::mainLoop</a>. Besides messages these events also include connection and disconnection notifications. Protocols can decide to receives those notifications or not. The Enet events are converted into STK events, which store e.g. the sender as <a class="el" href="classSTKPeer.html" title="Represents a peer. This class is used to interface the ENetPeer structure.">STKPeer</a> info, and the message data is converted into a <a class="el" href="classNetworkString.html" title="A new implementation of NetworkString, which has a fixed format: Byte 0: The type of the message,...">NetworkString</a>. This STK event is then forwarded to the corresponding protocols.</p>
+<p>There are some protocols that can have more than one instance running at a time (e.g. on the server a connect to peer protocol). The <a class="el" href="classProtocol.html" title="Abstract class used to define the global protocol functions.">Protocol</a> Manager stores each protocol with the same protocol id in a OneProtocol structure (so in most cases this is just one protocol instance in one OneProtocol structure, but e.g. several connect_to_peer instances would be stored in one OneProtocoll instance. The OneProtocol instance is responsible to forward events to all protocols with the same id. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a65be1e5c8fdf46288b84723960cdf73a" name="a65be1e5c8fdf46288b84723960cdf73a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65be1e5c8fdf46288b84723960cdf73a">&#9670;&#160;</a></span>asynchronousUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ProtocolManager::asynchronousUpdate </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Updates the manager. </p>
+<p>This function processes the events queue, notifies the concerned protocols that they have events to process. Then ask all protocols to update themselves. Finally processes stored requests about starting, stopping, pausing etc... protocols. This function is called in a separate thread running in this instance. This function IS NOT FPS-dependant. </p>
+
+</div>
+</div>
+<a id="a1f2272327affb15f84fb9445da97ce12" name="a1f2272327affb15f84fb9445da97ce12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f2272327affb15f84fb9445da97ce12">&#9670;&#160;</a></span>findAndTerminate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ProtocolManager::findAndTerminate </td>
+          <td>(</td>
+          <td class="paramtype">ProtocolType</td>          <td class="paramname"><span class="paramname"><em>type</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds a protocol with the given type and requests it to be terminated. </p>
+<p>If no such protocol exist it will do nothing </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The protocol type to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5d0d4a52ad12f0241e4b7b563d3e402f" name="a5d0d4a52ad12f0241e4b7b563d3e402f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d0d4a52ad12f0241e4b7b563d3e402f">&#9670;&#160;</a></span>getProtocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classProtocol.html">Protocol</a> &gt; ProtocolManager::getProtocol </td>
+          <td>(</td>
+          <td class="paramtype">ProtocolType</td>          <td class="paramname"><span class="paramname"><em>type</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get a protocol using its type. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>: The type of the protocol. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>The protocol that matches the given type. </dd></dl>
+
+</div>
+</div>
+<a id="ae6ac84591f7bc69ccbb35c74263ba1eb" name="ae6ac84591f7bc69ccbb35c74263ba1eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ac84591f7bc69ccbb35c74263ba1eb">&#9670;&#160;</a></span>propagateEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ProtocolManager::propagateEvent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classEvent.html">Event</a> *</td>          <td class="paramname"><span class="paramname"><em>event</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function that processes incoming events. </p>
+<p>This function is called by the network manager each time there is an incoming packet. </p>
+
+</div>
+</div>
+<a id="ab53883ea6924e4f9b8a3804995e8a8e1" name="ab53883ea6924e4f9b8a3804995e8a8e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab53883ea6924e4f9b8a3804995e8a8e1">&#9670;&#160;</a></span>requestStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ProtocolManager::requestStart </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classProtocol.html">Protocol</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>protocol</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Asks the manager to start a protocol. </p>
+<p>Add the protocol to the protocols vector. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">protocol</td><td>: <a class="el" href="classProtocol.html" title="Abstract class used to define the global protocol functions.">Protocol</a> concerned. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab9f702a4d61b878f61d9cf90192e14c4" name="ab9f702a4d61b878f61d9cf90192e14c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9f702a4d61b878f61d9cf90192e14c4">&#9670;&#160;</a></span>requestTerminate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ProtocolManager::requestTerminate </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classProtocol.html">Protocol</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>protocol</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Notifies the manager that a protocol is terminated. </p>
+<p>Remove a protocol from the protocols vector. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">protocol</td><td>: <a class="el" href="classProtocol.html" title="Abstract class used to define the global protocol functions.">Protocol</a> concerned. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a76c2b68bb792ea0430437877d0b4dd6b" name="a76c2b68bb792ea0430437877d0b4dd6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76c2b68bb792ea0430437877d0b4dd6b">&#9670;&#160;</a></span>sendEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ProtocolManager::sendEvent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classEvent.html">Event</a> *</td>          <td class="paramname"><span class="paramname"><em>event</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::array&lt; <a class="el" href="classProtocolManager_1_1OneProtocolType.html">OneProtocolType</a>, PROTOCOL_MAX &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>protocols</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sends the event to the corresponding protocol. </p>
+<p>Returns true if the event can be ignored, or false otherwise. </p>
+
+</div>
+</div>
+<a id="ad13c44d41131a3cb24345fba4670ec34" name="ad13c44d41131a3cb24345fba4670ec34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad13c44d41131a3cb24345fba4670ec34">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ProtocolManager::update </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates the manager. </p>
+<p>This function processes the events queue, notifies the concerned protocols that they have events to process. Then asks all protocols to update themselves. Finally it processes stored requests about starting, stopping, pausing etc... protocols. This function is called by the main thread (i.e. from main_loop). This function IS FPS-dependant. </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="abc32619d9b3e6092e5bcaa1ad7896a42" name="abc32619d9b3e6092e5bcaa1ad7896a42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc32619d9b3e6092e5bcaa1ad7896a42">&#9670;&#160;</a></span>m_async_events_to_process</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSynchronised.html">Synchronised</a>&lt;<a class="el" href="#a5a34a15d7b0b338ab57d586f143116b1">EventList</a>&gt; ProtocolManager::m_async_events_to_process</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Contains the network events to pass asynchronously to protocols (i.e. </p>
+<p>from the separate <a class="el" href="classProtocolManager.html" title="Manages the protocols at runtime.">ProtocolManager</a> thread). </p>
+
+</div>
+</div>
+<a id="af93d0d98180f6840cdc65491437f1d32" name="af93d0d98180f6840cdc65491437f1d32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af93d0d98180f6840cdc65491437f1d32">&#9670;&#160;</a></span>m_asynchronous_update_thread</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::thread ProtocolManager::m_asynchronous_update_thread</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Asynchronous update thread. </p>
+
+</div>
+</div>
+<a id="a2d75a4243fb74f0e14ea259dfb256298" name="a2d75a4243fb74f0e14ea259dfb256298"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d75a4243fb74f0e14ea259dfb256298">&#9670;&#160;</a></span>m_protocol_manager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::weak_ptr&lt; <a class="el" href="classProtocolManager.html">ProtocolManager</a> &gt; ProtocolManager::m_protocol_manager</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Single instance of protocol manager. </p>
+
+</div>
+</div>
+<a id="ad205dbf46d2b701019ff14fef417a147" name="ad205dbf46d2b701019ff14fef417a147"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad205dbf46d2b701019ff14fef417a147">&#9670;&#160;</a></span>m_sync_events_to_process</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSynchronised.html">Synchronised</a>&lt;<a class="el" href="#a5a34a15d7b0b338ab57d586f143116b1">EventList</a>&gt; ProtocolManager::m_sync_events_to_process</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Contains the network events to pass synchronously to protocols (i.e. </p>
+<p>from the main thread). </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>network/<a class="el" href="protocol__manager_8hpp_source.html">protocol_manager.hpp</a></li>
+<li>network/<b>protocol_manager.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

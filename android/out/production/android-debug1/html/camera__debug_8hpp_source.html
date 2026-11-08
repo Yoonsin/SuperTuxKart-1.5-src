@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: graphics/camera/camera_debug.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>graphics</b></li><li class="navelem"><b>camera</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">camera_debug.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2004-2015 Steve Baker &lt;sjbaker1@airmail.net&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  Copyright (C) 2006-2015 SuperTuxKart-Team, Steve Baker</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifndef HEADER_CAMERA_DEBUG_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#define HEADER_CAMERA_DEBUG_HPP</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;graphics/camera/camera_normal.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classCameraDebug.html">   33</a></span><span class="keyword">class </span>CameraDebug : <span class="keyword">public</span> <a class="code hl_function" href="classCameraNormal.html#a483cc0510a18111015c29bc92ecfce72">CameraNormal</a></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896">   36</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896">CameraDebugType</a> {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896acddee171f457774804f98f0a30e467a3">   37</a></span>        <a class="code hl_enumvalue" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896acddee171f457774804f98f0a30e467a3">CM_DEBUG_TOP_OF_KART</a>,   </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896a9b0fcdf387f357b4af27ff47ce02575c">   38</a></span>        <a class="code hl_enumvalue" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896a9b0fcdf387f357b4af27ff47ce02575c">CM_DEBUG_GROUND</a>,        </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896a897ae3d17b23bec981ba9c54d3c93228">   39</a></span>        <a class="code hl_enumvalue" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896a897ae3d17b23bec981ba9c54d3c93228">CM_DEBUG_BEHIND_KART</a>,   </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896a1a18bafd44a5a16732b8a7230c5a0c4d">   40</a></span>        <a class="code hl_enumvalue" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896a1a18bafd44a5a16732b8a7230c5a0c4d">CM_DEBUG_SIDE_OF_KART</a>,  </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896aa7d5776004bff342c9bed3ef3d09b797">   41</a></span>        <a class="code hl_enumvalue" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896aa7d5776004bff342c9bed3ef3d09b797">CM_DEBUG_INV_SIDE_OF_KART</a>,  </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896a3e4fe837edddfb1dbf7b37b392d689d4">   42</a></span>        <a class="code hl_enumvalue" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896a3e4fe837edddfb1dbf7b37b392d689d4">CM_DEBUG_FRONT_OF_KART</a>,  </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    };   <span class="comment">// CameraDebugType</span></div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">static</span> <a class="code hl_enumeration" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896">CameraDebugType</a> m_default_debug_Type;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCameraDebug.html#a6629e869ea2e6cd3b75246c3495294a8">getCameraSettings</a>(<span class="keywordtype">float</span> *above_kart, <span class="keywordtype">float</span> *cam_angle,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                           <span class="keywordtype">float</span> *side_way, <span class="keywordtype">float</span> *distance    );</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCameraDebug.html#adce2e68c4b1b73c1dbe4b4de9b07e321">positionCamera</a>(<span class="keywordtype">float</span> dt, <span class="keywordtype">float</span> above_kart, <span class="keywordtype">float</span> cam_angle,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                        <span class="keywordtype">float</span> side_way, <span class="keywordtype">float</span> distance);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code hl_class" href="classCamera.html">Camera</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>             <a class="code hl_class" href="classCameraDebug.html">CameraDebug</a>(<span class="keywordtype">int</span> camera_index, <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classCameraDebug.html#a331f5d92ac4765cabd95e15bb41bea50">~CameraDebug</a>();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCameraDebug.html#a46897b2cee0dea484acd9486f7df168f">update</a>(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="}">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classCameraDebug.html#abf02e2a8c0e34858375dc670ec8f3e93">   62</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCameraDebug.html#abf02e2a8c0e34858375dc670ec8f3e93">setDebugType</a>(<a class="code hl_enumeration" href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896">CameraDebugType</a> type)</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        m_default_debug_Type = type;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    }   <span class="comment">// setDebugType</span></div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>};   <span class="comment">// CameraDebug</span></div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">/* EOF */</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassCameraDebug_html"><div class="ttname"><a href="classCameraDebug.html">CameraDebug</a></div><div class="ttdoc">Handles the debug camera.</div><div class="ttdef"><b>Definition</b> camera_debug.hpp:34</div></div>
+<div class="ttc" id="aclassCameraDebug_html_a331f5d92ac4765cabd95e15bb41bea50"><div class="ttname"><a href="classCameraDebug.html#a331f5d92ac4765cabd95e15bb41bea50">CameraDebug::~CameraDebug</a></div><div class="ttdeci">virtual ~CameraDebug()</div><div class="ttdoc">Removes the camera scene node from the scene.</div><div class="ttdef"><b>Definition</b> camera_debug.cpp:44</div></div>
+<div class="ttc" id="aclassCameraDebug_html_a46897b2cee0dea484acd9486f7df168f"><div class="ttname"><a href="classCameraDebug.html#a46897b2cee0dea484acd9486f7df168f">CameraDebug::update</a></div><div class="ttdeci">void update(float dt)</div><div class="ttdoc">Called once per time frame to move the camera to the right position.</div><div class="ttdef"><b>Definition</b> camera_debug.cpp:92</div></div>
+<div class="ttc" id="aclassCameraDebug_html_a6629e869ea2e6cd3b75246c3495294a8"><div class="ttname"><a href="classCameraDebug.html#a6629e869ea2e6cd3b75246c3495294a8">CameraDebug::getCameraSettings</a></div><div class="ttdeci">void getCameraSettings(float *above_kart, float *cam_angle, float *side_way, float *distance)</div><div class="ttdoc">Determine the camera settings for the current frame.</div><div class="ttdef"><b>Definition</b> camera_debug.cpp:55</div></div>
+<div class="ttc" id="aclassCameraDebug_html_abb9720f429383c69ac6ad600e2dd9896"><div class="ttname"><a href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896">CameraDebug::CameraDebugType</a></div><div class="ttdeci">CameraDebugType</div><div class="ttdef"><b>Definition</b> camera_debug.hpp:36</div></div>
+<div class="ttc" id="aclassCameraDebug_html_abb9720f429383c69ac6ad600e2dd9896a1a18bafd44a5a16732b8a7230c5a0c4d"><div class="ttname"><a href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896a1a18bafd44a5a16732b8a7230c5a0c4d">CameraDebug::CM_DEBUG_SIDE_OF_KART</a></div><div class="ttdeci">@ CM_DEBUG_SIDE_OF_KART</div><div class="ttdoc">Camera to the right of the kart</div><div class="ttdef"><b>Definition</b> camera_debug.hpp:40</div></div>
+<div class="ttc" id="aclassCameraDebug_html_abb9720f429383c69ac6ad600e2dd9896a3e4fe837edddfb1dbf7b37b392d689d4"><div class="ttname"><a href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896a3e4fe837edddfb1dbf7b37b392d689d4">CameraDebug::CM_DEBUG_FRONT_OF_KART</a></div><div class="ttdeci">@ CM_DEBUG_FRONT_OF_KART</div><div class="ttdoc">Camera to the front of the kart</div><div class="ttdef"><b>Definition</b> camera_debug.hpp:42</div></div>
+<div class="ttc" id="aclassCameraDebug_html_abb9720f429383c69ac6ad600e2dd9896a897ae3d17b23bec981ba9c54d3c93228"><div class="ttname"><a href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896a897ae3d17b23bec981ba9c54d3c93228">CameraDebug::CM_DEBUG_BEHIND_KART</a></div><div class="ttdeci">@ CM_DEBUG_BEHIND_KART</div><div class="ttdoc">Camera straight behind kart</div><div class="ttdef"><b>Definition</b> camera_debug.hpp:39</div></div>
+<div class="ttc" id="aclassCameraDebug_html_abb9720f429383c69ac6ad600e2dd9896a9b0fcdf387f357b4af27ff47ce02575c"><div class="ttname"><a href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896a9b0fcdf387f357b4af27ff47ce02575c">CameraDebug::CM_DEBUG_GROUND</a></div><div class="ttdeci">@ CM_DEBUG_GROUND</div><div class="ttdoc">Camera at ground level, wheel debugging</div><div class="ttdef"><b>Definition</b> camera_debug.hpp:38</div></div>
+<div class="ttc" id="aclassCameraDebug_html_abb9720f429383c69ac6ad600e2dd9896aa7d5776004bff342c9bed3ef3d09b797"><div class="ttname"><a href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896aa7d5776004bff342c9bed3ef3d09b797">CameraDebug::CM_DEBUG_INV_SIDE_OF_KART</a></div><div class="ttdeci">@ CM_DEBUG_INV_SIDE_OF_KART</div><div class="ttdoc">Camera to the left of the kart</div><div class="ttdef"><b>Definition</b> camera_debug.hpp:41</div></div>
+<div class="ttc" id="aclassCameraDebug_html_abb9720f429383c69ac6ad600e2dd9896acddee171f457774804f98f0a30e467a3"><div class="ttname"><a href="classCameraDebug.html#abb9720f429383c69ac6ad600e2dd9896acddee171f457774804f98f0a30e467a3">CameraDebug::CM_DEBUG_TOP_OF_KART</a></div><div class="ttdeci">@ CM_DEBUG_TOP_OF_KART</div><div class="ttdoc">Camera hovering over kart</div><div class="ttdef"><b>Definition</b> camera_debug.hpp:37</div></div>
+<div class="ttc" id="aclassCameraDebug_html_abf02e2a8c0e34858375dc670ec8f3e93"><div class="ttname"><a href="classCameraDebug.html#abf02e2a8c0e34858375dc670ec8f3e93">CameraDebug::setDebugType</a></div><div class="ttdeci">static void setDebugType(CameraDebugType type)</div><div class="ttdoc">Sets the debug type for all cameras.</div><div class="ttdef"><b>Definition</b> camera_debug.hpp:62</div></div>
+<div class="ttc" id="aclassCameraDebug_html_adce2e68c4b1b73c1dbe4b4de9b07e321"><div class="ttname"><a href="classCameraDebug.html#adce2e68c4b1b73c1dbe4b4de9b07e321">CameraDebug::positionCamera</a></div><div class="ttdeci">void positionCamera(float dt, float above_kart, float cam_angle, float side_way, float distance)</div><div class="ttdoc">Actually sets the camera based on the given parameter.</div><div class="ttdef"><b>Definition</b> camera_debug.cpp:173</div></div>
+<div class="ttc" id="aclassCameraNormal_html_a483cc0510a18111015c29bc92ecfce72"><div class="ttname"><a href="classCameraNormal.html#a483cc0510a18111015c29bc92ecfce72">CameraNormal::CameraNormal</a></div><div class="ttdeci">CameraNormal(Camera::CameraType type, int camera_index, AbstractKart *kart)</div><div class="ttdoc">Constructor for the normal camera.</div><div class="ttdef"><b>Definition</b> camera_normal.cpp:45</div></div>
+<div class="ttc" id="aclassCamera_html"><div class="ttname"><a href="classCamera.html">Camera</a></div><div class="ttdoc">This is the base class for all cameras.</div><div class="ttdef"><b>Definition</b> camera.hpp:49</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: guiengine/widgets/list_widget.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>guiengine</b></li><li class="navelem"><b>widgets</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">list_widget.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  Copyright (C) 2009-2015 Marianne Gagnon</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef HEADER_LISTWIDGET_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HEADER_LISTWIDGET_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;irrString.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;guiengine/widgets/CGUISTKListBox.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;guiengine/widget.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;utils/ptr_vector.hpp&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;IGUIElement.h&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">namespace </span>irr { <span class="keyword">namespace </span>gui { <span class="keyword">class </span>STKModifiedSpriteBank; } }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceGUIEngine.html">GUIEngine</a></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1IListWidgetHeaderListener.html">   36</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classGUIEngine_1_1IListWidgetHeaderListener.html">IListWidgetHeaderListener</a></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keyword">virtual</span> <a class="code hl_class" href="classGUIEngine_1_1IListWidgetHeaderListener.html">~IListWidgetHeaderListener</a>(){}</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> onColumnClicked(<span class="keywordtype">int</span> column_id, <span class="keywordtype">bool</span> sort_desc, <span class="keywordtype">bool</span> sort_default) = 0;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    };</div>
+</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    </div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="};">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ListWidget.html">   49</a></span>    <span class="keyword">class </span>ListWidget : <span class="keyword">public</span> Widget</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">friend</span> <span class="keyword">class </span>Skin;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ListWidget.html#a1bcf3cf3249717a26f3a82fec373fa7c">   54</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1ListWidget.html#a1bcf3cf3249717a26f3a82fec373fa7c">m_use_icons</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ListWidget.html#aa9ab90e034194f8ba7ce126b93ef7043">   57</a></span>        irr::gui::STKModifiedSpriteBank* <a class="code hl_variable" href="classGUIEngine_1_1ListWidget.html#aa9ab90e034194f8ba7ce126b93ef7043">m_icons</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <a class="code hl_class" href="classPtrVector.html">PtrVector&lt; Widget &gt;</a> m_header_elements;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        Widget* m_selected_column;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ListWidget.html#a27f1e259b3c6a026076cb5d0c107f0e8">   64</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1ListWidget.html#a27f1e259b3c6a026076cb5d0c107f0e8">m_sort_desc</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ListWidget.html#a89f080272a7174acaac7bb7add48970f">   67</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGUIEngine_1_1ListWidget.html#a89f080272a7174acaac7bb7add48970f">m_sort_default</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ListWidget.html#a098fe08c09982eafd2de7b06093d32d9">   70</a></span>        <span class="keywordtype">int</span> <a class="code hl_variable" href="classGUIEngine_1_1ListWidget.html#a098fe08c09982eafd2de7b06093d32d9">m_sort_col</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordtype">bool</span> m_choosing_header;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="};">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structGUIEngine_1_1ListWidget_1_1Column.html">   74</a></span>        <span class="keyword">struct </span>Column</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            irr::core::stringw m_text;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordtype">int</span> m_proportion;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            irr::video::ITexture* m_texture;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            Column(irr::core::stringw text, <span class="keywordtype">int</span> proportion)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                m_text = text;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                m_proportion = proportion;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                m_texture = NULL;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            Column(irr::video::ITexture* texture, <span class="keywordtype">int</span> proportion)</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                m_proportion = proportion;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                m_texture = texture;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        };</div>
+</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ListWidget.html#a2d49333d8467d89994f50b66761ac46d">   93</a></span>        std::vector&lt; Column &gt; <a class="code hl_variable" href="classGUIEngine_1_1ListWidget.html#a2d49333d8467d89994f50b66761ac46d">m_header</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <a class="code hl_class" href="classGUIEngine_1_1IListWidgetHeaderListener.html">IListWidgetHeaderListener</a>* m_listener;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keywordtype">bool</span> m_sortable;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordtype">bool</span> m_header_created;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordtype">float</span> m_icon_scale;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordtype">void</span> repairSortCol()</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>            <span class="comment">// Exclude scrollbar</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>            <span class="keywordtype">int</span> max_size = (int)m_header_elements.size() - 1;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="classGUIEngine_1_1ListWidget.html#a098fe08c09982eafd2de7b06093d32d9">m_sort_col</a> &lt; 0)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                <a class="code hl_variable" href="classGUIEngine_1_1ListWidget.html#a098fe08c09982eafd2de7b06093d32d9">m_sort_col</a> = max_size - 1;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="classGUIEngine_1_1ListWidget.html#a098fe08c09982eafd2de7b06093d32d9">m_sort_col</a> &gt;= max_size)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                <a class="code hl_variable" href="classGUIEngine_1_1ListWidget.html#a098fe08c09982eafd2de7b06093d32d9">m_sort_col</a> = 0;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordtype">void</span> updateHeader();</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordtype">void</span> updateIconScale();</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordtype">int</span> getHeaderHeight() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        irr::core::rect&lt;s32&gt; getListBoxSize() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keyword">typedef</span> <a class="code hl_struct" href="structirr_1_1gui_1_1CGUISTKListBox_1_1ListItem.html">irr::gui::CGUISTKListBox::ListItem</a> ListItem;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keyword">typedef</span> ListItem::ListCell ListCell;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        LEAK_CHECK()</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <a class="code hl_class" href="classGUIEngine_1_1ListWidget.html">ListWidget</a>();</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <a class="code hl_class" href="classGUIEngine_1_1SkinWidgetContainer.html">SkinWidgetContainer</a> m_selection_skin_info;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a008388444d1521945505336bad1d7abd">add</a>();</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a01eb69350e0ba7dae2f57c78e561a239">unfocused</a>(const <span class="keywordtype">int</span> playerID, <a class="code hl_class" href="classGUIEngine_1_1Widget.html">Widget</a>* new_focus);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#accd7d12928c66a563d78b3d9daaf8fa3">elementRemoved</a>();</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a1cea0a4eedd961eb62b4656e7d1493b5">setIcons</a>(irr::gui::STKModifiedSpriteBank* icons, <span class="keywordtype">float</span> scale = -1.0f);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="comment">// ---- contents management</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#abd6459cb9ae58a5786219f4138fce2ef">addItem</a>(   const std::<span class="keywordtype">string</span>&amp; internal_name,</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                        const irr::core::stringw &amp;name,</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                        const <span class="keywordtype">int</span> icon=-1,</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                        <span class="keywordtype">bool</span> center = false);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#abd6459cb9ae58a5786219f4138fce2ef">addItem</a>(   const std::<span class="keywordtype">string</span>&amp; internal_name,</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                        const std::vector&lt;ListCell&gt;&amp; contents);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#ae16b704776af21d6dc9f970c6a5d92d2">createHeader</a>();</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceGUIEngine.html#a7978ff53df5a37391c949e99f7080d5f">clear</a>();</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#ae8bd843d5a44db545afa0ac1fb250d2e">clearColumns</a>();</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a21b583ac2aa2866845461dad2696822e">getItemCount</a>() const;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a6b105bee361291f6fa19c7283ad4bce4">getSelectionID</a>() const;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        std::<span class="keywordtype">string</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a3a75750393b72a1987df0a03ccaba82f">getSelectionInternalName</a>();</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        irr::core::stringw getSelectionLabel(const <span class="keywordtype">int</span> cell = 0) const;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        <span class="keywordtype">void</span> selectItemWithLabel(const irr::core::stringw&amp; name);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a370baa861c7ea8809a59674acff4a913">getItemID</a>(const std::<span class="keywordtype">string</span> &amp;internalName) const;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#add3533f635c222eed02fe531287f4a06">setSelectionID</a>(const <span class="keywordtype">int</span> index);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#aca85cf0dac6b02dedafdab13996b9964">renameCell</a>(const <span class="keywordtype">int</span> row_num, const <span class="keywordtype">int</span> col_num, </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>                        const irr::core::stringw &amp;newName, const <span class="keywordtype">int</span> icon=-1);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a0bd8f20af871c0d888add469ecc499b6">renameItem</a>(const <span class="keywordtype">int</span> row_num, </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>                        const irr::core::stringw &amp;newName, const <span class="keywordtype">int</span> icon=-1);</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a0bd8f20af871c0d888add469ecc499b6">renameItem</a>(const std::<span class="keywordtype">string</span>  &amp; internal_name, </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>                        const irr::core::stringw &amp;newName, const <span class="keywordtype">int</span> icon=-1);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span></div>
+<div class="foldopen" id="foldopen00236" data-start="{" data-end="}">
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ListWidget.html#a4c4c1c0b033391d5a7978e06d54c608c">  236</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#aca85cf0dac6b02dedafdab13996b9964">renameCell</a>(const std::<span class="keywordtype">string</span> internalName, const <span class="keywordtype">int</span> col_num, </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>                        const irr::core::stringw &amp;newName, const <span class="keywordtype">int</span> icon=-1)</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        {</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>            <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span> = <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a370baa861c7ea8809a59674acff4a913">getItemID</a>(internalName);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>            assert(<span class="keywordtype">id</span> != -1);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>            <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#aca85cf0dac6b02dedafdab13996b9964">renameCell</a>( <span class="keywordtype">id</span>, col_num, newName, icon );</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        }</div>
+</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a164aac8b41d503e6cad5ed622c6e7d2e">markItemRed</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>, <span class="keywordtype">bool</span> red=<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        <span class="keywordtype">void</span> markItemBlue(<span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>, <span class="keywordtype">bool</span> blue=<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        <span class="keywordtype">void</span> emphasisItem(<span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>, <span class="keywordtype">bool</span> enable=<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        </div>
+<div class="foldopen" id="foldopen00256" data-start="{" data-end="}">
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ListWidget.html#ac70a6fc0c63f4260a2701247eb9217d1">  256</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#ac70a6fc0c63f4260a2701247eb9217d1">markItemRed</a>(<span class="keyword">const</span> std::string &amp;internalName, <span class="keywordtype">bool</span> red=<span class="keyword">true</span>)</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>        {</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>            <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span> = <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a370baa861c7ea8809a59674acff4a913">getItemID</a>(internalName);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>            assert(<span class="keywordtype">id</span> != -1);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>            <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a164aac8b41d503e6cad5ed622c6e7d2e">markItemRed</a>( <span class="keywordtype">id</span>, red );</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        }</div>
+</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        <span class="keywordtype">void</span> markItemBlue(<span class="keyword">const</span> std::string &amp;internalName, <span class="keywordtype">bool</span> blue=<span class="keyword">true</span>)</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        {</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>            <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span> = <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a370baa861c7ea8809a59674acff4a913">getItemID</a>(internalName);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>            assert(<span class="keywordtype">id</span> != -1);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>            markItemBlue( <span class="keywordtype">id</span>, blue );</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        }</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        <span class="keywordtype">void</span> emphasisItem(<span class="keyword">const</span> std::string &amp;internalName, <span class="keywordtype">bool</span> enable=<span class="keyword">true</span>)</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        {</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>            <span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span> = <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a370baa861c7ea8809a59674acff4a913">getItemID</a>(internalName);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            assert(<span class="keywordtype">id</span> != -1);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>            emphasisItem(<span class="keywordtype">id</span>, enable);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>        }</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>        <span class="keyword">virtual</span> EventPropagation <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a2cfd3a944799c8974b7b60bdb2314731">transmitEvent</a>(Widget* w,</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>                                               <span class="keyword">const</span> std::string&amp; originator,</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>                                               <span class="keyword">const</span> <span class="keywordtype">int</span> playerID);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        <span class="keyword">virtual</span> EventPropagation <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a6c96718c7a1f7b97deb0da520ee49413">upPressed</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>        </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>        <span class="keyword">virtual</span> EventPropagation <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a79bb023aba1997896e2b3b7171b0a73c">downPressed</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        <span class="keyword">virtual</span> EventPropagation <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a6e22f90b7b85a3bc3c97fba17121f8bb">leftPressed</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID);</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        <span class="keyword">virtual</span> EventPropagation <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a606fadb7e982e4d9f08b56d3535bd42f">rightPressed</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> playerID);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>        EventPropagation <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a449e4d02025c3a5ad549d8b88ec89d18">moveToNextItem</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> down);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>        <span class="keywordtype">void</span> setColumnListener(IListWidgetHeaderListener* listener)</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>        {</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>            <span class="keywordflow">if</span> (m_listener) <span class="keyword">delete</span> m_listener;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>            m_listener = listener;</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>        }</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno"><a class="line" href="classGUIEngine_1_1ListWidget.html#a845f145a4ac61cafd33034e845f15d6d">  306</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a845f145a4ac61cafd33034e845f15d6d">addColumn</a>(irr::core::stringw col, <span class="keywordtype">int</span> proportion=1) { <a class="code hl_variable" href="classGUIEngine_1_1ListWidget.html#a2d49333d8467d89994f50b66761ac46d">m_header</a>.push_back( <a class="code hl_struct" href="structGUIEngine_1_1ListWidget_1_1Column.html">Column</a>(col, proportion) ); }</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a845f145a4ac61cafd33034e845f15d6d">addColumn</a>(irr::video::ITexture* tex, <span class="keywordtype">int</span> proportion=1) { <a class="code hl_variable" href="classGUIEngine_1_1ListWidget.html#a2d49333d8467d89994f50b66761ac46d">m_header</a>.push_back( Column(tex, proportion) ); }</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        <span class="keywordtype">void</span> setSortable(<span class="keywordtype">bool</span> sortable) { m_sortable = sortable; }</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>        <span class="keywordtype">void</span> focusHeader(<span class="keyword">const</span> NavigationDirection nav);</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#a9104dc4badfbf09c18e631e86e4720c9">setActive</a>(<span class="keywordtype">bool</span> active=<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGUIEngine_1_1ListWidget.html#ad2b94b02d1f3e465d306712ec1bd8d72">resize</a>();</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    };</div>
+</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>}</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassGUIEngine_1_1IListWidgetHeaderListener_html"><div class="ttname"><a href="classGUIEngine_1_1IListWidgetHeaderListener.html">GUIEngine::IListWidgetHeaderListener</a></div><div class="ttdef"><b>Definition</b> list_widget.hpp:37</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html">GUIEngine::ListWidget</a></div><div class="ttdoc">A vertical list widget with text entries</div><div class="ttdef"><b>Definition</b> list_widget.hpp:50</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a008388444d1521945505336bad1d7abd"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a008388444d1521945505336bad1d7abd">GUIEngine::ListWidget::add</a></div><div class="ttdeci">virtual void add()</div><div class="ttdoc">implement add method from base class GUIEngine::Widget</div><div class="ttdef"><b>Definition</b> list_widget.cpp:117</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a01eb69350e0ba7dae2f57c78e561a239"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a01eb69350e0ba7dae2f57c78e561a239">GUIEngine::ListWidget::unfocused</a></div><div class="ttdeci">virtual void unfocused(const int playerID, Widget *new_focus)</div><div class="ttdoc">implement callback from base class GUIEngine::Widget</div><div class="ttdef"><b>Definition</b> list_widget.cpp:362</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a098fe08c09982eafd2de7b06093d32d9"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a098fe08c09982eafd2de7b06093d32d9">GUIEngine::ListWidget::m_sort_col</a></div><div class="ttdeci">int m_sort_col</div><div class="ttdoc">index of column</div><div class="ttdef"><b>Definition</b> list_widget.hpp:70</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a0bd8f20af871c0d888add469ecc499b6"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a0bd8f20af871c0d888add469ecc499b6">GUIEngine::ListWidget::renameItem</a></div><div class="ttdeci">void renameItem(const int row_num, const irr::core::stringw &amp;newName, const int icon=-1)</div><div class="ttdoc">renames first cell only</div><div class="ttdef"><b>Definition</b> list_widget.cpp:311</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a164aac8b41d503e6cad5ed622c6e7d2e"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a164aac8b41d503e6cad5ed622c6e7d2e">GUIEngine::ListWidget::markItemRed</a></div><div class="ttdeci">void markItemRed(const int id, bool red=true)</div><div class="ttdoc">Make an item red to mark an error, for instance</div><div class="ttdef"><b>Definition</b> list_widget.cpp:438</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a1bcf3cf3249717a26f3a82fec373fa7c"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a1bcf3cf3249717a26f3a82fec373fa7c">GUIEngine::ListWidget::m_use_icons</a></div><div class="ttdeci">bool m_use_icons</div><div class="ttdoc">whether this list has icons</div><div class="ttdef"><b>Definition</b> list_widget.hpp:54</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a1cea0a4eedd961eb62b4656e7d1493b5"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a1cea0a4eedd961eb62b4656e7d1493b5">GUIEngine::ListWidget::setIcons</a></div><div class="ttdeci">void setIcons(irr::gui::STKModifiedSpriteBank *icons, float scale=-1.0f)</div><div class="ttdoc">set the icon bank to use for list entries.</div><div class="ttdef"><b>Definition</b> list_widget.cpp:56</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a21b583ac2aa2866845461dad2696822e"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a21b583ac2aa2866845461dad2696822e">GUIEngine::ListWidget::getItemCount</a></div><div class="ttdeci">int getItemCount() const</div><div class="ttdef"><b>Definition</b> list_widget.cpp:409</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a27f1e259b3c6a026076cb5d0c107f0e8"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a27f1e259b3c6a026076cb5d0c107f0e8">GUIEngine::ListWidget::m_sort_desc</a></div><div class="ttdeci">bool m_sort_desc</div><div class="ttdoc">whether this list is sorted in descending order</div><div class="ttdef"><b>Definition</b> list_widget.hpp:64</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a2cfd3a944799c8974b7b60bdb2314731"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a2cfd3a944799c8974b7b60bdb2314731">GUIEngine::ListWidget::transmitEvent</a></div><div class="ttdeci">virtual EventPropagation transmitEvent(Widget *w, const std::string &amp;originator, const int playerID)</div><div class="ttdoc">Override callback from Widget</div><div class="ttdef"><b>Definition</b> list_widget.cpp:501</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a2d49333d8467d89994f50b66761ac46d"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a2d49333d8467d89994f50b66761ac46d">GUIEngine::ListWidget::m_header</a></div><div class="ttdeci">std::vector&lt; Column &gt; m_header</div><div class="ttdoc">Leave empty for no header</div><div class="ttdef"><b>Definition</b> list_widget.hpp:93</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a370baa861c7ea8809a59674acff4a913"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a370baa861c7ea8809a59674acff4a913">GUIEngine::ListWidget::getItemID</a></div><div class="ttdeci">int getItemID(const std::string &amp;internalName) const</div><div class="ttdoc">Finds the ID of the item that has a given internal name</div><div class="ttdef"><b>Definition</b> list_widget.cpp:649</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a3a75750393b72a1987df0a03ccaba82f"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a3a75750393b72a1987df0a03ccaba82f">GUIEngine::ListWidget::getSelectionInternalName</a></div><div class="ttdeci">std::string getSelectionInternalName()</div><div class="ttdef"><b>Definition</b> list_widget.cpp:328</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a449e4d02025c3a5ad549d8b88ec89d18"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a449e4d02025c3a5ad549d8b88ec89d18">GUIEngine::ListWidget::moveToNextItem</a></div><div class="ttdeci">EventPropagation moveToNextItem(const bool down)</div><div class="ttdoc">implement common core parts of upPressed and downPressed</div><div class="ttdef"><b>Definition</b> list_widget.cpp:609</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a606fadb7e982e4d9f08b56d3535bd42f"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a606fadb7e982e4d9f08b56d3535bd42f">GUIEngine::ListWidget::rightPressed</a></div><div class="ttdeci">virtual EventPropagation rightPressed(const int playerID)</div><div class="ttdoc">implementing method from base class Widget</div><div class="ttdef"><b>Definition</b> list_widget.cpp:576</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a6b105bee361291f6fa19c7283ad4bce4"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a6b105bee361291f6fa19c7283ad4bce4">GUIEngine::ListWidget::getSelectionID</a></div><div class="ttdeci">int getSelectionID() const</div><div class="ttdef"><b>Definition</b> list_widget.cpp:373</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a6c96718c7a1f7b97deb0da520ee49413"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a6c96718c7a1f7b97deb0da520ee49413">GUIEngine::ListWidget::upPressed</a></div><div class="ttdeci">virtual EventPropagation upPressed(const int playerID)</div><div class="ttdoc">implementing method from base class Widget</div><div class="ttdef"><b>Definition</b> list_widget.cpp:546</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a6e22f90b7b85a3bc3c97fba17121f8bb"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a6e22f90b7b85a3bc3c97fba17121f8bb">GUIEngine::ListWidget::leftPressed</a></div><div class="ttdeci">virtual EventPropagation leftPressed(const int playerID)</div><div class="ttdoc">implementing method from base class Widget</div><div class="ttdef"><b>Definition</b> list_widget.cpp:560</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a79bb023aba1997896e2b3b7171b0a73c"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a79bb023aba1997896e2b3b7171b0a73c">GUIEngine::ListWidget::downPressed</a></div><div class="ttdeci">virtual EventPropagation downPressed(const int playerID)</div><div class="ttdoc">implementing method from base class Widget</div><div class="ttdef"><b>Definition</b> list_widget.cpp:553</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a845f145a4ac61cafd33034e845f15d6d"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a845f145a4ac61cafd33034e845f15d6d">GUIEngine::ListWidget::addColumn</a></div><div class="ttdeci">void addColumn(irr::core::stringw col, int proportion=1)</div><div class="ttdoc">Columns are persistent across multiple &quot;clear&quot; add/remove cycles.</div><div class="ttdef"><b>Definition</b> list_widget.hpp:306</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a89f080272a7174acaac7bb7add48970f"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a89f080272a7174acaac7bb7add48970f">GUIEngine::ListWidget::m_sort_default</a></div><div class="ttdeci">bool m_sort_default</div><div class="ttdoc">true when deault sorting is enabled</div><div class="ttdef"><b>Definition</b> list_widget.hpp:67</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_a9104dc4badfbf09c18e631e86e4720c9"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#a9104dc4badfbf09c18e631e86e4720c9">GUIEngine::ListWidget::setActive</a></div><div class="ttdeci">virtual void setActive(bool active=true)</div><div class="ttdoc">Sets an widget to be either activated or deactivated (i.e.</div><div class="ttdef"><b>Definition</b> list_widget.cpp:657</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_aa9ab90e034194f8ba7ce126b93ef7043"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#aa9ab90e034194f8ba7ce126b93ef7043">GUIEngine::ListWidget::m_icons</a></div><div class="ttdeci">irr::gui::STKModifiedSpriteBank * m_icons</div><div class="ttdoc">if m_use_icons is true, this will contain the icon bank</div><div class="ttdef"><b>Definition</b> list_widget.hpp:57</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_abd6459cb9ae58a5786219f4138fce2ef"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#abd6459cb9ae58a5786219f4138fce2ef">GUIEngine::ListWidget::addItem</a></div><div class="ttdeci">void addItem(const std::string &amp;internal_name, const irr::core::stringw &amp;name, const int icon=-1, bool center=false)</div><div class="ttdoc">add an item to the list</div><div class="ttdef"><b>Definition</b> list_widget.cpp:233</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_ac70a6fc0c63f4260a2701247eb9217d1"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#ac70a6fc0c63f4260a2701247eb9217d1">GUIEngine::ListWidget::markItemRed</a></div><div class="ttdeci">void markItemRed(const std::string &amp;internalName, bool red=true)</div><div class="ttdoc">Make an item red to mark an error, for instance</div><div class="ttdef"><b>Definition</b> list_widget.hpp:256</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_aca85cf0dac6b02dedafdab13996b9964"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#aca85cf0dac6b02dedafdab13996b9964">GUIEngine::ListWidget::renameCell</a></div><div class="ttdeci">void renameCell(const int row_num, const int col_num, const irr::core::stringw &amp;newName, const int icon=-1)</div><div class="ttdoc">rename an item and/or change its icon based on its ID</div><div class="ttdef"><b>Definition</b> list_widget.cpp:295</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_accd7d12928c66a563d78b3d9daaf8fa3"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#accd7d12928c66a563d78b3d9daaf8fa3">GUIEngine::ListWidget::elementRemoved</a></div><div class="ttdeci">virtual void elementRemoved()</div><div class="ttdoc">implement callback from base class GUIEngine::Widget</div><div class="ttdef"><b>Definition</b> list_widget.cpp:421</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_ad2b94b02d1f3e465d306712ec1bd8d72"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#ad2b94b02d1f3e465d306712ec1bd8d72">GUIEngine::ListWidget::resize</a></div><div class="ttdeci">virtual void resize()</div><div class="ttdoc">Call to resize the widget after its coordinates are updated.</div><div class="ttdef"><b>Definition</b> list_widget.cpp:703</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_add3533f635c222eed02fe531287f4a06"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#add3533f635c222eed02fe531287f4a06">GUIEngine::ListWidget::setSelectionID</a></div><div class="ttdeci">void setSelectionID(const int index)</div><div class="ttdoc">change the selected item</div><div class="ttdef"><b>Definition</b> list_widget.cpp:383</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_ae16b704776af21d6dc9f970c6a5d92d2"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#ae16b704776af21d6dc9f970c6a5d92d2">GUIEngine::ListWidget::createHeader</a></div><div class="ttdeci">void createHeader()</div><div class="ttdoc">create a header based on m_header</div><div class="ttdef"><b>Definition</b> list_widget.cpp:152</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1ListWidget_html_ae8bd843d5a44db545afa0ac1fb250d2e"><div class="ttname"><a href="classGUIEngine_1_1ListWidget.html#ae8bd843d5a44db545afa0ac1fb250d2e">GUIEngine::ListWidget::clearColumns</a></div><div class="ttdeci">void clearColumns()</div><div class="ttdoc">clear the header</div><div class="ttdef"><b>Definition</b> list_widget.cpp:215</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1SkinWidgetContainer_html"><div class="ttname"><a href="classGUIEngine_1_1SkinWidgetContainer.html">GUIEngine::SkinWidgetContainer</a></div><div class="ttdoc">In order to avoid calculating render information every frame, it&#39;s stored in a SkinWidgetContainer fo...</div><div class="ttdef"><b>Definition</b> skin.hpp:142</div></div>
+<div class="ttc" id="aclassGUIEngine_1_1Widget_html"><div class="ttname"><a href="classGUIEngine_1_1Widget.html">GUIEngine::Widget</a></div><div class="ttdoc">The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...</div><div class="ttdef"><b>Definition</b> widget.hpp:147</div></div>
+<div class="ttc" id="aclassPtrVector_html"><div class="ttname"><a href="classPtrVector.html">PtrVector</a></div><div class="ttdef"><b>Definition</b> ptr_vector.hpp:44</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html"><div class="ttname"><a href="namespaceGUIEngine.html">GUIEngine</a></div><div class="ttdoc">Contains all GUI engine related classes and functions</div><div class="ttdef"><b>Definition</b> abstract_state_manager.hpp:33</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html_a7978ff53df5a37391c949e99f7080d5f"><div class="ttname"><a href="namespaceGUIEngine.html#a7978ff53df5a37391c949e99f7080d5f">GUIEngine::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">erases the currently displayed screen, removing all added irrLicht widgets</div><div class="ttdef"><b>Definition</b> engine.cpp:857</div></div>
+<div class="ttc" id="astructGUIEngine_1_1ListWidget_1_1Column_html"><div class="ttname"><a href="structGUIEngine_1_1ListWidget_1_1Column.html">GUIEngine::ListWidget::Column</a></div><div class="ttdef"><b>Definition</b> list_widget.hpp:75</div></div>
+<div class="ttc" id="astructirr_1_1gui_1_1CGUISTKListBox_1_1ListItem_html"><div class="ttname"><a href="structirr_1_1gui_1_1CGUISTKListBox_1_1ListItem.html">irr::gui::CGUISTKListBox::ListItem</a></div><div class="ttdef"><b>Definition</b> CGUISTKListBox.hpp:31</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

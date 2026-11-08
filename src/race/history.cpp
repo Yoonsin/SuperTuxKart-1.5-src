@@ -17,7 +17,7 @@
 //  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "race/history.hpp"
-
+#include <ctime>
 #include <stdio.h>
 
 #include "main_loop.hpp"
@@ -41,6 +41,7 @@ bool History::m_online_history_replay = false;
 History::History()
 {
     m_replay_history = false;
+    m_replay_filename = "history.dat";
 }   // History
 
 //-----------------------------------------------------------------------------
@@ -140,20 +141,38 @@ void History::Save()
     World* world = World::getWorld();
     if (!world)
         return;
-    FILE* fd = fopen("history.dat", "w");
+
+    char timestamp[32] = "unknown";
+    const std::time_t now = std::time(NULL);
+    const std::tm* local_time = std::localtime(&now);
+
+    if (local_time)
+        std::strftime(timestamp, sizeof(timestamp),"%Y%m%d_%H%M%S", local_time);
+    std::string trackname = Track::getCurrentTrack()->getIdent().c_str();
+    const std::string filename = std::string("history_") + timestamp + "_" + trackname + ".dat";
+
+    FILE* fd = fopen(filename.c_str(), "w");
     if (fd)
-        Log::info("History", "Saved in ./history.dat.");
+    {
+#ifdef ANDROID
+        const std::string fn = file_manager->getUserConfigFile(filename);
+        fd = FileUtils::fopenU8Path(fn, "w");
+        if (fd)
+            Log::info("History", "Saved in '%s'.", fn.c_str());
+#endif
+        Log::info("History", "Saved in ./%s.", filename.c_str());
+    }
     else
     {
-        std::string fn = file_manager->getUserConfigFile("history.dat");
+        std::string fn = file_manager->getUserConfigFile("filename");
         fd = FileUtils::fopenU8Path(fn, "w");
         if (fd)
             Log::info("History", "Saved in '%s'.", fn.c_str());
     }
     if (!fd)
     {
-        Log::info("History", "Can't open history.dat file for writing - can't save history.");
-        Log::info("History", "Make sure history.dat in the current directory "
+        Log::info("History", "Can't open %s for writing - can't save history.", filename.c_str());
+        Log::info("History", "Make sure the history file in the current directory "
             "or the config directory is writable.");
         return;
     }
@@ -198,19 +217,36 @@ void History::Load()
     char s[1024], s1[1024];
     int  n;
 
-    FILE* fd = fopen("history.dat", "r");
-    if (fd)
-        Log::info("History", "Reading ./history.dat");
+    std::string opened_filename = m_replay_filename;
+    FILE* fd = fopen(opened_filename.c_str(), "r");
+    if (!fd)
+    {
+        opened_filename = file_manager->getUserConfigFile(m_replay_filename);
+        fd = FileUtils::fopenU8Path(opened_filename, "r");
+    }
+
+    if (!fd && m_replay_filename != "history.dat")
+    {
+        Log::warn("History", "Could not open '%s'; trying history.dat.",
+                  m_replay_filename.c_str());
+        opened_filename = "history.dat";
+        fd = fopen(opened_filename.c_str(), "r");
+        if (!fd)
+        {
+            opened_filename = file_manager->getUserConfigFile("history.dat");
+            fd = FileUtils::fopenU8Path(opened_filename, "r");
+        }
+    }
+
+    if (!fd)
+    {
+        Log::fatal("History", "Could not open history file '%s' or fallback 'history.dat'.",
+                   m_replay_filename.c_str());
+    }
     else
     {
-        std::string fn = file_manager->getUserConfigFile("history.dat");
-        fd = FileUtils::fopenU8Path(fn, "r");
-        if (fd)
-            Log::info("History", "Reading '%s'.", fn.c_str());
+        Log::info("History", "Reading '%s'.", opened_filename.c_str());
     }
-    if (!fd)
-        Log::fatal("History", "Could not open history.dat");
-
     if (fgets(s, 1023, fd) == NULL)
         Log::fatal("History", "Could not read history.dat.");
 

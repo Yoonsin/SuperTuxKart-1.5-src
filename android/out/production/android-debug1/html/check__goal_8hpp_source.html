@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: tracks/check_goal.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>tracks</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">check_goal.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2012-2015  Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_CHECK_GOAL_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_CHECK_GOAL_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;tracks/check_structure.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/cpp2011.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;line2d.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">class </span><a class="code hl_class" href="classXMLNode.html">XMLNode</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">class </span>Track;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">class </span><a class="code hl_class" href="classVec3.html">Vec3</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="};">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classCheckGoal.html">   37</a></span><span class="keyword">class </span><a class="code hl_function" href="classCheckGoal.html#acb70e56b1c7a540c5ab7a38b79cb8998">CheckGoal</a> : <span class="keyword">public</span> <a class="code hl_function" href="classCheckStructure.html#a43aaf77991e05abbee49cb199018bf84">CheckStructure</a></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classCheckGoal.html#a8c20c407b5b14b8b9c05871b932fe145">   41</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classCheckGoal.html#a8c20c407b5b14b8b9c05871b932fe145">PointLocation</a></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        POINT_FIRST,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        POINT_CENTER,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        POINT_LAST</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    };</div>
+</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classCheckGoal.html#a072e500f9fda81719788dc5867d67da7">   49</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a>            <a class="code hl_variable" href="classCheckGoal.html#a072e500f9fda81719788dc5867d67da7">m_previous_ball_position</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classCheckGoal.html#a6b35aa1634dbe05e617e90329e24349b">   52</a></span>    <span class="keywordtype">bool</span>            <a class="code hl_variable" href="classCheckGoal.html#a6b35aa1634dbe05e617e90329e24349b">m_first_goal</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classCheckGoal.html#ad514c4b9ce5e54000c0f7927c2521e01">   55</a></span>    core::line2df   <a class="code hl_variable" href="classCheckGoal.html#ad514c4b9ce5e54000c0f7927c2521e01">m_line</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classCheckGoal.html#a7e19d3248647d109f63d73031427a46e">   58</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a>            <a class="code hl_variable" href="classCheckGoal.html#a7e19d3248647d109f63d73031427a46e">m_p1</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <a class="code hl_class" href="classVec3.html">Vec3</a>            m_p2;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <a class="code hl_class" href="classVec3.html">Vec3</a>            m_p3;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>             <a class="code hl_function" href="classCheckGoal.html#acb70e56b1c7a540c5ab7a38b79cb8998">CheckGoal</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> &amp;node, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classCheckGoal.html#acb70e56b1c7a540c5ab7a38b79cb8998">~CheckGoal</a>() {}</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCheckGoal.html#aaa76ca429240373549206dcf8ed5a56a">update</a>(<span class="keywordtype">float</span> dt) OVERRIDE;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCheckGoal.html#acfc98c7ce0533b7a46d92c4ad25f2f3a">trigger</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> kart_index) OVERRIDE;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classCheckGoal.html#ad420c26911833cfc7b8b3e30c2419f31">isTriggered</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;old_pos, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;new_pos,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                             <span class="keywordtype">int</span> indx) OVERRIDE;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCheckGoal.html#a3c0b8b583721aed592b8e2479e0931f0">reset</a>(<span class="keyword">const</span> Track &amp;track) OVERRIDE;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">bool</span> getTeam()<span class="keyword"> const                               </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classCheckGoal.html#a6b35aa1634dbe05e617e90329e24349b">m_first_goal</a>; }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keyword">const</span> Vec3&amp; getPoint(<a class="code hl_enumeration" href="classCheckGoal.html#a8c20c407b5b14b8b9c05871b932fe145">PointLocation</a> point)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">return</span> (point == POINT_LAST ? m_p3 :</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            (point == POINT_CENTER ? m_p2 : <a class="code hl_variable" href="classCheckGoal.html#a7e19d3248647d109f63d73031427a46e">m_p1</a>));</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00080" data-start="{" data-end="}">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classCheckGoal.html#a24c4c57fe1fc042a134536a4f4e5d72f">   80</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classCheckStructure.html#a43aaf77991e05abbee49cb199018bf84">CheckStructure</a>* <a class="code hl_function" href="classCheckGoal.html#a24c4c57fe1fc042a134536a4f4e5d72f">clone</a>() OVERRIDE</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                                               { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_function" href="classCheckGoal.html#acb70e56b1c7a540c5ab7a38b79cb8998">CheckGoal</a>(*<span class="keyword">this</span>); }</div>
+</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>};   <span class="comment">// CheckGoal</span></div>
+</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassCheckGoal_html_a072e500f9fda81719788dc5867d67da7"><div class="ttname"><a href="classCheckGoal.html#a072e500f9fda81719788dc5867d67da7">CheckGoal::m_previous_ball_position</a></div><div class="ttdeci">Vec3 m_previous_ball_position</div><div class="ttdoc">Previois ball position.</div><div class="ttdef"><b>Definition</b> check_goal.hpp:49</div></div>
+<div class="ttc" id="aclassCheckGoal_html_a24c4c57fe1fc042a134536a4f4e5d72f"><div class="ttname"><a href="classCheckGoal.html#a24c4c57fe1fc042a134536a4f4e5d72f">CheckGoal::clone</a></div><div class="ttdeci">virtual CheckStructure * clone() OVERRIDE</div><div class="ttdoc">Clone to child process for server usage (atm no sound or scripting).</div><div class="ttdef"><b>Definition</b> check_goal.hpp:80</div></div>
+<div class="ttc" id="aclassCheckGoal_html_a3c0b8b583721aed592b8e2479e0931f0"><div class="ttname"><a href="classCheckGoal.html#a3c0b8b583721aed592b8e2479e0931f0">CheckGoal::reset</a></div><div class="ttdeci">virtual void reset(const Track &amp;track) OVERRIDE</div><div class="ttdoc">Initialises the &#39;previous positions&#39; of all karts with the start position defined for this track.</div><div class="ttdef"><b>Definition</b> check_goal.cpp:102</div></div>
+<div class="ttc" id="aclassCheckGoal_html_a6b35aa1634dbe05e617e90329e24349b"><div class="ttname"><a href="classCheckGoal.html#a6b35aa1634dbe05e617e90329e24349b">CheckGoal::m_first_goal</a></div><div class="ttdeci">bool m_first_goal</div><div class="ttdoc">Which team is this goal for?</div><div class="ttdef"><b>Definition</b> check_goal.hpp:52</div></div>
+<div class="ttc" id="aclassCheckGoal_html_a7e19d3248647d109f63d73031427a46e"><div class="ttname"><a href="classCheckGoal.html#a7e19d3248647d109f63d73031427a46e">CheckGoal::m_p1</a></div><div class="ttdeci">Vec3 m_p1</div><div class="ttdoc">Used by AIs to test whether the ball is likely to goal.</div><div class="ttdef"><b>Definition</b> check_goal.hpp:58</div></div>
+<div class="ttc" id="aclassCheckGoal_html_a8c20c407b5b14b8b9c05871b932fe145"><div class="ttname"><a href="classCheckGoal.html#a8c20c407b5b14b8b9c05871b932fe145">CheckGoal::PointLocation</a></div><div class="ttdeci">PointLocation</div><div class="ttdoc">Used by AIs to test whether the ball is likely to goal.</div><div class="ttdef"><b>Definition</b> check_goal.hpp:42</div></div>
+<div class="ttc" id="aclassCheckGoal_html_aaa76ca429240373549206dcf8ed5a56a"><div class="ttname"><a href="classCheckGoal.html#aaa76ca429240373549206dcf8ed5a56a">CheckGoal::update</a></div><div class="ttdeci">virtual void update(float dt) OVERRIDE</div><div class="ttdoc">Checks the soccer balls to see if they crossed the line and trigger the goal accordingly.</div><div class="ttdef"><b>Definition</b> check_goal.cpp:52</div></div>
+<div class="ttc" id="aclassCheckGoal_html_acb70e56b1c7a540c5ab7a38b79cb8998"><div class="ttname"><a href="classCheckGoal.html#acb70e56b1c7a540c5ab7a38b79cb8998">CheckGoal::CheckGoal</a></div><div class="ttdeci">CheckGoal(const XMLNode &amp;node, unsigned int index)</div><div class="ttdoc">Constructor for a check goal line.</div><div class="ttdef"><b>Definition</b> check_goal.cpp:33</div></div>
+<div class="ttc" id="aclassCheckGoal_html_acfc98c7ce0533b7a46d92c4ad25f2f3a"><div class="ttname"><a href="classCheckGoal.html#acfc98c7ce0533b7a46d92c4ad25f2f3a">CheckGoal::trigger</a></div><div class="ttdeci">virtual void trigger(unsigned int kart_index) OVERRIDE</div><div class="ttdoc">Called when the goal line is triggered.</div><div class="ttdef"><b>Definition</b> check_goal.cpp:75</div></div>
+<div class="ttc" id="aclassCheckGoal_html_ad420c26911833cfc7b8b3e30c2419f31"><div class="ttname"><a href="classCheckGoal.html#ad420c26911833cfc7b8b3e30c2419f31">CheckGoal::isTriggered</a></div><div class="ttdeci">virtual bool isTriggered(const Vec3 &amp;old_pos, const Vec3 &amp;new_pos, int indx) OVERRIDE</div><div class="ttdoc">True if going from old_pos to new_pos crosses this checkline.</div><div class="ttdef"><b>Definition</b> check_goal.cpp:89</div></div>
+<div class="ttc" id="aclassCheckGoal_html_ad514c4b9ce5e54000c0f7927c2521e01"><div class="ttname"><a href="classCheckGoal.html#ad514c4b9ce5e54000c0f7927c2521e01">CheckGoal::m_line</a></div><div class="ttdeci">core::line2df m_line</div><div class="ttdoc">The line that is tested for being crossed.</div><div class="ttdef"><b>Definition</b> check_goal.hpp:55</div></div>
+<div class="ttc" id="aclassCheckStructure_html_a43aaf77991e05abbee49cb199018bf84"><div class="ttname"><a href="classCheckStructure.html#a43aaf77991e05abbee49cb199018bf84">CheckStructure::CheckStructure</a></div><div class="ttdeci">CheckStructure()</div><div class="ttdoc">For CheckTrigger or CheckCylinder</div><div class="ttdef"><b>Definition</b> check_structure.cpp:78</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

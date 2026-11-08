@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: karts/controller/local_player_controller.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>karts</b></li><li class="navelem"><b>controller</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">local_player_controller.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2004-2015 Steve Baker &lt;sjbaker1@airmail.net&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  Copyright (C) 2006-2015 Joerg Henrichs, Steve Baker</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifndef HEADER_LOCAL_PLAYER_CONTROLLER_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#define HEADER_LOCAL_PLAYER_CONTROLLER_HPP</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;karts/controller/player_controller.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">class </span><a class="code hl_class" href="classSFXBase.html">SFXBase</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">class </span><a class="code hl_class" href="classSFXBuffer.html">SFXBuffer</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">class </span>btTransform;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#ifndef SERVER_ONLY</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">class </span><a class="code hl_class" href="classParticleEmitter.html">ParticleEmitter</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classLocalPlayerController.html">   41</a></span><span class="keyword">class </span><a class="code hl_function" href="classLocalPlayerController.html#a76e97ba0b530c9e3d8f5b34e7cf71094">LocalPlayerController</a> : <span class="keyword">public</span> PlayerController</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classLocalPlayerController.html#a1c194274def69b0834fb7d17eebcdf6f">   46</a></span>    <a class="code hl_class" href="classStateManager_1_1ActivePlayer.html">StateManager::ActivePlayer</a> *<a class="code hl_variable" href="classLocalPlayerController.html#a1c194274def69b0834fb7d17eebcdf6f">m_player</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">bool</span>           m_sound_schedule;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">bool</span>           m_has_started;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">bool</span>           m_is_above_nitro_target;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#ifndef SERVER_ONLY</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    std::unique_ptr&lt;ParticleEmitter&gt; m_sky_particles_emitter;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classLocalPlayerController.html#a758e73480288cd9effcd483b7a9bce22">   58</a></span>    <span class="keywordtype">int</span>  <a class="code hl_variable" href="classLocalPlayerController.html#a758e73480288cd9effcd483b7a9bce22">m_camera_index</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">int</span> m_last_crash;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_enumeration" href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a> m_handicap;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <a class="code hl_class" href="classSFXBase.html">SFXBase</a>     *m_wee_sound;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <a class="code hl_class" href="classSFXBuffer.html">SFXBuffer</a>   *m_bzzt_sound;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <a class="code hl_class" href="classSFXBuffer.html">SFXBuffer</a>   *m_ugh_sound;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <a class="code hl_class" href="classSFXBuffer.html">SFXBuffer</a>   *m_grab_sound;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <a class="code hl_class" href="classSFXBuffer.html">SFXBuffer</a>   *m_full_sound;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_class" href="classSFXBuffer.html">SFXBuffer</a>   *m_unfull_sound;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLocalPlayerController.html#a585a097f6003bb7b12e48c9cbeff7cca">steer</a>(<span class="keywordtype">int</span>, <span class="keywordtype">int</span>) OVERRIDE;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLocalPlayerController.html#a65b567fcf89093337a06be986321dc86">displayPenaltyWarning</a>() OVERRIDE;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classLocalPlayerController.html#a91a2ee9877f256fcc60bc94053c3fae5">nitroNotFullSound</a>();</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> doCrashHaptics();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span> setParticleEmitterPosition(const btTransform&amp; t);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>public:</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                 <a class="code hl_function" href="classLocalPlayerController.html#a76e97ba0b530c9e3d8f5b34e7cf71094">LocalPlayerController</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                                       const <span class="keywordtype">int</span> local_player_id,</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                                       <a class="code hl_enumeration" href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a> h);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                ~<a class="code hl_function" href="classLocalPlayerController.html#a76e97ba0b530c9e3d8f5b34e7cf71094">LocalPlayerController</a>();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classLocalPlayerController.html#a67aea18cd08b350cad2710b72c5ef702">update</a>            (<span class="keywordtype">int</span> ticks) OVERRIDE;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">bool</span>         <a class="code hl_function" href="classLocalPlayerController.html#a3727cd73476c3351028490945e44a048">action</a>            (<a class="code hl_enumeration" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> <a class="code hl_function" href="classLocalPlayerController.html#a3727cd73476c3351028490945e44a048">action</a>, <span class="keywordtype">int</span> value,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                                    <span class="keywordtype">bool</span> dry_run=false) OVERRIDE;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            <span class="keywordtype">void</span> initParticleEmitter();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classLocalPlayerController.html#a639b065539314644dd05a63b04b92d0b">handleZipper</a>      (<span class="keywordtype">bool</span> play_sound) OVERRIDE;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classLocalPlayerController.html#a2a81b705303285ce85e9f6d9ba1cea31">collectedItem</a>     (const <a class="code hl_class" href="classItemState.html">ItemState</a> &amp;item,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                                    <span class="keywordtype">float</span> previous_energy=0) OVERRIDE;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classLocalPlayerController.html#af88c25a9a3fe6f8379bace43f0f41894">setPosition</a>       (<span class="keywordtype">int</span> p) OVERRIDE;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classLocalPlayerController.html#ab8b509507666df7e51fb9fa2096052fe">reset</a>             () OVERRIDE;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classLocalPlayerController.html#a14fac5bf158c3fce15319f2d9e6c06de">finishedRace</a>      (<span class="keywordtype">float</span> time) OVERRIDE;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classLocalPlayerController.html#ab3a448c65106d4b8d91d0e37979ce763">resetInputState</a>   () OVERRIDE;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    virtual <span class="keywordtype">bool</span> <a class="code hl_function" href="classLocalPlayerController.html#a67f59072996bfda6a9c23f64c955c51e">canGetAchievements</a>() const OVERRIDE;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    virtual <span class="keywordtype">void</span> crashed(const <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *k) OVERRIDE;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    virtual <span class="keywordtype">void</span> crashed(const <a class="code hl_class" href="classMaterial.html">Material</a> *m) OVERRIDE;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    virtual <span class="keywordtype">void</span> rumble(<span class="keywordtype">float</span> strength_low, <span class="keywordtype">float</span> strength_high, uint16_t duration) OVERRIDE;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classLocalPlayerController.html#ab5d45b9d167762bd9a44ea3d51f64345">  103</a></span>    virtual <span class="keywordtype">bool</span> <a class="code hl_function" href="classLocalPlayerController.html#ab5d45b9d167762bd9a44ea3d51f64345">isPlayerController</a>() const OVERRIDE {<span class="keywordflow">return</span> <span class="keyword">true</span>;}</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classLocalPlayerController.html#a1b606ff10a00d96cc39ae5ce169ef44b">  105</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classLocalPlayerController.html#a1b606ff10a00d96cc39ae5ce169ef44b">isLocalPlayerController</a>() const OVERRIDE {<span class="keywordflow">return</span> <span class="keyword">true</span>;}</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    core::stringw <a class="code hl_function" href="classLocalPlayerController.html#acb76523af9775812b1a775f65f915a38">getName</a>(<span class="keywordtype">bool</span> include_handicap_string = <span class="keyword">true</span>) const OVERRIDE;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>};   <span class="comment">// LocalPlayerController</span></div>
+</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassItemState_html"><div class="ttname"><a href="classItemState.html">ItemState</a></div><div class="ttdoc">Contains the state information of an item, i.e.</div><div class="ttdef"><b>Definition</b> item.hpp:53</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_a14fac5bf158c3fce15319f2d9e6c06de"><div class="ttname"><a href="classLocalPlayerController.html#a14fac5bf158c3fce15319f2d9e6c06de">LocalPlayerController::finishedRace</a></div><div class="ttdeci">virtual void finishedRace(float time) OVERRIDE</div><div class="ttdoc">Called when a kart finishes race.</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:372</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_a1b606ff10a00d96cc39ae5ce169ef44b"><div class="ttname"><a href="classLocalPlayerController.html#a1b606ff10a00d96cc39ae5ce169ef44b">LocalPlayerController::isLocalPlayerController</a></div><div class="ttdeci">virtual bool isLocalPlayerController() const OVERRIDE</div><div class="ttdoc">This function checks if this is a local player.</div><div class="ttdef"><b>Definition</b> local_player_controller.hpp:105</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_a1c194274def69b0834fb7d17eebcdf6f"><div class="ttname"><a href="classLocalPlayerController.html#a1c194274def69b0834fb7d17eebcdf6f">LocalPlayerController::m_player</a></div><div class="ttdeci">StateManager::ActivePlayer * m_player</div><div class="ttdoc">Stores the active player data structure.</div><div class="ttdef"><b>Definition</b> local_player_controller.hpp:46</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_a2a81b705303285ce85e9f6d9ba1cea31"><div class="ttname"><a href="classLocalPlayerController.html#a2a81b705303285ce85e9f6d9ba1cea31">LocalPlayerController::collectedItem</a></div><div class="ttdeci">void collectedItem(const ItemState &amp;item, float previous_energy=0) OVERRIDE</div><div class="ttdoc">Called when a kart hits an item.</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:409</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_a3727cd73476c3351028490945e44a048"><div class="ttname"><a href="classLocalPlayerController.html#a3727cd73476c3351028490945e44a048">LocalPlayerController::action</a></div><div class="ttdeci">bool action(PlayerAction action, int value, bool dry_run=false) OVERRIDE</div><div class="ttdoc">This function interprets a kart action and value, and set the corresponding entries in the kart contr...</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:172</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_a585a097f6003bb7b12e48c9cbeff7cca"><div class="ttname"><a href="classLocalPlayerController.html#a585a097f6003bb7b12e48c9cbeff7cca">LocalPlayerController::steer</a></div><div class="ttdeci">virtual void steer(int, int) OVERRIDE</div><div class="ttdoc">Handles steering for a player kart.</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:226</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_a639b065539314644dd05a63b04b92d0b"><div class="ttname"><a href="classLocalPlayerController.html#a639b065539314644dd05a63b04b92d0b">LocalPlayerController::handleZipper</a></div><div class="ttdeci">virtual void handleZipper(bool play_sound) OVERRIDE</div><div class="ttdoc">Called when a kart hits or uses a zipper.</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:382</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_a65b567fcf89093337a06be986321dc86"><div class="ttname"><a href="classLocalPlayerController.html#a65b567fcf89093337a06be986321dc86">LocalPlayerController::displayPenaltyWarning</a></div><div class="ttdeci">virtual void displayPenaltyWarning() OVERRIDE</div><div class="ttdoc">Displays a penalty warning for player controlled karts.</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:326</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_a67aea18cd08b350cad2710b72c5ef702"><div class="ttname"><a href="classLocalPlayerController.html#a67aea18cd08b350cad2710b72c5ef702">LocalPlayerController::update</a></div><div class="ttdeci">void update(int ticks) OVERRIDE</div><div class="ttdoc">Updates the player kart, called once each timestep.</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:248</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_a67f59072996bfda6a9c23f64c955c51e"><div class="ttname"><a href="classLocalPlayerController.html#a67f59072996bfda6a9c23f64c955c51e">LocalPlayerController::canGetAchievements</a></div><div class="ttdeci">virtual bool canGetAchievements() const OVERRIDE</div><div class="ttdoc">Returns true if the player of this controller can collect achievements.</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:457</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_a758e73480288cd9effcd483b7a9bce22"><div class="ttname"><a href="classLocalPlayerController.html#a758e73480288cd9effcd483b7a9bce22">LocalPlayerController::m_camera_index</a></div><div class="ttdeci">int m_camera_index</div><div class="ttdoc">The index of the camera attached to the kart for this controller.</div><div class="ttdef"><b>Definition</b> local_player_controller.hpp:58</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_a76e97ba0b530c9e3d8f5b34e7cf71094"><div class="ttname"><a href="classLocalPlayerController.html#a76e97ba0b530c9e3d8f5b34e7cf71094">LocalPlayerController::LocalPlayerController</a></div><div class="ttdeci">LocalPlayerController(AbstractKart *kart, const int local_player_id, HandicapLevel h)</div><div class="ttdoc">The constructor for a local player kart, i.e.</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:67</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_a91a2ee9877f256fcc60bc94053c3fae5"><div class="ttname"><a href="classLocalPlayerController.html#a91a2ee9877f256fcc60bc94053c3fae5">LocalPlayerController::nitroNotFullSound</a></div><div class="ttdeci">void nitroNotFullSound()</div><div class="ttdoc">If the nitro level has gone under the nitro goal, play a bad effect sound</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:444</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_ab3a448c65106d4b8d91d0e37979ce763"><div class="ttname"><a href="classLocalPlayerController.html#ab3a448c65106d4b8d91d0e37979ce763">LocalPlayerController::resetInputState</a></div><div class="ttdeci">virtual void resetInputState() OVERRIDE</div><div class="ttdoc">Resets the state of control keys.</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:149</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_ab5d45b9d167762bd9a44ea3d51f64345"><div class="ttname"><a href="classLocalPlayerController.html#ab5d45b9d167762bd9a44ea3d51f64345">LocalPlayerController::isPlayerController</a></div><div class="ttdeci">virtual bool isPlayerController() const OVERRIDE</div><div class="ttdoc">This function checks if this player is not an AI, i.e.</div><div class="ttdef"><b>Definition</b> local_player_controller.hpp:103</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_ab8b509507666df7e51fb9fa2096052fe"><div class="ttname"><a href="classLocalPlayerController.html#ab8b509507666df7e51fb9fa2096052fe">LocalPlayerController::reset</a></div><div class="ttdeci">virtual void reset() OVERRIDE</div><div class="ttdoc">Resets the player kart for a new or restarted race.</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:136</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_acb76523af9775812b1a775f65f915a38"><div class="ttname"><a href="classLocalPlayerController.html#acb76523af9775812b1a775f65f915a38">LocalPlayerController::getName</a></div><div class="ttdeci">core::stringw getName(bool include_handicap_string=true) const OVERRIDE</div><div class="ttdoc">Returns the name of the player profile.</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:464</div></div>
+<div class="ttc" id="aclassLocalPlayerController_html_af88c25a9a3fe6f8379bace43f0f41894"><div class="ttname"><a href="classLocalPlayerController.html#af88c25a9a3fe6f8379bace43f0f41894">LocalPlayerController::setPosition</a></div><div class="ttdeci">virtual void setPosition(int p) OVERRIDE</div><div class="ttdoc">Called just before the kart position is changed.</div><div class="ttdef"><b>Definition</b> local_player_controller.cpp:346</div></div>
+<div class="ttc" id="aclassMaterial_html"><div class="ttname"><a href="classMaterial.html">Material</a></div><div class="ttdef"><b>Definition</b> material.hpp:48</div></div>
+<div class="ttc" id="aclassParticleEmitter_html"><div class="ttname"><a href="classParticleEmitter.html">ParticleEmitter</a></div><div class="ttdoc">manages smoke particle effects</div><div class="ttdef"><b>Definition</b> particle_emitter.hpp:44</div></div>
+<div class="ttc" id="aclassSFXBase_html"><div class="ttname"><a href="classSFXBase.html">SFXBase</a></div><div class="ttdoc">The base class for sound effects.</div><div class="ttdef"><b>Definition</b> sfx_base.hpp:43</div></div>
+<div class="ttc" id="aclassSFXBuffer_html"><div class="ttname"><a href="classSFXBuffer.html">SFXBuffer</a></div><div class="ttdoc">The buffer (data) for one kind of sound effects</div><div class="ttdef"><b>Definition</b> sfx_buffer.hpp:44</div></div>
+<div class="ttc" id="aclassStateManager_1_1ActivePlayer_html"><div class="ttname"><a href="classStateManager_1_1ActivePlayer.html">StateManager::ActivePlayer</a></div><div class="ttdoc">Represents a player that is currently playing.</div><div class="ttdef"><b>Definition</b> state_manager.hpp:76</div></div>
+<div class="ttc" id="agroup__input_html_gaea132397c26cad8f8637a9422260deca"><div class="ttname"><a href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a></div><div class="ttdeci">PlayerAction</div><div class="ttdoc">types of input events / what actions the players can do</div><div class="ttdef"><b>Definition</b> input.hpp:117</div></div>
+<div class="ttc" id="aremote__kart__info_8hpp_html_a2fd442f27ee994082c435f49c9410f55"><div class="ttname"><a href="remote__kart__info_8hpp.html#a2fd442f27ee994082c435f49c9410f55">HandicapLevel</a></div><div class="ttdeci">HandicapLevel</div><div class="ttdoc">Handicap per player.</div><div class="ttdef"><b>Definition</b> remote_kart_info.hpp:43</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

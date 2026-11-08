@@ -1,0 +1,1578 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: SkiddingAI 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">클래스</a> &#124;
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pro-methods">Protected 멤버 함수</a> &#124;
+<a href="#pri-types">Private 타입</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="classSkiddingAI-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">SkiddingAI 클래스 참조<div class="ingroups"><a class="el" href="group__controller.html">Karts/controller</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>This is the actual racing AI.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="skidding__ai_8hpp_source.html">skidding_ai.hpp</a>&gt;</code></p>
+<div class="dynheader">
+SkiddingAI에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classSkiddingAI__inherit__graph.png" border="0" usemap="#aSkiddingAI_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aSkiddingAI_inherit__map" id="aSkiddingAI_inherit__map">
+<area shape="rect" title="This is the actual racing AI." alt="" coords="34,229,118,256"/>
+<area shape="rect" href="classAIBaseLapController.html" title="A base class for all AI karts." alt="" coords="5,155,147,181"/>
+<area shape="poly" title=" " alt="" coords="78,195,79,230,73,228,74,199"/>
+<area shape="rect" href="classAIBaseController.html" title="A base class for all AI karts." alt="" coords="16,80,136,107"/>
+<area shape="poly" title=" " alt="" coords="77,120,79,155,73,154,75,125"/>
+<area shape="rect" href="classController.html" title="This is the base class for kart controller &#45; that can be a player or a a robot." alt="" coords="37,5,115,32"/>
+<area shape="poly" title=" " alt="" coords="77,45,79,80,73,79,75,50"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+클래스</h2></td></tr>
+<tr class="memitem:CrashTypes" id="r_CrashTypes"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classSkiddingAI_1_1CrashTypes.html">CrashTypes</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a2812106bdc565b1315ed5f006ddfea50" id="r_a2812106bdc565b1315ed5f006ddfea50"><td class="memItemLeft"><a id="a2812106bdc565b1315ed5f006ddfea50" name="a2812106bdc565b1315ed5f006ddfea50"></a>
+&#160;</td><td class="memItemRight"><b>SkiddingAI</b> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memitem:a7ee2fb43a849f7a33a960dbdb9318c98" id="r_a7ee2fb43a849f7a33a960dbdb9318c98"><td class="memItemLeft"><a id="a7ee2fb43a849f7a33a960dbdb9318c98" name="a7ee2fb43a849f7a33a960dbdb9318c98"></a>
+&#160;</td><td class="memItemRight"><b>~SkiddingAI</b> ()</td></tr>
+<tr class="memdesc:a7ee2fb43a849f7a33a960dbdb9318c98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, mostly to clean up debug data structures. <br /></td></tr>
+<tr class="memitem:ad70ba8c85e74b8aceeba12f559afb8c8" id="r_ad70ba8c85e74b8aceeba12f559afb8c8"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ad70ba8c85e74b8aceeba12f559afb8c8">update</a> (int ticks)</td></tr>
+<tr class="memdesc:ad70ba8c85e74b8aceeba12f559afb8c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the main entry point for the AI.  <br /></td></tr>
+<tr class="memitem:a63b16e59652015903e67561f4d920a24" id="r_a63b16e59652015903e67561f4d920a24"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a63b16e59652015903e67561f4d920a24">reset</a> ()</td></tr>
+<tr class="memdesc:a63b16e59652015903e67561f4d920a24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the AI when a race is restarted.  <br /></td></tr>
+<tr class="memitem:af89eae4c0029f0de802ac251b5188686" id="r_af89eae4c0029f0de802ac251b5188686"><td class="memItemLeft">virtual const irr::core::stringw &amp;&#160;</td><td class="memItemRight"><a class="el" href="#af89eae4c0029f0de802ac251b5188686">getNamePostfix</a> () const</td></tr>
+<tr class="memdesc:af89eae4c0029f0de802ac251b5188686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a name for the AI.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classAIBaseLapController"><td colspan="2"><a class="el" href="classAIBaseLapController.html">AIBaseLapController</a>(으)로부터 상속된 Public 멤버 함수</td></tr>
+<tr class="memitem:a75146c3f9740e40d6a3d941a59d12539 pub_methods_classAIBaseLapController" id="r_a75146c3f9740e40d6a3d941a59d12539"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseLapController.html#a75146c3f9740e40d6a3d941a59d12539">AIBaseLapController</a> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memdesc:a75146c3f9740e40d6a3d941a59d12539 pub_methods_classAIBaseLapController"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the base class for all AIs.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classAIBaseController"><td colspan="2"><a class="el" href="classAIBaseController.html">AIBaseController</a>(으)로부터 상속된 Public 멤버 함수</td></tr>
+<tr class="memitem:a49b892449aa3b59c4952ec3992009ab5 pub_methods_classAIBaseController" id="r_a49b892449aa3b59c4952ec3992009ab5"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>AIBaseController</b> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memitem:a75450c20a06c2bf542e5e713ecc09c63 pub_methods_classAIBaseController" id="r_a75450c20a06c2bf542e5e713ecc09c63"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a75450c20a06c2bf542e5e713ecc09c63">disableSlipstreamBonus</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:a75450c20a06c2bf542e5e713ecc09c63 pub_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Certain AI levels will not receive a slipstream bonus in order to be not as hard.  <br /></td></tr>
+<tr class="memitem:adfe63141b87801674dda575e104afe0f pub_methods_classAIBaseController" id="r_adfe63141b87801674dda575e104afe0f"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#adfe63141b87801674dda575e104afe0f">crashed</a> (const <a class="el" href="classMaterial.html">Material</a> *m) OVERRIDE</td></tr>
+<tr class="memdesc:adfe63141b87801674dda575e104afe0f pub_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is called when the kart crashed with the terrain.  <br /></td></tr>
+<tr class="memitem:a44249fb1598653960235e5516af0cbfc pub_methods_classAIBaseController" id="r_a44249fb1598653960235e5516af0cbfc"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a44249fb1598653960235e5516af0cbfc">crashed</a> (const <a class="el" href="classAbstractKart.html">AbstractKart</a> *k) OVERRIDE</td></tr>
+<tr class="memitem:ae2f64ff858494735ab104cc9045e4ad9 pub_methods_classAIBaseController" id="r_ae2f64ff858494735ab104cc9045e4ad9"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#ae2f64ff858494735ab104cc9045e4ad9">handleZipper</a> (bool play_sound) OVERRIDE</td></tr>
+<tr class="memitem:a9755070fd3dece3be4d470001c448fe6 pub_methods_classAIBaseController" id="r_a9755070fd3dece3be4d470001c448fe6"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a9755070fd3dece3be4d470001c448fe6">finishedRace</a> (float time) OVERRIDE</td></tr>
+<tr class="memdesc:a9755070fd3dece3be4d470001c448fe6 pub_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called whan this controller's kart finishes the last lap.  <br /></td></tr>
+<tr class="memitem:a431fdc3ba1942ccfb07f8136fd8e03c9 pub_methods_classAIBaseController" id="r_a431fdc3ba1942ccfb07f8136fd8e03c9"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a431fdc3ba1942ccfb07f8136fd8e03c9">collectedItem</a> (const <a class="el" href="classItemState.html">ItemState</a> &amp;item, float previous_energy=0) OVERRIDE</td></tr>
+<tr class="memitem:a64659acabc8d383bc40553c01435d239 pub_methods_classAIBaseController" id="r_a64659acabc8d383bc40553c01435d239"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a64659acabc8d383bc40553c01435d239">setPosition</a> (int p) OVERRIDE</td></tr>
+<tr class="memitem:a4713e814a176be8c80e6ea95fac43472 pub_methods_classAIBaseController" id="r_a4713e814a176be8c80e6ea95fac43472"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a4713e814a176be8c80e6ea95fac43472">isPlayerController</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:a4713e814a176be8c80e6ea95fac43472 pub_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if this player is not an AI, i.e.  <br /></td></tr>
+<tr class="memitem:a844eb4c260ae0466656c45905aa97470 pub_methods_classAIBaseController" id="r_a844eb4c260ae0466656c45905aa97470"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a844eb4c260ae0466656c45905aa97470">isLocalPlayerController</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:a844eb4c260ae0466656c45905aa97470 pub_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if this is a local player.  <br /></td></tr>
+<tr class="memitem:a1dd177462be6923a74c9c7d817e75123 pub_methods_classAIBaseController" id="r_a1dd177462be6923a74c9c7d817e75123"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a1dd177462be6923a74c9c7d817e75123">action</a> (<a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> action, int value, bool dry_run=false) OVERRIDE</td></tr>
+<tr class="memdesc:a1dd177462be6923a74c9c7d817e75123 pub_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default: ignore actions.  <br /></td></tr>
+<tr class="memitem:aa979a5f3ec80cd5347de9f864a079a09 pub_methods_classAIBaseController" id="r_aa979a5f3ec80cd5347de9f864a079a09"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#aa979a5f3ec80cd5347de9f864a079a09">skidBonusTriggered</a> () OVERRIDE</td></tr>
+<tr class="memitem:a3baff5d9ae3153820aa49e1496e7ee0c pub_methods_classAIBaseController" id="r_a3baff5d9ae3153820aa49e1496e7ee0c"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a3baff5d9ae3153820aa49e1496e7ee0c">saveState</a> (<a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer) const OVERRIDE</td></tr>
+<tr class="memitem:a4dd08509e6a29ede05534609b24253d5 pub_methods_classAIBaseController" id="r_a4dd08509e6a29ede05534609b24253d5"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a4dd08509e6a29ede05534609b24253d5">rewindTo</a> (<a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer) OVERRIDE</td></tr>
+<tr class="memitem:af237afc7fcda0e9f87ef0aa51ae7687a pub_methods_classAIBaseController" id="r_af237afc7fcda0e9f87ef0aa51ae7687a"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>setNetworkAI</b> (bool val)</td></tr>
+<tr class="inherit_header pub_methods_classController"><td colspan="2"><a class="el" href="classController.html">Controller</a>(으)로부터 상속된 Public 멤버 함수</td></tr>
+<tr class="memitem:a674f8ab7dc87cea7a5ba52230c3bac2c pub_methods_classController" id="r_a674f8ab7dc87cea7a5ba52230c3bac2c"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>Controller</b> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memdesc:a674f8ab7dc87cea7a5ba52230c3bac2c pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor, saves the kart pointer and a pointer to the <a class="el" href="classKartControl.html">KartControl</a> of the kart. <br /></td></tr>
+<tr class="memitem:a2cf87d91dd41d4c10bf2d2c41ab509a7 pub_methods_classController" id="r_a2cf87d91dd41d4c10bf2d2c41ab509a7"><td class="memItemLeft">
+virtual void&#160;</td><td class="memItemRight"><b>rumble</b> (float strength_low, float strength_high, uint16_t duration)</td></tr>
+<tr class="memitem:a6d6012ed58b347ceedd988ee338dba87 pub_methods_classController" id="r_a6d6012ed58b347ceedd988ee338dba87"><td class="memItemLeft">
+const std::string &amp;&#160;</td><td class="memItemRight"><b>getControllerName</b> () const</td></tr>
+<tr class="memdesc:a6d6012ed58b347ceedd988ee338dba87 pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of this controller. <br /></td></tr>
+<tr class="memitem:a66f485d0cb4dce29bf14801b076c9e8d pub_methods_classController" id="r_a66f485d0cb4dce29bf14801b076c9e8d"><td class="memItemLeft">
+virtual <a class="el" href="classKartControl.html">KartControl</a> *&#160;</td><td class="memItemRight"><b>getControls</b> ()</td></tr>
+<tr class="memdesc:a66f485d0cb4dce29bf14801b076c9e8d pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer on the kart controls. <br /></td></tr>
+<tr class="memitem:af55e937935cce2a1f205f94171b0cb38 pub_methods_classController" id="r_af55e937935cce2a1f205f94171b0cb38"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>setControls</b> (<a class="el" href="classKartControl.html">KartControl</a> *kc)</td></tr>
+<tr class="memitem:affece999cb286fa963091a1ca6456cd6 pub_methods_classController" id="r_affece999cb286fa963091a1ca6456cd6"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classController.html#affece999cb286fa963091a1ca6456cd6">canGetAchievements</a> () const</td></tr>
+<tr class="memdesc:affece999cb286fa963091a1ca6456cd6 pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Only local players can get achievements.  <br /></td></tr>
+<tr class="memitem:a7ba21663e9aaf2cf890532fdd1c1dabe pub_methods_classController" id="r_a7ba21663e9aaf2cf890532fdd1c1dabe"><td class="memItemLeft">virtual core::stringw&#160;</td><td class="memItemRight"><a class="el" href="classController.html#a7ba21663e9aaf2cf890532fdd1c1dabe">getName</a> (bool include_handicap_string=true) const</td></tr>
+<tr class="memdesc:a7ba21663e9aaf2cf890532fdd1c1dabe pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display name of the controller.  <br /></td></tr>
+<tr class="memitem:a32cb6445c30ca5fdbfa203ea621c2302 pub_methods_classController" id="r_a32cb6445c30ca5fdbfa203ea621c2302"><td class="memItemLeft">
+<a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><b>getKart</b> () const</td></tr>
+<tr class="memdesc:a32cb6445c30ca5fdbfa203ea621c2302 pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the kart controlled by this controller. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 멤버 함수</h2></td></tr>
+<tr class="memitem:ae661d1fa97111c61ed1df66f08b6c53b" id="r_ae661d1fa97111c61ed1df66f08b6c53b"><td class="memItemLeft">virtual unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#ae661d1fa97111c61ed1df66f08b6c53b">getNextSector</a> (unsigned int index)</td></tr>
+<tr class="memdesc:ae661d1fa97111c61ed1df66f08b6c53b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the pre-computed successor of a graph node.  <br /></td></tr>
+<tr class="inherit_header pro_methods_classAIBaseLapController"><td colspan="2"><a class="el" href="classAIBaseLapController.html">AIBaseLapController</a>(으)로부터 상속된 Protected 멤버 함수</td></tr>
+<tr class="memitem:a73f824e1c423fd66f3d70af65bea87b7 pro_methods_classAIBaseLapController" id="r_a73f824e1c423fd66f3d70af65bea87b7"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseLapController.html#a73f824e1c423fd66f3d70af65bea87b7">newLap</a> (int lap)</td></tr>
+<tr class="memdesc:a73f824e1c423fd66f3d70af65bea87b7 pro_methods_classAIBaseLapController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers a recomputation of the path to use, so that the AI does not always use the same way.  <br /></td></tr>
+<tr class="memitem:ac6174046150eacbfb7bc0d52a191b752 pro_methods_classAIBaseLapController" id="r_ac6174046150eacbfb7bc0d52a191b752"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseLapController.html#ac6174046150eacbfb7bc0d52a191b752">steerToAngle</a> (const unsigned int sector, const float angle)</td></tr>
+<tr class="memdesc:ac6174046150eacbfb7bc0d52a191b752 pro_methods_classAIBaseLapController"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function steers towards a given angle.  <br /></td></tr>
+<tr class="memitem:a5bfaf529a9d9968dfa36de742440066e pro_methods_classAIBaseLapController" id="r_a5bfaf529a9d9968dfa36de742440066e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseLapController.html#a5bfaf529a9d9968dfa36de742440066e">computePath</a> ()</td></tr>
+<tr class="memdesc:a5bfaf529a9d9968dfa36de742440066e pro_methods_classAIBaseLapController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes a path for the AI to follow.  <br /></td></tr>
+<tr class="memitem:a69189e27e1bc4d9a6e81a63228323da1 pro_methods_classAIBaseLapController" id="r_a69189e27e1bc4d9a6e81a63228323da1"><td class="memItemLeft">
+virtual void&#160;</td><td class="memItemRight"><b>raceFinished</b> ()</td></tr>
+<tr class="memdesc:a69189e27e1bc4d9a6e81a63228323da1 pro_methods_classAIBaseLapController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nothing special to do when the race is finished. <br /></td></tr>
+<tr class="inherit_header pro_methods_classAIBaseController"><td colspan="2"><a class="el" href="classAIBaseController.html">AIBaseController</a>(으)로부터 상속된 Protected 멤버 함수</td></tr>
+<tr class="memitem:a7286e21b0589e42d0774764470375ba8 pro_methods_classAIBaseController" id="r_a7286e21b0589e42d0774764470375ba8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a7286e21b0589e42d0774764470375ba8">setControllerName</a> (const std::string &amp;name) OVERRIDE</td></tr>
+<tr class="memdesc:a7286e21b0589e42d0774764470375ba8 pro_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">In debug mode when the user specified &ndash;ai-debug on the command line set the name of the controller as on-screen text, so that the different AI controllers can be distinguished.  <br /></td></tr>
+<tr class="memitem:ac2a0279951974f3924484e1235b92492 pro_methods_classAIBaseController" id="r_ac2a0279951974f3924484e1235b92492"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#ac2a0279951974f3924484e1235b92492">steerToPoint</a> (const <a class="el" href="classVec3.html">Vec3</a> &amp;point)</td></tr>
+<tr class="memdesc:ac2a0279951974f3924484e1235b92492 pro_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the steering angle to reach a certain point.  <br /></td></tr>
+<tr class="memitem:ab76d3633530d643681516fc886cbf914 pro_methods_classAIBaseController" id="r_ab76d3633530d643681516fc886cbf914"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#ab76d3633530d643681516fc886cbf914">normalizeAngle</a> (float angle)</td></tr>
+<tr class="memdesc:ab76d3633530d643681516fc886cbf914 pro_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalises an angle to be between -pi and _ pi.  <br /></td></tr>
+<tr class="memitem:a4dc064b2ef76fa9f981df2ddbd37d8f5 pro_methods_classAIBaseController" id="r_a4dc064b2ef76fa9f981df2ddbd37d8f5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a4dc064b2ef76fa9f981df2ddbd37d8f5">isStuck</a> () const</td></tr>
+<tr class="memdesc:a4dc064b2ef76fa9f981df2ddbd37d8f5 pro_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">This can be called to detect if the kart is stuck (i.e.  <br /></td></tr>
+<tr class="memitem:ab78f45544a6ea5b46741bb16921951eb pro_methods_classAIBaseController" id="r_ab78f45544a6ea5b46741bb16921951eb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#ab78f45544a6ea5b46741bb16921951eb">determineTurnRadius</a> (const <a class="el" href="classVec3.html">Vec3</a> &amp;end, <a class="el" href="classVec3.html">Vec3</a> *center, float *radius) const</td></tr>
+<tr class="memdesc:ab78f45544a6ea5b46741bb16921951eb pro_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine the center point and radius of a circle given two points on the circle and the tangent at the first point.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private 타입</h2></td></tr>
+<tr class="memitem:a5a4838a15bf9d627272fa9047076d0c1" id="r_a5a4838a15bf9d627272fa9047076d0c1"><td class="memItemLeft">enum &#160;</td><td class="memItemRight">{ <b>SKID_PROBAB_NOT_YET</b>
+, <b>SKID_PROBAB_NO_SKID</b>
+, <b>SKID_PROBAB_SKID</b>
+ }</td></tr>
+<tr class="memdesc:a5a4838a15bf9d627272fa9047076d0c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This implements a simple finite state machine: it starts in NOT_YET.  <a href="#a5a4838a15bf9d627272fa9047076d0c1">더 자세히 ...</a><br /></td></tr>
+<tr class="memitem:afac04f4ad5d69739b2768f8e9404b087" id="r_afac04f4ad5d69739b2768f8e9404b087"><td class="memItemLeft"><a id="afac04f4ad5d69739b2768f8e9404b087" name="afac04f4ad5d69739b2768f8e9404b087"></a>enum &#160;</td><td class="memItemRight"><a class="el" href="#afac04f4ad5d69739b2768f8e9404b087">SkillType</a> { <b>ITEM_SKILL</b>
+, <b>NITRO_SKILL</b>
+ }</td></tr>
+<tr class="memdesc:afac04f4ad5d69739b2768f8e9404b087"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is used by computeSkill to know what skill is used <br /></td></tr>
+<tr class="memitem:a2f925d6abca5890513dcc070636bb441" id="r_a2f925d6abca5890513dcc070636bb441"><td class="memItemLeft">enum &#160;</td><td class="memItemRight">{ <b>PSA_DEFAULT</b>
+, <b>PSA_NEW</b>
+ }</td></tr>
+<tr class="memdesc:a2f925d6abca5890513dcc070636bb441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines the algorithm to use to select the point-to-aim-for There are two different Point Selection Algorithms:  <a href="#a2f925d6abca5890513dcc070636bb441">더 자세히 ...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:ac24e4450ac3db5f47654143479df4dc6" id="r_ac24e4450ac3db5f47654143479df4dc6"><td class="memItemLeft"><a id="ac24e4450ac3db5f47654143479df4dc6" name="ac24e4450ac3db5f47654143479df4dc6"></a>
+void&#160;</td><td class="memItemRight"><b>handleRaceStart</b> ()</td></tr>
+<tr class="memitem:a2579af641e94160ca5e136f2e244b4f6" id="r_a2579af641e94160ca5e136f2e244b4f6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2579af641e94160ca5e136f2e244b4f6">handleAccelerationAndBraking</a> (int ticks)</td></tr>
+<tr class="memdesc:a2579af641e94160ca5e136f2e244b4f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the AI should accelerate or not, and if not if it should brake.  <br /></td></tr>
+<tr class="memitem:a100d9141486143af1800f97077db7fad" id="r_a100d9141486143af1800f97077db7fad"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a100d9141486143af1800f97077db7fad">handleSteering</a> (float dt)</td></tr>
+<tr class="memdesc:a100d9141486143af1800f97077db7fad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decides in which direction to steer.  <br /></td></tr>
+<tr class="memitem:a8833ad8e48dadb21be2bb6d786d37780" id="r_a8833ad8e48dadb21be2bb6d786d37780"><td class="memItemLeft"><a id="a8833ad8e48dadb21be2bb6d786d37780" name="a8833ad8e48dadb21be2bb6d786d37780"></a>
+int&#160;</td><td class="memItemRight"><b>computeSkill</b> (<a class="el" href="#afac04f4ad5d69739b2768f8e9404b087">SkillType</a> type)</td></tr>
+<tr class="memdesc:a8833ad8e48dadb21be2bb6d786d37780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the AI skill value used by the kart <br /></td></tr>
+<tr class="memitem:aebf06e69819fe8ee717ae8cf3afeec5b" id="r_aebf06e69819fe8ee717ae8cf3afeec5b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aebf06e69819fe8ee717ae8cf3afeec5b">handleItems</a> (const float dt, const <a class="el" href="classVec3.html">Vec3</a> *aim_point, int last_node, int item_skill)</td></tr>
+<tr class="memdesc:aebf06e69819fe8ee717ae8cf3afeec5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle all items depending on the chosen strategy.  <br /></td></tr>
+<tr class="memitem:a7cce64a0846aa720999f5e6ba3fbe71f" id="r_a7cce64a0846aa720999f5e6ba3fbe71f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7cce64a0846aa720999f5e6ba3fbe71f">handleBubblegum</a> (int item_skill, const std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; &amp;items_to_collect, const std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; &amp;items_to_avoid)</td></tr>
+<tr class="memdesc:a7cce64a0846aa720999f5e6ba3fbe71f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle bubblegum depending on the chosen strategy Level 2 : Use the shield immediately after a wait time Level 3 : Use the shield against flyables except cakes.  <br /></td></tr>
+<tr class="memitem:af5a1c09cdb45120920c37d44359ee9e1" id="r_af5a1c09cdb45120920c37d44359ee9e1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af5a1c09cdb45120920c37d44359ee9e1">handleCake</a> (int item_skill)</td></tr>
+<tr class="memdesc:af5a1c09cdb45120920c37d44359ee9e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle cake depending on the chosen strategy Level 2 : Use the cake against any close vulnerable enemy, with priority to those ahead and close, check if the enemy is roughly ahead.  <br /></td></tr>
+<tr class="memitem:ab64c4c83b28009a926fca9bcdc7711f4" id="r_ab64c4c83b28009a926fca9bcdc7711f4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab64c4c83b28009a926fca9bcdc7711f4">handleBowling</a> (int item_skill)</td></tr>
+<tr class="memdesc:ab64c4c83b28009a926fca9bcdc7711f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the bowling ball depending on the chosen strategy Level 2 : Use the bowling ball against enemies straight ahead or straight behind, and not invulnerable, with a 5 second delay Level 3 : Only 3 seconds of delay Level 4 : Same as level 3 Level 5 : Level 4 and don't fire on a shielded kart if we're just behind (gum)  <br /></td></tr>
+<tr class="memitem:a7134ab65ac62ec43af49cec3c0321ee9" id="r_a7134ab65ac62ec43af49cec3c0321ee9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7134ab65ac62ec43af49cec3c0321ee9">handleSwatter</a> (int item_skill)</td></tr>
+<tr class="memdesc:a7134ab65ac62ec43af49cec3c0321ee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the swatter depending on the chosen strategy Level 2 : Use the swatter immediately after a wait time Level 3 : Use the swatter when enemies are close Level 4 : Level 3 and use the swatter to remove bad attachments Level 5 : Level 4 and use against bomb only when the timer ends  <br /></td></tr>
+<tr class="memitem:a76a8aebc0c29da6cc03175933b548445" id="r_a76a8aebc0c29da6cc03175933b548445"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a76a8aebc0c29da6cc03175933b548445">handleSwitch</a> (int item_skill, const std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; &amp;items_to_collect, const std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; &amp;items_to_avoid)</td></tr>
+<tr class="memdesc:a76a8aebc0c29da6cc03175933b548445"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle switch depending on the chosen strategy Level 2 : Use the switch after a wait time Level 3 : Same as level 2 but don't fire if close to a good item Level 4 : Same as level 3 and fire if very close to a bad item Level 5 : Use if it makes a better item available, or if very close to a bad item.  <br /></td></tr>
+<tr class="memitem:a9b8787f6b4cfdbb1f3084cf551a45b03" id="r_a9b8787f6b4cfdbb1f3084cf551a45b03"><td class="memItemLeft"><a id="a9b8787f6b4cfdbb1f3084cf551a45b03" name="a9b8787f6b4cfdbb1f3084cf551a45b03"></a>
+void&#160;</td><td class="memItemRight"><b>handleRescue</b> (const float dt)</td></tr>
+<tr class="memitem:a56be352c71d40500164c42412a0fe53c" id="r_a56be352c71d40500164c42412a0fe53c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a56be352c71d40500164c42412a0fe53c">handleBraking</a> (float max_turn_speed, float min_speed)</td></tr>
+<tr class="memdesc:a56be352c71d40500164c42412a0fe53c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function decides if the AI should brake.  <br /></td></tr>
+<tr class="memitem:a981fce1ff0cb8c9a6c3fdfe149acf7b4" id="r_a981fce1ff0cb8c9a6c3fdfe149acf7b4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a981fce1ff0cb8c9a6c3fdfe149acf7b4">handleNitroAndZipper</a> (float max_safe_speed)</td></tr>
+<tr class="memdesc:a981fce1ff0cb8c9a6c3fdfe149acf7b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decides wether to use nitro and zipper or not.  <br /></td></tr>
+<tr class="memitem:aa12b707636199076e5d3c2fecea939b8" id="r_aa12b707636199076e5d3c2fecea939b8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa12b707636199076e5d3c2fecea939b8">computeNearestKarts</a> ()</td></tr>
+<tr class="memdesc:aa12b707636199076e5d3c2fecea939b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines the closest karts just behind and in front of this kart.  <br /></td></tr>
+<tr class="memitem:aa657b3e42f4e0b3a2688bb90b1245949" id="r_aa657b3e42f4e0b3a2688bb90b1245949"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa657b3e42f4e0b3a2688bb90b1245949">handleItemCollectionAndAvoidance</a> (<a class="el" href="classVec3.html">Vec3</a> *aim_point, int last_node)</td></tr>
+<tr class="memdesc:aa657b3e42f4e0b3a2688bb90b1245949"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decides if the currently selected aim at point (as determined by handleSteering) should be changed in order to collect/avoid an item.  <br /></td></tr>
+<tr class="memitem:a28a50fbd878a2b130e74779e0c257e0b" id="r_a28a50fbd878a2b130e74779e0c257e0b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a28a50fbd878a2b130e74779e0c257e0b">handleSelectedItem</a> (<a class="el" href="classVec3.html">Vec3</a> kart_aim_direction, <a class="el" href="classVec3.html">Vec3</a> *aim_point)</td></tr>
+<tr class="memdesc:a28a50fbd878a2b130e74779e0c257e0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is called when the AI is trying to hit an item that is pre-selected to be collected.  <br /></td></tr>
+<tr class="memitem:a93587a501a7c9ff3361adc1ea04e4341" id="r_a93587a501a7c9ff3361adc1ea04e4341"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a93587a501a7c9ff3361adc1ea04e4341">steerToAvoid</a> (const std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; &amp;items_to_avoid, const core::line3df &amp;line_to_target, <a class="el" href="classVec3.html">Vec3</a> *aim_point)</td></tr>
+<tr class="memdesc:a93587a501a7c9ff3361adc1ea04e4341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decides if steering is necessary to avoid bad items.  <br /></td></tr>
+<tr class="memitem:afe7704ea8df159afca36133af300ae04" id="r_afe7704ea8df159afca36133af300ae04"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#afe7704ea8df159afca36133af300ae04">hitBadItemWhenAimAt</a> (const <a class="el" href="classItemState.html">ItemState</a> *item, const std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; &amp;items_to_avoid)</td></tr>
+<tr class="memdesc:afe7704ea8df159afca36133af300ae04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the AI would hit any of the listed bad items when trying to drive towards the specified item.  <br /></td></tr>
+<tr class="memitem:a267c09c82696d1720ca22232fcd8be11" id="r_a267c09c82696d1720ca22232fcd8be11"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a267c09c82696d1720ca22232fcd8be11">evaluateItems</a> (const <a class="el" href="classItemState.html">ItemState</a> *item, <a class="el" href="classVec3.html">Vec3</a> kart_aim_direction, std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; *items_to_avoid, std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; *items_to_collect)</td></tr>
+<tr class="memdesc:a267c09c82696d1720ca22232fcd8be11"><td class="mdescLeft">&#160;</td><td class="mdescRight">This subroutine decides if the specified item should be collected, avoided, or ignored.  <br /></td></tr>
+<tr class="memitem:a26a6d5bc811971b7e95347f49411c8e8" id="r_a26a6d5bc811971b7e95347f49411c8e8"><td class="memItemLeft"><a id="a26a6d5bc811971b7e95347f49411c8e8" name="a26a6d5bc811971b7e95347f49411c8e8"></a>
+void&#160;</td><td class="memItemRight"><b>checkCrashes</b> (const <a class="el" href="classVec3.html">Vec3</a> &amp;pos)</td></tr>
+<tr class="memitem:a6c20a7a444d339d681ef1427162bbe5e" id="r_a6c20a7a444d339d681ef1427162bbe5e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6c20a7a444d339d681ef1427162bbe5e">findNonCrashingPointNew</a> (<a class="el" href="classVec3.html">Vec3</a> *result, int *last_node)</td></tr>
+<tr class="memdesc:a6c20a7a444d339d681ef1427162bbe5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a new version of findNonCrashingPoint, which at this stage is slightly inferior (though faster and more correct) than the original version - the original code cuts corner more aggressively than this version (and in most cases cuting the corner does not end in a collision, so it's actually faster).  <br /></td></tr>
+<tr class="memitem:a6fa21e9663794f328677f919dcaa7afd" id="r_a6fa21e9663794f328677f919dcaa7afd"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6fa21e9663794f328677f919dcaa7afd">findNonCrashingPoint</a> (<a class="el" href="classVec3.html">Vec3</a> *result, int *last_node)</td></tr>
+<tr class="memdesc:a6fa21e9663794f328677f919dcaa7afd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is basically the original AI algorithm.  <br /></td></tr>
+<tr class="memitem:a0e759fc7262daf93efc1c0835fca518b" id="r_a0e759fc7262daf93efc1c0835fca518b"><td class="memItemLeft"><a id="a0e759fc7262daf93efc1c0835fca518b" name="a0e759fc7262daf93efc1c0835fca518b"></a>
+void&#160;</td><td class="memItemRight"><b>determineTrackDirection</b> ()</td></tr>
+<tr class="memdesc:a0e759fc7262daf93efc1c0835fca518b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines the direction of the track ahead of the kart: 0 indicates straight, +1 right turn, -1 left turn. <br /></td></tr>
+<tr class="memitem:a32ef0314028631452a421efa19b68b71" id="r_a32ef0314028631452a421efa19b68b71"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a32ef0314028631452a421efa19b68b71">canSkid</a> (float steer_fraction)</td></tr>
+<tr class="memdesc:a32ef0314028631452a421efa19b68b71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the kart should skid.  <br /></td></tr>
+<tr class="memitem:a53970bd8c6f1b768ee10440037c459a4" id="r_a53970bd8c6f1b768ee10440037c459a4"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a53970bd8c6f1b768ee10440037c459a4">setSteering</a> (float angle, float dt)</td></tr>
+<tr class="memdesc:a53970bd8c6f1b768ee10440037c459a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the steering angle to a lr steering in the range of -1 to 1.  <br /></td></tr>
+<tr class="memitem:a5ae30fa12a557877c8136064f6035b23" id="r_a5ae30fa12a557877c8136064f6035b23"><td class="memItemLeft"><a id="a5ae30fa12a557877c8136064f6035b23" name="a5ae30fa12a557877c8136064f6035b23"></a>
+void&#160;</td><td class="memItemRight"><b>handleCurve</b> ()</td></tr>
+<tr class="memdesc:a5ae30fa12a557877c8136064f6035b23"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the kart is at/in a curve, determine the turn radius. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:abbedb190e890f3776b97437e0242555d" id="r_abbedb190e890f3776b97437e0242555d"><td class="memItemLeft"><a id="abbedb190e890f3776b97437e0242555d" name="abbedb190e890f3776b97437e0242555d"></a>
+class <a class="el" href="classSkiddingAI_1_1CrashTypes.html">SkiddingAI::CrashTypes</a>&#160;</td><td class="memItemRight"><b>m_crashes</b></td></tr>
+<tr class="memitem:ae2bd712df116f7e03ee7da3f9e910966" id="r_ae2bd712df116f7e03ee7da3f9e910966"><td class="memItemLeft"><a id="ae2bd712df116f7e03ee7da3f9e910966" name="ae2bd712df116f7e03ee7da3f9e910966"></a>
+<a class="el" href="classRaceManager.html#aa6f02bae44655cf562f29cfc4a754334">RaceManager::AISuperPower</a>&#160;</td><td class="memItemRight"><b>m_superpower</b></td></tr>
+<tr class="memitem:a5e93fbf5910ec786da66c80de8baa9dc" id="r_a5e93fbf5910ec786da66c80de8baa9dc"><td class="memItemLeft"><a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a5e93fbf5910ec786da66c80de8baa9dc">m_kart_ahead</a></td></tr>
+<tr class="memdesc:a5e93fbf5910ec786da66c80de8baa9dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the closest kart ahead of this kart.  <br /></td></tr>
+<tr class="memitem:af83343cc26e45a86409c551cad449798" id="r_af83343cc26e45a86409c551cad449798"><td class="memItemLeft"><a id="af83343cc26e45a86409c551cad449798" name="af83343cc26e45a86409c551cad449798"></a>
+float&#160;</td><td class="memItemRight"><b>m_distance_ahead</b></td></tr>
+<tr class="memdesc:af83343cc26e45a86409c551cad449798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance to the kart ahead. <br /></td></tr>
+<tr class="memitem:a88f058268febfacd65704b019deac0b4" id="r_a88f058268febfacd65704b019deac0b4"><td class="memItemLeft"><a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a88f058268febfacd65704b019deac0b4">m_kart_behind</a></td></tr>
+<tr class="memdesc:a88f058268febfacd65704b019deac0b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the closest kart behind this kart.  <br /></td></tr>
+<tr class="memitem:ae61d65298324a90da13a84ef16ea89ba" id="r_ae61d65298324a90da13a84ef16ea89ba"><td class="memItemLeft"><a id="ae61d65298324a90da13a84ef16ea89ba" name="ae61d65298324a90da13a84ef16ea89ba"></a>
+float&#160;</td><td class="memItemRight"><b>m_distance_behind</b></td></tr>
+<tr class="memdesc:ae61d65298324a90da13a84ef16ea89ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance to the kard behind. <br /></td></tr>
+<tr class="memitem:a3ce9c46fe8541b02c2bd5efaa2f91bbf" id="r_a3ce9c46fe8541b02c2bd5efaa2f91bbf"><td class="memItemLeft"><a id="a3ce9c46fe8541b02c2bd5efaa2f91bbf" name="a3ce9c46fe8541b02c2bd5efaa2f91bbf"></a>
+float&#160;</td><td class="memItemRight"><b>m_distance_leader</b></td></tr>
+<tr class="memdesc:a3ce9c46fe8541b02c2bd5efaa2f91bbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance to the leader kart (used only in FTL) If this kart is leader, contains a high value to avoid the leader slowing down <br /></td></tr>
+<tr class="memitem:ad80dd87ae546c21dda25ecbc79ff7573" id="r_ad80dd87ae546c21dda25ecbc79ff7573"><td class="memItemLeft"><a id="ad80dd87ae546c21dda25ecbc79ff7573" name="ad80dd87ae546c21dda25ecbc79ff7573"></a>
+int&#160;</td><td class="memItemRight"><b>m_start_delay</b></td></tr>
+<tr class="memdesc:ad80dd87ae546c21dda25ecbc79ff7573"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual start delay used in ticks. <br /></td></tr>
+<tr class="memitem:a8e9ad0a6faa73dc04ce0a1893ed1a02e" id="r_a8e9ad0a6faa73dc04ce0a1893ed1a02e"><td class="memItemLeft"><a id="a8e9ad0a6faa73dc04ce0a1893ed1a02e" name="a8e9ad0a6faa73dc04ce0a1893ed1a02e"></a>
+float&#160;</td><td class="memItemRight"><b>m_time_since_last_shot</b></td></tr>
+<tr class="memdesc:a8e9ad0a6faa73dc04ce0a1893ed1a02e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time an item has been collected and not used. <br /></td></tr>
+<tr class="memitem:a0801c55791678aacfcdc7391aba64f41" id="r_a0801c55791678aacfcdc7391aba64f41"><td class="memItemLeft"><a id="a0801c55791678aacfcdc7391aba64f41" name="a0801c55791678aacfcdc7391aba64f41"></a>
+float&#160;</td><td class="memItemRight"><b>m_time_since_stuck</b></td></tr>
+<tr class="memitem:ac2e5d6c46d6d0be334eb894bfe765a05" id="r_ac2e5d6c46d6d0be334eb894bfe765a05"><td class="memItemLeft"><a id="ac2e5d6c46d6d0be334eb894bfe765a05" name="ac2e5d6c46d6d0be334eb894bfe765a05"></a>
+int&#160;</td><td class="memItemRight"><b>m_start_kart_crash_direction</b></td></tr>
+<tr class="memdesc:ac2e5d6c46d6d0be334eb894bfe765a05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direction of crash: -1 = left, 1 = right, 0 = no crash. <br /></td></tr>
+<tr class="memitem:a390327cce8e12456516fd396fa18dcc6" id="r_a390327cce8e12456516fd396fa18dcc6"><td class="memItemLeft"><a id="a390327cce8e12456516fd396fa18dcc6" name="a390327cce8e12456516fd396fa18dcc6"></a>
+<a class="el" href="classDriveNode.html#a91dde10a23b5402b2fc36ffe3bff18dc">DriveNode::DirectionType</a>&#160;</td><td class="memItemRight"><b>m_current_track_direction</b></td></tr>
+<tr class="memdesc:a390327cce8e12456516fd396fa18dcc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The direction of the track where the kart is on atm. <br /></td></tr>
+<tr class="memitem:ac4c3cd1b3aef10b705b2a5ca89cb6155" id="r_ac4c3cd1b3aef10b705b2a5ca89cb6155"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ac4c3cd1b3aef10b705b2a5ca89cb6155">m_current_curve_radius</a></td></tr>
+<tr class="memdesc:ac4c3cd1b3aef10b705b2a5ca89cb6155"><td class="mdescLeft">&#160;</td><td class="mdescRight">The radius of the curve the kart is currently driving.  <br /></td></tr>
+<tr class="memitem:a8c3b6eda4c661eff23a76634d43d8a8b" id="r_a8c3b6eda4c661eff23a76634d43d8a8b"><td class="memItemLeft"><a id="a8c3b6eda4c661eff23a76634d43d8a8b" name="a8c3b6eda4c661eff23a76634d43d8a8b"></a>
+<a class="el" href="classVec3.html">Vec3</a>&#160;</td><td class="memItemRight"><b>m_curve_center</b></td></tr>
+<tr class="memdesc:a8c3b6eda4c661eff23a76634d43d8a8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the center of the curve (if the kart is in a curve, otherwise undefined). <br /></td></tr>
+<tr class="memitem:a33e4f3aa347f4ab821dd755e1f36a296" id="r_a33e4f3aa347f4ab821dd755e1f36a296"><td class="memItemLeft">unsigned int&#160;</td><td class="memItemRight"><a class="el" href="#a33e4f3aa347f4ab821dd755e1f36a296">m_last_direction_node</a></td></tr>
+<tr class="memdesc:a33e4f3aa347f4ab821dd755e1f36a296"><td class="mdescLeft">&#160;</td><td class="mdescRight">The index of the last node with the same direction as the current node the kart is on.  <br /></td></tr>
+<tr class="memitem:a0679dd591eb2517d29e9d936993734e1" id="r_a0679dd591eb2517d29e9d936993734e1"><td class="memItemLeft"><a id="a0679dd591eb2517d29e9d936993734e1" name="a0679dd591eb2517d29e9d936993734e1"></a>
+const <a class="el" href="classItemState.html">ItemState</a> *&#160;</td><td class="memItemRight"><b>m_item_to_collect</b></td></tr>
+<tr class="memdesc:a0679dd591eb2517d29e9d936993734e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set an item that the AI should aim for. <br /></td></tr>
+<tr class="memitem:a9b67b94145f33cea22a0f640a91d117f" id="r_a9b67b94145f33cea22a0f640a91d117f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9b67b94145f33cea22a0f640a91d117f">m_avoid_item_close</a></td></tr>
+<tr class="memdesc:a9b67b94145f33cea22a0f640a91d117f"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if items to avoid are close by.  <br /></td></tr>
+<tr class="memitem:a8fc30f6f297e707802e27029ca856d52" id="r_a8fc30f6f297e707802e27029ca856d52"><td class="memItemLeft"><a id="a8fc30f6f297e707802e27029ca856d52" name="a8fc30f6f297e707802e27029ca856d52"></a>
+float&#160;</td><td class="memItemRight"><b>m_distance_to_player</b></td></tr>
+<tr class="memdesc:a8fc30f6f297e707802e27029ca856d52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance to the player, used for rubber-banding. <br /></td></tr>
+<tr class="memitem:adcaa66cb1cc189f05526d98417da135c" id="r_adcaa66cb1cc189f05526d98417da135c"><td class="memItemLeft"><a id="adcaa66cb1cc189f05526d98417da135c" name="adcaa66cb1cc189f05526d98417da135c"></a>
+int&#160;</td><td class="memItemRight"><b>m_num_players_ahead</b></td></tr>
+<tr class="memdesc:adcaa66cb1cc189f05526d98417da135c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of players ahead, used for rubber-banding. <br /></td></tr>
+<tr class="memitem:af7c3e6fe26e3756ae124ffd2fa757d8a" id="r_af7c3e6fe26e3756ae124ffd2fa757d8a"><td class="memItemLeft"><a id="af7c3e6fe26e3756ae124ffd2fa757d8a" name="af7c3e6fe26e3756ae124ffd2fa757d8a"></a>
+bool&#160;</td><td class="memItemRight"><b>m_burster</b></td></tr>
+<tr class="memdesc:af7c3e6fe26e3756ae124ffd2fa757d8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This bool allows to make the AI use nitro by series of two bursts <br /></td></tr>
+<tr class="memitem:ae5aa32e7a19b03feca6353cfc680b589" id="r_ae5aa32e7a19b03feca6353cfc680b589"><td class="memItemLeft"><a id="ae5aa32e7a19b03feca6353cfc680b589" name="ae5aa32e7a19b03feca6353cfc680b589"></a>
+<a class="el" href="classRandomGenerator.html">RandomGenerator</a>&#160;</td><td class="memItemRight"><b>m_random_skid</b></td></tr>
+<tr class="memdesc:ae5aa32e7a19b03feca6353cfc680b589"><td class="mdescLeft">&#160;</td><td class="mdescRight">A random number generator to decide if the AI should skid or not. <br /></td></tr>
+<tr class="memitem:a49221116ca931ebee929f7b51ef568b6" id="r_a49221116ca931ebee929f7b51ef568b6"><td class="memItemLeft">enum SkiddingAI:: { ... } &#160;</td><td class="memItemRight"><a class="el" href="#a49221116ca931ebee929f7b51ef568b6">m_skid_probability_state</a></td></tr>
+<tr class="memdesc:a49221116ca931ebee929f7b51ef568b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This implements a simple finite state machine: it starts in NOT_YET.  <br /></td></tr>
+<tr class="memitem:af3b42348d1afc14839b2c2cfa27814a8" id="r_af3b42348d1afc14839b2c2cfa27814a8"><td class="memItemLeft"><a id="af3b42348d1afc14839b2c2cfa27814a8" name="af3b42348d1afc14839b2c2cfa27814a8"></a>
+const <a class="el" href="classItemState.html">ItemState</a> *&#160;</td><td class="memItemRight"><b>m_last_item_random</b></td></tr>
+<tr class="memdesc:af3b42348d1afc14839b2c2cfa27814a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The last item selected for collection, for which a probability was determined. <br /></td></tr>
+<tr class="memitem:a30a28acd995acd2d8afcd63ec383f71d" id="r_a30a28acd995acd2d8afcd63ec383f71d"><td class="memItemLeft"><a id="a30a28acd995acd2d8afcd63ec383f71d" name="a30a28acd995acd2d8afcd63ec383f71d"></a>
+bool&#160;</td><td class="memItemRight"><b>m_really_collect_item</b></td></tr>
+<tr class="memdesc:a30a28acd995acd2d8afcd63ec383f71d"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if m_last_item_random was randomly selected to be collected. <br /></td></tr>
+<tr class="memitem:a0040ccfe7a51e8cd7bf7730344145520" id="r_a0040ccfe7a51e8cd7bf7730344145520"><td class="memItemLeft"><a id="a0040ccfe7a51e8cd7bf7730344145520" name="a0040ccfe7a51e8cd7bf7730344145520"></a>
+<a class="el" href="classRandomGenerator.html">RandomGenerator</a>&#160;</td><td class="memItemRight"><b>m_random_collect_item</b></td></tr>
+<tr class="memdesc:a0040ccfe7a51e8cd7bf7730344145520"><td class="mdescLeft">&#160;</td><td class="mdescRight">A random number generator for collecting items. <br /></td></tr>
+<tr class="memitem:a1e890832efa67793d0c49b872550110a" id="r_a1e890832efa67793d0c49b872550110a"><td class="memItemLeft">enum SkiddingAI:: { ... } &#160;</td><td class="memItemRight"><a class="el" href="#a1e890832efa67793d0c49b872550110a">m_point_selection_algorithm</a></td></tr>
+<tr class="memdesc:a1e890832efa67793d0c49b872550110a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines the algorithm to use to select the point-to-aim-for There are two different Point Selection Algorithms:  <br /></td></tr>
+<tr class="memitem:ac6dad5cb169ca14db3d5279a3dffe62c" id="r_ac6dad5cb169ca14db3d5279a3dffe62c"><td class="memItemLeft"><a id="ac6dad5cb169ca14db3d5279a3dffe62c" name="ac6dad5cb169ca14db3d5279a3dffe62c"></a>
+<a class="el" href="classItemManager.html">ItemManager</a> *&#160;</td><td class="memItemRight"><b>m_item_manager</b></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+추가로 상속된 멤버들</h2></td></tr>
+<tr class="inherit_header pub_static_methods_classAIBaseController"><td colspan="2"><a class="el" href="classAIBaseController.html">AIBaseController</a>(으)로부터 상속된 정적 Public 멤버 함수</td></tr>
+<tr class="memitem:a619b190610899bebf757aa245d30b775 pub_static_methods_classAIBaseController" id="r_a619b190610899bebf757aa245d30b775"><td class="memItemLeft">
+static void&#160;</td><td class="memItemRight"><b>enableDebug</b> ()</td></tr>
+<tr class="memitem:ac7be8ce71ceebc5d2daf62cd23a89a6c pub_static_methods_classAIBaseController" id="r_ac7be8ce71ceebc5d2daf62cd23a89a6c"><td class="memItemLeft">
+static void&#160;</td><td class="memItemRight"><b>setTestAI</b> (int n)</td></tr>
+<tr class="memitem:a16e565576e28221132c08b7edb0cb683 pub_static_methods_classAIBaseController" id="r_a16e565576e28221132c08b7edb0cb683"><td class="memItemLeft">
+static int&#160;</td><td class="memItemRight"><b>getTestAI</b> ()</td></tr>
+<tr class="inherit_header pro_attribs_classAIBaseLapController"><td colspan="2"><a class="el" href="classAIBaseLapController.html">AIBaseLapController</a>(으)로부터 상속된 Protected 속성</td></tr>
+<tr class="memitem:a4a1a6c727ad9c5a531e4546eeaa8d7ec pro_attribs_classAIBaseLapController" id="r_a4a1a6c727ad9c5a531e4546eeaa8d7ec"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseLapController.html#a4a1a6c727ad9c5a531e4546eeaa8d7ec">m_track_node</a></td></tr>
+<tr class="memdesc:a4a1a6c727ad9c5a531e4546eeaa8d7ec pro_attribs_classAIBaseLapController"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current node the kart is on.  <br /></td></tr>
+<tr class="memitem:af9e0295acae884fbe5f2c13fdb029521 pro_attribs_classAIBaseLapController" id="r_af9e0295acae884fbe5f2c13fdb029521"><td class="memItemLeft">
+<a class="el" href="classLinearWorld.html">LinearWorld</a> *&#160;</td><td class="memItemRight"><b>m_world</b></td></tr>
+<tr class="memdesc:af9e0295acae884fbe5f2c13fdb029521 pro_attribs_classAIBaseLapController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keep a pointer to world. <br /></td></tr>
+<tr class="memitem:a08a11b2499f22e01dcf255d5ea5b0406 pro_attribs_classAIBaseLapController" id="r_a08a11b2499f22e01dcf255d5ea5b0406"><td class="memItemLeft">
+std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><b>m_successor_index</b></td></tr>
+<tr class="memdesc:a08a11b2499f22e01dcf255d5ea5b0406 pro_attribs_classAIBaseLapController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which of the successors of a node was selected by the AI. <br /></td></tr>
+<tr class="memitem:a7a94614ec9258ac17bc2f9b254f0c2b7 pro_attribs_classAIBaseLapController" id="r_a7a94614ec9258ac17bc2f9b254f0c2b7"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseLapController.html#a7a94614ec9258ac17bc2f9b254f0c2b7">m_next_node_index</a></td></tr>
+<tr class="memdesc:a7a94614ec9258ac17bc2f9b254f0c2b7 pro_attribs_classAIBaseLapController"><td class="mdescLeft">&#160;</td><td class="mdescRight">For each node in the graph this list contains the chosen next node.  <br /></td></tr>
+<tr class="memitem:a99665e038f952c92addc0c9963f31489 pro_attribs_classAIBaseLapController" id="r_a99665e038f952c92addc0c9963f31489"><td class="memItemLeft">
+std::vector&lt; std::vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight"><b>m_all_look_aheads</b></td></tr>
+<tr class="memdesc:a99665e038f952c92addc0c9963f31489 pro_attribs_classAIBaseLapController"><td class="mdescLeft">&#160;</td><td class="mdescRight">For each graph node this list contains a list of the next X graph nodes. <br /></td></tr>
+<tr class="inherit_header pro_attribs_classAIBaseController"><td colspan="2"><a class="el" href="classAIBaseController.html">AIBaseController</a>(으)로부터 상속된 Protected 속성</td></tr>
+<tr class="memitem:a3346aad1c0770ed934b93a6db22f3b9b pro_attribs_classAIBaseController" id="r_a3346aad1c0770ed934b93a6db22f3b9b"><td class="memItemLeft">
+bool&#160;</td><td class="memItemRight"><b>m_enabled_network_ai</b></td></tr>
+<tr class="memitem:afb834ce42bd50e263d7c1e70183de615 pro_attribs_classAIBaseController" id="r_afb834ce42bd50e263d7c1e70183de615"><td class="memItemLeft">
+float&#160;</td><td class="memItemRight"><b>m_kart_length</b></td></tr>
+<tr class="memdesc:afb834ce42bd50e263d7c1e70183de615 pro_attribs_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the kart, storing it here saves many function calls. <br /></td></tr>
+<tr class="memitem:a262fdf83aad94a6d20fd6d083dcdaaa0 pro_attribs_classAIBaseController" id="r_a262fdf83aad94a6d20fd6d083dcdaaa0"><td class="memItemLeft">
+float&#160;</td><td class="memItemRight"><b>m_kart_width</b></td></tr>
+<tr class="memdesc:a262fdf83aad94a6d20fd6d083dcdaaa0 pro_attribs_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cache width of kart. <br /></td></tr>
+<tr class="memitem:aacffd1df73ff4384e06ce118e344c7ea pro_attribs_classAIBaseController" id="r_aacffd1df73ff4384e06ce118e344c7ea"><td class="memItemLeft">
+<a class="el" href="classTrack.html">Track</a> *&#160;</td><td class="memItemRight"><b>m_track</b></td></tr>
+<tr class="memdesc:aacffd1df73ff4384e06ce118e344c7ea pro_attribs_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keep a pointer to the track to reduce calls <br /></td></tr>
+<tr class="memitem:a4bd682aebec5bc365a136250c141d3a5 pro_attribs_classAIBaseController" id="r_a4bd682aebec5bc365a136250c141d3a5"><td class="memItemLeft">
+const <a class="el" href="classAIProperties.html">AIProperties</a> *&#160;</td><td class="memItemRight"><b>m_ai_properties</b></td></tr>
+<tr class="memdesc:a4bd682aebec5bc365a136250c141d3a5 pro_attribs_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the AI properties for this kart. <br /></td></tr>
+<tr class="inherit_header pro_attribs_classController"><td colspan="2"><a class="el" href="classController.html">Controller</a>(으)로부터 상속된 Protected 속성</td></tr>
+<tr class="memitem:a9106b1b073d659ea4f1f093afbb23701 pro_attribs_classController" id="r_a9106b1b073d659ea4f1f093afbb23701"><td class="memItemLeft">
+<a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><b>m_kart</b></td></tr>
+<tr class="memdesc:a9106b1b073d659ea4f1f093afbb23701 pro_attribs_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the kart that is controlled by this controller. <br /></td></tr>
+<tr class="memitem:a5e6110b327078cbfbb517420f738b34a pro_attribs_classController" id="r_a5e6110b327078cbfbb517420f738b34a"><td class="memItemLeft">
+<a class="el" href="classKartControl.html">KartControl</a> *&#160;</td><td class="memItemRight"><b>m_controls</b></td></tr>
+<tr class="memdesc:a5e6110b327078cbfbb517420f738b34a pro_attribs_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the main controller, from which the kart takes it commands. <br /></td></tr>
+<tr class="memitem:a127457a188a69cfd94bba627f07e2391 pro_attribs_classController" id="r_a127457a188a69cfd94bba627f07e2391"><td class="memItemLeft">
+std::string&#160;</td><td class="memItemRight"><b>m_controller_name</b></td></tr>
+<tr class="memdesc:a127457a188a69cfd94bba627f07e2391 pro_attribs_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the controller, mainly used for debugging purposes. <br /></td></tr>
+<tr class="inherit_header pro_static_attribs_classAIBaseController"><td colspan="2"><a class="el" href="classAIBaseController.html">AIBaseController</a>(으)로부터 상속된 정적 Protected 속성</td></tr>
+<tr class="memitem:a8294f52e604235b21564f0a7933ed626 pro_static_attribs_classAIBaseController" id="r_a8294f52e604235b21564f0a7933ed626"><td class="memItemLeft">
+static bool&#160;</td><td class="memItemRight"><b>m_ai_debug</b> = false</td></tr>
+<tr class="memitem:ad3dce1783b89892c88ce7bcc58bbb1a6 pro_static_attribs_classAIBaseController" id="r_ad3dce1783b89892c88ce7bcc58bbb1a6"><td class="memItemLeft">static int&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#ad3dce1783b89892c88ce7bcc58bbb1a6">m_test_ai</a> = 0</td></tr>
+<tr class="memdesc:ad3dce1783b89892c88ce7bcc58bbb1a6 pro_static_attribs_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the '&ndash;test-ai=n' command line parameter: It indicates which fraction of the AIs are going to be the test AI: 1 means only to use the <a class="el" href="classTestAI.html" title="This is a test version of the AI, which can be used to create new AIs, and compare them with the curr...">TestAI</a>, 2 means every second AI will be test etc.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>This is the actual racing AI. </p>
+<p>The main entry point, called once per frame for each AI, is update(). After handling some standard cases (race start, AI being rescued) the AI does the following steps:</p><ul>
+<li>compute nearest karts (one ahead and one behind)</li>
+<li>check if the kart is about to crash with another kart or the track. This is done by simply testing a certain number of timesteps ahead and estimating the future position of any kart by using current_position + velocity * time (so turns are not taken into account). It also checks if the kart would be outside the quad graph, which indicates a 'collision with track' (though technically this only means the kart would be off track). This information is stored in the m_crashes data structure.</li>
+<li>Determine track direction (straight, left, or right), which the function determineTrackDirection stores in m_current_track_direction</li>
+<li>If the kart has a bomb attached, it will try to hit the kart ahead, using nitro if necessary. The kart will aim at the target kart, nothing els is done (idea: if the kart has a plunger, fire it).</li>
+<li>Otherwise, the AI will:<ul>
+<li>set acceleration (handleAcceleration)</li>
+<li>decide where to steer to (handleSteering()): it will first check if it is outside of the track, and if so, steer towards the center of the next quad. If it was detected that the AI is going to hit another kart, it will try to avoid this. Otherwise it will aim at the center of the quad furthest away so that a straight line from the current position to this center is on track (see findNonCrashingPoint). There are actually three different implementations of this, but the (somewhat buggy) default one results in reality with the best AI behaviour. The function handleSteering() then calls setSteering() to set the actually steering amount. The latter function also decides if skidding should be done or not (by calling canSkid()).</li>
+<li>decide if to try to collect or avoid items (handeItems). It considers all items on quads between the current quad of the kart and the quad the AI is aiming at (see handleSteering). If it finds an item to collect, it pre-selects this items, which means it will not select another item for collection until this pre-selected item is clearly uncollectable (gone or too far out of the way). This avoids problems that the AI is between two items it can collects, and keeps switching between both items, at the end missing both.</li>
+<li>detects if the AI is stuck and needs rescue (handleRescue)</li>
+<li>decides if it needs to brake (handlebraking)</li>
+<li>decides if nitro or zipper should be used</li>
+</ul>
+</li>
+<li>Finally, it checks if it has a zipper but selected to use nitro, and under certain circumstances will use zipper instead of nitro. </li>
+</ul>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">멤버 열거형 문서화</h2>
+<a id="a2f925d6abca5890513dcc070636bb441" name="a2f925d6abca5890513dcc070636bb441"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f925d6abca5890513dcc070636bb441">&#9670;&#160;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determines the algorithm to use to select the point-to-aim-for There are two different Point Selection Algorithms: </p>
+<ol type="1">
+<li>findNonCrashingPoint() is the default (which is actually slightly buggy, but so far best one after handling of 90 degree turns was added).</li>
+<li>findNonCrashingPointNew() A newly designed algorithm, which is faster than a fixed version of findNonCrashingPoint, but does not give as good results as the 'buggy' one.</li>
+</ol>
+<p>So far the default one has by far the best performance, even though it has bugs. </p>
+
+</div>
+</div>
+<a id="a5a4838a15bf9d627272fa9047076d0c1" name="a5a4838a15bf9d627272fa9047076d0c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a4838a15bf9d627272fa9047076d0c1">&#9670;&#160;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This implements a simple finite state machine: it starts in NOT_YET. </p>
+<p>The first time the AI decides to skid, the state is changed randomly (depending on skid probability) to NO_SKID or SKID. As long as the AI keeps on deciding to skid, the state remains unchanged (so no new random decision is made) till it decides not to skid. In which case the state is set to NOT_YET again. This guarantees that for each 'skidable' section of the track the random decision is only done once. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a32ef0314028631452a421efa19b68b71" name="a32ef0314028631452a421efa19b68b71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32ef0314028631452a421efa19b68b71">&#9670;&#160;</a></span>canSkid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SkiddingAI::canSkid </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>steer_fraction</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determines if the kart should skid. </p>
+<p>The base implementation enables skidding </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">steer_fraction</td><td>The steering fraction as computed by the <a class="el" href="classAIBaseLapController.html" title="A base class for all AI karts.">AIBaseLapController</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>True if the kart should skid. </dd></dl>
+
+<p><a class="el" href="classAIBaseController.html#aeec7b1cfc176d35af18f97a296235347">AIBaseController</a>를 구현.</p>
+
+</div>
+</div>
+<a id="aa12b707636199076e5d3c2fecea939b8" name="aa12b707636199076e5d3c2fecea939b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa12b707636199076e5d3c2fecea939b8">&#9670;&#160;</a></span>computeNearestKarts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::computeNearestKarts </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determines the closest karts just behind and in front of this kart. </p>
+<p>The 'closeness' is for now simply based on the position, i.e. if a kart is more than one lap behind or ahead, it is not considered to be closest. </p>
+
+</div>
+</div>
+<a id="a267c09c82696d1720ca22232fcd8be11" name="a267c09c82696d1720ca22232fcd8be11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a267c09c82696d1720ca22232fcd8be11">&#9670;&#160;</a></span>evaluateItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::evaluateItems </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classItemState.html">ItemState</a> *</td>          <td class="paramname"><span class="paramname"><em>item</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classVec3.html">Vec3</a></td>          <td class="paramname"><span class="paramname"><em>kart_aim_direction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; *</td>          <td class="paramname"><span class="paramname"><em>items_to_avoid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; *</td>          <td class="paramname"><span class="paramname"><em>items_to_collect</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This subroutine decides if the specified item should be collected, avoided, or ignored. </p>
+<p>It can potentially use the state of the kart to make this decision, e.g. depending on what item the kart currently has, how much nitro it has etc. Though atm it picks the first good item, and tries to avoid any bad items on the track. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>The item which is considered for picking/avoidance. </td></tr>
+    <tr><td class="paramname">kart_aim_angle</td><td>The angle of the line from the kart to the aim point. If aim_angle==kart_heading then the kart is driving towards the item. </td></tr>
+    <tr><td class="paramname">item_to_avoid</td><td>A pointer to a previously selected item to avoid (NULL if no item was avoided so far). </td></tr>
+    <tr><td class="paramname">item_to_collect</td><td>A pointer to a previously selected item to collect. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6fa21e9663794f328677f919dcaa7afd" name="a6fa21e9663794f328677f919dcaa7afd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fa21e9663794f328677f919dcaa7afd">&#9670;&#160;</a></span>findNonCrashingPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::findNonCrashingPoint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classVec3.html">Vec3</a> *</td>          <td class="paramname"><span class="paramname"><em>aim_position</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>last_node</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This is basically the original AI algorithm. </p>
+<p>It is clearly buggy:</p><ol type="1">
+<li><p class="startli">the test: </p><pre class="fragment">distance + m_kart_width * 0.5f
+         &gt; DriveGraph::get()-&gt;getNode(*last_node)-&gt;getPathWidth() )
+</pre><p class="startli">is incorrect, it should compare with getPathWith*0.5f (since distance is the distance from the center, i.e. it is half the path width if the point is at the edge).</p>
+</li>
+<li>the test: <pre class="fragment">DriveGraph::get()-&gt;spatialToTrack(&amp;step_track_coord, step_coord,
+                                 *last_node );
+</pre> in the for loop tests always against distance from the same graph node (*last_node), while de-fact the loop will test points on various graph nodes.</li>
+</ol>
+<p>This results in this algorithm often picking points to aim at that would actually force the kart off track. But in reality the kart has to turn (and does not immediate in one frame change its direction) which takes some time - so it is actually mostly on track. Since this algoritm (so far) ends up with by far the best AI behaviour, it is for now the default). </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aim_position</td><td>On exit contains the point the AI should aim at. </td></tr>
+    <tr><td class="paramname">last_node</td><td>On exit contais the graph node the AI is aiming at. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6c20a7a444d339d681ef1427162bbe5e" name="a6c20a7a444d339d681ef1427162bbe5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c20a7a444d339d681ef1427162bbe5e">&#9670;&#160;</a></span>findNonCrashingPointNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::findNonCrashingPointNew </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classVec3.html">Vec3</a> *</td>          <td class="paramname"><span class="paramname"><em>result</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>last_node</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This is a new version of findNonCrashingPoint, which at this stage is slightly inferior (though faster and more correct) than the original version - the original code cuts corner more aggressively than this version (and in most cases cuting the corner does not end in a collision, so it's actually faster). </p>
+<p>This version find the point furthest ahead which can be reached by travelling in a straight direction from the current location of the kart. This is done by using two lines: one from the kart to the lower left side of the next quad, and one from the kart to the lower right side of the next quad. The area between those two lines can be reached by the kart in a straight line, and will not go off track (assuming that the kart is on track). Then the next quads are tested: New left/right lines are computed. If the new left line is to the right of the old left line, the new left line becomes the current left line: </p><pre class="fragment">      X      The new left line connecting kart to X will be to the right
+  \        / of the old left line, so the available area for the kart
+   \      /  will be dictated by the new left line.
+    \    /
+     kart
+</pre><p>Similarly for the right side. This will narrow down the available area the kart can aim at, till finally the left and right line overlap. All points between the connection of the two end points of the left and right line can be reached without getting off track. Which point the kart aims at then depends on the direction of the track: if there is a left turn, the kart will aim to the left point (and vice versa for right turn) - slightly offset by the width of the kart to avoid that the kart is getting off track. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aim_position</td><td>The point to aim for, i.e. the point that can be driven to in a straight line. </td></tr>
+    <tr><td class="paramname">last_node</td><td>The graph node index in which the aim_position is. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af89eae4c0029f0de802ac251b5188686" name="af89eae4c0029f0de802ac251b5188686"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af89eae4c0029f0de802ac251b5188686">&#9670;&#160;</a></span>getNamePostfix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const irr::core::stringw &amp; SkiddingAI::getNamePostfix </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a name for the AI. </p>
+<p>This is used in profile mode when comparing different AI implementations to be able to distinguish them from each other. </p>
+
+</div>
+</div>
+<a id="ae661d1fa97111c61ed1df66f08b6c53b" name="ae661d1fa97111c61ed1df66f08b6c53b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae661d1fa97111c61ed1df66f08b6c53b">&#9670;&#160;</a></span>getNextSector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int SkiddingAI::getNextSector </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the pre-computed successor of a graph node. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the graph node for which the successor is searched. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classAIBaseLapController.html#ab106b6ca75d22d7aad69feda5f19e606">AIBaseLapController</a>(으)로부터 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a2579af641e94160ca5e136f2e244b4f6" name="a2579af641e94160ca5e136f2e244b4f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2579af641e94160ca5e136f2e244b4f6">&#9670;&#160;</a></span>handleAccelerationAndBraking()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::handleAccelerationAndBraking </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determines if the AI should accelerate or not, and if not if it should brake. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks</td><td>Time step size. //TODO : make acceleration steering aware </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab64c4c83b28009a926fca9bcdc7711f4" name="ab64c4c83b28009a926fca9bcdc7711f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab64c4c83b28009a926fca9bcdc7711f4">&#9670;&#160;</a></span>handleBowling()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::handleBowling </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>item_skill</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handle the bowling ball depending on the chosen strategy Level 2 : Use the bowling ball against enemies straight ahead or straight behind, and not invulnerable, with a 5 second delay Level 3 : Only 3 seconds of delay Level 4 : Same as level 3 Level 5 : Level 4 and don't fire on a shielded kart if we're just behind (gum) </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item_skill</td><td>The skill with which to use the item </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a56be352c71d40500164c42412a0fe53c" name="a56be352c71d40500164c42412a0fe53c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56be352c71d40500164c42412a0fe53c">&#9670;&#160;</a></span>handleBraking()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::handleBraking </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>max_turn_speed</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>min_speed</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function decides if the AI should brake. </p>
+<p>The decision can be based on race mode (e.g. in follow the leader the AI will brake if it is ahead of the leader). Otherwise it will depend on the direction the AI is facing (if it's not facing in the track direction it will brake in order to make it easier to re-align itself), and estimated curve radius (brake to avoid being pushed out of a curve). </p>
+
+</div>
+</div>
+<a id="a7cce64a0846aa720999f5e6ba3fbe71f" name="a7cce64a0846aa720999f5e6ba3fbe71f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cce64a0846aa720999f5e6ba3fbe71f">&#9670;&#160;</a></span>handleBubblegum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::handleBubblegum </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>item_skill</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>items_to_collect</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>items_to_avoid</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handle bubblegum depending on the chosen strategy Level 2 : Use the shield immediately after a wait time Level 3 : Use the shield against flyables except cakes. </p>
+<p>Use the shield against bad attachments and plunger. Use the bubble gum against an enemy close behind, except if holding a swatter. Level 4 : Level 3, and protect against cakes too, and use before hitting gum/banana Level 5 : Level 4, and use before hitting item box, and let plunger hit (can use the shield after), and use against bomb only when the timer ends </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item_skill</td><td>The skill with which to use the item </td></tr>
+    <tr><td class="paramname">items_to_collect</td><td>The list of close good items </td></tr>
+    <tr><td class="paramname">items_to_avoid</td><td>The list of close bad items </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af5a1c09cdb45120920c37d44359ee9e1" name="af5a1c09cdb45120920c37d44359ee9e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5a1c09cdb45120920c37d44359ee9e1">&#9670;&#160;</a></span>handleCake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::handleCake </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>item_skill</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handle cake depending on the chosen strategy Level 2 : Use the cake against any close vulnerable enemy, with priority to those ahead and close, check if the enemy is roughly ahead. </p>
+<p>Level 3 : Level 2 and don't fire on slower karts Level 4 : Level 3 and fire if the kart has a swatter which may hit us Level 5 : Level 4 and don't fire on a shielded kart if we're just behind (gum) </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item_skill</td><td>The skill with which to use the item </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa657b3e42f4e0b3a2688bb90b1245949" name="aa657b3e42f4e0b3a2688bb90b1245949"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa657b3e42f4e0b3a2688bb90b1245949">&#9670;&#160;</a></span>handleItemCollectionAndAvoidance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::handleItemCollectionAndAvoidance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classVec3.html">Vec3</a> *</td>          <td class="paramname"><span class="paramname"><em>aim_point</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>last_node</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Decides if the currently selected aim at point (as determined by handleSteering) should be changed in order to collect/avoid an item. </p>
+<p>There are 5 potential phases:</p><ol type="1">
+<li>Collect all items close by and sort them by items-to-avoid and items-to-collect. 'Close by' are all items between the current graph node the kart is on and the graph node the aim_point is on. The function evaluateItems() filters those items: atm all items-to-avoid are collected, and all items-to-collect that are not too far away from the intended driving direction (i.e. don't require a too sharp steering change).</li>
+<li>If a pre-selected item (see phase 5) exists, and items-to-avoid which might get hit if the pre-selected item is collected, the pre-selected item is unselected. This can happens if e.g. items-to-avoid are behind the pre-selected items on a different graph node and were therefore not evaluated then the now pre-selected item was selected initially.</li>
+<li>If a pre-selected item exists, the kart will steer towards it. The AI does a much better job of collecting items if after selecting an item it tries to collect this item even if it doesn't fulfill the original conditions to be selected in the first place anymore. Example: An item was selected to be collected because the AI was hitting it anyway. Then the aim_point changes, and the selected item is not that close anymore. In many cases it is better to keep on aiming for the items (otherwise the aiming will not have much benefit and mostly only results in collecting items that are on long straights). At this stage because of phase 2) it is certain that no item-to-avoid will be hit. The function handleSelectedItem() evaluates if it is still feasible to collect them item (if the kart has already passed the item it won't reverse to collect it). If the item is still to be aimed for, adjust the aim_point and return.</li>
+<li>Make sure to avoid any items-to-avoid. The function steerToAvoid selects a new aim point if otherwise an item-to-avoid would be hit. If this is the case, aim_point is adjused and control returns to the caller.</li>
+<li>Try to collect an item-to-collect. Select the closest item to the kart (which in case of a row of items will be the item the kart is roughly driving towards to anyway). It is then tested if the kart would hit any item-to-avoid when driving towards this item - if so the driving direction is not changed and the function returns. Otherwise, i.e. no items-to-avoid will be hit, it is evaluated if the kart is (atm) going to hit it anyway. In this case, the item is selected (see phase 2 and 3). If on the other hand the item is not too far our of the way, aim_point is adjusted to drive towards this item (but it is not selected, so the item will be discarded if the kart is getting too far away from it). Ideally later as the kart is steering towards this item the item will be selected.</li>
+</ol>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aim_point</td><td>Currently selected point to aim at. If the AI should try to collect an item, this value will be changed. </td></tr>
+    <tr><td class="paramname">last_node</td><td>Index of the graph node on which the aim_point is. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aebf06e69819fe8ee717ae8cf3afeec5b" name="aebf06e69819fe8ee717ae8cf3afeec5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebf06e69819fe8ee717ae8cf3afeec5b">&#9670;&#160;</a></span>handleItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::handleItems </td>
+          <td>(</td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> *</td>          <td class="paramname"><span class="paramname"><em>aim_point</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>last_node</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>item_skill</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handle all items depending on the chosen strategy. </p>
+<p>Level 0 "AI" : do nothing (not used by default) Level 1 "AI" : use items after a random time Level 2 to 5 AI : strategy detailed before each item Each successive level is overall stronger (5 the strongest, 2 the weakest of non-random strategies), but two levels may share a strategy for a given item. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>Time step size. STATE: shield on -&gt; avoid usage of offensive items (with certain tolerance) STATE: swatter on -&gt; avoid usage of shield</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Either (low level AI) just use an item after 10 seconds, or do a much better job on higher level AI - e.g. aiming at karts ahead/behind, wait an appropriate time before using multiple items etc. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>Time step size. TODO: Implications of Bubble-Shield for AI's powerup-handling</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>STATE: shield on -&gt; avoid usage of offensive items (with certain tolerance) STATE: swatter on -&gt; avoid usage of shield </p>
+
+</div>
+</div>
+<a id="a981fce1ff0cb8c9a6c3fdfe149acf7b4" name="a981fce1ff0cb8c9a6c3fdfe149acf7b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a981fce1ff0cb8c9a6c3fdfe149acf7b4">&#9670;&#160;</a></span>handleNitroAndZipper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::handleNitroAndZipper </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>max_safe_speed</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Decides wether to use nitro and zipper or not. </p>
+<p>Decides wether to use nitro or not. </p>
+
+</div>
+</div>
+<a id="a28a50fbd878a2b130e74779e0c257e0b" name="a28a50fbd878a2b130e74779e0c257e0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28a50fbd878a2b130e74779e0c257e0b">&#9670;&#160;</a></span>handleSelectedItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SkiddingAI::handleSelectedItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classVec3.html">Vec3</a></td>          <td class="paramname"><span class="paramname"><em>kart_aim_direction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classVec3.html">Vec3</a> *</td>          <td class="paramname"><span class="paramname"><em>aim_point</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function is called when the AI is trying to hit an item that is pre-selected to be collected. </p>
+<p>The AI only evaluates if it's still feasible/useful to try to collect this item, or abandon it (and then look for a new item). At item is unselected if the kart has passed it (so collecting it would require the kart to reverse). </p><dl class="section pre"><dt>전제조건</dt><dd>m_item_to_collect is defined </dd></dl>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kart_aim_angle</td><td>The angle towards the current aim_point. </td></tr>
+    <tr><td class="paramname">aim_point</td><td>The current aim_point. </td></tr>
+    <tr><td class="paramname">last_node</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>True if th AI should still aim for the pre-selected item. </dd></dl>
+
+</div>
+</div>
+<a id="a100d9141486143af1800f97077db7fad" name="a100d9141486143af1800f97077db7fad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a100d9141486143af1800f97077db7fad">&#9670;&#160;</a></span>handleSteering()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::handleSteering </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Decides in which direction to steer. </p>
+<p>If the kart is off track, it will steer towards the center of the track. Otherwise it will call one of the findNonCrashingPoint() functions to determine a point to aim for. Then it will evaluate items to see if it should aim for any items or try to avoid item, and potentially adjust the aim-at point, before computing the steer direction to arrive at the currently aim-at point. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>Time step size. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7134ab65ac62ec43af49cec3c0321ee9" name="a7134ab65ac62ec43af49cec3c0321ee9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7134ab65ac62ec43af49cec3c0321ee9">&#9670;&#160;</a></span>handleSwatter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::handleSwatter </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>item_skill</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handle the swatter depending on the chosen strategy Level 2 : Use the swatter immediately after a wait time Level 3 : Use the swatter when enemies are close Level 4 : Level 3 and use the swatter to remove bad attachments Level 5 : Level 4 and use against bomb only when the timer ends </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item_skill</td><td>The skill with which to use the item </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a76a8aebc0c29da6cc03175933b548445" name="a76a8aebc0c29da6cc03175933b548445"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76a8aebc0c29da6cc03175933b548445">&#9670;&#160;</a></span>handleSwitch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::handleSwitch </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>item_skill</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>items_to_collect</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>items_to_avoid</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handle switch depending on the chosen strategy Level 2 : Use the switch after a wait time Level 3 : Same as level 2 but don't fire if close to a good item Level 4 : Same as level 3 and fire if very close to a bad item Level 5 : Use if it makes a better item available, or if very close to a bad item. </p>
+<p>Don't use it if too close of a good item. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item_skill</td><td>The skill with which to use the item </td></tr>
+    <tr><td class="paramname">items_to_collect</td><td>The list of close good items </td></tr>
+    <tr><td class="paramname">items_to_avoid</td><td>The list of close bad items </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afe7704ea8df159afca36133af300ae04" name="afe7704ea8df159afca36133af300ae04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe7704ea8df159afca36133af300ae04">&#9670;&#160;</a></span>hitBadItemWhenAimAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SkiddingAI::hitBadItemWhenAimAt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classItemState.html">ItemState</a> *</td>          <td class="paramname"><span class="paramname"><em>item</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>items_to_avoid</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns true if the AI would hit any of the listed bad items when trying to drive towards the specified item. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>The item the AI is evaluating for collection. </td></tr>
+    <tr><td class="paramname">items_to_aovid</td><td>A list of bad items close by. All of these needs to be avoided. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>True if it would hit any of the bad items. </dd></dl>
+
+</div>
+</div>
+<a id="a63b16e59652015903e67561f4d920a24" name="a63b16e59652015903e67561f4d920a24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63b16e59652015903e67561f4d920a24">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets the AI when a race is restarted. </p>
+
+<p><a class="el" href="classAIBaseLapController.html">AIBaseLapController</a>(으)로부터 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a53970bd8c6f1b768ee10440037c459a4" name="a53970bd8c6f1b768ee10440037c459a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53970bd8c6f1b768ee10440037c459a4">&#9670;&#160;</a></span>setSteering()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::setSteering </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>angle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts the steering angle to a lr steering in the range of -1 to 1. </p>
+<p>If the steering angle is too great, it will also trigger skidding. This function uses a 'time till full steer' value specifying the time it takes for the wheel to reach full left/right steering similar to player karts when using a digital input device. The parameter is defined in the kart properties and helps somewhat to make AI karts more 'pushable' (since otherwise the karts counter-steer to fast). It also takes the effect of a plunger into account by restricting the actual steer angle to 50% of the maximum. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>Steering angle. </td></tr>
+    <tr><td class="paramname">dt</td><td>Time step. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classAIBaseController.html#aad587af243f9b3f35440dc066fdac48b">AIBaseController</a>(으)로부터 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a93587a501a7c9ff3361adc1ea04e4341" name="a93587a501a7c9ff3361adc1ea04e4341"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93587a501a7c9ff3361adc1ea04e4341">&#9670;&#160;</a></span>steerToAvoid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SkiddingAI::steerToAvoid </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; const <a class="el" href="classItemState.html">ItemState</a> * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>items_to_avoid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const core::line3df &amp;</td>          <td class="paramname"><span class="paramname"><em>line_to_target</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classVec3.html">Vec3</a> *</td>          <td class="paramname"><span class="paramname"><em>aim_point</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Decides if steering is necessary to avoid bad items. </p>
+<p>If so, it modifies the aim_point and returns true. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">items_to_avoid</td><td>List of items to avoid. </td></tr>
+    <tr><td class="paramname">line_to_target</td><td>The 2d line from the current kart position to the current aim point. </td></tr>
+    <tr><td class="paramname">aim_point</td><td>The point the AI is steering towards (not taking items into account). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>True if steering is necessary to avoid an item. </dd></dl>
+
+</div>
+</div>
+<a id="ad70ba8c85e74b8aceeba12f559afb8c8" name="ad70ba8c85e74b8aceeba12f559afb8c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad70ba8c85e74b8aceeba12f559afb8c8">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SkiddingAI::update </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This is the main entry point for the AI. </p>
+<p>It is called once per frame for each AI and determines the behaviour of the AI, e.g. steering, accelerating/braking, firing. </p>
+
+<p><a class="el" href="classAIBaseLapController.html#a864c5369385ac134b53b505bdfdf9ab7">AIBaseLapController</a>(으)로부터 재구현되었습니다.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="a9b67b94145f33cea22a0f640a91d117f" name="a9b67b94145f33cea22a0f640a91d117f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b67b94145f33cea22a0f640a91d117f">&#9670;&#160;</a></span>m_avoid_item_close</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SkiddingAI::m_avoid_item_close</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>True if items to avoid are close by. </p>
+<p>Used to avoid using zippers (which would make it more difficult to avoid items). </p>
+
+</div>
+</div>
+<a id="ac4c3cd1b3aef10b705b2a5ca89cb6155" name="ac4c3cd1b3aef10b705b2a5ca89cb6155"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4c3cd1b3aef10b705b2a5ca89cb6155">&#9670;&#160;</a></span>m_current_curve_radius</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SkiddingAI::m_current_curve_radius</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The radius of the curve the kart is currently driving. </p>
+<p>Undefined when being on a straigt section. </p>
+
+</div>
+</div>
+<a id="a5e93fbf5910ec786da66c80de8baa9dc" name="a5e93fbf5910ec786da66c80de8baa9dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e93fbf5910ec786da66c80de8baa9dc">&#9670;&#160;</a></span>m_kart_ahead</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAbstractKart.html">AbstractKart</a>* SkiddingAI::m_kart_ahead</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pointer to the closest kart ahead of this kart. </p>
+<p>NULL if this kart is first. </p>
+
+</div>
+</div>
+<a id="a88f058268febfacd65704b019deac0b4" name="a88f058268febfacd65704b019deac0b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88f058268febfacd65704b019deac0b4">&#9670;&#160;</a></span>m_kart_behind</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAbstractKart.html">AbstractKart</a>* SkiddingAI::m_kart_behind</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pointer to the closest kart behind this kart. </p>
+<p>NULL if this kart is last. </p>
+
+</div>
+</div>
+<a id="a33e4f3aa347f4ab821dd755e1f36a296" name="a33e4f3aa347f4ab821dd755e1f36a296"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33e4f3aa347f4ab821dd755e1f36a296">&#9670;&#160;</a></span>m_last_direction_node</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int SkiddingAI::m_last_direction_node</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The index of the last node with the same direction as the current node the kart is on. </p>
+<p>If kart is in a left turn, this will be the last node that is still turning left etc. </p>
+
+</div>
+</div>
+<a id="a1e890832efa67793d0c49b872550110a" name="a1e890832efa67793d0c49b872550110a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e890832efa67793d0c49b872550110a">&#9670;&#160;</a></span>[]</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum  { ... }  SkiddingAI::m_point_selection_algorithm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Determines the algorithm to use to select the point-to-aim-for There are two different Point Selection Algorithms: </p>
+<ol type="1">
+<li>findNonCrashingPoint() is the default (which is actually slightly buggy, but so far best one after handling of 90 degree turns was added).</li>
+<li>findNonCrashingPointNew() A newly designed algorithm, which is faster than a fixed version of findNonCrashingPoint, but does not give as good results as the 'buggy' one.</li>
+</ol>
+<p>So far the default one has by far the best performance, even though it has bugs. </p>
+
+</div>
+</div>
+<a id="a49221116ca931ebee929f7b51ef568b6" name="a49221116ca931ebee929f7b51ef568b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49221116ca931ebee929f7b51ef568b6">&#9670;&#160;</a></span>[]</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum  { ... }  SkiddingAI::m_skid_probability_state</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This implements a simple finite state machine: it starts in NOT_YET. </p>
+<p>The first time the AI decides to skid, the state is changed randomly (depending on skid probability) to NO_SKID or SKID. As long as the AI keeps on deciding to skid, the state remains unchanged (so no new random decision is made) till it decides not to skid. In which case the state is set to NOT_YET again. This guarantees that for each 'skidable' section of the track the random decision is only done once. </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>karts/controller/<a class="el" href="skidding__ai_8hpp_source.html">skidding_ai.hpp</a></li>
+<li>karts/controller/<b>skidding_ai.cpp</b></li>
+<li>karts/controller/<b>test_ai.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

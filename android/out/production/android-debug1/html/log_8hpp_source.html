@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: utils/log.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>utils</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">log.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2013-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef HEADER_LOG_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HEADER_LOG_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/synchronised.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;stdarg.h&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#if defined(__GLIBC__)</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#  define VALIST __gnuc_va_list</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#  define VALIST va_list</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#if defined(_WIN32) &amp;&amp; defined(_MSC_VER) &amp;&amp; _MSC_VER &lt; 1800</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#  define va_copy(dest, src) dest = src</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classLog.html">   43</a></span><span class="keyword">class </span><a class="code hl_class" href="classLog.html">Log</a></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="};">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classLog.html#a3718f3e276c3d3e23b58a3b8236d196e">   47</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classLog.html#a3718f3e276c3d3e23b58a3b8236d196e">LogLevel</a> { LL_DEBUG,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                    LL_VERBOSE,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                    LL_INFO,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                    LL_WARN,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                    LL_ERROR,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                    LL_FATAL</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    };</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classLog.html#ab828608c0a4891d0d0be82cb318fc5f5">   58</a></span>    <span class="keyword">static</span> <a class="code hl_enumeration" href="classLog.html#a3718f3e276c3d3e23b58a3b8236d196e">LogLevel</a> <a class="code hl_variable" href="classLog.html#ab828608c0a4891d0d0be82cb318fc5f5">m_min_log_level</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classLog.html#a091a82b6330455a9983cc6a0b76ef122">   61</a></span>    <span class="keyword">static</span> <span class="keywordtype">bool</span>     <a class="code hl_variable" href="classLog.html#a091a82b6330455a9983cc6a0b76ef122">m_no_colors</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classLog.html#a2465812effcf1c2ed9dc390d0efd511f">   64</a></span>    <span class="keyword">static</span> <span class="keywordtype">bool</span>     <a class="code hl_variable" href="classLog.html#a2465812effcf1c2ed9dc390d0efd511f">m_console_log</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classLog.html#a2143f963243bade34d3b4e8380aaaab5">   67</a></span>    <span class="keyword">static</span> FILE* <a class="code hl_variable" href="classLog.html#a2143f963243bade34d3b4e8380aaaab5">m_file_stdout</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span></div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="};">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structLog_1_1LineInfo.html">   70</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structLog_1_1LineInfo.html">LineInfo</a></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        std::string m_line;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordtype">int</span> m_level;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    };</div>
+</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">static</span> <a class="code hl_class" href="classSynchronised.html">Synchronised&lt;std::vector&lt;struct LineInfo&gt;</a> &gt; m_line_buffer;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classLog.html#a2192a69fb695c5c152e9c978e3ff6af9">   79</a></span>    <span class="keyword">static</span> <span class="keywordtype">size_t</span> <a class="code hl_variable" href="classLog.html#a2192a69fb695c5c152e9c978e3ff6af9">m_buffer_size</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLog.html#a9ba39ba9184e634bf87138c93279a876">setTerminalColor</a>(<a class="code hl_enumeration" href="classLog.html#a3718f3e276c3d3e23b58a3b8236d196e">LogLevel</a> level);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLog.html#ab72a3ff376405e71ca2afb4dd97eb04d">resetTerminalColor</a>();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLog.html#add0f4bdb6010f0853e1902973f20327e">writeLine</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *line, <span class="keywordtype">int</span> level);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLog.html#a9dc8f0ef3ef7924cdfc07ce760c025c2">printMessage</a>(<span class="keywordtype">int</span> level, <span class="keyword">const</span> <span class="keywordtype">char</span> *component,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                             <span class="keyword">const</span> <span class="keywordtype">char</span> *format, VALIST va_list);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#define LOG(NAME, LEVEL)                                             \</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">    static void NAME(const char *component, const char *format, ...) \</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">    {                                                                \</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="preprocessor">        if(LEVEL &lt; m_min_log_level) return;                          \</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">        va_list args;                                                \</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="preprocessor">        va_start(args, format);                                      \</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="preprocessor">        printMessage(LEVEL, component, format, args);                \</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">        va_end(args);                                                \</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">                                                                     \</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">        if (LEVEL == LL_FATAL)                                       \</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">        {                                                            \</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">            assert(false);                                           \</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">            exit(1);                                                 \</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">        }                                                            \</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">    }</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    LOG(verbose, LL_VERBOSE);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    LOG(debug,   LL_DEBUG);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    LOG(info,    LL_INFO);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    LOG(warn,    LL_WARN);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    LOG(error,   LL_ERROR);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    LOG(fatal,   LL_FATAL);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLog.html#a0711ad17a09737d0c77a2c91b10875d4">openOutputFiles</a>(<span class="keyword">const</span> std::string &amp;logout);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLog.html#a15bbec93256098e344d36d75de39e265">closeOutputFiles</a>();</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLog.html#a722fbefd22337edbc78f9df3d4eba112">flushBuffers</a>();</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> toggleConsoleLog(<span class="keywordtype">bool</span> val);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classLog.html#ace20680080bd3fb7700f476771c36381">  125</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLog.html#ace20680080bd3fb7700f476771c36381">setBufferSize</a>(<span class="keywordtype">size_t</span> n) { <a class="code hl_variable" href="classLog.html#a2192a69fb695c5c152e9c978e3ff6af9">m_buffer_size</a> = n;  }</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00128" data-start="{" data-end="}">
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classLog.html#ae905e32fea035b26bc39622372304960">  128</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLog.html#ae905e32fea035b26bc39622372304960">setLogLevel</a>(<span class="keywordtype">int</span> n)</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keywordflow">if</span>(n&lt;0 || n&gt;LL_FATAL)</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            warn(<span class="stringliteral">&quot;Log&quot;</span>, <span class="stringliteral">&quot;Log level %d not in range [%d-%d] - ignored.\n&quot;</span>,</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                 n, LL_VERBOSE, LL_FATAL);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        }</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <a class="code hl_variable" href="classLog.html#ab828608c0a4891d0d0be82cb318fc5f5">m_min_log_level</a> = (<a class="code hl_enumeration" href="classLog.html#a3718f3e276c3d3e23b58a3b8236d196e">LogLevel</a>)n;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    }    <span class="comment">// setLogLevel</span></div>
+</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classLog.html#a1d08e64aba418254a9b14b80079f3792">  143</a></span>    <span class="keyword">static</span> <a class="code hl_enumeration" href="classLog.html#a3718f3e276c3d3e23b58a3b8236d196e">LogLevel</a> <a class="code hl_function" href="classLog.html#a1d08e64aba418254a9b14b80079f3792">getLogLevel</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classLog.html#ab828608c0a4891d0d0be82cb318fc5f5">m_min_log_level</a>;  }</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00146" data-start="{" data-end="}">
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classLog.html#a99902f1e044948d4748ed433b284fd3e">  146</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLog.html#a99902f1e044948d4748ed433b284fd3e">disableColor</a>()</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <a class="code hl_variable" href="classLog.html#a091a82b6330455a9983cc6a0b76ef122">m_no_colors</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    }   <span class="comment">// disableColor</span></div>
+</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLog.html#a01c14c9ded9489d7d0a644a3a0ab9c81">setPrefix</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* prefix);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>};   <span class="comment">// Log</span></div>
+</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassLog_html"><div class="ttname"><a href="classLog.html">Log</a></div><div class="ttdef"><b>Definition</b> log.hpp:44</div></div>
+<div class="ttc" id="aclassLog_html_a01c14c9ded9489d7d0a644a3a0ab9c81"><div class="ttname"><a href="classLog.html#a01c14c9ded9489d7d0a644a3a0ab9c81">Log::setPrefix</a></div><div class="ttdeci">static void setPrefix(const char *prefix)</div><div class="ttdoc">Sets a prefix to be printed before each line.</div><div class="ttdef"><b>Definition</b> log.cpp:52</div></div>
+<div class="ttc" id="aclassLog_html_a0711ad17a09737d0c77a2c91b10875d4"><div class="ttname"><a href="classLog.html#a0711ad17a09737d0c77a2c91b10875d4">Log::openOutputFiles</a></div><div class="ttdeci">static void openOutputFiles(const std::string &amp;logout)</div><div class="ttdoc">This function opens the files that will contain the output.</div><div class="ttdef"><b>Definition</b> log.cpp:317</div></div>
+<div class="ttc" id="aclassLog_html_a091a82b6330455a9983cc6a0b76ef122"><div class="ttname"><a href="classLog.html#a091a82b6330455a9983cc6a0b76ef122">Log::m_no_colors</a></div><div class="ttdeci">static bool m_no_colors</div><div class="ttdoc">If set this will disable coloring of log messages.</div><div class="ttdef"><b>Definition</b> log.hpp:61</div></div>
+<div class="ttc" id="aclassLog_html_a15bbec93256098e344d36d75de39e265"><div class="ttname"><a href="classLog.html#a15bbec93256098e344d36d75de39e265">Log::closeOutputFiles</a></div><div class="ttdeci">static void closeOutputFiles()</div><div class="ttdoc">Function to close output files</div><div class="ttdef"><b>Definition</b> log.cpp:334</div></div>
+<div class="ttc" id="aclassLog_html_a1d08e64aba418254a9b14b80079f3792"><div class="ttname"><a href="classLog.html#a1d08e64aba418254a9b14b80079f3792">Log::getLogLevel</a></div><div class="ttdeci">static LogLevel getLogLevel()</div><div class="ttdoc">Returns the log level.</div><div class="ttdef"><b>Definition</b> log.hpp:143</div></div>
+<div class="ttc" id="aclassLog_html_a2143f963243bade34d3b4e8380aaaab5"><div class="ttname"><a href="classLog.html#a2143f963243bade34d3b4e8380aaaab5">Log::m_file_stdout</a></div><div class="ttdeci">static FILE * m_file_stdout</div><div class="ttdoc">The file where stdout output will be written</div><div class="ttdef"><b>Definition</b> log.hpp:67</div></div>
+<div class="ttc" id="aclassLog_html_a2192a69fb695c5c152e9c978e3ff6af9"><div class="ttname"><a href="classLog.html#a2192a69fb695c5c152e9c978e3ff6af9">Log::m_buffer_size</a></div><div class="ttdeci">static size_t m_buffer_size</div><div class="ttdoc">&lt;0 if no buffered logging is to be used, otherwise this is the maximum number of lines the buffer sho...</div><div class="ttdef"><b>Definition</b> log.hpp:79</div></div>
+<div class="ttc" id="aclassLog_html_a2465812effcf1c2ed9dc390d0efd511f"><div class="ttname"><a href="classLog.html#a2465812effcf1c2ed9dc390d0efd511f">Log::m_console_log</a></div><div class="ttdeci">static bool m_console_log</div><div class="ttdoc">If false that logging will only be saved to a file.</div><div class="ttdef"><b>Definition</b> log.hpp:64</div></div>
+<div class="ttc" id="aclassLog_html_a3718f3e276c3d3e23b58a3b8236d196e"><div class="ttname"><a href="classLog.html#a3718f3e276c3d3e23b58a3b8236d196e">Log::LogLevel</a></div><div class="ttdeci">LogLevel</div><div class="ttdoc">The various log levels used in STK.</div><div class="ttdef"><b>Definition</b> log.hpp:47</div></div>
+<div class="ttc" id="aclassLog_html_a722fbefd22337edbc78f9df3d4eba112"><div class="ttname"><a href="classLog.html#a722fbefd22337edbc78f9df3d4eba112">Log::flushBuffers</a></div><div class="ttdeci">static void flushBuffers()</div><div class="ttdoc">Flushes all stored log messages to the various output devices (thread safe).</div><div class="ttdef"><b>Definition</b> log.cpp:300</div></div>
+<div class="ttc" id="aclassLog_html_a99902f1e044948d4748ed433b284fd3e"><div class="ttname"><a href="classLog.html#a99902f1e044948d4748ed433b284fd3e">Log::disableColor</a></div><div class="ttdeci">static void disableColor()</div><div class="ttdoc">Disable coloring of log messages.</div><div class="ttdef"><b>Definition</b> log.hpp:146</div></div>
+<div class="ttc" id="aclassLog_html_a9ba39ba9184e634bf87138c93279a876"><div class="ttname"><a href="classLog.html#a9ba39ba9184e634bf87138c93279a876">Log::setTerminalColor</a></div><div class="ttdeci">static void setTerminalColor(LogLevel level)</div><div class="ttdoc">Selects background/foreground colors for the message depending on log level.</div><div class="ttdef"><b>Definition</b> log.cpp:67</div></div>
+<div class="ttc" id="aclassLog_html_a9dc8f0ef3ef7924cdfc07ce760c025c2"><div class="ttname"><a href="classLog.html#a9dc8f0ef3ef7924cdfc07ce760c025c2">Log::printMessage</a></div><div class="ttdeci">static void printMessage(int level, const char *component, const char *format, VALIST va_list)</div><div class="ttdoc">This actually creates a log message.</div><div class="ttdef"><b>Definition</b> log.cpp:156</div></div>
+<div class="ttc" id="aclassLog_html_ab72a3ff376405e71ca2afb4dd97eb04d"><div class="ttname"><a href="classLog.html#ab72a3ff376405e71ca2afb4dd97eb04d">Log::resetTerminalColor</a></div><div class="ttdeci">static void resetTerminalColor()</div><div class="ttdoc">Resets the terminal color to the default, and adds a new line (if a new line is added as part of the ...</div><div class="ttdef"><b>Definition</b> log.cpp:132</div></div>
+<div class="ttc" id="aclassLog_html_ab828608c0a4891d0d0be82cb318fc5f5"><div class="ttname"><a href="classLog.html#ab828608c0a4891d0d0be82cb318fc5f5">Log::m_min_log_level</a></div><div class="ttdeci">static LogLevel m_min_log_level</div><div class="ttdoc">Which message level to print.</div><div class="ttdef"><b>Definition</b> log.hpp:58</div></div>
+<div class="ttc" id="aclassLog_html_ace20680080bd3fb7700f476771c36381"><div class="ttname"><a href="classLog.html#ace20680080bd3fb7700f476771c36381">Log::setBufferSize</a></div><div class="ttdeci">static void setBufferSize(size_t n)</div><div class="ttdoc">Sets the number of lines to buffer.</div><div class="ttdef"><b>Definition</b> log.hpp:125</div></div>
+<div class="ttc" id="aclassLog_html_add0f4bdb6010f0853e1902973f20327e"><div class="ttname"><a href="classLog.html#add0f4bdb6010f0853e1902973f20327e">Log::writeLine</a></div><div class="ttdeci">static void writeLine(const char *line, int level)</div><div class="ttdoc">Writes the specified line to the various output devices, e.g.</div><div class="ttdef"><b>Definition</b> log.cpp:238</div></div>
+<div class="ttc" id="aclassLog_html_ae905e32fea035b26bc39622372304960"><div class="ttname"><a href="classLog.html#ae905e32fea035b26bc39622372304960">Log::setLogLevel</a></div><div class="ttdeci">static void setLogLevel(int n)</div><div class="ttdoc">Defines the minimum log level to be displayed.</div><div class="ttdef"><b>Definition</b> log.hpp:128</div></div>
+<div class="ttc" id="aclassSynchronised_html"><div class="ttname"><a href="classSynchronised.html">Synchronised</a></div><div class="ttdoc">A variable that is automatically synchronised using pthreads mutex.</div><div class="ttdef"><b>Definition</b> synchronised.hpp:28</div></div>
+<div class="ttc" id="astructLog_1_1LineInfo_html"><div class="ttname"><a href="structLog_1_1LineInfo.html">Log::LineInfo</a></div><div class="ttdoc">An optional buffer for lines to be output.</div><div class="ttdef"><b>Definition</b> log.hpp:71</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

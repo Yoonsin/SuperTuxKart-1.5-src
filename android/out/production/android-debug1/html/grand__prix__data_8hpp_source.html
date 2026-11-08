@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: race/grand_prix_data.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>race</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">grand_prix_data.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2004-2015  Ingo Ruhnke &lt;grumbel@gmx.de&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  Copyright (C) 2006-2015  Joerg Henrichs</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifndef HEADER_GRAND_PRIX_DATA_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#define HEADER_GRAND_PRIX_DATA_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;irrString.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">utils/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">using </span>irr::core::stringw;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">class </span>Track;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span></div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classGrandPrixData.html">   36</a></span><span class="keyword">class </span><a class="code hl_function" href="classGrandPrixData.html#a5e0dc34c5070d157e068271c26a4023e">GrandPrixData</a></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a56a2a7ddc178739bec7d8f85d1f1fb35">   42</a></span>    std::vector&lt;std::string&gt; <a class="code hl_variable" href="classGrandPrixData.html#a56a2a7ddc178739bec7d8f85d1f1fb35">m_tracks</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="};">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086">   46</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086">GPGroupType</a></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086ab60d562956762ab1e6440f61c7a93b08">   48</a></span>        <a class="code hl_enumvalue" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086ab60d562956762ab1e6440f61c7a93b08">GP_NONE</a> = 0,      </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086ae6922ef92bbaa438e67e9262b6d5a43e">   49</a></span>        <a class="code hl_enumvalue" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086ae6922ef92bbaa438e67e9262b6d5a43e">GP_STANDARD</a>,      </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086ab801fc8165e896e88e92dbe919634c12">   50</a></span>        <a class="code hl_enumvalue" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086ab801fc8165e896e88e92dbe919634c12">GP_USER_DEFINED</a>,  </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086a37cd51bedb1cf4b492b3a7d30aa121e4">   51</a></span>        <a class="code hl_enumvalue" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086a37cd51bedb1cf4b492b3a7d30aa121e4">GP_ADDONS</a>,        </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086a6d26f20d8d60213ea86db588c5c6c2f6">   52</a></span>        <a class="code hl_enumvalue" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086a6d26f20d8d60213ea86db588c5c6c2f6">GP_GROUP_COUNT</a>    </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    };   <span class="comment">// GPGroupType</span></div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a00c0138d586745094c779e3eb18d6316">   57</a></span>    irr::core::stringw <a class="code hl_variable" href="classGrandPrixData.html#a00c0138d586745094c779e3eb18d6316">m_name</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a087446d3ef08ed4aadb3b8e7e56bf2a2">   60</a></span>    std::string <a class="code hl_variable" href="classGrandPrixData.html#a087446d3ef08ed4aadb3b8e7e56bf2a2">m_id</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#ae613d61a0e80b70b513e6d2977e82998">   63</a></span>    std::string <a class="code hl_variable" href="classGrandPrixData.html#ae613d61a0e80b70b513e6d2977e82998">m_filename</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#ae78c76998fc3e747587c5d2839460d45">   66</a></span>    std::vector&lt;int&gt; <a class="code hl_variable" href="classGrandPrixData.html#ae78c76998fc3e747587c5d2839460d45">m_laps</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>   <span class="comment">// This is uint8_t instead of bool because of GitHub issue #5053</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#afe4b8f74d6f6ef803b4785591dc3a279">   70</a></span>   std::vector&lt;uint8_t&gt; <a class="code hl_variable" href="classGrandPrixData.html#afe4b8f74d6f6ef803b4785591dc3a279">m_reversed</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a6697242458278d8e317e0320b678cfa1">   73</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classGrandPrixData.html#a6697242458278d8e317e0320b678cfa1">m_editable</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a4f11c0c463410049422eb941f24d64d6">   76</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086">GPGroupType</a> <a class="code hl_variable" href="classGrandPrixData.html#a4f11c0c463410049422eb941f24d64d6">m_group</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classGrandPrixData.html#afc60841a6f7f07541c1a9bef04ed4ebc">isTrackAvailable</a>(<span class="keyword">const</span> std::string &amp;<span class="keywordtype">id</span>, <span class="keywordtype">bool</span> includeLocked) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00090" data-start="{" data-end="};">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a39cf3bbdf6bb3af3d4001d4658fa2bfd">   90</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classGrandPrixData.html#a39cf3bbdf6bb3af3d4001d4658fa2bfd">GPReverseType</a></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        GP_NO_REVERSE = 0,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        GP_ALL_REVERSE = 1,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        GP_RANDOM_REVERSE = 2,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        GP_DEFAULT_REVERSE = 3</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    };   <span class="comment">// GPReverseType</span></div>
+</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <a class="code hl_enumeration" href="classGrandPrixData.html#a39cf3bbdf6bb3af3d4001d4658fa2bfd">GPReverseType</a> m_reverse_type;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#if (defined(WIN32) || defined(_WIN32)) &amp;&amp; !defined(__MINGW32__)</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">#  pragma warning(disable:4290)</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#endif</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <a class="code hl_function" href="classGrandPrixData.html#a1ab7311ae39d03eb0c878a2701346364">GrandPrixData</a>(<span class="keyword">const</span> std::string&amp; filename, <span class="keyword">enum</span> <a class="code hl_enumeration" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086">GPGroupType</a> group);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span></div>
+<div class="foldopen" id="foldopen00109" data-start="{" data-end="}">
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a1ab7311ae39d03eb0c878a2701346364">  109</a></span>    <a class="code hl_function" href="classGrandPrixData.html#a1ab7311ae39d03eb0c878a2701346364">GrandPrixData</a>()</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <a class="code hl_variable" href="classGrandPrixData.html#a6697242458278d8e317e0320b678cfa1">m_editable</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <a class="code hl_variable" href="classGrandPrixData.html#a4f11c0c463410049422eb941f24d64d6">m_group</a> = <a class="code hl_enumvalue" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086ab60d562956762ab1e6440f61c7a93b08">GP_NONE</a>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        m_reverse_type = GP_NO_REVERSE;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    }</div>
+</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classGrandPrixData.html">~GrandPrixData</a>() {}</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">virtual</span> std::vector&lt;std::string&gt; <a class="code hl_function" href="classGrandPrixData.html#a74da81050e3b90585a8d425374fdf866">getTrackNames</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> includeLocked=<span class="keyword">false</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classGrandPrixData.html#abd033c08bd8d73775dc1a9a7449a9320">getNumberOfTracks</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> includeLocked=<span class="keyword">false</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGrandPrixData.html#aa58dcd6a016d77c24a66069a04fd027b">changeTrackNumber</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> number_of_tracks,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>                           <span class="keyword">const</span> std::string&amp; track_group);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGrandPrixData.html#adaacbc4216e8c6cc1ad7904b48338a7e">changeReverse</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="classGrandPrixData.html#a39cf3bbdf6bb3af3d4001d4658fa2bfd">GPReverseType</a> use_reverse);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGrandPrixData.html#a3c623098e468beda626fbb55d50106c5">createRandomGP</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> number_of_tracks,</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                        <span class="keyword">const</span> std::string&amp; track_group,</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                        <span class="keyword">const</span> <a class="code hl_enumeration" href="classGrandPrixData.html#a39cf3bbdf6bb3af3d4001d4658fa2bfd">GPReverseType</a> use_reverse,</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                        <span class="keywordtype">bool</span> new_tracks=<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">// Methods for the GP editor</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGrandPrixData.html#a886bb76198d3394d8ffed4e89caaaa92">setId</a>(<span class="keyword">const</span> std::string&amp; <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGrandPrixData.html#acb5e60b487a2433c4ec80ea272e6be23">setName</a>(<span class="keyword">const</span> irr::core::stringw&amp; name);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGrandPrixData.html#a8927bfd1a5a763f1da57697fd6592ff9">setFilename</a>(<span class="keyword">const</span> std::string&amp; filename);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGrandPrixData.html#ab836dc7f8716674a0f82f7ec176ffd64">setEditable</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> editable);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGrandPrixData.html#ab468a9a14fd3e6a61f3c5bc970144ace">setGroup</a>(<span class="keyword">const</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086">GPGroupType</a> group);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classGrandPrixData.html#aa221e013301fd414f0ddc2218cefa389">reload</a>();</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classGrandPrixData.html#a11af3989bc81a48d72c3e5a17625334b">writeToFile</a>();</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordtype">bool</span>                     <a class="code hl_function" href="classGrandPrixData.html#a8c318fde164f8e9663676a33d383c9f7">checkConsistency</a>(<span class="keywordtype">bool</span> log_error=<span class="keyword">true</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    std::vector&lt;int&gt;         <a class="code hl_function" href="classGrandPrixData.html#a22b0301503284668713ff49bbb7b315a">getLaps</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> includeLocked=<span class="keyword">false</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    std::vector&lt;uint8_t&gt;        <a class="code hl_function" href="classGrandPrixData.html#a509376720852c7266663d065df9ed7aa">getReverse</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> includeLocked=<span class="keyword">false</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordtype">bool</span>                     <a class="code hl_function" href="classGrandPrixData.html#a2b07ece5699e96fad099649c07ed8a90">isEditable</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keyword">const</span> std::string&amp;       getTrackId(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> track) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    irr::core::stringw       <a class="code hl_function" href="classGrandPrixData.html#ad98e96e821805081e51b3d24e1b9a9af">getTrackName</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> track) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">bool</span>                     containsUnavailableTracks() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>             <a class="code hl_function" href="classGrandPrixData.html#a22b0301503284668713ff49bbb7b315a">getLaps</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> track) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordtype">bool</span>                     <a class="code hl_function" href="classGrandPrixData.html#a509376720852c7266663d065df9ed7aa">getReverse</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> track) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordtype">void</span>                     moveUp(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> track);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordtype">void</span>                     moveDown(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> track);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordtype">void</span>                     addTrack(Track* track, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> laps,</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                                      <span class="keywordtype">bool</span> reverse, <span class="keywordtype">int</span> position=-1);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordtype">void</span>                     editTrack(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index, Track* track,</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                                       <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> laps, <span class="keywordtype">bool</span> reverse);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordtype">void</span>                     remove(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> track);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="comment">// -------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    irr::core::stringw <a class="code hl_function" href="classGrandPrixData.html#a607d93febe35760c772a1328723bb5c4">getName</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="comment">// -------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#ae6408b7491f508ed0a1b9f3fd963085a">  162</a></span>    <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classGrandPrixData.html#ae6408b7491f508ed0a1b9f3fd963085a">getId</a>()<span class="keyword">        const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classGrandPrixData.html#a087446d3ef08ed4aadb3b8e7e56bf2a2">m_id</a>;                     }</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="comment">// -------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a664f4e87441cdf055c11da01ed64451c">  166</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classGrandPrixData.html#a664f4e87441cdf055c11da01ed64451c">isRandomGP</a>()<span class="keyword">                 const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classGrandPrixData.html#a087446d3ef08ed4aadb3b8e7e56bf2a2">m_id</a>==getRandomGPID();    }</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="comment">// -------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="classGrandPrixData.html#a9fe06e311152a3b9521a546b46ccc37e">  169</a></span>    <span class="keyword">const</span> std::string&amp; <a class="code hl_function" href="classGrandPrixData.html#a9fe06e311152a3b9521a546b46ccc37e">getFilename</a>()<span class="keyword">  const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classGrandPrixData.html#ae613d61a0e80b70b513e6d2977e82998">m_filename</a>;               }</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086">GPGroupType</a> getGroup()<span class="keyword">       const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classGrandPrixData.html#a4f11c0c463410049422eb941f24d64d6">m_group</a>;                  }</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="comment">// -------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classGrandPrixData.html#a39cf3bbdf6bb3af3d4001d4658fa2bfd">GPReverseType</a> getReverseType()<span class="keyword"></span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="keyword">                                      const </span>{ <span class="keywordflow">return</span> m_reverse_type;           }</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>*        getRandomGPID()   { <span class="keywordflow">return</span> <span class="stringliteral">&quot;random&quot;</span>;             }</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keyword">static</span> irr::core::stringw getRandomGPName();</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keyword">static</span> irr::core::stringw reverseTypeToString(<a class="code hl_enumeration" href="classGrandPrixData.html#a39cf3bbdf6bb3af3d4001d4658fa2bfd">GPReverseType</a> reverse_type);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>};   <span class="comment">// GrandPrixData</span></div>
+</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="comment">/* EOF */</span></div>
+<div class="ttc" id="aclassGrandPrixData_html"><div class="ttname"><a href="classGrandPrixData.html">GrandPrixData</a></div><div class="ttdoc">Simple class that hold the data relevant to a &#39;grand_prix&#39;, aka.</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:37</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a00c0138d586745094c779e3eb18d6316"><div class="ttname"><a href="classGrandPrixData.html#a00c0138d586745094c779e3eb18d6316">GrandPrixData::m_name</a></div><div class="ttdeci">irr::core::stringw m_name</div><div class="ttdoc">The name of the grand prix.</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:57</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a087446d3ef08ed4aadb3b8e7e56bf2a2"><div class="ttname"><a href="classGrandPrixData.html#a087446d3ef08ed4aadb3b8e7e56bf2a2">GrandPrixData::m_id</a></div><div class="ttdeci">std::string m_id</div><div class="ttdoc">Internal name of the grand prix, not translated.</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:60</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a11af3989bc81a48d72c3e5a17625334b"><div class="ttname"><a href="classGrandPrixData.html#a11af3989bc81a48d72c3e5a17625334b">GrandPrixData::writeToFile</a></div><div class="ttdeci">bool writeToFile()</div><div class="ttdoc">Saves the grand prix data to a file.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:362</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a1ab7311ae39d03eb0c878a2701346364"><div class="ttname"><a href="classGrandPrixData.html#a1ab7311ae39d03eb0c878a2701346364">GrandPrixData::GrandPrixData</a></div><div class="ttdeci">GrandPrixData()</div><div class="ttdoc">Needed for simple creation of an instance of GrandPrixData</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:109</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a22b0301503284668713ff49bbb7b315a"><div class="ttname"><a href="classGrandPrixData.html#a22b0301503284668713ff49bbb7b315a">GrandPrixData::getLaps</a></div><div class="ttdeci">std::vector&lt; int &gt; getLaps(const bool includeLocked=false) const</div><div class="ttdoc">Returns the laps for each available track of the grand prix.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:464</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a2b07ece5699e96fad099649c07ed8a90"><div class="ttname"><a href="classGrandPrixData.html#a2b07ece5699e96fad099649c07ed8a90">GrandPrixData::isEditable</a></div><div class="ttdeci">bool isEditable() const</div><div class="ttdoc">Returns true if this grand prix can be edited.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:492</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a39cf3bbdf6bb3af3d4001d4658fa2bfd"><div class="ttname"><a href="classGrandPrixData.html#a39cf3bbdf6bb3af3d4001d4658fa2bfd">GrandPrixData::GPReverseType</a></div><div class="ttdeci">GPReverseType</div><div class="ttdoc">Used to define the reverse setting when creating a random GP: No reverse, all reverse (if available o...</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:91</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a3c623098e468beda626fbb55d50106c5"><div class="ttname"><a href="classGrandPrixData.html#a3c623098e468beda626fbb55d50106c5">GrandPrixData::createRandomGP</a></div><div class="ttdeci">void createRandomGP(const unsigned int number_of_tracks, const std::string &amp;track_group, const GPReverseType use_reverse, bool new_tracks=false)</div><div class="ttdoc">Creates a random grand prix from the specified parameters.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:65</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a4f11c0c463410049422eb941f24d64d6"><div class="ttname"><a href="classGrandPrixData.html#a4f11c0c463410049422eb941f24d64d6">GrandPrixData::m_group</a></div><div class="ttdeci">enum GPGroupType m_group</div><div class="ttdoc">Group to which this GP belongs.</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:76</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a509376720852c7266663d065df9ed7aa"><div class="ttname"><a href="classGrandPrixData.html#a509376720852c7266663d065df9ed7aa">GrandPrixData::getReverse</a></div><div class="ttdeci">std::vector&lt; uint8_t &gt; getReverse(const bool includeLocked=false) const</div><div class="ttdoc">Returns the reverse setting for each available grand prix.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:479</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a56a2a7ddc178739bec7d8f85d1f1fb35"><div class="ttname"><a href="classGrandPrixData.html#a56a2a7ddc178739bec7d8f85d1f1fb35">GrandPrixData::m_tracks</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_tracks</div><div class="ttdoc">The ident of the tracks in this grand prix in their right order, ident means the filename of the ....</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:42</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a5e0dc34c5070d157e068271c26a4023e"><div class="ttname"><a href="classGrandPrixData.html#a5e0dc34c5070d157e068271c26a4023e">GrandPrixData::GrandPrixData</a></div><div class="ttdeci">GrandPrixData(const std::string &amp;filename, enum GPGroupType group)</div><div class="ttdoc">Load the GrandPrixData from the given filename</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:44</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a607d93febe35760c772a1328723bb5c4"><div class="ttname"><a href="classGrandPrixData.html#a607d93febe35760c772a1328723bb5c4">GrandPrixData::getName</a></div><div class="ttdeci">irr::core::stringw getName() const</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:629</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a664f4e87441cdf055c11da01ed64451c"><div class="ttname"><a href="classGrandPrixData.html#a664f4e87441cdf055c11da01ed64451c">GrandPrixData::isRandomGP</a></div><div class="ttdeci">bool isRandomGP() const</div><div class="ttdoc">Returns true if this GP is a random GP.</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:166</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a6697242458278d8e317e0320b678cfa1"><div class="ttname"><a href="classGrandPrixData.html#a6697242458278d8e317e0320b678cfa1">GrandPrixData::m_editable</a></div><div class="ttdeci">bool m_editable</div><div class="ttdoc">Wether the user can edit this grand prix or not</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:73</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a74da81050e3b90585a8d425374fdf866"><div class="ttname"><a href="classGrandPrixData.html#a74da81050e3b90585a8d425374fdf866">GrandPrixData::getTrackNames</a></div><div class="ttdeci">virtual std::vector&lt; std::string &gt; getTrackNames(const bool includeLocked=false) const</div><div class="ttdoc">Returns the list of tracks that is available (i.e.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:448</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a886bb76198d3394d8ffed4e89caaaa92"><div class="ttname"><a href="classGrandPrixData.html#a886bb76198d3394d8ffed4e89caaaa92">GrandPrixData::setId</a></div><div class="ttdeci">void setId(const std::string &amp;id)</div><div class="ttdoc">Sets the id of this grand prix.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:206</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a88f3e36b567e2a1918f4473def61a086"><div class="ttname"><a href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086">GrandPrixData::GPGroupType</a></div><div class="ttdeci">GPGroupType</div><div class="ttdoc">Used to classify GPs into groups</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:47</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a88f3e36b567e2a1918f4473def61a086a37cd51bedb1cf4b492b3a7d30aa121e4"><div class="ttname"><a href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086a37cd51bedb1cf4b492b3a7d30aa121e4">GrandPrixData::GP_ADDONS</a></div><div class="ttdeci">@ GP_ADDONS</div><div class="ttdoc">Add-on GP</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:51</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a88f3e36b567e2a1918f4473def61a086a6d26f20d8d60213ea86db588c5c6c2f6"><div class="ttname"><a href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086a6d26f20d8d60213ea86db588c5c6c2f6">GrandPrixData::GP_GROUP_COUNT</a></div><div class="ttdeci">@ GP_GROUP_COUNT</div><div class="ttdoc">Number of groups</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:52</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a88f3e36b567e2a1918f4473def61a086ab60d562956762ab1e6440f61c7a93b08"><div class="ttname"><a href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086ab60d562956762ab1e6440f61c7a93b08">GrandPrixData::GP_NONE</a></div><div class="ttdeci">@ GP_NONE</div><div class="ttdoc">No group</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:48</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a88f3e36b567e2a1918f4473def61a086ab801fc8165e896e88e92dbe919634c12"><div class="ttname"><a href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086ab801fc8165e896e88e92dbe919634c12">GrandPrixData::GP_USER_DEFINED</a></div><div class="ttdeci">@ GP_USER_DEFINED</div><div class="ttdoc">Created by the user</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:50</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a88f3e36b567e2a1918f4473def61a086ae6922ef92bbaa438e67e9262b6d5a43e"><div class="ttname"><a href="classGrandPrixData.html#a88f3e36b567e2a1918f4473def61a086ae6922ef92bbaa438e67e9262b6d5a43e">GrandPrixData::GP_STANDARD</a></div><div class="ttdeci">@ GP_STANDARD</div><div class="ttdoc">Standard GP, included with the game</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:49</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a8927bfd1a5a763f1da57697fd6592ff9"><div class="ttname"><a href="classGrandPrixData.html#a8927bfd1a5a763f1da57697fd6592ff9">GrandPrixData::setFilename</a></div><div class="ttdeci">void setFilename(const std::string &amp;filename)</div><div class="ttdoc">Sets the filename of this grand prix.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:224</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a8c318fde164f8e9663676a33d383c9f7"><div class="ttname"><a href="classGrandPrixData.html#a8c318fde164f8e9663676a33d383c9f7">GrandPrixData::checkConsistency</a></div><div class="ttdeci">bool checkConsistency(bool log_error=true) const</div><div class="ttdoc">Checks if the grand prix data are consistent.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:401</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_a9fe06e311152a3b9521a546b46ccc37e"><div class="ttname"><a href="classGrandPrixData.html#a9fe06e311152a3b9521a546b46ccc37e">GrandPrixData::getFilename</a></div><div class="ttdeci">const std::string &amp; getFilename() const</div><div class="ttdoc">Returns the filename of the grand prix xml file.</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:169</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_aa221e013301fd414f0ddc2218cefa389"><div class="ttname"><a href="classGrandPrixData.html#aa221e013301fd414f0ddc2218cefa389">GrandPrixData::reload</a></div><div class="ttdeci">void reload()</div><div class="ttdoc">Load the grand prix from the file set by the constructor or the grand prix editor</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:250</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_aa58dcd6a016d77c24a66069a04fd027b"><div class="ttname"><a href="classGrandPrixData.html#aa58dcd6a016d77c24a66069a04fd027b">GrandPrixData::changeTrackNumber</a></div><div class="ttdeci">void changeTrackNumber(const unsigned int number_of_tracks, const std::string &amp;track_group)</div><div class="ttdoc">Either adds or removes tracks to get the requested numder of tracks in a random GP.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:97</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_ab468a9a14fd3e6a61f3c5bc970144ace"><div class="ttname"><a href="classGrandPrixData.html#ab468a9a14fd3e6a61f3c5bc970144ace">GrandPrixData::setGroup</a></div><div class="ttdeci">void setGroup(const enum GPGroupType group)</div><div class="ttdoc">Sets the group of this grand prix.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:242</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_ab836dc7f8716674a0f82f7ec176ffd64"><div class="ttname"><a href="classGrandPrixData.html#ab836dc7f8716674a0f82f7ec176ffd64">GrandPrixData::setEditable</a></div><div class="ttdeci">void setEditable(const bool editable)</div><div class="ttdoc">Sets if this grand prix can be edited.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:233</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_abd033c08bd8d73775dc1a9a7449a9320"><div class="ttname"><a href="classGrandPrixData.html#abd033c08bd8d73775dc1a9a7449a9320">GrandPrixData::getNumberOfTracks</a></div><div class="ttdeci">virtual unsigned int getNumberOfTracks(const bool includeLocked=false) const</div><div class="ttdoc">Returns the number of tracks in this grand prix.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:501</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_acb5e60b487a2433c4ec80ea272e6be23"><div class="ttname"><a href="classGrandPrixData.html#acb5e60b487a2433c4ec80ea272e6be23">GrandPrixData::setName</a></div><div class="ttdeci">void setName(const irr::core::stringw &amp;name)</div><div class="ttdoc">Sets the name of the grand prix.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:215</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_ad98e96e821805081e51b3d24e1b9a9af"><div class="ttname"><a href="classGrandPrixData.html#ad98e96e821805081e51b3d24e1b9a9af">GrandPrixData::getTrackName</a></div><div class="ttdeci">irr::core::stringw getTrackName(const unsigned int track) const</div><div class="ttdoc">Returns the (translated) name of the track with the specified index.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:512</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_adaacbc4216e8c6cc1ad7904b48338a7e"><div class="ttname"><a href="classGrandPrixData.html#adaacbc4216e8c6cc1ad7904b48338a7e">GrandPrixData::changeReverse</a></div><div class="ttdeci">void changeReverse(const GPReverseType use_reverse)</div><div class="ttdoc">Updates the GP data with newly decided reverse requirements.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:179</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_ae613d61a0e80b70b513e6d2977e82998"><div class="ttname"><a href="classGrandPrixData.html#ae613d61a0e80b70b513e6d2977e82998">GrandPrixData::m_filename</a></div><div class="ttdeci">std::string m_filename</div><div class="ttdoc">Original filename, only for error handling needed.</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:63</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_ae6408b7491f508ed0a1b9f3fd963085a"><div class="ttname"><a href="classGrandPrixData.html#ae6408b7491f508ed0a1b9f3fd963085a">GrandPrixData::getId</a></div><div class="ttdeci">const std::string &amp; getId() const</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:162</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_ae78c76998fc3e747587c5d2839460d45"><div class="ttname"><a href="classGrandPrixData.html#ae78c76998fc3e747587c5d2839460d45">GrandPrixData::m_laps</a></div><div class="ttdeci">std::vector&lt; int &gt; m_laps</div><div class="ttdoc">The number of laps that each track will be raced, in the right order</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:66</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_afc60841a6f7f07541c1a9bef04ed4ebc"><div class="ttname"><a href="classGrandPrixData.html#afc60841a6f7f07541c1a9bef04ed4ebc">GrandPrixData::isTrackAvailable</a></div><div class="ttdeci">bool isTrackAvailable(const std::string &amp;id, bool includeLocked) const</div><div class="ttdoc">In the last GP Fort Magma can not be used untill the final challenge.</div><div class="ttdef"><b>Definition</b> grand_prix_data.cpp:430</div></div>
+<div class="ttc" id="aclassGrandPrixData_html_afe4b8f74d6f6ef803b4785591dc3a279"><div class="ttname"><a href="classGrandPrixData.html#afe4b8f74d6f6ef803b4785591dc3a279">GrandPrixData::m_reversed</a></div><div class="ttdeci">std::vector&lt; uint8_t &gt; m_reversed</div><div class="ttdoc">Whether the track in question should be done in reverse mode</div><div class="ttdef"><b>Definition</b> grand_prix_data.hpp:70</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Declares the general types that are used by the network.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

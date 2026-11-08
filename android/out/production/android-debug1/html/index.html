@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: SuperTuxKart developer documentation</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">SuperTuxKart developer documentation </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>This document contains the developer documentation for SuperTuxKart, including the list of modules, the list of classes, the API reference, and some pages that describe in more depth some parts of the code/engine.</p>
+<h1 class="doxsection"><a class="anchor" id="Overview"></a>
+Overview</h1>
+<p>Here is an overview of the high-level interactions between modules : </p><div class="dotgraph">
+<img src="dot_inline_dotgraph_c3827c9037975be822a03d378fc4469b.png" alt="dot_inline_dotgraph_c3827c9037975be822a03d378fc4469b.png" border="0" usemap="#dot_inline_dotgraph_c3827c9037975be822a03d378fc4469b.cmapx"/>
+</div>
+<p>Note that this graph is only an approximation because the real one would be much too complicated :)</p>
+<h1 class="doxsection"><a class="anchor" id="Modules"></a>
+Modules</h1>
+<ul>
+<li><a class="el" href="group__addonsgroup.html" title="Add-ons">Add-ons</a> : Handles add-ons that can be downloaded. </li>
+<li><a class="el" href="group__animations.html" title="Animations">Animations</a> : This module manages interpolation-based animation (of position, rotation and/or scale) </li>
+<li><a class="el" href="group__audio.html" title="Audio">Audio</a> : This module handles audio (sound effects and music). </li>
+<li><a class="el" href="group__challenges.html" title="Challenges">Challenges</a> : This module handles the challenge system, which locks features (tracks, karts modes, etc.) until the user completes some task. </li>
+<li><a class="el" href="group__config.html" title="Config">Config</a> : This module handles the user configuration, the supertuxkart configuration file (which contains options usually not edited by the player) and the input configuration file. </li>
+<li><a class="el" href="group__font.html" title="Font">Font</a> : This module stores font files and tools used to draw characters in STK. </li>
+<li><a class="el" href="group__graphics.html" title="Graphics">Graphics</a> : This module contains the core graphics engine, that is mostly a thin layer on top of irrlicht providing some additional features we need for STK (like particles, more scene node types, mesh manipulation tools, material management, etc...) </li>
+<li><a class="el" href="group__guiengine.html" title="Guiengine">Guiengine</a> : Contains the generic GUI engine (contains the widgets and the backing logic for event handling, the skin, screens and dialogs). See module <a class="el" href="group__states__screens.html" title="States_screens">States_screens</a> for the actual STK GUI screens. Note that all input comes through this module too. </li>
+<li><a class="el" href="group__widgetsgroup.html" title="Guiengine/Widgets">Guiengine/Widgets</a> : Contains the various types of widgets supported by the GUI engine. </li>
+<li><a class="el" href="group__input.html" title="Input">Input</a> : Contains classes for input management (keyboard and gamepad) </li>
+<li><a class="el" href="group__io.html" title="Io">Io</a> : Contains generic utility classes for file I/O (especially XML handling). </li>
+<li><a class="el" href="group__items.html" title="Items">Items</a> : Defines the various collectibles and weapons of STK. </li>
+<li><a class="el" href="group__karts.html" title="Karts">Karts</a> : Contains classes that deal with the properties, models and physics of karts. </li>
+<li><a class="el" href="group__controller.html" title="Karts/controller">Karts/controller</a> : Contains kart controllers, which are either human players or AIs (this module thus contains the AIs) </li>
+<li><a class="el" href="group__modes.html" title="Modes">Modes</a> : Contains the logic for the various game modes (race, follow the leader, battle, etc.) </li>
+<li><a class="el" href="group__physics.html" title="Physics">Physics</a> : Contains various physics utilities. </li>
+<li><a class="el" href="group__race.html" title="Race">Race</a> : Contains the race information that is conceptually above what you can find in group Modes. Handles highscores, grands prix, number of karts, which track was selected, etc. </li>
+<li><a class="el" href="group__states__screens.html" title="States_screens">States_screens</a> : Contains the various screens and dialogs of the STK user interface, using the facilities of the guiengine module. Also contains the stack of menus and handles state management (in-game vs menu). </li>
+<li><a class="el" href="group__tracks.html" title="Tracks">Tracks</a> : Contains information about tracks, namely drivelines, checklines and track objects. </li>
+<li>tutorial : Work in progress </li>
+</ul>
+</div></div><!-- PageDoc -->
+<a href="doxygen_crawl.html"></a>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,755 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: Camera 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 타입</a> &#124;
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-static-methods">정적 Public 멤버 함수</a> &#124;
+<a href="#pro-methods">Protected 멤버 함수</a> &#124;
+<a href="#pro-static-methods">정적 Protected 멤버 함수</a> &#124;
+<a href="#pro-attribs">Protected 속성</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="#pri-static-attribs">정적 Private 속성</a> &#124;
+<a href="classCamera-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">Camera 클래스 참조<div class="ingroups"><a class="el" href="group__graphics.html">Graphics</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>This is the base class for all cameras.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="camera_8hpp_source.html">camera.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Camera에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classCamera__inherit__graph.png" border="0" usemap="#aCamera_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aCamera_inherit__map" id="aCamera_inherit__map">
+<area shape="rect" title="This is the base class for all cameras." alt="" coords="81,80,148,107"/>
+<area shape="rect" href="classCameraFPS.html" title="Handles the game camera" alt="" coords="5,155,99,181"/>
+<area shape="poly" title=" " alt="" coords="92,121,65,156,61,153,95,116"/>
+<area shape="rect" href="classCameraNormal.html" title="Handles the normal racing camera" alt="" coords="123,155,232,181"/>
+<area shape="poly" title=" " alt="" coords="136,116,169,154,164,155,135,121"/>
+<area shape="rect" href="classNoCopy.html" title="Utility class, you can inherit from this class to disallow the assignment operator and copy construct..." alt="" coords="80,5,149,32"/>
+<area shape="poly" title=" " alt="" coords="116,45,117,80,112,79,114,50"/>
+<area shape="rect" href="classCameraDebug.html" title="Handles the debug camera." alt="" coords="63,229,169,256"/>
+<area shape="poly" title=" " alt="" coords="159,192,128,231,125,227,154,194"/>
+<area shape="rect" href="classCameraEnd.html" title="Handles the end race camera." alt="" coords="192,229,282,256"/>
+<area shape="poly" title=" " alt="" coords="199,191,230,229,224,228,196,196"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 타입</h2></td></tr>
+<tr class="memitem:ae94737abf74ae95b4c77a0dc931d5b1b" id="r_ae94737abf74ae95b4c77a0dc931d5b1b"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a> { <b>CM_TYPE_NORMAL</b>
+, <a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1bafbf9b930c8a00e57fb2fef20fae144a6">CM_TYPE_DEBUG</a>
+, <a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1ba39de0ee5f834725dd4bcc794a22950dd">CM_TYPE_FPS</a>
+, <a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1ba8e85d56cac7937b4dde697949dfa06d3">CM_TYPE_END</a>
+ }</td></tr>
+<tr class="memdesc:ae94737abf74ae95b4c77a0dc931d5b1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The different camera types that can be used.  <a href="#ae94737abf74ae95b4c77a0dc931d5b1b">더 자세히 ...</a><br /></td></tr>
+<tr class="memitem:af1af5904e30a96f8dcd1cbc9851df996" id="r_af1af5904e30a96f8dcd1cbc9851df996"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996">Mode</a> { <br />
+&#160;&#160;<a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996a2c92a5ef43fe5e3be0ffdaaeecf78e48">CM_NORMAL</a>
+, <a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996ab051dae28ff1c472945fc79d78f658d0">CM_CLOSEUP</a>
+, <a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996acf6ec5b855c1c920cbd4b73f44300410">CM_REVERSE</a>
+, <a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996a62b1fa4329821345d5fe92da0c4511d6">CM_LEADER_MODE</a>
+, <br />
+&#160;&#160;<a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996ad22367bb49c235cf5056b1e3df0eaa83">CM_SPECTATOR_SOCCER</a>
+, <a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996acfbcc9f0a0f03533848d45b812d31e85">CM_SPECTATOR_TOP_VIEW</a>
+, <b>CM_SIMPLE_REPLAY</b>
+, <b>CM_FALLING</b>
+<br />
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a7be17b0d4b1363cb46729febc28c3459" id="r_a7be17b0d4b1363cb46729febc28c3459"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7be17b0d4b1363cb46729febc28c3459">setMode</a> (<a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996">Mode</a> mode)</td></tr>
+<tr class="memdesc:a7be17b0d4b1363cb46729febc28c3459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the mode of the camera.  <br /></td></tr>
+<tr class="memitem:ad4902a8842b0a62d2c1a0fd934394973" id="r_ad4902a8842b0a62d2c1a0fd934394973"><td class="memItemLeft"><a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996">Mode</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad4902a8842b0a62d2c1a0fd934394973">getMode</a> ()</td></tr>
+<tr class="memdesc:ad4902a8842b0a62d2c1a0fd934394973"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the camera to the given mode  <br /></td></tr>
+<tr class="memitem:a92900c6a46b9f5cecab8e5464af09c52" id="r_a92900c6a46b9f5cecab8e5464af09c52"><td class="memItemLeft"><a id="a92900c6a46b9f5cecab8e5464af09c52" name="a92900c6a46b9f5cecab8e5464af09c52"></a>
+<a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996">Mode</a>&#160;</td><td class="memItemRight"><b>getPreviousMode</b> ()</td></tr>
+<tr class="memdesc:a92900c6a46b9f5cecab8e5464af09c52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the last known mode of the camera. <br /></td></tr>
+<tr class="memitem:a8b9a886eb915bc06b8b40242486f5c3d" id="r_a8b9a886eb915bc06b8b40242486f5c3d"><td class="memItemLeft"><a id="a8b9a886eb915bc06b8b40242486f5c3d" name="a8b9a886eb915bc06b8b40242486f5c3d"></a>
+bool&#160;</td><td class="memItemRight"><b>isSpectatorMode</b> ()</td></tr>
+<tr class="memdesc:a8b9a886eb915bc06b8b40242486f5c3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if camera is a spectator camera <br /></td></tr>
+<tr class="memitem:af74af83a096aa226ea58e83970c9e2b8" id="r_af74af83a096aa226ea58e83970c9e2b8"><td class="memItemLeft"><a id="af74af83a096aa226ea58e83970c9e2b8" name="af74af83a096aa226ea58e83970c9e2b8"></a>
+void&#160;</td><td class="memItemRight"><b>setNextSpectatorMode</b> ()</td></tr>
+<tr class="memdesc:af74af83a096aa226ea58e83970c9e2b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch to next spectator mode (a -&gt; soccer -&gt; top view -&gt; a) <br /></td></tr>
+<tr class="memitem:ad58b325f8511ad46e020591f97c81d1d" id="r_ad58b325f8511ad46e020591f97c81d1d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad58b325f8511ad46e020591f97c81d1d">setKart</a> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *new_kart)</td></tr>
+<tr class="memdesc:ad58b325f8511ad46e020591f97c81d1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the owner of this camera to the new kart.  <br /></td></tr>
+<tr class="memitem:ade70f4445144ccaa4dce40535125ce89" id="r_ade70f4445144ccaa4dce40535125ce89"><td class="memItemLeft"><a id="ade70f4445144ccaa4dce40535125ce89" name="ade70f4445144ccaa4dce40535125ce89"></a>
+virtual void&#160;</td><td class="memItemRight"><b>setInitialTransform</b> ()</td></tr>
+<tr class="memdesc:ade70f4445144ccaa4dce40535125ce89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the current kart position as the initial starting position for the camera. <br /></td></tr>
+<tr class="memitem:a3d99e6f373c655fccda7a2583da73f41" id="r_a3d99e6f373c655fccda7a2583da73f41"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a3d99e6f373c655fccda7a2583da73f41">activate</a> (bool alsoActivateInIrrlicht=true)</td></tr>
+<tr class="memdesc:a3d99e6f373c655fccda7a2583da73f41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets viewport etc.  <br /></td></tr>
+<tr class="memitem:a3c1c5346a58c34d7484c988bd3ae6f24" id="r_a3c1c5346a58c34d7484c988bd3ae6f24"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a3c1c5346a58c34d7484c988bd3ae6f24">update</a> (float dt)</td></tr>
+<tr class="memdesc:a3c1c5346a58c34d7484c988bd3ae6f24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called once per time frame to move the camera to the right position.  <br /></td></tr>
+<tr class="memitem:a3934d40d6a0ef73ba57b53150e0708ab" id="r_a3934d40d6a0ef73ba57b53150e0708ab"><td class="memItemLeft"><a id="a3934d40d6a0ef73ba57b53150e0708ab" name="a3934d40d6a0ef73ba57b53150e0708ab"></a>
+<a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a>&#160;</td><td class="memItemRight"><b>getType</b> ()</td></tr>
+<tr class="memdesc:a3934d40d6a0ef73ba57b53150e0708ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the type of this camera. <br /></td></tr>
+<tr class="memitem:a6a6629ac1c69b0896dec55d28c781935" id="r_a6a6629ac1c69b0896dec55d28c781935"><td class="memItemLeft"><a id="a6a6629ac1c69b0896dec55d28c781935" name="a6a6629ac1c69b0896dec55d28c781935"></a>
+void&#160;</td><td class="memItemRight"><b>setFoV</b> ()</td></tr>
+<tr class="memdesc:a6a6629ac1c69b0896dec55d28c781935"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the field of view for the irrlicht camera. <br /></td></tr>
+<tr class="memitem:abd00850ba636e723978a1398bd7cac69" id="r_abd00850ba636e723978a1398bd7cac69"><td class="memItemLeft"><a id="abd00850ba636e723978a1398bd7cac69" name="abd00850ba636e723978a1398bd7cac69"></a>
+int&#160;</td><td class="memItemRight"><b>getIndex</b> () const</td></tr>
+<tr class="memdesc:abd00850ba636e723978a1398bd7cac69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the camera index (or player kart index, which is the same). <br /></td></tr>
+<tr class="memitem:a1b125d02f8c2854eeb65f4a8b9d2d0b6" id="r_a1b125d02f8c2854eeb65f4a8b9d2d0b6"><td class="memItemLeft"><a id="a1b125d02f8c2854eeb65f4a8b9d2d0b6" name="a1b125d02f8c2854eeb65f4a8b9d2d0b6"></a>
+core::matrix4&#160;</td><td class="memItemRight"><b>getPreviousPVMatrix</b> () const</td></tr>
+<tr class="memdesc:a1b125d02f8c2854eeb65f4a8b9d2d0b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the project-view matrix of the previous frame. <br /></td></tr>
+<tr class="memitem:a0681c658bffebd5dcc91a14fab1944d7" id="r_a0681c658bffebd5dcc91a14fab1944d7"><td class="memItemLeft"><a id="a0681c658bffebd5dcc91a14fab1944d7" name="a0681c658bffebd5dcc91a14fab1944d7"></a>
+void&#160;</td><td class="memItemRight"><b>setPreviousPVMatrix</b> (core::matrix4 mat)</td></tr>
+<tr class="memdesc:a0681c658bffebd5dcc91a14fab1944d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the project-view matrix of the previous frame. <br /></td></tr>
+<tr class="memitem:a9f6bc8928f054d3f430616f90544810a" id="r_a9f6bc8928f054d3f430616f90544810a"><td class="memItemLeft"><a id="a9f6bc8928f054d3f430616f90544810a" name="a9f6bc8928f054d3f430616f90544810a"></a>
+const <a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><b>getKart</b> () const</td></tr>
+<tr class="memdesc:a9f6bc8928f054d3f430616f90544810a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the kart to which this camera is attached. <br /></td></tr>
+<tr class="memitem:a42b6ab07367d0bdb91bf1888af96cf0f" id="r_a42b6ab07367d0bdb91bf1888af96cf0f"><td class="memItemLeft"><a id="a42b6ab07367d0bdb91bf1888af96cf0f" name="a42b6ab07367d0bdb91bf1888af96cf0f"></a>
+<a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><b>getKart</b> ()</td></tr>
+<tr class="memdesc:a42b6ab07367d0bdb91bf1888af96cf0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the kart to which this camera is attached. <br /></td></tr>
+<tr class="memitem:a73ec811f1de6863c20060141a922401f" id="r_a73ec811f1de6863c20060141a922401f"><td class="memItemLeft"><a id="a73ec811f1de6863c20060141a922401f" name="a73ec811f1de6863c20060141a922401f"></a>
+void&#160;</td><td class="memItemRight"><b>setAmbientLight</b> (const video::SColor &amp;color)</td></tr>
+<tr class="memdesc:a73ec811f1de6863c20060141a922401f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the ambient light for this camera. <br /></td></tr>
+<tr class="memitem:af289b03d5c2a4ab2ba418707db8a9596" id="r_af289b03d5c2a4ab2ba418707db8a9596"><td class="memItemLeft"><a id="af289b03d5c2a4ab2ba418707db8a9596" name="af289b03d5c2a4ab2ba418707db8a9596"></a>
+const video::SColor &amp;&#160;</td><td class="memItemRight"><b>getAmbientLight</b> () const</td></tr>
+<tr class="memdesc:af289b03d5c2a4ab2ba418707db8a9596"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current ambient light. <br /></td></tr>
+<tr class="memitem:a8788bf39df8afaea20650b738da996bf" id="r_a8788bf39df8afaea20650b738da996bf"><td class="memItemLeft"><a id="a8788bf39df8afaea20650b738da996bf" name="a8788bf39df8afaea20650b738da996bf"></a>
+const core::recti &amp;&#160;</td><td class="memItemRight"><b>getViewport</b> () const</td></tr>
+<tr class="memdesc:a8788bf39df8afaea20650b738da996bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the viewport of this camera. <br /></td></tr>
+<tr class="memitem:a6b81cbe5a0933a563e12f04a997c43ae" id="r_a6b81cbe5a0933a563e12f04a997c43ae"><td class="memItemLeft"><a id="a6b81cbe5a0933a563e12f04a997c43ae" name="a6b81cbe5a0933a563e12f04a997c43ae"></a>
+const core::vector2df &amp;&#160;</td><td class="memItemRight"><b>getScaling</b> () const</td></tr>
+<tr class="memdesc:a6b81cbe5a0933a563e12f04a997c43ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the scaling in x/y direction for this camera. <br /></td></tr>
+<tr class="memitem:abf3b771094da3ecbf7749eaf5ca193cb" id="r_abf3b771094da3ecbf7749eaf5ca193cb"><td class="memItemLeft"><a id="abf3b771094da3ecbf7749eaf5ca193cb" name="abf3b771094da3ecbf7749eaf5ca193cb"></a>
+scene::ICameraSceneNode *&#160;</td><td class="memItemRight"><b>getCameraSceneNode</b> ()</td></tr>
+<tr class="memdesc:abf3b771094da3ecbf7749eaf5ca193cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the camera scene node. <br /></td></tr>
+<tr class="memitem:a40545ac871d7bd7df2b4d61706b9417b" id="r_a40545ac871d7bd7df2b4d61706b9417b"><td class="memItemLeft"><a id="a40545ac871d7bd7df2b4d61706b9417b" name="a40545ac871d7bd7df2b4d61706b9417b"></a>
+<a class="el" href="classVec3.html">Vec3</a>&#160;</td><td class="memItemRight"><b>getXYZ</b> ()</td></tr>
+<tr class="memdesc:a40545ac871d7bd7df2b4d61706b9417b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returs the absolute position of the camera. <br /></td></tr>
+<tr class="memitem:ac578e1621ebc82c1b72972675e91c696" id="r_ac578e1621ebc82c1b72972675e91c696"><td class="memItemLeft"><a id="ac578e1621ebc82c1b72972675e91c696" name="ac578e1621ebc82c1b72972675e91c696"></a>
+void&#160;</td><td class="memItemRight"><b>setupCamera</b> ()</td></tr>
+<tr class="memdesc:ac578e1621ebc82c1b72972675e91c696"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the viewport, aspect ratio, field of view, and scaling for this camera. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:af1066276cc939e60c79c7e6fabdb543e" id="r_af1066276cc939e60c79c7e6fabdb543e"><td class="memItemLeft">static <a class="el" href="classCamera.html">Camera</a> *&#160;</td><td class="memItemRight"><a class="el" href="#af1066276cc939e60c79c7e6fabdb543e">createCamera</a> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart, const int index)</td></tr>
+<tr class="memdesc:af1066276cc939e60c79c7e6fabdb543e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new camera and adds it to the list of all cameras.  <br /></td></tr>
+<tr class="memitem:a7842da8559b913291807863c9b981efe" id="r_a7842da8559b913291807863c9b981efe"><td class="memItemLeft"><a id="a7842da8559b913291807863c9b981efe" name="a7842da8559b913291807863c9b981efe"></a>
+static void&#160;</td><td class="memItemRight"><b>resetAllCameras</b> ()</td></tr>
+<tr class="memitem:a55212df1c6da992d86c267906f6e4642" id="r_a55212df1c6da992d86c267906f6e4642"><td class="memItemLeft"><a id="a55212df1c6da992d86c267906f6e4642" name="a55212df1c6da992d86c267906f6e4642"></a>
+static void&#160;</td><td class="memItemRight"><b>changeCamera</b> (unsigned int camera_index, <a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a> type)</td></tr>
+<tr class="memitem:aa351b1ed8bc67a0091a2323bbbe81d30" id="r_aa351b1ed8bc67a0091a2323bbbe81d30"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#aa351b1ed8bc67a0091a2323bbbe81d30">setDefaultCameraType</a> (<a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a> type)</td></tr>
+<tr class="memdesc:aa351b1ed8bc67a0091a2323bbbe81d30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the default type for each camera that will be created.  <br /></td></tr>
+<tr class="memitem:ab3e30a2c461dd08e971a362a29b2447c" id="r_ab3e30a2c461dd08e971a362a29b2447c"><td class="memItemLeft">static <a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a>&#160;</td><td class="memItemRight"><a class="el" href="#ab3e30a2c461dd08e971a362a29b2447c">getDefaultCameraType</a> ()</td></tr>
+<tr class="memdesc:ab3e30a2c461dd08e971a362a29b2447c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the default type for each camera that will be created.  <br /></td></tr>
+<tr class="memitem:a4cc6b066f970d0d4eae025d9c8847d87" id="r_a4cc6b066f970d0d4eae025d9c8847d87"><td class="memItemLeft"><a id="a4cc6b066f970d0d4eae025d9c8847d87" name="a4cc6b066f970d0d4eae025d9c8847d87"></a>
+static unsigned int&#160;</td><td class="memItemRight"><b>getNumCameras</b> ()</td></tr>
+<tr class="memdesc:a4cc6b066f970d0d4eae025d9c8847d87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of cameras used. <br /></td></tr>
+<tr class="memitem:adf8139f97cae012f9c44a0136aac6a89" id="r_adf8139f97cae012f9c44a0136aac6a89"><td class="memItemLeft"><a id="adf8139f97cae012f9c44a0136aac6a89" name="adf8139f97cae012f9c44a0136aac6a89"></a>
+static <a class="el" href="classCamera.html">Camera</a> *&#160;</td><td class="memItemRight"><b>getCamera</b> (unsigned int n)</td></tr>
+<tr class="memdesc:adf8139f97cae012f9c44a0136aac6a89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a camera. <br /></td></tr>
+<tr class="memitem:a0173b9cf18a7cc7358ad75138f53c0f4" id="r_a0173b9cf18a7cc7358ad75138f53c0f4"><td class="memItemLeft"><a id="a0173b9cf18a7cc7358ad75138f53c0f4" name="a0173b9cf18a7cc7358ad75138f53c0f4"></a>
+static <a class="el" href="classCamera.html">Camera</a> *&#160;</td><td class="memItemRight"><b>getActiveCamera</b> ()</td></tr>
+<tr class="memdesc:a0173b9cf18a7cc7358ad75138f53c0f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the currently active camera. <br /></td></tr>
+<tr class="memitem:ac7f8f96b5fe5ddb5121066458926830e" id="r_ac7f8f96b5fe5ddb5121066458926830e"><td class="memItemLeft"><a id="ac7f8f96b5fe5ddb5121066458926830e" name="ac7f8f96b5fe5ddb5121066458926830e"></a>
+static void&#160;</td><td class="memItemRight"><b>removeAllCameras</b> ()</td></tr>
+<tr class="memdesc:ac7f8f96b5fe5ddb5121066458926830e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all cameras. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 멤버 함수</h2></td></tr>
+<tr class="memitem:a364086d0b2ddf9f07ac5fc271813a232" id="r_a364086d0b2ddf9f07ac5fc271813a232"><td class="memItemLeft"><a id="a364086d0b2ddf9f07ac5fc271813a232" name="a364086d0b2ddf9f07ac5fc271813a232"></a>
+&#160;</td><td class="memItemRight"><b>Camera</b> (<a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a> type, int camera_index, <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memitem:ad1897942d0ccf91052386388a497349f" id="r_ad1897942d0ccf91052386388a497349f"><td class="memItemLeft"><a id="ad1897942d0ccf91052386388a497349f" name="ad1897942d0ccf91052386388a497349f"></a>
+virtual&#160;</td><td class="memItemRight"><b>~Camera</b> ()</td></tr>
+<tr class="memdesc:ad1897942d0ccf91052386388a497349f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the camera scene node from the scene. <br /></td></tr>
+<tr class="memitem:a02be8aa0dbef77e02dddc715a726fb67" id="r_a02be8aa0dbef77e02dddc715a726fb67"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a02be8aa0dbef77e02dddc715a726fb67">reset</a> ()</td></tr>
+<tr class="memdesc:a02be8aa0dbef77e02dddc715a726fb67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset is called when a new race starts.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-static-methods" class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+정적 Protected 멤버 함수</h2></td></tr>
+<tr class="memitem:a556d3a963e8c5537561c40ac1a62146b" id="r_a556d3a963e8c5537561c40ac1a62146b"><td class="memItemLeft">static <a class="el" href="classCamera.html">Camera</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a556d3a963e8c5537561c40ac1a62146b">createCamera</a> (unsigned int index, <a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a> type, <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memdesc:a556d3a963e8c5537561c40ac1a62146b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a camera of the specified type, but does not add it to the list of all cameras.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 속성</h2></td></tr>
+<tr class="memitem:aa242f1af649b0bc73ab710dc1986485b" id="r_aa242f1af649b0bc73ab710dc1986485b"><td class="memItemLeft"><a id="aa242f1af649b0bc73ab710dc1986485b" name="aa242f1af649b0bc73ab710dc1986485b"></a>
+scene::ICameraSceneNode *&#160;</td><td class="memItemRight"><b>m_camera</b></td></tr>
+<tr class="memdesc:aa242f1af649b0bc73ab710dc1986485b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The camera scene node. <br /></td></tr>
+<tr class="memitem:a5c09babcd49903fa41cb1f63131c4e05" id="r_a5c09babcd49903fa41cb1f63131c4e05"><td class="memItemLeft"><a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a5c09babcd49903fa41cb1f63131c4e05">m_kart</a></td></tr>
+<tr class="memdesc:a5c09babcd49903fa41cb1f63131c4e05"><td class="mdescLeft">&#160;</td><td class="mdescRight">The kart that the camera follows.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:a1b4d7f8066ad2206b826b37bcabc253e" id="r_a1b4d7f8066ad2206b826b37bcabc253e"><td class="memItemLeft"><a id="a1b4d7f8066ad2206b826b37bcabc253e" name="a1b4d7f8066ad2206b826b37bcabc253e"></a>
+core::matrix4&#160;</td><td class="memItemRight"><b>m_previous_pv_matrix</b></td></tr>
+<tr class="memdesc:a1b4d7f8066ad2206b826b37bcabc253e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The project-view matrix of the previous frame, used for the blur shader. <br /></td></tr>
+<tr class="memitem:aeb6581b98a21251660b67c6f58e46484" id="r_aeb6581b98a21251660b67c6f58e46484"><td class="memItemLeft"><a id="aeb6581b98a21251660b67c6f58e46484" name="aeb6581b98a21251660b67c6f58e46484"></a>
+<a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996">Mode</a>&#160;</td><td class="memItemRight"><b>m_mode</b></td></tr>
+<tr class="memdesc:aeb6581b98a21251660b67c6f58e46484"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classCamera.html" title="This is the base class for all cameras.">Camera</a>'s mode. <br /></td></tr>
+<tr class="memitem:a4bbdac51d074def739aae694a352a04b" id="r_a4bbdac51d074def739aae694a352a04b"><td class="memItemLeft"><a id="a4bbdac51d074def739aae694a352a04b" name="a4bbdac51d074def739aae694a352a04b"></a>
+<a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996">Mode</a>&#160;</td><td class="memItemRight"><b>m_previous_mode</b></td></tr>
+<tr class="memitem:a05cbaf7816bcb544687b9b4f4f758c92" id="r_a05cbaf7816bcb544687b9b4f4f758c92"><td class="memItemLeft"><a id="a05cbaf7816bcb544687b9b4f4f758c92" name="a05cbaf7816bcb544687b9b4f4f758c92"></a>
+<a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a>&#160;</td><td class="memItemRight"><b>m_type</b></td></tr>
+<tr class="memdesc:a05cbaf7816bcb544687b9b4f4f758c92"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the camera. <br /></td></tr>
+<tr class="memitem:a353c36e7cf4c84771487938eb4c7f63c" id="r_a353c36e7cf4c84771487938eb4c7f63c"><td class="memItemLeft"><a id="a353c36e7cf4c84771487938eb4c7f63c" name="a353c36e7cf4c84771487938eb4c7f63c"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>m_index</b></td></tr>
+<tr class="memdesc:a353c36e7cf4c84771487938eb4c7f63c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The index of this camera which is the index of the kart it is attached to. <br /></td></tr>
+<tr class="memitem:aab352c77b648e68e139542e175b3d069" id="r_aab352c77b648e68e139542e175b3d069"><td class="memItemLeft"><a id="aab352c77b648e68e139542e175b3d069" name="aab352c77b648e68e139542e175b3d069"></a>
+video::SColor&#160;</td><td class="memItemRight"><b>m_ambient_light</b></td></tr>
+<tr class="memdesc:aab352c77b648e68e139542e175b3d069"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current ambient light for this camera. <br /></td></tr>
+<tr class="memitem:a0d4b560eb5f8c3a8d8aa6507f73cda8c" id="r_a0d4b560eb5f8c3a8d8aa6507f73cda8c"><td class="memItemLeft"><a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a0d4b560eb5f8c3a8d8aa6507f73cda8c">m_original_kart</a></td></tr>
+<tr class="memdesc:a0d4b560eb5f8c3a8d8aa6507f73cda8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the original kart the camera was pointing at when it was created.  <br /></td></tr>
+<tr class="memitem:a067c93073cb200972c3f6bbc12d22861" id="r_a067c93073cb200972c3f6bbc12d22861"><td class="memItemLeft"><a id="a067c93073cb200972c3f6bbc12d22861" name="a067c93073cb200972c3f6bbc12d22861"></a>
+core::recti&#160;</td><td class="memItemRight"><b>m_viewport</b></td></tr>
+<tr class="memdesc:a067c93073cb200972c3f6bbc12d22861"><td class="mdescLeft">&#160;</td><td class="mdescRight">The viewport for this camera (portion of the game window covered by this camera) <br /></td></tr>
+<tr class="memitem:ab9366189de52885c2eb638014d67148c" id="r_ab9366189de52885c2eb638014d67148c"><td class="memItemLeft"><a id="ab9366189de52885c2eb638014d67148c" name="ab9366189de52885c2eb638014d67148c"></a>
+core::vector2df&#160;</td><td class="memItemRight"><b>m_scaling</b></td></tr>
+<tr class="memdesc:ab9366189de52885c2eb638014d67148c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The scaling necessary for each axis. <br /></td></tr>
+<tr class="memitem:aa404a4e057fa16fb82ce8668d7a661b6" id="r_aa404a4e057fa16fb82ce8668d7a661b6"><td class="memItemLeft"><a id="aa404a4e057fa16fb82ce8668d7a661b6" name="aa404a4e057fa16fb82ce8668d7a661b6"></a>
+float&#160;</td><td class="memItemRight"><b>m_fov</b></td></tr>
+<tr class="memdesc:aa404a4e057fa16fb82ce8668d7a661b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Field of view for the camera. <br /></td></tr>
+<tr class="memitem:abf58e1558e08e785c929f41b25615c30" id="r_abf58e1558e08e785c929f41b25615c30"><td class="memItemLeft"><a id="abf58e1558e08e785c929f41b25615c30" name="abf58e1558e08e785c929f41b25615c30"></a>
+float&#160;</td><td class="memItemRight"><b>m_aspect</b></td></tr>
+<tr class="memdesc:abf58e1558e08e785c929f41b25615c30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aspect ratio for camera. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+정적 Private 속성</h2></td></tr>
+<tr class="memitem:a4791d952740585ac35501077df75231f" id="r_a4791d952740585ac35501077df75231f"><td class="memItemLeft"><a id="a4791d952740585ac35501077df75231f" name="a4791d952740585ac35501077df75231f"></a>
+static <a class="el" href="classCamera.html">Camera</a> *&#160;</td><td class="memItemRight"><b>s_active_camera</b> = NULL</td></tr>
+<tr class="memitem:a8ab8190c5fae88dedd5260439c71aed6" id="r_a8ab8190c5fae88dedd5260439c71aed6"><td class="memItemLeft">static <a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a>&#160;</td><td class="memItemRight"><a class="el" href="#a8ab8190c5fae88dedd5260439c71aed6">m_default_type</a> = Camera::CM_TYPE_NORMAL</td></tr>
+<tr class="memdesc:a8ab8190c5fae88dedd5260439c71aed6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default type for any newly created camera.  <br /></td></tr>
+<tr class="memitem:a3fa260133260b2cd3b705674c5125571" id="r_a3fa260133260b2cd3b705674c5125571"><td class="memItemLeft"><a id="a3fa260133260b2cd3b705674c5125571" name="a3fa260133260b2cd3b705674c5125571"></a>
+static std::vector&lt; <a class="el" href="classCamera.html">Camera</a> * &gt;&#160;</td><td class="memItemRight"><b>m_all_cameras</b></td></tr>
+<tr class="memdesc:a3fa260133260b2cd3b705674c5125571"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of all cameras. <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>This is the base class for all cameras. </p>
+<p>It also includes some static functions to keep track of all cameras (e.g. a static function to create a camera, get a camera with a specified index). </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">멤버 열거형 문서화</h2>
+<a id="ae94737abf74ae95b4c77a0dc931d5b1b" name="ae94737abf74ae95b4c77a0dc931d5b1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae94737abf74ae95b4c77a0dc931d5b1b">&#9670;&#160;</a></span>CameraType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">Camera::CameraType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The different camera types that can be used. </p>
+<table class="fieldtable">
+<tr><th colspan="2">열거형 멤버</th></tr><tr><td class="fieldname"><a id="ae94737abf74ae95b4c77a0dc931d5b1bafbf9b930c8a00e57fb2fef20fae144a6" name="ae94737abf74ae95b4c77a0dc931d5b1bafbf9b930c8a00e57fb2fef20fae144a6"></a>CM_TYPE_DEBUG&#160;</td><td class="fielddoc"><p>A debug camera. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae94737abf74ae95b4c77a0dc931d5b1ba39de0ee5f834725dd4bcc794a22950dd" name="ae94737abf74ae95b4c77a0dc931d5b1ba39de0ee5f834725dd4bcc794a22950dd"></a>CM_TYPE_FPS&#160;</td><td class="fielddoc"><p>FPS <a class="el" href="classCamera.html" title="This is the base class for all cameras.">Camera</a> </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae94737abf74ae95b4c77a0dc931d5b1ba8e85d56cac7937b4dde697949dfa06d3" name="ae94737abf74ae95b4c77a0dc931d5b1ba8e85d56cac7937b4dde697949dfa06d3"></a>CM_TYPE_END&#160;</td><td class="fielddoc"><p>End camera </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="af1af5904e30a96f8dcd1cbc9851df996" name="af1af5904e30a96f8dcd1cbc9851df996"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1af5904e30a96f8dcd1cbc9851df996">&#9670;&#160;</a></span>Mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996">Camera::Mode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">열거형 멤버</th></tr><tr><td class="fieldname"><a id="af1af5904e30a96f8dcd1cbc9851df996a2c92a5ef43fe5e3be0ffdaaeecf78e48" name="af1af5904e30a96f8dcd1cbc9851df996a2c92a5ef43fe5e3be0ffdaaeecf78e48"></a>CM_NORMAL&#160;</td><td class="fielddoc"><p>Normal camera mode </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af1af5904e30a96f8dcd1cbc9851df996ab051dae28ff1c472945fc79d78f658d0" name="af1af5904e30a96f8dcd1cbc9851df996ab051dae28ff1c472945fc79d78f658d0"></a>CM_CLOSEUP&#160;</td><td class="fielddoc"><p>Closer to kart </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af1af5904e30a96f8dcd1cbc9851df996acf6ec5b855c1c920cbd4b73f44300410" name="af1af5904e30a96f8dcd1cbc9851df996acf6ec5b855c1c920cbd4b73f44300410"></a>CM_REVERSE&#160;</td><td class="fielddoc"><p>Looking backwards </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af1af5904e30a96f8dcd1cbc9851df996a62b1fa4329821345d5fe92da0c4511d6" name="af1af5904e30a96f8dcd1cbc9851df996a62b1fa4329821345d5fe92da0c4511d6"></a>CM_LEADER_MODE&#160;</td><td class="fielddoc"><p>for deleted player karts in follow the leader </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af1af5904e30a96f8dcd1cbc9851df996ad22367bb49c235cf5056b1e3df0eaa83" name="af1af5904e30a96f8dcd1cbc9851df996ad22367bb49c235cf5056b1e3df0eaa83"></a>CM_SPECTATOR_SOCCER&#160;</td><td class="fielddoc"><p>for spectator (in soccer mode) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af1af5904e30a96f8dcd1cbc9851df996acfbcc9f0a0f03533848d45b812d31e85" name="af1af5904e30a96f8dcd1cbc9851df996acfbcc9f0a0f03533848d45b812d31e85"></a>CM_SPECTATOR_TOP_VIEW&#160;</td><td class="fielddoc"><p>for spectator (top view on ball if soccer or top view on kart) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a3d99e6f373c655fccda7a2583da73f41" name="a3d99e6f373c655fccda7a2583da73f41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d99e6f373c655fccda7a2583da73f41">&#9670;&#160;</a></span>activate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::activate </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>alsoActivateInIrrlicht</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets viewport etc. </p>
+<p>for this camera. Called from irr_driver just before rendering the view for this kart. </p>
+
+</div>
+</div>
+<a id="af1066276cc939e60c79c7e6fabdb543e" name="af1066276cc939e60c79c7e6fabdb543e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1066276cc939e60c79c7e6fabdb543e">&#9670;&#160;</a></span>createCamera() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCamera.html">Camera</a> * Camera::createCamera </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>kart</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>index</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new camera and adds it to the list of all cameras. </p>
+<p>Also the camera index (which determines which viewport to use in split screen) is set. </p>
+
+</div>
+</div>
+<a id="a556d3a963e8c5537561c40ac1a62146b" name="a556d3a963e8c5537561c40ac1a62146b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a556d3a963e8c5537561c40ac1a62146b">&#9670;&#160;</a></span>createCamera() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCamera.html">Camera</a> * Camera::createCamera </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>index</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>kart</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a camera of the specified type, but does not add it to the list of all cameras. </p>
+<p>This is a helper function for other static functions. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>Index this camera has in the list of all cameras. </td></tr>
+    <tr><td class="paramname">type</td><td>The camera type of the camera to create. </td></tr>
+    <tr><td class="paramname">kart</td><td>To which kart the camera is attached (NULL if a free camera). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab3e30a2c461dd08e971a362a29b2447c" name="ab3e30a2c461dd08e971a362a29b2447c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3e30a2c461dd08e971a362a29b2447c">&#9670;&#160;</a></span>getDefaultCameraType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a> Camera::getDefaultCameraType </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the default type for each camera that will be created. </p>
+<p>Used for command line parameters to select a debug etc camera. </p>
+
+</div>
+</div>
+<a id="ad4902a8842b0a62d2c1a0fd934394973" name="ad4902a8842b0a62d2c1a0fd934394973"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4902a8842b0a62d2c1a0fd934394973">&#9670;&#160;</a></span>getMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996">Camera::Mode</a> Camera::getMode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the camera to the given mode </p>
+<p>Returns the current mode of the camera. </p>
+
+</div>
+</div>
+<a id="a02be8aa0dbef77e02dddc715a726fb67" name="a02be8aa0dbef77e02dddc715a726fb67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02be8aa0dbef77e02dddc715a726fb67">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset is called when a new race starts. </p>
+<p>Make sure that the camera is aligned neutral, and not like in the previous race </p>
+
+</div>
+</div>
+<a id="aa351b1ed8bc67a0091a2323bbbe81d30" name="aa351b1ed8bc67a0091a2323bbbe81d30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa351b1ed8bc67a0091a2323bbbe81d30">&#9670;&#160;</a></span>setDefaultCameraType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setDefaultCameraType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the default type for each camera that will be created. </p>
+<p>Used for command line parameters to select a debug etc camera. </p>
+
+</div>
+</div>
+<a id="ad58b325f8511ad46e020591f97c81d1d" name="ad58b325f8511ad46e020591f97c81d1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad58b325f8511ad46e020591f97c81d1d">&#9670;&#160;</a></span>setKart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setKart </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>new_kart</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Changes the owner of this camera to the new kart. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_kart</td><td>The new kart to use this camera. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7be17b0d4b1363cb46729febc28c3459" name="a7be17b0d4b1363cb46729febc28c3459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7be17b0d4b1363cb46729febc28c3459">&#9670;&#160;</a></span>setMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setMode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996">Mode</a></td>          <td class="paramname"><span class="paramname"><em>mode</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the mode of the camera. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td><a class="el" href="#af1af5904e30a96f8dcd1cbc9851df996">Mode</a> the camera should be switched to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3c1c5346a58c34d7484c988bd3ae6f24" name="a3c1c5346a58c34d7484c988bd3ae6f24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c1c5346a58c34d7484c988bd3ae6f24">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::update </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called once per time frame to move the camera to the right position. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>Time step. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classCameraDebug.html#a46897b2cee0dea484acd9486f7df168f">CameraDebug</a>, <a class="el" href="classCameraEnd.html#aaf452ec1afb7dd1b838f037acf33fda6">CameraEnd</a>, <a class="el" href="classCameraFPS.html#a3509eee055cfd5a7f5e6dbd2dbc9e05c">CameraFPS</a>, <a class="el" href="classCameraNormal.html#a3acdcefe4d6d20399ef1be8134b3215c">CameraNormal</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="a8ab8190c5fae88dedd5260439c71aed6" name="a8ab8190c5fae88dedd5260439c71aed6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ab8190c5fae88dedd5260439c71aed6">&#9670;&#160;</a></span>m_default_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ae94737abf74ae95b4c77a0dc931d5b1b">Camera::CameraType</a> Camera::m_default_type = Camera::CM_TYPE_NORMAL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The default type for any newly created camera. </p>
+<p>Used to store command line parameters. </p>
+
+</div>
+</div>
+<a id="a5c09babcd49903fa41cb1f63131c4e05" name="a5c09babcd49903fa41cb1f63131c4e05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c09babcd49903fa41cb1f63131c4e05">&#9670;&#160;</a></span>m_kart</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAbstractKart.html">AbstractKart</a>* Camera::m_kart</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The kart that the camera follows. </p>
+<p>It can't be const, since in profile mode the camera might change its owner. May be NULL (example: cutscene camera) </p>
+
+</div>
+</div>
+<a id="a0d4b560eb5f8c3a8d8aa6507f73cda8c" name="a0d4b560eb5f8c3a8d8aa6507f73cda8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d4b560eb5f8c3a8d8aa6507f73cda8c">&#9670;&#160;</a></span>m_original_kart</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAbstractKart.html">AbstractKart</a>* Camera::m_original_kart</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A pointer to the original kart the camera was pointing at when it was created. </p>
+<p>Used when restarting a race (since the camera might get attached to another kart if a kart is elimiated). </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>graphics/camera/<a class="el" href="camera_8hpp_source.html">camera.hpp</a></li>
+<li>graphics/camera/<b>camera.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

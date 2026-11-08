@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: graphics/CBatchingMesh.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>graphics</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">CBatchingMesh.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// A mesh used for batching many other meshes together, to reduce the number</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// of draw calls. Simply add meshes into this one, with given transformations</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// or positions, and then call update</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// TODO: Adapt the VBO interface and integrate setDirty with the current VBO updates.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;IMesh.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;SMeshBuffer.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span>scene</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classirr_1_1scene_1_1CBatchingMesh.html">   15</a></span><span class="keyword">class </span>CBatchingMesh : <span class="keyword">public</span> IMesh</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    CBatchingMesh();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">virtual</span> ~CBatchingMesh();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#ab07f538e2cde8fecc2de1d47bb684dee">isDirty</a>(s32 <span class="keywordtype">id</span>=-1);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a8090af4c123d35b03654d80981a31e0b">update</a>();</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#ae27f15a9680eeb08bd867827d32d98b0">clear</a>();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a0867957d15cba2e4d02bbbb3b58ba4d9">finalize</a>();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    core::array&lt;s32&gt; <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a3105f30cfed220127dc6112ec888f57f">addMesh</a>(IMesh* mesh,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        core::vector3df pos = core::vector3df(0,0,0),</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        core::vector3df rot = core::vector3df(0,0,0),</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        core::vector3df scale = core::vector3df(1,1,1));</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    core::array&lt;s32&gt; <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a3105f30cfed220127dc6112ec888f57f">addMesh</a>(IMesh* mesh, <span class="keyword">const</span> core::matrix4 &amp;transform);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    s32 <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a5c3db93f3b3b1c28a99975cc21ed382c">addMeshBuffer</a>(IMeshBuffer* buffer,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        core::vector3df pos = core::vector3df(0,0,0),</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        core::vector3df rot = core::vector3df(0,0,0),</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        core::vector3df scale = core::vector3df(1,1,1));</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    s32 <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a5c3db93f3b3b1c28a99975cc21ed382c">addMeshBuffer</a>(IMeshBuffer* buffer, <span class="keyword">const</span> core::matrix4 &amp;transform);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a0ff1cf056c05adeb0cadbd071f44220c">recalculateBoundingBox</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    core::array&lt;bool&gt; <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#af2c8a3b9dffea225249b2c84b1575437">moveMesh</a>(<span class="keyword">const</span> core::array&lt;s32&gt;&amp; bufferIDs, <span class="keyword">const</span> core::matrix4 &amp;newMatrix);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a468a4ebaf0ec5f53f36f438579855775">moveMeshBuffer</a>(<span class="keyword">const</span> s32 <span class="keywordtype">id</span>, <span class="keyword">const</span> core::matrix4 &amp;newMatrix);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    IMeshBuffer* <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a748b63a1e801ea791d21ffe94f8ba841">getSourceBuffer</a>(s32 <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    core::matrix4 <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a9f607145d3cdc38b50376f70371e662f">getSourceBufferMatrix</a>(s32 <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    u32 <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a9562acc91de5d0d73700b8e3cf8ab4b3">getSourceBufferCount</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">/* Standard IMesh functions */</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">virtual</span> u32 <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a9b9be7222fcbbeca6204f8afc1665bc9">getMeshBufferCount</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">virtual</span> IMeshBuffer* <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a4372c1cb71fa574153c70f7ec5673bc0">getMeshBuffer</a>(u32 nr) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keyword">virtual</span> IMeshBuffer* <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a4372c1cb71fa574153c70f7ec5673bc0">getMeshBuffer</a>( <span class="keyword">const</span> video::SMaterial &amp;material) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> core::aabbox3d&lt;f32&gt;&amp; <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a7ec2b028278a04979a93576c9d3e0fa2">getBoundingBox</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#a70cc991eefe3f3de6fc6c166b88a71a0">setBoundingBox</a>( <span class="keyword">const</span> core::aabbox3df&amp; box);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classirr_1_1scene_1_1CBatchingMesh.html#aaaa217821185f3284e15741f6cf9c0c1">setMaterialFlag</a>(video::E_MATERIAL_FLAG flag, <span class="keywordtype">bool</span> newvalue);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setHardwareMappingHint(E_HARDWARE_MAPPING mapping, E_BUFFER_TYPE type);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setDirty(E_BUFFER_TYPE type);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="comment">// add a buffer to the source buffers array if it doesn&#39;t already exist</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordtype">void</span> addSourceBuffer(IMeshBuffer* source);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">// updates the vertices in dest buffer from the source one</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordtype">void</span> updateDestFromSourceBuffer(u32 <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// recalculates the bounding box for the given dest buffer</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordtype">void</span> recalculateDestBufferBoundingBox(u32 i);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="foldopen" id="foldopen00125" data-start="{" data-end="};">
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="structirr_1_1scene_1_1CBatchingMesh_1_1SBufferReference.html">  125</a></span>    <span class="keyword">struct </span>SBufferReference</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        SBufferReference()</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>          : SourceBuffer(0), DestReference(0), FirstVertex(0), VertexCount(0),</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            FirstIndex(0), IndexCount(0), Initialized(<span class="keyword">false</span>) { }</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        IMeshBuffer* SourceBuffer;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        u32 DestReference;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        u32 FirstVertex, VertexCount, FirstIndex, IndexCount;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        core::matrix4 Transform;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keywordtype">bool</span> Initialized;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    };</div>
+</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="foldopen" id="foldopen00138" data-start="{" data-end="};">
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="structirr_1_1scene_1_1CBatchingMesh_1_1SMaterialReference.html">  138</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structirr_1_1scene_1_1CBatchingMesh_1_1SMaterialReference.html">SMaterialReference</a></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        video::SMaterial Material;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        video::E_VERTEX_TYPE VertexType;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        u32 BufferIndex;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    };</div>
+</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="foldopen" id="foldopen00145" data-start="{" data-end="};">
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="structirr_1_1scene_1_1CBatchingMesh_1_1SDestBufferReference.html">  145</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structirr_1_1scene_1_1CBatchingMesh_1_1SDestBufferReference.html">SDestBufferReference</a></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    {</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        IMeshBuffer* Buffer;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        video::E_VERTEX_TYPE VertexType;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        u32 VertexCount;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        u32 IndexCount;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="keywordtype">bool</span> IsDirty;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    };</div>
+</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classirr_1_1scene_1_1CBatchingMesh.html#a146397dcd6ec08d803dd6f46f05fab37">  155</a></span>    core::array&lt;IMeshBuffer*&gt;         <a class="code hl_variable" href="classirr_1_1scene_1_1CBatchingMesh.html#a146397dcd6ec08d803dd6f46f05fab37">SourceBuffers</a>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    core::array&lt;SBufferReference&gt;     BufferReferences;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    core::array&lt;SMaterialReference&gt;   MaterialReferences;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    core::array&lt;SDestBufferReference&gt; DestBuffers;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="classirr_1_1scene_1_1CBatchingMesh.html#aa635effbe2a40ef93b438ce3bf6fe12b">  162</a></span>    core::aabbox3d&lt;f32&gt; <a class="code hl_variable" href="classirr_1_1scene_1_1CBatchingMesh.html#aa635effbe2a40ef93b438ce3bf6fe12b">Box</a>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="classirr_1_1scene_1_1CBatchingMesh.html#a6c24e6dd78d7cdd88c725be78abf7a1d">  165</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classirr_1_1scene_1_1CBatchingMesh.html#a6c24e6dd78d7cdd88c725be78abf7a1d">IsDirty</a>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="classirr_1_1scene_1_1CBatchingMesh.html#a51f57158aa26c9298e5e00ac573f4c24">  168</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classirr_1_1scene_1_1CBatchingMesh.html#a51f57158aa26c9298e5e00ac573f4c24">IsFinal</a>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>};</div>
+</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>} <span class="comment">// namespace scene</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>} <span class="comment">// namespace irr</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="comment">// #endif</span></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a0867957d15cba2e4d02bbbb3b58ba4d9"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a0867957d15cba2e4d02bbbb3b58ba4d9">irr::scene::CBatchingMesh::finalize</a></div><div class="ttdeci">void finalize()</div><div class="ttdoc">first updates the mesh, then drops all source buffers.</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:317</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a0ff1cf056c05adeb0cadbd071f44220c"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a0ff1cf056c05adeb0cadbd071f44220c">irr::scene::CBatchingMesh::recalculateBoundingBox</a></div><div class="ttdeci">void recalculateBoundingBox()</div><div class="ttdoc">updates bouding box from internal buffers</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:231</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a146397dcd6ec08d803dd6f46f05fab37"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a146397dcd6ec08d803dd6f46f05fab37">irr::scene::CBatchingMesh::SourceBuffers</a></div><div class="ttdeci">core::array&lt; IMeshBuffer * &gt; SourceBuffers</div><div class="ttdoc">Source mesh buffers, these are locked</div><div class="ttdef"><b>Definition</b> CBatchingMesh.hpp:155</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a3105f30cfed220127dc6112ec888f57f"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a3105f30cfed220127dc6112ec888f57f">irr::scene::CBatchingMesh::addMesh</a></div><div class="ttdeci">core::array&lt; s32 &gt; addMesh(IMesh *mesh, core::vector3df pos=core::vector3df(0, 0, 0), core::vector3df rot=core::vector3df(0, 0, 0), core::vector3df scale=core::vector3df(1, 1, 1))</div><div class="ttdoc">adds a mesh to the buffers with the given offset</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:100</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a4372c1cb71fa574153c70f7ec5673bc0"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a4372c1cb71fa574153c70f7ec5673bc0">irr::scene::CBatchingMesh::getMeshBuffer</a></div><div class="ttdeci">virtual IMeshBuffer * getMeshBuffer(u32 nr) const</div><div class="ttdoc">Returns pointer to a mesh buffer.</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:260</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a468a4ebaf0ec5f53f36f438579855775"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a468a4ebaf0ec5f53f36f438579855775">irr::scene::CBatchingMesh::moveMeshBuffer</a></div><div class="ttdeci">bool moveMeshBuffer(const s32 id, const core::matrix4 &amp;newMatrix)</div><div class="ttdoc">Moves a mesh buffer</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:342</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a51f57158aa26c9298e5e00ac573f4c24"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a51f57158aa26c9298e5e00ac573f4c24">irr::scene::CBatchingMesh::IsFinal</a></div><div class="ttdeci">bool IsFinal</div><div class="ttdoc">can it be changed?</div><div class="ttdef"><b>Definition</b> CBatchingMesh.hpp:168</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a5c3db93f3b3b1c28a99975cc21ed382c"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a5c3db93f3b3b1c28a99975cc21ed382c">irr::scene::CBatchingMesh::addMeshBuffer</a></div><div class="ttdeci">s32 addMeshBuffer(IMeshBuffer *buffer, core::vector3df pos=core::vector3df(0, 0, 0), core::vector3df rot=core::vector3df(0, 0, 0), core::vector3df scale=core::vector3df(1, 1, 1))</div><div class="ttdoc">adds a mesh buffer with the given transformation</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:130</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a6c24e6dd78d7cdd88c725be78abf7a1d"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a6c24e6dd78d7cdd88c725be78abf7a1d">irr::scene::CBatchingMesh::IsDirty</a></div><div class="ttdeci">bool IsDirty</div><div class="ttdoc">does it require an update?</div><div class="ttdef"><b>Definition</b> CBatchingMesh.hpp:165</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a70cc991eefe3f3de6fc6c166b88a71a0"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a70cc991eefe3f3de6fc6c166b88a71a0">irr::scene::CBatchingMesh::setBoundingBox</a></div><div class="ttdeci">virtual void setBoundingBox(const core::aabbox3df &amp;box)</div><div class="ttdoc">set user axis aligned bounding box</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:282</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a748b63a1e801ea791d21ffe94f8ba841"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a748b63a1e801ea791d21ffe94f8ba841">irr::scene::CBatchingMesh::getSourceBuffer</a></div><div class="ttdeci">IMeshBuffer * getSourceBuffer(s32 id)</div><div class="ttdoc">returns the source buffer, if available</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:361</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a7ec2b028278a04979a93576c9d3e0fa2"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a7ec2b028278a04979a93576c9d3e0fa2">irr::scene::CBatchingMesh::getBoundingBox</a></div><div class="ttdeci">virtual const core::aabbox3d&lt; f32 &gt; &amp; getBoundingBox() const</div><div class="ttdoc">Returns an axis aligned bounding box of the mesh.</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:276</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a8090af4c123d35b03654d80981a31e0b"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a8090af4c123d35b03654d80981a31e0b">irr::scene::CBatchingMesh::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">refreshes the internal buffers from source</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:34</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a9562acc91de5d0d73700b8e3cf8ab4b3"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a9562acc91de5d0d73700b8e3cf8ab4b3">irr::scene::CBatchingMesh::getSourceBufferCount</a></div><div class="ttdeci">u32 getSourceBufferCount() const</div><div class="ttdoc">returns the number of source buffers</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:383</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a9b9be7222fcbbeca6204f8afc1665bc9"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a9b9be7222fcbbeca6204f8afc1665bc9">irr::scene::CBatchingMesh::getMeshBufferCount</a></div><div class="ttdeci">virtual u32 getMeshBufferCount() const</div><div class="ttdoc">Returns the amount of mesh buffers.</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:250</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_a9f607145d3cdc38b50376f70371e662f"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#a9f607145d3cdc38b50376f70371e662f">irr::scene::CBatchingMesh::getSourceBufferMatrix</a></div><div class="ttdeci">core::matrix4 getSourceBufferMatrix(s32 id)</div><div class="ttdoc">returns the matrix of the source buffer</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:370</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_aa635effbe2a40ef93b438ce3bf6fe12b"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#aa635effbe2a40ef93b438ce3bf6fe12b">irr::scene::CBatchingMesh::Box</a></div><div class="ttdeci">core::aabbox3d&lt; f32 &gt; Box</div><div class="ttdoc">bounding containing all destination buffers</div><div class="ttdef"><b>Definition</b> CBatchingMesh.hpp:162</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_aaaa217821185f3284e15741f6cf9c0c1"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#aaaa217821185f3284e15741f6cf9c0c1">irr::scene::CBatchingMesh::setMaterialFlag</a></div><div class="ttdeci">virtual void setMaterialFlag(video::E_MATERIAL_FLAG flag, bool newvalue)</div><div class="ttdoc">Sets a flag of all contained materials to a new value.</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:290</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_ab07f538e2cde8fecc2de1d47bb684dee"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#ab07f538e2cde8fecc2de1d47bb684dee">irr::scene::CBatchingMesh::isDirty</a></div><div class="ttdeci">bool isDirty(s32 id=-1)</div><div class="ttdoc">returns true if new buffers have been added without updating the internal buffers</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:25</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_ae27f15a9680eeb08bd867827d32d98b0"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#ae27f15a9680eeb08bd867827d32d98b0">irr::scene::CBatchingMesh::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">drops all buffers and clears internal states</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:297</div></div>
+<div class="ttc" id="aclassirr_1_1scene_1_1CBatchingMesh_html_af2c8a3b9dffea225249b2c84b1575437"><div class="ttname"><a href="classirr_1_1scene_1_1CBatchingMesh.html#af2c8a3b9dffea225249b2c84b1575437">irr::scene::CBatchingMesh::moveMesh</a></div><div class="ttdeci">core::array&lt; bool &gt; moveMesh(const core::array&lt; s32 &gt; &amp;bufferIDs, const core::matrix4 &amp;newMatrix)</div><div class="ttdoc">Moves a mesh,</div><div class="ttdef"><b>Definition</b> CBatchingMesh.cpp:330</div></div>
+<div class="ttc" id="astructirr_1_1scene_1_1CBatchingMesh_1_1SDestBufferReference_html"><div class="ttname"><a href="structirr_1_1scene_1_1CBatchingMesh_1_1SDestBufferReference.html">irr::scene::CBatchingMesh::SDestBufferReference</a></div><div class="ttdef"><b>Definition</b> CBatchingMesh.hpp:146</div></div>
+<div class="ttc" id="astructirr_1_1scene_1_1CBatchingMesh_1_1SMaterialReference_html"><div class="ttname"><a href="structirr_1_1scene_1_1CBatchingMesh_1_1SMaterialReference.html">irr::scene::CBatchingMesh::SMaterialReference</a></div><div class="ttdef"><b>Definition</b> CBatchingMesh.hpp:139</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

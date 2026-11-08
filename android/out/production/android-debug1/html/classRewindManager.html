@@ -1,0 +1,591 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: RewindManager 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-static-methods">정적 Public 멤버 함수</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="#pri-static-attribs">정적 Private 속성</a> &#124;
+<a href="classRewindManager-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">RewindManager 클래스 참조</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>This class manages rewinding.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="rewind__manager_8hpp_source.html">rewind_manager.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:ad373b21f1f955abe3ea06f76032eef3c" id="r_ad373b21f1f955abe3ea06f76032eef3c"><td class="memItemLeft"><a id="ad373b21f1f955abe3ea06f76032eef3c" name="ad373b21f1f955abe3ea06f76032eef3c"></a>
+void&#160;</td><td class="memItemRight"><b>reset</b> ()</td></tr>
+<tr class="memdesc:ad373b21f1f955abe3ea06f76032eef3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees all saved state information and all destroyable rewinder. <br /></td></tr>
+<tr class="memitem:a82afa942fa6f359a180792b1e95ca477" id="r_a82afa942fa6f359a180792b1e95ca477"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a82afa942fa6f359a180792b1e95ca477">update</a> (int ticks)</td></tr>
+<tr class="memdesc:a82afa942fa6f359a180792b1e95ca477"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if a new state snapshot should be taken, and if so calls all rewinder to do so.  <br /></td></tr>
+<tr class="memitem:a5aee54673651fcd52e4032f90755a11c" id="r_a5aee54673651fcd52e4032f90755a11c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5aee54673651fcd52e4032f90755a11c">rewindTo</a> (int target_ticks, int ticks_now, bool fast_forward)</td></tr>
+<tr class="memdesc:a5aee54673651fcd52e4032f90755a11c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rewinds to the specified time, then goes forward till the current <a class="el" href="classWorldStatus.html#a0b1a1ed183546ec4058774cc8a04039e" title="Returns the current race time.">World::getTime()</a> is reached again: it will replay everything before <a class="el" href="classWorldStatus.html#a0b1a1ed183546ec4058774cc8a04039e" title="Returns the current race time.">World::getTime()</a>, but not the events at <a class="el" href="classWorldStatus.html#a0b1a1ed183546ec4058774cc8a04039e" title="Returns the current race time.">World::getTime()</a> (or later)/  <br /></td></tr>
+<tr class="memitem:a9c69526006e4cd7b35e0514c9d687a52" id="r_a9c69526006e4cd7b35e0514c9d687a52"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9c69526006e4cd7b35e0514c9d687a52">playEventsTill</a> (int world_ticks, bool fast_forward)</td></tr>
+<tr class="memdesc:a9c69526006e4cd7b35e0514c9d687a52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replays all events from the last event played till the specified time.  <br /></td></tr>
+<tr class="memitem:ad44c8b967bca48b15d5e55a784ed30af" id="r_ad44c8b967bca48b15d5e55a784ed30af"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad44c8b967bca48b15d5e55a784ed30af">addEvent</a> (<a class="el" href="classEventRewinder.html">EventRewinder</a> *event_rewinder, <a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer, bool confirmed, int ticks=-1)</td></tr>
+<tr class="memdesc:ad44c8b967bca48b15d5e55a784ed30af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an event to the rewind data.  <br /></td></tr>
+<tr class="memitem:a97c2f4bdb547f73c8dd7bb2dbdf636d7" id="r_a97c2f4bdb547f73c8dd7bb2dbdf636d7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a97c2f4bdb547f73c8dd7bb2dbdf636d7">addNetworkEvent</a> (<a class="el" href="classEventRewinder.html">EventRewinder</a> *event_rewinder, <a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer, int ticks)</td></tr>
+<tr class="memdesc:a97c2f4bdb547f73c8dd7bb2dbdf636d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an event to the list of network rewind data.  <br /></td></tr>
+<tr class="memitem:a6dd623dc81c4a810ac79833b35753705" id="r_a6dd623dc81c4a810ac79833b35753705"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6dd623dc81c4a810ac79833b35753705">addNetworkState</a> (<a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer, int ticks)</td></tr>
+<tr class="memdesc:a6dd623dc81c4a810ac79833b35753705"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a state to the list of network rewind data.  <br /></td></tr>
+<tr class="memitem:a5e0ecfe0a2b805dd46bf52ba65b5d67d" id="r_a5e0ecfe0a2b805dd46bf52ba65b5d67d"><td class="memItemLeft"><a id="a5e0ecfe0a2b805dd46bf52ba65b5d67d" name="a5e0ecfe0a2b805dd46bf52ba65b5d67d"></a>
+void&#160;</td><td class="memItemRight"><b>saveState</b> ()</td></tr>
+<tr class="memdesc:a5e0ecfe0a2b805dd46bf52ba65b5d67d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a state using the <a class="el" href="classGameProtocol.html">GameProtocol</a> function to combine several independent rewinders to write one state. <br /></td></tr>
+<tr class="memitem:ad8d7e3dc6f7aa6c9ac2291067603feac" id="r_ad8d7e3dc6f7aa6c9ac2291067603feac"><td class="memItemLeft"><a id="ad8d7e3dc6f7aa6c9ac2291067603feac" name="ad8d7e3dc6f7aa6c9ac2291067603feac"></a>
+std::shared_ptr&lt; <a class="el" href="classRewinder.html">Rewinder</a> &gt;&#160;</td><td class="memItemRight"><b>getRewinder</b> (const std::string &amp;name)</td></tr>
+<tr class="memitem:ace044577b3484a18eee007e1452c1b32" id="r_ace044577b3484a18eee007e1452c1b32"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ace044577b3484a18eee007e1452c1b32">addRewinder</a> (std::shared_ptr&lt; <a class="el" href="classRewinder.html">Rewinder</a> &gt; rewinder)</td></tr>
+<tr class="memdesc:ace044577b3484a18eee007e1452c1b32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a <a class="el" href="classRewinder.html">Rewinder</a> to the list of all rewinders.  <br /></td></tr>
+<tr class="memitem:ad2685e8ff30ef2043d08e07074864ca1" id="r_ad2685e8ff30ef2043d08e07074864ca1"><td class="memItemLeft"><a id="ad2685e8ff30ef2043d08e07074864ca1" name="ad2685e8ff30ef2043d08e07074864ca1"></a>
+bool&#160;</td><td class="memItemRight"><b>isRewinding</b> () const</td></tr>
+<tr class="memdesc:ad2685e8ff30ef2043d08e07074864ca1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if currently a rewind is happening. <br /></td></tr>
+<tr class="memitem:ad9805130cf0a4e41d7ecba5fecff1bf7" id="r_ad9805130cf0a4e41d7ecba5fecff1bf7"><td class="memItemLeft"><a id="ad9805130cf0a4e41d7ecba5fecff1bf7" name="ad9805130cf0a4e41d7ecba5fecff1bf7"></a>
+int&#160;</td><td class="memItemRight"><b>getNotRewoundWorldTicks</b> () const</td></tr>
+<tr class="memitem:a3d52eec1bd0b3431152941110d7fe345" id="r_a3d52eec1bd0b3431152941110d7fe345"><td class="memItemLeft"><a id="a3d52eec1bd0b3431152941110d7fe345" name="a3d52eec1bd0b3431152941110d7fe345"></a>
+int&#160;</td><td class="memItemRight"><b>getLatestConfirmedState</b> () const</td></tr>
+<tr class="memdesc:a3d52eec1bd0b3431152941110d7fe345"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time of the latest confirmed state. <br /></td></tr>
+<tr class="memitem:af4a458ff584c0768e7f88ba5b6e836bb" id="r_af4a458ff584c0768e7f88ba5b6e836bb"><td class="memItemLeft"><a id="af4a458ff584c0768e7f88ba5b6e836bb" name="af4a458ff584c0768e7f88ba5b6e836bb"></a>
+bool&#160;</td><td class="memItemRight"><b>useLocalEvent</b> () const</td></tr>
+<tr class="memitem:a91a292fb744e0757a9c393551437e8ac" id="r_a91a292fb744e0757a9c393551437e8ac"><td class="memItemLeft"><a id="a91a292fb744e0757a9c393551437e8ac" name="a91a292fb744e0757a9c393551437e8ac"></a>
+void&#160;</td><td class="memItemRight"><b>addRewindInfoEventFunction</b> (<a class="el" href="classRewindInfoEventFunction.html">RewindInfoEventFunction</a> *rief)</td></tr>
+<tr class="memitem:a141e7e81712141f6c583dfbe99b758ba" id="r_a141e7e81712141f6c583dfbe99b758ba"><td class="memItemLeft"><a id="a141e7e81712141f6c583dfbe99b758ba" name="a141e7e81712141f6c583dfbe99b758ba"></a>
+void&#160;</td><td class="memItemRight"><b>addNetworkRewindInfo</b> (<a class="el" href="classRewindInfo.html">RewindInfo</a> *ri)</td></tr>
+<tr class="memitem:a7f2690a14a7d1af951b84ecddc4c84fe" id="r_a7f2690a14a7d1af951b84ecddc4c84fe"><td class="memItemLeft"><a id="a7f2690a14a7d1af951b84ecddc4c84fe" name="a7f2690a14a7d1af951b84ecddc4c84fe"></a>
+bool&#160;</td><td class="memItemRight"><b>shouldSaveState</b> (int ticks)</td></tr>
+<tr class="memitem:a90f35e00eb2737c89281a66a49ed56ff" id="r_a90f35e00eb2737c89281a66a49ed56ff"><td class="memItemLeft"><a id="a90f35e00eb2737c89281a66a49ed56ff" name="a90f35e00eb2737c89281a66a49ed56ff"></a>
+void&#160;</td><td class="memItemRight"><b>resetSmoothNetworkBody</b> ()</td></tr>
+<tr class="memitem:a0273c4e059ff964a47f4c5f92c5b6583" id="r_a0273c4e059ff964a47f4c5f92c5b6583"><td class="memItemLeft"><a id="a0273c4e059ff964a47f4c5f92c5b6583" name="a0273c4e059ff964a47f4c5f92c5b6583"></a>
+void&#160;</td><td class="memItemRight"><b>handleResetSmoothNetworkBody</b> ()</td></tr>
+<tr class="memdesc:a0273c4e059ff964a47f4c5f92c5b6583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset all smooth network body of rewinders so the rubber band effect of moveable does not exist during firstly live join. <br /></td></tr>
+<tr class="memitem:a4fd128237ba02e0416bdd980abb6eff2" id="r_a4fd128237ba02e0416bdd980abb6eff2"><td class="memItemLeft"><a id="a4fd128237ba02e0416bdd980abb6eff2" name="a4fd128237ba02e0416bdd980abb6eff2"></a>
+void&#160;</td><td class="memItemRight"><b>addMissingRewinder</b> (const std::string &amp;name)</td></tr>
+<tr class="memitem:aeb0f12cfa27e2b351610a867d63f163d" id="r_aeb0f12cfa27e2b351610a867d63f163d"><td class="memItemLeft"><a id="aeb0f12cfa27e2b351610a867d63f163d" name="aeb0f12cfa27e2b351610a867d63f163d"></a>
+bool&#160;</td><td class="memItemRight"><b>hasMissingRewinder</b> (const std::string &amp;name) const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a9a5a254087b10b5a7760a3c883736537" id="r_a9a5a254087b10b5a7760a3c883736537"><td class="memItemLeft"><a id="a9a5a254087b10b5a7760a3c883736537" name="a9a5a254087b10b5a7760a3c883736537"></a>
+static <a class="el" href="classRewindManager.html">RewindManager</a> *&#160;</td><td class="memItemRight"><b>create</b> ()</td></tr>
+<tr class="memdesc:a9a5a254087b10b5a7760a3c883736537"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the singleton. <br /></td></tr>
+<tr class="memitem:aa004df5df59671d6622fe7dfe1204721" id="r_aa004df5df59671d6622fe7dfe1204721"><td class="memItemLeft"><a id="aa004df5df59671d6622fe7dfe1204721" name="aa004df5df59671d6622fe7dfe1204721"></a>
+static void&#160;</td><td class="memItemRight"><b>destroy</b> ()</td></tr>
+<tr class="memdesc:aa004df5df59671d6622fe7dfe1204721"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the singleton. <br /></td></tr>
+<tr class="memitem:a86b9494faad6403ff377555fbd7e7dc4" id="r_a86b9494faad6403ff377555fbd7e7dc4"><td class="memItemLeft"><a id="a86b9494faad6403ff377555fbd7e7dc4" name="a86b9494faad6403ff377555fbd7e7dc4"></a>
+static void&#160;</td><td class="memItemRight"><b>setEnable</b> (bool m)</td></tr>
+<tr class="memdesc:a86b9494faad6403ff377555fbd7e7dc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">En- or disables rewinding. <br /></td></tr>
+<tr class="memitem:ab459caf3b0e4b853883a5624c638aa9c" id="r_ab459caf3b0e4b853883a5624c638aa9c"><td class="memItemLeft"><a id="ab459caf3b0e4b853883a5624c638aa9c" name="ab459caf3b0e4b853883a5624c638aa9c"></a>
+static bool&#160;</td><td class="memItemRight"><b>isEnabled</b> ()</td></tr>
+<tr class="memdesc:ab459caf3b0e4b853883a5624c638aa9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if rewinding is enabled or not. <br /></td></tr>
+<tr class="memitem:a823467f54435eabbdc20d581c1d428e9" id="r_a823467f54435eabbdc20d581c1d428e9"><td class="memItemLeft"><a id="a823467f54435eabbdc20d581c1d428e9" name="a823467f54435eabbdc20d581c1d428e9"></a>
+static bool&#160;</td><td class="memItemRight"><b>exists</b> ()</td></tr>
+<tr class="memitem:a68823f6fcb806945bf6a1eeb13d96493" id="r_a68823f6fcb806945bf6a1eeb13d96493"><td class="memItemLeft">static <a class="el" href="classRewindManager.html">RewindManager</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a68823f6fcb806945bf6a1eeb13d96493">get</a> ()</td></tr>
+<tr class="memdesc:a68823f6fcb806945bf6a1eeb13d96493"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the singleton.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:a81df6c9cba3950c6ca96b56c4144eeb1" id="r_a81df6c9cba3950c6ca96b56c4144eeb1"><td class="memItemLeft"><a id="a81df6c9cba3950c6ca96b56c4144eeb1" name="a81df6c9cba3950c6ca96b56c4144eeb1"></a>
+&#160;</td><td class="memItemRight"><b>RewindManager</b> ()</td></tr>
+<tr class="memdesc:a81df6c9cba3950c6ca96b56c4144eeb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor. <br /></td></tr>
+<tr class="memitem:aa57d12c16a6a9ae5bb2d300072a90376" id="r_aa57d12c16a6a9ae5bb2d300072a90376"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa57d12c16a6a9ae5bb2d300072a90376">~RewindManager</a> ()</td></tr>
+<tr class="memdesc:aa57d12c16a6a9ae5bb2d300072a90376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees all saved state information.  <br /></td></tr>
+<tr class="memitem:a7071d69c1db8b0032321ab48aa3d2947" id="r_a7071d69c1db8b0032321ab48aa3d2947"><td class="memItemLeft"><a id="a7071d69c1db8b0032321ab48aa3d2947" name="a7071d69c1db8b0032321ab48aa3d2947"></a>
+void&#160;</td><td class="memItemRight"><b>clearExpiredRewinder</b> ()</td></tr>
+<tr class="memitem:ae426117c898b76d0a59167cc5b5cdccb" id="r_ae426117c898b76d0a59167cc5b5cdccb"><td class="memItemLeft"><a id="ae426117c898b76d0a59167cc5b5cdccb" name="ae426117c898b76d0a59167cc5b5cdccb"></a>
+void&#160;</td><td class="memItemRight"><b>mergeRewindInfoEventFunction</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:a809a1f606713ac64af72740200071e43" id="r_a809a1f606713ac64af72740200071e43"><td class="memItemLeft"><a id="a809a1f606713ac64af72740200071e43" name="a809a1f606713ac64af72740200071e43"></a>
+std::map&lt; int, std::vector&lt; std::function&lt; void()&gt; &gt; &gt;&#160;</td><td class="memItemRight"><b>m_local_state</b></td></tr>
+<tr class="memitem:a0e5f069800cc72be65b3eaef03dad40c" id="r_a0e5f069800cc72be65b3eaef03dad40c"><td class="memItemLeft"><a id="a0e5f069800cc72be65b3eaef03dad40c" name="a0e5f069800cc72be65b3eaef03dad40c"></a>
+std::map&lt; std::string, std::weak_ptr&lt; <a class="el" href="classRewinder.html">Rewinder</a> &gt; &gt;&#160;</td><td class="memItemRight"><b>m_all_rewinder</b></td></tr>
+<tr class="memdesc:a0e5f069800cc72be65b3eaef03dad40c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of all objects that can be rewound. <br /></td></tr>
+<tr class="memitem:ae1d4a535095090757822a683af3799be" id="r_ae1d4a535095090757822a683af3799be"><td class="memItemLeft"><a id="ae1d4a535095090757822a683af3799be" name="ae1d4a535095090757822a683af3799be"></a>
+<a class="el" href="classRewindQueue.html">RewindQueue</a>&#160;</td><td class="memItemRight"><b>m_rewind_queue</b></td></tr>
+<tr class="memdesc:ae1d4a535095090757822a683af3799be"><td class="mdescLeft">&#160;</td><td class="mdescRight">The queue that stores all rewind infos. <br /></td></tr>
+<tr class="memitem:a72c8dca5deef7a993114e6a7cfbd5ba2" id="r_a72c8dca5deef7a993114e6a7cfbd5ba2"><td class="memItemLeft"><a id="a72c8dca5deef7a993114e6a7cfbd5ba2" name="a72c8dca5deef7a993114e6a7cfbd5ba2"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>m_overall_state_size</b></td></tr>
+<tr class="memdesc:a72c8dca5deef7a993114e6a7cfbd5ba2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overall amount of memory allocated by states. <br /></td></tr>
+<tr class="memitem:a239bb5ffaad0b5d5cf5b28f09c3cf79d" id="r_a239bb5ffaad0b5d5cf5b28f09c3cf79d"><td class="memItemLeft"><a id="a239bb5ffaad0b5d5cf5b28f09c3cf79d" name="a239bb5ffaad0b5d5cf5b28f09c3cf79d"></a>
+bool&#160;</td><td class="memItemRight"><b>m_is_rewinding</b></td></tr>
+<tr class="memdesc:a239bb5ffaad0b5d5cf5b28f09c3cf79d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if currently a rewind is happening. <br /></td></tr>
+<tr class="memitem:a8f3b42a1ee5b7576048a72fa8e6e26b9" id="r_a8f3b42a1ee5b7576048a72fa8e6e26b9"><td class="memItemLeft"><a id="a8f3b42a1ee5b7576048a72fa8e6e26b9" name="a8f3b42a1ee5b7576048a72fa8e6e26b9"></a>
+int&#160;</td><td class="memItemRight"><b>m_state_frequency</b></td></tr>
+<tr class="memdesc:a8f3b42a1ee5b7576048a72fa8e6e26b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">How much time between consecutive state saves. <br /></td></tr>
+<tr class="memitem:ac1a2c50ae7649a88bb5111374cce400b" id="r_ac1a2c50ae7649a88bb5111374cce400b"><td class="memItemLeft">std::atomic&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac1a2c50ae7649a88bb5111374cce400b">m_not_rewound_ticks</a></td></tr>
+<tr class="memdesc:ac1a2c50ae7649a88bb5111374cce400b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This stores the original <a class="el" href="classWorld.html" title="base class for all game modes This class is responsible for running the actual race.">World</a> time in ticks during a rewind.  <br /></td></tr>
+<tr class="memitem:aea5f912cf1a71727de98f4b4857c32d4" id="r_aea5f912cf1a71727de98f4b4857c32d4"><td class="memItemLeft"><a id="aea5f912cf1a71727de98f4b4857c32d4" name="aea5f912cf1a71727de98f4b4857c32d4"></a>
+std::vector&lt; <a class="el" href="classRewindInfoEventFunction.html">RewindInfoEventFunction</a> * &gt;&#160;</td><td class="memItemRight"><b>m_pending_rief</b></td></tr>
+<tr class="memitem:ac7c576708832f0ea3d9a3485a863ffc8" id="r_ac7c576708832f0ea3d9a3485a863ffc8"><td class="memItemLeft"><a id="ac7c576708832f0ea3d9a3485a863ffc8" name="ac7c576708832f0ea3d9a3485a863ffc8"></a>
+bool&#160;</td><td class="memItemRight"><b>m_schedule_reset_network_body</b></td></tr>
+<tr class="memitem:a0b827eae7710a0c69de2299f059b62bc" id="r_a0b827eae7710a0c69de2299f059b62bc"><td class="memItemLeft"><a id="a0b827eae7710a0c69de2299f059b62bc" name="a0b827eae7710a0c69de2299f059b62bc"></a>
+std::set&lt; std::string &gt;&#160;</td><td class="memItemRight"><b>m_missing_rewinders</b></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+정적 Private 속성</h2></td></tr>
+<tr class="memitem:a31c58f5fa55932e7ff0b3b8679555cb0" id="r_a31c58f5fa55932e7ff0b3b8679555cb0"><td class="memItemLeft"><a id="a31c58f5fa55932e7ff0b3b8679555cb0" name="a31c58f5fa55932e7ff0b3b8679555cb0"></a>
+static <a class="el" href="classRewindManager.html">RewindManager</a> *&#160;</td><td class="memItemRight"><b>m_rewind_manager</b> [PT_COUNT]</td></tr>
+<tr class="memdesc:a31c58f5fa55932e7ff0b3b8679555cb0"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classSingleton.html">Singleton</a> pointer. <br /></td></tr>
+<tr class="memitem:a445578623c92e66bb2475553632b2118" id="r_a445578623c92e66bb2475553632b2118"><td class="memItemLeft">static std::atomic_bool&#160;</td><td class="memItemRight"><a class="el" href="#a445578623c92e66bb2475553632b2118">m_enable_rewind_manager</a></td></tr>
+<tr class="memdesc:a445578623c92e66bb2475553632b2118"><td class="mdescLeft">&#160;</td><td class="mdescRight">En- or Disable the rewind manager.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>This class manages rewinding. </p>
+<p>It keeps track of:</p><ul>
+<li>states for each rewindable object (for example a kart would have its position, rotation, linear and angular velocity etc as state) States can be confirmed (i.e. were received by the network server and are therefore confirmed to be conrrect), or not (just a snapshot on this client, which can save time in rewinding later).</li>
+<li>events for each rewindable object (for example any change in the kart controls, like steering, fire, ... are an event). While states can be discarded (especially unconfirmed ones), e.g. to save space, events will always be kept (in order to allow replaying). For each object that is to be rewinded an instance of <a class="el" href="classRewinder.html">Rewinder</a> needs to be declared (usually inside of the object it can rewind). This instance is automatically registered with the <a class="el" href="classRewindManager.html" title="This class manages rewinding.">RewindManager</a>. All states and events are stored in a <a class="el" href="classRewindInfo.html" title="Used to store rewind information for a given time for all rewind instances.">RewindInfo</a> object. All <a class="el" href="classRewindInfo.html" title="Used to store rewind information for a given time for all rewind instances.">RewindInfo</a> objects are stored in a list sorted by time. When a rewind to time T is requested, the following takes place:</li>
+</ul>
+<ol type="1">
+<li>Go back in time: Determine the latest time t_min &lt; T so that each rewindable objects has at least one state before T. For each state that is skipped during this process <span class="tt">undoState()</span> is being called, and for each event <span class="tt">undoEvent()</span> of the <a class="el" href="classRewinder.html">Rewinder</a>.</li>
+<li>Restore state at time <span class="tt">t_min</span> For each <a class="el" href="classRewinder.html">Rewinder</a> the state at time t_min is restored by calling <span class="tt">rewindToState(char *)</span>. TODO: atm there is no guarantee that each object will have a state at a given time. We either need to work around that, or make sure to store at least an unconfirmed state whenever we receive a confirmed state.</li>
+<li>Rerun the simulation till the current time t_current is reached:<ol type="a">
+<li>Determine the time <span class="tt">t_next</span> of the next frame. This is either current_time + 1/60 (physics default time step size), or less if <a class="el" href="classRewindInfo.html" title="Used to store rewind information for a given time for all rewind instances.">RewindInfo</a> at an earlier time is available). This determines the time step size for the next frame (i.e. <span class="tt">t_next - t_current</span>).</li>
+<li>For all <a class="el" href="classRewindInfo.html" title="Used to store rewind information for a given time for all rewind instances.">RewindInfo</a> at time t_next call:<ul>
+<li><span class="tt">restoreState()</span> if the <a class="el" href="classRewindInfo.html" title="Used to store rewind information for a given time for all rewind instances.">RewindInfo</a> is a confirmed state</li>
+<li><span class="tt">discardState()</span> if the <a class="el" href="classRewindInfo.html" title="Used to store rewind information for a given time for all rewind instances.">RewindInfo</a> is an unconfirmed state TODO: still missing, and instead of discard perhaps store a new state??</li>
+<li><span class="tt">rewindToEvent()</span> if the <a class="el" href="classRewindInfo.html" title="Used to store rewind information for a given time for all rewind instances.">RewindInfo</a> is an event</li>
+</ul>
+</li>
+<li>Do one step of world simulation, using the updated (confirmed) states and newly set events (e.g. kart input). </li>
+</ol>
+</li>
+</ol>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">생성자 &amp; 소멸자 문서화</h2>
+<a id="aa57d12c16a6a9ae5bb2d300072a90376" name="aa57d12c16a6a9ae5bb2d300072a90376"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa57d12c16a6a9ae5bb2d300072a90376">&#9670;&#160;</a></span>~RewindManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RewindManager::~RewindManager </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Frees all saved state information. </p>
+<p>Note that the <a class="el" href="classRewinder.html">Rewinder</a> data must be freed elsewhere. </p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="ad44c8b967bca48b15d5e55a784ed30af" name="ad44c8b967bca48b15d5e55a784ed30af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad44c8b967bca48b15d5e55a784ed30af">&#9670;&#160;</a></span>addEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RewindManager::addEvent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classEventRewinder.html">EventRewinder</a> *</td>          <td class="paramname"><span class="paramname"><em>event_rewinder</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classBareNetworkString.html">BareNetworkString</a> *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>confirmed</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span><span class="paramdefsep"> = </span><span class="paramdefval">-1</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds an event to the rewind data. </p>
+<p>The data to be stored must be allocated and not freed by the caller! </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>Time at which the event was recorded. If time is not specified (or set to -1), the current world time is used. </td></tr>
+    <tr><td class="paramname">buffer</td><td>Pointer to the event data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a97c2f4bdb547f73c8dd7bb2dbdf636d7" name="a97c2f4bdb547f73c8dd7bb2dbdf636d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97c2f4bdb547f73c8dd7bb2dbdf636d7">&#9670;&#160;</a></span>addNetworkEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RewindManager::addNetworkEvent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classEventRewinder.html">EventRewinder</a> *</td>          <td class="paramname"><span class="paramname"><em>event_rewinder</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classBareNetworkString.html">BareNetworkString</a> *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds an event to the list of network rewind data. </p>
+<p>This function is threadsafe so can be called by the network thread. The data is synched to m_rewind_info by the main thread. The data to be stored must be allocated and not freed by the caller! </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>Time at which the event was recorded. </td></tr>
+    <tr><td class="paramname">buffer</td><td>Pointer to the event data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6dd623dc81c4a810ac79833b35753705" name="a6dd623dc81c4a810ac79833b35753705"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dd623dc81c4a810ac79833b35753705">&#9670;&#160;</a></span>addNetworkState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RewindManager::addNetworkState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classBareNetworkString.html">BareNetworkString</a> *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a state to the list of network rewind data. </p>
+<p>This function is threadsafe so can be called by the network thread. The data is synched to m_rewind_info by the main thread. The data to be stored must be allocated and not freed by the caller! </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>Time at which the event was recorded. </td></tr>
+    <tr><td class="paramname">buffer</td><td>Pointer to the event data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ace044577b3484a18eee007e1452c1b32" name="ace044577b3484a18eee007e1452c1b32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace044577b3484a18eee007e1452c1b32">&#9670;&#160;</a></span>addRewinder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RewindManager::addRewinder </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classRewinder.html">Rewinder</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>rewinder</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a <a class="el" href="classRewinder.html">Rewinder</a> to the list of all rewinders. </p>
+<dl class="section return"><dt>반환값</dt><dd>true If successfully added, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a68823f6fcb806945bf6a1eeb13d96493" name="a68823f6fcb806945bf6a1eeb13d96493"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68823f6fcb806945bf6a1eeb13d96493">&#9670;&#160;</a></span>get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classRewindManager.html">RewindManager</a> * RewindManager::get </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the singleton. </p>
+<p>This function will not automatically create the singleton. </p>
+
+</div>
+</div>
+<a id="a9c69526006e4cd7b35e0514c9d687a52" name="a9c69526006e4cd7b35e0514c9d687a52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c69526006e4cd7b35e0514c9d687a52">&#9670;&#160;</a></span>playEventsTill()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RewindManager::playEventsTill </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>world_ticks</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>fast_forward</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Replays all events from the last event played till the specified time. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">world_ticks</td><td>Up to (and inclusive) which time events will be replayed. </td></tr>
+    <tr><td class="paramname">fast_forward</td><td>If true, then only rewinders in network will be updated, but not the physics. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5aee54673651fcd52e4032f90755a11c" name="a5aee54673651fcd52e4032f90755a11c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5aee54673651fcd52e4032f90755a11c">&#9670;&#160;</a></span>rewindTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RewindManager::rewindTo </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>rewind_ticks</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>now_ticks</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>fast_forward</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rewinds to the specified time, then goes forward till the current <a class="el" href="classWorldStatus.html#a0b1a1ed183546ec4058774cc8a04039e" title="Returns the current race time.">World::getTime()</a> is reached again: it will replay everything before <a class="el" href="classWorldStatus.html#a0b1a1ed183546ec4058774cc8a04039e" title="Returns the current race time.">World::getTime()</a>, but not the events at <a class="el" href="classWorldStatus.html#a0b1a1ed183546ec4058774cc8a04039e" title="Returns the current race time.">World::getTime()</a> (or later)/ </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rewind_ticks</td><td>Time to rewind to. </td></tr>
+    <tr><td class="paramname">now_ticks</td><td>Up to which ticks events are replayed: up to but EXCLUDING new_ticks (the event at now_ticks are played in the calling subroutine playEventsTill). </td></tr>
+    <tr><td class="paramname">fast_forward</td><td>If true, then only rewinders in network will be updated, but not the physics. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a82afa942fa6f359a180792b1e95ca477" name="a82afa942fa6f359a180792b1e95ca477"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82afa942fa6f359a180792b1e95ca477">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RewindManager::update </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks_not_used</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Determines if a new state snapshot should be taken, and if so calls all rewinder to do so. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks_not_used</td><td>NUmber of physics time steps - should be 1. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="a445578623c92e66bb2475553632b2118" name="a445578623c92e66bb2475553632b2118"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a445578623c92e66bb2475553632b2118">&#9670;&#160;</a></span>m_enable_rewind_manager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic_bool RewindManager::m_enable_rewind_manager</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>En- or Disable the rewind manager. </p>
+<p>This is used to disable storing rewind data in case of local races only. </p>
+
+</div>
+</div>
+<a id="ac1a2c50ae7649a88bb5111374cce400b" name="ac1a2c50ae7649a88bb5111374cce400b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1a2c50ae7649a88bb5111374cce400b">&#9670;&#160;</a></span>m_not_rewound_ticks</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic&lt;int&gt; RewindManager::m_not_rewound_ticks</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This stores the original <a class="el" href="classWorld.html" title="base class for all game modes This class is responsible for running the actual race.">World</a> time in ticks during a rewind. </p>
+<p>It is used to detect if a client's local time need adjustment to reduce rewinds. </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>network/<a class="el" href="rewind__manager_8hpp_source.html">rewind_manager.hpp</a></li>
+<li>network/<b>rewind_manager.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

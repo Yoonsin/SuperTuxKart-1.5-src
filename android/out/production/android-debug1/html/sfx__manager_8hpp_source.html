@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: audio/sfx_manager.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>audio</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">sfx_manager.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2008-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_SFX_MANAGER_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_SFX_MANAGER_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;utils/can_be_deleted.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;utils/synchronised.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;utils/vec3.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;condition_variable&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#ifdef ENABLE_SOUND</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#  include &lt;AL/al.h&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#  include &lt;AL/alc.h&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ALuint;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">class </span><a class="code hl_class" href="classMusicInformation.html">MusicInformation</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">class </span><a class="code hl_class" href="classSFXBase.html">SFXBase</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">class </span><a class="code hl_class" href="classSFXBuffer.html">SFXBuffer</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">class </span><a class="code hl_class" href="classXMLNode.html">XMLNode</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="};">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classSFXManager.html">   54</a></span><span class="keyword">class </span><a class="code hl_function" href="classSFXManager.html#a5c4cafc37d92d9ebdd8ed64cf9196c6f">SFXManager</a> : <span class="keyword">public</span> NoCopy, <span class="keyword">public</span> <a class="code hl_function" href="classCanBeDeleted.html#a13069fbcc491e32919c9aaceef29168e">CanBeDeleted</a></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>{</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classSFXManager.html#a8247a5da777e00d8d97a62cc65942ba1">   58</a></span>    <span class="keyword">static</span> <a class="code hl_function" href="classSFXManager.html#a5c4cafc37d92d9ebdd8ed64cf9196c6f">SFXManager</a> *<a class="code hl_variable" href="classSFXManager.html#a8247a5da777e00d8d97a62cc65942ba1">m_sfx_manager</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="};">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">   64</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        SFX_PLAY = 1,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        SFX_PLAY_POSITION,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        SFX_STOP,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        SFX_PAUSE,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        SFX_PAUSE_ALL,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        SFX_RESUME,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        SFX_RESUME_ALL,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        SFX_DELETE,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        SFX_SPEED,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        SFX_POSITION,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        SFX_SPEED_POSITION,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        SFX_VOLUME,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        SFX_MASTER_VOLUME,</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        SFX_LOOP,</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        SFX_LISTENER,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        SFX_UPDATE,</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        SFX_MUSIC_START,</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        SFX_MUSIC_STOP,</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        SFX_MUSIC_PAUSE,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        SFX_MUSIC_RESUME,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        SFX_MUSIC_SWITCH_FAST,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        SFX_MUSIC_SET_TMP_VOLUME,</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        SFX_MUSIC_WAITING,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        SFX_MUSIC_DEFAULT_VOLUME,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        SFX_EXIT,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        SFX_CREATE_SOURCE</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    };   <span class="comment">// SFXCommands</span></div>
+</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span></div>
+<div class="foldopen" id="foldopen00098" data-start="{" data-end="};">
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1f">   98</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1f">CustomSFX</a> : <span class="keywordtype">int</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fadc510de705b2bc9c8eb2a2f5d7b5ab49">  100</a></span>        <a class="code hl_enumvalue" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fadc510de705b2bc9c8eb2a2f5d7b5ab49">CUSTOM_HORN</a>,    </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1faba6defdc483c3893c37146a124178d8a">  101</a></span>        <a class="code hl_enumvalue" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1faba6defdc483c3893c37146a124178d8a">CUSTOM_CRASH</a>,   </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1faae872a8bded812f806b6ebeaf3a286b7">  102</a></span>        <a class="code hl_enumvalue" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1faae872a8bded812f806b6ebeaf3a286b7">CUSTOM_WIN</a>,     </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa877fc1a94cd777328ef957d828278fc5">  103</a></span>        <a class="code hl_enumvalue" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa877fc1a94cd777328ef957d828278fc5">CUSTOM_EXPLODE</a>, </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa9178c0f8e6bce4fd65d87275c430b005">  104</a></span>        <a class="code hl_enumvalue" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa9178c0f8e6bce4fd65d87275c430b005">CUSTOM_GOO</a>,     </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa46bd486b6481e6bc38c0026429fd7479">  105</a></span>        <a class="code hl_enumvalue" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa46bd486b6481e6bc38c0026429fd7479">CUSTOM_PASS</a>,    </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa511e8f24d8b6c6b9d409dac3ad2c67d0">  106</a></span>        <a class="code hl_enumvalue" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa511e8f24d8b6c6b9d409dac3ad2c67d0">CUSTOM_ZIPPER</a>,  </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa33829d78ccc4993d98fdf82f68cb41d6">  107</a></span>        <a class="code hl_enumvalue" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa33829d78ccc4993d98fdf82f68cb41d6">CUSTOM_NAME</a>,    </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1faa2cf931a221ef81a6240f4406ec9b4c0">  108</a></span>        <a class="code hl_enumvalue" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1faa2cf931a221ef81a6240f4406ec9b4c0">CUSTOM_ATTACH</a>,  </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1faa59010826e77e6e6405567993ce119e7">  109</a></span>        <a class="code hl_enumvalue" href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1faa59010826e77e6e6405567993ce119e7">CUSTOM_SHOOT</a>,   </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        NUM_CUSTOMS</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    };</div>
+</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span></div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="};">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classSFXManager_1_1SFXCommand.html">  117</a></span>    <span class="keyword">class </span>SFXCommand : <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        LEAK_CHECK()</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classSFXManager_1_1SFXCommand.html#a8be01ba2a5778a5f48b58a3e907740eb">  123</a></span>        <a class="code hl_class" href="classSFXBase.html">SFXBase</a> *<a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a8be01ba2a5778a5f48b58a3e907740eb">m_sfx</a>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="classSFXManager_1_1SFXCommand.html#afbf8b35493cd080f33c7ca3ac6c51c7c">  126</a></span>        <a class="code hl_class" href="classSFXBuffer.html">SFXBuffer</a> *<a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#afbf8b35493cd080f33c7ca3ac6c51c7c">m_buffer</a> = NULL;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classSFXManager_1_1SFXCommand.html#aa44bb8d1b474044197aa1336f76cba98">  129</a></span>        <a class="code hl_class" href="classMusicInformation.html">MusicInformation</a> *<a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#aa44bb8d1b474044197aa1336f76cba98">m_music_information</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classSFXManager_1_1SFXCommand.html#a57d5f917914c1573fb93c4463e174e0e">  132</a></span>        <a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a57d5f917914c1573fb93c4463e174e0e">m_command</a>;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classSFXManager_1_1SFXCommand.html#a411298082f88d9bf43badcbd0a17d106">  135</a></span>        <a class="code hl_class" href="classVec3.html">Vec3</a>        <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a411298082f88d9bf43badcbd0a17d106">m_parameter</a>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        SFXCommand(<a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="code hl_class" href="classSFXBase.html">SFXBase</a> *base)</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a57d5f917914c1573fb93c4463e174e0e">m_command</a>   = command;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a8be01ba2a5778a5f48b58a3e907740eb">m_sfx</a>       = base;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        }   <span class="comment">// SFXCommand()</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classSFXManager_1_1SFXCommand.html#ad6db42382e877af8040f03853be9f702">  144</a></span>        <a class="code hl_function" href="classSFXManager_1_1SFXCommand.html#ad6db42382e877af8040f03853be9f702">SFXCommand</a>(<a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="code hl_class" href="classMusicInformation.html">MusicInformation</a> *mi)</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a57d5f917914c1573fb93c4463e174e0e">m_command</a>           = command;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#aa44bb8d1b474044197aa1336f76cba98">m_music_information</a> = mi;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        }   <span class="comment">// SFXCommnd(MusicInformation*)</span></div>
+</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00152" data-start="{" data-end="}">
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="classSFXManager_1_1SFXCommand.html#a9929176577b66fad1e8d02aef16c2b98">  152</a></span>        <a class="code hl_function" href="classSFXManager_1_1SFXCommand.html#a9929176577b66fad1e8d02aef16c2b98">SFXCommand</a>(<a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="code hl_class" href="classMusicInformation.html">MusicInformation</a> *mi, <span class="keywordtype">float</span> f)</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        {</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a57d5f917914c1573fb93c4463e174e0e">m_command</a> = command;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a411298082f88d9bf43badcbd0a17d106">m_parameter</a>.setX(f);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#aa44bb8d1b474044197aa1336f76cba98">m_music_information</a> = mi;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        }   <span class="comment">// SFXCommnd(MusicInformation *, float)</span></div>
+</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <a class="code hl_class" href="classSFXManager_1_1SFXCommand.html">SFXCommand</a>(<a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="code hl_class" href="classSFXBase.html">SFXBase</a> *base, <span class="keywordtype">float</span> parameter)</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a57d5f917914c1573fb93c4463e174e0e">m_command</a>   = command;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a8be01ba2a5778a5f48b58a3e907740eb">m_sfx</a>       = base;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a411298082f88d9bf43badcbd0a17d106">m_parameter</a>.setX(parameter);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        }   <span class="comment">// SFXCommand(float)</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        SFXCommand(<a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="code hl_class" href="classSFXBase.html">SFXBase</a> *base, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;parameter)</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        {</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a57d5f917914c1573fb93c4463e174e0e">m_command</a>   = command;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a8be01ba2a5778a5f48b58a3e907740eb">m_sfx</a>       = base;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a411298082f88d9bf43badcbd0a17d106">m_parameter</a> = parameter;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        }   <span class="comment">// SFXCommand(Vec3)</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="comment">// --------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00176" data-start="{" data-end="}">
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="classSFXManager_1_1SFXCommand.html#a42f473e64374016f81837864be640071">  176</a></span>        <a class="code hl_function" href="classSFXManager_1_1SFXCommand.html#a42f473e64374016f81837864be640071">SFXCommand</a>(<a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="code hl_class" href="classSFXBase.html">SFXBase</a> *base, <span class="keywordtype">float</span> f,</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                   <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;parameter)</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a57d5f917914c1573fb93c4463e174e0e">m_command</a>   = command;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a8be01ba2a5778a5f48b58a3e907740eb">m_sfx</a>       = base;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a411298082f88d9bf43badcbd0a17d106">m_parameter</a> = parameter;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>            <a class="code hl_variable" href="classSFXManager_1_1SFXCommand.html#a411298082f88d9bf43badcbd0a17d106">m_parameter</a>.setW(f);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        }   <span class="comment">// SFXCommand(Vec3)</span></div>
+</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    };   <span class="comment">// SFXCommand</span></div>
+</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classSFXManager.html#aeb9f0328b1f34e7585430dbc4534ed84">  189</a></span>    <a class="code hl_class" href="classSynchronised.html">Synchronised&lt;Vec3&gt;</a>        <a class="code hl_variable" href="classSFXManager.html#aeb9f0328b1f34e7585430dbc4534ed84">m_listener_position</a>;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="classSFXManager.html#a95ca34cdf5477fba5143892315daf037">  192</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a>                      <a class="code hl_variable" href="classSFXManager.html#a95ca34cdf5477fba5143892315daf037">m_listener_front</a>;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classSFXManager.html#a54cc9020895ac933d96c937d019b3833">  195</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a>                      <a class="code hl_variable" href="classSFXManager.html#a54cc9020895ac933d96c937d019b3833">m_listener_up</a>;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="classSFXManager.html#a9483979ee8f2aa74cd124014fadc3072">  200</a></span>    std::map&lt;std::string, SFXBuffer*&gt; <a class="code hl_variable" href="classSFXManager.html#a9483979ee8f2aa74cd124014fadc3072">m_all_sfx_types</a>;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="classSFXManager.html#a1812300e046db32806ccef5652ae688b">  203</a></span>    <a class="code hl_class" href="classSynchronised.html">Synchronised&lt;std::vector&lt;SFXBase*&gt;</a> &gt; <a class="code hl_variable" href="classSFXManager.html#a1812300e046db32806ccef5652ae688b">m_all_sfx</a>;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="classSFXManager.html#aa5079a4e567a7e0b72f1f79407248748">  206</a></span>    <a class="code hl_class" href="classSynchronised.html">Synchronised&lt; std::vector&lt;SFXCommand*&gt;</a> &gt; <a class="code hl_variable" href="classSFXManager.html#aa5079a4e567a7e0b72f1f79407248748">m_sfx_commands</a>;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="classSFXManager.html#a3e74e9bacf0320e27610ea370a180d1e">  210</a></span>    <a class="code hl_class" href="classSynchronised.html">Synchronised&lt;std::map&lt;std::string, SFXBase*&gt;</a> &gt; <a class="code hl_variable" href="classSFXManager.html#a3e74e9bacf0320e27610ea370a180d1e">m_quick_sounds</a>;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="classSFXManager.html#adc5987ea967513326ef099b1387d9049">  213</a></span>    <span class="keywordtype">bool</span>                      <a class="code hl_variable" href="classSFXManager.html#adc5987ea967513326ef099b1387d9049">m_initialized</a>;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="classSFXManager.html#a06671e47b8fc67cc22573b87d10df24d">  216</a></span>    <span class="keywordtype">float</span>                     <a class="code hl_variable" href="classSFXManager.html#a06671e47b8fc67cc22573b87d10df24d">m_master_gain</a>;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="preprocessor">#ifndef __SWITCH__</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="classSFXManager.html#af547272b3726922633d195a61d6db76d">  220</a></span>    std::thread               <a class="code hl_variable" href="classSFXManager.html#af547272b3726922633d195a61d6db76d">m_thread</a>;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    uint64_t                  m_last_update_time;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="classSFXManager.html#ac97e65a4109fe5f4bee09037a827c9da">  226</a></span>    std::condition_variable   <a class="code hl_variable" href="classSFXManager.html#ac97e65a4109fe5f4bee09037a827c9da">m_condition_variable</a>;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordtype">void</span>                      <a class="code hl_function" href="classSFXManager.html#a789929452c91325a6456429e4be50912">loadSfx</a>();</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>                             <a class="code hl_function" href="classSFXManager.html#a5c4cafc37d92d9ebdd8ed64cf9196c6f">SFXManager</a>();</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keyword">virtual</span>                 <a class="code hl_function" href="classSFXManager.html#a25a677529f46fc1d0e54dca24f56fb1c">~SFXManager</a>();</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#aa0ddde85fb61e8e150cb8be0b9aca24f">mainLoop</a>(<span class="keywordtype">void</span> *obj);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#adc0ea57a50461f2d6421c4e5d270574e">deleteSFX</a>(<a class="code hl_class" href="classSFXBase.html">SFXBase</a> *sfx);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#abd7579163edad1ac815c0852d2e01e93">queueCommand</a>(<a class="code hl_class" href="classSFXManager_1_1SFXCommand.html">SFXCommand</a> *command);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#a0fea68e1a58b720aa614a327abcc9e87">reallyPositionListenerNow</a>();</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#a3377ba5955aaee68110089caf221bbfe">create</a>();</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#aea0fae00a2b46e82827eb7a5939791dc">destroy</a>();</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#a6fc27d4f270bb37a18d3045bcaa7a268">queue</a>(<a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="code hl_class" href="classSFXBase.html">SFXBase</a> *sfx=NULL);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#a6fc27d4f270bb37a18d3045bcaa7a268">queue</a>(<a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="code hl_class" href="classSFXBase.html">SFXBase</a> *sfx, <span class="keywordtype">float</span> f);</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#a6fc27d4f270bb37a18d3045bcaa7a268">queue</a>(<a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="code hl_class" href="classSFXBase.html">SFXBase</a> *sfx, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;p);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#a6fc27d4f270bb37a18d3045bcaa7a268">queue</a>(<a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="code hl_class" href="classSFXBase.html">SFXBase</a> *sfx, <span class="keywordtype">float</span> f, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;p);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#a6fc27d4f270bb37a18d3045bcaa7a268">queue</a>(<a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="code hl_class" href="classMusicInformation.html">MusicInformation</a> *mi);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#a6fc27d4f270bb37a18d3045bcaa7a268">queue</a>(<a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="code hl_class" href="classMusicInformation.html">MusicInformation</a> *mi, <span class="keywordtype">float</span> f);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#a6fc27d4f270bb37a18d3045bcaa7a268">queue</a>(<a class="code hl_enumeration" href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="code hl_class" href="classSFXBase.html">SFXBase</a> *sfx, <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;p, <a class="code hl_class" href="classSFXBuffer.html">SFXBuffer</a>* buffer);</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00250" data-start="{" data-end="}">
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="classSFXManager.html#ae6f7d861ae5f79beb7a5aa21be9d4226">  250</a></span>    <span class="keyword">static</span> <a class="code hl_function" href="classSFXManager.html#a5c4cafc37d92d9ebdd8ed64cf9196c6f">SFXManager</a> *<a class="code hl_function" href="classSFXManager.html#ae6f7d861ae5f79beb7a5aa21be9d4226">get</a>()</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    {</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classSFXManager.html#a8247a5da777e00d8d97a62cc65942ba1">m_sfx_manager</a>;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    }   <span class="comment">// get</span></div>
+</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classSFXManager.html#a92651455e176099f45d12482b84f7d2a">stopThread</a>();</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordtype">bool</span>                     <a class="code hl_function" href="classSFXManager.html#a8da6fe0ba71d520cea6ac1f30b6d7c65">sfxAllowed</a>();</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <a class="code hl_class" href="classSFXBuffer.html">SFXBuffer</a>*               <a class="code hl_function" href="classSFXManager.html#a81fbf5a731367efd25013e12df029080">loadSingleSfx</a>(<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a>* node,</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                                           <span class="keyword">const</span> std::string &amp;path=std::string(<span class="stringliteral">&quot;&quot;</span>),</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>                                           <span class="keyword">const</span> <span class="keywordtype">bool</span> load = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <a class="code hl_class" href="classSFXBuffer.html">SFXBuffer</a>*               <a class="code hl_function" href="classSFXManager.html#ab98d1d4018274ee20eba42895461dad8">addSingleSfx</a>(<span class="keyword">const</span> std::string &amp;sfx_name,</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>                                          <span class="keyword">const</span> std::string &amp;filename,</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                                          <span class="keywordtype">bool</span>               positional,</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                                          <span class="keywordtype">float</span>              rolloff,</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                                          <span class="keywordtype">float</span>              max_dist,</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                                          <span class="keywordtype">float</span>              gain,</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>                                          <span class="keyword">const</span> <span class="keywordtype">bool</span>         load = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <a class="code hl_class" href="classSFXBase.html">SFXBase</a>*                 <a class="code hl_function" href="classSFXManager.html#a26658ec4b06808944a97c1e6ad48a11e">createSoundSource</a>(<a class="code hl_class" href="classSFXBuffer.html">SFXBuffer</a>* info,</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>                                               <span class="keyword">const</span> <span class="keywordtype">bool</span> add_to_SFX_list=<span class="keyword">true</span>,</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>                                               <span class="keyword">const</span> <span class="keywordtype">bool</span> owns_buffer=<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <a class="code hl_class" href="classSFXBase.html">SFXBase</a>*                 <a class="code hl_function" href="classSFXManager.html#a26658ec4b06808944a97c1e6ad48a11e">createSoundSource</a>(<span class="keyword">const</span> std::string &amp;name,</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>                                               <span class="keyword">const</span> <span class="keywordtype">bool</span> addToSFXList=<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classSFXManager.html#af1150b708aa18cfd89a50e766eeb0509">deleteSFXMapping</a>(<span class="keyword">const</span> std::string &amp;name);</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classSFXManager.html#a7fe9b8694f158bb7f0181e405604e9c1">pauseAll</a>();</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classSFXManager.html#a2e80be8bc32f6ab71b2566e46fd3e51b">reallyPauseAllNow</a>();</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classSFXManager.html#a565ab729ff0620efb4207ea34a68d943">resumeAll</a>();</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classSFXManager.html#aa75036debee35e2e12c293cf302f884a">reallyResumeAllNow</a>();</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classSFXManager.html#a211d95f467a88df4d00684577b211d1c">update</a>();</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classSFXManager.html#a32b91e4a036ac66cd78ffafe70ce7275">reallyUpdateNow</a>(SFXCommand *current);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="keywordtype">bool</span>                     <a class="code hl_function" href="classSFXManager.html#afe21573175078617f99c83a191a5497c">soundExist</a>(<span class="keyword">const</span> std::string &amp;name);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classSFXManager.html#ae1496c1ab98c7d95264a7b2dfca5d7ef">setMasterSFXVolume</a>(<span class="keywordtype">float</span> gain);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <span class="keywordtype">float</span>                    getMasterSFXVolume()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSFXManager.html#a06671e47b8fc67cc22573b87d10df24d">m_master_gain</a>; }</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span>              <a class="code hl_function" href="classSFXManager.html#a172ca7d0f98120fd0bdecc67a5747f88">checkError</a>(<span class="keyword">const</span> std::string &amp;context);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <span class="keyword">static</span> <span class="keyword">const</span> std::string getErrorString(<span class="keywordtype">int</span> err);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classSFXManager.html#ae2bd5291bd09299829c9b11763a845f6">positionListener</a>(<span class="keyword">const</span> Vec3 &amp;position,</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>                                              <span class="keyword">const</span> Vec3 &amp;front, <span class="keyword">const</span> Vec3 &amp;up);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    SFXBase*                 <a class="code hl_function" href="classSFXManager.html#ad5bf4a93f1bb60fb9879e8320fe3a18a">quickSound</a>(<span class="keyword">const</span> std::string &amp;soundName);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="keywordtype">void</span>                     <a class="code hl_function" href="classSFXManager.html#a7cbb8428ae18db08445766cf0814c356">toggleSound</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> newValue);</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="classSFXManager.html#a216fa74f258ca49b9cdcf2fff2918b30">  299</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSFXManager.html#a216fa74f258ca49b9cdcf2fff2918b30">dump</a>();</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno"><a class="line" href="classSFXManager.html#a7674b3d0973a88959d2413291d9738cb">  303</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a> <a class="code hl_function" href="classSFXManager.html#a7674b3d0973a88959d2413291d9738cb">getListenerPos</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classSFXManager.html#aeb9f0328b1f34e7585430dbc4534ed84">m_listener_position</a>.getAtomic(); }</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    <a class="code hl_class" href="classSFXBuffer.html">SFXBuffer</a>* getBuffer(<span class="keyword">const</span> std::string &amp;name);</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>};</div>
+</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="preprocessor">#endif </span><span class="comment">// HEADER_SFX_MANAGER_HPP</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="ttc" id="aclassCanBeDeleted_html_a13069fbcc491e32919c9aaceef29168e"><div class="ttname"><a href="classCanBeDeleted.html#a13069fbcc491e32919c9aaceef29168e">CanBeDeleted::CanBeDeleted</a></div><div class="ttdeci">CanBeDeleted()</div><div class="ttdoc">Set this instance to be not ready to be deleted.</div><div class="ttdef"><b>Definition</b> can_be_deleted.hpp:43</div></div>
+<div class="ttc" id="aclassMusicInformation_html"><div class="ttname"><a href="classMusicInformation.html">MusicInformation</a></div><div class="ttdoc">Wrapper around an instance of the Music interface Adds information like composer, song title,...</div><div class="ttdef"><b>Definition</b> music_information.hpp:43</div></div>
+<div class="ttc" id="aclassSFXBase_html"><div class="ttname"><a href="classSFXBase.html">SFXBase</a></div><div class="ttdoc">The base class for sound effects.</div><div class="ttdef"><b>Definition</b> sfx_base.hpp:43</div></div>
+<div class="ttc" id="aclassSFXBuffer_html"><div class="ttname"><a href="classSFXBuffer.html">SFXBuffer</a></div><div class="ttdoc">The buffer (data) for one kind of sound effects</div><div class="ttdef"><b>Definition</b> sfx_buffer.hpp:44</div></div>
+<div class="ttc" id="aclassSFXManager_1_1SFXCommand_html"><div class="ttname"><a href="classSFXManager_1_1SFXCommand.html">SFXManager::SFXCommand</a></div><div class="ttdoc">Data structure for the queue, which stores a sfx and the command to execute for it.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:118</div></div>
+<div class="ttc" id="aclassSFXManager_1_1SFXCommand_html_a411298082f88d9bf43badcbd0a17d106"><div class="ttname"><a href="classSFXManager_1_1SFXCommand.html#a411298082f88d9bf43badcbd0a17d106">SFXManager::SFXCommand::m_parameter</a></div><div class="ttdeci">Vec3 m_parameter</div><div class="ttdoc">Optional parameter for commands that need more input.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:135</div></div>
+<div class="ttc" id="aclassSFXManager_1_1SFXCommand_html_a42f473e64374016f81837864be640071"><div class="ttname"><a href="classSFXManager_1_1SFXCommand.html#a42f473e64374016f81837864be640071">SFXManager::SFXCommand::SFXCommand</a></div><div class="ttdeci">SFXCommand(SFXCommands command, SFXBase *base, float f, const Vec3 &amp;parameter)</div><div class="ttdoc">Store a float and vec3 parameter.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:176</div></div>
+<div class="ttc" id="aclassSFXManager_1_1SFXCommand_html_a57d5f917914c1573fb93c4463e174e0e"><div class="ttname"><a href="classSFXManager_1_1SFXCommand.html#a57d5f917914c1573fb93c4463e174e0e">SFXManager::SFXCommand::m_command</a></div><div class="ttdeci">SFXCommands m_command</div><div class="ttdoc">The command to execute.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:132</div></div>
+<div class="ttc" id="aclassSFXManager_1_1SFXCommand_html_a8be01ba2a5778a5f48b58a3e907740eb"><div class="ttname"><a href="classSFXManager_1_1SFXCommand.html#a8be01ba2a5778a5f48b58a3e907740eb">SFXManager::SFXCommand::m_sfx</a></div><div class="ttdeci">SFXBase * m_sfx</div><div class="ttdoc">The sound effect for which the command should be executed.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:123</div></div>
+<div class="ttc" id="aclassSFXManager_1_1SFXCommand_html_a9929176577b66fad1e8d02aef16c2b98"><div class="ttname"><a href="classSFXManager_1_1SFXCommand.html#a9929176577b66fad1e8d02aef16c2b98">SFXManager::SFXCommand::SFXCommand</a></div><div class="ttdeci">SFXCommand(SFXCommands command, MusicInformation *mi, float f)</div><div class="ttdoc">Constructor for music information commands that take a floating point parameter (which is stored in t...</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:152</div></div>
+<div class="ttc" id="aclassSFXManager_1_1SFXCommand_html_aa44bb8d1b474044197aa1336f76cba98"><div class="ttname"><a href="classSFXManager_1_1SFXCommand.html#aa44bb8d1b474044197aa1336f76cba98">SFXManager::SFXCommand::m_music_information</a></div><div class="ttdeci">MusicInformation * m_music_information</div><div class="ttdoc">Stores music information for music commands.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:129</div></div>
+<div class="ttc" id="aclassSFXManager_1_1SFXCommand_html_ad6db42382e877af8040f03853be9f702"><div class="ttname"><a href="classSFXManager_1_1SFXCommand.html#ad6db42382e877af8040f03853be9f702">SFXManager::SFXCommand::SFXCommand</a></div><div class="ttdeci">SFXCommand(SFXCommands command, MusicInformation *mi)</div><div class="ttdoc">Constructor for music information commands.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:144</div></div>
+<div class="ttc" id="aclassSFXManager_1_1SFXCommand_html_afbf8b35493cd080f33c7ca3ac6c51c7c"><div class="ttname"><a href="classSFXManager_1_1SFXCommand.html#afbf8b35493cd080f33c7ca3ac6c51c7c">SFXManager::SFXCommand::m_buffer</a></div><div class="ttdeci">SFXBuffer * m_buffer</div><div class="ttdoc">The sound buffer to play (null = no change)</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:126</div></div>
+<div class="ttc" id="aclassSFXManager_html_a06671e47b8fc67cc22573b87d10df24d"><div class="ttname"><a href="classSFXManager.html#a06671e47b8fc67cc22573b87d10df24d">SFXManager::m_master_gain</a></div><div class="ttdeci">float m_master_gain</div><div class="ttdoc">Master gain value, taken from the user config value.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:216</div></div>
+<div class="ttc" id="aclassSFXManager_html_a0fea68e1a58b720aa614a327abcc9e87"><div class="ttname"><a href="classSFXManager.html#a0fea68e1a58b720aa614a327abcc9e87">SFXManager::reallyPositionListenerNow</a></div><div class="ttdeci">void reallyPositionListenerNow()</div><div class="ttdoc">Sets the position and orientation of the listener.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:1062</div></div>
+<div class="ttc" id="aclassSFXManager_html_a172ca7d0f98120fd0bdecc67a5747f88"><div class="ttname"><a href="classSFXManager.html#a172ca7d0f98120fd0bdecc67a5747f88">SFXManager::checkError</a></div><div class="ttdeci">static bool checkError(const std::string &amp;context)</div><div class="ttdoc">Returns whether or not an openal error has occurred.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:964</div></div>
+<div class="ttc" id="aclassSFXManager_html_a1812300e046db32806ccef5652ae688b"><div class="ttname"><a href="classSFXManager.html#a1812300e046db32806ccef5652ae688b">SFXManager::m_all_sfx</a></div><div class="ttdeci">Synchronised&lt; std::vector&lt; SFXBase * &gt; &gt; m_all_sfx</div><div class="ttdoc">The actual instances (sound sources)</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:203</div></div>
+<div class="ttc" id="aclassSFXManager_html_a211d95f467a88df4d00684577b211d1c"><div class="ttname"><a href="classSFXManager.html#a211d95f467a88df4d00684577b211d1c">SFXManager::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Make sure that the sfx thread is started at least once per frame.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:801</div></div>
+<div class="ttc" id="aclassSFXManager_html_a216fa74f258ca49b9cdcf2fff2918b30"><div class="ttname"><a href="classSFXManager.html#a216fa74f258ca49b9cdcf2fff2918b30">SFXManager::dump</a></div><div class="ttdeci">void dump()</div><div class="ttdoc">Prints the list of currently loaded sounds to stdout.</div></div>
+<div class="ttc" id="aclassSFXManager_html_a25a677529f46fc1d0e54dca24f56fb1c"><div class="ttname"><a href="classSFXManager.html#a25a677529f46fc1d0e54dca24f56fb1c">SFXManager::~SFXManager</a></div><div class="ttdeci">virtual ~SFXManager()</div><div class="ttdoc">Destructor, frees all sound effects.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:112</div></div>
+<div class="ttc" id="aclassSFXManager_html_a26658ec4b06808944a97c1e6ad48a11e"><div class="ttname"><a href="classSFXManager.html#a26658ec4b06808944a97c1e6ad48a11e">SFXManager::createSoundSource</a></div><div class="ttdeci">SFXBase * createSoundSource(SFXBuffer *info, const bool add_to_SFX_list=true, const bool owns_buffer=false)</div><div class="ttdoc">Creates a new SFX object.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:691</div></div>
+<div class="ttc" id="aclassSFXManager_html_a2e80be8bc32f6ab71b2566e46fd3e51b"><div class="ttname"><a href="classSFXManager.html#a2e80be8bc32f6ab71b2566e46fd3e51b">SFXManager::reallyPauseAllNow</a></div><div class="ttdeci">void reallyPauseAllNow()</div><div class="ttdoc">Actually pauses the SFXs.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:919</div></div>
+<div class="ttc" id="aclassSFXManager_html_a32b91e4a036ac66cd78ffafe70ce7275"><div class="ttname"><a href="classSFXManager.html#a32b91e4a036ac66cd78ffafe70ce7275">SFXManager::reallyUpdateNow</a></div><div class="ttdeci">void reallyUpdateNow(SFXCommand *current)</div><div class="ttdoc">Updates the status of all playing sfx (to test if they are finished).</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:822</div></div>
+<div class="ttc" id="aclassSFXManager_html_a3377ba5955aaee68110089caf221bbfe"><div class="ttname"><a href="classSFXManager.html#a3377ba5955aaee68110089caf221bbfe">SFXManager::create</a></div><div class="ttdeci">static void create()</div><div class="ttdoc">Static function to create the singleton sfx manager.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:60</div></div>
+<div class="ttc" id="aclassSFXManager_html_a3e74e9bacf0320e27610ea370a180d1e"><div class="ttname"><a href="classSFXManager.html#a3e74e9bacf0320e27610ea370a180d1e">SFXManager::m_quick_sounds</a></div><div class="ttdeci">Synchronised&lt; std::map&lt; std::string, SFXBase * &gt; &gt; m_quick_sounds</div><div class="ttdoc">To play non-positional sounds without having to create a new object for each.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:210</div></div>
+<div class="ttc" id="aclassSFXManager_html_a52233c423644d08cf57cf27359e18c1f"><div class="ttname"><a href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1f">SFXManager::CustomSFX</a></div><div class="ttdeci">CustomSFX</div><div class="ttdoc">Entries for custom SFX sounds.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:99</div></div>
+<div class="ttc" id="aclassSFXManager_html_a52233c423644d08cf57cf27359e18c1fa33829d78ccc4993d98fdf82f68cb41d6"><div class="ttname"><a href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa33829d78ccc4993d98fdf82f68cb41d6">SFXManager::CUSTOM_NAME</a></div><div class="ttdeci">@ CUSTOM_NAME</div><div class="ttdoc">Introduction (e.g. &quot;I&#39;m Tux!&quot;)</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:107</div></div>
+<div class="ttc" id="aclassSFXManager_html_a52233c423644d08cf57cf27359e18c1fa46bd486b6481e6bc38c0026429fd7479"><div class="ttname"><a href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa46bd486b6481e6bc38c0026429fd7479">SFXManager::CUSTOM_PASS</a></div><div class="ttdeci">@ CUSTOM_PASS</div><div class="ttdoc">Played when passing another kart</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:105</div></div>
+<div class="ttc" id="aclassSFXManager_html_a52233c423644d08cf57cf27359e18c1fa511e8f24d8b6c6b9d409dac3ad2c67d0"><div class="ttname"><a href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa511e8f24d8b6c6b9d409dac3ad2c67d0">SFXManager::CUSTOM_ZIPPER</a></div><div class="ttdeci">@ CUSTOM_ZIPPER</div><div class="ttdoc">Played when kart hits zipper</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:106</div></div>
+<div class="ttc" id="aclassSFXManager_html_a52233c423644d08cf57cf27359e18c1fa877fc1a94cd777328ef957d828278fc5"><div class="ttname"><a href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa877fc1a94cd777328ef957d828278fc5">SFXManager::CUSTOM_EXPLODE</a></div><div class="ttdeci">@ CUSTOM_EXPLODE</div><div class="ttdoc">Played when struck by bowling ball or dynamite</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:103</div></div>
+<div class="ttc" id="aclassSFXManager_html_a52233c423644d08cf57cf27359e18c1fa9178c0f8e6bce4fd65d87275c430b005"><div class="ttname"><a href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fa9178c0f8e6bce4fd65d87275c430b005">SFXManager::CUSTOM_GOO</a></div><div class="ttdeci">@ CUSTOM_GOO</div><div class="ttdoc">Played when driving through goo</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:104</div></div>
+<div class="ttc" id="aclassSFXManager_html_a52233c423644d08cf57cf27359e18c1faa2cf931a221ef81a6240f4406ec9b4c0"><div class="ttname"><a href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1faa2cf931a221ef81a6240f4406ec9b4c0">SFXManager::CUSTOM_ATTACH</a></div><div class="ttdeci">@ CUSTOM_ATTACH</div><div class="ttdoc">Played when something is attached to kart (Uh-Oh)</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:108</div></div>
+<div class="ttc" id="aclassSFXManager_html_a52233c423644d08cf57cf27359e18c1faa59010826e77e6e6405567993ce119e7"><div class="ttname"><a href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1faa59010826e77e6e6405567993ce119e7">SFXManager::CUSTOM_SHOOT</a></div><div class="ttdeci">@ CUSTOM_SHOOT</div><div class="ttdoc">Played when weapon is used</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:109</div></div>
+<div class="ttc" id="aclassSFXManager_html_a52233c423644d08cf57cf27359e18c1faae872a8bded812f806b6ebeaf3a286b7"><div class="ttname"><a href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1faae872a8bded812f806b6ebeaf3a286b7">SFXManager::CUSTOM_WIN</a></div><div class="ttdeci">@ CUSTOM_WIN</div><div class="ttdoc">Played when racer wins</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:102</div></div>
+<div class="ttc" id="aclassSFXManager_html_a52233c423644d08cf57cf27359e18c1faba6defdc483c3893c37146a124178d8a"><div class="ttname"><a href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1faba6defdc483c3893c37146a124178d8a">SFXManager::CUSTOM_CRASH</a></div><div class="ttdeci">@ CUSTOM_CRASH</div><div class="ttdoc">Played when colliding with another kart</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:101</div></div>
+<div class="ttc" id="aclassSFXManager_html_a52233c423644d08cf57cf27359e18c1fadc510de705b2bc9c8eb2a2f5d7b5ab49"><div class="ttname"><a href="classSFXManager.html#a52233c423644d08cf57cf27359e18c1fadc510de705b2bc9c8eb2a2f5d7b5ab49">SFXManager::CUSTOM_HORN</a></div><div class="ttdeci">@ CUSTOM_HORN</div><div class="ttdoc">Replaces default horn</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:100</div></div>
+<div class="ttc" id="aclassSFXManager_html_a54cc9020895ac933d96c937d019b3833"><div class="ttname"><a href="classSFXManager.html#a54cc9020895ac933d96c937d019b3833">SFXManager::m_listener_up</a></div><div class="ttdeci">Vec3 m_listener_up</div><div class="ttdoc">Up vector of the listener.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:195</div></div>
+<div class="ttc" id="aclassSFXManager_html_a565ab729ff0620efb4207ea34a68d943"><div class="ttname"><a href="classSFXManager.html#a565ab729ff0620efb4207ea34a68d943">SFXManager::resumeAll</a></div><div class="ttdeci">void resumeAll()</div><div class="ttdoc">Resumes all paused SFXs.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:933</div></div>
+<div class="ttc" id="aclassSFXManager_html_a5c4cafc37d92d9ebdd8ed64cf9196c6f"><div class="ttname"><a href="classSFXManager.html#a5c4cafc37d92d9ebdd8ed64cf9196c6f">SFXManager::SFXManager</a></div><div class="ttdeci">SFXManager()</div><div class="ttdoc">Initialises the SFX manager and loads the sfx from a config file.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:78</div></div>
+<div class="ttc" id="aclassSFXManager_html_a6fc27d4f270bb37a18d3045bcaa7a268"><div class="ttname"><a href="classSFXManager.html#a6fc27d4f270bb37a18d3045bcaa7a268">SFXManager::queue</a></div><div class="ttdeci">void queue(SFXCommands command, SFXBase *sfx=NULL)</div><div class="ttdoc">Adds a sound effect command to the queue of the sfx manager.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:167</div></div>
+<div class="ttc" id="aclassSFXManager_html_a725564f810aa907c59de4bd6269fc71a"><div class="ttname"><a href="classSFXManager.html#a725564f810aa907c59de4bd6269fc71a">SFXManager::SFXCommands</a></div><div class="ttdeci">SFXCommands</div><div class="ttdoc">The various commands to be executed by the sfx manager thread for each sfx.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:65</div></div>
+<div class="ttc" id="aclassSFXManager_html_a7674b3d0973a88959d2413291d9738cb"><div class="ttname"><a href="classSFXManager.html#a7674b3d0973a88959d2413291d9738cb">SFXManager::getListenerPos</a></div><div class="ttdeci">Vec3 getListenerPos() const</div><div class="ttdoc">Returns the current position of the listener.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:303</div></div>
+<div class="ttc" id="aclassSFXManager_html_a789929452c91325a6456429e4be50912"><div class="ttname"><a href="classSFXManager.html#a789929452c91325a6456429e4be50912">SFXManager::loadSfx</a></div><div class="ttdeci">void loadSfx()</div><div class="ttdoc">Loads all sounds specified in the sound config file.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:550</div></div>
+<div class="ttc" id="aclassSFXManager_html_a7cbb8428ae18db08445766cf0814c356"><div class="ttname"><a href="classSFXManager.html#a7cbb8428ae18db08445766cf0814c356">SFXManager::toggleSound</a></div><div class="ttdeci">void toggleSound(const bool newValue)</div><div class="ttdoc">Called when sound was muted/unmuted</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:502</div></div>
+<div class="ttc" id="aclassSFXManager_html_a7fe9b8694f158bb7f0181e405604e9c1"><div class="ttname"><a href="classSFXManager.html#a7fe9b8694f158bb7f0181e405604e9c1">SFXManager::pauseAll</a></div><div class="ttdeci">void pauseAll()</div><div class="ttdoc">Request the pausing of all SFXs.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:899</div></div>
+<div class="ttc" id="aclassSFXManager_html_a81fbf5a731367efd25013e12df029080"><div class="ttname"><a href="classSFXManager.html#a81fbf5a731367efd25013e12df029080">SFXManager::loadSingleSfx</a></div><div class="ttdeci">SFXBuffer * loadSingleSfx(const XMLNode *node, const std::string &amp;path=std::string(&quot;&quot;), const bool load=true)</div><div class="ttdoc">Loads a single sfx from the XML specification.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:644</div></div>
+<div class="ttc" id="aclassSFXManager_html_a8247a5da777e00d8d97a62cc65942ba1"><div class="ttname"><a href="classSFXManager.html#a8247a5da777e00d8d97a62cc65942ba1">SFXManager::m_sfx_manager</a></div><div class="ttdeci">static SFXManager * m_sfx_manager</div><div class="ttdoc">Singleton pointer.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:58</div></div>
+<div class="ttc" id="aclassSFXManager_html_a8da6fe0ba71d520cea6ac1f30b6d7c65"><div class="ttname"><a href="classSFXManager.html#a8da6fe0ba71d520cea6ac1f30b6d7c65">SFXManager::sfxAllowed</a></div><div class="ttdeci">bool sfxAllowed()</div><div class="ttdoc">Returns if sfx can be played.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:537</div></div>
+<div class="ttc" id="aclassSFXManager_html_a92651455e176099f45d12482b84f7d2a"><div class="ttname"><a href="classSFXManager.html#a92651455e176099f45d12482b84f7d2a">SFXManager::stopThread</a></div><div class="ttdeci">void stopThread()</div><div class="ttdoc">Puts a NULL request into the queue, which will trigger the thread to exit.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:323</div></div>
+<div class="ttc" id="aclassSFXManager_html_a9483979ee8f2aa74cd124014fadc3072"><div class="ttname"><a href="classSFXManager.html#a9483979ee8f2aa74cd124014fadc3072">SFXManager::m_all_sfx_types</a></div><div class="ttdeci">std::map&lt; std::string, SFXBuffer * &gt; m_all_sfx_types</div><div class="ttdoc">The buffers and info for all sound effects.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:200</div></div>
+<div class="ttc" id="aclassSFXManager_html_a95ca34cdf5477fba5143892315daf037"><div class="ttname"><a href="classSFXManager.html#a95ca34cdf5477fba5143892315daf037">SFXManager::m_listener_front</a></div><div class="ttdeci">Vec3 m_listener_front</div><div class="ttdoc">The direction the listener is facing.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:192</div></div>
+<div class="ttc" id="aclassSFXManager_html_aa0ddde85fb61e8e150cb8be0b9aca24f"><div class="ttname"><a href="classSFXManager.html#aa0ddde85fb61e8e150cb8be0b9aca24f">SFXManager::mainLoop</a></div><div class="ttdeci">static void mainLoop(void *obj)</div><div class="ttdoc">This loops runs in a different thread, and starts playing sfx.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:345</div></div>
+<div class="ttc" id="aclassSFXManager_html_aa5079a4e567a7e0b72f1f79407248748"><div class="ttname"><a href="classSFXManager.html#aa5079a4e567a7e0b72f1f79407248748">SFXManager::m_sfx_commands</a></div><div class="ttdeci">Synchronised&lt; std::vector&lt; SFXCommand * &gt; &gt; m_sfx_commands</div><div class="ttdoc">The list of sound effects to be played in the next update.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:206</div></div>
+<div class="ttc" id="aclassSFXManager_html_aa75036debee35e2e12c293cf302f884a"><div class="ttname"><a href="classSFXManager.html#aa75036debee35e2e12c293cf302f884a">SFXManager::reallyResumeAllNow</a></div><div class="ttdeci">void reallyResumeAllNow()</div><div class="ttdoc">Resumes all paused SFXs.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:943</div></div>
+<div class="ttc" id="aclassSFXManager_html_ab98d1d4018274ee20eba42895461dad8"><div class="ttname"><a href="classSFXManager.html#ab98d1d4018274ee20eba42895461dad8">SFXManager::addSingleSfx</a></div><div class="ttdeci">SFXBuffer * addSingleSfx(const std::string &amp;sfx_name, const std::string &amp;filename, bool positional, float rolloff, float max_dist, float gain, const bool load=true)</div><div class="ttdoc">Introduces a mechanism by which one can load sound effects beyond the basic enumerated types.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:611</div></div>
+<div class="ttc" id="aclassSFXManager_html_abd7579163edad1ac815c0852d2e01e93"><div class="ttname"><a href="classSFXManager.html#abd7579163edad1ac815c0852d2e01e93">SFXManager::queueCommand</a></div><div class="ttdeci">void queueCommand(SFXCommand *command)</div><div class="ttdoc">Enqueues a command to the sfx queue threadsafe.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:287</div></div>
+<div class="ttc" id="aclassSFXManager_html_ac97e65a4109fe5f4bee09037a827c9da"><div class="ttname"><a href="classSFXManager.html#ac97e65a4109fe5f4bee09037a827c9da">SFXManager::m_condition_variable</a></div><div class="ttdeci">std::condition_variable m_condition_variable</div><div class="ttdoc">A conditional variable to wake up the main loop.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:226</div></div>
+<div class="ttc" id="aclassSFXManager_html_ad5bf4a93f1bb60fb9879e8320fe3a18a"><div class="ttname"><a href="classSFXManager.html#ad5bf4a93f1bb60fb9879e8320fe3a18a">SFXManager::quickSound</a></div><div class="ttdeci">SFXBase * quickSound(const std::string &amp;soundName)</div><div class="ttdoc">Positional sound is cool, but creating a new object just to play a simple menu sound is not.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:1097</div></div>
+<div class="ttc" id="aclassSFXManager_html_adc0ea57a50461f2d6421c4e5d270574e"><div class="ttname"><a href="classSFXManager.html#adc0ea57a50461f2d6421c4e5d270574e">SFXManager::deleteSFX</a></div><div class="ttdeci">void deleteSFX(SFXBase *sfx)</div><div class="ttdoc">Delete a sound effect object, and removes it from the internal list of all SFXs.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:869</div></div>
+<div class="ttc" id="aclassSFXManager_html_adc5987ea967513326ef099b1387d9049"><div class="ttname"><a href="classSFXManager.html#adc5987ea967513326ef099b1387d9049">SFXManager::m_initialized</a></div><div class="ttdeci">bool m_initialized</div><div class="ttdoc">If the sfx manager has been initialised.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:213</div></div>
+<div class="ttc" id="aclassSFXManager_html_ae1496c1ab98c7d95264a7b2dfca5d7ef"><div class="ttname"><a href="classSFXManager.html#ae1496c1ab98c7d95264a7b2dfca5d7ef">SFXManager::setMasterSFXVolume</a></div><div class="ttdeci">void setMasterSFXVolume(float gain)</div><div class="ttdoc">Sets the master volume for all sound effects.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:987</div></div>
+<div class="ttc" id="aclassSFXManager_html_ae2bd5291bd09299829c9b11763a845f6"><div class="ttname"><a href="classSFXManager.html#ae2bd5291bd09299829c9b11763a845f6">SFXManager::positionListener</a></div><div class="ttdeci">void positionListener(const Vec3 &amp;position, const Vec3 &amp;front, const Vec3 &amp;up)</div><div class="ttdoc">Sets the position and orientation of the listener.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:1046</div></div>
+<div class="ttc" id="aclassSFXManager_html_ae6f7d861ae5f79beb7a5aa21be9d4226"><div class="ttname"><a href="classSFXManager.html#ae6f7d861ae5f79beb7a5aa21be9d4226">SFXManager::get</a></div><div class="ttdeci">static SFXManager * get()</div><div class="ttdoc">Static function to get the singleton sfx manager.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:250</div></div>
+<div class="ttc" id="aclassSFXManager_html_aea0fae00a2b46e82827eb7a5939791dc"><div class="ttname"><a href="classSFXManager.html#aea0fae00a2b46e82827eb7a5939791dc">SFXManager::destroy</a></div><div class="ttdeci">static void destroy()</div><div class="ttdoc">Static function to delete the singleton sfx manager.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:69</div></div>
+<div class="ttc" id="aclassSFXManager_html_aeb9f0328b1f34e7585430dbc4534ed84"><div class="ttname"><a href="classSFXManager.html#aeb9f0328b1f34e7585430dbc4534ed84">SFXManager::m_listener_position</a></div><div class="ttdeci">Synchronised&lt; Vec3 &gt; m_listener_position</div><div class="ttdoc">The position of the listener.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:189</div></div>
+<div class="ttc" id="aclassSFXManager_html_af1150b708aa18cfd89a50e766eeb0509"><div class="ttname"><a href="classSFXManager.html#af1150b708aa18cfd89a50e766eeb0509">SFXManager::deleteSFXMapping</a></div><div class="ttdeci">void deleteSFXMapping(const std::string &amp;name)</div><div class="ttdoc">This function removes a sfx buffer info entry from the mapping, and frees the openal buffer.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:779</div></div>
+<div class="ttc" id="aclassSFXManager_html_af547272b3726922633d195a61d6db76d"><div class="ttname"><a href="classSFXManager.html#af547272b3726922633d195a61d6db76d">SFXManager::m_thread</a></div><div class="ttdeci">std::thread m_thread</div><div class="ttdoc">Thread id of the thread running in this object.</div><div class="ttdef"><b>Definition</b> sfx_manager.hpp:220</div></div>
+<div class="ttc" id="aclassSFXManager_html_afe21573175078617f99c83a191a5497c"><div class="ttname"><a href="classSFXManager.html#afe21573175078617f99c83a191a5497c">SFXManager::soundExist</a></div><div class="ttdeci">bool soundExist(const std::string &amp;name)</div><div class="ttdoc">Returns true if a sfx with the given name exists.</div><div class="ttdef"><b>Definition</b> sfx_manager.cpp:769</div></div>
+<div class="ttc" id="aclassSynchronised_html"><div class="ttname"><a href="classSynchronised.html">Synchronised</a></div><div class="ttdoc">A variable that is automatically synchronised using pthreads mutex.</div><div class="ttdef"><b>Definition</b> synchronised.hpp:28</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

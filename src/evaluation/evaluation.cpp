@@ -43,10 +43,10 @@ void Evaluation::loadWorldRecordCSV(const std::string& filename)
 	m_st_index = 0;
 
 	std::ifstream file(filename);
-
+	Log::info("Evaluation", "evaluation track='%s'", filename.c_str());
 	if (!file.is_open())
 	{
-		Log::error("Failed to open world record CSV file: %s", filename.c_str());
+		Log::error("Evaluation", "Failed to open world record CSV file : % s", filename.c_str());
 		return;
 	}
 
@@ -259,7 +259,7 @@ void Evaluation::update(const Vec3& Player)
 	if (m_result.RouteDeviation)
 	{
 		m_current_score -= m_result.SubScore;
-		recordcsv();
+		//recordcsv();
 		if (m_current_score < 0.0f)
 		{
 			m_current_score = 0.0f;
@@ -270,6 +270,7 @@ void Evaluation::update(const Vec3& Player)
 
 void Evaluation::recordcsv()
 {
+	/*
 	std::string directory = STKHost::getRTTLogDirectory();
 	if (directory.empty())
 	{
@@ -298,6 +299,7 @@ void Evaluation::recordcsv()
 	}
 	file.close();
 	Log::info("Evaluation", " 좌표 기록 완료");
+	*/
 }
 
 void Evaluation::render()

@@ -1,0 +1,373 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: graphics/camera/camera.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>graphics</b></li><li class="navelem"><b>camera</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">camera.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2004-2015 Steve Baker &lt;sjbaker1@airmail.net&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  Copyright (C) 2006-2015 SuperTuxKart-Team, Steve Baker</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifndef HEADER_CAMERA_HPP</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#define HEADER_CAMERA_HPP</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;io/xml_node.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;utils/aligned_array.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;utils/log.hpp&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;utils/vec3.hpp&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;matrix4.h&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &quot;rect.h&quot;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;SColor.h&quot;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;vector2d.h&quot;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &quot;ICameraSceneNode.h&quot;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span></div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="};">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classCamera.html">   48</a></span><span class="keyword">class </span>Camera : <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>{</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="};">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1b">   52</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        CM_TYPE_NORMAL,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1bafbf9b930c8a00e57fb2fef20fae144a6">   55</a></span>        <a class="code hl_enumvalue" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1bafbf9b930c8a00e57fb2fef20fae144a6">CM_TYPE_DEBUG</a>,         </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1ba39de0ee5f834725dd4bcc794a22950dd">   56</a></span>        <a class="code hl_enumvalue" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1ba39de0ee5f834725dd4bcc794a22950dd">CM_TYPE_FPS</a>,           </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1ba8e85d56cac7937b4dde697949dfa06d3">   57</a></span>        <a class="code hl_enumvalue" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1ba8e85d56cac7937b4dde697949dfa06d3">CM_TYPE_END</a>            </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    };   <span class="comment">// CameraType</span></div>
+</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">/* Only used for the normal camera. */</span></div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="};">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996">   61</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996">Mode</a></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996a2c92a5ef43fe5e3be0ffdaaeecf78e48">   63</a></span>        <a class="code hl_enumvalue" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996a2c92a5ef43fe5e3be0ffdaaeecf78e48">CM_NORMAL</a>,            </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996ab051dae28ff1c472945fc79d78f658d0">   64</a></span>        <a class="code hl_enumvalue" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996ab051dae28ff1c472945fc79d78f658d0">CM_CLOSEUP</a>,           </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996acf6ec5b855c1c920cbd4b73f44300410">   65</a></span>        <a class="code hl_enumvalue" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996acf6ec5b855c1c920cbd4b73f44300410">CM_REVERSE</a>,           </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996a62b1fa4329821345d5fe92da0c4511d6">   66</a></span>        <a class="code hl_enumvalue" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996a62b1fa4329821345d5fe92da0c4511d6">CM_LEADER_MODE</a>,       </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996ad22367bb49c235cf5056b1e3df0eaa83">   67</a></span>        <a class="code hl_enumvalue" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996ad22367bb49c235cf5056b1e3df0eaa83">CM_SPECTATOR_SOCCER</a>,   </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996acfbcc9f0a0f03533848d45b812d31e85">   68</a></span>        <a class="code hl_enumvalue" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996acfbcc9f0a0f03533848d45b812d31e85">CM_SPECTATOR_TOP_VIEW</a>, </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        CM_SIMPLE_REPLAY,</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        CM_FALLING</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    };   <span class="comment">// Mode</span></div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">static</span> <a class="code hl_class" href="classCamera.html">Camera</a>* s_active_camera;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classCamera.html#a1b4d7f8066ad2206b826b37bcabc253e">   78</a></span>    core::matrix4 <a class="code hl_variable" href="classCamera.html#a1b4d7f8066ad2206b826b37bcabc253e">m_previous_pv_matrix</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classCamera.html#aeb6581b98a21251660b67c6f58e46484">   81</a></span>    <a class="code hl_enumeration" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996">Mode</a>            <a class="code hl_variable" href="classCamera.html#aeb6581b98a21251660b67c6f58e46484">m_mode</a>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_enumeration" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996">Mode</a>            m_previous_mode;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classCamera.html#a05cbaf7816bcb544687b9b4f4f758c92">   85</a></span>    <a class="code hl_enumeration" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a>      <a class="code hl_variable" href="classCamera.html#a05cbaf7816bcb544687b9b4f4f758c92">m_type</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classCamera.html#a8ab8190c5fae88dedd5260439c71aed6">   89</a></span>    <span class="keyword">static</span> <a class="code hl_enumeration" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a> <a class="code hl_variable" href="classCamera.html#a8ab8190c5fae88dedd5260439c71aed6">m_default_type</a>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classCamera.html#a353c36e7cf4c84771487938eb4c7f63c">   93</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>    <a class="code hl_variable" href="classCamera.html#a353c36e7cf4c84771487938eb4c7f63c">m_index</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classCamera.html#aab352c77b648e68e139542e175b3d069">   96</a></span>    video::SColor   <a class="code hl_variable" href="classCamera.html#aab352c77b648e68e139542e175b3d069">m_ambient_light</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classCamera.html#a0d4b560eb5f8c3a8d8aa6507f73cda8c">  101</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>   *<a class="code hl_variable" href="classCamera.html#a0d4b560eb5f8c3a8d8aa6507f73cda8c">m_original_kart</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classCamera.html#a067c93073cb200972c3f6bbc12d22861">  104</a></span>    core::recti     <a class="code hl_variable" href="classCamera.html#a067c93073cb200972c3f6bbc12d22861">m_viewport</a>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classCamera.html#ab9366189de52885c2eb638014d67148c">  107</a></span>    core::vector2df <a class="code hl_variable" href="classCamera.html#ab9366189de52885c2eb638014d67148c">m_scaling</a>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classCamera.html#aa404a4e057fa16fb82ce8668d7a661b6">  110</a></span>    <span class="keywordtype">float</span>           <a class="code hl_variable" href="classCamera.html#aa404a4e057fa16fb82ce8668d7a661b6">m_fov</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classCamera.html#abf58e1558e08e785c929f41b25615c30">  113</a></span>    <span class="keywordtype">float</span>           <a class="code hl_variable" href="classCamera.html#abf58e1558e08e785c929f41b25615c30">m_aspect</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classCamera.html#a3fa260133260b2cd3b705674c5125571">  117</a></span>    <span class="keyword">static</span> std::vector&lt;Camera*&gt; <a class="code hl_variable" href="classCamera.html#a3fa260133260b2cd3b705674c5125571">m_all_cameras</a>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="classCamera.html#aa242f1af649b0bc73ab710dc1986485b">  121</a></span>    scene::ICameraSceneNode *<a class="code hl_variable" href="classCamera.html#aa242f1af649b0bc73ab710dc1986485b">m_camera</a>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classCamera.html#a5c09babcd49903fa41cb1f63131c4e05">  127</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>   *<a class="code hl_variable" href="classCamera.html#a5c09babcd49903fa41cb1f63131c4e05">m_kart</a>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">static</span> Camera* <a class="code hl_function" href="classCamera.html#a556d3a963e8c5537561c40ac1a62146b">createCamera</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index, <a class="code hl_enumeration" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a> type,</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                                <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>             Camera(<a class="code hl_enumeration" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a> type, <span class="keywordtype">int</span> camera_index, <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classCamera.html#ad1897942d0ccf91052386388a497349f">~Camera</a>();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCamera.html#a02be8aa0dbef77e02dddc715a726fb67">reset</a>();</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    LEAK_CHECK()</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="comment">// Static functions</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    static Camera* <a class="code hl_function" href="classCamera.html#a556d3a963e8c5537561c40ac1a62146b">createCamera</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart, const <span class="keywordtype">int</span> index);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    static <span class="keywordtype">void</span> resetAllCameras();</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    static <span class="keywordtype">void</span> changeCamera(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> camera_index, <a class="code hl_enumeration" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a> type);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classCamera.html#aa351b1ed8bc67a0091a2323bbbe81d30">  147</a></span>    static <span class="keywordtype">void</span> <a class="code hl_function" href="classCamera.html#aa351b1ed8bc67a0091a2323bbbe81d30">setDefaultCameraType</a>(<a class="code hl_enumeration" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a> type) { <a class="code hl_variable" href="classCamera.html#a8ab8190c5fae88dedd5260439c71aed6">m_default_type</a> = type;}</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classCamera.html#ab3e30a2c461dd08e971a362a29b2447c">  151</a></span>    <span class="keyword">static</span> <a class="code hl_enumeration" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a> <a class="code hl_function" href="classCamera.html#ab3e30a2c461dd08e971a362a29b2447c">getDefaultCameraType</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classCamera.html#a8ab8190c5fae88dedd5260439c71aed6">m_default_type</a>;}</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00154" data-start="{" data-end="}">
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="classCamera.html#a4cc6b066f970d0d4eae025d9c8847d87">  154</a></span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCamera.html#a4cc6b066f970d0d4eae025d9c8847d87">getNumCameras</a>()</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keywordflow">return</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>)<a class="code hl_variable" href="classCamera.html#a3fa260133260b2cd3b705674c5125571">m_all_cameras</a>.size(); </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    }   <span class="comment">// getNumCameras</span></div>
+</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="classCamera.html#adf8139f97cae012f9c44a0136aac6a89">  160</a></span>    <span class="keyword">static</span> Camera *<a class="code hl_function" href="classCamera.html#adf8139f97cae012f9c44a0136aac6a89">getCamera</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n) { <span class="keywordflow">return</span> <a class="code hl_variable" href="classCamera.html#a3fa260133260b2cd3b705674c5125571">m_all_cameras</a>[n]; }</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="classCamera.html#a0173b9cf18a7cc7358ad75138f53c0f4">  163</a></span>    <span class="keyword">static</span> Camera* <a class="code hl_function" href="classCamera.html#a0173b9cf18a7cc7358ad75138f53c0f4">getActiveCamera</a>() { <span class="keywordflow">return</span> s_active_camera; }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00166" data-start="{" data-end="}">
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classCamera.html#ac7f8f96b5fe5ddb5121066458926830e">  166</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCamera.html#ac7f8f96b5fe5ddb5121066458926830e">removeAllCameras</a>()</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    {</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=0; i&lt;<a class="code hl_variable" href="classCamera.html#a3fa260133260b2cd3b705674c5125571">m_all_cameras</a>.size(); i++)</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>            <span class="keyword">delete</span> <a class="code hl_variable" href="classCamera.html#a3fa260133260b2cd3b705674c5125571">m_all_cameras</a>[i];</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        <a class="code hl_variable" href="classCamera.html#a3fa260133260b2cd3b705674c5125571">m_all_cameras</a>.clear();</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    }   <span class="comment">// removeAllCameras</span></div>
+</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="comment">// ========================================================================</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCamera.html#a7be17b0d4b1363cb46729febc28c3459">setMode</a>(<a class="code hl_enumeration" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996">Mode</a> mode);    </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <a class="code hl_enumeration" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996">Mode</a> <a class="code hl_function" href="classCamera.html#ad4902a8842b0a62d2c1a0fd934394973">getMode</a>();</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <a class="code hl_enumeration" href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996">Mode</a> <a class="code hl_function" href="classCamera.html#a92900c6a46b9f5cecab8e5464af09c52">getPreviousMode</a>();</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classCamera.html#a8b9a886eb915bc06b8b40242486f5c3d">isSpectatorMode</a>();</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCamera.html#af74af83a096aa226ea58e83970c9e2b8">setNextSpectatorMode</a>();</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCamera.html#ad58b325f8511ad46e020591f97c81d1d">setKart</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *new_kart);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCamera.html#ade70f4445144ccaa4dce40535125ce89">setInitialTransform</a>();</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCamera.html#a3d99e6f373c655fccda7a2583da73f41">activate</a>(<span class="keywordtype">bool</span> alsoActivateInIrrlicht=<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCamera.html#a3c1c5346a58c34d7484c988bd3ae6f24">update</a>(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classCamera.html#a3934d40d6a0ef73ba57b53150e0708ab">  186</a></span>    <a class="code hl_enumeration" href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1b">CameraType</a> <a class="code hl_function" href="classCamera.html#a3934d40d6a0ef73ba57b53150e0708ab">getType</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classCamera.html#a05cbaf7816bcb544687b9b4f4f758c92">m_type</a>; }</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="classCamera.html#a6a6629ac1c69b0896dec55d28c781935">  189</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCamera.html#a6a6629ac1c69b0896dec55d28c781935">setFoV</a>() { <a class="code hl_variable" href="classCamera.html#aa242f1af649b0bc73ab710dc1986485b">m_camera</a>-&gt;setFOV(<a class="code hl_variable" href="classCamera.html#aa404a4e057fa16fb82ce8668d7a661b6">m_fov</a>); }</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="classCamera.html#abd00850ba636e723978a1398bd7cac69">  192</a></span>    <span class="keywordtype">int</span>  <a class="code hl_function" href="classCamera.html#abd00850ba636e723978a1398bd7cac69">getIndex</a>()<span class="keyword"> const  </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classCamera.html#a353c36e7cf4c84771487938eb4c7f63c">m_index</a>;}</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classCamera.html#a1b125d02f8c2854eeb65f4a8b9d2d0b6">  195</a></span>    core::matrix4 <a class="code hl_function" href="classCamera.html#a1b125d02f8c2854eeb65f4a8b9d2d0b6">getPreviousPVMatrix</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classCamera.html#a1b4d7f8066ad2206b826b37bcabc253e">m_previous_pv_matrix</a>; }</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="classCamera.html#a0681c658bffebd5dcc91a14fab1944d7">  199</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCamera.html#a0681c658bffebd5dcc91a14fab1944d7">setPreviousPVMatrix</a>(core::matrix4 mat) { <a class="code hl_variable" href="classCamera.html#a1b4d7f8066ad2206b826b37bcabc253e">m_previous_pv_matrix</a> = mat; }</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="classCamera.html#a9f6bc8928f054d3f430616f90544810a">  203</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* <a class="code hl_function" href="classCamera.html#a9f6bc8928f054d3f430616f90544810a">getKart</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classCamera.html#a5c09babcd49903fa41cb1f63131c4e05">m_kart</a>; }</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="classCamera.html#a42b6ab07367d0bdb91bf1888af96cf0f">  207</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* <a class="code hl_function" href="classCamera.html#a42b6ab07367d0bdb91bf1888af96cf0f">getKart</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classCamera.html#a5c09babcd49903fa41cb1f63131c4e05">m_kart</a>; }</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="classCamera.html#a73ec811f1de6863c20060141a922401f">  211</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCamera.html#a73ec811f1de6863c20060141a922401f">setAmbientLight</a>(<span class="keyword">const</span> video::SColor &amp;color) { <a class="code hl_variable" href="classCamera.html#aab352c77b648e68e139542e175b3d069">m_ambient_light</a>=color; }</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="classCamera.html#af289b03d5c2a4ab2ba418707db8a9596">  215</a></span>    <span class="keyword">const</span> video::SColor &amp;<a class="code hl_function" href="classCamera.html#af289b03d5c2a4ab2ba418707db8a9596">getAmbientLight</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classCamera.html#aab352c77b648e68e139542e175b3d069">m_ambient_light</a>; }</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="classCamera.html#a8788bf39df8afaea20650b738da996bf">  219</a></span>    <span class="keyword">const</span> core::recti&amp; <a class="code hl_function" href="classCamera.html#a8788bf39df8afaea20650b738da996bf">getViewport</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classCamera.html#a067c93073cb200972c3f6bbc12d22861">m_viewport</a>; }</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="classCamera.html#a6b81cbe5a0933a563e12f04a997c43ae">  223</a></span>    <span class="keyword">const</span> core::vector2df&amp; <a class="code hl_function" href="classCamera.html#a6b81cbe5a0933a563e12f04a997c43ae">getScaling</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classCamera.html#ab9366189de52885c2eb638014d67148c">m_scaling</a>; }</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="classCamera.html#abf3b771094da3ecbf7749eaf5ca193cb">  227</a></span>    scene::ICameraSceneNode *<a class="code hl_function" href="classCamera.html#abf3b771094da3ecbf7749eaf5ca193cb">getCameraSceneNode</a>() { <span class="keywordflow">return</span> <a class="code hl_variable" href="classCamera.html#aa242f1af649b0bc73ab710dc1986485b">m_camera</a>; }</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="classCamera.html#a40545ac871d7bd7df2b4d61706b9417b">  230</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a> <a class="code hl_function" href="classCamera.html#a40545ac871d7bd7df2b4d61706b9417b">getXYZ</a>() { <span class="keywordflow">return</span> <a class="code hl_class" href="classVec3.html">Vec3</a>(<a class="code hl_variable" href="classCamera.html#aa242f1af649b0bc73ab710dc1986485b">m_camera</a>-&gt;getPosition()); }</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCamera.html#ac578e1621ebc82c1b72972675e91c696">setupCamera</a>();</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>};   <span class="comment">// class Camera</span></div>
+</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="comment">/* EOF */</span></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassCamera_html"><div class="ttname"><a href="classCamera.html">Camera</a></div><div class="ttdoc">This is the base class for all cameras.</div><div class="ttdef"><b>Definition</b> camera.hpp:49</div></div>
+<div class="ttc" id="aclassCamera_html_a0173b9cf18a7cc7358ad75138f53c0f4"><div class="ttname"><a href="classCamera.html#a0173b9cf18a7cc7358ad75138f53c0f4">Camera::getActiveCamera</a></div><div class="ttdeci">static Camera * getActiveCamera()</div><div class="ttdoc">Returns the currently active camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:163</div></div>
+<div class="ttc" id="aclassCamera_html_a02be8aa0dbef77e02dddc715a726fb67"><div class="ttname"><a href="classCamera.html#a02be8aa0dbef77e02dddc715a726fb67">Camera::reset</a></div><div class="ttdeci">virtual void reset()</div><div class="ttdoc">Reset is called when a new race starts.</div><div class="ttdef"><b>Definition</b> camera.cpp:254</div></div>
+<div class="ttc" id="aclassCamera_html_a05cbaf7816bcb544687b9b4f4f758c92"><div class="ttname"><a href="classCamera.html#a05cbaf7816bcb544687b9b4f4f758c92">Camera::m_type</a></div><div class="ttdeci">CameraType m_type</div><div class="ttdoc">The type of the camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:85</div></div>
+<div class="ttc" id="aclassCamera_html_a067c93073cb200972c3f6bbc12d22861"><div class="ttname"><a href="classCamera.html#a067c93073cb200972c3f6bbc12d22861">Camera::m_viewport</a></div><div class="ttdeci">core::recti m_viewport</div><div class="ttdoc">The viewport for this camera (portion of the game window covered by this camera)</div><div class="ttdef"><b>Definition</b> camera.hpp:104</div></div>
+<div class="ttc" id="aclassCamera_html_a0681c658bffebd5dcc91a14fab1944d7"><div class="ttname"><a href="classCamera.html#a0681c658bffebd5dcc91a14fab1944d7">Camera::setPreviousPVMatrix</a></div><div class="ttdeci">void setPreviousPVMatrix(core::matrix4 mat)</div><div class="ttdoc">Returns the project-view matrix of the previous frame.</div><div class="ttdef"><b>Definition</b> camera.hpp:199</div></div>
+<div class="ttc" id="aclassCamera_html_a0d4b560eb5f8c3a8d8aa6507f73cda8c"><div class="ttname"><a href="classCamera.html#a0d4b560eb5f8c3a8d8aa6507f73cda8c">Camera::m_original_kart</a></div><div class="ttdeci">AbstractKart * m_original_kart</div><div class="ttdoc">A pointer to the original kart the camera was pointing at when it was created.</div><div class="ttdef"><b>Definition</b> camera.hpp:101</div></div>
+<div class="ttc" id="aclassCamera_html_a1b125d02f8c2854eeb65f4a8b9d2d0b6"><div class="ttname"><a href="classCamera.html#a1b125d02f8c2854eeb65f4a8b9d2d0b6">Camera::getPreviousPVMatrix</a></div><div class="ttdeci">core::matrix4 getPreviousPVMatrix() const</div><div class="ttdoc">Returns the project-view matrix of the previous frame.</div><div class="ttdef"><b>Definition</b> camera.hpp:195</div></div>
+<div class="ttc" id="aclassCamera_html_a1b4d7f8066ad2206b826b37bcabc253e"><div class="ttname"><a href="classCamera.html#a1b4d7f8066ad2206b826b37bcabc253e">Camera::m_previous_pv_matrix</a></div><div class="ttdeci">core::matrix4 m_previous_pv_matrix</div><div class="ttdoc">The project-view matrix of the previous frame, used for the blur shader.</div><div class="ttdef"><b>Definition</b> camera.hpp:78</div></div>
+<div class="ttc" id="aclassCamera_html_a353c36e7cf4c84771487938eb4c7f63c"><div class="ttname"><a href="classCamera.html#a353c36e7cf4c84771487938eb4c7f63c">Camera::m_index</a></div><div class="ttdeci">unsigned int m_index</div><div class="ttdoc">The index of this camera which is the index of the kart it is attached to.</div><div class="ttdef"><b>Definition</b> camera.hpp:93</div></div>
+<div class="ttc" id="aclassCamera_html_a3934d40d6a0ef73ba57b53150e0708ab"><div class="ttname"><a href="classCamera.html#a3934d40d6a0ef73ba57b53150e0708ab">Camera::getType</a></div><div class="ttdeci">CameraType getType()</div><div class="ttdoc">Returns the type of this camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:186</div></div>
+<div class="ttc" id="aclassCamera_html_a3c1c5346a58c34d7484c988bd3ae6f24"><div class="ttname"><a href="classCamera.html#a3c1c5346a58c34d7484c988bd3ae6f24">Camera::update</a></div><div class="ttdeci">virtual void update(float dt)</div><div class="ttdoc">Called once per time frame to move the camera to the right position.</div><div class="ttdef"><b>Definition</b> camera.cpp:291</div></div>
+<div class="ttc" id="aclassCamera_html_a3d99e6f373c655fccda7a2583da73f41"><div class="ttname"><a href="classCamera.html#a3d99e6f373c655fccda7a2583da73f41">Camera::activate</a></div><div class="ttdeci">virtual void activate(bool alsoActivateInIrrlicht=true)</div><div class="ttdoc">Sets viewport etc.</div><div class="ttdef"><b>Definition</b> camera.cpp:319</div></div>
+<div class="ttc" id="aclassCamera_html_a3fa260133260b2cd3b705674c5125571"><div class="ttname"><a href="classCamera.html#a3fa260133260b2cd3b705674c5125571">Camera::m_all_cameras</a></div><div class="ttdeci">static std::vector&lt; Camera * &gt; m_all_cameras</div><div class="ttdoc">List of all cameras.</div><div class="ttdef"><b>Definition</b> camera.hpp:117</div></div>
+<div class="ttc" id="aclassCamera_html_a40545ac871d7bd7df2b4d61706b9417b"><div class="ttname"><a href="classCamera.html#a40545ac871d7bd7df2b4d61706b9417b">Camera::getXYZ</a></div><div class="ttdeci">Vec3 getXYZ()</div><div class="ttdoc">Returs the absolute position of the camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:230</div></div>
+<div class="ttc" id="aclassCamera_html_a42b6ab07367d0bdb91bf1888af96cf0f"><div class="ttname"><a href="classCamera.html#a42b6ab07367d0bdb91bf1888af96cf0f">Camera::getKart</a></div><div class="ttdeci">AbstractKart * getKart()</div><div class="ttdoc">Returns the kart to which this camera is attached.</div><div class="ttdef"><b>Definition</b> camera.hpp:207</div></div>
+<div class="ttc" id="aclassCamera_html_a4cc6b066f970d0d4eae025d9c8847d87"><div class="ttname"><a href="classCamera.html#a4cc6b066f970d0d4eae025d9c8847d87">Camera::getNumCameras</a></div><div class="ttdeci">static unsigned int getNumCameras()</div><div class="ttdoc">Returns the number of cameras used.</div><div class="ttdef"><b>Definition</b> camera.hpp:154</div></div>
+<div class="ttc" id="aclassCamera_html_a556d3a963e8c5537561c40ac1a62146b"><div class="ttname"><a href="classCamera.html#a556d3a963e8c5537561c40ac1a62146b">Camera::createCamera</a></div><div class="ttdeci">static Camera * createCamera(unsigned int index, CameraType type, AbstractKart *kart)</div><div class="ttdoc">Creates a camera of the specified type, but does not add it to the list of all cameras.</div><div class="ttdef"><b>Definition</b> camera.cpp:76</div></div>
+<div class="ttc" id="aclassCamera_html_a5c09babcd49903fa41cb1f63131c4e05"><div class="ttname"><a href="classCamera.html#a5c09babcd49903fa41cb1f63131c4e05">Camera::m_kart</a></div><div class="ttdeci">AbstractKart * m_kart</div><div class="ttdoc">The kart that the camera follows.</div><div class="ttdef"><b>Definition</b> camera.hpp:127</div></div>
+<div class="ttc" id="aclassCamera_html_a6a6629ac1c69b0896dec55d28c781935"><div class="ttname"><a href="classCamera.html#a6a6629ac1c69b0896dec55d28c781935">Camera::setFoV</a></div><div class="ttdeci">void setFoV()</div><div class="ttdoc">Sets the field of view for the irrlicht camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:189</div></div>
+<div class="ttc" id="aclassCamera_html_a6b81cbe5a0933a563e12f04a997c43ae"><div class="ttname"><a href="classCamera.html#a6b81cbe5a0933a563e12f04a997c43ae">Camera::getScaling</a></div><div class="ttdeci">const core::vector2df &amp; getScaling() const</div><div class="ttdoc">Returns the scaling in x/y direction for this camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:223</div></div>
+<div class="ttc" id="aclassCamera_html_a73ec811f1de6863c20060141a922401f"><div class="ttname"><a href="classCamera.html#a73ec811f1de6863c20060141a922401f">Camera::setAmbientLight</a></div><div class="ttdeci">void setAmbientLight(const video::SColor &amp;color)</div><div class="ttdoc">Sets the ambient light for this camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:211</div></div>
+<div class="ttc" id="aclassCamera_html_a7be17b0d4b1363cb46729febc28c3459"><div class="ttname"><a href="classCamera.html#a7be17b0d4b1363cb46729febc28c3459">Camera::setMode</a></div><div class="ttdeci">void setMode(Mode mode)</div><div class="ttdoc">Sets the mode of the camera.</div><div class="ttdef"><b>Definition</b> camera.cpp:195</div></div>
+<div class="ttc" id="aclassCamera_html_a8788bf39df8afaea20650b738da996bf"><div class="ttname"><a href="classCamera.html#a8788bf39df8afaea20650b738da996bf">Camera::getViewport</a></div><div class="ttdeci">const core::recti &amp; getViewport() const</div><div class="ttdoc">Returns the viewport of this camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:219</div></div>
+<div class="ttc" id="aclassCamera_html_a8ab8190c5fae88dedd5260439c71aed6"><div class="ttname"><a href="classCamera.html#a8ab8190c5fae88dedd5260439c71aed6">Camera::m_default_type</a></div><div class="ttdeci">static CameraType m_default_type</div><div class="ttdoc">The default type for any newly created camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:89</div></div>
+<div class="ttc" id="aclassCamera_html_a8b9a886eb915bc06b8b40242486f5c3d"><div class="ttname"><a href="classCamera.html#a8b9a886eb915bc06b8b40242486f5c3d">Camera::isSpectatorMode</a></div><div class="ttdeci">bool isSpectatorMode()</div><div class="ttdoc">Returns true if camera is a spectator camera</div><div class="ttdef"><b>Definition</b> camera.cpp:235</div></div>
+<div class="ttc" id="aclassCamera_html_a92900c6a46b9f5cecab8e5464af09c52"><div class="ttname"><a href="classCamera.html#a92900c6a46b9f5cecab8e5464af09c52">Camera::getPreviousMode</a></div><div class="ttdeci">Mode getPreviousMode()</div><div class="ttdoc">Returns the last known mode of the camera.</div><div class="ttdef"><b>Definition</b> camera.cpp:227</div></div>
+<div class="ttc" id="aclassCamera_html_a9f6bc8928f054d3f430616f90544810a"><div class="ttname"><a href="classCamera.html#a9f6bc8928f054d3f430616f90544810a">Camera::getKart</a></div><div class="ttdeci">const AbstractKart * getKart() const</div><div class="ttdoc">Returns the kart to which this camera is attached.</div><div class="ttdef"><b>Definition</b> camera.hpp:203</div></div>
+<div class="ttc" id="aclassCamera_html_aa242f1af649b0bc73ab710dc1986485b"><div class="ttname"><a href="classCamera.html#aa242f1af649b0bc73ab710dc1986485b">Camera::m_camera</a></div><div class="ttdeci">scene::ICameraSceneNode * m_camera</div><div class="ttdoc">The camera scene node.</div><div class="ttdef"><b>Definition</b> camera.hpp:121</div></div>
+<div class="ttc" id="aclassCamera_html_aa351b1ed8bc67a0091a2323bbbe81d30"><div class="ttname"><a href="classCamera.html#aa351b1ed8bc67a0091a2323bbbe81d30">Camera::setDefaultCameraType</a></div><div class="ttdeci">static void setDefaultCameraType(CameraType type)</div><div class="ttdoc">Sets the default type for each camera that will be created.</div><div class="ttdef"><b>Definition</b> camera.hpp:147</div></div>
+<div class="ttc" id="aclassCamera_html_aa404a4e057fa16fb82ce8668d7a661b6"><div class="ttname"><a href="classCamera.html#aa404a4e057fa16fb82ce8668d7a661b6">Camera::m_fov</a></div><div class="ttdeci">float m_fov</div><div class="ttdoc">Field of view for the camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:110</div></div>
+<div class="ttc" id="aclassCamera_html_aab352c77b648e68e139542e175b3d069"><div class="ttname"><a href="classCamera.html#aab352c77b648e68e139542e175b3d069">Camera::m_ambient_light</a></div><div class="ttdeci">video::SColor m_ambient_light</div><div class="ttdoc">Current ambient light for this camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:96</div></div>
+<div class="ttc" id="aclassCamera_html_ab3e30a2c461dd08e971a362a29b2447c"><div class="ttname"><a href="classCamera.html#ab3e30a2c461dd08e971a362a29b2447c">Camera::getDefaultCameraType</a></div><div class="ttdeci">static CameraType getDefaultCameraType()</div><div class="ttdoc">Returns the default type for each camera that will be created.</div><div class="ttdef"><b>Definition</b> camera.hpp:151</div></div>
+<div class="ttc" id="aclassCamera_html_ab9366189de52885c2eb638014d67148c"><div class="ttname"><a href="classCamera.html#ab9366189de52885c2eb638014d67148c">Camera::m_scaling</a></div><div class="ttdeci">core::vector2df m_scaling</div><div class="ttdoc">The scaling necessary for each axis.</div><div class="ttdef"><b>Definition</b> camera.hpp:107</div></div>
+<div class="ttc" id="aclassCamera_html_abd00850ba636e723978a1398bd7cac69"><div class="ttname"><a href="classCamera.html#abd00850ba636e723978a1398bd7cac69">Camera::getIndex</a></div><div class="ttdeci">int getIndex() const</div><div class="ttdoc">Returns the camera index (or player kart index, which is the same).</div><div class="ttdef"><b>Definition</b> camera.hpp:192</div></div>
+<div class="ttc" id="aclassCamera_html_abf3b771094da3ecbf7749eaf5ca193cb"><div class="ttname"><a href="classCamera.html#abf3b771094da3ecbf7749eaf5ca193cb">Camera::getCameraSceneNode</a></div><div class="ttdeci">scene::ICameraSceneNode * getCameraSceneNode()</div><div class="ttdoc">Returns the camera scene node.</div><div class="ttdef"><b>Definition</b> camera.hpp:227</div></div>
+<div class="ttc" id="aclassCamera_html_abf58e1558e08e785c929f41b25615c30"><div class="ttname"><a href="classCamera.html#abf58e1558e08e785c929f41b25615c30">Camera::m_aspect</a></div><div class="ttdeci">float m_aspect</div><div class="ttdoc">Aspect ratio for camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:113</div></div>
+<div class="ttc" id="aclassCamera_html_ac578e1621ebc82c1b72972675e91c696"><div class="ttname"><a href="classCamera.html#ac578e1621ebc82c1b72972675e91c696">Camera::setupCamera</a></div><div class="ttdeci">void setupCamera()</div><div class="ttdoc">Sets up the viewport, aspect ratio, field of view, and scaling for this camera.</div><div class="ttdef"><b>Definition</b> camera.cpp:179</div></div>
+<div class="ttc" id="aclassCamera_html_ac7f8f96b5fe5ddb5121066458926830e"><div class="ttname"><a href="classCamera.html#ac7f8f96b5fe5ddb5121066458926830e">Camera::removeAllCameras</a></div><div class="ttdeci">static void removeAllCameras()</div><div class="ttdoc">Remove all cameras.</div><div class="ttdef"><b>Definition</b> camera.hpp:166</div></div>
+<div class="ttc" id="aclassCamera_html_ad1897942d0ccf91052386388a497349f"><div class="ttname"><a href="classCamera.html#ad1897942d0ccf91052386388a497349f">Camera::~Camera</a></div><div class="ttdeci">virtual ~Camera()</div><div class="ttdoc">Removes the camera scene node from the scene.</div><div class="ttdef"><b>Definition</b> camera.cpp:152</div></div>
+<div class="ttc" id="aclassCamera_html_ad4902a8842b0a62d2c1a0fd934394973"><div class="ttname"><a href="classCamera.html#ad4902a8842b0a62d2c1a0fd934394973">Camera::getMode</a></div><div class="ttdeci">Mode getMode()</div><div class="ttdoc">Set the camera to the given mode</div><div class="ttdef"><b>Definition</b> camera.cpp:219</div></div>
+<div class="ttc" id="aclassCamera_html_ad58b325f8511ad46e020591f97c81d1d"><div class="ttname"><a href="classCamera.html#ad58b325f8511ad46e020591f97c81d1d">Camera::setKart</a></div><div class="ttdeci">void setKart(AbstractKart *new_kart)</div><div class="ttdoc">Changes the owner of this camera to the new kart.</div><div class="ttdef"><b>Definition</b> camera.cpp:164</div></div>
+<div class="ttc" id="aclassCamera_html_ade70f4445144ccaa4dce40535125ce89"><div class="ttname"><a href="classCamera.html#ade70f4445144ccaa4dce40535125ce89">Camera::setInitialTransform</a></div><div class="ttdeci">virtual void setInitialTransform()</div><div class="ttdoc">Saves the current kart position as the initial starting position for the camera.</div><div class="ttdef"><b>Definition</b> camera.cpp:267</div></div>
+<div class="ttc" id="aclassCamera_html_adf8139f97cae012f9c44a0136aac6a89"><div class="ttname"><a href="classCamera.html#adf8139f97cae012f9c44a0136aac6a89">Camera::getCamera</a></div><div class="ttdeci">static Camera * getCamera(unsigned int n)</div><div class="ttdoc">Returns a camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:160</div></div>
+<div class="ttc" id="aclassCamera_html_ae94737abf74ae95b4c77a0dc931d5b1b"><div class="ttname"><a href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1b">Camera::CameraType</a></div><div class="ttdeci">CameraType</div><div class="ttdoc">The different camera types that can be used.</div><div class="ttdef"><b>Definition</b> camera.hpp:53</div></div>
+<div class="ttc" id="aclassCamera_html_ae94737abf74ae95b4c77a0dc931d5b1ba39de0ee5f834725dd4bcc794a22950dd"><div class="ttname"><a href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1ba39de0ee5f834725dd4bcc794a22950dd">Camera::CM_TYPE_FPS</a></div><div class="ttdeci">@ CM_TYPE_FPS</div><div class="ttdoc">FPS Camera</div><div class="ttdef"><b>Definition</b> camera.hpp:56</div></div>
+<div class="ttc" id="aclassCamera_html_ae94737abf74ae95b4c77a0dc931d5b1ba8e85d56cac7937b4dde697949dfa06d3"><div class="ttname"><a href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1ba8e85d56cac7937b4dde697949dfa06d3">Camera::CM_TYPE_END</a></div><div class="ttdeci">@ CM_TYPE_END</div><div class="ttdoc">End camera</div><div class="ttdef"><b>Definition</b> camera.hpp:57</div></div>
+<div class="ttc" id="aclassCamera_html_ae94737abf74ae95b4c77a0dc931d5b1bafbf9b930c8a00e57fb2fef20fae144a6"><div class="ttname"><a href="classCamera.html#ae94737abf74ae95b4c77a0dc931d5b1bafbf9b930c8a00e57fb2fef20fae144a6">Camera::CM_TYPE_DEBUG</a></div><div class="ttdeci">@ CM_TYPE_DEBUG</div><div class="ttdoc">A debug camera.</div><div class="ttdef"><b>Definition</b> camera.hpp:55</div></div>
+<div class="ttc" id="aclassCamera_html_aeb6581b98a21251660b67c6f58e46484"><div class="ttname"><a href="classCamera.html#aeb6581b98a21251660b67c6f58e46484">Camera::m_mode</a></div><div class="ttdeci">Mode m_mode</div><div class="ttdoc">Camera&#39;s mode.</div><div class="ttdef"><b>Definition</b> camera.hpp:81</div></div>
+<div class="ttc" id="aclassCamera_html_af1af5904e30a96f8dcd1cbc9851df996"><div class="ttname"><a href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996">Camera::Mode</a></div><div class="ttdeci">Mode</div><div class="ttdef"><b>Definition</b> camera.hpp:62</div></div>
+<div class="ttc" id="aclassCamera_html_af1af5904e30a96f8dcd1cbc9851df996a2c92a5ef43fe5e3be0ffdaaeecf78e48"><div class="ttname"><a href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996a2c92a5ef43fe5e3be0ffdaaeecf78e48">Camera::CM_NORMAL</a></div><div class="ttdeci">@ CM_NORMAL</div><div class="ttdoc">Normal camera mode</div><div class="ttdef"><b>Definition</b> camera.hpp:63</div></div>
+<div class="ttc" id="aclassCamera_html_af1af5904e30a96f8dcd1cbc9851df996a62b1fa4329821345d5fe92da0c4511d6"><div class="ttname"><a href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996a62b1fa4329821345d5fe92da0c4511d6">Camera::CM_LEADER_MODE</a></div><div class="ttdeci">@ CM_LEADER_MODE</div><div class="ttdoc">for deleted player karts in follow the leader</div><div class="ttdef"><b>Definition</b> camera.hpp:66</div></div>
+<div class="ttc" id="aclassCamera_html_af1af5904e30a96f8dcd1cbc9851df996ab051dae28ff1c472945fc79d78f658d0"><div class="ttname"><a href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996ab051dae28ff1c472945fc79d78f658d0">Camera::CM_CLOSEUP</a></div><div class="ttdeci">@ CM_CLOSEUP</div><div class="ttdoc">Closer to kart</div><div class="ttdef"><b>Definition</b> camera.hpp:64</div></div>
+<div class="ttc" id="aclassCamera_html_af1af5904e30a96f8dcd1cbc9851df996acf6ec5b855c1c920cbd4b73f44300410"><div class="ttname"><a href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996acf6ec5b855c1c920cbd4b73f44300410">Camera::CM_REVERSE</a></div><div class="ttdeci">@ CM_REVERSE</div><div class="ttdoc">Looking backwards</div><div class="ttdef"><b>Definition</b> camera.hpp:65</div></div>
+<div class="ttc" id="aclassCamera_html_af1af5904e30a96f8dcd1cbc9851df996acfbcc9f0a0f03533848d45b812d31e85"><div class="ttname"><a href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996acfbcc9f0a0f03533848d45b812d31e85">Camera::CM_SPECTATOR_TOP_VIEW</a></div><div class="ttdeci">@ CM_SPECTATOR_TOP_VIEW</div><div class="ttdoc">for spectator (top view on ball if soccer or top view on kart)</div><div class="ttdef"><b>Definition</b> camera.hpp:68</div></div>
+<div class="ttc" id="aclassCamera_html_af1af5904e30a96f8dcd1cbc9851df996ad22367bb49c235cf5056b1e3df0eaa83"><div class="ttname"><a href="classCamera.html#af1af5904e30a96f8dcd1cbc9851df996ad22367bb49c235cf5056b1e3df0eaa83">Camera::CM_SPECTATOR_SOCCER</a></div><div class="ttdeci">@ CM_SPECTATOR_SOCCER</div><div class="ttdoc">for spectator (in soccer mode)</div><div class="ttdef"><b>Definition</b> camera.hpp:67</div></div>
+<div class="ttc" id="aclassCamera_html_af289b03d5c2a4ab2ba418707db8a9596"><div class="ttname"><a href="classCamera.html#af289b03d5c2a4ab2ba418707db8a9596">Camera::getAmbientLight</a></div><div class="ttdeci">const video::SColor &amp; getAmbientLight() const</div><div class="ttdoc">Returns the current ambient light.</div><div class="ttdef"><b>Definition</b> camera.hpp:215</div></div>
+<div class="ttc" id="aclassCamera_html_af74af83a096aa226ea58e83970c9e2b8"><div class="ttname"><a href="classCamera.html#af74af83a096aa226ea58e83970c9e2b8">Camera::setNextSpectatorMode</a></div><div class="ttdeci">void setNextSpectatorMode()</div><div class="ttdoc">Switch to next spectator mode (a -&gt; soccer -&gt; top view -&gt; a)</div><div class="ttdef"><b>Definition</b> camera.cpp:243</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

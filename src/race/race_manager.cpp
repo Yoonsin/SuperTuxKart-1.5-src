@@ -387,16 +387,49 @@ void RaceManager::computeRandomKartList()
  */
 void RaceManager::startNew(bool from_overworld)
 {
+    //수정사항
     //모든 설정 여기서
     if (UserConfigParams::m_course_evaluation)
     {
-       //m_major_mode = MAJOR_MODE_SINGLE;
-       //m_minor_mode = MINOR_MODE_LAP_TRIAL;
+        //m_major_mode = MAJOR_MODE_SINGLE;
+        //m_minor_mode = MINOR_MODE_LAP_TRIAL;
 
         Evaluation::get()->reset();
-		Evaluation::get()->loadWorldRecordCSV("../../../data/evaluation/hacienda(1)_comparison.csv");
+        const std::string track_name = getTrackName();
+        std::string csv_name;
 
+        if (track_name == "hacienda")
+        {
+            csv_name = "hacienda_comparison.csv";
+        }
+        else if (track_name == "lighthouse") {
+            csv_name = "lighthouse_comparison.csv";
+        }
+        if (!csv_name.empty())
+        {
+#ifdef ANDROID
+            Log::info("CourseEval", "ANDROID branch, config dir='%s'",
+                file_manager->getUserConfigDir().c_str());
+#else
+            Log::info("CourseEval", "NON-ANDROID branch, config dir='%s'",
+                file_manager->getUserConfigDir().c_str());
+#endif
+#ifdef ANDROID
+            const std::string csv_path = file_manager->getUserConfigFile(csv_name);
+            Log::info("RaceManager", "user dir='%s'",
+                file_manager->getUserConfigDir().c_str());
+            Log::info("RaceManager", "csv path='%s', exists=%d",
+                csv_path.c_str(), file_manager->fileExists(csv_path));
+#else
+            const std::string csv_path = "../../../data/evaluation/" + csv_name;
+#endif
+            Evaluation::get()->loadWorldRecordCSV(csv_path);
+        }
     }
+
+    const std::string track_id = getTrackName();
+    Log::info("RaceManager", "evaluation track='%s'", track_id.c_str());
+    //수정사항
 
     m_num_ghost_karts = 0;
     if (m_has_ghost_karts)
@@ -665,8 +698,8 @@ void RaceManager::startNextRace()
         World::setWorld(new ProfileWorld());
     else if(m_minor_mode==MINOR_MODE_FOLLOW_LEADER)
         World::setWorld(new FollowTheLeaderRace());
-    else if(m_minor_mode==MINOR_MODE_NORMAL_RACE ||
-            m_minor_mode==MINOR_MODE_TIME_TRIAL)
+    else if (m_minor_mode == MINOR_MODE_NORMAL_RACE ||
+             m_minor_mode == MINOR_MODE_TIME_TRIAL)
         World::setWorld(new StandardRace());
     else if(m_minor_mode==MINOR_MODE_LAP_TRIAL)
     {
@@ -1362,4 +1395,3 @@ void RaceManager::scheduleBenchmark()
 {
     m_scheduled_benchmark = true;
 }   // scheduleBenchmark
-

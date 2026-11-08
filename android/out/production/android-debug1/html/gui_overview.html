@@ -1,0 +1,474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: GUI Module Overview</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">GUI Module Overview </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>In XML files, widgets are declared in the following fashion :</p>
+<div class="fragment"><div class="line">&lt;widget_name property1=<span class="stringliteral">&quot;value1&quot;</span> property2=<span class="stringliteral">&quot;value2&quot;</span> /&gt;</div>
+</div><!-- fragment --><p>or, for widgets of "spawn" type, with children :</p>
+<div class="fragment"><div class="line">&lt;widget_name property1=<span class="stringliteral">&quot;value1&quot;</span> property2=<span class="stringliteral">&quot;value2&quot;</span> &gt;</div>
+<div class="line">&lt;child1 /&gt;</div>
+<div class="line">&lt;child2 /&gt;</div>
+<div class="line">&lt;/widget_name&gt;</div>
+</div><!-- fragment --><p>The first section of this document describes the widgets you can use; the second describes the properties widgets can take. Not all properties can be applied to all widgets, see the docs for a given widget and a given property for full information.</p>
+<p><br  />
+</p><hr  />
+ <h1 class="doxsection"><a class="anchor" id="toc"></a>
+Table of Contents</h1>
+<hr  />
+<p><a class="el" href="#widgets" title="Widgets">Widgets</a> </p><ul>
+<li><a class="el" href="#widget1" title="WTYPE_RIBBON">WTYPE_RIBBON</a> </li>
+<li><a class="el" href="#widget2" title="WTYPE_SPINNER">WTYPE_SPINNER</a> </li>
+<li><a class="el" href="#widget3" title="WTYPE_BUTTON">WTYPE_BUTTON</a> </li>
+<li><a class="el" href="#widget4" title="WTYPE_ICON_BUTTON">WTYPE_ICON_BUTTON</a> </li>
+<li><a class="el" href="#widget5" title="WTYPE_CHECKBOX">WTYPE_CHECKBOX</a> </li>
+<li><a class="el" href="#widget6" title="WTYPE_LABEL">WTYPE_LABEL</a> </li>
+<li><a class="el" href="#widget7" title="WTYPE_SPACER">WTYPE_SPACER</a> </li>
+<li><a class="el" href="#widget8" title="WTYPE_DIV">WTYPE_DIV</a> </li>
+<li><a class="el" href="#widget9" title="WTYPE_DYNAMIC_RIBBON">WTYPE_DYNAMIC_RIBBON</a> </li>
+<li><a class="el" href="#widget10" title="WTYPE_MODEL_VIEW">WTYPE_MODEL_VIEW</a> </li>
+<li><a class="el" href="#widget11" title="WTYPE_LIST">WTYPE_LIST</a> </li>
+<li><a class="el" href="#widget12" title="WTYPE_PROGRESS">WTYPE_PROGRESS</a> </li>
+<li><a class="el" href="#widget13" title="WTYPE_TEXTBOX">WTYPE_TEXTBOX</a></li>
+</ul>
+<p><a class="el" href="#props" title="Properties">Properties</a> </p><ul>
+<li><a class="el" href="#prop1" title="PROP_ID">PROP_ID</a> </li>
+<li><a class="el" href="#prop2" title="PROP_TEXT">PROP_TEXT</a> </li>
+<li><a class="el" href="#prop3" title="PROP_ICON">PROP_ICON</a> </li>
+<li>prop3.1 </li>
+<li><a class="el" href="#prop4" title="PROP_TEXT_ALIGN, PROP_TEXT_VALIGN">PROP_TEXT_ALIGN, PROP_TEXT_VALIGN</a> </li>
+<li><a class="el" href="#prop5" title="PROP_WORD_WRAP">PROP_WORD_WRAP</a> </li>
+<li><a class="el" href="#prop6" title="PROP_MIN_VALUE, PROP_MAX_VALUE">PROP_MIN_VALUE, PROP_MAX_VALUE</a> </li>
+<li><a class="el" href="#prop7" title="PROP_X, PROP_Y">PROP_X, PROP_Y</a> </li>
+<li><a class="el" href="#prop8" title="PROP_WIDTH, PROP_HEIGHT">PROP_WIDTH, PROP_HEIGHT</a> </li>
+<li><a class="el" href="#prop9" title="PROP_MAX_WIDTH, PROP_MAX_HEIGHT">PROP_MAX_WIDTH, PROP_MAX_HEIGHT</a> </li>
+<li><a class="el" href="#prop10" title="PROP_CHILD_WIDTH, PROP_CHILD_HEIGHT">PROP_CHILD_WIDTH, PROP_CHILD_HEIGHT</a> </li>
+<li><a class="el" href="#prop11" title="PROP_LAYOUT">PROP_LAYOUT</a> </li>
+<li><a class="el" href="#prop12" title="PROP_ALIGN">PROP_ALIGN</a> </li>
+<li><a class="el" href="#prop13" title="PROP_PROPORTION">PROP_PROPORTION</a> </li>
+<li><a class="el" href="#prop14" title="PROP_SQUARE">PROP_SQUARE</a> </li>
+<li><a class="el" href="#prop15" title="PROP_EXTEND_LABEL">PROP_EXTEND_LABEL</a> </li>
+<li><a class="el" href="#prop16" title="PROP_LABELS_LOCATION">PROP_LABELS_LOCATION</a> </li>
+<li><a class="el" href="#prop17" title="PROP_MAX_ROWS">PROP_MAX_ROWS</a> </li>
+<li><a class="el" href="#prop18" title="PROP_WRAP_AROUND">PROP_WRAP_AROUND</a></li>
+</ul>
+<p><a class="el" href="#code" title="Using the engine in code">Using the engine in code</a></p>
+<p><a class="el" href="#internals" title="Inside the GUI Engine">Inside the GUI Engine</a></p>
+<p><br  />
+<br  />
+</p><hr  />
+ <h1 class="doxsection"><a class="anchor" id="widgets"></a>
+Widgets</h1>
+<hr  />
+<p>This section describes the widgets you can use in STK's GUI XML files. The upper-case name starting with WTYPE_* is the internal name of the widget (see the WidgetType enum).</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="widget1"></a>
+WTYPE_RIBBON</h2>
+<p><em> Names in XML files: </em> <code>"ribbon"</code>, <code>"buttonbar"</code>, <code>"tabs"</code>, <code></code>"vertical-tabs"</p>
+<p>Appears as an horizontal bar containing elements laid in a row, each being and icon and/or a label</p>
+<ul>
+<li>The "ribbon" subcategory will behave a bit like a radio button group, i.e. one element must selected. Events are triggered as soon as a choice is selected (can be simply by hovering). </li>
+<li>The "buttonbar" subcategory treats children buttons as action buttons, which means they can't have a 'selected' state, only focused or not (i.e. there is no selection that remains if you leave this area). Events are triggered only on enter/fire. </li>
+<li>The "tabs" subcategory will show a tab bar. behaviour is same as normal ribbon, only looks are different. Orientation of tabs (up or down) is automatically inferred from on-screen position</li>
+</ul>
+<dl class="section note"><dt>주의</dt><dd>Ribbon widgets are of spawn type (&lt;ribbon&gt; ... &lt;/ribbon&gt;) and may contain icon-buttons or buttons as children. </dd>
+<dd>
+Property PROP_SQUARE can be set to tell the engine if the ribbon's contents are rectangular or not (this will affect the type of highlighting used) </dd>
+<dd>
+All elements within a ribbon must have an 'ID' property </dd>
+<dd>
+Ribbons (e.g. tabs) can have their elements dynamically added at runtime, too. Just add no children to the ribbon in the XML file, and add them at runtime through the method for this. </dd>
+<dd>
+The layout algorithm will reserve space for at most one line of text (if needed) for ribbon elements. If you have ribbon elements with long texts that spawn many lines, 1. give the word_wrap="true" property to the icon button widget in the XML file; 2. expect that the extra lines will not be accounted for in the sizing algorithms (i.e. extra lines will just expand over whatever is located under the ribbon)</dd></dl>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="widget2"></a>
+WTYPE_SPINNER</h2>
+<p>Names in XML files:  <code>"spinner"</code>, <code>"gauge"</code> </p>
+<p>A spinner component (lets you choose numbers).</p>
+<p>Specify PROP_MIN_VALUE and PROP_MAX_VALUE to have control over values (default will be from 0 to 99). You can specify an icon; then, include a sprintf format string like i in the name, and at runtime the current number will be inserted into the given name to find the right file for each possible value the spinner can take. It may also display arbitrary text instead of numbers, though this cannot be achieve in the XML file; use the -&gt;addLabel(...) method in code to do this. It can also display arbitrary text containing the value; just define the PROP_TEXT property to contain the text you want, including a format string i where the value should appear (a string that does not contain i will result in the same text being displayed in the spinner no matter the current value). </p><dl class="section note"><dt>주의</dt><dd>The "gauge" variant behaves similarly, but a fill band shows how close to the max the value is.</dd></dl>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="widget3"></a>
+WTYPE_BUTTON</h2>
+<p><em> Name in XML files: </em> <code>"button"</code> </p>
+<p>A plain text button.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="widget4"></a>
+WTYPE_ICON_BUTTON</h2>
+<p><em> Names in XML files: </em> <code>"icon-button"</code>, <code>"icon"</code> </p>
+<p>A component with an image, and optional text to go under it.</p>
+<dl class="section note"><dt>주의</dt><dd>The "icon" variant will have no border and will not be clickable. PROP_ICON is mandatory for this component. There are three ways to place the texture within the allocated space; the default (and only way currently accessible through xml files) is to scale the texture to fit, while preserving its aspect ratio; other methods, currently only accessible through C++ code, are to stretch the texture to fill the area without caring for aspect ratio, and another to respect an aspect ratio other than the texture's (useful for track screenshots, which are 4:3 compressed to fit in a power-of-two 256x256 texture) </dd>
+<dd>
+Supports property PROP_FOCUS_ICON</dd></dl>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="widget5"></a>
+WTYPE_CHECKBOX</h2>
+<p><em> Name in XML files: </em> <code>"checkbox"</code> </p>
+<p>A checkbox.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="widget6"></a>
+WTYPE_LABEL</h2>
+<p><em> Names in XML files: </em> <code>"label"</code>, <code>"header"</code> , <code>"bright"</code> </p>
+<p>A plain label.</p>
+<p>Supports properties PROP_WORD_WRAP and PROP_TEXT_ALIGN. </p><dl class="section note"><dt>주의</dt><dd>The "header" variant uses a bigger and more colourful font. </dd>
+<dd>
+The "bright" variant uses a more colourful font but is not bigger.</dd></dl>
+<p><code>WTYPE_BUBBLE</code> is a variation of the plain label; the difference with a bubble widget is that it can be focused, and when focused it will expand to show more text, if the label is too long to be displayed in the allocated space.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="widget7"></a>
+WTYPE_SPACER</h2>
+<p><em> Name in XML files: </em> <code>"spacer"</code> </p>
+<p>Some blank space; not visible on screen.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="widget8"></a>
+WTYPE_DIV</h2>
+<p><em> Name sin XML files: </em> <code>"div"</code>, <code>"box"</code> </p>
+<p>An invisible container.</p>
+<ul>
+<li>Divs do not do much on themselves, but are useful to lay out children automatically (Supports property PROP_LAYOUT) </li>
+<li>Divs can be nested. </li>
+<li>Of spawn type (&lt;div&gt;...&lt;/div&gt;, place children within) <dl class="section note"><dt>주의</dt><dd>"box" is a variant that acts exactly the same but is visible on-screen</dd></dl>
+<br  />
+</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="widget9"></a>
+WTYPE_DYNAMIC_RIBBON</h2>
+<p>Names in XML files:  <code>"ribbon_grid"</code>, <code>"scrollable_ribbon"</code>, <code>"scrollable_toolbar"</code> </p>
+<p>Builds upon the basic Ribbon to be more dynamic (dynamics contents, possibly with scrolling, possibly multi-line)</p>
+<ul>
+<li>NOT of spawn type (&lt;ribbon_grid .../&gt;), i.e. children are not specified in the XML file but programmatically at runtime. </li>
+<li>PROP_CHILD_WIDTH and PROP_CHILD_HEIGHT are mandatory (so at least aspect ratio of elements that will later be added is known) An interesting aspect of PROP_CHILD_WIDTH and PROP_CHILD_HEIGHT is that you can use them to show textures to any aspect ratio you want (so you can e.g. save textures to a power-of-two size like 256x256, but then show it in 4:3 ratio). </li>
+<li>Property PROP_SQUARE can be set to tell the engine if the ribbon's contents are rectangular or icons (this will affect the type of highlighting used). </li>
+<li>Supports an optional label at the bottom if PROP_LABELS_LOCATION is set (see more on PROP_LABELS_LOCATION below). <dl class="section note"><dt>주의</dt><dd>The "scrollable_ribbon" and "scrollable_toolbar" subtypes are single-line scrollable ribbons. The difference between both is that 'scrollable_ribbon' always has a value selected (like in a combo box, or radio buttons), while 'scrollable_toolbar' is a scrollable list of buttons that can be pressed to trigger actions.</dd></dl>
+<br  />
+</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="widget10"></a>
+WTYPE_MODEL_VIEW</h2>
+<p><em> Name in XML files: </em> <code>"model"</code> </p>
+<p>Displays a 3D model.</p>
+<dl class="section note"><dt>주의</dt><dd>Contents must be set programmatically.</dd></dl>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="widget11"></a>
+WTYPE_LIST</h2>
+<p><em> Name in XML files: </em> <code>"list"</code> </p>
+<p>Displays a list.</p>
+<dl class="section note"><dt>주의</dt><dd>Contents must be set programmatically.</dd></dl>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="widget12"></a>
+WTYPE_PROGRESS</h2>
+<p><em> Name in XML files: </em> <code>"progressbar"</code> </p>
+<p>Display a progress bar (e.g. for downloads).</p>
+<dl class="section note"><dt>주의</dt><dd>The value must be set programmatically.</dd></dl>
+<p><br  />
+ </p>
+<h2 class="doxsection"><a class="anchor" id="widget13"></a>
+WTYPE_TEXTBOX</h2>
+<p><em> Name in XML files: </em> <code>"textbox"</code> </p>
+<p>A text field where the user can type text</p>
+<p><br  />
+<br  />
+</p><hr  />
+ <h1 class="doxsection"><a class="anchor" id="props"></a>
+Properties</h1>
+<hr  />
+<h2 class="doxsection"><a class="anchor" id="prop1"></a>
+PROP_ID</h2>
+<p><em> Name in XML files: </em> <code>"id"</code> </p>
+<p>Gives a unique internal name to each object using this property. It will be used in events callbacks to determine what action occurred. Can be omitted on components that do not trigger events (e.g. labels)</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop2"></a>
+PROP_TEXT</h2>
+<p><em> Name in XML files: </em> <code>"text"</code> or "raw_text" ("text" is translated, "raw_text" is not)</p>
+<p>gives text (a label) to the widget where supported. Ribbon-grids give a special meaning to this parameter, see ribbon-grid docs above.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop3"></a>
+PROP_ICON</h2>
+<p><em> Name in XML files: </em> <code>"icon"</code> </p>
+<p>give an icon to the widget. Property contents is the path to the file, by default relative to the /data directory of STK (several methods of <a class="el" href="classGUIEngine_1_1IconButtonWidget.html" title="A button widget with an icon and optionnaly a label beneath">IconButtonWidget</a> and DynamicRibbon can enable you to use absolute paths if you wish, however).</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id=""></a>
+</h2>
+<p><em> Name in XML files: </em> <code>"focus_icon"</code> </p>
+<p>For icon buttons. A different icon to show when the item is focused.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop4"></a>
+PROP_TEXT_ALIGN, PROP_TEXT_VALIGN</h2>
+<p><em> Name in XML files: </em> <code>"text_align"</code>, "text_valign"</p>
+<p>used exclusively by label components. Value can be "right" or "center" (left used if not specified) for "text_align", or "top"/"center"/"bottom" for valign.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop5"></a>
+PROP_WORD_WRAP</h2>
+<p><em> Name in XML files: </em> <code>"word_wrap"</code> </p>
+<p>used by label components and icon buttons. Value can be "true" to indicate that long text should spawn on multiple lines. Warning, in icon buttons, the space under the button's text may be rendered unclickable by the label widget overlapping other widgets under.</p>
+<p>Line breaks are done on space characters; if one word is too long to fit on one line, then SHY (soft hyphen) characters are searched and breaks can be added there.</p>
+<p>Note that for multiline labels, the layout engine is unable to guess their width and height on their own so you should explicitely give a width and height for labels that use this flag.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop6"></a>
+PROP_MIN_VALUE, PROP_MAX_VALUE</h2>
+<p><em> Name in XML files: </em> <code>"min_value"</code>, <code>"max_value"</code> </p>
+<p>used to specify a minimum and maximum value for numeric widgets (c.f. spinner)</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop7"></a>
+PROP_X, PROP_Y</h2>
+<p><em> Name in XML files: </em> <code>"x"</code>, "y"</p>
+<p>sets the position (location) of a widget, relative to its parent (container &lt;div&gt; or screen if none). A plain number will be interpreted as an aabsolute position in pixels. A '' sign may be added to the given number to mean that the location is specified in terms of a percentage of parent size (parent size means the parent &lt;div&gt; or the whole screen if none). A negative value can also be passed to start coordinate from right and/or bottom, instead of starting from top-left corner as usual. Note that in many cases, it is not necessary to manually set a position. Div layouts will often manage that for you (see PROP_LAYOUT). Other widgets will also automatically manage the position and size of their children, for instance ribbons.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop8"></a>
+PROP_WIDTH, PROP_HEIGHT</h2>
+<p><em> Name in XML files: </em> <code>"width"</code>, <code>"height"</code> </p>
+<p>give dimensions to the widget. A plain number will be interpreted as an absolute position in pixels. A '' sign may be added to the given number to mean that the size is specified in terms of a percentage of parent size (parent size means the parent &lt;div&gt; or the whole screen if none). Note that in many cases, it is not necessary to manually a size. Div layouts will often manage that for you (see PROP_LAYOUT). In addition, sizes are automatically calculated for widgets made of icons and/or text like labels and plain icons. Other widgets will also automatically manage the position and size of their children, for instance ribbons.</p>
+<p>Another possible value is "fit", which will make a &lt;div&gt; fit to its contents.</p>
+<p>Another possible value is "font", which will use the size of the font (useful to insert widgets inside text)</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop9"></a>
+PROP_MAX_WIDTH, PROP_MAX_HEIGHT</h2>
+<p><em> Names in XML files: </em> <code>"max_width"</code>, <code>"max_height"</code> </p>
+<p>The maximum size a widget can take; especially useful when using percentages and proportions.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop10"></a>
+PROP_CHILD_WIDTH, PROP_CHILD_HEIGHT</h2>
+<p><em> Names in XML files: </em> <code>"child_width"</code>, <code>"child_height"</code> </p>
+<p>Used exclusively by the ribbon grid widget. See docs for this widget above.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop11"></a>
+PROP_LAYOUT</h2>
+<p><em> Name in XML files: </em> <code>"layout"</code> </p>
+<p>Valid on 'div' containers. Value can be "horizontal-row" or "vertical-row". This means x and y coordinates of all children will automatically be calculated at runtime, so they are laid in a row. Width and height can be set absolutely as usual, but can also be determined dynamically according to available screen space. Also see PROP_ALIGN and PROP_PROPORTION to known more about controlling layouts. Note that all components within a layed-out div will ignore all x/y coordinates you may give them as parameter.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop12"></a>
+PROP_ALIGN</h2>
+<p><em> Name in XML files: </em> <code>"align"</code> </p>
+<p>For widgets located inside a vertical-row layout div : Changes how the x coord of the widget is determined. Value can be <code>"left"</code>, <code>"center"</code> or <code>"right"</code>.</p>
+<p>For widgets located inside a horizontal-row layout div : Changes how the y coord of the widget is determined. Value can be <code>"top"</code>, <code>"center"</code> or <code>"bottom"</code>.</p>
+<dl class="section note"><dt>주의</dt><dd>If you want to horizontally center widgets in a horizontal-row layout, or vertically center widgets in a vertical-row layout, this property is not what you're looking for; instead, add a stretching spacer before and after the widget(s) you want to center.</dd>
+<dd>
+When applied to a label widget, this property will center the text widget within its parent. To align the text inside the label widget, see <a class="el" href="#prop4" title="PROP_TEXT_ALIGN, PROP_TEXT_VALIGN">PROP_TEXT_ALIGN, PROP_TEXT_VALIGN</a></dd></dl>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop13"></a>
+PROP_PROPORTION</h2>
+<p><em> Name in XML files: </em> <code>"proportion"</code> </p>
+<p>Helps determining widget size dynamically (according to available screen space) in layed-out divs. In a vertical row layout, proportion sets the height of the item. In an horizontal row, it sets the width of the item. Proportions are always evaluated relative to the proportions of other widgets in the same div. If one div contains 4 widgets, and their proportions are 1-2-1-1, it means the second must take twice as much space as the 3 others. In this case, 10-20-10-10 would do the exact same effect. 1-1-1-1 would mean all take 1/4 of the available space. Note that it is allowed to mix absolute widget sizes and proportions; in this case, widgets with absolute size are evaluated first, and the dynamically-sized ones split the remaining space according to their proportions.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop14"></a>
+PROP_SQUARE</h2>
+<p><em> Name in XML files: </em> <code>"square_items"</code> </p>
+<p>Valid on Ribbons or RibbonGrids. Can be "true" (omitting it means "false"). Indicates whether the contents use rectangular icons as opposed to "round" icons (this will affect the type of focus/highlighting used)</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop15"></a>
+PROP_EXTEND_LABEL</h2>
+<p><em> Name in XML files: </em> <code>"extend_label"</code> </p>
+<p>How many pixels the label is allowed to expand beyond the boundaries of the widget itself. Currently only allowed on icon widgets.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop16"></a>
+PROP_LABELS_LOCATION</h2>
+<p><em> Name in XML files: </em> <code>"label_location"</code> </p>
+<p>In dynamic ribbons : Decides where the label is. Value can be "each", "bottom", or "none" (if ommitted, "none" is the default). "each" means that every item has its own label. "bottom" means there is a single label for all at the bottom, that displays the name of the current item.</p>
+<p>In non-dynamic ribbons, you can also use value "hover" which will make the label only visible when the icon is hovered with the mouse.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop17"></a>
+PROP_MAX_ROWS</h2>
+<p><em> Name in XML files: </em> <code>"max_rows"</code> </p>
+<p>Currently used for ribbon grids only. Indicates the maximum amount of rows this ribbon can have.</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop18"></a>
+PROP_WRAP_AROUND</h2>
+<p><em> Name in XML files: </em> <code>"wrap_around"</code> </p>
+<p>Currently used for spinners only. Value can be "true" or "false"</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop19"></a>
+PROP_DIV_PADDING</h2>
+<p><em> Name in XML files: </em> <code>"padding"</code> </p>
+<p>Used on divs, indicate by how many pixels to pad contents</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop20"></a>
+PROP_KEEP_SELECTION</h2>
+<p><em> Name in XML files: </em> <code>"keep_selection"</code> </p>
+<p>Used on lists, indicates that the list should keep showing the selected item even when it doesn't have the focus</p>
+<p><br  />
+</p>
+<h2 class="doxsection"><a class="anchor" id="prop21"></a>
+PROP_COLOR_SLIDER</h2>
+<p><em> Name in XML files: </em> <code>"color_slider"</code> </p>
+<p>Used for gauges only, to indicate if it is a color slider. Value can be "true" or "false"</p>
+<p><br  />
+</p><hr  />
+ <h1 class="doxsection"><a class="anchor" id="code"></a>
+Using the engine in code</h1>
+<hr  />
+<p>The first thing to do is to derive a class of your own from <a class="el" href="classGUIEngine_1_1AbstractStateManager.html" title="Abstract base class you must override from to use the GUI engine">AbstractStateManager</a>. There are a few callbacks you will need to override. Once it's done, you have all <a class="el" href="classGUIEngine_1_1AbstractStateManager.html" title="Abstract base class you must override from to use the GUI engine">AbstractStateManager</a> methods ready to be used to push/pop/set menus on the screen stack. Once you have instanciated your state manager class, call <a class="el" href="namespaceGUIEngine.html#a73f12dfc0ff60b70dbee4b8de725c08f" title="Call this method to init the GUI engine.">GUIEngine::init</a> and pass it as argument. One of the most important callbacks is 'eventCallback', which will be called everytime something happens. Events are generally a widget state change. In this case, a pointer to the said widget is passed along its name, so you get its new state and/or act.</p>
+<p>When you have described the general layout of a <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">Screen</a> in a XML file, as described above, you may use it in the code by creating a class deriving from <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">GUIEngine::Screen</a>, passing the name of the XML file to the constructor of the base class. The derived class will most notably be used for event callbacks, to allowcreating interactive menus. The derived class must also implement the <a class="el" href="classGUIEngine_1_1Screen.html#a83b1198dc25fb5134437c49bbcaf1cca" title="Callback invoked when entering this menu (after the widgets have been added).">Screen::init</a> and <a class="el" href="classGUIEngine_1_1Screen.html#ab8d386e8e722252e8948926ef7f75e70" title="Callback invoked before leaving this menu.">Screen::tearDown</a> methods, that will be called, respectively, when a menu is entered/left. For simple menus, it is not unexpected that those methods do nothing. For init and tearDown the corresponding function in <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">Screen</a> must be called. Note that init is called after the irrlicht elements have been added on screen; if you wish to alter elements BEFORE they are actually added, use either <a class="el" href="classGUIEngine_1_1Screen.html#a8cf84ec2fb5e376c80f78eb803101f95" title="Callback invoked when loading this menu.">Screen::loadedFromFile</a> or <a class="el" href="classGUIEngine_1_1Screen.html#a82941ad85f03ef222d3b6844f132ccc9" title="Optional callback invoked very early, before widgets have been added (contrast with init(),...">Screen::beforeAddingWidget</a> ; the difference is that the first is called once only upon loading, whereas the second is called every time the menu is visited.</p>
+<p><br  />
+Summary of callbacks, in order :</p>
+<ul>
+<li>(Load the <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">Screen</a> from file : <a class="el" href="classGUIEngine_1_1Screen.html#aeaeec9d06c95b3395b1c0487482dc953" title="loads this Screen from the file passed to the constructor">Screen::loadFromFile</a> is called automatically the first time you reference this screen through the <a class="el" href="classStateManager.html" title="A concrete scene manager, derived from GUIEngine&#39;s AbastractSceneManager">StateManager</a>) </li>
+<li><a class="el" href="classGUIEngine_1_1Screen.html#a8cf84ec2fb5e376c80f78eb803101f95" title="Callback invoked when loading this menu.">Screen::loadedFromFile</a> is called (implement it if you need it) </li>
+<li>(Ask to visit the screen through the <a class="el" href="classStateManager.html" title="A concrete scene manager, derived from GUIEngine&#39;s AbastractSceneManager">StateManager</a>) </li>
+<li><a class="el" href="classGUIEngine_1_1Screen.html#a82941ad85f03ef222d3b6844f132ccc9" title="Optional callback invoked very early, before widgets have been added (contrast with init(),...">Screen::beforeAddingWidget</a> (implement it if you need it) </li>
+<li><a class="el" href="classGUIEngine_1_1Widget.html#a1cc1f99cf35adaf40576cda1c98762c6" title="Create and add the irrLicht widget(s) associated with this object.">Widget::add</a> is called automatically on each <a class="el" href="classGUIEngine_1_1Widget.html" title="The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...">Widget</a> of the screen </li>
+<li><a class="el" href="classGUIEngine_1_1Screen.html#a83b1198dc25fb5134437c49bbcaf1cca" title="Callback invoked when entering this menu (after the widgets have been added).">Screen::init</a> (implement it if you need it) </li>
+<li>(Ask to leave the <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">Screen</a> through the <a class="el" href="classStateManager.html" title="A concrete scene manager, derived from GUIEngine&#39;s AbastractSceneManager">StateManager</a>) </li>
+<li><a class="el" href="classGUIEngine_1_1Screen.html#ab8d386e8e722252e8948926ef7f75e70" title="Callback invoked before leaving this menu.">Screen::tearDown</a> (implement it if you need it) </li>
+<li><a class="el" href="classGUIEngine_1_1Widget.html#a83c8513a55f472e6704083feeff89289" title="Called when irrLicht widgets cleared.">Widget::elementRemoved</a> is called automatically on each <a class="el" href="classGUIEngine_1_1Widget.html" title="The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...">Widget</a> of the screen</li>
+</ul>
+<p><a class="el" href="classGUIEngine_1_1Widget.html#aa3f034f686794c916328f66b3a0360a2" title="A map that holds values for all specified widget properties (in the XML file)">Widget::m_properties</a> contains all the widget properties as loaded from the XML file. They are generally only read from the <a class="el" href="classGUIEngine_1_1Widget.html#a1cc1f99cf35adaf40576cda1c98762c6" title="Create and add the irrLicht widget(s) associated with this object.">Widget::add</a> method, so if you alter a property after 'add()' was called it will not appear on screen.</p>
+<p>Note that the same instance of your object may be entered/left more than once, so make sure that one instance of your object can be used several times if the same screen is visited several times.</p>
+<p>Note that the same instance of your object may be unloaded then loaded back later. It is thus important to do set-up in the <a class="el" href="classGUIEngine_1_1Screen.html#a8cf84ec2fb5e376c80f78eb803101f95" title="Callback invoked when loading this menu.">Screen::loadedFromFile</a> callback rather than in the constructor (after the creation of <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">Screen</a> object, it may be unloaded then loaded back at will, this is why it's important to not rely on the constructor to perform set-up).</p>
+<p>Do not delete a <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">Screen</a> manually, since the <a class="el" href="namespaceGUIEngine.html" title="Contains all GUI engine related classes and functions">GUIEngine</a> caches them; deleting a <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">Screen</a> will only result in dangling pointers in the <a class="el" href="namespaceGUIEngine.html" title="Contains all GUI engine related classes and functions">GUIEngine</a>. Instead, let the <a class="el" href="namespaceGUIEngine.html" title="Contains all GUI engine related classes and functions">GUIEngine</a> do the cleanup itself on shutdown, or on e.g. resolution change.</p>
+<p>You can also explore the various methods in <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">Screen</a> to discover more optional callbacks you can use.</p>
+<p>You can also create dialogs by deriving from <a class="el" href="classGUIEngine_1_1ModalDialog.html" title="Abstract base class representing a modal dialog.">ModalDialog</a> in a very similar way.</p>
+<p><br  />
+</p><hr  />
+ <h1 class="doxsection"><a class="anchor" id="internals"></a>
+Inside the GUI Engine</h1>
+<hr  />
+<h2 class="doxsection"><a class="anchor" id="Widget"></a>
+Widget</h2>
+<p>SuperTuxKart's <a class="el" href="classGUIEngine_1_1Widget.html" title="The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...">GUIEngine::Widget</a> class is a wrapper for the underlying irrlicht classes. This is needed for a couple reasons :</p><ul>
+<li>irrlicht widgets do not do everything we want; so many STK widgets act as composite widgets (create multiple irrlicht widgets and adds logic so they behave as a whole to the end-user)</li>
+<li>STK widgets have a longer life-span than their underlying irrlicht counterparts. This is simply an optimisation measure to prevent having to seek the file to disk everytime a screen switch occurs.</li>
+</ul>
+<p>Each widget contains one (or several) <code>irr::gui::IGUIElement</code> instances that represent the irrlicht widget that is added to the <code>IGUIEnvironment</code> if the widget is currently shown; if a widget is not currently shown on screen (in irrlicht's <code>IGUIEnvironment</code>), then its underlying <code>IGUIElement</code> pointer will be <code>NULL</code> but the widget continues to exist and remains ready to re-create its underlying irrlicht widget when the screen it is part of is added again. The method <code>add()</code> is used to tell a widget to create its irrlicht counterpart in the <code>IGUIEnvironment</code> - but note that unless you start handling stuff manually you do NOT need to invoke <code>add()</code> on each widget manually, since the parent <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">GUIEngine::Screen</a> object will do it automatically when it is shown. When the irrlicht <code>IGUIEnvironment</code> is cleared (when irrlicht widgets are removed), it is very important to tell the Widgets that their pointer to their \cIGUIElement counterpart is no more valid; this is done by calling <code>elementRemoved()</code> - but again unless you do manual manipulation of the widget tree, the <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">GUIEngine::Screen</a> object will take care of this for you.</p>
+<p>So, before trying to access the underlying irrlicht element of a <a class="el" href="classGUIEngine_1_1Widget.html" title="The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...">GUIEngine::Widget</a>, it is thus important to check if the <a class="el" href="classGUIEngine_1_1Widget.html" title="The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...">GUIEngine::Widget</a> is currently added to the irr <code>IGUIEnvironment</code>. This can be done by calling <code>-&gt;getIrrlichtElement()</code> and checking if the result is <code>NULL</code> (if non-null, the widget is currently added to the screen). Of course, in some circumstances, the check can be skipped because the widget is known to be currently visible.</p>
+<p>VERY IMPORTANT: some methods should only be called before <a class="el" href="classGUIEngine_1_1Screen.html#a83b1198dc25fb5134437c49bbcaf1cca" title="Callback invoked when entering this menu (after the widgets have been added).">Screen::init</a>, and some methods should only be called after <a class="el" href="classGUIEngine_1_1Screen.html#a83b1198dc25fb5134437c49bbcaf1cca" title="Callback invoked when entering this menu (after the widgets have been added).">Screen::init</a>. Unfortunately the documentation does not always make this clear at this point :( A good hint is that methods that make calls on a IGUIElement* need to be called after init(), the others needs to be called before.</p>
+<h2 class="doxsection"><a class="anchor" id="Screen"></a>
+Screen</h2>
+<p>This class holds a tree of <a class="el" href="classGUIEngine_1_1Widget.html" title="The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...">GUIEngine::Widget</a> instances. It takes care of creating the tree from a XML file upon loading (with the help of others, for instane the <a class="el" href="classGUIEngine_1_1LayoutManager.html">GUIEngine::LayoutManager</a>); it handles calling <code>add()</code> on each of its <a class="el" href="classGUIEngine_1_1Widget.html" title="The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...">GUIEngine::Widget</a> children when being added - so that the corresponding <code>IGUIElement</code> irrlicht widgets are added to the irrlicht scene. It also takes care of telling its <a class="el" href="classGUIEngine_1_1Widget.html" title="The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...">GUIEngine::Widget</a> children when their irrlicht <code>IGUIElement</code> counterpart was removed from the <code>IGUIEnvironment</code> so that they don't carry dangling pointers.</p>
+<p>The default behavior of the <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">GUIEngine::Screen</a> object will be just fine for most basic purposes, but if you want to build highly dynamic screens, you may need to get your hands dirty. Take a look at <a class="el" href="classGUIEngine_1_1Screen.html#a9e42d53363f1ada1d4921e581946bb62" title="Can be used for custom purposes for which the load-screen-from-XML code won&#39;t make it.">GUIEngine::Screen::manualRemoveWidget()</a> and <a class="el" href="classGUIEngine_1_1Screen.html#a70e4aaae7a7ca15328b52911a80dda94" title="Can be used for custom purposes for which the load-screen-from-XML code won&#39;t make it.">GUIEngine::Screen::manualAddWidget()</a> if you wish to dynamically modify the STK widget tree at runtime. If you get into this, be very careful about the relationship between the STK widget tree and the irrlicht widget tree. If you <code>manualRemoveWidget()</code> a STK widget that is currently visible on screen, this does not remove its associated irrlicht widget; call <code>widget-&gt;getIrrlichtElement()-&gt;remove()</code> for that. When you removed a widget from a <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">Screen</a> you are also responsible to call <code><a class="el" href="classGUIEngine_1_1Widget.html#a83c8513a55f472e6704083feeff89289" title="Called when irrLicht widgets cleared.">Widget::elementRemoved()</a></code> on them to avoid dangling pointers. Similarly, a <a class="el" href="classGUIEngine_1_1Widget.html" title="The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...">GUIEngine::Widget</a> that is not inside a <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">GUIEngine::Screen</a> when the screen is added will not have its <code>add()</code> method be called automatically (so, for instance, if you <code>manualAddWidget()</code> a widget after a <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">Screen</a> was shown, you will also need to call <code>-&gt;add()</code> on the widget so that it is added to the irrlicht GUI environment).</p>
+<p>As a final note, note that the <a class="el" href="classGUIEngine_1_1Skin.html" title="Object used to render the GUI widgets see Overview of GUI skin for more information about skinning in...">GUIEngine::Skin</a> depends on both the irrlicht widget and the STK widget to render widgets properly. So adding an irrlicht IGUIElement without having its SuperTuxKart <a class="el" href="classGUIEngine_1_1Widget.html" title="The nearly-abstract base of all widgets (not fully abstract since a bare Widget can be created for th...">GUIEngine::Widget</a> accessible through the current <a class="el" href="classGUIEngine_1_1Screen.html" title="Represents a single GUI screen.">GUIEngine::Screen</a> (or a modal dialog) may result in rendering glitches. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

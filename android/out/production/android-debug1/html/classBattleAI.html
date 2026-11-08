@@ -1,0 +1,517 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: BattleAI 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pro-methods">Protected 멤버 함수</a> &#124;
+<a href="#pro-attribs">Protected 속성</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="classBattleAI-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">BattleAI 클래스 참조<div class="ingroups"><a class="el" href="group__controller.html">Karts/controller</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>The actual battle AI.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="battle__ai_8hpp_source.html">battle_ai.hpp</a>&gt;</code></p>
+<div class="dynheader">
+BattleAI에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classBattleAI__inherit__graph.png" border="0" usemap="#aBattleAI_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aBattleAI_inherit__map" id="aBattleAI_inherit__map">
+<area shape="rect" title="The actual battle AI." alt="" coords="31,229,100,256"/>
+<area shape="rect" href="classSpareTireAI.html" title="The AI for spare tire karts in battle mode, allowing kart to gain life." alt="" coords="20,304,111,331"/>
+<area shape="poly" title=" " alt="" coords="67,270,68,304,63,303,64,274"/>
+<area shape="rect" href="classArenaAI.html" title="A base class for AI that use navmesh to work." alt="" coords="31,155,100,181"/>
+<area shape="poly" title=" " alt="" coords="66,195,68,229,63,228,65,200"/>
+<area shape="rect" href="classAIBaseController.html" title="A base class for all AI karts." alt="" coords="5,80,126,107"/>
+<area shape="poly" title=" " alt="" coords="66,120,68,155,63,154,65,125"/>
+<area shape="rect" href="classController.html" title="This is the base class for kart controller &#45; that can be a player or a a robot." alt="" coords="27,5,104,32"/>
+<area shape="poly" title=" " alt="" coords="66,45,68,80,63,79,65,50"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:ac4edda6b0ffb724b7dd73e8fd8f24bf6" id="r_ac4edda6b0ffb724b7dd73e8fd8f24bf6"><td class="memItemLeft"><a id="ac4edda6b0ffb724b7dd73e8fd8f24bf6" name="ac4edda6b0ffb724b7dd73e8fd8f24bf6"></a>
+&#160;</td><td class="memItemRight"><b>BattleAI</b> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="inherit_header pub_methods_classArenaAI"><td colspan="2"><a class="el" href="classArenaAI.html">ArenaAI</a>(으)로부터 상속된 Public 멤버 함수</td></tr>
+<tr class="memitem:ad53d67d357071ec7b4d46aad83cfeb00 pub_methods_classArenaAI" id="r_ad53d67d357071ec7b4d46aad83cfeb00"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>ArenaAI</b> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memitem:af087432eb35e1d33ff56d084ebbb8cd8 pub_methods_classArenaAI" id="r_af087432eb35e1d33ff56d084ebbb8cd8"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classArenaAI.html#af087432eb35e1d33ff56d084ebbb8cd8">update</a> (int ticks) OVERRIDE</td></tr>
+<tr class="memdesc:af087432eb35e1d33ff56d084ebbb8cd8 pub_methods_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the main entry point for the AI.  <br /></td></tr>
+<tr class="memitem:a4ce55c4865616eebcfd49872ec382b26 pub_methods_classArenaAI" id="r_a4ce55c4865616eebcfd49872ec382b26"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classArenaAI.html#a4ce55c4865616eebcfd49872ec382b26">reset</a> () OVERRIDE</td></tr>
+<tr class="memdesc:a4ce55c4865616eebcfd49872ec382b26 pub_methods_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the AI when a race is restarted.  <br /></td></tr>
+<tr class="memitem:a7e8d3e643453cd24fcf698d5cbb8c92a pub_methods_classArenaAI" id="r_a7e8d3e643453cd24fcf698d5cbb8c92a"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classArenaAI.html#a7e8d3e643453cd24fcf698d5cbb8c92a">newLap</a> (int lap) OVERRIDE</td></tr>
+<tr class="memdesc:a7e8d3e643453cd24fcf698d5cbb8c92a pub_methods_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback whenever a new lap is triggered.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classAIBaseController"><td colspan="2"><a class="el" href="classAIBaseController.html">AIBaseController</a>(으)로부터 상속된 Public 멤버 함수</td></tr>
+<tr class="memitem:a49b892449aa3b59c4952ec3992009ab5 pub_methods_classAIBaseController" id="r_a49b892449aa3b59c4952ec3992009ab5"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>AIBaseController</b> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memitem:a75450c20a06c2bf542e5e713ecc09c63 pub_methods_classAIBaseController" id="r_a75450c20a06c2bf542e5e713ecc09c63"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a75450c20a06c2bf542e5e713ecc09c63">disableSlipstreamBonus</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:a75450c20a06c2bf542e5e713ecc09c63 pub_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Certain AI levels will not receive a slipstream bonus in order to be not as hard.  <br /></td></tr>
+<tr class="memitem:adfe63141b87801674dda575e104afe0f pub_methods_classAIBaseController" id="r_adfe63141b87801674dda575e104afe0f"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#adfe63141b87801674dda575e104afe0f">crashed</a> (const <a class="el" href="classMaterial.html">Material</a> *m) OVERRIDE</td></tr>
+<tr class="memdesc:adfe63141b87801674dda575e104afe0f pub_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is called when the kart crashed with the terrain.  <br /></td></tr>
+<tr class="memitem:a44249fb1598653960235e5516af0cbfc pub_methods_classAIBaseController" id="r_a44249fb1598653960235e5516af0cbfc"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a44249fb1598653960235e5516af0cbfc">crashed</a> (const <a class="el" href="classAbstractKart.html">AbstractKart</a> *k) OVERRIDE</td></tr>
+<tr class="memitem:ae2f64ff858494735ab104cc9045e4ad9 pub_methods_classAIBaseController" id="r_ae2f64ff858494735ab104cc9045e4ad9"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#ae2f64ff858494735ab104cc9045e4ad9">handleZipper</a> (bool play_sound) OVERRIDE</td></tr>
+<tr class="memitem:a9755070fd3dece3be4d470001c448fe6 pub_methods_classAIBaseController" id="r_a9755070fd3dece3be4d470001c448fe6"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a9755070fd3dece3be4d470001c448fe6">finishedRace</a> (float time) OVERRIDE</td></tr>
+<tr class="memdesc:a9755070fd3dece3be4d470001c448fe6 pub_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called whan this controller's kart finishes the last lap.  <br /></td></tr>
+<tr class="memitem:a431fdc3ba1942ccfb07f8136fd8e03c9 pub_methods_classAIBaseController" id="r_a431fdc3ba1942ccfb07f8136fd8e03c9"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a431fdc3ba1942ccfb07f8136fd8e03c9">collectedItem</a> (const <a class="el" href="classItemState.html">ItemState</a> &amp;item, float previous_energy=0) OVERRIDE</td></tr>
+<tr class="memitem:a64659acabc8d383bc40553c01435d239 pub_methods_classAIBaseController" id="r_a64659acabc8d383bc40553c01435d239"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a64659acabc8d383bc40553c01435d239">setPosition</a> (int p) OVERRIDE</td></tr>
+<tr class="memitem:a4713e814a176be8c80e6ea95fac43472 pub_methods_classAIBaseController" id="r_a4713e814a176be8c80e6ea95fac43472"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a4713e814a176be8c80e6ea95fac43472">isPlayerController</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:a4713e814a176be8c80e6ea95fac43472 pub_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if this player is not an AI, i.e.  <br /></td></tr>
+<tr class="memitem:a844eb4c260ae0466656c45905aa97470 pub_methods_classAIBaseController" id="r_a844eb4c260ae0466656c45905aa97470"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a844eb4c260ae0466656c45905aa97470">isLocalPlayerController</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:a844eb4c260ae0466656c45905aa97470 pub_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function checks if this is a local player.  <br /></td></tr>
+<tr class="memitem:a1dd177462be6923a74c9c7d817e75123 pub_methods_classAIBaseController" id="r_a1dd177462be6923a74c9c7d817e75123"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a1dd177462be6923a74c9c7d817e75123">action</a> (<a class="el" href="group__input.html#gaea132397c26cad8f8637a9422260deca">PlayerAction</a> action, int value, bool dry_run=false) OVERRIDE</td></tr>
+<tr class="memdesc:a1dd177462be6923a74c9c7d817e75123 pub_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default: ignore actions.  <br /></td></tr>
+<tr class="memitem:aa979a5f3ec80cd5347de9f864a079a09 pub_methods_classAIBaseController" id="r_aa979a5f3ec80cd5347de9f864a079a09"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#aa979a5f3ec80cd5347de9f864a079a09">skidBonusTriggered</a> () OVERRIDE</td></tr>
+<tr class="memitem:a3baff5d9ae3153820aa49e1496e7ee0c pub_methods_classAIBaseController" id="r_a3baff5d9ae3153820aa49e1496e7ee0c"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a3baff5d9ae3153820aa49e1496e7ee0c">saveState</a> (<a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer) const OVERRIDE</td></tr>
+<tr class="memitem:a4dd08509e6a29ede05534609b24253d5 pub_methods_classAIBaseController" id="r_a4dd08509e6a29ede05534609b24253d5"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a4dd08509e6a29ede05534609b24253d5">rewindTo</a> (<a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer) OVERRIDE</td></tr>
+<tr class="memitem:af237afc7fcda0e9f87ef0aa51ae7687a pub_methods_classAIBaseController" id="r_af237afc7fcda0e9f87ef0aa51ae7687a"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>setNetworkAI</b> (bool val)</td></tr>
+<tr class="inherit_header pub_methods_classController"><td colspan="2"><a class="el" href="classController.html">Controller</a>(으)로부터 상속된 Public 멤버 함수</td></tr>
+<tr class="memitem:a674f8ab7dc87cea7a5ba52230c3bac2c pub_methods_classController" id="r_a674f8ab7dc87cea7a5ba52230c3bac2c"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>Controller</b> (<a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memdesc:a674f8ab7dc87cea7a5ba52230c3bac2c pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor, saves the kart pointer and a pointer to the <a class="el" href="classKartControl.html">KartControl</a> of the kart. <br /></td></tr>
+<tr class="memitem:a2cf87d91dd41d4c10bf2d2c41ab509a7 pub_methods_classController" id="r_a2cf87d91dd41d4c10bf2d2c41ab509a7"><td class="memItemLeft">
+virtual void&#160;</td><td class="memItemRight"><b>rumble</b> (float strength_low, float strength_high, uint16_t duration)</td></tr>
+<tr class="memitem:a6d6012ed58b347ceedd988ee338dba87 pub_methods_classController" id="r_a6d6012ed58b347ceedd988ee338dba87"><td class="memItemLeft">
+const std::string &amp;&#160;</td><td class="memItemRight"><b>getControllerName</b> () const</td></tr>
+<tr class="memdesc:a6d6012ed58b347ceedd988ee338dba87 pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of this controller. <br /></td></tr>
+<tr class="memitem:a66f485d0cb4dce29bf14801b076c9e8d pub_methods_classController" id="r_a66f485d0cb4dce29bf14801b076c9e8d"><td class="memItemLeft">
+virtual <a class="el" href="classKartControl.html">KartControl</a> *&#160;</td><td class="memItemRight"><b>getControls</b> ()</td></tr>
+<tr class="memdesc:a66f485d0cb4dce29bf14801b076c9e8d pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer on the kart controls. <br /></td></tr>
+<tr class="memitem:af55e937935cce2a1f205f94171b0cb38 pub_methods_classController" id="r_af55e937935cce2a1f205f94171b0cb38"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>setControls</b> (<a class="el" href="classKartControl.html">KartControl</a> *kc)</td></tr>
+<tr class="memitem:affece999cb286fa963091a1ca6456cd6 pub_methods_classController" id="r_affece999cb286fa963091a1ca6456cd6"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="classController.html#affece999cb286fa963091a1ca6456cd6">canGetAchievements</a> () const</td></tr>
+<tr class="memdesc:affece999cb286fa963091a1ca6456cd6 pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Only local players can get achievements.  <br /></td></tr>
+<tr class="memitem:a7ba21663e9aaf2cf890532fdd1c1dabe pub_methods_classController" id="r_a7ba21663e9aaf2cf890532fdd1c1dabe"><td class="memItemLeft">virtual core::stringw&#160;</td><td class="memItemRight"><a class="el" href="classController.html#a7ba21663e9aaf2cf890532fdd1c1dabe">getName</a> (bool include_handicap_string=true) const</td></tr>
+<tr class="memdesc:a7ba21663e9aaf2cf890532fdd1c1dabe pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display name of the controller.  <br /></td></tr>
+<tr class="memitem:a32cb6445c30ca5fdbfa203ea621c2302 pub_methods_classController" id="r_a32cb6445c30ca5fdbfa203ea621c2302"><td class="memItemLeft">
+<a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><b>getKart</b> () const</td></tr>
+<tr class="memdesc:a32cb6445c30ca5fdbfa203ea621c2302 pub_methods_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the kart controlled by this controller. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 멤버 함수</h2></td></tr>
+<tr class="memitem:a043d9b7b25a5d5369a30a2b753a6f167" id="r_a043d9b7b25a5d5369a30a2b753a6f167"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a043d9b7b25a5d5369a30a2b753a6f167">findClosestKart</a> (bool consider_difficulty, bool find_sta) OVERRIDE</td></tr>
+<tr class="memdesc:a043d9b7b25a5d5369a30a2b753a6f167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the closest kart around this AI, if consider_difficulty is true, AI will try to follow human players more or less depends on difficulty.  <br /></td></tr>
+<tr class="memitem:ab783dcdf3e5ece2e0e97601abe53f0cb" id="r_ab783dcdf3e5ece2e0e97601abe53f0cb"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#ab783dcdf3e5ece2e0e97601abe53f0cb">getCurrentNode</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:ab783dcdf3e5ece2e0e97601abe53f0cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current <a class="el" href="classArenaNode.html" title="ArenaNode">ArenaNode</a> the AI located on.  <br /></td></tr>
+<tr class="inherit_header pro_methods_classArenaAI"><td colspan="2"><a class="el" href="classArenaAI.html">ArenaAI</a>(으)로부터 상속된 Protected 멤버 함수</td></tr>
+<tr class="memitem:a92979981ee611e1d9a48eebe7068f7ba pro_methods_classArenaAI" id="r_a92979981ee611e1d9a48eebe7068f7ba"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classArenaAI.html#a92979981ee611e1d9a48eebe7068f7ba">tryCollectItem</a> (<a class="el" href="classVec3.html">Vec3</a> *aim_point, int *target_node) const</td></tr>
+<tr class="memdesc:a92979981ee611e1d9a48eebe7068f7ba pro_methods_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to collect item in arena, if no suitable item is found, like they are swapped, it will follow closest kart instead.  <br /></td></tr>
+<tr class="inherit_header pro_methods_classAIBaseController"><td colspan="2"><a class="el" href="classAIBaseController.html">AIBaseController</a>(으)로부터 상속된 Protected 멤버 함수</td></tr>
+<tr class="memitem:a7286e21b0589e42d0774764470375ba8 pro_methods_classAIBaseController" id="r_a7286e21b0589e42d0774764470375ba8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a7286e21b0589e42d0774764470375ba8">setControllerName</a> (const std::string &amp;name) OVERRIDE</td></tr>
+<tr class="memdesc:a7286e21b0589e42d0774764470375ba8 pro_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">In debug mode when the user specified &ndash;ai-debug on the command line set the name of the controller as on-screen text, so that the different AI controllers can be distinguished.  <br /></td></tr>
+<tr class="memitem:ac2a0279951974f3924484e1235b92492 pro_methods_classAIBaseController" id="r_ac2a0279951974f3924484e1235b92492"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#ac2a0279951974f3924484e1235b92492">steerToPoint</a> (const <a class="el" href="classVec3.html">Vec3</a> &amp;point)</td></tr>
+<tr class="memdesc:ac2a0279951974f3924484e1235b92492 pro_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the steering angle to reach a certain point.  <br /></td></tr>
+<tr class="memitem:ab76d3633530d643681516fc886cbf914 pro_methods_classAIBaseController" id="r_ab76d3633530d643681516fc886cbf914"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#ab76d3633530d643681516fc886cbf914">normalizeAngle</a> (float angle)</td></tr>
+<tr class="memdesc:ab76d3633530d643681516fc886cbf914 pro_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalises an angle to be between -pi and _ pi.  <br /></td></tr>
+<tr class="memitem:a4dc064b2ef76fa9f981df2ddbd37d8f5 pro_methods_classAIBaseController" id="r_a4dc064b2ef76fa9f981df2ddbd37d8f5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#a4dc064b2ef76fa9f981df2ddbd37d8f5">isStuck</a> () const</td></tr>
+<tr class="memdesc:a4dc064b2ef76fa9f981df2ddbd37d8f5 pro_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">This can be called to detect if the kart is stuck (i.e.  <br /></td></tr>
+<tr class="memitem:ab78f45544a6ea5b46741bb16921951eb pro_methods_classAIBaseController" id="r_ab78f45544a6ea5b46741bb16921951eb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#ab78f45544a6ea5b46741bb16921951eb">determineTurnRadius</a> (const <a class="el" href="classVec3.html">Vec3</a> &amp;end, <a class="el" href="classVec3.html">Vec3</a> *center, float *radius) const</td></tr>
+<tr class="memdesc:ab78f45544a6ea5b46741bb16921951eb pro_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine the center point and radius of a circle given two points on the circle and the tangent at the first point.  <br /></td></tr>
+<tr class="memitem:aad587af243f9b3f35440dc066fdac48b pro_methods_classAIBaseController" id="r_aad587af243f9b3f35440dc066fdac48b"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#aad587af243f9b3f35440dc066fdac48b">setSteering</a> (float angle, float dt)</td></tr>
+<tr class="memdesc:aad587af243f9b3f35440dc066fdac48b pro_methods_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the steering angle to a lr steering in the range of -1 to 1.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 속성</h2></td></tr>
+<tr class="memitem:a3630bb0dc41c82418ece6c3519f3bd62" id="r_a3630bb0dc41c82418ece6c3519f3bd62"><td class="memItemLeft"><a id="a3630bb0dc41c82418ece6c3519f3bd62" name="a3630bb0dc41c82418ece6c3519f3bd62"></a>
+<a class="el" href="classWorldWithRank.html">WorldWithRank</a> *&#160;</td><td class="memItemRight"><b>m_world</b></td></tr>
+<tr class="memdesc:a3630bb0dc41c82418ece6c3519f3bd62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keep a pointer to world. <br /></td></tr>
+<tr class="memitem:a977e1dc30403115e76886ab2db80baf5" id="r_a977e1dc30403115e76886ab2db80baf5"><td class="memItemLeft"><a id="a977e1dc30403115e76886ab2db80baf5" name="a977e1dc30403115e76886ab2db80baf5"></a>
+<a class="el" href="classThreeStrikesBattle.html">ThreeStrikesBattle</a> *&#160;</td><td class="memItemRight"><b>m_tsb_world</b></td></tr>
+<tr class="inherit_header pro_attribs_classArenaAI"><td colspan="2"><a class="el" href="classArenaAI.html">ArenaAI</a>(으)로부터 상속된 Protected 속성</td></tr>
+<tr class="memitem:a57cb5a069ab04d0fcba8daa084c8f912 pro_attribs_classArenaAI" id="r_a57cb5a069ab04d0fcba8daa084c8f912"><td class="memItemLeft">
+<a class="el" href="classItemManager.html">ItemManager</a> *&#160;</td><td class="memItemRight"><b>m_item_manager</b></td></tr>
+<tr class="memitem:ac4547ccab8ae111b5fee7967eec82a9d pro_attribs_classArenaAI" id="r_ac4547ccab8ae111b5fee7967eec82a9d"><td class="memItemLeft">
+<a class="el" href="classArenaGraph.html">ArenaGraph</a> *&#160;</td><td class="memItemRight"><b>m_graph</b></td></tr>
+<tr class="memdesc:ac4547ccab8ae111b5fee7967eec82a9d pro_attribs_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the <a class="el" href="classArenaGraph.html" title="ArenaGraph">ArenaGraph</a>. <br /></td></tr>
+<tr class="memitem:a0c4a69f1989ae985834b9b92b8b26ad3 pro_attribs_classArenaAI" id="r_a0c4a69f1989ae985834b9b92b8b26ad3"><td class="memItemLeft">
+<a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><b>m_closest_kart</b></td></tr>
+<tr class="memdesc:a0c4a69f1989ae985834b9b92b8b26ad3 pro_attribs_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the closest kart around this kart. <br /></td></tr>
+<tr class="memitem:a35e4274d86cd6707ea270ee77785f6f5 pro_attribs_classArenaAI" id="r_a35e4274d86cd6707ea270ee77785f6f5"><td class="memItemLeft">
+int&#160;</td><td class="memItemRight"><b>m_closest_kart_node</b></td></tr>
+<tr class="memdesc:a35e4274d86cd6707ea270ee77785f6f5 pro_attribs_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classArenaNode.html" title="ArenaNode">ArenaNode</a> at which the closest kart located on. <br /></td></tr>
+<tr class="memitem:acbbb942b37fc7a61ffd483fd440e7f01 pro_attribs_classArenaAI" id="r_acbbb942b37fc7a61ffd483fd440e7f01"><td class="memItemLeft">
+<a class="el" href="classVec3.html">Vec3</a>&#160;</td><td class="memItemRight"><b>m_closest_kart_point</b></td></tr>
+<tr class="memdesc:acbbb942b37fc7a61ffd483fd440e7f01 pro_attribs_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">The closest kart location. <br /></td></tr>
+<tr class="memitem:a7631ed706dba5e43cfa49fd15b230375 pro_attribs_classArenaAI" id="r_a7631ed706dba5e43cfa49fd15b230375"><td class="memItemLeft">
+<a class="el" href="classRaceManager.html#acf298e99927d30996e847393337e67a6">RaceManager::Difficulty</a>&#160;</td><td class="memItemRight"><b>m_cur_difficulty</b></td></tr>
+<tr class="memdesc:a7631ed706dba5e43cfa49fd15b230375 pro_attribs_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the current difficulty. <br /></td></tr>
+<tr class="memitem:ae618e797082fc2a87f3ff5fa24bde1d7 pro_attribs_classArenaAI" id="r_ae618e797082fc2a87f3ff5fa24bde1d7"><td class="memItemLeft">
+irr::scene::ISceneNode *&#160;</td><td class="memItemRight"><b>m_debug_sphere</b></td></tr>
+<tr class="memdesc:ae618e797082fc2a87f3ff5fa24bde1d7 pro_attribs_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">For debugging purpose: a sphere indicating where the AI is targeting at. <br /></td></tr>
+<tr class="memitem:a0ba7345a452cee7ad84fbbb6418a2984 pro_attribs_classArenaAI" id="r_a0ba7345a452cee7ad84fbbb6418a2984"><td class="memItemLeft">
+irr::scene::ISceneNode *&#160;</td><td class="memItemRight"><b>m_debug_sphere_next</b></td></tr>
+<tr class="memdesc:a0ba7345a452cee7ad84fbbb6418a2984 pro_attribs_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">For debugging purpose: a sphere indicating where the first turning corner is located. <br /></td></tr>
+<tr class="memitem:ad9e8f9b0a98a481c0acb7c0edfbcd327 pro_attribs_classArenaAI" id="r_ad9e8f9b0a98a481c0acb7c0edfbcd327"><td class="memItemLeft">
+int&#160;</td><td class="memItemRight"><b>m_target_node</b></td></tr>
+<tr class="memdesc:ad9e8f9b0a98a481c0acb7c0edfbcd327 pro_attribs_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classArenaNode.html" title="ArenaNode">ArenaNode</a> at which the target point located on. <br /></td></tr>
+<tr class="memitem:a1d14cce6703f9644a534aa62d8874a53 pro_attribs_classArenaAI" id="r_a1d14cce6703f9644a534aa62d8874a53"><td class="memItemLeft">
+<a class="el" href="classVec3.html">Vec3</a>&#160;</td><td class="memItemRight"><b>m_target_point</b></td></tr>
+<tr class="memdesc:a1d14cce6703f9644a534aa62d8874a53 pro_attribs_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">The coordinates of target point. <br /></td></tr>
+<tr class="memitem:a19af5b48c2e494837f3a74082c756424 pro_attribs_classArenaAI" id="r_a19af5b48c2e494837f3a74082c756424"><td class="memItemLeft">
+bool&#160;</td><td class="memItemRight"><b>m_mini_skid</b></td></tr>
+<tr class="memdesc:a19af5b48c2e494837f3a74082c756424 pro_attribs_classArenaAI"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if AI can skid, currently only do when close to target, see <a class="el" href="classArenaAI.html#a395b4fdf1472ab332a37440ca6690d08" title="doSkiddingTest()">doSkiddingTest()</a>. <br /></td></tr>
+<tr class="inherit_header pro_attribs_classAIBaseController"><td colspan="2"><a class="el" href="classAIBaseController.html">AIBaseController</a>(으)로부터 상속된 Protected 속성</td></tr>
+<tr class="memitem:a3346aad1c0770ed934b93a6db22f3b9b pro_attribs_classAIBaseController" id="r_a3346aad1c0770ed934b93a6db22f3b9b"><td class="memItemLeft">
+bool&#160;</td><td class="memItemRight"><b>m_enabled_network_ai</b></td></tr>
+<tr class="memitem:afb834ce42bd50e263d7c1e70183de615 pro_attribs_classAIBaseController" id="r_afb834ce42bd50e263d7c1e70183de615"><td class="memItemLeft">
+float&#160;</td><td class="memItemRight"><b>m_kart_length</b></td></tr>
+<tr class="memdesc:afb834ce42bd50e263d7c1e70183de615 pro_attribs_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the kart, storing it here saves many function calls. <br /></td></tr>
+<tr class="memitem:a262fdf83aad94a6d20fd6d083dcdaaa0 pro_attribs_classAIBaseController" id="r_a262fdf83aad94a6d20fd6d083dcdaaa0"><td class="memItemLeft">
+float&#160;</td><td class="memItemRight"><b>m_kart_width</b></td></tr>
+<tr class="memdesc:a262fdf83aad94a6d20fd6d083dcdaaa0 pro_attribs_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cache width of kart. <br /></td></tr>
+<tr class="memitem:aacffd1df73ff4384e06ce118e344c7ea pro_attribs_classAIBaseController" id="r_aacffd1df73ff4384e06ce118e344c7ea"><td class="memItemLeft">
+<a class="el" href="classTrack.html">Track</a> *&#160;</td><td class="memItemRight"><b>m_track</b></td></tr>
+<tr class="memdesc:aacffd1df73ff4384e06ce118e344c7ea pro_attribs_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keep a pointer to the track to reduce calls <br /></td></tr>
+<tr class="memitem:a4bd682aebec5bc365a136250c141d3a5 pro_attribs_classAIBaseController" id="r_a4bd682aebec5bc365a136250c141d3a5"><td class="memItemLeft">
+const <a class="el" href="classAIProperties.html">AIProperties</a> *&#160;</td><td class="memItemRight"><b>m_ai_properties</b></td></tr>
+<tr class="memdesc:a4bd682aebec5bc365a136250c141d3a5 pro_attribs_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the AI properties for this kart. <br /></td></tr>
+<tr class="inherit_header pro_attribs_classController"><td colspan="2"><a class="el" href="classController.html">Controller</a>(으)로부터 상속된 Protected 속성</td></tr>
+<tr class="memitem:a9106b1b073d659ea4f1f093afbb23701 pro_attribs_classController" id="r_a9106b1b073d659ea4f1f093afbb23701"><td class="memItemLeft">
+<a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><b>m_kart</b></td></tr>
+<tr class="memdesc:a9106b1b073d659ea4f1f093afbb23701 pro_attribs_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the kart that is controlled by this controller. <br /></td></tr>
+<tr class="memitem:a5e6110b327078cbfbb517420f738b34a pro_attribs_classController" id="r_a5e6110b327078cbfbb517420f738b34a"><td class="memItemLeft">
+<a class="el" href="classKartControl.html">KartControl</a> *&#160;</td><td class="memItemRight"><b>m_controls</b></td></tr>
+<tr class="memdesc:a5e6110b327078cbfbb517420f738b34a pro_attribs_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the main controller, from which the kart takes it commands. <br /></td></tr>
+<tr class="memitem:a127457a188a69cfd94bba627f07e2391 pro_attribs_classController" id="r_a127457a188a69cfd94bba627f07e2391"><td class="memItemLeft">
+std::string&#160;</td><td class="memItemRight"><b>m_controller_name</b></td></tr>
+<tr class="memdesc:a127457a188a69cfd94bba627f07e2391 pro_attribs_classController"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the controller, mainly used for debugging purposes. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:a60ed0ac0a1dc2b7fe90a2bb78a4c9ab0" id="r_a60ed0ac0a1dc2b7fe90a2bb78a4c9ab0"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a60ed0ac0a1dc2b7fe90a2bb78a4c9ab0">findTarget</a> () OVERRIDE</td></tr>
+<tr class="memdesc:a60ed0ac0a1dc2b7fe90a2bb78a4c9ab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a suitable target to follow, it will find the closest kart first, it's used as fallback if no item is found.  <br /></td></tr>
+<tr class="memitem:a5ce9e06ec26d5eb642bcaf477b52bb65" id="r_a5ce9e06ec26d5eb642bcaf477b52bb65"><td class="memItemLeft">virtual float&#160;</td><td class="memItemRight"><a class="el" href="#a5ce9e06ec26d5eb642bcaf477b52bb65">getKartDistance</a> (const <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart) const OVERRIDE</td></tr>
+<tr class="memdesc:a5ce9e06ec26d5eb642bcaf477b52bb65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the distance based on graph distance matrix to any kart.  <br /></td></tr>
+<tr class="memitem:aff4d4e0645c24fc6ed1ba5e6e607d700" id="r_aff4d4e0645c24fc6ed1ba5e6e607d700"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#aff4d4e0645c24fc6ed1ba5e6e607d700">isKartOnRoad</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:aff4d4e0645c24fc6ed1ba5e6e607d700"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, AI stays on the <a class="el" href="classArenaNode.html" title="ArenaNode">ArenaNode</a> correctly, otherwise <a class="el" href="classRescueAnimation.html" title="RescueAnimation">RescueAnimation</a> will be done after sometime.  <br /></td></tr>
+<tr class="memitem:a325767a36174e32dc26fe566ec3f206d" id="r_a325767a36174e32dc26fe566ec3f206d"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a325767a36174e32dc26fe566ec3f206d">isWaiting</a> () const OVERRIDE</td></tr>
+<tr class="memdesc:a325767a36174e32dc26fe566ec3f206d"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, AI will stop moving.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+추가로 상속된 멤버들</h2></td></tr>
+<tr class="inherit_header pub_static_methods_classAIBaseController"><td colspan="2"><a class="el" href="classAIBaseController.html">AIBaseController</a>(으)로부터 상속된 정적 Public 멤버 함수</td></tr>
+<tr class="memitem:a619b190610899bebf757aa245d30b775 pub_static_methods_classAIBaseController" id="r_a619b190610899bebf757aa245d30b775"><td class="memItemLeft">
+static void&#160;</td><td class="memItemRight"><b>enableDebug</b> ()</td></tr>
+<tr class="memitem:ac7be8ce71ceebc5d2daf62cd23a89a6c pub_static_methods_classAIBaseController" id="r_ac7be8ce71ceebc5d2daf62cd23a89a6c"><td class="memItemLeft">
+static void&#160;</td><td class="memItemRight"><b>setTestAI</b> (int n)</td></tr>
+<tr class="memitem:a16e565576e28221132c08b7edb0cb683 pub_static_methods_classAIBaseController" id="r_a16e565576e28221132c08b7edb0cb683"><td class="memItemLeft">
+static int&#160;</td><td class="memItemRight"><b>getTestAI</b> ()</td></tr>
+<tr class="inherit_header pro_static_attribs_classAIBaseController"><td colspan="2"><a class="el" href="classAIBaseController.html">AIBaseController</a>(으)로부터 상속된 정적 Protected 속성</td></tr>
+<tr class="memitem:a8294f52e604235b21564f0a7933ed626 pro_static_attribs_classAIBaseController" id="r_a8294f52e604235b21564f0a7933ed626"><td class="memItemLeft">
+static bool&#160;</td><td class="memItemRight"><b>m_ai_debug</b> = false</td></tr>
+<tr class="memitem:ad3dce1783b89892c88ce7bcc58bbb1a6 pro_static_attribs_classAIBaseController" id="r_ad3dce1783b89892c88ce7bcc58bbb1a6"><td class="memItemLeft">static int&#160;</td><td class="memItemRight"><a class="el" href="classAIBaseController.html#ad3dce1783b89892c88ce7bcc58bbb1a6">m_test_ai</a> = 0</td></tr>
+<tr class="memdesc:ad3dce1783b89892c88ce7bcc58bbb1a6 pro_static_attribs_classAIBaseController"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the '&ndash;test-ai=n' command line parameter: It indicates which fraction of the AIs are going to be the test AI: 1 means only to use the <a class="el" href="classTestAI.html" title="This is a test version of the AI, which can be used to create new AIs, and compare them with the curr...">TestAI</a>, 2 means every second AI will be test etc.  <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>The actual battle AI. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a043d9b7b25a5d5369a30a2b753a6f167" name="a043d9b7b25a5d5369a30a2b753a6f167"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a043d9b7b25a5d5369a30a2b753a6f167">&#9670;&#160;</a></span>findClosestKart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BattleAI::findClosestKart </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>consider_difficulty</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>find_sta</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find the closest kart around this AI, if consider_difficulty is true, AI will try to follow human players more or less depends on difficulty. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">consider_difficulty</td><td>If take current difficulty into account. </td></tr>
+    <tr><td class="paramname">find_sta</td><td>If find <a class="el" href="classSpareTireAI.html" title="SpareTireAI">SpareTireAI</a> only. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classArenaAI.html#ad26f4290799b02ce655b6b40486208d8">ArenaAI</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a60ed0ac0a1dc2b7fe90a2bb78a4c9ab0" name="a60ed0ac0a1dc2b7fe90a2bb78a4c9ab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60ed0ac0a1dc2b7fe90a2bb78a4c9ab0">&#9670;&#160;</a></span>findTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BattleAI::findTarget </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Find a suitable target to follow, it will find the closest kart first, it's used as fallback if no item is found. </p>
+<p>It takes the current difficulty into account, also collect life from <a class="el" href="classSpareTireAI.html" title="SpareTireAI">SpareTireAI</a> depends on current difficulty if actually they are spawned: </p><ul>
+<li>Novice and intermediate - collect them only AI has 1 life only. </li>
+<li>Expert and supertux - collect them if AI dones't have 3 lives. </li>
+</ul>
+
+<p><a class="el" href="classArenaAI.html#a06d597aa2249cbbf7485af2fbf9c0757">ArenaAI</a>를 구현.</p>
+
+<p><a class="el" href="classSpareTireAI.html#ad54bd1e59afb298f30232b955bf0696a">SpareTireAI</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="ab783dcdf3e5ece2e0e97601abe53f0cb" name="ab783dcdf3e5ece2e0e97601abe53f0cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab783dcdf3e5ece2e0e97601abe53f0cb">&#9670;&#160;</a></span>getCurrentNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BattleAI::getCurrentNode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the current <a class="el" href="classArenaNode.html" title="ArenaNode">ArenaNode</a> the AI located on. </p>
+
+<p><a class="el" href="classArenaAI.html#a8ff96275bce2aaf8518d6f0e42548f23">ArenaAI</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a5ce9e06ec26d5eb642bcaf477b52bb65" name="a5ce9e06ec26d5eb642bcaf477b52bb65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ce9e06ec26d5eb642bcaf477b52bb65">&#9670;&#160;</a></span>getKartDistance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float BattleAI::getKartDistance </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>kart</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the distance based on graph distance matrix to any kart. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kart</td><td><a class="el" href="classAbstractKart.html" title="AbstractKart">AbstractKart</a> to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classArenaAI.html#a8eb6cb8f0b8b73533f385779eea010ed">ArenaAI</a>를 구현.</p>
+
+</div>
+</div>
+<a id="aff4d4e0645c24fc6ed1ba5e6e607d700" name="aff4d4e0645c24fc6ed1ba5e6e607d700"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff4d4e0645c24fc6ed1ba5e6e607d700">&#9670;&#160;</a></span>isKartOnRoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BattleAI::isKartOnRoad </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If true, AI stays on the <a class="el" href="classArenaNode.html" title="ArenaNode">ArenaNode</a> correctly, otherwise <a class="el" href="classRescueAnimation.html" title="RescueAnimation">RescueAnimation</a> will be done after sometime. </p>
+
+<p><a class="el" href="classArenaAI.html#adc5448722717c97ecebd995159c92658">ArenaAI</a>를 구현.</p>
+
+</div>
+</div>
+<a id="a325767a36174e32dc26fe566ec3f206d" name="a325767a36174e32dc26fe566ec3f206d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a325767a36174e32dc26fe566ec3f206d">&#9670;&#160;</a></span>isWaiting()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BattleAI::isWaiting </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If true, AI will stop moving. </p>
+
+<p><a class="el" href="classArenaAI.html#a3f1845320a265b2d1b36b43861eb92ee">ArenaAI</a>를 구현.</p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>karts/controller/<a class="el" href="battle__ai_8hpp_source.html">battle_ai.hpp</a></li>
+<li>karts/controller/<b>battle_ai.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

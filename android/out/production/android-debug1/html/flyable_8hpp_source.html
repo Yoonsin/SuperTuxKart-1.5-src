@@ -1,0 +1,397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: items/flyable.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>items</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">flyable.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2007-2015 Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  Linear item-kart intersection function written by</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  Copyright (C) 2009-2015 David Mikos.</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef HEADER_FLYABLE_HPP</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#define HEADER_FLYABLE_HPP</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;items/powerup_manager.hpp&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;karts/moveable.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;network/rewinder.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;tracks/terrain_info.hpp&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;utils/cpp2011.hpp&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;irrString.h&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">namespace </span>scene { <span class="keyword">class </span>IMesh; }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">class </span><a class="code hl_class" href="classAbstractKartAnimation.html">AbstractKartAnimation</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">class </span><a class="code hl_class" href="classHitEffect.html">HitEffect</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">class </span><a class="code hl_class" href="classPhysicalObject.html">PhysicalObject</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">class </span><a class="code hl_class" href="classSFXBase.html">SFXBase</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">class </span><a class="code hl_class" href="classXMLNode.html">XMLNode</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="};">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classFlyable.html">   48</a></span><span class="keyword">class </span>Flyable : <span class="keyword">public</span> Moveable, <span class="keyword">public</span> <a class="code hl_function" href="classTerrainInfo.html#a609a1767bdc271180f80f1eb20483026">TerrainInfo</a>,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                <span class="keyword">public</span> Rewinder</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">bool</span>              m_has_hit_something;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classFlyable.html#a63cf5ccda2649869beca9297d8b883a3">   57</a></span>    <span class="keywordtype">bool</span>              <a class="code hl_variable" href="classFlyable.html#a63cf5ccda2649869beca9297d8b883a3">m_adjust_up_velocity</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classFlyable.html#a8e6d0bee96390126b52e4ad3af713fe1">   63</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a>              <a class="code hl_variable" href="classFlyable.html#a8e6d0bee96390126b52e4ad3af713fe1">m_position_offset</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classFlyable.html#a7beadae7ba23e9c79e56b015b2b9342d">   70</a></span>    <span class="keywordtype">bool</span>              <a class="code hl_variable" href="classFlyable.html#a7beadae7ba23e9c79e56b015b2b9342d">m_do_terrain_info</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">/* Used in network to restore previous gravity in compressed form. */</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    uint32_t          m_compressed_gravity_vector;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classFlyable.html#ac41af83c72a6a82c5c8fe97da6b42df0">   77</a></span>    <a class="code hl_class" href="classAbstractKartAnimation.html">AbstractKartAnimation</a> *<a class="code hl_variable" href="classFlyable.html#ac41af83c72a6a82c5c8fe97da6b42df0">m_animation</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classFlyable.html#a7e1ff548cbb74b54eea07bbab6aa4c83">   81</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>*     <a class="code hl_variable" href="classFlyable.html#a7e1ff548cbb74b54eea07bbab6aa4c83">m_owner</a>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    PowerupManager::PowerupType</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classFlyable.html#a6894ee5db673df868ea3b4ea7133999d">   85</a></span>                      <a class="code hl_variable" href="classFlyable.html#a6894ee5db673df868ea3b4ea7133999d">m_type</a>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classFlyable.html#ab7c3150d50196c3027c2fffc87b145d3">   88</a></span>    btCollisionShape *<a class="code hl_variable" href="classFlyable.html#ab7c3150d50196c3027c2fffc87b145d3">m_shape</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classFlyable.html#a7ea8cba9d466cfa5995f35777a848288">   91</a></span>    <span class="keywordtype">float</span>             <a class="code hl_variable" href="classFlyable.html#a7ea8cba9d466cfa5995f35777a848288">m_max_height</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classFlyable.html#a333e5bac444ed69dbbef06e8b8a5e314">   94</a></span>    <span class="keywordtype">float</span>             <a class="code hl_variable" href="classFlyable.html#a333e5bac444ed69dbbef06e8b8a5e314">m_min_height</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classFlyable.html#a33f049b73f3f317b4adfed8f20364a94">   97</a></span>    <span class="keywordtype">float</span>             <a class="code hl_variable" href="classFlyable.html#a33f049b73f3f317b4adfed8f20364a94">m_average_height</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classFlyable.html#ad6646674446ad486596ccad41139f46c">  100</a></span>    <span class="keywordtype">float</span>             <a class="code hl_variable" href="classFlyable.html#ad6646674446ad486596ccad41139f46c">m_force_updown</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classFlyable.html#a367a8be51c79e2c7e75093f45cb24cc1">  103</a></span>    <span class="keywordtype">float</span>             <a class="code hl_variable" href="classFlyable.html#a367a8be51c79e2c7e75093f45cb24cc1">m_speed</a>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classFlyable.html#a8f3bf7f89db07c4d3215e6088010d1dd">  106</a></span>    <span class="keyword">const</span> <span class="keywordtype">float</span>       <a class="code hl_variable" href="classFlyable.html#a8f3bf7f89db07c4d3215e6088010d1dd">m_mass</a>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classFlyable.html#a971d8eec4e30f6946ab5b4ee2444b34d">  109</a></span>    <a class="code hl_class" href="classVec3.html">Vec3</a>              <a class="code hl_variable" href="classFlyable.html#a971d8eec4e30f6946ab5b4ee2444b34d">m_extend</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classFlyable.html#a6b3cbc6e1102707b82e89ca04b62675a">  113</a></span>    uint16_t          <a class="code hl_variable" href="classFlyable.html#a6b3cbc6e1102707b82e89ca04b62675a">m_ticks_since_thrown</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="comment">/* True if this flyable exists in server, and will trigger a rewind.</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment">     * For each local state it will reset it to false and call moveToInfinity,</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment">     * and for each restoreState it will set it to true. Also when re-fire the</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment">     * flyable during rewind it will set to true too. */</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">bool</span>              m_has_server_state;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classFlyable.html#a327cb50f67564db1df874ef263fffbe4">  123</a></span>    <span class="keywordtype">bool</span>              <a class="code hl_variable" href="classFlyable.html#a327cb50f67564db1df874ef263fffbe4">m_owner_has_temporary_immunity</a>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="comment">/* Set to true once when onDeleteFlyable, this is used to create HitEffect</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment">     * only once. */</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordtype">bool</span>              m_deleted_once;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">/* Save the locally detected deleted ticks, if the confirmed state world</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment">     * ticks in computeError &gt; this, the flyable can be deleted in client. */</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">int</span>               m_last_deleted_ticks;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">// The flyable class stores the values for each flyable type, e.g.</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="comment">// speed, min_height, max_height. These variables must be static,</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="comment">// so we need arrays of these variables to have different values</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="comment">// for bowling balls, missiles, ...</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classFlyable.html#a0053fe4bc5ea0be0accb386ce0d8ee6a">  139</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span>      <a class="code hl_variable" href="classFlyable.html#a0053fe4bc5ea0be0accb386ce0d8ee6a">m_st_speed</a>[PowerupManager::POWERUP_MAX];</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classFlyable.html#a725c669c010fcdbef7694598a5399155">  142</a></span>    <span class="keyword">static</span> scene::IMesh *<a class="code hl_variable" href="classFlyable.html#a725c669c010fcdbef7694598a5399155">m_st_model</a>[PowerupManager::POWERUP_MAX];</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="classFlyable.html#adfdfd8f1082170c2abbe27573e800de4">  145</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span>      <a class="code hl_variable" href="classFlyable.html#adfdfd8f1082170c2abbe27573e800de4">m_st_min_height</a>[PowerupManager::POWERUP_MAX];</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="classFlyable.html#a4c2d72d6903c9f8515096a14d93a9fff">  148</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span>      <a class="code hl_variable" href="classFlyable.html#a4c2d72d6903c9f8515096a14d93a9fff">m_st_max_height</a>[PowerupManager::POWERUP_MAX];</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classFlyable.html#a3b548aaf3fa0257a41167deb0f44a5cd">  151</a></span>    <span class="keyword">static</span> <span class="keywordtype">float</span>      <a class="code hl_variable" href="classFlyable.html#a3b548aaf3fa0257a41167deb0f44a5cd">m_st_force_updown</a>[PowerupManager::POWERUP_MAX];</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="classFlyable.html#a84b2c24bcb731db04747c647e6de643f">  154</a></span>    <span class="keyword">static</span> <a class="code hl_class" href="classVec3.html">Vec3</a>       <a class="code hl_variable" href="classFlyable.html#a84b2c24bcb731db04747c647e6de643f">m_st_extend</a>[PowerupManager::POWERUP_MAX];</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="classFlyable.html#a5dc37c393cf0e25b7e1e93982b9cade4">  158</a></span>    <span class="keywordtype">int</span>               <a class="code hl_variable" href="classFlyable.html#a5dc37c393cf0e25b7e1e93982b9cade4">m_max_lifespan</a>;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="comment">/* For debugging purpose */</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordtype">int</span>               m_created_ticks;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">void</span>              <a class="code hl_function" href="classFlyable.html#af738c1b7dd0c4593282bf0bf5e756358">getClosestKart</a>(<span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> **minKart,</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>                                     <span class="keywordtype">float</span> *minDistSquared,</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>                                     <a class="code hl_class" href="classVec3.html">Vec3</a> *minDelta,</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>                                     <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* inFrontOf=NULL,</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>                                     <span class="keyword">const</span> <span class="keywordtype">bool</span> backwards=<span class="keyword">false</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFlyable.html#ac4b95cb1f4fa4b2d6e2f27463d17cf24">getLinearKartItemIntersection</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;origin,</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>                                       <span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *target_kart,</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>                                       <span class="keywordtype">float</span> item_XY_velocity, <span class="keywordtype">float</span> gravity,</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>                                       <span class="keywordtype">float</span> forw_offset,</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>                                       <span class="keywordtype">float</span> *fire_angle, <span class="keywordtype">float</span> *up_velocity);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordtype">void</span>              <a class="code hl_function" href="classFlyable.html#a77c34b7c80e36c91b0a16304e1ab8539">createPhysics</a>(<span class="keywordtype">float</span> y_offset,</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>                                    <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;velocity,</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                                    btCollisionShape *shape,</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>                                    <span class="keywordtype">float</span> restitution,</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>                                    <span class="keyword">const</span> btVector3&amp; gravity=btVector3(0.0f,0.0f,0.0f),</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>                                    <span class="keyword">const</span> <span class="keywordtype">bool</span> rotates=<span class="keyword">false</span>,</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>                                    <span class="keyword">const</span> <span class="keywordtype">bool</span> turn_around=<span class="keyword">false</span>,</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                                    <span class="keyword">const</span> btTransform* customDirection=NULL);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordtype">void</span>              <a class="code hl_function" href="classFlyable.html#a4262ca0e4b9966ca7e304dfec7ee9829">moveToInfinity</a>(<span class="keywordtype">bool</span> set_moveable_trans = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keywordtype">void</span>              removePhysics();</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordtype">void</span>              fixSFXSplitscreen(<a class="code hl_class" href="classSFXBase.html">SFXBase</a>* sfx);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>                 Flyable     (<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart,</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                              PowerupManager::PowerupType type,</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>                              <span class="keywordtype">float</span> mass=1.0f);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keyword">virtual</span>     ~Flyable     ();</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keyword">static</span> <span class="keywordtype">void</span>  <a class="code hl_function" href="classFlyable.html#af04283c854ae9afb705c896347a77bb5">init</a>        (<span class="keyword">const</span> <a class="code hl_class" href="classXMLNode.html">XMLNode</a> &amp;node, scene::IMesh *model,</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                              PowerupManager::PowerupType type);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordtype">void</span>                      <a class="code hl_function" href="classFlyable.html#ac5e18b2b0c2a8e6b26d1e334e914b162">updateGraphics</a>(<span class="keywordtype">float</span> dt) OVERRIDE;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span>              <a class="code hl_function" href="classFlyable.html#afafd4bb82142fd8760f12f1e86a99555">updateAndDelete</a>(<span class="keywordtype">int</span> ticks);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span>              setAnimation(<a class="code hl_class" href="classAbstractKartAnimation.html">AbstractKartAnimation</a> *animation);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classHitEffect.html">HitEffect</a>*        <a class="code hl_function" href="classFlyable.html#aecb3bebd157867c844bfb493d845108c">getHitEffect</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordtype">bool</span>                      <a class="code hl_function" href="classFlyable.html#a5c0487f0e6aa3853580ccb171c4bba75">isOwnerImmunity</a>(<span class="keyword">const</span> <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *kart_hit) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span>              <a class="code hl_function" href="classFlyable.html#a442fac8ce3a8622519cc83921445ff0e">hit</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart, <a class="code hl_class" href="classPhysicalObject.html">PhysicalObject</a>* obj=NULL);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordtype">void</span>                      <a class="code hl_function" href="classFlyable.html#a35dca7ea5bc2f00f953f59ed00719b1f">explode</a>(<a class="code hl_class" href="classAbstractKart.html">AbstractKart</a>* kart, <a class="code hl_class" href="classPhysicalObject.html">PhysicalObject</a>* obj=NULL,</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                                      <span class="keywordtype">bool</span> secondary_hits=<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>              getOwnerId();</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="classFlyable.html#af0e64ee6cc21c184ef49c95121cbbf0c">  208</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classFlyable.html#af0e64ee6cc21c184ef49c95121cbbf0c">hasAnimation</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFlyable.html#ac41af83c72a6a82c5c8fe97da6b42df0">m_animation</a> != NULL;  }</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="classFlyable.html#a8b650c9235926d724fef80da5ab21fa5">  213</a></span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classFlyable.html#a8b650c9235926d724fef80da5ab21fa5">setAdjustUpVelocity</a>(<span class="keywordtype">bool</span> f) { <a class="code hl_variable" href="classFlyable.html#a63cf5ccda2649869beca9297d8b883a3">m_adjust_up_velocity</a> = f; }</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classFlyable.html#a0b32c9327be470d759f3ece00a8bfb78">  218</a></span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classFlyable.html#a0b32c9327be470d759f3ece00a8bfb78">setPositionOffset</a>(<span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;o) {<a class="code hl_variable" href="classFlyable.html#a8e6d0bee96390126b52e4ad3af713fe1">m_position_offset</a> = o; }</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="classFlyable.html#ad4d79708e98abd295a79b6f6b9e15c59">  221</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFlyable.html#ad4d79708e98abd295a79b6f6b9e15c59">hitTrack</a>    () {};</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="classFlyable.html#aa7b61963ea36ed0378764b8daae272be">  226</a></span>    <span class="keywordtype">bool</span>         <a class="code hl_function" href="classFlyable.html#aa7b61963ea36ed0378764b8daae272be">hasHit</a>      () { <span class="keywordflow">return</span> m_has_hit_something; }</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="classFlyable.html#a6722dffa35efb58f05775e02b8462452">  230</a></span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classFlyable.html#a6722dffa35efb58f05775e02b8462452">setHasHit</a>   () { m_has_hit_something = <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="classFlyable.html#ad29bc8ed757edb8ddc44490f763cb2f9">  233</a></span>    <span class="keywordtype">void</span>         <a class="code hl_function" href="classFlyable.html#ad29bc8ed757edb8ddc44490f763cb2f9">reset</a>() OVERRIDE { <a class="code hl_function" href="classMoveable.html#ae7c84bf094eed838f9df052f371934a0">Moveable::reset</a>();          }</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="classFlyable.html#a0df0dfa86426459e4901fc475d1b19c0">  236</a></span>    PowerupManager::PowerupType <a class="code hl_function" href="classFlyable.html#a0df0dfa86426459e4901fc475d1b19c0">getType</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classFlyable.html#a6894ee5db673df868ea3b4ea7133999d">m_type</a>;}</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="classFlyable.html#a2c023dd2bb2e166eaa3b5e18c20c5da1">  240</a></span>    <a class="code hl_class" href="classAbstractKart.html">AbstractKart</a> *<a class="code hl_function" href="classFlyable.html#a2c023dd2bb2e166eaa3b5e18c20c5da1">getOwner</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFlyable.html#a7e1ff548cbb74b54eea07bbab6aa4c83">m_owner</a>;}  </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="classFlyable.html#ab673243dab42b4b322ab1da12fd30b6c">  245</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFlyable.html#ab673243dab42b4b322ab1da12fd30b6c">setDoTerrainInfo</a>(<span class="keywordtype">bool</span> d) { <a class="code hl_variable" href="classFlyable.html#a7beadae7ba23e9c79e56b015b2b9342d">m_do_terrain_info</a> = d; }</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno"><a class="line" href="classFlyable.html#a567d23dc3bfcb8e5b76c4e1d5ae931b9">  248</a></span>    <span class="keyword">const</span> <a class="code hl_class" href="classVec3.html">Vec3</a> &amp;<a class="code hl_function" href="classFlyable.html#a567d23dc3bfcb8e5b76c4e1d5ae931b9">getExtend</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFlyable.html#a971d8eec4e30f6946ab5b4ee2444b34d">m_extend</a>;  }</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordtype">void</span> addForRewind(<span class="keyword">const</span> std::string&amp; uid);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="classFlyable.html#ac1da5dd35b2ed7484de2ea5116443259">  252</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFlyable.html#ac1da5dd35b2ed7484de2ea5116443259">undoEvent</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer) OVERRIDE {}</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno"><a class="line" href="classFlyable.html#af3c53fbff2fafec52bfbef4ecfbe61e1">  254</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFlyable.html#af3c53fbff2fafec52bfbef4ecfbe61e1">rewindToEvent</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer) OVERRIDE {}</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="classFlyable.html#a05fcfdea1a37d4ffaeb2bbe81685196f">  256</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFlyable.html#a05fcfdea1a37d4ffaeb2bbe81685196f">undoState</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer) OVERRIDE {}</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFlyable.html#a09c6d6bfc807f33674f6d3edb753ec83">saveTransform</a>() OVERRIDE;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classFlyable.html#ae394f613eed21f33a0060083309dff68">computeError</a>() OVERRIDE;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    virtual <a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>* <a class="code hl_function" href="classFlyable.html#a14d9acbf37a4b3b46c183cf966d5b21b">saveState</a>(std::vector&lt;std::<span class="keywordtype">string</span>&gt;* ru)</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        OVERRIDE;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classFlyable.html#acf40d854bf7989651eec9def3323d7e4">restoreState</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer, <span class="keywordtype">int</span> count) OVERRIDE;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="comment">/* Return true if still in game state, or otherwise can be deleted. */</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keywordtype">bool</span> hasServerState()<span class="keyword"> const                  </span>{ <span class="keywordflow">return</span> m_has_server_state; }</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFlyable.html#a3334cf22cf9a9c3609238ce6c53c58a7">onFireFlyable</a>();</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> onDeleteFlyable();</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    <span class="keywordtype">void</span> setCreatedTicks(<span class="keywordtype">int</span> ticks)                { m_created_ticks = ticks; }</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>};   <span class="comment">// Flyable</span></div>
+</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAbstractKartAnimation_html"><div class="ttname"><a href="classAbstractKartAnimation.html">AbstractKartAnimation</a></div><div class="ttdoc">The base class for all kart animation, like rescue, explosion, or cannon.</div><div class="ttdef"><b>Definition</b> abstract_kart_animation.hpp:60</div></div>
+<div class="ttc" id="aclassAbstractKart_html"><div class="ttname"><a href="classAbstractKart.html">AbstractKart</a></div><div class="ttdoc">An abstract interface for the actual karts.</div><div class="ttdef"><b>Definition</b> abstract_kart.hpp:62</div></div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassFlyable_html_a0053fe4bc5ea0be0accb386ce0d8ee6a"><div class="ttname"><a href="classFlyable.html#a0053fe4bc5ea0be0accb386ce0d8ee6a">Flyable::m_st_speed</a></div><div class="ttdeci">static float m_st_speed[PowerupManager::POWERUP_MAX]</div><div class="ttdoc">Speed of the projectile.</div><div class="ttdef"><b>Definition</b> flyable.hpp:139</div></div>
+<div class="ttc" id="aclassFlyable_html_a05fcfdea1a37d4ffaeb2bbe81685196f"><div class="ttname"><a href="classFlyable.html#a05fcfdea1a37d4ffaeb2bbe81685196f">Flyable::undoState</a></div><div class="ttdeci">virtual void undoState(BareNetworkString *buffer) OVERRIDE</div><div class="ttdoc">Undo the effects of the given state, but do not rewind to that state (which is done by rewindTo).</div><div class="ttdef"><b>Definition</b> flyable.hpp:256</div></div>
+<div class="ttc" id="aclassFlyable_html_a09c6d6bfc807f33674f6d3edb753ec83"><div class="ttname"><a href="classFlyable.html#a09c6d6bfc807f33674f6d3edb753ec83">Flyable::saveTransform</a></div><div class="ttdeci">virtual void saveTransform() OVERRIDE</div><div class="ttdoc">Called before a rewind.</div><div class="ttdef"><b>Definition</b> flyable.cpp:745</div></div>
+<div class="ttc" id="aclassFlyable_html_a0b32c9327be470d759f3ece00a8bfb78"><div class="ttname"><a href="classFlyable.html#a0b32c9327be470d759f3ece00a8bfb78">Flyable::setPositionOffset</a></div><div class="ttdeci">void setPositionOffset(const Vec3 &amp;o)</div><div class="ttdoc">Sets the offset to be used when determining the terrain under the flyable.</div><div class="ttdef"><b>Definition</b> flyable.hpp:218</div></div>
+<div class="ttc" id="aclassFlyable_html_a0df0dfa86426459e4901fc475d1b19c0"><div class="ttname"><a href="classFlyable.html#a0df0dfa86426459e4901fc475d1b19c0">Flyable::getType</a></div><div class="ttdeci">PowerupManager::PowerupType getType() const</div><div class="ttdoc">Returns the type of flyable.</div><div class="ttdef"><b>Definition</b> flyable.hpp:236</div></div>
+<div class="ttc" id="aclassFlyable_html_a14d9acbf37a4b3b46c183cf966d5b21b"><div class="ttname"><a href="classFlyable.html#a14d9acbf37a4b3b46c183cf966d5b21b">Flyable::saveState</a></div><div class="ttdeci">virtual BareNetworkString * saveState(std::vector&lt; std::string &gt; *ru) OVERRIDE</div><div class="ttdoc">Provides a copy of the state of the object in one memory buffer.</div><div class="ttdef"><b>Definition</b> flyable.cpp:667</div></div>
+<div class="ttc" id="aclassFlyable_html_a2c023dd2bb2e166eaa3b5e18c20c5da1"><div class="ttname"><a href="classFlyable.html#a2c023dd2bb2e166eaa3b5e18c20c5da1">Flyable::getOwner</a></div><div class="ttdeci">AbstractKart * getOwner() const</div><div class="ttdoc">Returns the owner&#39;s kart</div><div class="ttdef"><b>Definition</b> flyable.hpp:240</div></div>
+<div class="ttc" id="aclassFlyable_html_a327cb50f67564db1df874ef263fffbe4"><div class="ttname"><a href="classFlyable.html#a327cb50f67564db1df874ef263fffbe4">Flyable::m_owner_has_temporary_immunity</a></div><div class="ttdeci">bool m_owner_has_temporary_immunity</div><div class="ttdoc">If set to true, the kart that throwns this flyable can&#39;t collide with it for a short time.</div><div class="ttdef"><b>Definition</b> flyable.hpp:123</div></div>
+<div class="ttc" id="aclassFlyable_html_a3334cf22cf9a9c3609238ce6c53c58a7"><div class="ttname"><a href="classFlyable.html#a3334cf22cf9a9c3609238ce6c53c58a7">Flyable::onFireFlyable</a></div><div class="ttdeci">virtual void onFireFlyable()</div><div class="ttdoc">Call when the item is (re-)fired (during rewind if needed) by projectile_manager.</div><div class="ttdef"><b>Definition</b> flyable.cpp:777</div></div>
+<div class="ttc" id="aclassFlyable_html_a333e5bac444ed69dbbef06e8b8a5e314"><div class="ttname"><a href="classFlyable.html#a333e5bac444ed69dbbef06e8b8a5e314">Flyable::m_min_height</a></div><div class="ttdeci">float m_min_height</div><div class="ttdoc">Minimum height above terrain.</div><div class="ttdef"><b>Definition</b> flyable.hpp:94</div></div>
+<div class="ttc" id="aclassFlyable_html_a33f049b73f3f317b4adfed8f20364a94"><div class="ttname"><a href="classFlyable.html#a33f049b73f3f317b4adfed8f20364a94">Flyable::m_average_height</a></div><div class="ttdeci">float m_average_height</div><div class="ttdoc">Average of average of m_{min,ax}_height.</div><div class="ttdef"><b>Definition</b> flyable.hpp:97</div></div>
+<div class="ttc" id="aclassFlyable_html_a35dca7ea5bc2f00f953f59ed00719b1f"><div class="ttname"><a href="classFlyable.html#a35dca7ea5bc2f00f953f59ed00719b1f">Flyable::explode</a></div><div class="ttdeci">void explode(AbstractKart *kart, PhysicalObject *obj=NULL, bool secondary_hits=true)</div><div class="ttdoc">Creates the explosion physical effect, i.e.</div><div class="ttdef"><b>Definition</b> flyable.cpp:571</div></div>
+<div class="ttc" id="aclassFlyable_html_a367a8be51c79e2c7e75093f45cb24cc1"><div class="ttname"><a href="classFlyable.html#a367a8be51c79e2c7e75093f45cb24cc1">Flyable::m_speed</a></div><div class="ttdeci">float m_speed</div><div class="ttdoc">Speed of this Flyable.</div><div class="ttdef"><b>Definition</b> flyable.hpp:103</div></div>
+<div class="ttc" id="aclassFlyable_html_a3b548aaf3fa0257a41167deb0f44a5cd"><div class="ttname"><a href="classFlyable.html#a3b548aaf3fa0257a41167deb0f44a5cd">Flyable::m_st_force_updown</a></div><div class="ttdeci">static float m_st_force_updown[PowerupManager::POWERUP_MAX]</div><div class="ttdoc">Force pushing up/down.</div><div class="ttdef"><b>Definition</b> flyable.hpp:151</div></div>
+<div class="ttc" id="aclassFlyable_html_a4262ca0e4b9966ca7e304dfec7ee9829"><div class="ttname"><a href="classFlyable.html#a4262ca0e4b9966ca7e304dfec7ee9829">Flyable::moveToInfinity</a></div><div class="ttdeci">void moveToInfinity(bool set_moveable_trans=true)</div><div class="ttdoc">It&#39;s called when undoing the creation or destruction of flyables, so that it will not affected the cu...</div><div class="ttdef"><b>Definition</b> flyable.cpp:653</div></div>
+<div class="ttc" id="aclassFlyable_html_a442fac8ce3a8622519cc83921445ff0e"><div class="ttname"><a href="classFlyable.html#a442fac8ce3a8622519cc83921445ff0e">Flyable::hit</a></div><div class="ttdeci">virtual bool hit(AbstractKart *kart, PhysicalObject *obj=NULL)</div><div class="ttdoc">Callback from the physics in case that a kart or physical object is hit.</div><div class="ttdef"><b>Definition</b> flyable.cpp:551</div></div>
+<div class="ttc" id="aclassFlyable_html_a4c2d72d6903c9f8515096a14d93a9fff"><div class="ttname"><a href="classFlyable.html#a4c2d72d6903c9f8515096a14d93a9fff">Flyable::m_st_max_height</a></div><div class="ttdeci">static float m_st_max_height[PowerupManager::POWERUP_MAX]</div><div class="ttdoc">Max height above track.</div><div class="ttdef"><b>Definition</b> flyable.hpp:148</div></div>
+<div class="ttc" id="aclassFlyable_html_a567d23dc3bfcb8e5b76c4e1d5ae931b9"><div class="ttname"><a href="classFlyable.html#a567d23dc3bfcb8e5b76c4e1d5ae931b9">Flyable::getExtend</a></div><div class="ttdeci">const Vec3 &amp; getExtend() const</div><div class="ttdoc">Returns the size (extend) of the mesh.</div><div class="ttdef"><b>Definition</b> flyable.hpp:248</div></div>
+<div class="ttc" id="aclassFlyable_html_a5c0487f0e6aa3853580ccb171c4bba75"><div class="ttname"><a href="classFlyable.html#a5c0487f0e6aa3853580ccb171c4bba75">Flyable::isOwnerImmunity</a></div><div class="ttdeci">bool isOwnerImmunity(const AbstractKart *kart_hit) const</div><div class="ttdoc">Returns true if the item hit the kart who shot it (to avoid that an item that&#39;s too close to the shoo...</div><div class="ttdef"><b>Definition</b> flyable.cpp:537</div></div>
+<div class="ttc" id="aclassFlyable_html_a5dc37c393cf0e25b7e1e93982b9cade4"><div class="ttname"><a href="classFlyable.html#a5dc37c393cf0e25b7e1e93982b9cade4">Flyable::m_max_lifespan</a></div><div class="ttdeci">int m_max_lifespan</div><div class="ttdoc">Set to something &gt; -1 if this flyable should auto-destrcut after that may ticks.</div><div class="ttdef"><b>Definition</b> flyable.hpp:158</div></div>
+<div class="ttc" id="aclassFlyable_html_a63cf5ccda2649869beca9297d8b883a3"><div class="ttname"><a href="classFlyable.html#a63cf5ccda2649869beca9297d8b883a3">Flyable::m_adjust_up_velocity</a></div><div class="ttdeci">bool m_adjust_up_velocity</div><div class="ttdoc">If this flag is set, the up velocity of the kart will not be adjusted in case that the objects is too...</div><div class="ttdef"><b>Definition</b> flyable.hpp:57</div></div>
+<div class="ttc" id="aclassFlyable_html_a6722dffa35efb58f05775e02b8462452"><div class="ttname"><a href="classFlyable.html#a6722dffa35efb58f05775e02b8462452">Flyable::setHasHit</a></div><div class="ttdeci">void setHasHit()</div><div class="ttdoc">Indicates that something was hit and that this object must be removed.</div><div class="ttdef"><b>Definition</b> flyable.hpp:230</div></div>
+<div class="ttc" id="aclassFlyable_html_a6894ee5db673df868ea3b4ea7133999d"><div class="ttname"><a href="classFlyable.html#a6894ee5db673df868ea3b4ea7133999d">Flyable::m_type</a></div><div class="ttdeci">PowerupManager::PowerupType m_type</div><div class="ttdoc">Type of the powerup.</div><div class="ttdef"><b>Definition</b> flyable.hpp:85</div></div>
+<div class="ttc" id="aclassFlyable_html_a6b3cbc6e1102707b82e89ca04b62675a"><div class="ttname"><a href="classFlyable.html#a6b3cbc6e1102707b82e89ca04b62675a">Flyable::m_ticks_since_thrown</a></div><div class="ttdeci">uint16_t m_ticks_since_thrown</div><div class="ttdoc">Time since thrown.</div><div class="ttdef"><b>Definition</b> flyable.hpp:113</div></div>
+<div class="ttc" id="aclassFlyable_html_a725c669c010fcdbef7694598a5399155"><div class="ttname"><a href="classFlyable.html#a725c669c010fcdbef7694598a5399155">Flyable::m_st_model</a></div><div class="ttdeci">static scene::IMesh * m_st_model[PowerupManager::POWERUP_MAX]</div><div class="ttdoc">The mesh of this Flyable.</div><div class="ttdef"><b>Definition</b> flyable.hpp:142</div></div>
+<div class="ttc" id="aclassFlyable_html_a77c34b7c80e36c91b0a16304e1ab8539"><div class="ttname"><a href="classFlyable.html#a77c34b7c80e36c91b0a16304e1ab8539">Flyable::createPhysics</a></div><div class="ttdeci">void createPhysics(float y_offset, const Vec3 &amp;velocity, btCollisionShape *shape, float restitution, const btVector3 &amp;gravity=btVector3(0.0f, 0.0f, 0.0f), const bool rotates=false, const bool turn_around=false, const btTransform *customDirection=NULL)</div><div class="ttdoc">init bullet for moving objects like projectiles</div><div class="ttdef"><b>Definition</b> flyable.cpp:126</div></div>
+<div class="ttc" id="aclassFlyable_html_a7beadae7ba23e9c79e56b015b2b9342d"><div class="ttname"><a href="classFlyable.html#a7beadae7ba23e9c79e56b015b2b9342d">Flyable::m_do_terrain_info</a></div><div class="ttdeci">bool m_do_terrain_info</div><div class="ttdoc">If this variable is set to true (which is the default) flyable will update the height of terrain when...</div><div class="ttdef"><b>Definition</b> flyable.hpp:70</div></div>
+<div class="ttc" id="aclassFlyable_html_a7e1ff548cbb74b54eea07bbab6aa4c83"><div class="ttname"><a href="classFlyable.html#a7e1ff548cbb74b54eea07bbab6aa4c83">Flyable::m_owner</a></div><div class="ttdeci">AbstractKart * m_owner</div><div class="ttdoc">Kart which shot this flyable.</div><div class="ttdef"><b>Definition</b> flyable.hpp:81</div></div>
+<div class="ttc" id="aclassFlyable_html_a7ea8cba9d466cfa5995f35777a848288"><div class="ttname"><a href="classFlyable.html#a7ea8cba9d466cfa5995f35777a848288">Flyable::m_max_height</a></div><div class="ttdeci">float m_max_height</div><div class="ttdoc">Maximum height above terrain.</div><div class="ttdef"><b>Definition</b> flyable.hpp:91</div></div>
+<div class="ttc" id="aclassFlyable_html_a84b2c24bcb731db04747c647e6de643f"><div class="ttname"><a href="classFlyable.html#a84b2c24bcb731db04747c647e6de643f">Flyable::m_st_extend</a></div><div class="ttdeci">static Vec3 m_st_extend[PowerupManager::POWERUP_MAX]</div><div class="ttdoc">Size of the model.</div><div class="ttdef"><b>Definition</b> flyable.hpp:154</div></div>
+<div class="ttc" id="aclassFlyable_html_a8b650c9235926d724fef80da5ab21fa5"><div class="ttname"><a href="classFlyable.html#a8b650c9235926d724fef80da5ab21fa5">Flyable::setAdjustUpVelocity</a></div><div class="ttdeci">void setAdjustUpVelocity(bool f)</div><div class="ttdoc">If true the up velocity of the flyable will be adjust so that the flyable stays at a height close to ...</div><div class="ttdef"><b>Definition</b> flyable.hpp:213</div></div>
+<div class="ttc" id="aclassFlyable_html_a8e6d0bee96390126b52e4ad3af713fe1"><div class="ttname"><a href="classFlyable.html#a8e6d0bee96390126b52e4ad3af713fe1">Flyable::m_position_offset</a></div><div class="ttdeci">Vec3 m_position_offset</div><div class="ttdoc">An offset that is added when doing the raycast for terrain.</div><div class="ttdef"><b>Definition</b> flyable.hpp:63</div></div>
+<div class="ttc" id="aclassFlyable_html_a8f3bf7f89db07c4d3215e6088010d1dd"><div class="ttname"><a href="classFlyable.html#a8f3bf7f89db07c4d3215e6088010d1dd">Flyable::m_mass</a></div><div class="ttdeci">const float m_mass</div><div class="ttdoc">Mass of this Flyable.</div><div class="ttdef"><b>Definition</b> flyable.hpp:106</div></div>
+<div class="ttc" id="aclassFlyable_html_a971d8eec4e30f6946ab5b4ee2444b34d"><div class="ttname"><a href="classFlyable.html#a971d8eec4e30f6946ab5b4ee2444b34d">Flyable::m_extend</a></div><div class="ttdeci">Vec3 m_extend</div><div class="ttdoc">Size of this flyable.</div><div class="ttdef"><b>Definition</b> flyable.hpp:109</div></div>
+<div class="ttc" id="aclassFlyable_html_aa7b61963ea36ed0378764b8daae272be"><div class="ttname"><a href="classFlyable.html#aa7b61963ea36ed0378764b8daae272be">Flyable::hasHit</a></div><div class="ttdeci">bool hasHit()</div><div class="ttdoc">Enables/disables adjusting ov velocity depending on height above terrain.</div><div class="ttdef"><b>Definition</b> flyable.hpp:226</div></div>
+<div class="ttc" id="aclassFlyable_html_ab673243dab42b4b322ab1da12fd30b6c"><div class="ttname"><a href="classFlyable.html#ab673243dab42b4b322ab1da12fd30b6c">Flyable::setDoTerrainInfo</a></div><div class="ttdeci">void setDoTerrainInfo(bool d)</div><div class="ttdoc">Sets wether Flyable should update TerrainInfo as part of its update call, or if the inheriting object...</div><div class="ttdef"><b>Definition</b> flyable.hpp:245</div></div>
+<div class="ttc" id="aclassFlyable_html_ab7c3150d50196c3027c2fffc87b145d3"><div class="ttname"><a href="classFlyable.html#ab7c3150d50196c3027c2fffc87b145d3">Flyable::m_shape</a></div><div class="ttdeci">btCollisionShape * m_shape</div><div class="ttdoc">Collision shape of this Flyable.</div><div class="ttdef"><b>Definition</b> flyable.hpp:88</div></div>
+<div class="ttc" id="aclassFlyable_html_ac1da5dd35b2ed7484de2ea5116443259"><div class="ttname"><a href="classFlyable.html#ac1da5dd35b2ed7484de2ea5116443259">Flyable::undoEvent</a></div><div class="ttdeci">virtual void undoEvent(BareNetworkString *buffer) OVERRIDE</div><div class="ttdoc">Called when an event needs to be undone.</div><div class="ttdef"><b>Definition</b> flyable.hpp:252</div></div>
+<div class="ttc" id="aclassFlyable_html_ac41af83c72a6a82c5c8fe97da6b42df0"><div class="ttname"><a href="classFlyable.html#ac41af83c72a6a82c5c8fe97da6b42df0">Flyable::m_animation</a></div><div class="ttdeci">AbstractKartAnimation * m_animation</div><div class="ttdoc">If the flyable is in a cannon, this is the pointer to the cannon animation.</div><div class="ttdef"><b>Definition</b> flyable.hpp:77</div></div>
+<div class="ttc" id="aclassFlyable_html_ac4b95cb1f4fa4b2d6e2f27463d17cf24"><div class="ttname"><a href="classFlyable.html#ac4b95cb1f4fa4b2d6e2f27463d17cf24">Flyable::getLinearKartItemIntersection</a></div><div class="ttdeci">void getLinearKartItemIntersection(const Vec3 &amp;origin, const AbstractKart *target_kart, float item_XY_velocity, float gravity, float forw_offset, float *fire_angle, float *up_velocity)</div><div class="ttdoc">Returns information on the parameters needed to hit a target kart moving at constant velocity and dir...</div><div class="ttdef"><b>Definition</b> flyable.cpp:330</div></div>
+<div class="ttc" id="aclassFlyable_html_ac5e18b2b0c2a8e6b26d1e334e914b162"><div class="ttname"><a href="classFlyable.html#ac5e18b2b0c2a8e6b26d1e334e914b162">Flyable::updateGraphics</a></div><div class="ttdeci">void updateGraphics(float dt) OVERRIDE</div><div class="ttdoc">Called once per rendered frame.</div><div class="ttdef"><b>Definition</b> flyable.cpp:415</div></div>
+<div class="ttc" id="aclassFlyable_html_acf40d854bf7989651eec9def3323d7e4"><div class="ttname"><a href="classFlyable.html#acf40d854bf7989651eec9def3323d7e4">Flyable::restoreState</a></div><div class="ttdeci">virtual void restoreState(BareNetworkString *buffer, int count) OVERRIDE</div><div class="ttdoc">Called when a state needs to be replayed.</div><div class="ttdef"><b>Definition</b> flyable.cpp:692</div></div>
+<div class="ttc" id="aclassFlyable_html_ad29bc8ed757edb8ddc44490f763cb2f9"><div class="ttname"><a href="classFlyable.html#ad29bc8ed757edb8ddc44490f763cb2f9">Flyable::reset</a></div><div class="ttdeci">void reset() OVERRIDE</div><div class="ttdoc">Resets this flyable.</div><div class="ttdef"><b>Definition</b> flyable.hpp:233</div></div>
+<div class="ttc" id="aclassFlyable_html_ad4d79708e98abd295a79b6f6b9e15c59"><div class="ttname"><a href="classFlyable.html#ad4d79708e98abd295a79b6f6b9e15c59">Flyable::hitTrack</a></div><div class="ttdeci">virtual void hitTrack()</div><div class="ttdoc">Called when this flyable hits the track.</div><div class="ttdef"><b>Definition</b> flyable.hpp:221</div></div>
+<div class="ttc" id="aclassFlyable_html_ad6646674446ad486596ccad41139f46c"><div class="ttname"><a href="classFlyable.html#ad6646674446ad486596ccad41139f46c">Flyable::m_force_updown</a></div><div class="ttdeci">float m_force_updown</div><div class="ttdoc">Force pushing the Flyable up.</div><div class="ttdef"><b>Definition</b> flyable.hpp:100</div></div>
+<div class="ttc" id="aclassFlyable_html_adfdfd8f1082170c2abbe27573e800de4"><div class="ttname"><a href="classFlyable.html#adfdfd8f1082170c2abbe27573e800de4">Flyable::m_st_min_height</a></div><div class="ttdeci">static float m_st_min_height[PowerupManager::POWERUP_MAX]</div><div class="ttdoc">Minimum height above track.</div><div class="ttdef"><b>Definition</b> flyable.hpp:145</div></div>
+<div class="ttc" id="aclassFlyable_html_ae394f613eed21f33a0060083309dff68"><div class="ttname"><a href="classFlyable.html#ae394f613eed21f33a0060083309dff68">Flyable::computeError</a></div><div class="ttdeci">virtual void computeError() OVERRIDE</div><div class="ttdoc">Called when a rewind is finished, and is used to compute the error caused by the rewind (which is the...</div><div class="ttdef"><b>Definition</b> flyable.cpp:756</div></div>
+<div class="ttc" id="aclassFlyable_html_aecb3bebd157867c844bfb493d845108c"><div class="ttname"><a href="classFlyable.html#aecb3bebd157867c844bfb493d845108c">Flyable::getHitEffect</a></div><div class="ttdeci">virtual HitEffect * getHitEffect() const</div><div class="ttdoc">Returns the hit effect object to use when this objects hits something.</div><div class="ttdef"><b>Definition</b> flyable.cpp:631</div></div>
+<div class="ttc" id="aclassFlyable_html_af04283c854ae9afb705c896347a77bb5"><div class="ttname"><a href="classFlyable.html#af04283c854ae9afb705c896347a77bb5">Flyable::init</a></div><div class="ttdeci">static void init(const XMLNode &amp;node, scene::IMesh *model, PowerupManager::PowerupType type)</div><div class="ttdoc">Initialises the static members of this class for a certain type with default values and with settings...</div><div class="ttdef"><b>Definition</b> flyable.cpp:198</div></div>
+<div class="ttc" id="aclassFlyable_html_af0e64ee6cc21c184ef49c95121cbbf0c"><div class="ttname"><a href="classFlyable.html#af0e64ee6cc21c184ef49c95121cbbf0c">Flyable::hasAnimation</a></div><div class="ttdeci">bool hasAnimation() const</div><div class="ttdoc">Returns if this flyable has an animation playing (e.g.</div><div class="ttdef"><b>Definition</b> flyable.hpp:208</div></div>
+<div class="ttc" id="aclassFlyable_html_af3c53fbff2fafec52bfbef4ecfbe61e1"><div class="ttname"><a href="classFlyable.html#af3c53fbff2fafec52bfbef4ecfbe61e1">Flyable::rewindToEvent</a></div><div class="ttdeci">virtual void rewindToEvent(BareNetworkString *buffer) OVERRIDE</div><div class="ttdoc">Called when an event needs to be replayed.</div><div class="ttdef"><b>Definition</b> flyable.hpp:254</div></div>
+<div class="ttc" id="aclassFlyable_html_af738c1b7dd0c4593282bf0bf5e756358"><div class="ttname"><a href="classFlyable.html#af738c1b7dd0c4593282bf0bf5e756358">Flyable::getClosestKart</a></div><div class="ttdeci">void getClosestKart(const AbstractKart **minKart, float *minDistSquared, Vec3 *minDelta, const AbstractKart *inFrontOf=NULL, const bool backwards=false) const</div><div class="ttdoc">Returns information on what is the closest kart and at what distance it is.</div><div class="ttdef"><b>Definition</b> flyable.cpp:251</div></div>
+<div class="ttc" id="aclassFlyable_html_afafd4bb82142fd8760f12f1e86a99555"><div class="ttname"><a href="classFlyable.html#afafd4bb82142fd8760f12f1e86a99555">Flyable::updateAndDelete</a></div><div class="ttdeci">virtual bool updateAndDelete(int ticks)</div><div class="ttdoc">Updates this flyable.</div><div class="ttdef"><b>Definition</b> flyable.cpp:427</div></div>
+<div class="ttc" id="aclassHitEffect_html"><div class="ttname"><a href="classHitEffect.html">HitEffect</a></div><div class="ttdoc">A small interface for effects to be used when a kart is hit.</div><div class="ttdef"><b>Definition</b> hit_effect.hpp:33</div></div>
+<div class="ttc" id="aclassMoveable_html_ae7c84bf094eed838f9df052f371934a0"><div class="ttname"><a href="classMoveable.html#ae7c84bf094eed838f9df052f371934a0">Moveable::reset</a></div><div class="ttdeci">virtual void reset()</div><div class="ttdoc">The reset position must be set before calling reset</div><div class="ttdef"><b>Definition</b> moveable.cpp:104</div></div>
+<div class="ttc" id="aclassPhysicalObject_html"><div class="ttname"><a href="classPhysicalObject.html">PhysicalObject</a></div><div class="ttdef"><b>Definition</b> physical_object.hpp:40</div></div>
+<div class="ttc" id="aclassSFXBase_html"><div class="ttname"><a href="classSFXBase.html">SFXBase</a></div><div class="ttdoc">The base class for sound effects.</div><div class="ttdef"><b>Definition</b> sfx_base.hpp:43</div></div>
+<div class="ttc" id="aclassTerrainInfo_html_a609a1767bdc271180f80f1eb20483026"><div class="ttname"><a href="classTerrainInfo.html#a609a1767bdc271180f80f1eb20483026">TerrainInfo::TerrainInfo</a></div><div class="ttdeci">TerrainInfo()</div><div class="ttdoc">Constructor to initialise terrain data.</div><div class="ttdef"><b>Definition</b> terrain_info.cpp:32</div></div>
+<div class="ttc" id="aclassVec3_html"><div class="ttname"><a href="classVec3.html">Vec3</a></div><div class="ttdoc">A wrapper around bullets btVector3 to include conventient conversion functions (e....</div><div class="ttdef"><b>Definition</b> vec3.hpp:35</div></div>
+<div class="ttc" id="aclassXMLNode_html"><div class="ttname"><a href="classXMLNode.html">XMLNode</a></div><div class="ttdoc">utility class used to parse XML files</div><div class="ttdef"><b>Definition</b> xml_node.hpp:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

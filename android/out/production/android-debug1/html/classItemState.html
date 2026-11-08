@@ -1,0 +1,986 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: ItemState 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 타입</a> &#124;
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pro-methods">Protected 멤버 함수</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="classItemState-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">ItemState 클래스 참조<div class="ingroups"><a class="el" href="group__items.html">Items</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Contains the state information of an item, i.e.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="item_8hpp_source.html">item.hpp</a>&gt;</code></p>
+<div class="dynheader">
+ItemState에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classItemState__inherit__graph.png" border="0" usemap="#aItemState_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aItemState_inherit__map" id="aItemState_inherit__map">
+<area shape="rect" title="Contains the state information of an item, i.e." alt="" coords="5,5,84,32"/>
+<area shape="rect" href="classItem.html" title=" " alt="" coords="21,80,68,107"/>
+<area shape="poly" title=" " alt="" coords="46,46,47,80,42,79,43,50"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 타입</h2></td></tr>
+<tr class="memitem:abd8c7a2740237da69f241aad5d81833a" id="r_abd8c7a2740237da69f241aad5d81833a"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a> { <br />
+&#160;&#160;<b>ITEM_FIRST</b>
+, <b>ITEM_BONUS_BOX</b> = ITEM_FIRST
+, <b>ITEM_BANANA</b>
+, <b>ITEM_NITRO_BIG</b>
+, <br />
+&#160;&#160;<b>ITEM_NITRO_SMALL</b>
+, <b>ITEM_BUBBLEGUM</b>
+, <b>ITEM_BUBBLEGUM_NOLOK</b>
+, <a class="el" href="#abd8c7a2740237da69f241aad5d81833aa878136ae6a14ef73a18b34db17f8e684">ITEM_EASTER_EGG</a>
+, <br />
+&#160;&#160;<b>ITEM_LAST</b> = ITEM_EASTER_EGG
+, <b>ITEM_COUNT</b>
+, <b>ITEM_NONE</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:abd8c7a2740237da69f241aad5d81833a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of all items.  <a href="#abd8c7a2740237da69f241aad5d81833a">더 자세히 ...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a1ebabd856fb646e8f1070934e7a8162f" id="r_a1ebabd856fb646e8f1070934e7a8162f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1ebabd856fb646e8f1070934e7a8162f">ItemState</a> (<a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a> type, const <a class="el" href="classAbstractKart.html">AbstractKart</a> *owner=NULL, int id=-1)</td></tr>
+<tr class="memdesc:a1ebabd856fb646e8f1070934e7a8162f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="memitem:a588f1e177093317929a04c3b37e8ba9c" id="r_a588f1e177093317929a04c3b37e8ba9c"><td class="memItemLeft"><a id="a588f1e177093317929a04c3b37e8ba9c" name="a588f1e177093317929a04c3b37e8ba9c"></a>
+&#160;</td><td class="memItemRight"><b>ItemState</b> (const <a class="el" href="classBareNetworkString.html">BareNetworkString</a> &amp;buffer)</td></tr>
+<tr class="memdesc:a588f1e177093317929a04c3b37e8ba9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to restore item state at current ticks in client for live join <br /></td></tr>
+<tr class="memitem:adf17d5f0f1dc5a8ed6b39275397bdef6" id="r_adf17d5f0f1dc5a8ed6b39275397bdef6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adf17d5f0f1dc5a8ed6b39275397bdef6">initItem</a> (<a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a> type, const <a class="el" href="classVec3.html">Vec3</a> &amp;xyz, const <a class="el" href="classVec3.html">Vec3</a> &amp;normal)</td></tr>
+<tr class="memdesc:adf17d5f0f1dc5a8ed6b39275397bdef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises an item.  <br /></td></tr>
+<tr class="memitem:a7cd31d22c604b48de46e333339197781" id="r_a7cd31d22c604b48de46e333339197781"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7cd31d22c604b48de46e333339197781">update</a> (int ticks)</td></tr>
+<tr class="memdesc:a7cd31d22c604b48de46e333339197781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the state of the item, called once per physics frame.  <br /></td></tr>
+<tr class="memitem:aea3601f1444a89b3a679ef5bddb1e20c" id="r_aea3601f1444a89b3a679ef5bddb1e20c"><td class="memItemLeft"><a id="aea3601f1444a89b3a679ef5bddb1e20c" name="aea3601f1444a89b3a679ef5bddb1e20c"></a>
+void&#160;</td><td class="memItemRight"><b>setDisappearCounter</b> ()</td></tr>
+<tr class="memdesc:aea3601f1444a89b3a679ef5bddb1e20c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the disappear counter depending on type. <br /></td></tr>
+<tr class="memitem:a0d2b8c395ff63597706d21ea5f2197f5" id="r_a0d2b8c395ff63597706d21ea5f2197f5"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a0d2b8c395ff63597706d21ea5f2197f5">collected</a> (const <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart)</td></tr>
+<tr class="memdesc:a0d2b8c395ff63597706d21ea5f2197f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the item is collected.  <br /></td></tr>
+<tr class="memitem:a584576d2970812ee661628f45da201b8" id="r_a584576d2970812ee661628f45da201b8"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a584576d2970812ee661628f45da201b8">updateGraphics</a> (float dt)</td></tr>
+<tr class="memdesc:a584576d2970812ee661628f45da201b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dummy implementation, causing an abort if it should be called to catch any errors early.  <br /></td></tr>
+<tr class="memitem:a7564d72c63f44843938a161438c42cee" id="r_a7564d72c63f44843938a161438c42cee"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a7564d72c63f44843938a161438c42cee">hitKart</a> (const <a class="el" href="classVec3.html">Vec3</a> &amp;xyz, const <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart=NULL) const</td></tr>
+<tr class="memitem:a9fecd693c8a104f9f108e6c7b46618c8" id="r_a9fecd693c8a104f9f108e6c7b46618c8"><td class="memItemLeft">virtual int&#160;</td><td class="memItemRight"><a class="el" href="#a9fecd693c8a104f9f108e6c7b46618c8">getGraphNode</a> () const</td></tr>
+<tr class="memitem:ad187ee121007940424ca5d49bbfde9cc" id="r_ad187ee121007940424ca5d49bbfde9cc"><td class="memItemLeft">virtual const <a class="el" href="classVec3.html">Vec3</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ad187ee121007940424ca5d49bbfde9cc">getAvoidancePoint</a> (bool left) const</td></tr>
+<tr class="memitem:aced1ac23cc499c40cace86ef439cf8a0" id="r_aced1ac23cc499c40cace86ef439cf8a0"><td class="memItemLeft">virtual float&#160;</td><td class="memItemRight"><a class="el" href="#aced1ac23cc499c40cace86ef439cf8a0">getDistanceFromCenter</a> () const</td></tr>
+<tr class="memitem:a03245867c6e33654aba0e846d2e8e1cd" id="r_a03245867c6e33654aba0e846d2e8e1cd"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a03245867c6e33654aba0e846d2e8e1cd">reset</a> ()</td></tr>
+<tr class="memdesc:a03245867c6e33654aba0e846d2e8e1cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets an item to its start state.  <br /></td></tr>
+<tr class="memitem:a435703ec7990e5ba77b02e45488abfc4" id="r_a435703ec7990e5ba77b02e45488abfc4"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a435703ec7990e5ba77b02e45488abfc4">switchTo</a> (<a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a> type)</td></tr>
+<tr class="memdesc:a435703ec7990e5ba77b02e45488abfc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switches an item to be of a different type.  <br /></td></tr>
+<tr class="memitem:a5c0ba00f751784d6015cb029de701dbb" id="r_a5c0ba00f751784d6015cb029de701dbb"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a5c0ba00f751784d6015cb029de701dbb">switchBack</a> ()</td></tr>
+<tr class="memdesc:a5c0ba00f751784d6015cb029de701dbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if this item was not actually switched (e.g.  <br /></td></tr>
+<tr class="memitem:af9daadf1f6d87b3fd5319e9532207f0b" id="r_af9daadf1f6d87b3fd5319e9532207f0b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af9daadf1f6d87b3fd5319e9532207f0b">isNegativeItem</a> () const</td></tr>
+<tr class="memdesc:af9daadf1f6d87b3fd5319e9532207f0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if this item is negative, i.e.  <br /></td></tr>
+<tr class="memitem:ae6a0c097cde44bd3c80dbc62ac754c1f" id="r_ae6a0c097cde44bd3c80dbc62ac754c1f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae6a0c097cde44bd3c80dbc62ac754c1f">setTicksTillReturn</a> (int t)</td></tr>
+<tr class="memdesc:ae6a0c097cde44bd3c80dbc62ac754c1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets how long an item should be disabled.  <br /></td></tr>
+<tr class="memitem:a18efcf13eb49d478f35bdcdd2e783826" id="r_a18efcf13eb49d478f35bdcdd2e783826"><td class="memItemLeft"><a id="a18efcf13eb49d478f35bdcdd2e783826" name="a18efcf13eb49d478f35bdcdd2e783826"></a>
+int&#160;</td><td class="memItemRight"><b>getTicksTillReturn</b> () const</td></tr>
+<tr class="memdesc:a18efcf13eb49d478f35bdcdd2e783826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time the item is disabled for. <br /></td></tr>
+<tr class="memitem:adcba7e09a45aae1d2ad4ff10d63205c7" id="r_adcba7e09a45aae1d2ad4ff10d63205c7"><td class="memItemLeft"><a id="adcba7e09a45aae1d2ad4ff10d63205c7" name="adcba7e09a45aae1d2ad4ff10d63205c7"></a>
+bool&#160;</td><td class="memItemRight"><b>isAvailable</b> () const</td></tr>
+<tr class="memdesc:adcba7e09a45aae1d2ad4ff10d63205c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if this item is currently collected. <br /></td></tr>
+<tr class="memitem:a9ed353ee57a4cbfe2d9b4d70b3c64e7c" id="r_a9ed353ee57a4cbfe2d9b4d70b3c64e7c"><td class="memItemLeft"><a id="a9ed353ee57a4cbfe2d9b4d70b3c64e7c" name="a9ed353ee57a4cbfe2d9b4d70b3c64e7c"></a>
+<a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a>&#160;</td><td class="memItemRight"><b>getType</b> () const</td></tr>
+<tr class="memdesc:a9ed353ee57a4cbfe2d9b4d70b3c64e7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the type of this item. <br /></td></tr>
+<tr class="memitem:a9dc50873613d5eb05265e9c23ae7cf10" id="r_a9dc50873613d5eb05265e9c23ae7cf10"><td class="memItemLeft"><a id="a9dc50873613d5eb05265e9c23ae7cf10" name="a9dc50873613d5eb05265e9c23ae7cf10"></a>
+<a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a>&#160;</td><td class="memItemRight"><b>getGrahpicalType</b> () const</td></tr>
+<tr class="memdesc:a9dc50873613d5eb05265e9c23ae7cf10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the graphical type of this item should be using (takes nolok into account). <br /></td></tr>
+<tr class="memitem:a4da7ba2f90eb31b30ecc501dece6d0d3" id="r_a4da7ba2f90eb31b30ecc501dece6d0d3"><td class="memItemLeft"><a id="a4da7ba2f90eb31b30ecc501dece6d0d3" name="a4da7ba2f90eb31b30ecc501dece6d0d3"></a>
+<a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a>&#160;</td><td class="memItemRight"><b>getOriginalType</b> () const</td></tr>
+<tr class="memdesc:a4da7ba2f90eb31b30ecc501dece6d0d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the original type of this item. <br /></td></tr>
+<tr class="memitem:a09b3d75303299fa378b0bfaefedace87" id="r_a09b3d75303299fa378b0bfaefedace87"><td class="memItemLeft"><a id="a09b3d75303299fa378b0bfaefedace87" name="a09b3d75303299fa378b0bfaefedace87"></a>
+void&#160;</td><td class="memItemRight"><b>setItemId</b> (unsigned int n)</td></tr>
+<tr class="memdesc:a09b3d75303299fa378b0bfaefedace87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the index of this item in the item manager list. <br /></td></tr>
+<tr class="memitem:a8489682294c179f4c06c2bc00653f11a" id="r_a8489682294c179f4c06c2bc00653f11a"><td class="memItemLeft"><a id="a8489682294c179f4c06c2bc00653f11a" name="a8489682294c179f4c06c2bc00653f11a"></a>
+unsigned int&#160;</td><td class="memItemRight"><b>getItemId</b> () const</td></tr>
+<tr class="memdesc:a8489682294c179f4c06c2bc00653f11a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the index of this item in the item manager list. <br /></td></tr>
+<tr class="memitem:a48730d896e414fd3677c8c36144295d7" id="r_a48730d896e414fd3677c8c36144295d7"><td class="memItemLeft"><a id="a48730d896e414fd3677c8c36144295d7" name="a48730d896e414fd3677c8c36144295d7"></a>
+bool&#160;</td><td class="memItemRight"><b>isUsedUp</b> () const</td></tr>
+<tr class="memdesc:a48730d896e414fd3677c8c36144295d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if this item is used up and can be removed. <br /></td></tr>
+<tr class="memitem:a1fa0c69f99b3eeb0eaa7d00fd24a62d5" id="r_a1fa0c69f99b3eeb0eaa7d00fd24a62d5"><td class="memItemLeft"><a id="a1fa0c69f99b3eeb0eaa7d00fd24a62d5" name="a1fa0c69f99b3eeb0eaa7d00fd24a62d5"></a>
+bool&#160;</td><td class="memItemRight"><b>canBeUsedUp</b> () const</td></tr>
+<tr class="memdesc:a1fa0c69f99b3eeb0eaa7d00fd24a62d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if this item can be used up, and therefore needs to be removed when the game is reset. <br /></td></tr>
+<tr class="memitem:aea31846faf4684c2e59d38ab9682edc2" id="r_aea31846faf4684c2e59d38ab9682edc2"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aea31846faf4684c2e59d38ab9682edc2">getDeactivatedTicks</a> () const</td></tr>
+<tr class="memdesc:aea31846faf4684c2e59d38ab9682edc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of ticks during which the item is deactivated (i.e.  <br /></td></tr>
+<tr class="memitem:a37684d3f65415e0e198ef7bf5ec05e80" id="r_a37684d3f65415e0e198ef7bf5ec05e80"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a37684d3f65415e0e198ef7bf5ec05e80">setDeactivatedTicks</a> (int ticks)</td></tr>
+<tr class="memdesc:a37684d3f65415e0e198ef7bf5ec05e80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the number of ticks during which the item is deactivated (i.e.  <br /></td></tr>
+<tr class="memitem:a4572d500a77f62ba2d89e64a5e88016f" id="r_a4572d500a77f62ba2d89e64a5e88016f"><td class="memItemLeft"><a id="a4572d500a77f62ba2d89e64a5e88016f" name="a4572d500a77f62ba2d89e64a5e88016f"></a>
+const <a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><b>getPreviousOwner</b> () const</td></tr>
+<tr class="memdesc:a4572d500a77f62ba2d89e64a5e88016f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the kart that dropped this item (or NULL if the item was not dropped by a kart. <br /></td></tr>
+<tr class="memitem:a6a5aac228c07e728f853e663c9202e8e" id="r_a6a5aac228c07e728f853e663c9202e8e"><td class="memItemLeft"><a id="a6a5aac228c07e728f853e663c9202e8e" name="a6a5aac228c07e728f853e663c9202e8e"></a>
+void&#160;</td><td class="memItemRight"><b>setXYZ</b> (const <a class="el" href="classVec3.html">Vec3</a> &amp;xyz)</td></tr>
+<tr class="memitem:a4d399b62016f80beff9f772d3fbe724f" id="r_a4d399b62016f80beff9f772d3fbe724f"><td class="memItemLeft"><a id="a4d399b62016f80beff9f772d3fbe724f" name="a4d399b62016f80beff9f772d3fbe724f"></a>
+const <a class="el" href="classVec3.html">Vec3</a> &amp;&#160;</td><td class="memItemRight"><b>getXYZ</b> () const</td></tr>
+<tr class="memdesc:a4d399b62016f80beff9f772d3fbe724f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the XYZ position of the item. <br /></td></tr>
+<tr class="memitem:a2a4dc297868c49c134fbfe91b894b2ac" id="r_a2a4dc297868c49c134fbfe91b894b2ac"><td class="memItemLeft"><a id="a2a4dc297868c49c134fbfe91b894b2ac" name="a2a4dc297868c49c134fbfe91b894b2ac"></a>
+const <a class="el" href="classVec3.html">Vec3</a>&#160;</td><td class="memItemRight"><b>getNormal</b> () const</td></tr>
+<tr class="memdesc:a2a4dc297868c49c134fbfe91b894b2ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the normal of the <a class="el" href="classItemState.html" title="Contains the state information of an item, i.e.">ItemState</a>. <br /></td></tr>
+<tr class="memitem:a9a04a003996b9b82435a5b768192e518" id="r_a9a04a003996b9b82435a5b768192e518"><td class="memItemLeft"><a id="a9a04a003996b9b82435a5b768192e518" name="a9a04a003996b9b82435a5b768192e518"></a>
+const btQuaternion &amp;&#160;</td><td class="memItemRight"><b>getOriginalRotation</b> () const</td></tr>
+<tr class="memdesc:a9a04a003996b9b82435a5b768192e518"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the original rotation of the item. <br /></td></tr>
+<tr class="memitem:a3b4e127adabe8757a6d2c44799256d1f" id="r_a3b4e127adabe8757a6d2c44799256d1f"><td class="memItemLeft"><a id="a3b4e127adabe8757a6d2c44799256d1f" name="a3b4e127adabe8757a6d2c44799256d1f"></a>
+void&#160;</td><td class="memItemRight"><b>saveCompleteState</b> (<a class="el" href="classBareNetworkString.html">BareNetworkString</a> *buffer) const</td></tr>
+<tr class="memdesc:a3b4e127adabe8757a6d2c44799256d1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save item state at current ticks in server for live join <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 멤버 함수</h2></td></tr>
+<tr class="memitem:aaf593eb07713323517ac2dc4c5546868" id="r_aaf593eb07713323517ac2dc4c5546868"><td class="memItemLeft"><a id="aaf593eb07713323517ac2dc4c5546868" name="aaf593eb07713323517ac2dc4c5546868"></a>
+virtual void&#160;</td><td class="memItemRight"><b>setType</b> (<a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a> type)</td></tr>
+<tr class="memitem:a2bc9f8e476a90b066da808030eacf4d4" id="r_a2bc9f8e476a90b066da808030eacf4d4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a2bc9f8e476a90b066da808030eacf4d4">hitLine</a> (const core::line3df &amp;line, const <a class="el" href="classAbstractKart.html">AbstractKart</a> *kart=NULL) const</td></tr>
+<tr class="memdesc:a2bc9f8e476a90b066da808030eacf4d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the specified line segment would come close enough to this item so that this item would be collected.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:a8911aa9f2954b35e69933cd053aaa6da" id="r_a8911aa9f2954b35e69933cd053aaa6da"><td class="memItemLeft"><a id="a8911aa9f2954b35e69933cd053aaa6da" name="a8911aa9f2954b35e69933cd053aaa6da"></a>
+&#160;</td><td class="memItemRight"><b>LEAK_CHECK</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:aa44762e2d9b141e56611281fefa15bb6" id="r_aa44762e2d9b141e56611281fefa15bb6"><td class="memItemLeft"><a id="aa44762e2d9b141e56611281fefa15bb6" name="aa44762e2d9b141e56611281fefa15bb6"></a>
+<a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a>&#160;</td><td class="memItemRight"><b>m_type</b></td></tr>
+<tr class="memdesc:aa44762e2d9b141e56611281fefa15bb6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classItem.html">Item</a> type. <br /></td></tr>
+<tr class="memitem:af9cb0610f6c8f751d941ed5c8a6e18b1" id="r_af9cb0610f6c8f751d941ed5c8a6e18b1"><td class="memItemLeft"><a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a>&#160;</td><td class="memItemRight"><a class="el" href="#af9cb0610f6c8f751d941ed5c8a6e18b1">m_original_type</a></td></tr>
+<tr class="memdesc:af9cb0610f6c8f751d941ed5c8a6e18b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the item is switched, this contains the original type.  <br /></td></tr>
+<tr class="memitem:ad1ba1c54b0a94ce9a94f1fef8f544b83" id="r_ad1ba1c54b0a94ce9a94f1fef8f544b83"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad1ba1c54b0a94ce9a94f1fef8f544b83">m_ticks_till_return</a></td></tr>
+<tr class="memdesc:ad1ba1c54b0a94ce9a94f1fef8f544b83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time till a collected item reappears.  <br /></td></tr>
+<tr class="memitem:ad57ec2f079c702772b6fb6e9f012b9fe" id="r_ad57ec2f079c702772b6fb6e9f012b9fe"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad57ec2f079c702772b6fb6e9f012b9fe">m_item_id</a></td></tr>
+<tr class="memdesc:ad57ec2f079c702772b6fb6e9f012b9fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index in item_manager field.  <br /></td></tr>
+<tr class="memitem:a24c372ad26643c6bffcaa1e6d1fd0b4e" id="r_a24c372ad26643c6bffcaa1e6d1fd0b4e"><td class="memItemLeft"><a id="a24c372ad26643c6bffcaa1e6d1fd0b4e" name="a24c372ad26643c6bffcaa1e6d1fd0b4e"></a>
+int&#160;</td><td class="memItemRight"><b>m_deactive_ticks</b></td></tr>
+<tr class="memdesc:a24c372ad26643c6bffcaa1e6d1fd0b4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optionally if item was placed by a kart, a timer can be used to temporarly deactivate collision so a kart is not hit by its own item <br /></td></tr>
+<tr class="memitem:a2e3b6daa2b3d42e1414e1f354c16ba82" id="r_a2e3b6daa2b3d42e1414e1f354c16ba82"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a2e3b6daa2b3d42e1414e1f354c16ba82">m_used_up_counter</a></td></tr>
+<tr class="memdesc:a2e3b6daa2b3d42e1414e1f354c16ba82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counts how often an item is used before it disappears.  <br /></td></tr>
+<tr class="memitem:a23e3a8467cdc7648e67c22955aaaf04e" id="r_a23e3a8467cdc7648e67c22955aaaf04e"><td class="memItemLeft"><a id="a23e3a8467cdc7648e67c22955aaaf04e" name="a23e3a8467cdc7648e67c22955aaaf04e"></a>
+<a class="el" href="classVec3.html">Vec3</a>&#160;</td><td class="memItemRight"><b>m_xyz</b></td></tr>
+<tr class="memdesc:a23e3a8467cdc7648e67c22955aaaf04e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The position of this <a class="el" href="classItemState.html" title="Contains the state information of an item, i.e.">ItemState</a>. <br /></td></tr>
+<tr class="memitem:ac8e6ab03cf6e36b368363144c51e48aa" id="r_ac8e6ab03cf6e36b368363144c51e48aa"><td class="memItemLeft">btQuaternion&#160;</td><td class="memItemRight"><a class="el" href="#ac8e6ab03cf6e36b368363144c51e48aa">m_original_rotation</a></td></tr>
+<tr class="memdesc:ac8e6ab03cf6e36b368363144c51e48aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">The original rotation of the item.  <br /></td></tr>
+<tr class="memitem:abfd5f817de450aac566779ecd130753a" id="r_abfd5f817de450aac566779ecd130753a"><td class="memItemLeft">const <a class="el" href="classAbstractKart.html">AbstractKart</a> *&#160;</td><td class="memItemRight"><a class="el" href="#abfd5f817de450aac566779ecd130753a">m_previous_owner</a></td></tr>
+<tr class="memdesc:abfd5f817de450aac566779ecd130753a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The 'owner' of the item, i.e.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a21c8fc989f91d06b9a70d7f64c3a9fba" id="r_a21c8fc989f91d06b9a70d7f64c3a9fba"><td class="memItemLeft"><a id="a21c8fc989f91d06b9a70d7f64c3a9fba" name="a21c8fc989f91d06b9a70d7f64c3a9fba"></a>
+class&#160;</td><td class="memItemRight"><b>ItemManager</b></td></tr>
+<tr class="memitem:ad61960bb6c1896115cb5baf7d687aa63" id="r_ad61960bb6c1896115cb5baf7d687aa63"><td class="memItemLeft"><a id="ad61960bb6c1896115cb5baf7d687aa63" name="ad61960bb6c1896115cb5baf7d687aa63"></a>
+class&#160;</td><td class="memItemRight"><b>NetworkItemManager</b></td></tr>
+<tr class="memitem:a8ed61e3fedcf2f2fc46adc716a330ff1" id="r_a8ed61e3fedcf2f2fc46adc716a330ff1"><td class="memItemLeft"><a id="a8ed61e3fedcf2f2fc46adc716a330ff1" name="a8ed61e3fedcf2f2fc46adc716a330ff1"></a>
+class&#160;</td><td class="memItemRight"><b>SkiddingAI</b></td></tr>
+<tr class="memitem:ae43ea0b54193e99dbd0e59ce70d9eca7" id="r_ae43ea0b54193e99dbd0e59ce70d9eca7"><td class="memItemLeft"><a id="ae43ea0b54193e99dbd0e59ce70d9eca7" name="ae43ea0b54193e99dbd0e59ce70d9eca7"></a>
+class&#160;</td><td class="memItemRight"><b>TestAI</b></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Contains the state information of an item, i.e. </p>
+<p>all non-visual information only, which also can change (e.g. position and AI information is constant and therefore not stored here). This class is used as a base class for item and for networking to save item states. </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">멤버 열거형 문서화</h2>
+<a id="abd8c7a2740237da69f241aad5d81833a" name="abd8c7a2740237da69f241aad5d81833a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd8c7a2740237da69f241aad5d81833a">&#9670;&#160;</a></span>ItemType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemState::ItemType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The list of all items. </p>
+<p>Important for the switch item function: bubblegum must be the last item (since bubble gum can't be switched with any other item, since it's a different objecct). </p>
+<table class="fieldtable">
+<tr><th colspan="2">열거형 멤버</th></tr><tr><td class="fieldname"><a id="abd8c7a2740237da69f241aad5d81833aa878136ae6a14ef73a18b34db17f8e684" name="abd8c7a2740237da69f241aad5d81833aa878136ae6a14ef73a18b34db17f8e684"></a>ITEM_EASTER_EGG&#160;</td><td class="fielddoc"><p>For easter egg mode only. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">생성자 &amp; 소멸자 문서화</h2>
+<a id="a1ebabd856fb646e8f1070934e7a8162f" name="a1ebabd856fb646e8f1070934e7a8162f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ebabd856fb646e8f1070934e7a8162f">&#9670;&#160;</a></span>ItemState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ItemState::ItemState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>owner</em></span><span class="paramdefsep"> = </span><span class="paramdefval">NULL</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>id</em></span><span class="paramdefsep"> = </span><span class="paramdefval">-1</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>Type of the item. </td></tr>
+    <tr><td class="paramname">owner</td><td>If not NULL it is the kart that dropped this item; NULL indicates an item that's part of the track. </td></tr>
+    <tr><td class="paramname">id</td><td>Index of this item in the array of all items. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a0d2b8c395ff63597706d21ea5f2197f5" name="a0d2b8c395ff63597706d21ea5f2197f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d2b8c395ff63597706d21ea5f2197f5">&#9670;&#160;</a></span>collected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemState::collected </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>kart</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called when the item is collected. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kart</td><td>The kart that collected the item. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><a class="el" href="classItem.html#a53eb27f41802618fee076a1490155c09">Item</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="ad187ee121007940424ca5d49bbfde9cc" name="ad187ee121007940424ca5d49bbfde9cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad187ee121007940424ca5d49bbfde9cc">&#9670;&#160;</a></span>getAvoidancePoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="classVec3.html">Vec3</a> * ItemState::getAvoidancePoint </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>left</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classItem.html#a2fb744e780863523b235d655e032e371">Item</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="aea31846faf4684c2e59d38ab9682edc2" name="aea31846faf4684c2e59d38ab9682edc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea31846faf4684c2e59d38ab9682edc2">&#9670;&#160;</a></span>getDeactivatedTicks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ItemState::getDeactivatedTicks </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the number of ticks during which the item is deactivated (i.e. </p>
+<p>it was collected). </p>
+
+</div>
+</div>
+<a id="aced1ac23cc499c40cace86ef439cf8a0" name="aced1ac23cc499c40cace86ef439cf8a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aced1ac23cc499c40cace86ef439cf8a0">&#9670;&#160;</a></span>getDistanceFromCenter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual float ItemState::getDistanceFromCenter </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classItem.html#a2e0f6a349a7c8d2107f210fbe7318c25">Item</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a9fecd693c8a104f9f108e6c7b46618c8" name="a9fecd693c8a104f9f108e6c7b46618c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fecd693c8a104f9f108e6c7b46618c8">&#9670;&#160;</a></span>getGraphNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int ItemState::getGraphNode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classItem.html#a21219c12c50232778962cb7c666f5d17">Item</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a7564d72c63f44843938a161438c42cee" name="a7564d72c63f44843938a161438c42cee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7564d72c63f44843938a161438c42cee">&#9670;&#160;</a></span>hitKart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool ItemState::hitKart </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>xyz</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>kart</em></span><span class="paramdefsep"> = </span><span class="paramdefval">NULL</span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classItem.html#a8420f5c0528b8187ec77b53984276f40">Item</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a2bc9f8e476a90b066da808030eacf4d4" name="a2bc9f8e476a90b066da808030eacf4d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bc9f8e476a90b066da808030eacf4d4">&#9670;&#160;</a></span>hitLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ItemState::hitLine </td>
+          <td>(</td>
+          <td class="paramtype">const core::line3df &amp;</td>          <td class="paramname"><span class="paramname"><em>line</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classAbstractKart.html">AbstractKart</a> *</td>          <td class="paramname"><span class="paramname"><em>kart</em></span><span class="paramdefsep"> = </span><span class="paramdefval">NULL</span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns true if the specified line segment would come close enough to this item so that this item would be collected. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">line</td><td>The line segment which is tested if it is close enough to this item so that this item would be collected. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adf17d5f0f1dc5a8ed6b39275397bdef6" name="adf17d5f0f1dc5a8ed6b39275397bdef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf17d5f0f1dc5a8ed6b39275397bdef6">&#9670;&#160;</a></span>initItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemState::initItem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>xyz</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>normal</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialises an item. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>Type for this item. </td></tr>
+    <tr><td class="paramname">xyz</td><td>The position for this item. </td></tr>
+    <tr><td class="paramname">normal</td><td>The normal for this item. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af9daadf1f6d87b3fd5319e9532207f0b" name="af9daadf1f6d87b3fd5319e9532207f0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9daadf1f6d87b3fd5319e9532207f0b">&#9670;&#160;</a></span>isNegativeItem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ItemState::isNegativeItem </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns if this item is negative, i.e. </p>
+<p>a banana or bubblegum. </p>
+
+</div>
+</div>
+<a id="a03245867c6e33654aba0e846d2e8e1cd" name="a03245867c6e33654aba0e846d2e8e1cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03245867c6e33654aba0e846d2e8e1cd">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ItemState::reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets an item to its start state. </p>
+
+<p><a class="el" href="classItem.html#a26f91384e3b703159e9f5ff393505b03">Item</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a37684d3f65415e0e198ef7bf5ec05e80" name="a37684d3f65415e0e198ef7bf5ec05e80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37684d3f65415e0e198ef7bf5ec05e80">&#9670;&#160;</a></span>setDeactivatedTicks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemState::setDeactivatedTicks </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the number of ticks during which the item is deactivated (i.e. </p>
+<p>it was collected). </p>
+
+</div>
+</div>
+<a id="ae6a0c097cde44bd3c80dbc62ac754c1f" name="ae6a0c097cde44bd3c80dbc62ac754c1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6a0c097cde44bd3c80dbc62ac754c1f">&#9670;&#160;</a></span>setTicksTillReturn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemState::setTicksTillReturn </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>t</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets how long an item should be disabled. </p>
+<p>While item itself sets a default, this time is too short in case that a kart that has a bomb hits a banana: by the time the explosion animation is ended and the kart is back at its original position, the banana would be back again and therefore hit the kart again. See <a class="el" href="classAttachment.html#aac67630a269899e0629acb6c6b4d0650" title="Selects the new attachment.">Attachment::hitBanana</a> for more details. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>Time till the item can be used again. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5c0ba00f751784d6015cb029de701dbb" name="a5c0ba00f751784d6015cb029de701dbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c0ba00f751784d6015cb029de701dbb">&#9670;&#160;</a></span>switchBack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool ItemState::switchBack </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns true if this item was not actually switched (e.g. </p>
+<p>trigger etc) </p>
+
+<p><a class="el" href="classItem.html#a44f34bdabb79763e83a0556bc1fef0a9">Item</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a id="a435703ec7990e5ba77b02e45488abfc4" name="a435703ec7990e5ba77b02e45488abfc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a435703ec7990e5ba77b02e45488abfc4">&#9670;&#160;</a></span>switchTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ItemState::switchTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Switches an item to be of a different type. </p>
+<p>Used for the switch powerup. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>New type for this item. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7cd31d22c604b48de46e333339197781" name="a7cd31d22c604b48de46e333339197781"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cd31d22c604b48de46e333339197781">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ItemState::update </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ticks</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update the state of the item, called once per physics frame. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks</td><td>Number of ticks to simulate. While this value is 1 when called during the normal game loop, during a rewind this value can be (much) larger than 1. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a584576d2970812ee661628f45da201b8" name="a584576d2970812ee661628f45da201b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a584576d2970812ee661628f45da201b8">&#9670;&#160;</a></span>updateGraphics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ItemState::updateGraphics </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dummy implementation, causing an abort if it should be called to catch any errors early. </p>
+
+<p><a class="el" href="classItem.html#ad633f7530c26d243760728faf9fad5bd">Item</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="ad57ec2f079c702772b6fb6e9f012b9fe" name="ad57ec2f079c702772b6fb6e9f012b9fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad57ec2f079c702772b6fb6e9f012b9fe">&#9670;&#160;</a></span>m_item_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ItemState::m_item_id</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Index in item_manager field. </p>
+<p>This field can also take on a negative value when used in the <a class="el" href="classNetworkItemManager.html" title="The network item manager is responsible for handling all network related item manager tasks - synchro...">NetworkItemManager</a>. </p>
+
+</div>
+</div>
+<a id="ac8e6ab03cf6e36b368363144c51e48aa" name="ac8e6ab03cf6e36b368363144c51e48aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8e6ab03cf6e36b368363144c51e48aa">&#9670;&#160;</a></span>m_original_rotation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">btQuaternion ItemState::m_original_rotation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The original rotation of the item. </p>
+<p>While this is technically a visual only value (atm, it could be used for collision detection), it is required to make sure a client can display items with the right normal (in case that a client would get a different (or no) normal from a raycast). </p>
+
+</div>
+</div>
+<a id="af9cb0610f6c8f751d941ed5c8a6e18b1" name="af9cb0610f6c8f751d941ed5c8a6e18b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9cb0610f6c8f751d941ed5c8a6e18b1">&#9670;&#160;</a></span>m_original_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#abd8c7a2740237da69f241aad5d81833a">ItemType</a> ItemState::m_original_type</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If the item is switched, this contains the original type. </p>
+<p>It is ITEM_NONE if the item is not switched. </p>
+
+</div>
+</div>
+<a id="abfd5f817de450aac566779ecd130753a" name="abfd5f817de450aac566779ecd130753a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfd5f817de450aac566779ecd130753a">&#9670;&#160;</a></span>m_previous_owner</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classAbstractKart.html">AbstractKart</a>* ItemState::m_previous_owner</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The 'owner' of the item, i.e. </p>
+<p>the kart that dropped this item. Is NULL if the item is part of the track. </p>
+
+</div>
+</div>
+<a id="ad1ba1c54b0a94ce9a94f1fef8f544b83" name="ad1ba1c54b0a94ce9a94f1fef8f544b83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1ba1c54b0a94ce9a94f1fef8f544b83">&#9670;&#160;</a></span>m_ticks_till_return</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ItemState::m_ticks_till_return</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time till a collected item reappears. </p>
+<p>When this value is &lt;=0 this means that the item is availabe to be collected. When the value is </p><blockquote class="doxtable">
+<p>0 it means that the item is not available. </p>
+</blockquote>
+
+</div>
+</div>
+<a id="a2e3b6daa2b3d42e1414e1f354c16ba82" name="a2e3b6daa2b3d42e1414e1f354c16ba82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e3b6daa2b3d42e1414e1f354c16ba82">&#9670;&#160;</a></span>m_used_up_counter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ItemState::m_used_up_counter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Counts how often an item is used before it disappears. </p>
+<p>Used for bubble gum to make them disappear after a while. A value &gt;0 indicates that the item still exists, =0 that the item can be deleted, and &lt;0 that the item will never be deleted, i.e. it will always reappear after a while. </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>items/<a class="el" href="item_8hpp_source.html">item.hpp</a></li>
+<li>items/<b>item.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

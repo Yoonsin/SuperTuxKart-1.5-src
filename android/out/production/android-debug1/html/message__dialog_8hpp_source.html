@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: states_screens/dialogs/message_dialog.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>states_screens</b></li><li class="navelem"><b>dialogs</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">message_dialog.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  Copyright (C) 2010-2015 Marianne Gagnon</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_CONFIRM_DIALOG_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_CONFIRM_DIALOG_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;guiengine/modaldialog.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;utils/cpp2011.hpp&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classMessageDialog.html">   30</a></span><span class="keyword">class </span><a class="code hl_function" href="classMessageDialog.html#a50ca2336f94807ad8f1929f92d54a4e9">MessageDialog</a> : <span class="keyword">public</span> <a class="code hl_class" href="classGUIEngine_1_1ModalDialog.html">GUIEngine::ModalDialog</a></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    </div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classMessageDialog_1_1IConfirmDialogListener.html">   38</a></span>    <span class="keyword">class </span>IConfirmDialogListener</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        LEAK_CHECK()</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        IConfirmDialogListener() {}</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keyword">virtual</span> ~IConfirmDialogListener() {}</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classMessageDialog_1_1IConfirmDialogListener.html#a7d75bb3d5d15f6b69ba96690c2035456">   51</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMessageDialog_1_1IConfirmDialogListener.html#a7d75bb3d5d15f6b69ba96690c2035456">onConfirm</a>() { ModalDialog::dismiss(); };</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classMessageDialog_1_1IConfirmDialogListener.html#ae025b8107ef68deb711675e896efcd3d">   57</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMessageDialog_1_1IConfirmDialogListener.html#ae025b8107ef68deb711675e896efcd3d">onCancel</a>() { ModalDialog::dismiss(); };</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classMessageDialog_1_1IConfirmDialogListener.html#a10839b6caaf6525c3f926d7d7bacfc0d">   62</a></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMessageDialog_1_1IConfirmDialogListener.html#a10839b6caaf6525c3f926d7d7bacfc0d">onDialogUpdate</a>(<span class="keywordtype">float</span> dt) {}</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    };</div>
+</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">enum</span> MessageDialogType { MESSAGE_DIALOG_OK, MESSAGE_DIALOG_CONFIRM,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                             MESSAGE_DIALOG_OK_CANCEL, MESSAGE_DIALOG_YESNO,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                             MESSAGE_DIALOG_OK_DONTSHOWAGAIN };</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    MessageDialogType m_type;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_class" href="classMessageDialog_1_1IConfirmDialogListener.html">IConfirmDialogListener</a>* m_listener;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">bool</span> m_own_listener;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    irr::core::stringw m_msg;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMessageDialog.html#a10dbfe4017947fe98a8fecc727138e33">doInit</a>(<span class="keywordtype">bool</span> from_queue);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classMessageDialog.html#a244b415f9d677630c8146a32202b6be2">   80</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMessageDialog.html#a244b415f9d677630c8146a32202b6be2">m_focus_on_cancel</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <a class="code hl_function" href="classMessageDialog.html#a50ca2336f94807ad8f1929f92d54a4e9">MessageDialog</a>(<span class="keyword">const</span> irr::core::stringw &amp;msg, MessageDialogType type,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                  <a class="code hl_class" href="classMessageDialog_1_1IConfirmDialogListener.html">IConfirmDialogListener</a>* listener, <span class="keywordtype">bool</span> delete_listener,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                  <span class="keywordtype">bool</span> from_queue = <span class="keyword">false</span>, <span class="keywordtype">float</span> width = 0.6f, <span class="keywordtype">float</span> height = 0.6f,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                  <span class="keywordtype">bool</span> focus_on_cancel = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <a class="code hl_function" href="classMessageDialog.html#a50ca2336f94807ad8f1929f92d54a4e9">MessageDialog</a>(<span class="keyword">const</span> irr::core::stringw &amp;msg, <span class="keywordtype">bool</span> from_queue = <span class="keyword">false</span>,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                  <span class="keywordtype">bool</span> focus_on_cancel = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <a class="code hl_function" href="classMessageDialog.html#a50ca2336f94807ad8f1929f92d54a4e9">~MessageDialog</a>();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> onEnterPressedInternal() OVERRIDE;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classMessageDialog.html#a0ada947c254335e9a07ef6ba1b0a40e2">onUpdate</a>(<span class="keywordtype">float</span> dt) OVERRIDE;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classMessageDialog.html#afbb8278db4d0eb8fdbcf64a5eea49217">load</a>() OVERRIDE;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <a class="code hl_namespace" href="namespaceGUIEngine.html">GUIEngine</a>::EventPropagation <a class="code hl_function" href="classMessageDialog.html#a193c47fb1f2b844ff0af819b2a985862">processEvent</a>(const std::<span class="keywordtype">string</span>&amp; eventSource) OVERRIDE;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    virtual <span class="keywordtype">void</span> <a class="code hl_function" href="classMessageDialog.html#ab2272a03967cf278730169c5df5e9d13">loadedFromFile</a>() OVERRIDE;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classMessageDialog.html#ab7011aee4178c61c34d779df80aef5cd">  114</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMessageDialog.html#ab7011aee4178c61c34d779df80aef5cd">setFocusCancel</a>() {<a class="code hl_variable" href="classMessageDialog.html#a244b415f9d677630c8146a32202b6be2">m_focus_on_cancel</a> = <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMessageDialog.html#a75df1abdff136236d7a140ceefb545b8">init</a>() OVERRIDE;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>};</div>
+</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassGUIEngine_1_1ModalDialog_html"><div class="ttname"><a href="classGUIEngine_1_1ModalDialog.html">GUIEngine::ModalDialog</a></div><div class="ttdoc">Abstract base class representing a modal dialog.</div><div class="ttdef"><b>Definition</b> modaldialog.hpp:56</div></div>
+<div class="ttc" id="aclassMessageDialog_1_1IConfirmDialogListener_html"><div class="ttname"><a href="classMessageDialog_1_1IConfirmDialogListener.html">MessageDialog::IConfirmDialogListener</a></div><div class="ttdoc">Listener interface to get notified of whether the user chose to confirm or cancel</div><div class="ttdef"><b>Definition</b> message_dialog.hpp:39</div></div>
+<div class="ttc" id="aclassMessageDialog_1_1IConfirmDialogListener_html_a10839b6caaf6525c3f926d7d7bacfc0d"><div class="ttname"><a href="classMessageDialog_1_1IConfirmDialogListener.html#a10839b6caaf6525c3f926d7d7bacfc0d">MessageDialog::IConfirmDialogListener::onDialogUpdate</a></div><div class="ttdeci">virtual void onDialogUpdate(float dt)</div><div class="ttdoc">Optional callback</div><div class="ttdef"><b>Definition</b> message_dialog.hpp:62</div></div>
+<div class="ttc" id="aclassMessageDialog_1_1IConfirmDialogListener_html_a7d75bb3d5d15f6b69ba96690c2035456"><div class="ttname"><a href="classMessageDialog_1_1IConfirmDialogListener.html#a7d75bb3d5d15f6b69ba96690c2035456">MessageDialog::IConfirmDialogListener::onConfirm</a></div><div class="ttdeci">virtual void onConfirm()</div><div class="ttdoc">Implement to be notified of dialog confirmed.</div><div class="ttdef"><b>Definition</b> message_dialog.hpp:51</div></div>
+<div class="ttc" id="aclassMessageDialog_1_1IConfirmDialogListener_html_ae025b8107ef68deb711675e896efcd3d"><div class="ttname"><a href="classMessageDialog_1_1IConfirmDialogListener.html#ae025b8107ef68deb711675e896efcd3d">MessageDialog::IConfirmDialogListener::onCancel</a></div><div class="ttdeci">virtual void onCancel()</div><div class="ttdoc">Implement to be notified of dialog cancelled.</div><div class="ttdef"><b>Definition</b> message_dialog.hpp:57</div></div>
+<div class="ttc" id="aclassMessageDialog_html_a0ada947c254335e9a07ef6ba1b0a40e2"><div class="ttname"><a href="classMessageDialog.html#a0ada947c254335e9a07ef6ba1b0a40e2">MessageDialog::onUpdate</a></div><div class="ttdeci">virtual void onUpdate(float dt) OVERRIDE</div><div class="ttdoc">Override to be notified of updates</div><div class="ttdef"><b>Definition</b> message_dialog.cpp:193</div></div>
+<div class="ttc" id="aclassMessageDialog_html_a10dbfe4017947fe98a8fecc727138e33"><div class="ttname"><a href="classMessageDialog.html#a10dbfe4017947fe98a8fecc727138e33">MessageDialog::doInit</a></div><div class="ttdeci">void doInit(bool from_queue)</div><div class="ttdoc">If necessary schedules a pause, and loads the xml file if necessary.</div><div class="ttdef"><b>Definition</b> message_dialog.cpp:87</div></div>
+<div class="ttc" id="aclassMessageDialog_html_a193c47fb1f2b844ff0af819b2a985862"><div class="ttname"><a href="classMessageDialog.html#a193c47fb1f2b844ff0af819b2a985862">MessageDialog::processEvent</a></div><div class="ttdeci">GUIEngine::EventPropagation processEvent(const std::string &amp;eventSource) OVERRIDE</div><div class="ttdoc">Returns whether to block event propagation (usually, you will want to block events you processed)</div><div class="ttdef"><b>Definition</b> message_dialog.cpp:157</div></div>
+<div class="ttc" id="aclassMessageDialog_html_a244b415f9d677630c8146a32202b6be2"><div class="ttname"><a href="classMessageDialog.html#a244b415f9d677630c8146a32202b6be2">MessageDialog::m_focus_on_cancel</a></div><div class="ttdeci">bool m_focus_on_cancel</div><div class="ttdoc">If set this will set the focus on &#39;cancel&#39;/&#39;no&#39; instead of &quot;yes&quot;/&quot;ok&quot;.</div><div class="ttdef"><b>Definition</b> message_dialog.hpp:80</div></div>
+<div class="ttc" id="aclassMessageDialog_html_a50ca2336f94807ad8f1929f92d54a4e9"><div class="ttname"><a href="classMessageDialog.html#a50ca2336f94807ad8f1929f92d54a4e9">MessageDialog::MessageDialog</a></div><div class="ttdeci">MessageDialog(const irr::core::stringw &amp;msg, MessageDialogType type, IConfirmDialogListener *listener, bool delete_listener, bool from_queue=false, float width=0.6f, float height=0.6f, bool focus_on_cancel=false)</div><div class="ttdoc">Complete constructor, which allows setting of listener, type etc.</div><div class="ttdef"><b>Definition</b> message_dialog.cpp:39</div></div>
+<div class="ttc" id="aclassMessageDialog_html_a75df1abdff136236d7a140ceefb545b8"><div class="ttname"><a href="classMessageDialog.html#a75df1abdff136236d7a140ceefb545b8">MessageDialog::init</a></div><div class="ttdeci">virtual void init() OVERRIDE</div><div class="ttdoc">Optional callback invoked after widgets have been add()ed</div><div class="ttdef"><b>Definition</b> message_dialog.cpp:200</div></div>
+<div class="ttc" id="aclassMessageDialog_html_ab2272a03967cf278730169c5df5e9d13"><div class="ttname"><a href="classMessageDialog.html#ab2272a03967cf278730169c5df5e9d13">MessageDialog::loadedFromFile</a></div><div class="ttdeci">virtual void loadedFromFile() OVERRIDE</div><div class="ttdoc">Callback invoked when the dialog was loaded from the XML file (if the constructor that takes a XML fi...</div><div class="ttdef"><b>Definition</b> message_dialog.cpp:112</div></div>
+<div class="ttc" id="aclassMessageDialog_html_ab7011aee4178c61c34d779df80aef5cd"><div class="ttname"><a href="classMessageDialog.html#ab7011aee4178c61c34d779df80aef5cd">MessageDialog::setFocusCancel</a></div><div class="ttdeci">void setFocusCancel()</div><div class="ttdoc">Calling this will make sure that the focus is set on the &#39;cancel&#39; or &#39;no&#39;.</div><div class="ttdef"><b>Definition</b> message_dialog.hpp:114</div></div>
+<div class="ttc" id="aclassMessageDialog_html_afbb8278db4d0eb8fdbcf64a5eea49217"><div class="ttname"><a href="classMessageDialog.html#afbb8278db4d0eb8fdbcf64a5eea49217">MessageDialog::load</a></div><div class="ttdeci">virtual void load() OVERRIDE</div><div class="ttdoc">Called from the DialogQueue, used to load the actual xml file and init the dialog.</div><div class="ttdef"><b>Definition</b> message_dialog.cpp:77</div></div>
+<div class="ttc" id="anamespaceGUIEngine_html"><div class="ttname"><a href="namespaceGUIEngine.html">GUIEngine</a></div><div class="ttdoc">Contains all GUI engine related classes and functions</div><div class="ttdef"><b>Definition</b> abstract_state_manager.hpp:33</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

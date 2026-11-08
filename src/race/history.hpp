@@ -1,4 +1,4 @@
-//
+﻿//
 //  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2006-2015 Joerg Henrichs
 //
@@ -36,6 +36,8 @@ class History
 private:
     /** True if a history should be replayed, */
     bool m_replay_history;
+
+    std::string m_replay_filename;
 
     /** Points to the last used input event index. */
     unsigned int m_event_index;
@@ -82,6 +84,8 @@ public:
     // ------------------------------------------------------------------------
     /** Set if replay is enabled or not. */
     void  setReplayHistory(bool b) { m_replay_history=b;  }
+
+    void setReplayFilename(const std::string& filename) { m_replay_filename = filename; }
 };
 
 extern History* history;

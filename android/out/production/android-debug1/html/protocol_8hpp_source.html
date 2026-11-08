@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: network/protocol.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>network</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">protocol.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="protocol_8hpp.html">이 파일의 문서화 페이지로 가기</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2013-2015 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#ifndef PROTOCOL_HPP</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#define PROTOCOL_HPP</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;network/protocol_enum.hpp&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;utils/no_copy.hpp&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">utils/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">class </span><a class="code hl_class" href="classEvent.html">Event</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">class </span><a class="code hl_class" href="classNetworkString.html">NetworkString</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">class </span><a class="code hl_class" href="classSTKPeer.html">STKPeer</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">class </span><a class="code hl_class" href="classProtocol.html">Protocol</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">// ============================================================================*</span></div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classCallbackObject.html">   43</a></span><span class="keyword">class </span>CallbackObject</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>             CallbackObject() {}</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">virtual</span> ~CallbackObject() {}</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> callback(<a class="code hl_class" href="classProtocol.html">Protocol</a> *protocol) = 0;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};   <span class="comment">// CallbackObject</span></div>
+</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">// ============================================================================</span></div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="};">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classProtocol.html">   61</a></span><span class="keyword">class </span><a class="code hl_function" href="classProtocol.html#a9a9842622d89020b1132e1f533a3494d">Protocol</a> : <span class="keyword">public</span> std::enable_shared_from_this&lt;Protocol&gt;,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                 <span class="keyword">public</span> NoCopy</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>{</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classProtocol.html#a10954bda6509ae95a52095645547abab">   66</a></span>    ProtocolType <a class="code hl_variable" href="classProtocol.html#a10954bda6509ae95a52095645547abab">m_type</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classProtocol.html#ac21575beb6e5662d566ff7ed0cd780ed">   69</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classProtocol.html#ac21575beb6e5662d566ff7ed0cd780ed">m_handle_connections</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classProtocol.html#a94d65d6277cb3c9a39f97463774ff639">   72</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classProtocol.html#a94d65d6277cb3c9a39f97463774ff639">m_handle_disconnections</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>             <a class="code hl_function" href="classProtocol.html#a9a9842622d89020b1132e1f533a3494d">Protocol</a>(ProtocolType type);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classProtocol.html#ae78a2bc284f521aa47f3fd7718e23ead">~Protocol</a>();</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classProtocol.html#ac5be8c2106b4e1876b7504d53d3ba0e9">   79</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classProtocol.html#ac5be8c2106b4e1876b7504d53d3ba0e9">setup</a>() = 0;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classProtocol.html#ae6e125d88a2659078074c6183a1803a9">   84</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classProtocol.html#ae6e125d88a2659078074c6183a1803a9">update</a>(<span class="keywordtype">int</span> ticks) = 0;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classProtocol.html#a167a53125339ef5359341108e7ff7390">   88</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classProtocol.html#a167a53125339ef5359341108e7ff7390">asynchronousUpdate</a>() = 0;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <a class="code hl_class" href="classNetworkString.html">NetworkString</a>* <a class="code hl_function" href="classProtocol.html#aed8faa385a8101fd11b38fcb14e4b2b5">getNetworkString</a>(<span class="keywordtype">size_t</span> capacity = 16) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classProtocol.html#a4afc157d7e6871c9e6439492b23c5cc7">checkDataSize</a>(<a class="code hl_class" href="classEvent.html">Event</a>* event, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> minimum_size);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classProtocol.html#ab47e7e7ea4776be206af54e37c52318d">sendMessageToPeers</a>(<a class="code hl_class" href="classNetworkString.html">NetworkString</a> *message, <span class="keywordtype">bool</span> reliable = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classProtocol.html#acf5876835674d2a68276aa70e17d9de1">sendMessageToPeersInServer</a>(<a class="code hl_class" href="classNetworkString.html">NetworkString</a> *message,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                                    <span class="keywordtype">bool</span> reliable = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classProtocol.html#af27fa278503444e6b02677e20e1c8e7f">sendToServer</a>(<a class="code hl_class" href="classNetworkString.html">NetworkString</a> *message, <span class="keywordtype">bool</span> reliable = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classProtocol.html#af5e54fb8f2e015cebe12f7795fc2363f">requestStart</a>();</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classProtocol.html#aa68a6cd2934d7c1ff17a159ac2112165">requestTerminate</a>();</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classProtocol.html#ac67831b83158cdd96f6af5864b6d6929">  103</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classProtocol.html#ac67831b83158cdd96f6af5864b6d6929">notifyEvent</a>(<a class="code hl_class" href="classEvent.html">Event</a>* event) { <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classProtocol.html#a5749bc2f656f47e71b270df56c570dc1">  109</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classProtocol.html#a5749bc2f656f47e71b270df56c570dc1">notifyEventAsynchronous</a>(<a class="code hl_class" href="classEvent.html">Event</a>* event) { <span class="keywordflow">return</span> <span class="keyword">false</span>; }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classProtocol.html#acffb4153cf0cd5a8824b0e7bf5852144">  113</a></span>    ProtocolType <a class="code hl_function" href="classProtocol.html#acffb4153cf0cd5a8824b0e7bf5852144">getProtocolType</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classProtocol.html#a10954bda6509ae95a52095645547abab">m_type</a>; }</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classProtocol.html#a716fd2a1e561d8e22fff688c0f866d20">  116</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classProtocol.html#a716fd2a1e561d8e22fff688c0f866d20">setHandleConnections</a>(<span class="keywordtype">bool</span> b) { <a class="code hl_variable" href="classProtocol.html#ac21575beb6e5662d566ff7ed0cd780ed">m_handle_connections</a> = b; }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classProtocol.html#ac545202df67e00dc4bcd57aeab418100">  119</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classProtocol.html#ac545202df67e00dc4bcd57aeab418100">setHandleDisconnections</a>(<span class="keywordtype">bool</span> b) { <a class="code hl_variable" href="classProtocol.html#a94d65d6277cb3c9a39f97463774ff639">m_handle_disconnections</a> = b; }</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classProtocol.html#acdf0d6752a10998a7c153c84e8f71d69">  122</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classProtocol.html#acdf0d6752a10998a7c153c84e8f71d69">handleConnects</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classProtocol.html#ac21575beb6e5662d566ff7ed0cd780ed">m_handle_connections</a>; }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classProtocol.html#ae7469e1a7b4793499a561c03cccd37d5">  125</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classProtocol.html#ae7469e1a7b4793499a561c03cccd37d5">handleDisconnects</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classProtocol.html#a94d65d6277cb3c9a39f97463774ff639">m_handle_disconnections</a>; }</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>};   <span class="comment">// class Protocol</span></div>
+</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">#endif </span><span class="comment">// PROTOCOL_HPP</span></div>
+<div class="ttc" id="aclassEvent_html"><div class="ttname"><a href="classEvent.html">Event</a></div><div class="ttdoc">Class representing an event that need to pass trough the system. This is used to remove ENet dependen...</div><div class="ttdef"><b>Definition</b> event.hpp:73</div></div>
+<div class="ttc" id="aclassNetworkString_html"><div class="ttname"><a href="classNetworkString.html">NetworkString</a></div><div class="ttdoc">A new implementation of NetworkString, which has a fixed format: Byte 0: The type of the message,...</div><div class="ttdef"><b>Definition</b> network_string.hpp:422</div></div>
+<div class="ttc" id="aclassProtocol_html"><div class="ttname"><a href="classProtocol.html">Protocol</a></div><div class="ttdoc">Abstract class used to define the global protocol functions.</div><div class="ttdef"><b>Definition</b> protocol.hpp:63</div></div>
+<div class="ttc" id="aclassProtocol_html_a10954bda6509ae95a52095645547abab"><div class="ttname"><a href="classProtocol.html#a10954bda6509ae95a52095645547abab">Protocol::m_type</a></div><div class="ttdeci">ProtocolType m_type</div><div class="ttdoc">The type of the protocol.</div><div class="ttdef"><b>Definition</b> protocol.hpp:66</div></div>
+<div class="ttc" id="aclassProtocol_html_a167a53125339ef5359341108e7ff7390"><div class="ttname"><a href="classProtocol.html#a167a53125339ef5359341108e7ff7390">Protocol::asynchronousUpdate</a></div><div class="ttdeci">virtual void asynchronousUpdate()=0</div><div class="ttdoc">Called by the protocol listener as often as possible.</div></div>
+<div class="ttc" id="aclassProtocol_html_a4afc157d7e6871c9e6439492b23c5cc7"><div class="ttname"><a href="classProtocol.html#a4afc157d7e6871c9e6439492b23c5cc7">Protocol::checkDataSize</a></div><div class="ttdeci">bool checkDataSize(Event *event, unsigned int minimum_size)</div><div class="ttdoc">Checks if the message has at least the specified size, and if not prints a warning message including ...</div><div class="ttdef"><b>Definition</b> protocol.cpp:63</div></div>
+<div class="ttc" id="aclassProtocol_html_a5749bc2f656f47e71b270df56c570dc1"><div class="ttname"><a href="classProtocol.html#a5749bc2f656f47e71b270df56c570dc1">Protocol::notifyEventAsynchronous</a></div><div class="ttdeci">virtual bool notifyEventAsynchronous(Event *event)</div><div class="ttdoc">Notify a protocol matching the Event type of that event.</div><div class="ttdef"><b>Definition</b> protocol.hpp:109</div></div>
+<div class="ttc" id="aclassProtocol_html_a716fd2a1e561d8e22fff688c0f866d20"><div class="ttname"><a href="classProtocol.html#a716fd2a1e561d8e22fff688c0f866d20">Protocol::setHandleConnections</a></div><div class="ttdeci">void setHandleConnections(bool b)</div><div class="ttdoc">Sets if this protocol should receive connection events.</div><div class="ttdef"><b>Definition</b> protocol.hpp:116</div></div>
+<div class="ttc" id="aclassProtocol_html_a94d65d6277cb3c9a39f97463774ff639"><div class="ttname"><a href="classProtocol.html#a94d65d6277cb3c9a39f97463774ff639">Protocol::m_handle_disconnections</a></div><div class="ttdeci">bool m_handle_disconnections</div><div class="ttdoc">TRue if this protocol should recceiver disconnection events.</div><div class="ttdef"><b>Definition</b> protocol.hpp:72</div></div>
+<div class="ttc" id="aclassProtocol_html_a9a9842622d89020b1132e1f533a3494d"><div class="ttname"><a href="classProtocol.html#a9a9842622d89020b1132e1f533a3494d">Protocol::Protocol</a></div><div class="ttdeci">Protocol(ProtocolType type)</div><div class="ttdoc">Constructor Sets the basic protocol parameters, as the callback object and the protocol type.</div><div class="ttdef"><b>Definition</b> protocol.cpp:35</div></div>
+<div class="ttc" id="aclassProtocol_html_aa68a6cd2934d7c1ff17a159ac2112165"><div class="ttname"><a href="classProtocol.html#aa68a6cd2934d7c1ff17a159ac2112165">Protocol::requestTerminate</a></div><div class="ttdeci">virtual void requestTerminate()</div><div class="ttdoc">Submits a request to the ProtocolManager to terminate this protocol.</div><div class="ttdef"><b>Definition</b> protocol.cpp:87</div></div>
+<div class="ttc" id="aclassProtocol_html_ab47e7e7ea4776be206af54e37c52318d"><div class="ttname"><a href="classProtocol.html#ab47e7e7ea4776be206af54e37c52318d">Protocol::sendMessageToPeers</a></div><div class="ttdeci">void sendMessageToPeers(NetworkString *message, bool reliable=true)</div><div class="ttdoc">Sends a message to all validated peers in game, encrypt the message if needed.</div><div class="ttdef"><b>Definition</b> protocol.cpp:99</div></div>
+<div class="ttc" id="aclassProtocol_html_ac21575beb6e5662d566ff7ed0cd780ed"><div class="ttname"><a href="classProtocol.html#ac21575beb6e5662d566ff7ed0cd780ed">Protocol::m_handle_connections</a></div><div class="ttdeci">bool m_handle_connections</div><div class="ttdoc">True if this protocol should receive connection events.</div><div class="ttdef"><b>Definition</b> protocol.hpp:69</div></div>
+<div class="ttc" id="aclassProtocol_html_ac545202df67e00dc4bcd57aeab418100"><div class="ttname"><a href="classProtocol.html#ac545202df67e00dc4bcd57aeab418100">Protocol::setHandleDisconnections</a></div><div class="ttdeci">void setHandleDisconnections(bool b)</div><div class="ttdoc">Sets if this protocol should receive disconnection events.</div><div class="ttdef"><b>Definition</b> protocol.hpp:119</div></div>
+<div class="ttc" id="aclassProtocol_html_ac5be8c2106b4e1876b7504d53d3ba0e9"><div class="ttname"><a href="classProtocol.html#ac5be8c2106b4e1876b7504d53d3ba0e9">Protocol::setup</a></div><div class="ttdeci">virtual void setup()=0</div><div class="ttdoc">Called when the protocol is going to start.</div></div>
+<div class="ttc" id="aclassProtocol_html_ac67831b83158cdd96f6af5864b6d6929"><div class="ttname"><a href="classProtocol.html#ac67831b83158cdd96f6af5864b6d6929">Protocol::notifyEvent</a></div><div class="ttdeci">virtual bool notifyEvent(Event *event)</div><div class="ttdoc">Notify a protocol matching the Event type of that event.</div><div class="ttdef"><b>Definition</b> protocol.hpp:103</div></div>
+<div class="ttc" id="aclassProtocol_html_acdf0d6752a10998a7c153c84e8f71d69"><div class="ttname"><a href="classProtocol.html#acdf0d6752a10998a7c153c84e8f71d69">Protocol::handleConnects</a></div><div class="ttdeci">virtual bool handleConnects() const</div><div class="ttdoc">Return true if this protocol should be informed about connects.</div><div class="ttdef"><b>Definition</b> protocol.hpp:122</div></div>
+<div class="ttc" id="aclassProtocol_html_acf5876835674d2a68276aa70e17d9de1"><div class="ttname"><a href="classProtocol.html#acf5876835674d2a68276aa70e17d9de1">Protocol::sendMessageToPeersInServer</a></div><div class="ttdeci">void sendMessageToPeersInServer(NetworkString *message, bool reliable=true)</div><div class="ttdoc">Sends a message to all validated peers in server, encrypt the message if needed.</div><div class="ttdef"><b>Definition</b> protocol.cpp:110</div></div>
+<div class="ttc" id="aclassProtocol_html_acffb4153cf0cd5a8824b0e7bf5852144"><div class="ttname"><a href="classProtocol.html#acffb4153cf0cd5a8824b0e7bf5852144">Protocol::getProtocolType</a></div><div class="ttdeci">ProtocolType getProtocolType() const</div><div class="ttdoc">Method to get a protocol&#39;s type.</div><div class="ttdef"><b>Definition</b> protocol.hpp:113</div></div>
+<div class="ttc" id="aclassProtocol_html_ae6e125d88a2659078074c6183a1803a9"><div class="ttname"><a href="classProtocol.html#ae6e125d88a2659078074c6183a1803a9">Protocol::update</a></div><div class="ttdeci">virtual void update(int ticks)=0</div><div class="ttdoc">Called by the protocol listener, synchronously with the main loop.</div></div>
+<div class="ttc" id="aclassProtocol_html_ae7469e1a7b4793499a561c03cccd37d5"><div class="ttname"><a href="classProtocol.html#ae7469e1a7b4793499a561c03cccd37d5">Protocol::handleDisconnects</a></div><div class="ttdeci">virtual bool handleDisconnects() const</div><div class="ttdoc">Return true if this protocol should be informed about disconnects.</div><div class="ttdef"><b>Definition</b> protocol.hpp:125</div></div>
+<div class="ttc" id="aclassProtocol_html_ae78a2bc284f521aa47f3fd7718e23ead"><div class="ttname"><a href="classProtocol.html#ae78a2bc284f521aa47f3fd7718e23ead">Protocol::~Protocol</a></div><div class="ttdeci">virtual ~Protocol()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition</b> protocol.cpp:45</div></div>
+<div class="ttc" id="aclassProtocol_html_aed8faa385a8101fd11b38fcb14e4b2b5"><div class="ttname"><a href="classProtocol.html#aed8faa385a8101fd11b38fcb14e4b2b5">Protocol::getNetworkString</a></div><div class="ttdeci">NetworkString * getNetworkString(size_t capacity=16) const</div><div class="ttdoc">functions to check incoming data easily</div><div class="ttdef"><b>Definition</b> protocol.cpp:53</div></div>
+<div class="ttc" id="aclassProtocol_html_af27fa278503444e6b02677e20e1c8e7f"><div class="ttname"><a href="classProtocol.html#af27fa278503444e6b02677e20e1c8e7f">Protocol::sendToServer</a></div><div class="ttdeci">void sendToServer(NetworkString *message, bool reliable=true)</div><div class="ttdoc">Sends a message from a client to the server.</div><div class="ttdef"><b>Definition</b> protocol.cpp:119</div></div>
+<div class="ttc" id="aclassProtocol_html_af5e54fb8f2e015cebe12f7795fc2363f"><div class="ttname"><a href="classProtocol.html#af5e54fb8f2e015cebe12f7795fc2363f">Protocol::requestStart</a></div><div class="ttdeci">virtual void requestStart()</div><div class="ttdoc">Starts a request in the protocol manager to start this protocol.</div><div class="ttdef"><b>Definition</b> protocol.cpp:78</div></div>
+<div class="ttc" id="aclassSTKPeer_html"><div class="ttname"><a href="classSTKPeer.html">STKPeer</a></div><div class="ttdoc">Represents a peer. This class is used to interface the ENetPeer structure.</div><div class="ttdef"><b>Definition</b> stk_peer.hpp:76</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Declares the general types that are used by the network.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

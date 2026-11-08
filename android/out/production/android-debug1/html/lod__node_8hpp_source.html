@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: graphics/lod_node.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>graphics</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">lod_node.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  Copyright (C) 2011-2015 Marianne Gagnon</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  based on code Copyright 2002-2010 Nikolaus Gebhardt</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_LOD_NODE_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_LOD_NODE_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;aabbox3d.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;matrix4.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;ISceneNode.h&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">namespace </span>scene { <span class="keyword">class </span>ISceneManager; <span class="keyword">class </span>ISceneNode; }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;set&gt;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">namespace </span>irr</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">namespace </span>scene</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> ESNT_LOD_NODE = MAKE_IRR_ID(<span class="charliteral">&#39;l&#39;</span>,<span class="charliteral">&#39;o&#39;</span>,<span class="charliteral">&#39;d&#39;</span>,<span class="charliteral">&#39;n&#39;</span>);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="};">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classLODNode.html">   49</a></span><span class="keyword">class </span><a class="code hl_function" href="classLODNode.html#aed37dc7d3598c3a40dddc0de6c2c1a96">LODNode</a> : <span class="keyword">public</span> scene::ISceneNode</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    core::matrix4 RelativeTransformationMatrix;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    core::aabbox3d&lt;f32&gt; Box;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    std::vector&lt;int&gt; m_detail;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    std::vector&lt;irr::scene::ISceneNode*&gt; m_nodes;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    std::set&lt;scene::ISceneNode*&gt; m_nodes_set;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    std::string m_group_name;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classLODNode.html#acf830f07a2d76be551ce73de8f6b6afc">   64</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classLODNode.html#acf830f07a2d76be551ce73de8f6b6afc">m_forced_lod</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">int</span> m_current_level;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">bool</span> m_current_level_dirty;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// Distance below which switching between two levels of detail is avoided</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">int</span> m_min_switch_distance;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="comment">// Area of the bounding box (for autoLOD computation)</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">float</span> m_area;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">bool</span> m_update_box_every_frame;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordtype">bool</span> m_lod_distances_updated;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <a class="code hl_function" href="classLODNode.html#aed37dc7d3598c3a40dddc0de6c2c1a96">LODNode</a>(std::string group_name, scene::ISceneNode* parent, scene::ISceneManager* mgr, s32 <span class="keywordtype">id</span>=-1);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">virtual</span>     <a class="code hl_function" href="classLODNode.html#aed37dc7d3598c3a40dddc0de6c2c1a96">~LODNode</a>();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classLODNode.html#a0dde299b776757638f34ac4e4ae8d719">   83</a></span>    <span class="keyword">virtual</span> <span class="keyword">const</span> core::aabbox3d&lt;f32&gt;&amp; <a class="code hl_function" href="classLODNode.html#a0dde299b776757638f34ac4e4ae8d719">getBoundingBox</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> Box; }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classLODNode.html#a0e4b43d2efd09071d8df9361dbf8a4c5">getLevel</a>();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">void</span> updateVisibility();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="comment">/*</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    virtual core::matrix4&amp; getRelativeTransformationMatrix() { return RelativeTransformationMatrix; }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    virtual core::matrix4 getRelativeTransformation() const { return RelativeTransformationMatrix; }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    */</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classLODNode.html#ae5c02bbef6392e83f9d99be03bfc8065">add</a>(<span class="keywordtype">int</span> level, scene::ISceneNode* node, <span class="keywordtype">bool</span> reparent);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classLODNode.html#a5ac4b8daebacdce4dbcf8e02b058bc3f">autoComputeLevel</a>(<span class="keywordtype">float</span> scale);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classLODNode.html#ae9b42becdfdc996c73f41416f6c61ec5">forceLevelOfDetail</a>(<span class="keywordtype">int</span> n);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span></div>
+<div class="foldopen" id="foldopen00116" data-start="{" data-end="}">
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classLODNode.html#a65cce8b4ab09680d7f566e5c5c7df6e9">  116</a></span>    scene::ISceneNode* <a class="code hl_function" href="classLODNode.html#a65cce8b4ab09680d7f566e5c5c7df6e9">getFirstNode</a>()</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keywordflow">if</span> (m_nodes.size() &gt; 0) <span class="keywordflow">return</span> m_nodes[0];</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keywordflow">else</span>                    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
+</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    std::vector&lt;scene::ISceneNode*&gt;&amp; getAllNodes() { <span class="keywordflow">return</span> m_nodes; }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    std::set&lt;scene::ISceneNode*&gt;&amp; getNodesSet() { <span class="keywordflow">return</span> m_nodes_set; }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLODNode.html#ad611665549a8d131a457998c9f228eae">OnAnimate</a>(u32 timeMs);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> OnRegisterSceneNode();</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> render();</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keyword">virtual</span> scene::ESCENE_NODE_TYPE getType()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (scene::ESCENE_NODE_TYPE)scene::ESNT_LOD_NODE; }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keyword">const</span> std::string&amp; getGroupName()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_group_name; }</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>};</div>
+</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassLODNode_html_a0dde299b776757638f34ac4e4ae8d719"><div class="ttname"><a href="classLODNode.html#a0dde299b776757638f34ac4e4ae8d719">LODNode::getBoundingBox</a></div><div class="ttdeci">virtual const core::aabbox3d&lt; f32 &gt; &amp; getBoundingBox() const</div><div class="ttdoc">returns the axis aligned bounding box of this node</div><div class="ttdef"><b>Definition</b> lod_node.hpp:83</div></div>
+<div class="ttc" id="aclassLODNode_html_a0e4b43d2efd09071d8df9361dbf8a4c5"><div class="ttname"><a href="classLODNode.html#a0e4b43d2efd09071d8df9361dbf8a4c5">LODNode::getLevel</a></div><div class="ttdeci">int getLevel()</div><div class="ttdoc">Returns the level to use, or -1 if the object is too far away.</div><div class="ttdef"><b>Definition</b> lod_node.cpp:70</div></div>
+<div class="ttc" id="aclassLODNode_html_a5ac4b8daebacdce4dbcf8e02b058bc3f"><div class="ttname"><a href="classLODNode.html#a5ac4b8daebacdce4dbcf8e02b058bc3f">LODNode::autoComputeLevel</a></div><div class="ttdeci">void autoComputeLevel(float scale)</div><div class="ttdoc">This method can be used to automatically compute LoD level</div><div class="ttdef"><b>Definition</b> lod_node.cpp:204</div></div>
+<div class="ttc" id="aclassLODNode_html_a65cce8b4ab09680d7f566e5c5c7df6e9"><div class="ttname"><a href="classLODNode.html#a65cce8b4ab09680d7f566e5c5c7df6e9">LODNode::getFirstNode</a></div><div class="ttdeci">scene::ISceneNode * getFirstNode()</div><div class="ttdoc">Get the highest level of detail node</div><div class="ttdef"><b>Definition</b> lod_node.hpp:116</div></div>
+<div class="ttc" id="aclassLODNode_html_acf830f07a2d76be551ce73de8f6b6afc"><div class="ttname"><a href="classLODNode.html#acf830f07a2d76be551ce73de8f6b6afc">LODNode::m_forced_lod</a></div><div class="ttdeci">int m_forced_lod</div><div class="ttdoc">The normal level of detail can be overwritten.</div><div class="ttdef"><b>Definition</b> lod_node.hpp:64</div></div>
+<div class="ttc" id="aclassLODNode_html_ad611665549a8d131a457998c9f228eae"><div class="ttname"><a href="classLODNode.html#ad611665549a8d131a457998c9f228eae">LODNode::OnAnimate</a></div><div class="ttdeci">virtual void OnAnimate(u32 timeMs)</div><div class="ttdoc">OnAnimate() is called just before rendering the whole scene.</div><div class="ttdef"><b>Definition</b> lod_node.cpp:128</div></div>
+<div class="ttc" id="aclassLODNode_html_ae5c02bbef6392e83f9d99be03bfc8065"><div class="ttname"><a href="classLODNode.html#ae5c02bbef6392e83f9d99be03bfc8065">LODNode::add</a></div><div class="ttdeci">void add(int level, scene::ISceneNode *node, bool reparent)</div><div class="ttdoc">Adds a node associated with a level of detail.</div><div class="ttdef"><b>Definition</b> lod_node.cpp:282</div></div>
+<div class="ttc" id="aclassLODNode_html_ae9b42becdfdc996c73f41416f6c61ec5"><div class="ttname"><a href="classLODNode.html#ae9b42becdfdc996c73f41416f6c61ec5">LODNode::forceLevelOfDetail</a></div><div class="ttdeci">void forceLevelOfDetail(int n)</div><div class="ttdoc">Forces the level of detail to be n.</div><div class="ttdef"><b>Definition</b> lod_node.cpp:122</div></div>
+<div class="ttc" id="aclassLODNode_html_aed37dc7d3598c3a40dddc0de6c2c1a96"><div class="ttname"><a href="classLODNode.html#aed37dc7d3598c3a40dddc0de6c2c1a96">LODNode::LODNode</a></div><div class="ttdeci">LODNode(std::string group_name, scene::ISceneNode *parent, scene::ISceneManager *mgr, s32 id=-1)</div><div class="ttdef"><b>Definition</b> lod_node.cpp:34</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

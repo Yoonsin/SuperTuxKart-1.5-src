@@ -1,0 +1,1269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: SFXManager 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">클래스</a> &#124;
+<a href="#pub-types">Public 타입</a> &#124;
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-static-methods">정적 Public 멤버 함수</a> &#124;
+<a href="#pri-methods">Private 멤버 함수</a> &#124;
+<a href="#pri-static-methods">정적 Private 멤버 함수</a> &#124;
+<a href="#pri-attribs">Private 속성</a> &#124;
+<a href="#pri-static-attribs">정적 Private 속성</a> &#124;
+<a href="classSFXManager-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">SFXManager 클래스 참조<div class="ingroups"><a class="el" href="group__audio.html">Audio</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Manager of all sound effects.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="sfx__manager_8hpp_source.html">sfx_manager.hpp</a>&gt;</code></p>
+<div class="dynheader">
+SFXManager에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classSFXManager__inherit__graph.png" border="0" usemap="#aSFXManager_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aSFXManager_inherit__map" id="aSFXManager_inherit__map">
+<area shape="rect" title="Manager of all sound effects." alt="" coords="47,80,145,107"/>
+<area shape="rect" href="classNoCopy.html" title="Utility class, you can inherit from this class to disallow the assignment operator and copy construct..." alt="" coords="5,5,75,32"/>
+<area shape="poly" title=" " alt="" coords="60,42,89,79,84,80,58,47"/>
+<area shape="rect" href="classCanBeDeleted.html" title="A simple class that a adds a function to wait with a timeout for a class to be ready to be deleted." alt="" coords="99,5,205,32"/>
+<area shape="poly" title=" " alt="" coords="136,43,107,82,104,78,131,45"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+클래스</h2></td></tr>
+<tr class="memitem:SFXCommand" id="r_SFXCommand"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classSFXManager_1_1SFXCommand.html">SFXCommand</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data structure for the queue, which stores a sfx and the command to execute for it.  <a href="classSFXManager_1_1SFXCommand.html#details">더 자세히 ...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 타입</h2></td></tr>
+<tr class="memitem:a725564f810aa907c59de4bd6269fc71a" id="r_a725564f810aa907c59de4bd6269fc71a"><td class="memItemLeft"><a id="a725564f810aa907c59de4bd6269fc71a" name="a725564f810aa907c59de4bd6269fc71a"></a>enum &#160;</td><td class="memItemRight"><a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> { <br />
+&#160;&#160;<b>SFX_PLAY</b> = 1
+, <b>SFX_PLAY_POSITION</b>
+, <b>SFX_STOP</b>
+, <b>SFX_PAUSE</b>
+, <br />
+&#160;&#160;<b>SFX_PAUSE_ALL</b>
+, <b>SFX_RESUME</b>
+, <b>SFX_RESUME_ALL</b>
+, <b>SFX_DELETE</b>
+, <br />
+&#160;&#160;<b>SFX_SPEED</b>
+, <b>SFX_POSITION</b>
+, <b>SFX_SPEED_POSITION</b>
+, <b>SFX_VOLUME</b>
+, <br />
+&#160;&#160;<b>SFX_MASTER_VOLUME</b>
+, <b>SFX_LOOP</b>
+, <b>SFX_LISTENER</b>
+, <b>SFX_UPDATE</b>
+, <br />
+&#160;&#160;<b>SFX_MUSIC_START</b>
+, <b>SFX_MUSIC_STOP</b>
+, <b>SFX_MUSIC_PAUSE</b>
+, <b>SFX_MUSIC_RESUME</b>
+, <br />
+&#160;&#160;<b>SFX_MUSIC_SWITCH_FAST</b>
+, <b>SFX_MUSIC_SET_TMP_VOLUME</b>
+, <b>SFX_MUSIC_WAITING</b>
+, <b>SFX_MUSIC_DEFAULT_VOLUME</b>
+, <br />
+&#160;&#160;<b>SFX_EXIT</b>
+, <b>SFX_CREATE_SOURCE</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:a725564f810aa907c59de4bd6269fc71a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The various commands to be executed by the sfx manager thread for each sfx. <br /></td></tr>
+<tr class="memitem:a52233c423644d08cf57cf27359e18c1f" id="r_a52233c423644d08cf57cf27359e18c1f"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a52233c423644d08cf57cf27359e18c1f">CustomSFX</a> : int { <br />
+&#160;&#160;<a class="el" href="#a52233c423644d08cf57cf27359e18c1fadc510de705b2bc9c8eb2a2f5d7b5ab49">CUSTOM_HORN</a>
+, <a class="el" href="#a52233c423644d08cf57cf27359e18c1faba6defdc483c3893c37146a124178d8a">CUSTOM_CRASH</a>
+, <a class="el" href="#a52233c423644d08cf57cf27359e18c1faae872a8bded812f806b6ebeaf3a286b7">CUSTOM_WIN</a>
+, <a class="el" href="#a52233c423644d08cf57cf27359e18c1fa877fc1a94cd777328ef957d828278fc5">CUSTOM_EXPLODE</a>
+, <br />
+&#160;&#160;<a class="el" href="#a52233c423644d08cf57cf27359e18c1fa9178c0f8e6bce4fd65d87275c430b005">CUSTOM_GOO</a>
+, <a class="el" href="#a52233c423644d08cf57cf27359e18c1fa46bd486b6481e6bc38c0026429fd7479">CUSTOM_PASS</a>
+, <a class="el" href="#a52233c423644d08cf57cf27359e18c1fa511e8f24d8b6c6b9d409dac3ad2c67d0">CUSTOM_ZIPPER</a>
+, <a class="el" href="#a52233c423644d08cf57cf27359e18c1fa33829d78ccc4993d98fdf82f68cb41d6">CUSTOM_NAME</a>
+, <br />
+&#160;&#160;<a class="el" href="#a52233c423644d08cf57cf27359e18c1faa2cf931a221ef81a6240f4406ec9b4c0">CUSTOM_ATTACH</a>
+, <a class="el" href="#a52233c423644d08cf57cf27359e18c1faa59010826e77e6e6405567993ce119e7">CUSTOM_SHOOT</a>
+, <b>NUM_CUSTOMS</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:a52233c423644d08cf57cf27359e18c1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entries for custom SFX sounds.  <a href="#a52233c423644d08cf57cf27359e18c1f">더 자세히 ...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a6fc27d4f270bb37a18d3045bcaa7a268" id="r_a6fc27d4f270bb37a18d3045bcaa7a268"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6fc27d4f270bb37a18d3045bcaa7a268">queue</a> (<a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="el" href="classSFXBase.html">SFXBase</a> *sfx=NULL)</td></tr>
+<tr class="memdesc:a6fc27d4f270bb37a18d3045bcaa7a268"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a sound effect command to the queue of the sfx manager.  <br /></td></tr>
+<tr class="memitem:aba81c0b2ff89dd8aa8a333643ad5f57b" id="r_aba81c0b2ff89dd8aa8a333643ad5f57b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aba81c0b2ff89dd8aa8a333643ad5f57b">queue</a> (<a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="el" href="classSFXBase.html">SFXBase</a> *sfx, float f)</td></tr>
+<tr class="memdesc:aba81c0b2ff89dd8aa8a333643ad5f57b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a sound effect command with a single floating point parameter to the queue of the sfx manager.  <br /></td></tr>
+<tr class="memitem:a6b63043f4a5bda7cb6c1c8b91db74824" id="r_a6b63043f4a5bda7cb6c1c8b91db74824"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6b63043f4a5bda7cb6c1c8b91db74824">queue</a> (<a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="el" href="classSFXBase.html">SFXBase</a> *sfx, const <a class="el" href="classVec3.html">Vec3</a> &amp;p)</td></tr>
+<tr class="memdesc:a6b63043f4a5bda7cb6c1c8b91db74824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a sound effect command with a <a class="el" href="classVec3.html" title="A wrapper around bullets btVector3 to include conventient conversion functions (e....">Vec3</a> parameter to the queue of the sfx manager.  <br /></td></tr>
+<tr class="memitem:a6a8506fc9ea8e917976be2af5c6e14d3" id="r_a6a8506fc9ea8e917976be2af5c6e14d3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6a8506fc9ea8e917976be2af5c6e14d3">queue</a> (<a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="el" href="classSFXBase.html">SFXBase</a> *sfx, float f, const <a class="el" href="classVec3.html">Vec3</a> &amp;p)</td></tr>
+<tr class="memdesc:a6a8506fc9ea8e917976be2af5c6e14d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a sound effect command with a float and a <a class="el" href="classVec3.html" title="A wrapper around bullets btVector3 to include conventient conversion functions (e....">Vec3</a> parameter to the queue of the sfx manager.  <br /></td></tr>
+<tr class="memitem:a40ad6e50046b8df407dc0196e0189e70" id="r_a40ad6e50046b8df407dc0196e0189e70"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a40ad6e50046b8df407dc0196e0189e70">queue</a> (<a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="el" href="classMusicInformation.html">MusicInformation</a> *mi)</td></tr>
+<tr class="memdesc:a40ad6e50046b8df407dc0196e0189e70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queues a command for the music manager.  <br /></td></tr>
+<tr class="memitem:aae22e7fdc5801199144437d9d8855634" id="r_aae22e7fdc5801199144437d9d8855634"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aae22e7fdc5801199144437d9d8855634">queue</a> (<a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="el" href="classMusicInformation.html">MusicInformation</a> *mi, float f)</td></tr>
+<tr class="memdesc:aae22e7fdc5801199144437d9d8855634"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queues a command for the music manager that takes a floating point value (e.g.  <br /></td></tr>
+<tr class="memitem:a61f800d3922771eda3c7b13fef9546de" id="r_a61f800d3922771eda3c7b13fef9546de"><td class="memItemLeft"><a id="a61f800d3922771eda3c7b13fef9546de" name="a61f800d3922771eda3c7b13fef9546de"></a>
+void&#160;</td><td class="memItemRight"><b>queue</b> (<a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a> command, <a class="el" href="classSFXBase.html">SFXBase</a> *sfx, const <a class="el" href="classVec3.html">Vec3</a> &amp;p, <a class="el" href="classSFXBuffer.html">SFXBuffer</a> *buffer)</td></tr>
+<tr class="memitem:a92651455e176099f45d12482b84f7d2a" id="r_a92651455e176099f45d12482b84f7d2a"><td class="memItemLeft"><a id="a92651455e176099f45d12482b84f7d2a" name="a92651455e176099f45d12482b84f7d2a"></a>
+void&#160;</td><td class="memItemRight"><b>stopThread</b> ()</td></tr>
+<tr class="memdesc:a92651455e176099f45d12482b84f7d2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts a NULL request into the queue, which will trigger the thread to exit. <br /></td></tr>
+<tr class="memitem:a8da6fe0ba71d520cea6ac1f30b6d7c65" id="r_a8da6fe0ba71d520cea6ac1f30b6d7c65"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a8da6fe0ba71d520cea6ac1f30b6d7c65">sfxAllowed</a> ()</td></tr>
+<tr class="memdesc:a8da6fe0ba71d520cea6ac1f30b6d7c65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if sfx can be played.  <br /></td></tr>
+<tr class="memitem:a81fbf5a731367efd25013e12df029080" id="r_a81fbf5a731367efd25013e12df029080"><td class="memItemLeft"><a class="el" href="classSFXBuffer.html">SFXBuffer</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a81fbf5a731367efd25013e12df029080">loadSingleSfx</a> (const <a class="el" href="classXMLNode.html">XMLNode</a> *node, const std::string &amp;path=std::string(&quot;&quot;), const bool load=true)</td></tr>
+<tr class="memdesc:a81fbf5a731367efd25013e12df029080"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a single sfx from the XML specification.  <br /></td></tr>
+<tr class="memitem:ab98d1d4018274ee20eba42895461dad8" id="r_ab98d1d4018274ee20eba42895461dad8"><td class="memItemLeft"><a class="el" href="classSFXBuffer.html">SFXBuffer</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ab98d1d4018274ee20eba42895461dad8">addSingleSfx</a> (const std::string &amp;sfx_name, const std::string &amp;filename, bool positional, float rolloff, float max_dist, float gain, const bool load=true)</td></tr>
+<tr class="memdesc:ab98d1d4018274ee20eba42895461dad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Introduces a mechanism by which one can load sound effects beyond the basic enumerated types.  <br /></td></tr>
+<tr class="memitem:a26658ec4b06808944a97c1e6ad48a11e" id="r_a26658ec4b06808944a97c1e6ad48a11e"><td class="memItemLeft"><a class="el" href="classSFXBase.html">SFXBase</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a26658ec4b06808944a97c1e6ad48a11e">createSoundSource</a> (<a class="el" href="classSFXBuffer.html">SFXBuffer</a> *info, const bool add_to_SFX_list=true, const bool owns_buffer=false)</td></tr>
+<tr class="memdesc:a26658ec4b06808944a97c1e6ad48a11e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new SFX object.  <br /></td></tr>
+<tr class="memitem:a69fa538d908bf8977f7c987f8ad7aa65" id="r_a69fa538d908bf8977f7c987f8ad7aa65"><td class="memItemLeft"><a id="a69fa538d908bf8977f7c987f8ad7aa65" name="a69fa538d908bf8977f7c987f8ad7aa65"></a>
+<a class="el" href="classSFXBase.html">SFXBase</a> *&#160;</td><td class="memItemRight"><b>createSoundSource</b> (const std::string &amp;name, const bool addToSFXList=true)</td></tr>
+<tr class="memitem:af1150b708aa18cfd89a50e766eeb0509" id="r_af1150b708aa18cfd89a50e766eeb0509"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af1150b708aa18cfd89a50e766eeb0509">deleteSFXMapping</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:af1150b708aa18cfd89a50e766eeb0509"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function removes a sfx buffer info entry from the mapping, and frees the openal buffer.  <br /></td></tr>
+<tr class="memitem:a7fe9b8694f158bb7f0181e405604e9c1" id="r_a7fe9b8694f158bb7f0181e405604e9c1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7fe9b8694f158bb7f0181e405604e9c1">pauseAll</a> ()</td></tr>
+<tr class="memdesc:a7fe9b8694f158bb7f0181e405604e9c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request the pausing of all SFXs.  <br /></td></tr>
+<tr class="memitem:a2e80be8bc32f6ab71b2566e46fd3e51b" id="r_a2e80be8bc32f6ab71b2566e46fd3e51b"><td class="memItemLeft"><a id="a2e80be8bc32f6ab71b2566e46fd3e51b" name="a2e80be8bc32f6ab71b2566e46fd3e51b"></a>
+void&#160;</td><td class="memItemRight"><b>reallyPauseAllNow</b> ()</td></tr>
+<tr class="memdesc:a2e80be8bc32f6ab71b2566e46fd3e51b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actually pauses the SFXs. <br /></td></tr>
+<tr class="memitem:a565ab729ff0620efb4207ea34a68d943" id="r_a565ab729ff0620efb4207ea34a68d943"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a565ab729ff0620efb4207ea34a68d943">resumeAll</a> ()</td></tr>
+<tr class="memdesc:a565ab729ff0620efb4207ea34a68d943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resumes all paused SFXs.  <br /></td></tr>
+<tr class="memitem:aa75036debee35e2e12c293cf302f884a" id="r_aa75036debee35e2e12c293cf302f884a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa75036debee35e2e12c293cf302f884a">reallyResumeAllNow</a> ()</td></tr>
+<tr class="memdesc:aa75036debee35e2e12c293cf302f884a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resumes all paused SFXs.  <br /></td></tr>
+<tr class="memitem:a211d95f467a88df4d00684577b211d1c" id="r_a211d95f467a88df4d00684577b211d1c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a211d95f467a88df4d00684577b211d1c">update</a> ()</td></tr>
+<tr class="memdesc:a211d95f467a88df4d00684577b211d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make sure that the sfx thread is started at least once per frame.  <br /></td></tr>
+<tr class="memitem:a32b91e4a036ac66cd78ffafe70ce7275" id="r_a32b91e4a036ac66cd78ffafe70ce7275"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a32b91e4a036ac66cd78ffafe70ce7275">reallyUpdateNow</a> (<a class="el" href="classSFXManager_1_1SFXCommand.html">SFXCommand</a> *current)</td></tr>
+<tr class="memdesc:a32b91e4a036ac66cd78ffafe70ce7275"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the status of all playing sfx (to test if they are finished).  <br /></td></tr>
+<tr class="memitem:afe21573175078617f99c83a191a5497c" id="r_afe21573175078617f99c83a191a5497c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#afe21573175078617f99c83a191a5497c">soundExist</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:afe21573175078617f99c83a191a5497c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if a sfx with the given name exists.  <br /></td></tr>
+<tr class="memitem:ae1496c1ab98c7d95264a7b2dfca5d7ef" id="r_ae1496c1ab98c7d95264a7b2dfca5d7ef"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae1496c1ab98c7d95264a7b2dfca5d7ef">setMasterSFXVolume</a> (float gain)</td></tr>
+<tr class="memdesc:ae1496c1ab98c7d95264a7b2dfca5d7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the master volume for all sound effects.  <br /></td></tr>
+<tr class="memitem:a9913f0d94785c6ed4eecc97ad1937461" id="r_a9913f0d94785c6ed4eecc97ad1937461"><td class="memItemLeft"><a id="a9913f0d94785c6ed4eecc97ad1937461" name="a9913f0d94785c6ed4eecc97ad1937461"></a>
+float&#160;</td><td class="memItemRight"><b>getMasterSFXVolume</b> () const</td></tr>
+<tr class="memitem:ae2bd5291bd09299829c9b11763a845f6" id="r_ae2bd5291bd09299829c9b11763a845f6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae2bd5291bd09299829c9b11763a845f6">positionListener</a> (const <a class="el" href="classVec3.html">Vec3</a> &amp;position, const <a class="el" href="classVec3.html">Vec3</a> &amp;front, const <a class="el" href="classVec3.html">Vec3</a> &amp;up)</td></tr>
+<tr class="memdesc:ae2bd5291bd09299829c9b11763a845f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the position and orientation of the listener.  <br /></td></tr>
+<tr class="memitem:ad5bf4a93f1bb60fb9879e8320fe3a18a" id="r_ad5bf4a93f1bb60fb9879e8320fe3a18a"><td class="memItemLeft"><a class="el" href="classSFXBase.html">SFXBase</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ad5bf4a93f1bb60fb9879e8320fe3a18a">quickSound</a> (const std::string &amp;soundName)</td></tr>
+<tr class="memdesc:ad5bf4a93f1bb60fb9879e8320fe3a18a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Positional sound is cool, but creating a new object just to play a simple menu sound is not.  <br /></td></tr>
+<tr class="memitem:a7cbb8428ae18db08445766cf0814c356" id="r_a7cbb8428ae18db08445766cf0814c356"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7cbb8428ae18db08445766cf0814c356">toggleSound</a> (const bool newValue)</td></tr>
+<tr class="memdesc:a7cbb8428ae18db08445766cf0814c356"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when sound was muted/unmuted  <br /></td></tr>
+<tr class="memitem:a216fa74f258ca49b9cdcf2fff2918b30" id="r_a216fa74f258ca49b9cdcf2fff2918b30"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a216fa74f258ca49b9cdcf2fff2918b30">dump</a> ()</td></tr>
+<tr class="memdesc:a216fa74f258ca49b9cdcf2fff2918b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the list of currently loaded sounds to stdout.  <br /></td></tr>
+<tr class="memitem:a7674b3d0973a88959d2413291d9738cb" id="r_a7674b3d0973a88959d2413291d9738cb"><td class="memItemLeft"><a id="a7674b3d0973a88959d2413291d9738cb" name="a7674b3d0973a88959d2413291d9738cb"></a>
+<a class="el" href="classVec3.html">Vec3</a>&#160;</td><td class="memItemRight"><b>getListenerPos</b> () const</td></tr>
+<tr class="memdesc:a7674b3d0973a88959d2413291d9738cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current position of the listener. <br /></td></tr>
+<tr class="memitem:a879c37f025996a2f75477dcb8fc8a808" id="r_a879c37f025996a2f75477dcb8fc8a808"><td class="memItemLeft"><a id="a879c37f025996a2f75477dcb8fc8a808" name="a879c37f025996a2f75477dcb8fc8a808"></a>
+<a class="el" href="classSFXBuffer.html">SFXBuffer</a> *&#160;</td><td class="memItemRight"><b>getBuffer</b> (const std::string &amp;name)</td></tr>
+<tr class="inherit_header pub_methods_classCanBeDeleted"><td colspan="2"><a class="el" href="classCanBeDeleted.html">CanBeDeleted</a>(으)로부터 상속된 Public 멤버 함수</td></tr>
+<tr class="memitem:a13069fbcc491e32919c9aaceef29168e pub_methods_classCanBeDeleted" id="r_a13069fbcc491e32919c9aaceef29168e"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>CanBeDeleted</b> ()</td></tr>
+<tr class="memdesc:a13069fbcc491e32919c9aaceef29168e pub_methods_classCanBeDeleted"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set this instance to be not ready to be deleted. <br /></td></tr>
+<tr class="memitem:aaf2c5328c1d844f96f475a2af320eea7 pub_methods_classCanBeDeleted" id="r_aaf2c5328c1d844f96f475a2af320eea7"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>setCanBeDeleted</b> ()</td></tr>
+<tr class="memdesc:aaf2c5328c1d844f96f475a2af320eea7 pub_methods_classCanBeDeleted"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this instance to be ready to be deleted. <br /></td></tr>
+<tr class="memitem:a89508cc6dfb735a5fe5880b220f19b17 pub_methods_classCanBeDeleted" id="r_a89508cc6dfb735a5fe5880b220f19b17"><td class="memItemLeft">
+void&#160;</td><td class="memItemRight"><b>resetCanBeDeleted</b> ()</td></tr>
+<tr class="memitem:a23cf3a4ba5a822ada2460c65899713c1 pub_methods_classCanBeDeleted" id="r_a23cf3a4ba5a822ada2460c65899713c1"><td class="memItemLeft">
+bool&#160;</td><td class="memItemRight"><b>canBeDeletedNow</b> ()</td></tr>
+<tr class="memitem:af08175835bbeebe783eda223054fcaf5 pub_methods_classCanBeDeleted" id="r_af08175835bbeebe783eda223054fcaf5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classCanBeDeleted.html#af08175835bbeebe783eda223054fcaf5">waitForReadyToDeleted</a> (float waiting_time)</td></tr>
+<tr class="memdesc:af08175835bbeebe783eda223054fcaf5 pub_methods_classCanBeDeleted"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits at most t seconds for this class to be ready to be deleted.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a3377ba5955aaee68110089caf221bbfe" id="r_a3377ba5955aaee68110089caf221bbfe"><td class="memItemLeft"><a id="a3377ba5955aaee68110089caf221bbfe" name="a3377ba5955aaee68110089caf221bbfe"></a>
+static void&#160;</td><td class="memItemRight"><b>create</b> ()</td></tr>
+<tr class="memdesc:a3377ba5955aaee68110089caf221bbfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static function to create the singleton sfx manager. <br /></td></tr>
+<tr class="memitem:aea0fae00a2b46e82827eb7a5939791dc" id="r_aea0fae00a2b46e82827eb7a5939791dc"><td class="memItemLeft"><a id="aea0fae00a2b46e82827eb7a5939791dc" name="aea0fae00a2b46e82827eb7a5939791dc"></a>
+static void&#160;</td><td class="memItemRight"><b>destroy</b> ()</td></tr>
+<tr class="memdesc:aea0fae00a2b46e82827eb7a5939791dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static function to delete the singleton sfx manager. <br /></td></tr>
+<tr class="memitem:ae6f7d861ae5f79beb7a5aa21be9d4226" id="r_ae6f7d861ae5f79beb7a5aa21be9d4226"><td class="memItemLeft"><a id="ae6f7d861ae5f79beb7a5aa21be9d4226" name="ae6f7d861ae5f79beb7a5aa21be9d4226"></a>
+static <a class="el" href="classSFXManager.html">SFXManager</a> *&#160;</td><td class="memItemRight"><b>get</b> ()</td></tr>
+<tr class="memdesc:ae6f7d861ae5f79beb7a5aa21be9d4226"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static function to get the singleton sfx manager. <br /></td></tr>
+<tr class="memitem:a172ca7d0f98120fd0bdecc67a5747f88" id="r_a172ca7d0f98120fd0bdecc67a5747f88"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#a172ca7d0f98120fd0bdecc67a5747f88">checkError</a> (const std::string &amp;context)</td></tr>
+<tr class="memdesc:a172ca7d0f98120fd0bdecc67a5747f88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether or not an openal error has occurred.  <br /></td></tr>
+<tr class="memitem:accc05d637201b4ba8298c5b3251ebcb6" id="r_accc05d637201b4ba8298c5b3251ebcb6"><td class="memItemLeft"><a id="accc05d637201b4ba8298c5b3251ebcb6" name="accc05d637201b4ba8298c5b3251ebcb6"></a>
+static const std::string&#160;</td><td class="memItemRight"><b>getErrorString</b> (int err)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 멤버 함수</h2></td></tr>
+<tr class="memitem:a789929452c91325a6456429e4be50912" id="r_a789929452c91325a6456429e4be50912"><td class="memItemLeft"><a id="a789929452c91325a6456429e4be50912" name="a789929452c91325a6456429e4be50912"></a>
+void&#160;</td><td class="memItemRight"><b>loadSfx</b> ()</td></tr>
+<tr class="memdesc:a789929452c91325a6456429e4be50912"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads all sounds specified in the sound config file. <br /></td></tr>
+<tr class="memitem:a5c4cafc37d92d9ebdd8ed64cf9196c6f" id="r_a5c4cafc37d92d9ebdd8ed64cf9196c6f"><td class="memItemLeft"><a id="a5c4cafc37d92d9ebdd8ed64cf9196c6f" name="a5c4cafc37d92d9ebdd8ed64cf9196c6f"></a>
+&#160;</td><td class="memItemRight"><b>SFXManager</b> ()</td></tr>
+<tr class="memdesc:a5c4cafc37d92d9ebdd8ed64cf9196c6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the SFX manager and loads the sfx from a config file. <br /></td></tr>
+<tr class="memitem:a25a677529f46fc1d0e54dca24f56fb1c" id="r_a25a677529f46fc1d0e54dca24f56fb1c"><td class="memItemLeft"><a id="a25a677529f46fc1d0e54dca24f56fb1c" name="a25a677529f46fc1d0e54dca24f56fb1c"></a>
+virtual&#160;</td><td class="memItemRight"><b>~SFXManager</b> ()</td></tr>
+<tr class="memdesc:a25a677529f46fc1d0e54dca24f56fb1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, frees all sound effects. <br /></td></tr>
+<tr class="memitem:adc0ea57a50461f2d6421c4e5d270574e" id="r_adc0ea57a50461f2d6421c4e5d270574e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adc0ea57a50461f2d6421c4e5d270574e">deleteSFX</a> (<a class="el" href="classSFXBase.html">SFXBase</a> *sfx)</td></tr>
+<tr class="memdesc:adc0ea57a50461f2d6421c4e5d270574e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a sound effect object, and removes it from the internal list of all SFXs.  <br /></td></tr>
+<tr class="memitem:abd7579163edad1ac815c0852d2e01e93" id="r_abd7579163edad1ac815c0852d2e01e93"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abd7579163edad1ac815c0852d2e01e93">queueCommand</a> (<a class="el" href="classSFXManager_1_1SFXCommand.html">SFXCommand</a> *command)</td></tr>
+<tr class="memdesc:abd7579163edad1ac815c0852d2e01e93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enqueues a command to the sfx queue threadsafe.  <br /></td></tr>
+<tr class="memitem:a0fea68e1a58b720aa614a327abcc9e87" id="r_a0fea68e1a58b720aa614a327abcc9e87"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0fea68e1a58b720aa614a327abcc9e87">reallyPositionListenerNow</a> ()</td></tr>
+<tr class="memdesc:a0fea68e1a58b720aa614a327abcc9e87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the position and orientation of the listener.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-methods" class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+정적 Private 멤버 함수</h2></td></tr>
+<tr class="memitem:aa0ddde85fb61e8e150cb8be0b9aca24f" id="r_aa0ddde85fb61e8e150cb8be0b9aca24f"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#aa0ddde85fb61e8e150cb8be0b9aca24f">mainLoop</a> (void *obj)</td></tr>
+<tr class="memdesc:aa0ddde85fb61e8e150cb8be0b9aca24f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This loops runs in a different thread, and starts playing sfx.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 속성</h2></td></tr>
+<tr class="memitem:aeb9f0328b1f34e7585430dbc4534ed84" id="r_aeb9f0328b1f34e7585430dbc4534ed84"><td class="memItemLeft"><a class="el" href="classSynchronised.html">Synchronised</a>&lt; <a class="el" href="classVec3.html">Vec3</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aeb9f0328b1f34e7585430dbc4534ed84">m_listener_position</a></td></tr>
+<tr class="memdesc:aeb9f0328b1f34e7585430dbc4534ed84"><td class="mdescLeft">&#160;</td><td class="mdescRight">The position of the listener.  <br /></td></tr>
+<tr class="memitem:a95ca34cdf5477fba5143892315daf037" id="r_a95ca34cdf5477fba5143892315daf037"><td class="memItemLeft"><a id="a95ca34cdf5477fba5143892315daf037" name="a95ca34cdf5477fba5143892315daf037"></a>
+<a class="el" href="classVec3.html">Vec3</a>&#160;</td><td class="memItemRight"><b>m_listener_front</b></td></tr>
+<tr class="memdesc:a95ca34cdf5477fba5143892315daf037"><td class="mdescLeft">&#160;</td><td class="mdescRight">The direction the listener is facing. <br /></td></tr>
+<tr class="memitem:a54cc9020895ac933d96c937d019b3833" id="r_a54cc9020895ac933d96c937d019b3833"><td class="memItemLeft"><a id="a54cc9020895ac933d96c937d019b3833" name="a54cc9020895ac933d96c937d019b3833"></a>
+<a class="el" href="classVec3.html">Vec3</a>&#160;</td><td class="memItemRight"><b>m_listener_up</b></td></tr>
+<tr class="memdesc:a54cc9020895ac933d96c937d019b3833"><td class="mdescLeft">&#160;</td><td class="mdescRight">Up vector of the listener. <br /></td></tr>
+<tr class="memitem:a9483979ee8f2aa74cd124014fadc3072" id="r_a9483979ee8f2aa74cd124014fadc3072"><td class="memItemLeft">std::map&lt; std::string, <a class="el" href="classSFXBuffer.html">SFXBuffer</a> * &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9483979ee8f2aa74cd124014fadc3072">m_all_sfx_types</a></td></tr>
+<tr class="memdesc:a9483979ee8f2aa74cd124014fadc3072"><td class="mdescLeft">&#160;</td><td class="mdescRight">The buffers and info for all sound effects.  <br /></td></tr>
+<tr class="memitem:a1812300e046db32806ccef5652ae688b" id="r_a1812300e046db32806ccef5652ae688b"><td class="memItemLeft"><a id="a1812300e046db32806ccef5652ae688b" name="a1812300e046db32806ccef5652ae688b"></a>
+<a class="el" href="classSynchronised.html">Synchronised</a>&lt; std::vector&lt; <a class="el" href="classSFXBase.html">SFXBase</a> * &gt; &gt;&#160;</td><td class="memItemRight"><b>m_all_sfx</b></td></tr>
+<tr class="memdesc:a1812300e046db32806ccef5652ae688b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual instances (sound sources) <br /></td></tr>
+<tr class="memitem:aa5079a4e567a7e0b72f1f79407248748" id="r_aa5079a4e567a7e0b72f1f79407248748"><td class="memItemLeft"><a id="aa5079a4e567a7e0b72f1f79407248748" name="aa5079a4e567a7e0b72f1f79407248748"></a>
+<a class="el" href="classSynchronised.html">Synchronised</a>&lt; std::vector&lt; <a class="el" href="classSFXManager_1_1SFXCommand.html">SFXCommand</a> * &gt; &gt;&#160;</td><td class="memItemRight"><b>m_sfx_commands</b></td></tr>
+<tr class="memdesc:aa5079a4e567a7e0b72f1f79407248748"><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of sound effects to be played in the next update. <br /></td></tr>
+<tr class="memitem:a3e74e9bacf0320e27610ea370a180d1e" id="r_a3e74e9bacf0320e27610ea370a180d1e"><td class="memItemLeft"><a id="a3e74e9bacf0320e27610ea370a180d1e" name="a3e74e9bacf0320e27610ea370a180d1e"></a>
+<a class="el" href="classSynchronised.html">Synchronised</a>&lt; std::map&lt; std::string, <a class="el" href="classSFXBase.html">SFXBase</a> * &gt; &gt;&#160;</td><td class="memItemRight"><b>m_quick_sounds</b></td></tr>
+<tr class="memdesc:a3e74e9bacf0320e27610ea370a180d1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">To play non-positional sounds without having to create a new object for each. <br /></td></tr>
+<tr class="memitem:adc5987ea967513326ef099b1387d9049" id="r_adc5987ea967513326ef099b1387d9049"><td class="memItemLeft"><a id="adc5987ea967513326ef099b1387d9049" name="adc5987ea967513326ef099b1387d9049"></a>
+bool&#160;</td><td class="memItemRight"><b>m_initialized</b></td></tr>
+<tr class="memdesc:adc5987ea967513326ef099b1387d9049"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the sfx manager has been initialised. <br /></td></tr>
+<tr class="memitem:a06671e47b8fc67cc22573b87d10df24d" id="r_a06671e47b8fc67cc22573b87d10df24d"><td class="memItemLeft"><a id="a06671e47b8fc67cc22573b87d10df24d" name="a06671e47b8fc67cc22573b87d10df24d"></a>
+float&#160;</td><td class="memItemRight"><b>m_master_gain</b></td></tr>
+<tr class="memdesc:a06671e47b8fc67cc22573b87d10df24d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Master gain value, taken from the user config value. <br /></td></tr>
+<tr class="memitem:af547272b3726922633d195a61d6db76d" id="r_af547272b3726922633d195a61d6db76d"><td class="memItemLeft"><a id="af547272b3726922633d195a61d6db76d" name="af547272b3726922633d195a61d6db76d"></a>
+std::thread&#160;</td><td class="memItemRight"><b>m_thread</b></td></tr>
+<tr class="memdesc:af547272b3726922633d195a61d6db76d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread id of the thread running in this object. <br /></td></tr>
+<tr class="memitem:a90241d0a576ed546734e4822d914ca3b" id="r_a90241d0a576ed546734e4822d914ca3b"><td class="memItemLeft"><a id="a90241d0a576ed546734e4822d914ca3b" name="a90241d0a576ed546734e4822d914ca3b"></a>
+uint64_t&#160;</td><td class="memItemRight"><b>m_last_update_time</b></td></tr>
+<tr class="memitem:ac97e65a4109fe5f4bee09037a827c9da" id="r_ac97e65a4109fe5f4bee09037a827c9da"><td class="memItemLeft"><a id="ac97e65a4109fe5f4bee09037a827c9da" name="ac97e65a4109fe5f4bee09037a827c9da"></a>
+std::condition_variable&#160;</td><td class="memItemRight"><b>m_condition_variable</b></td></tr>
+<tr class="memdesc:ac97e65a4109fe5f4bee09037a827c9da"><td class="mdescLeft">&#160;</td><td class="mdescRight">A conditional variable to wake up the main loop. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-static-attribs" class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+정적 Private 속성</h2></td></tr>
+<tr class="memitem:a8247a5da777e00d8d97a62cc65942ba1" id="r_a8247a5da777e00d8d97a62cc65942ba1"><td class="memItemLeft"><a id="a8247a5da777e00d8d97a62cc65942ba1" name="a8247a5da777e00d8d97a62cc65942ba1"></a>
+static <a class="el" href="classSFXManager.html">SFXManager</a> *&#160;</td><td class="memItemRight"><b>m_sfx_manager</b></td></tr>
+<tr class="memdesc:a8247a5da777e00d8d97a62cc65942ba1"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classSingleton.html">Singleton</a> pointer. <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Manager of all sound effects. </p>
+<p>The manager reads all sound effects and maintains the corresponding buffers. Each sound effect objects uses on of the (shared) buffers from the sound manager. </p>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">멤버 열거형 문서화</h2>
+<a id="a52233c423644d08cf57cf27359e18c1f" name="a52233c423644d08cf57cf27359e18c1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52233c423644d08cf57cf27359e18c1f">&#9670;&#160;</a></span>CustomSFX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a52233c423644d08cf57cf27359e18c1f">SFXManager::CustomSFX</a> : int</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Entries for custom SFX sounds. </p>
+<p>These are unique for each kart. eg. kart-&gt;playCustomSFX(SFX_MANAGER::CUSTOM_HORN) </p>
+<table class="fieldtable">
+<tr><th colspan="2">열거형 멤버</th></tr><tr><td class="fieldname"><a id="a52233c423644d08cf57cf27359e18c1fadc510de705b2bc9c8eb2a2f5d7b5ab49" name="a52233c423644d08cf57cf27359e18c1fadc510de705b2bc9c8eb2a2f5d7b5ab49"></a>CUSTOM_HORN&#160;</td><td class="fielddoc"><p>Replaces default horn </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a52233c423644d08cf57cf27359e18c1faba6defdc483c3893c37146a124178d8a" name="a52233c423644d08cf57cf27359e18c1faba6defdc483c3893c37146a124178d8a"></a>CUSTOM_CRASH&#160;</td><td class="fielddoc"><p>Played when colliding with another kart </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a52233c423644d08cf57cf27359e18c1faae872a8bded812f806b6ebeaf3a286b7" name="a52233c423644d08cf57cf27359e18c1faae872a8bded812f806b6ebeaf3a286b7"></a>CUSTOM_WIN&#160;</td><td class="fielddoc"><p>Played when racer wins </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a52233c423644d08cf57cf27359e18c1fa877fc1a94cd777328ef957d828278fc5" name="a52233c423644d08cf57cf27359e18c1fa877fc1a94cd777328ef957d828278fc5"></a>CUSTOM_EXPLODE&#160;</td><td class="fielddoc"><p>Played when struck by bowling ball or dynamite </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a52233c423644d08cf57cf27359e18c1fa9178c0f8e6bce4fd65d87275c430b005" name="a52233c423644d08cf57cf27359e18c1fa9178c0f8e6bce4fd65d87275c430b005"></a>CUSTOM_GOO&#160;</td><td class="fielddoc"><p>Played when driving through goo </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a52233c423644d08cf57cf27359e18c1fa46bd486b6481e6bc38c0026429fd7479" name="a52233c423644d08cf57cf27359e18c1fa46bd486b6481e6bc38c0026429fd7479"></a>CUSTOM_PASS&#160;</td><td class="fielddoc"><p>Played when passing another kart </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a52233c423644d08cf57cf27359e18c1fa511e8f24d8b6c6b9d409dac3ad2c67d0" name="a52233c423644d08cf57cf27359e18c1fa511e8f24d8b6c6b9d409dac3ad2c67d0"></a>CUSTOM_ZIPPER&#160;</td><td class="fielddoc"><p>Played when kart hits zipper </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a52233c423644d08cf57cf27359e18c1fa33829d78ccc4993d98fdf82f68cb41d6" name="a52233c423644d08cf57cf27359e18c1fa33829d78ccc4993d98fdf82f68cb41d6"></a>CUSTOM_NAME&#160;</td><td class="fielddoc"><p>Introduction (e.g. "I'm Tux!") </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a52233c423644d08cf57cf27359e18c1faa2cf931a221ef81a6240f4406ec9b4c0" name="a52233c423644d08cf57cf27359e18c1faa2cf931a221ef81a6240f4406ec9b4c0"></a>CUSTOM_ATTACH&#160;</td><td class="fielddoc"><p>Played when something is attached to kart (Uh-Oh) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a52233c423644d08cf57cf27359e18c1faa59010826e77e6e6405567993ce119e7" name="a52233c423644d08cf57cf27359e18c1faa59010826e77e6e6405567993ce119e7"></a>CUSTOM_SHOOT&#160;</td><td class="fielddoc"><p>Played when weapon is used </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="ab98d1d4018274ee20eba42895461dad8" name="ab98d1d4018274ee20eba42895461dad8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab98d1d4018274ee20eba42895461dad8">&#9670;&#160;</a></span>addSingleSfx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSFXBuffer.html">SFXBuffer</a> * SFXManager::addSingleSfx </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>sfx_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>sfx_file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>positional</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>rolloff</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>max_dist</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gain</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>load</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Introduces a mechanism by which one can load sound effects beyond the basic enumerated types. </p>
+<p>This will be used when loading custom sound effects for individual karts (character voices) so that we can avoid creating an enumeration for each effect, for each kart. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sfx_name</td><td></td></tr>
+    <tr><td class="paramname">sfxFile</td><td>must be an absolute pathname </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>whether loading this sound effect was successful </dd></dl>
+
+</div>
+</div>
+<a id="a172ca7d0f98120fd0bdecc67a5747f88" name="a172ca7d0f98120fd0bdecc67a5747f88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a172ca7d0f98120fd0bdecc67a5747f88">&#9670;&#160;</a></span>checkError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SFXManager::checkError </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>context</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns whether or not an openal error has occurred. </p>
+<p>If so, an error message is printed containing the given context. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>Context to specify in the error message. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>True if no error happened. </dd></dl>
+
+</div>
+</div>
+<a id="a26658ec4b06808944a97c1e6ad48a11e" name="a26658ec4b06808944a97c1e6ad48a11e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26658ec4b06808944a97c1e6ad48a11e">&#9670;&#160;</a></span>createSoundSource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSFXBase.html">SFXBase</a> * SFXManager::createSoundSource </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classSFXBuffer.html">SFXBuffer</a> *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>add_to_SFX_list</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>owns_buffer</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new SFX object. </p>
+<p>The memory for this object is managed completely by the <a class="el" href="classSFXManager.html" title="Manager of all sound effects.">SFXManager</a>. This makes it easy to use different implementations of SFX - since createSoundSource can return whatever type is used. To free the memory, call <a class="el" href="#adc0ea57a50461f2d6421c4e5d270574e" title="Delete a sound effect object, and removes it from the internal list of all SFXs.">deleteSFX()</a>. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Identifier of the sound effect to create. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adc0ea57a50461f2d6421c4e5d270574e" name="adc0ea57a50461f2d6421c4e5d270574e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc0ea57a50461f2d6421c4e5d270574e">&#9670;&#160;</a></span>deleteSFX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::deleteSFX </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classSFXBase.html">SFXBase</a> *</td>          <td class="paramname"><span class="paramname"><em>sfx</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Delete a sound effect object, and removes it from the internal list of all SFXs. </p>
+<p>This call deletes the object, and removes it from the list of all SFXs. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sfx</td><td>SFX object to delete. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af1150b708aa18cfd89a50e766eeb0509" name="af1150b708aa18cfd89a50e766eeb0509"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1150b708aa18cfd89a50e766eeb0509">&#9670;&#160;</a></span>deleteSFXMapping()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::deleteSFXMapping </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function removes a sfx buffer info entry from the mapping, and frees the openal buffer. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the mapping entry to remove. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a216fa74f258ca49b9cdcf2fff2918b30" name="a216fa74f258ca49b9cdcf2fff2918b30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a216fa74f258ca49b9cdcf2fff2918b30">&#9670;&#160;</a></span>dump()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::dump </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints the list of currently loaded sounds to stdout. </p>
+<p>Useful to debug audio leaks </p>
+
+</div>
+</div>
+<a id="a81fbf5a731367efd25013e12df029080" name="a81fbf5a731367efd25013e12df029080"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81fbf5a731367efd25013e12df029080">&#9670;&#160;</a></span>loadSingleSfx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSFXBuffer.html">SFXBuffer</a> * SFXManager::loadSingleSfx </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classXMLNode.html">XMLNode</a> *</td>          <td class="paramname"><span class="paramname"><em>node</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>path</em></span><span class="paramdefsep"> = </span><span class="paramdefval">std::string(&quot;&quot;)</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>load</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Loads a single sfx from the XML specification. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td>The XML node with the data for this sfx. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa0ddde85fb61e8e150cb8be0b9aca24f" name="aa0ddde85fb61e8e150cb8be0b9aca24f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0ddde85fb61e8e150cb8be0b9aca24f">&#9670;&#160;</a></span>mainLoop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::mainLoop </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>obj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This loops runs in a different thread, and starts playing sfx. </p>
+<p>This can sometimes take up to 5 ms, so it needs to be handled in a thread in order to avoid rendering delays. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">obj</td><td>A pointer to the SFX singleton. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7fe9b8694f158bb7f0181e405604e9c1" name="a7fe9b8694f158bb7f0181e405604e9c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fe9b8694f158bb7f0181e405604e9c1">&#9670;&#160;</a></span>pauseAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::pauseAll </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Request the pausing of all SFXs. </p>
+<p>Non-looping SFXs are finished, since it's otherwise not possible to determine which SFXs must be resumed (i.e. were actually playing at the time pause was called). </p>
+
+</div>
+</div>
+<a id="ae2bd5291bd09299829c9b11763a845f6" name="ae2bd5291bd09299829c9b11763a845f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2bd5291bd09299829c9b11763a845f6">&#9670;&#160;</a></span>positionListener()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::positionListener </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>position</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>front</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>up</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the position and orientation of the listener. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>Position of the listener. </td></tr>
+    <tr><td class="paramname">front</td><td>Which way the listener is facing. </td></tr>
+    <tr><td class="paramname">up</td><td>The up direction of the listener. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a40ad6e50046b8df407dc0196e0189e70" name="a40ad6e50046b8df407dc0196e0189e70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40ad6e50046b8df407dc0196e0189e70">&#9670;&#160;</a></span>queue() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::queue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a></td>          <td class="paramname"><span class="paramname"><em>command</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMusicInformation.html">MusicInformation</a> *</td>          <td class="paramname"><span class="paramname"><em>mi</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Queues a command for the music manager. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mi</td><td>The music for which the command is. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aae22e7fdc5801199144437d9d8855634" name="aae22e7fdc5801199144437d9d8855634"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae22e7fdc5801199144437d9d8855634">&#9670;&#160;</a></span>queue() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::queue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a></td>          <td class="paramname"><span class="paramname"><em>command</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMusicInformation.html">MusicInformation</a> *</td>          <td class="paramname"><span class="paramname"><em>mi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>f</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Queues a command for the music manager that takes a floating point value (e.g. </p>
+<p>setTemporaryVolume). </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mi</td><td>The music for which the command is. </td></tr>
+    <tr><td class="paramname">f</td><td>The floating point parameter. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6b63043f4a5bda7cb6c1c8b91db74824" name="a6b63043f4a5bda7cb6c1c8b91db74824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b63043f4a5bda7cb6c1c8b91db74824">&#9670;&#160;</a></span>queue() <span class="overload">[3/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::queue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a></td>          <td class="paramname"><span class="paramname"><em>command</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classSFXBase.html">SFXBase</a> *</td>          <td class="paramname"><span class="paramname"><em>sfx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>p</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a sound effect command with a <a class="el" href="classVec3.html" title="A wrapper around bullets btVector3 to include conventient conversion functions (e....">Vec3</a> parameter to the queue of the sfx manager. </p>
+<p>Openal commands can sometimes cause a 5ms delay, so it is done in a separate thread. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">command</td><td>The command to execute. </td></tr>
+    <tr><td class="paramname">sfx</td><td>The sound effect to be started. </td></tr>
+    <tr><td class="paramname">p</td><td>A <a class="el" href="classVec3.html" title="A wrapper around bullets btVector3 to include conventient conversion functions (e....">Vec3</a> parameter for the command. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aba81c0b2ff89dd8aa8a333643ad5f57b" name="aba81c0b2ff89dd8aa8a333643ad5f57b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba81c0b2ff89dd8aa8a333643ad5f57b">&#9670;&#160;</a></span>queue() <span class="overload">[4/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::queue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a></td>          <td class="paramname"><span class="paramname"><em>command</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classSFXBase.html">SFXBase</a> *</td>          <td class="paramname"><span class="paramname"><em>sfx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>f</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a sound effect command with a single floating point parameter to the queue of the sfx manager. </p>
+<p>Openal commands can sometimes cause a 5ms delay, so it is done in a separate thread. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">command</td><td>The command to execute. </td></tr>
+    <tr><td class="paramname">sfx</td><td>The sound effect to be started. </td></tr>
+    <tr><td class="paramname">f</td><td>Floating point parameter for the command. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6a8506fc9ea8e917976be2af5c6e14d3" name="a6a8506fc9ea8e917976be2af5c6e14d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a8506fc9ea8e917976be2af5c6e14d3">&#9670;&#160;</a></span>queue() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::queue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a></td>          <td class="paramname"><span class="paramname"><em>command</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classSFXBase.html">SFXBase</a> *</td>          <td class="paramname"><span class="paramname"><em>sfx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>f</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classVec3.html">Vec3</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>p</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a sound effect command with a float and a <a class="el" href="classVec3.html" title="A wrapper around bullets btVector3 to include conventient conversion functions (e....">Vec3</a> parameter to the queue of the sfx manager. </p>
+<p>Openal commands can sometimes cause a 5ms delay, so it is done in a separate thread. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">command</td><td>The command to execute. </td></tr>
+    <tr><td class="paramname">sfx</td><td>The sound effect to be started. </td></tr>
+    <tr><td class="paramname">f</td><td>A float parameter for the command. </td></tr>
+    <tr><td class="paramname">p</td><td>A <a class="el" href="classVec3.html" title="A wrapper around bullets btVector3 to include conventient conversion functions (e....">Vec3</a> parameter for the command. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6fc27d4f270bb37a18d3045bcaa7a268" name="a6fc27d4f270bb37a18d3045bcaa7a268"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fc27d4f270bb37a18d3045bcaa7a268">&#9670;&#160;</a></span>queue() <span class="overload">[6/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::queue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a725564f810aa907c59de4bd6269fc71a">SFXCommands</a></td>          <td class="paramname"><span class="paramname"><em>command</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classSFXBase.html">SFXBase</a> *</td>          <td class="paramname"><span class="paramname"><em>sfx</em></span><span class="paramdefsep"> = </span><span class="paramdefval">NULL</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a sound effect command to the queue of the sfx manager. </p>
+<p>Openal commands can sometimes cause a 5ms delay, so it is done in a separate thread. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">command</td><td>The command to execute. </td></tr>
+    <tr><td class="paramname">sfx</td><td>The sound effect to be started. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abd7579163edad1ac815c0852d2e01e93" name="abd7579163edad1ac815c0852d2e01e93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd7579163edad1ac815c0852d2e01e93">&#9670;&#160;</a></span>queueCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::queueCommand </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classSFXManager_1_1SFXCommand.html">SFXCommand</a> *</td>          <td class="paramname"><span class="paramname"><em>command</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enqueues a command to the sfx queue threadsafe. </p>
+<p>Then signal the sfx manager to wake up. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">command</td><td>Pointer to the command to queue up. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad5bf4a93f1bb60fb9879e8320fe3a18a" name="ad5bf4a93f1bb60fb9879e8320fe3a18a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5bf4a93f1bb60fb9879e8320fe3a18a">&#9670;&#160;</a></span>quickSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSFXBase.html">SFXBase</a> * SFXManager::quickSound </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>sound_type</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Positional sound is cool, but creating a new object just to play a simple menu sound is not. </p>
+<p>This function allows for 'quick sounds' in a single call. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sound_type</td><td>Internal name of the sfx to play. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>반환값</dt><dd>a pointer to the sound, for instance to check when the sound finished. don't delete the returned pointer. </dd></dl>
+
+</div>
+</div>
+<a id="a0fea68e1a58b720aa614a327abcc9e87" name="a0fea68e1a58b720aa614a327abcc9e87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fea68e1a58b720aa614a327abcc9e87">&#9670;&#160;</a></span>reallyPositionListenerNow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::reallyPositionListenerNow </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the position and orientation of the listener. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>Position of the listener. </td></tr>
+    <tr><td class="paramname">front</td><td>Which way the listener is facing. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa75036debee35e2e12c293cf302f884a" name="aa75036debee35e2e12c293cf302f884a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa75036debee35e2e12c293cf302f884a">&#9670;&#160;</a></span>reallyResumeAllNow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::reallyResumeAllNow </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resumes all paused SFXs. </p>
+<p>If sound is disabled, does nothing. </p>
+
+</div>
+</div>
+<a id="a32b91e4a036ac66cd78ffafe70ce7275" name="a32b91e4a036ac66cd78ffafe70ce7275"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32b91e4a036ac66cd78ffafe70ce7275">&#9670;&#160;</a></span>reallyUpdateNow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::reallyUpdateNow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classSFXManager_1_1SFXCommand.html">SFXCommand</a> *</td>          <td class="paramname"><span class="paramname"><em>current</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates the status of all playing sfx (to test if they are finished). </p>
+<p>This function is executed once per frame (triggered by the audio thread). </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current</td><td>The sfx command - used to get timestep information. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a565ab729ff0620efb4207ea34a68d943" name="a565ab729ff0620efb4207ea34a68d943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a565ab729ff0620efb4207ea34a68d943">&#9670;&#160;</a></span>resumeAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::resumeAll </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resumes all paused SFXs. </p>
+<p>If sound is disabled, does nothing. </p>
+
+</div>
+</div>
+<a id="ae1496c1ab98c7d95264a7b2dfca5d7ef" name="ae1496c1ab98c7d95264a7b2dfca5d7ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1496c1ab98c7d95264a7b2dfca5d7ef">&#9670;&#160;</a></span>setMasterSFXVolume()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::setMasterSFXVolume </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gain</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the master volume for all sound effects. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gain</td><td>The volume to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8da6fe0ba71d520cea6ac1f30b6d7c65" name="a8da6fe0ba71d520cea6ac1f30b6d7c65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8da6fe0ba71d520cea6ac1f30b6d7c65">&#9670;&#160;</a></span>sfxAllowed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SFXManager::sfxAllowed </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns if sfx can be played. </p>
+<p>This means sfx are enabled and the manager is correctly initialised. </p>
+
+</div>
+</div>
+<a id="afe21573175078617f99c83a191a5497c" name="afe21573175078617f99c83a191a5497c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe21573175078617f99c83a191a5497c">&#9670;&#160;</a></span>soundExist()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SFXManager::soundExist </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if a sfx with the given name exists. </p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The internal name of the sfx (not the name of the ogg file) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7cbb8428ae18db08445766cf0814c356" name="a7cbb8428ae18db08445766cf0814c356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cbb8428ae18db08445766cf0814c356">&#9670;&#160;</a></span>toggleSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::toggleSound </td>
+          <td>(</td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>on</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Called when sound was muted/unmuted </p>
+<p>Called when sound is globally switched on or off.</p>
+<p>It either pauses or resumes all sound effects. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">on</td><td>If sound is switched on or off. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a211d95f467a88df4d00684577b211d1c" name="a211d95f467a88df4d00684577b211d1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a211d95f467a88df4d00684577b211d1c">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SFXManager::update </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Make sure that the sfx thread is started at least once per frame. </p>
+<p>It also adds an update command for the music manager. </p><dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>Time step size. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">멤버 데이터 문서화</h2>
+<a id="a9483979ee8f2aa74cd124014fadc3072" name="a9483979ee8f2aa74cd124014fadc3072"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9483979ee8f2aa74cd124014fadc3072">&#9670;&#160;</a></span>m_all_sfx_types</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, <a class="el" href="classSFXBuffer.html">SFXBuffer</a>*&gt; SFXManager::m_all_sfx_types</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The buffers and info for all sound effects. </p>
+<p>These are shared among all instances of SFXOpenal. </p>
+
+</div>
+</div>
+<a id="aeb9f0328b1f34e7585430dbc4534ed84" name="aeb9f0328b1f34e7585430dbc4534ed84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb9f0328b1f34e7585430dbc4534ed84">&#9670;&#160;</a></span>m_listener_position</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSynchronised.html">Synchronised</a>&lt;<a class="el" href="classVec3.html">Vec3</a>&gt; SFXManager::m_listener_position</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The position of the listener. </p>
+<p>Its lock will be used to access m_listener_{position,front, up}. </p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>audio/<a class="el" href="sfx__manager_8hpp_source.html">sfx_manager.hpp</a></li>
+<li>audio/<b>sfx_manager.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

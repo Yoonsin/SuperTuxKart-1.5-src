@@ -1,0 +1,605 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: AbstractCharacteristic 클래스 참조</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">클래스</a> &#124;
+<a href="#pub-types">Public 타입</a> &#124;
+<a href="#pub-methods">Public 멤버 함수</a> &#124;
+<a href="#pub-static-methods">정적 Public 멤버 함수</a> &#124;
+<a href="classAbstractCharacteristic-members.html">모든 멤버 목록</a>  </div>
+  <div class="headertitle"><div class="title">AbstractCharacteristic 클래스 참조<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Characteristics are the properties of a kart that influence gameplay mechanics.  
+ <a href="#details">더 자세히 ...</a></p>
+
+<p><code>#include &lt;<a class="el" href="abstract__characteristic_8hpp_source.html">abstract_characteristic.hpp</a>&gt;</code></p>
+<div class="dynheader">
+AbstractCharacteristic에 대한 상속 다이어그램 : </div>
+<div class="dyncontent">
+<div class="center"><img src="classAbstractCharacteristic__inherit__graph.png" border="0" usemap="#aAbstractCharacteristic_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<map name="aAbstractCharacteristic_inherit__map" id="aAbstractCharacteristic_inherit__map">
+<area shape="rect" title="Characteristics are the properties of a kart that influence gameplay mechanics." alt="" coords="182,5,333,32"/>
+<area shape="rect" href="classCachedCharacteristic.html" title=" " alt="" coords="5,80,153,107"/>
+<area shape="poly" title=" " alt="" coords="215,39,111,82,109,77,210,37"/>
+<area shape="rect" href="classCombinedCharacteristic.html" title=" " alt="" coords="177,80,338,107"/>
+<area shape="poly" title=" " alt="" coords="260,46,260,81,255,78,256,50"/>
+<area shape="rect" href="classXmlCharacteristic.html" title=" " alt="" coords="363,80,488,107"/>
+<area shape="poly" title=" " alt="" coords="301,36,399,79,394,79,300,41"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">범례</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+클래스</h2></td></tr>
+<tr class="memitem:Value" id="r_Value"><td class="memItemLeft">union &#160;</td><td class="memItemRight"><a class="el" href="unionAbstractCharacteristic_1_1Value.html">Value</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 타입</h2></td></tr>
+<tr class="memitem:af919aa228d7bdc6e2e7bca022b88f8e1" id="r_af919aa228d7bdc6e2e7bca022b88f8e1"><td class="memItemLeft"><a id="af919aa228d7bdc6e2e7bca022b88f8e1" name="af919aa228d7bdc6e2e7bca022b88f8e1"></a>enum &#160;</td><td class="memItemRight"><b>ValueType</b> { <b>TYPE_FLOAT</b>
+, <b>TYPE_BOOL</b>
+, <b>TYPE_FLOAT_VECTOR</b>
+, <b>TYPE_INTERPOLATION_ARRAY</b>
+ }</td></tr>
+<tr class="memitem:a62ae6cced4a3378dc71511d85f4bdf8e" id="r_a62ae6cced4a3378dc71511d85f4bdf8e"><td class="memItemLeft"><a id="a62ae6cced4a3378dc71511d85f4bdf8e" name="a62ae6cced4a3378dc71511d85f4bdf8e"></a>enum &#160;</td><td class="memItemRight"><b>CharacteristicType</b> { <br />
+&#160;&#160;<b>SUSPENSION_STIFFNESS</b>
+, <b>SUSPENSION_REST</b>
+, <b>SUSPENSION_TRAVEL</b>
+, <b>SUSPENSION_EXP_SPRING_RESPONSE</b>
+, <br />
+&#160;&#160;<b>SUSPENSION_MAX_FORCE</b>
+, <b>STABILITY_ROLL_INFLUENCE</b>
+, <b>STABILITY_CHASSIS_LINEAR_DAMPING</b>
+, <b>STABILITY_CHASSIS_ANGULAR_DAMPING</b>
+, <br />
+&#160;&#160;<b>STABILITY_DOWNWARD_IMPULSE_FACTOR</b>
+, <b>STABILITY_TRACK_CONNECTION_ACCEL</b>
+, <b>STABILITY_ANGULAR_FACTOR</b>
+, <b>STABILITY_SMOOTH_FLYING_IMPULSE</b>
+, <br />
+&#160;&#160;<b>TURN_RADIUS</b>
+, <b>TURN_TIME_RESET_STEER</b>
+, <b>TURN_TIME_FULL_STEER</b>
+, <b>ENGINE_POWER</b>
+, <br />
+&#160;&#160;<b>ENGINE_MAX_SPEED</b>
+, <b>ENGINE_GENERIC_MAX_SPEED</b>
+, <b>ENGINE_BRAKE_FACTOR</b>
+, <b>ENGINE_BRAKE_TIME_INCREASE</b>
+, <br />
+&#160;&#160;<b>ENGINE_MAX_SPEED_REVERSE_RATIO</b>
+, <b>GEAR_SWITCH_RATIO</b>
+, <b>GEAR_POWER_INCREASE</b>
+, <b>MASS</b>
+, <br />
+&#160;&#160;<b>WHEELS_DAMPING_RELAXATION</b>
+, <b>WHEELS_DAMPING_COMPRESSION</b>
+, <b>JUMP_ANIMATION_TIME</b>
+, <b>LEAN_MAX</b>
+, <br />
+&#160;&#160;<b>LEAN_SPEED</b>
+, <b>ANVIL_DURATION</b>
+, <b>ANVIL_WEIGHT</b>
+, <b>ANVIL_SPEED_FACTOR</b>
+, <br />
+&#160;&#160;<b>PARACHUTE_FRICTION</b>
+, <b>PARACHUTE_DURATION</b>
+, <b>PARACHUTE_DURATION_OTHER</b>
+, <b>PARACHUTE_DURATION_RANK_MULT</b>
+, <br />
+&#160;&#160;<b>PARACHUTE_DURATION_SPEED_MULT</b>
+, <b>PARACHUTE_LBOUND_FRACTION</b>
+, <b>PARACHUTE_UBOUND_FRACTION</b>
+, <b>PARACHUTE_MAX_SPEED</b>
+, <br />
+&#160;&#160;<b>FRICTION_KART_FRICTION</b>
+, <b>BUBBLEGUM_DURATION</b>
+, <b>BUBBLEGUM_SPEED_FRACTION</b>
+, <b>BUBBLEGUM_TORQUE</b>
+, <br />
+&#160;&#160;<b>BUBBLEGUM_FADE_IN_TIME</b>
+, <b>BUBBLEGUM_SHIELD_DURATION</b>
+, <b>ZIPPER_DURATION</b>
+, <b>ZIPPER_FORCE</b>
+, <br />
+&#160;&#160;<b>ZIPPER_SPEED_GAIN</b>
+, <b>ZIPPER_MAX_SPEED_INCREASE</b>
+, <b>ZIPPER_FADE_OUT_TIME</b>
+, <b>SWATTER_DURATION</b>
+, <br />
+&#160;&#160;<b>SWATTER_DISTANCE</b>
+, <b>SWATTER_SQUASH_DURATION</b>
+, <b>SWATTER_SQUASH_SLOWDOWN</b>
+, <b>PLUNGER_BAND_MAX_LENGTH</b>
+, <br />
+&#160;&#160;<b>PLUNGER_BAND_FORCE</b>
+, <b>PLUNGER_BAND_DURATION</b>
+, <b>PLUNGER_BAND_SPEED_INCREASE</b>
+, <b>PLUNGER_BAND_FADE_OUT_TIME</b>
+, <br />
+&#160;&#160;<b>PLUNGER_IN_FACE_TIME</b>
+, <b>STARTUP_TIME</b>
+, <b>STARTUP_BOOST</b>
+, <b>RESCUE_DURATION</b>
+, <br />
+&#160;&#160;<b>RESCUE_VERT_OFFSET</b>
+, <b>RESCUE_HEIGHT</b>
+, <b>EXPLOSION_DURATION</b>
+, <b>EXPLOSION_RADIUS</b>
+, <br />
+&#160;&#160;<b>EXPLOSION_INVULNERABILITY_TIME</b>
+, <b>NITRO_DURATION</b>
+, <b>NITRO_ENGINE_FORCE</b>
+, <b>NITRO_ENGINE_MULT</b>
+, <br />
+&#160;&#160;<b>NITRO_CONSUMPTION</b>
+, <b>NITRO_SMALL_CONTAINER</b>
+, <b>NITRO_BIG_CONTAINER</b>
+, <b>NITRO_MAX_SPEED_INCREASE</b>
+, <br />
+&#160;&#160;<b>NITRO_FADE_OUT_TIME</b>
+, <b>NITRO_MAX</b>
+, <b>SLIPSTREAM_DURATION_FACTOR</b>
+, <b>SLIPSTREAM_BASE_SPEED</b>
+, <br />
+&#160;&#160;<b>SLIPSTREAM_LENGTH</b>
+, <b>SLIPSTREAM_WIDTH</b>
+, <b>SLIPSTREAM_INNER_FACTOR</b>
+, <b>SLIPSTREAM_MIN_COLLECT_TIME</b>
+, <br />
+&#160;&#160;<b>SLIPSTREAM_MAX_COLLECT_TIME</b>
+, <b>SLIPSTREAM_ADD_POWER</b>
+, <b>SLIPSTREAM_MIN_SPEED</b>
+, <b>SLIPSTREAM_MAX_SPEED_INCREASE</b>
+, <br />
+&#160;&#160;<b>SLIPSTREAM_FADE_OUT_TIME</b>
+, <b>SKID_INCREASE</b>
+, <b>SKID_DECREASE</b>
+, <b>SKID_MAX</b>
+, <br />
+&#160;&#160;<b>SKID_TIME_TILL_MAX</b>
+, <b>SKID_VISUAL</b>
+, <b>SKID_VISUAL_TIME</b>
+, <b>SKID_REVERT_VISUAL_TIME</b>
+, <br />
+&#160;&#160;<b>SKID_MIN_SPEED</b>
+, <b>SKID_TIME_TILL_BONUS</b>
+, <b>SKID_BONUS_SPEED</b>
+, <b>SKID_BONUS_TIME</b>
+, <br />
+&#160;&#160;<b>SKID_BONUS_FORCE</b>
+, <b>SKID_PHYSICAL_JUMP_TIME</b>
+, <b>SKID_GRAPHICAL_JUMP_TIME</b>
+, <b>SKID_POST_SKID_ROTATE_FACTOR</b>
+, <br />
+&#160;&#160;<b>SKID_REDUCE_TURN_MIN</b>
+, <b>SKID_REDUCE_TURN_MAX</b>
+, <b>SKID_ENABLED</b>
+, <b>CHARACTERISTIC_COUNT</b>
+<br />
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a06ff13a3695d68dd734cb2c793d1486a" id="r_a06ff13a3695d68dd734cb2c793d1486a"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a06ff13a3695d68dd734cb2c793d1486a">copyFrom</a> (const <a class="el" href="classAbstractCharacteristic.html">AbstractCharacteristic</a> *other)=0</td></tr>
+<tr class="memitem:ab98dba43ce5e02c28ce3f13d78ca6d08" id="r_ab98dba43ce5e02c28ce3f13d78ca6d08"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#ab98dba43ce5e02c28ce3f13d78ca6d08">process</a> (CharacteristicType type, <a class="el" href="unionAbstractCharacteristic_1_1Value.html">Value</a> value, bool *is_set) const</td></tr>
+<tr class="memdesc:ab98dba43ce5e02c28ce3f13d78ca6d08"><td class="mdescLeft">&#160;</td><td class="mdescRight">The process function is the core of this characteristics system.  <br /></td></tr>
+<tr class="memitem:a34d0e56755296b3d0198443eca8d5423" id="r_a34d0e56755296b3d0198443eca8d5423"><td class="memItemLeft"><a id="a34d0e56755296b3d0198443eca8d5423" name="a34d0e56755296b3d0198443eca8d5423"></a>
+float&#160;</td><td class="memItemRight"><b>getSuspensionStiffness</b> () const</td></tr>
+<tr class="memitem:a7ae4c01141d730897a203201afb3d587" id="r_a7ae4c01141d730897a203201afb3d587"><td class="memItemLeft"><a id="a7ae4c01141d730897a203201afb3d587" name="a7ae4c01141d730897a203201afb3d587"></a>
+float&#160;</td><td class="memItemRight"><b>getSuspensionRest</b> () const</td></tr>
+<tr class="memitem:a0044822d8f1590f585213b87919598c6" id="r_a0044822d8f1590f585213b87919598c6"><td class="memItemLeft"><a id="a0044822d8f1590f585213b87919598c6" name="a0044822d8f1590f585213b87919598c6"></a>
+float&#160;</td><td class="memItemRight"><b>getSuspensionTravel</b> () const</td></tr>
+<tr class="memitem:afd0e44f8c80c3ed1916fe66ff7639604" id="r_afd0e44f8c80c3ed1916fe66ff7639604"><td class="memItemLeft"><a id="afd0e44f8c80c3ed1916fe66ff7639604" name="afd0e44f8c80c3ed1916fe66ff7639604"></a>
+bool&#160;</td><td class="memItemRight"><b>getSuspensionExpSpringResponse</b> () const</td></tr>
+<tr class="memitem:a7d921e707e984076d84441ad94993b07" id="r_a7d921e707e984076d84441ad94993b07"><td class="memItemLeft"><a id="a7d921e707e984076d84441ad94993b07" name="a7d921e707e984076d84441ad94993b07"></a>
+float&#160;</td><td class="memItemRight"><b>getSuspensionMaxForce</b> () const</td></tr>
+<tr class="memitem:ad14a9e02d874c5cf1d3518a92e079b03" id="r_ad14a9e02d874c5cf1d3518a92e079b03"><td class="memItemLeft"><a id="ad14a9e02d874c5cf1d3518a92e079b03" name="ad14a9e02d874c5cf1d3518a92e079b03"></a>
+float&#160;</td><td class="memItemRight"><b>getStabilityRollInfluence</b> () const</td></tr>
+<tr class="memitem:a27a69554c9384871bbf66a0ac032cfb5" id="r_a27a69554c9384871bbf66a0ac032cfb5"><td class="memItemLeft"><a id="a27a69554c9384871bbf66a0ac032cfb5" name="a27a69554c9384871bbf66a0ac032cfb5"></a>
+float&#160;</td><td class="memItemRight"><b>getStabilityChassisLinearDamping</b> () const</td></tr>
+<tr class="memitem:af381c5048c517950b66abecb962a64ed" id="r_af381c5048c517950b66abecb962a64ed"><td class="memItemLeft"><a id="af381c5048c517950b66abecb962a64ed" name="af381c5048c517950b66abecb962a64ed"></a>
+float&#160;</td><td class="memItemRight"><b>getStabilityChassisAngularDamping</b> () const</td></tr>
+<tr class="memitem:a9a06d6e274b43d49565ff62ad880e23d" id="r_a9a06d6e274b43d49565ff62ad880e23d"><td class="memItemLeft"><a id="a9a06d6e274b43d49565ff62ad880e23d" name="a9a06d6e274b43d49565ff62ad880e23d"></a>
+float&#160;</td><td class="memItemRight"><b>getStabilityDownwardImpulseFactor</b> () const</td></tr>
+<tr class="memitem:a6fce0dab46e72352e9ae0f97b78cf7f7" id="r_a6fce0dab46e72352e9ae0f97b78cf7f7"><td class="memItemLeft"><a id="a6fce0dab46e72352e9ae0f97b78cf7f7" name="a6fce0dab46e72352e9ae0f97b78cf7f7"></a>
+float&#160;</td><td class="memItemRight"><b>getStabilityTrackConnectionAccel</b> () const</td></tr>
+<tr class="memitem:a2eba2f3be6cfe0e00e68aaab7cc3c462" id="r_a2eba2f3be6cfe0e00e68aaab7cc3c462"><td class="memItemLeft"><a id="a2eba2f3be6cfe0e00e68aaab7cc3c462" name="a2eba2f3be6cfe0e00e68aaab7cc3c462"></a>
+std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><b>getStabilityAngularFactor</b> () const</td></tr>
+<tr class="memitem:a26351ad042f84f58004493a23eadfc3c" id="r_a26351ad042f84f58004493a23eadfc3c"><td class="memItemLeft"><a id="a26351ad042f84f58004493a23eadfc3c" name="a26351ad042f84f58004493a23eadfc3c"></a>
+float&#160;</td><td class="memItemRight"><b>getStabilitySmoothFlyingImpulse</b> () const</td></tr>
+<tr class="memitem:a4eb8ad626ad160d7bf44f29de24dd396" id="r_a4eb8ad626ad160d7bf44f29de24dd396"><td class="memItemLeft"><a id="a4eb8ad626ad160d7bf44f29de24dd396" name="a4eb8ad626ad160d7bf44f29de24dd396"></a>
+<a class="el" href="classInterpolationArray.html">InterpolationArray</a>&#160;</td><td class="memItemRight"><b>getTurnRadius</b> () const</td></tr>
+<tr class="memitem:ac8801b217b2e0e85cddbadb0f49244a2" id="r_ac8801b217b2e0e85cddbadb0f49244a2"><td class="memItemLeft"><a id="ac8801b217b2e0e85cddbadb0f49244a2" name="ac8801b217b2e0e85cddbadb0f49244a2"></a>
+float&#160;</td><td class="memItemRight"><b>getTurnTimeResetSteer</b> () const</td></tr>
+<tr class="memitem:ab8613aca1921a51566ecb70e492072c2" id="r_ab8613aca1921a51566ecb70e492072c2"><td class="memItemLeft"><a id="ab8613aca1921a51566ecb70e492072c2" name="ab8613aca1921a51566ecb70e492072c2"></a>
+<a class="el" href="classInterpolationArray.html">InterpolationArray</a>&#160;</td><td class="memItemRight"><b>getTurnTimeFullSteer</b> () const</td></tr>
+<tr class="memitem:a8f03e87386b734289c9cf411f348d8a0" id="r_a8f03e87386b734289c9cf411f348d8a0"><td class="memItemLeft"><a id="a8f03e87386b734289c9cf411f348d8a0" name="a8f03e87386b734289c9cf411f348d8a0"></a>
+float&#160;</td><td class="memItemRight"><b>getEnginePower</b> () const</td></tr>
+<tr class="memitem:aaa0e84da6196586ce8a24fb26a58a0a0" id="r_aaa0e84da6196586ce8a24fb26a58a0a0"><td class="memItemLeft"><a id="aaa0e84da6196586ce8a24fb26a58a0a0" name="aaa0e84da6196586ce8a24fb26a58a0a0"></a>
+float&#160;</td><td class="memItemRight"><b>getEngineMaxSpeed</b> () const</td></tr>
+<tr class="memitem:a861d85caadc0ea75903bb7fc14a9aaa7" id="r_a861d85caadc0ea75903bb7fc14a9aaa7"><td class="memItemLeft"><a id="a861d85caadc0ea75903bb7fc14a9aaa7" name="a861d85caadc0ea75903bb7fc14a9aaa7"></a>
+float&#160;</td><td class="memItemRight"><b>getEngineGenericMaxSpeed</b> () const</td></tr>
+<tr class="memitem:a0db5ed6e672ba6eb549e26d534eaa404" id="r_a0db5ed6e672ba6eb549e26d534eaa404"><td class="memItemLeft"><a id="a0db5ed6e672ba6eb549e26d534eaa404" name="a0db5ed6e672ba6eb549e26d534eaa404"></a>
+float&#160;</td><td class="memItemRight"><b>getEngineBrakeFactor</b> () const</td></tr>
+<tr class="memitem:a9b24a94aa5085853a09c60220b0df368" id="r_a9b24a94aa5085853a09c60220b0df368"><td class="memItemLeft"><a id="a9b24a94aa5085853a09c60220b0df368" name="a9b24a94aa5085853a09c60220b0df368"></a>
+float&#160;</td><td class="memItemRight"><b>getEngineBrakeTimeIncrease</b> () const</td></tr>
+<tr class="memitem:a4c126e12ac9006303385d1cce2b1bc70" id="r_a4c126e12ac9006303385d1cce2b1bc70"><td class="memItemLeft"><a id="a4c126e12ac9006303385d1cce2b1bc70" name="a4c126e12ac9006303385d1cce2b1bc70"></a>
+float&#160;</td><td class="memItemRight"><b>getEngineMaxSpeedReverseRatio</b> () const</td></tr>
+<tr class="memitem:a11503ad0a12f5a99f7d24cbb3040691c" id="r_a11503ad0a12f5a99f7d24cbb3040691c"><td class="memItemLeft"><a id="a11503ad0a12f5a99f7d24cbb3040691c" name="a11503ad0a12f5a99f7d24cbb3040691c"></a>
+std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><b>getGearSwitchRatio</b> () const</td></tr>
+<tr class="memitem:a68d9437e0638613f7047c8f84e58af5a" id="r_a68d9437e0638613f7047c8f84e58af5a"><td class="memItemLeft"><a id="a68d9437e0638613f7047c8f84e58af5a" name="a68d9437e0638613f7047c8f84e58af5a"></a>
+std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><b>getGearPowerIncrease</b> () const</td></tr>
+<tr class="memitem:a56091c5f3e79b06ebc856486f9a2d239" id="r_a56091c5f3e79b06ebc856486f9a2d239"><td class="memItemLeft"><a id="a56091c5f3e79b06ebc856486f9a2d239" name="a56091c5f3e79b06ebc856486f9a2d239"></a>
+float&#160;</td><td class="memItemRight"><b>getMass</b> () const</td></tr>
+<tr class="memitem:aa1f135695ed860fe75d31efd165654b3" id="r_aa1f135695ed860fe75d31efd165654b3"><td class="memItemLeft"><a id="aa1f135695ed860fe75d31efd165654b3" name="aa1f135695ed860fe75d31efd165654b3"></a>
+float&#160;</td><td class="memItemRight"><b>getWheelsDampingRelaxation</b> () const</td></tr>
+<tr class="memitem:a43bbdd2b7eb89463bb657bba7b9ef3c4" id="r_a43bbdd2b7eb89463bb657bba7b9ef3c4"><td class="memItemLeft"><a id="a43bbdd2b7eb89463bb657bba7b9ef3c4" name="a43bbdd2b7eb89463bb657bba7b9ef3c4"></a>
+float&#160;</td><td class="memItemRight"><b>getWheelsDampingCompression</b> () const</td></tr>
+<tr class="memitem:ac57ce67a03d1edba2024e7a9f013a71d" id="r_ac57ce67a03d1edba2024e7a9f013a71d"><td class="memItemLeft"><a id="ac57ce67a03d1edba2024e7a9f013a71d" name="ac57ce67a03d1edba2024e7a9f013a71d"></a>
+float&#160;</td><td class="memItemRight"><b>getJumpAnimationTime</b> () const</td></tr>
+<tr class="memitem:ad41d84efd70a85149642b8aece9cae46" id="r_ad41d84efd70a85149642b8aece9cae46"><td class="memItemLeft"><a id="ad41d84efd70a85149642b8aece9cae46" name="ad41d84efd70a85149642b8aece9cae46"></a>
+float&#160;</td><td class="memItemRight"><b>getLeanMax</b> () const</td></tr>
+<tr class="memitem:a229b3943b075840ad1b1bd3cdbddfd23" id="r_a229b3943b075840ad1b1bd3cdbddfd23"><td class="memItemLeft"><a id="a229b3943b075840ad1b1bd3cdbddfd23" name="a229b3943b075840ad1b1bd3cdbddfd23"></a>
+float&#160;</td><td class="memItemRight"><b>getLeanSpeed</b> () const</td></tr>
+<tr class="memitem:a6bd06e20a3f7549bb8f484d4d434ae1e" id="r_a6bd06e20a3f7549bb8f484d4d434ae1e"><td class="memItemLeft"><a id="a6bd06e20a3f7549bb8f484d4d434ae1e" name="a6bd06e20a3f7549bb8f484d4d434ae1e"></a>
+float&#160;</td><td class="memItemRight"><b>getAnvilDuration</b> () const</td></tr>
+<tr class="memitem:abc6a0b3fe61fdef8ee64292ea35426d8" id="r_abc6a0b3fe61fdef8ee64292ea35426d8"><td class="memItemLeft"><a id="abc6a0b3fe61fdef8ee64292ea35426d8" name="abc6a0b3fe61fdef8ee64292ea35426d8"></a>
+float&#160;</td><td class="memItemRight"><b>getAnvilWeight</b> () const</td></tr>
+<tr class="memitem:a6a63c7afbec222f535c1ea2e1a723ac4" id="r_a6a63c7afbec222f535c1ea2e1a723ac4"><td class="memItemLeft"><a id="a6a63c7afbec222f535c1ea2e1a723ac4" name="a6a63c7afbec222f535c1ea2e1a723ac4"></a>
+float&#160;</td><td class="memItemRight"><b>getAnvilSpeedFactor</b> () const</td></tr>
+<tr class="memitem:a789aaea06cae415eb6e677349ae72d7a" id="r_a789aaea06cae415eb6e677349ae72d7a"><td class="memItemLeft"><a id="a789aaea06cae415eb6e677349ae72d7a" name="a789aaea06cae415eb6e677349ae72d7a"></a>
+float&#160;</td><td class="memItemRight"><b>getParachuteFriction</b> () const</td></tr>
+<tr class="memitem:ad1c1416bd0daa712ad9219b8c95d232c" id="r_ad1c1416bd0daa712ad9219b8c95d232c"><td class="memItemLeft"><a id="ad1c1416bd0daa712ad9219b8c95d232c" name="ad1c1416bd0daa712ad9219b8c95d232c"></a>
+float&#160;</td><td class="memItemRight"><b>getParachuteDuration</b> () const</td></tr>
+<tr class="memitem:a70650a0103914be45226306184f3d14b" id="r_a70650a0103914be45226306184f3d14b"><td class="memItemLeft"><a id="a70650a0103914be45226306184f3d14b" name="a70650a0103914be45226306184f3d14b"></a>
+float&#160;</td><td class="memItemRight"><b>getParachuteDurationOther</b> () const</td></tr>
+<tr class="memitem:ae7f785b190c1cf2c29f33321a8c6f239" id="r_ae7f785b190c1cf2c29f33321a8c6f239"><td class="memItemLeft"><a id="ae7f785b190c1cf2c29f33321a8c6f239" name="ae7f785b190c1cf2c29f33321a8c6f239"></a>
+float&#160;</td><td class="memItemRight"><b>getParachuteDurationRankMult</b> () const</td></tr>
+<tr class="memitem:a5f8f0d384651ded0c3e114df561079da" id="r_a5f8f0d384651ded0c3e114df561079da"><td class="memItemLeft"><a id="a5f8f0d384651ded0c3e114df561079da" name="a5f8f0d384651ded0c3e114df561079da"></a>
+float&#160;</td><td class="memItemRight"><b>getParachuteDurationSpeedMult</b> () const</td></tr>
+<tr class="memitem:ad8dd5440520dffbf193980bd035b16e5" id="r_ad8dd5440520dffbf193980bd035b16e5"><td class="memItemLeft"><a id="ad8dd5440520dffbf193980bd035b16e5" name="ad8dd5440520dffbf193980bd035b16e5"></a>
+float&#160;</td><td class="memItemRight"><b>getParachuteLboundFraction</b> () const</td></tr>
+<tr class="memitem:ac15497b39906ac2bc44084eef79a2e56" id="r_ac15497b39906ac2bc44084eef79a2e56"><td class="memItemLeft"><a id="ac15497b39906ac2bc44084eef79a2e56" name="ac15497b39906ac2bc44084eef79a2e56"></a>
+float&#160;</td><td class="memItemRight"><b>getParachuteUboundFraction</b> () const</td></tr>
+<tr class="memitem:a7f6d5e58ac633a4834cb2c865f47ba80" id="r_a7f6d5e58ac633a4834cb2c865f47ba80"><td class="memItemLeft"><a id="a7f6d5e58ac633a4834cb2c865f47ba80" name="a7f6d5e58ac633a4834cb2c865f47ba80"></a>
+float&#160;</td><td class="memItemRight"><b>getParachuteMaxSpeed</b> () const</td></tr>
+<tr class="memitem:a33b782d4a7cfa6fc39b6a72891ae9772" id="r_a33b782d4a7cfa6fc39b6a72891ae9772"><td class="memItemLeft"><a id="a33b782d4a7cfa6fc39b6a72891ae9772" name="a33b782d4a7cfa6fc39b6a72891ae9772"></a>
+float&#160;</td><td class="memItemRight"><b>getFrictionKartFriction</b> () const</td></tr>
+<tr class="memitem:a3ec2ca399e41e417ada864f9f14376f5" id="r_a3ec2ca399e41e417ada864f9f14376f5"><td class="memItemLeft"><a id="a3ec2ca399e41e417ada864f9f14376f5" name="a3ec2ca399e41e417ada864f9f14376f5"></a>
+float&#160;</td><td class="memItemRight"><b>getBubblegumDuration</b> () const</td></tr>
+<tr class="memitem:ab2df508f5c51e6b6973d22a38fb23fbf" id="r_ab2df508f5c51e6b6973d22a38fb23fbf"><td class="memItemLeft"><a id="ab2df508f5c51e6b6973d22a38fb23fbf" name="ab2df508f5c51e6b6973d22a38fb23fbf"></a>
+float&#160;</td><td class="memItemRight"><b>getBubblegumSpeedFraction</b> () const</td></tr>
+<tr class="memitem:abb9b32b629949355ece1d68ea7adac9a" id="r_abb9b32b629949355ece1d68ea7adac9a"><td class="memItemLeft"><a id="abb9b32b629949355ece1d68ea7adac9a" name="abb9b32b629949355ece1d68ea7adac9a"></a>
+float&#160;</td><td class="memItemRight"><b>getBubblegumTorque</b> () const</td></tr>
+<tr class="memitem:a4a879bca2859d8ca28e2890c6accef9e" id="r_a4a879bca2859d8ca28e2890c6accef9e"><td class="memItemLeft"><a id="a4a879bca2859d8ca28e2890c6accef9e" name="a4a879bca2859d8ca28e2890c6accef9e"></a>
+float&#160;</td><td class="memItemRight"><b>getBubblegumFadeInTime</b> () const</td></tr>
+<tr class="memitem:a75013ec8a5e8ac73c30556a423d2c697" id="r_a75013ec8a5e8ac73c30556a423d2c697"><td class="memItemLeft"><a id="a75013ec8a5e8ac73c30556a423d2c697" name="a75013ec8a5e8ac73c30556a423d2c697"></a>
+float&#160;</td><td class="memItemRight"><b>getBubblegumShieldDuration</b> () const</td></tr>
+<tr class="memitem:a8541acf93df81af0fa4d605e565c8669" id="r_a8541acf93df81af0fa4d605e565c8669"><td class="memItemLeft"><a id="a8541acf93df81af0fa4d605e565c8669" name="a8541acf93df81af0fa4d605e565c8669"></a>
+float&#160;</td><td class="memItemRight"><b>getZipperDuration</b> () const</td></tr>
+<tr class="memitem:aecc9c090e07e894d1329b75660b87af3" id="r_aecc9c090e07e894d1329b75660b87af3"><td class="memItemLeft"><a id="aecc9c090e07e894d1329b75660b87af3" name="aecc9c090e07e894d1329b75660b87af3"></a>
+float&#160;</td><td class="memItemRight"><b>getZipperForce</b> () const</td></tr>
+<tr class="memitem:a846301eee0493cc7ab964b8c04f0c1a6" id="r_a846301eee0493cc7ab964b8c04f0c1a6"><td class="memItemLeft"><a id="a846301eee0493cc7ab964b8c04f0c1a6" name="a846301eee0493cc7ab964b8c04f0c1a6"></a>
+float&#160;</td><td class="memItemRight"><b>getZipperSpeedGain</b> () const</td></tr>
+<tr class="memitem:a0db94832f0c134cddabc779b44ac2f84" id="r_a0db94832f0c134cddabc779b44ac2f84"><td class="memItemLeft"><a id="a0db94832f0c134cddabc779b44ac2f84" name="a0db94832f0c134cddabc779b44ac2f84"></a>
+float&#160;</td><td class="memItemRight"><b>getZipperMaxSpeedIncrease</b> () const</td></tr>
+<tr class="memitem:ad955be27fa675f7c033e275d9564fe3c" id="r_ad955be27fa675f7c033e275d9564fe3c"><td class="memItemLeft"><a id="ad955be27fa675f7c033e275d9564fe3c" name="ad955be27fa675f7c033e275d9564fe3c"></a>
+float&#160;</td><td class="memItemRight"><b>getZipperFadeOutTime</b> () const</td></tr>
+<tr class="memitem:a4e3e0c1d45ebf891b9085dedd9bb9a65" id="r_a4e3e0c1d45ebf891b9085dedd9bb9a65"><td class="memItemLeft"><a id="a4e3e0c1d45ebf891b9085dedd9bb9a65" name="a4e3e0c1d45ebf891b9085dedd9bb9a65"></a>
+float&#160;</td><td class="memItemRight"><b>getSwatterDuration</b> () const</td></tr>
+<tr class="memitem:a71218421d237faa401ffc9c25eb7e6ca" id="r_a71218421d237faa401ffc9c25eb7e6ca"><td class="memItemLeft"><a id="a71218421d237faa401ffc9c25eb7e6ca" name="a71218421d237faa401ffc9c25eb7e6ca"></a>
+float&#160;</td><td class="memItemRight"><b>getSwatterDistance</b> () const</td></tr>
+<tr class="memitem:a1c75054b1fd2dab33a3f383877605e38" id="r_a1c75054b1fd2dab33a3f383877605e38"><td class="memItemLeft"><a id="a1c75054b1fd2dab33a3f383877605e38" name="a1c75054b1fd2dab33a3f383877605e38"></a>
+float&#160;</td><td class="memItemRight"><b>getSwatterSquashDuration</b> () const</td></tr>
+<tr class="memitem:a904666f32a102af264ba709029d6094c" id="r_a904666f32a102af264ba709029d6094c"><td class="memItemLeft"><a id="a904666f32a102af264ba709029d6094c" name="a904666f32a102af264ba709029d6094c"></a>
+float&#160;</td><td class="memItemRight"><b>getSwatterSquashSlowdown</b> () const</td></tr>
+<tr class="memitem:ac0ba53e3bc24b40e77718b2d7fb7d573" id="r_ac0ba53e3bc24b40e77718b2d7fb7d573"><td class="memItemLeft"><a id="ac0ba53e3bc24b40e77718b2d7fb7d573" name="ac0ba53e3bc24b40e77718b2d7fb7d573"></a>
+float&#160;</td><td class="memItemRight"><b>getPlungerBandMaxLength</b> () const</td></tr>
+<tr class="memitem:a6e2dba1c0bd35a89d4d5c52e98cfabab" id="r_a6e2dba1c0bd35a89d4d5c52e98cfabab"><td class="memItemLeft"><a id="a6e2dba1c0bd35a89d4d5c52e98cfabab" name="a6e2dba1c0bd35a89d4d5c52e98cfabab"></a>
+float&#160;</td><td class="memItemRight"><b>getPlungerBandForce</b> () const</td></tr>
+<tr class="memitem:aee04c2cd09cd4139fc57d79f937b9fae" id="r_aee04c2cd09cd4139fc57d79f937b9fae"><td class="memItemLeft"><a id="aee04c2cd09cd4139fc57d79f937b9fae" name="aee04c2cd09cd4139fc57d79f937b9fae"></a>
+float&#160;</td><td class="memItemRight"><b>getPlungerBandDuration</b> () const</td></tr>
+<tr class="memitem:a094ad319455fca38729b738a1c5dbd71" id="r_a094ad319455fca38729b738a1c5dbd71"><td class="memItemLeft"><a id="a094ad319455fca38729b738a1c5dbd71" name="a094ad319455fca38729b738a1c5dbd71"></a>
+float&#160;</td><td class="memItemRight"><b>getPlungerBandSpeedIncrease</b> () const</td></tr>
+<tr class="memitem:ae8a713bff2bb2fb49e237a7544582cb0" id="r_ae8a713bff2bb2fb49e237a7544582cb0"><td class="memItemLeft"><a id="ae8a713bff2bb2fb49e237a7544582cb0" name="ae8a713bff2bb2fb49e237a7544582cb0"></a>
+float&#160;</td><td class="memItemRight"><b>getPlungerBandFadeOutTime</b> () const</td></tr>
+<tr class="memitem:a0675536eeba7f3d75afd2056055dc432" id="r_a0675536eeba7f3d75afd2056055dc432"><td class="memItemLeft"><a id="a0675536eeba7f3d75afd2056055dc432" name="a0675536eeba7f3d75afd2056055dc432"></a>
+float&#160;</td><td class="memItemRight"><b>getPlungerInFaceTime</b> () const</td></tr>
+<tr class="memitem:a6475c8993e2664c4eff31d35b8d03cb3" id="r_a6475c8993e2664c4eff31d35b8d03cb3"><td class="memItemLeft"><a id="a6475c8993e2664c4eff31d35b8d03cb3" name="a6475c8993e2664c4eff31d35b8d03cb3"></a>
+std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><b>getStartupTime</b> () const</td></tr>
+<tr class="memitem:a6c204f1e4c90e862adee4b9e35401ee1" id="r_a6c204f1e4c90e862adee4b9e35401ee1"><td class="memItemLeft"><a id="a6c204f1e4c90e862adee4b9e35401ee1" name="a6c204f1e4c90e862adee4b9e35401ee1"></a>
+std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><b>getStartupBoost</b> () const</td></tr>
+<tr class="memitem:a2256ccc833f251db69a7a1aa0a693547" id="r_a2256ccc833f251db69a7a1aa0a693547"><td class="memItemLeft"><a id="a2256ccc833f251db69a7a1aa0a693547" name="a2256ccc833f251db69a7a1aa0a693547"></a>
+float&#160;</td><td class="memItemRight"><b>getRescueDuration</b> () const</td></tr>
+<tr class="memitem:aed69849bd75a1f49baf04760679f643a" id="r_aed69849bd75a1f49baf04760679f643a"><td class="memItemLeft"><a id="aed69849bd75a1f49baf04760679f643a" name="aed69849bd75a1f49baf04760679f643a"></a>
+float&#160;</td><td class="memItemRight"><b>getRescueVertOffset</b> () const</td></tr>
+<tr class="memitem:ac470c27192c4e8ba74b46c2ae0d13a9b" id="r_ac470c27192c4e8ba74b46c2ae0d13a9b"><td class="memItemLeft"><a id="ac470c27192c4e8ba74b46c2ae0d13a9b" name="ac470c27192c4e8ba74b46c2ae0d13a9b"></a>
+float&#160;</td><td class="memItemRight"><b>getRescueHeight</b> () const</td></tr>
+<tr class="memitem:a24cec7ab961b32d1a3d4bfeccbe8589a" id="r_a24cec7ab961b32d1a3d4bfeccbe8589a"><td class="memItemLeft"><a id="a24cec7ab961b32d1a3d4bfeccbe8589a" name="a24cec7ab961b32d1a3d4bfeccbe8589a"></a>
+float&#160;</td><td class="memItemRight"><b>getExplosionDuration</b> () const</td></tr>
+<tr class="memitem:a1d9b874f4d660fc35af0f57526141391" id="r_a1d9b874f4d660fc35af0f57526141391"><td class="memItemLeft"><a id="a1d9b874f4d660fc35af0f57526141391" name="a1d9b874f4d660fc35af0f57526141391"></a>
+float&#160;</td><td class="memItemRight"><b>getExplosionRadius</b> () const</td></tr>
+<tr class="memitem:a5eef941857c5a0191a0a64c1c50b24ab" id="r_a5eef941857c5a0191a0a64c1c50b24ab"><td class="memItemLeft"><a id="a5eef941857c5a0191a0a64c1c50b24ab" name="a5eef941857c5a0191a0a64c1c50b24ab"></a>
+float&#160;</td><td class="memItemRight"><b>getExplosionInvulnerabilityTime</b> () const</td></tr>
+<tr class="memitem:aa512fcecf093927a37ad5a890b2fd125" id="r_aa512fcecf093927a37ad5a890b2fd125"><td class="memItemLeft"><a id="aa512fcecf093927a37ad5a890b2fd125" name="aa512fcecf093927a37ad5a890b2fd125"></a>
+float&#160;</td><td class="memItemRight"><b>getNitroDuration</b> () const</td></tr>
+<tr class="memitem:a27706201510f1d091dd4ce45deea327d" id="r_a27706201510f1d091dd4ce45deea327d"><td class="memItemLeft"><a id="a27706201510f1d091dd4ce45deea327d" name="a27706201510f1d091dd4ce45deea327d"></a>
+float&#160;</td><td class="memItemRight"><b>getNitroEngineForce</b> () const</td></tr>
+<tr class="memitem:ac41e6d78f8c034e76b003e6b346d8f1a" id="r_ac41e6d78f8c034e76b003e6b346d8f1a"><td class="memItemLeft"><a id="ac41e6d78f8c034e76b003e6b346d8f1a" name="ac41e6d78f8c034e76b003e6b346d8f1a"></a>
+float&#160;</td><td class="memItemRight"><b>getNitroEngineMult</b> () const</td></tr>
+<tr class="memitem:a1fdd48eb46a3770cdf4ac7072749459a" id="r_a1fdd48eb46a3770cdf4ac7072749459a"><td class="memItemLeft"><a id="a1fdd48eb46a3770cdf4ac7072749459a" name="a1fdd48eb46a3770cdf4ac7072749459a"></a>
+float&#160;</td><td class="memItemRight"><b>getNitroConsumption</b> () const</td></tr>
+<tr class="memitem:a062d873aa2ab260b1a3bcebf759c2332" id="r_a062d873aa2ab260b1a3bcebf759c2332"><td class="memItemLeft"><a id="a062d873aa2ab260b1a3bcebf759c2332" name="a062d873aa2ab260b1a3bcebf759c2332"></a>
+float&#160;</td><td class="memItemRight"><b>getNitroSmallContainer</b> () const</td></tr>
+<tr class="memitem:ad4876d56cc739ff5f4838bdef38797ca" id="r_ad4876d56cc739ff5f4838bdef38797ca"><td class="memItemLeft"><a id="ad4876d56cc739ff5f4838bdef38797ca" name="ad4876d56cc739ff5f4838bdef38797ca"></a>
+float&#160;</td><td class="memItemRight"><b>getNitroBigContainer</b> () const</td></tr>
+<tr class="memitem:a1a0db8d56058794aa106259dee14ddd6" id="r_a1a0db8d56058794aa106259dee14ddd6"><td class="memItemLeft"><a id="a1a0db8d56058794aa106259dee14ddd6" name="a1a0db8d56058794aa106259dee14ddd6"></a>
+float&#160;</td><td class="memItemRight"><b>getNitroMaxSpeedIncrease</b> () const</td></tr>
+<tr class="memitem:a29ba872547a0f5011b3aebb58afc13fc" id="r_a29ba872547a0f5011b3aebb58afc13fc"><td class="memItemLeft"><a id="a29ba872547a0f5011b3aebb58afc13fc" name="a29ba872547a0f5011b3aebb58afc13fc"></a>
+float&#160;</td><td class="memItemRight"><b>getNitroFadeOutTime</b> () const</td></tr>
+<tr class="memitem:a605c2d098a304a4c48a17c3af8995b8a" id="r_a605c2d098a304a4c48a17c3af8995b8a"><td class="memItemLeft"><a id="a605c2d098a304a4c48a17c3af8995b8a" name="a605c2d098a304a4c48a17c3af8995b8a"></a>
+float&#160;</td><td class="memItemRight"><b>getNitroMax</b> () const</td></tr>
+<tr class="memitem:a2ecae63c0cca1aa35860c78265f30399" id="r_a2ecae63c0cca1aa35860c78265f30399"><td class="memItemLeft"><a id="a2ecae63c0cca1aa35860c78265f30399" name="a2ecae63c0cca1aa35860c78265f30399"></a>
+float&#160;</td><td class="memItemRight"><b>getSlipstreamDurationFactor</b> () const</td></tr>
+<tr class="memitem:ad4e33ed9900cb2aadc928c84b590d3bf" id="r_ad4e33ed9900cb2aadc928c84b590d3bf"><td class="memItemLeft"><a id="ad4e33ed9900cb2aadc928c84b590d3bf" name="ad4e33ed9900cb2aadc928c84b590d3bf"></a>
+float&#160;</td><td class="memItemRight"><b>getSlipstreamBaseSpeed</b> () const</td></tr>
+<tr class="memitem:a1d1080fab26e781fe1711c8fa925d64a" id="r_a1d1080fab26e781fe1711c8fa925d64a"><td class="memItemLeft"><a id="a1d1080fab26e781fe1711c8fa925d64a" name="a1d1080fab26e781fe1711c8fa925d64a"></a>
+float&#160;</td><td class="memItemRight"><b>getSlipstreamLength</b> () const</td></tr>
+<tr class="memitem:a782fc2edaaa518f50a603704bed05c0a" id="r_a782fc2edaaa518f50a603704bed05c0a"><td class="memItemLeft"><a id="a782fc2edaaa518f50a603704bed05c0a" name="a782fc2edaaa518f50a603704bed05c0a"></a>
+float&#160;</td><td class="memItemRight"><b>getSlipstreamWidth</b> () const</td></tr>
+<tr class="memitem:af4a562058d98f217ca4800c2cbf85214" id="r_af4a562058d98f217ca4800c2cbf85214"><td class="memItemLeft"><a id="af4a562058d98f217ca4800c2cbf85214" name="af4a562058d98f217ca4800c2cbf85214"></a>
+float&#160;</td><td class="memItemRight"><b>getSlipstreamInnerFactor</b> () const</td></tr>
+<tr class="memitem:a2076e6a52a1c192c706218a4d16e4a05" id="r_a2076e6a52a1c192c706218a4d16e4a05"><td class="memItemLeft"><a id="a2076e6a52a1c192c706218a4d16e4a05" name="a2076e6a52a1c192c706218a4d16e4a05"></a>
+float&#160;</td><td class="memItemRight"><b>getSlipstreamMinCollectTime</b> () const</td></tr>
+<tr class="memitem:a099599376a246306400314c18bccbfe3" id="r_a099599376a246306400314c18bccbfe3"><td class="memItemLeft"><a id="a099599376a246306400314c18bccbfe3" name="a099599376a246306400314c18bccbfe3"></a>
+float&#160;</td><td class="memItemRight"><b>getSlipstreamMaxCollectTime</b> () const</td></tr>
+<tr class="memitem:a6fb06a4ae58136e15f6931bbcf44488d" id="r_a6fb06a4ae58136e15f6931bbcf44488d"><td class="memItemLeft"><a id="a6fb06a4ae58136e15f6931bbcf44488d" name="a6fb06a4ae58136e15f6931bbcf44488d"></a>
+float&#160;</td><td class="memItemRight"><b>getSlipstreamAddPower</b> () const</td></tr>
+<tr class="memitem:a722bd38aa37949b8e2142a7bb10cbbc5" id="r_a722bd38aa37949b8e2142a7bb10cbbc5"><td class="memItemLeft"><a id="a722bd38aa37949b8e2142a7bb10cbbc5" name="a722bd38aa37949b8e2142a7bb10cbbc5"></a>
+float&#160;</td><td class="memItemRight"><b>getSlipstreamMinSpeed</b> () const</td></tr>
+<tr class="memitem:ad486ccf2b7c227f10edfdb33e13a0a9d" id="r_ad486ccf2b7c227f10edfdb33e13a0a9d"><td class="memItemLeft"><a id="ad486ccf2b7c227f10edfdb33e13a0a9d" name="ad486ccf2b7c227f10edfdb33e13a0a9d"></a>
+float&#160;</td><td class="memItemRight"><b>getSlipstreamMaxSpeedIncrease</b> () const</td></tr>
+<tr class="memitem:a074a825498f56bf5572495bd0b966570" id="r_a074a825498f56bf5572495bd0b966570"><td class="memItemLeft"><a id="a074a825498f56bf5572495bd0b966570" name="a074a825498f56bf5572495bd0b966570"></a>
+float&#160;</td><td class="memItemRight"><b>getSlipstreamFadeOutTime</b> () const</td></tr>
+<tr class="memitem:a73da2c076653cebdcec7328818fdb56d" id="r_a73da2c076653cebdcec7328818fdb56d"><td class="memItemLeft"><a id="a73da2c076653cebdcec7328818fdb56d" name="a73da2c076653cebdcec7328818fdb56d"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidIncrease</b> () const</td></tr>
+<tr class="memitem:ab338a88024d15d4f4cd077f702ee804b" id="r_ab338a88024d15d4f4cd077f702ee804b"><td class="memItemLeft"><a id="ab338a88024d15d4f4cd077f702ee804b" name="ab338a88024d15d4f4cd077f702ee804b"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidDecrease</b> () const</td></tr>
+<tr class="memitem:a6ba3b4d4805a8ae5d58d6331bbd6c6c7" id="r_a6ba3b4d4805a8ae5d58d6331bbd6c6c7"><td class="memItemLeft"><a id="a6ba3b4d4805a8ae5d58d6331bbd6c6c7" name="a6ba3b4d4805a8ae5d58d6331bbd6c6c7"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidMax</b> () const</td></tr>
+<tr class="memitem:a948b1a90e9ba5354278d8cdce0593a36" id="r_a948b1a90e9ba5354278d8cdce0593a36"><td class="memItemLeft"><a id="a948b1a90e9ba5354278d8cdce0593a36" name="a948b1a90e9ba5354278d8cdce0593a36"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidTimeTillMax</b> () const</td></tr>
+<tr class="memitem:a1bbc94bbfbb1313191aaff7c00ecd52a" id="r_a1bbc94bbfbb1313191aaff7c00ecd52a"><td class="memItemLeft"><a id="a1bbc94bbfbb1313191aaff7c00ecd52a" name="a1bbc94bbfbb1313191aaff7c00ecd52a"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidVisual</b> () const</td></tr>
+<tr class="memitem:af395c78b895d5cac01b8e64b3a50b1a7" id="r_af395c78b895d5cac01b8e64b3a50b1a7"><td class="memItemLeft"><a id="af395c78b895d5cac01b8e64b3a50b1a7" name="af395c78b895d5cac01b8e64b3a50b1a7"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidVisualTime</b> () const</td></tr>
+<tr class="memitem:a698e628ea8b57494e48a5c83015ca84f" id="r_a698e628ea8b57494e48a5c83015ca84f"><td class="memItemLeft"><a id="a698e628ea8b57494e48a5c83015ca84f" name="a698e628ea8b57494e48a5c83015ca84f"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidRevertVisualTime</b> () const</td></tr>
+<tr class="memitem:adad25f9268606bd6634a74e6451d8823" id="r_adad25f9268606bd6634a74e6451d8823"><td class="memItemLeft"><a id="adad25f9268606bd6634a74e6451d8823" name="adad25f9268606bd6634a74e6451d8823"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidMinSpeed</b> () const</td></tr>
+<tr class="memitem:a02bb33d5107d4dd982552c87b90a2511" id="r_a02bb33d5107d4dd982552c87b90a2511"><td class="memItemLeft"><a id="a02bb33d5107d4dd982552c87b90a2511" name="a02bb33d5107d4dd982552c87b90a2511"></a>
+std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><b>getSkidTimeTillBonus</b> () const</td></tr>
+<tr class="memitem:a449a0f2e7806552a013acc32dcd485a0" id="r_a449a0f2e7806552a013acc32dcd485a0"><td class="memItemLeft"><a id="a449a0f2e7806552a013acc32dcd485a0" name="a449a0f2e7806552a013acc32dcd485a0"></a>
+std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><b>getSkidBonusSpeed</b> () const</td></tr>
+<tr class="memitem:ae3e17f6608695c55b88631fdb44f85fa" id="r_ae3e17f6608695c55b88631fdb44f85fa"><td class="memItemLeft"><a id="ae3e17f6608695c55b88631fdb44f85fa" name="ae3e17f6608695c55b88631fdb44f85fa"></a>
+std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><b>getSkidBonusTime</b> () const</td></tr>
+<tr class="memitem:aa4735ab24848fd009459292af929f1d8" id="r_aa4735ab24848fd009459292af929f1d8"><td class="memItemLeft"><a id="aa4735ab24848fd009459292af929f1d8" name="aa4735ab24848fd009459292af929f1d8"></a>
+std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><b>getSkidBonusForce</b> () const</td></tr>
+<tr class="memitem:a793318d01ca44cbe1d15a9e5c9efa402" id="r_a793318d01ca44cbe1d15a9e5c9efa402"><td class="memItemLeft"><a id="a793318d01ca44cbe1d15a9e5c9efa402" name="a793318d01ca44cbe1d15a9e5c9efa402"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidPhysicalJumpTime</b> () const</td></tr>
+<tr class="memitem:a73471862fa2071e957336a5abd895bc0" id="r_a73471862fa2071e957336a5abd895bc0"><td class="memItemLeft"><a id="a73471862fa2071e957336a5abd895bc0" name="a73471862fa2071e957336a5abd895bc0"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidGraphicalJumpTime</b> () const</td></tr>
+<tr class="memitem:ae9a0300673dbcedaa897c9b5cf6bcde7" id="r_ae9a0300673dbcedaa897c9b5cf6bcde7"><td class="memItemLeft"><a id="ae9a0300673dbcedaa897c9b5cf6bcde7" name="ae9a0300673dbcedaa897c9b5cf6bcde7"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidPostSkidRotateFactor</b> () const</td></tr>
+<tr class="memitem:a25948f4d21602019b8d66846eb34f652" id="r_a25948f4d21602019b8d66846eb34f652"><td class="memItemLeft"><a id="a25948f4d21602019b8d66846eb34f652" name="a25948f4d21602019b8d66846eb34f652"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidReduceTurnMin</b> () const</td></tr>
+<tr class="memitem:a745220d7bd6f8f0234d0872920919d5f" id="r_a745220d7bd6f8f0234d0872920919d5f"><td class="memItemLeft"><a id="a745220d7bd6f8f0234d0872920919d5f" name="a745220d7bd6f8f0234d0872920919d5f"></a>
+float&#160;</td><td class="memItemRight"><b>getSkidReduceTurnMax</b> () const</td></tr>
+<tr class="memitem:ae2000e499a47efb488a9d24ab4641a7d" id="r_ae2000e499a47efb488a9d24ab4641a7d"><td class="memItemLeft"><a id="ae2000e499a47efb488a9d24ab4641a7d" name="ae2000e499a47efb488a9d24ab4641a7d"></a>
+bool&#160;</td><td class="memItemRight"><b>getSkidEnabled</b> () const</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+정적 Public 멤버 함수</h2></td></tr>
+<tr class="memitem:a9f22c9267e60f67833dc35daedb1375a" id="r_a9f22c9267e60f67833dc35daedb1375a"><td class="memItemLeft"><a id="a9f22c9267e60f67833dc35daedb1375a" name="a9f22c9267e60f67833dc35daedb1375a"></a>
+static ValueType&#160;</td><td class="memItemRight"><b>getType</b> (CharacteristicType type)</td></tr>
+<tr class="memdesc:a9f22c9267e60f67833dc35daedb1375a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the type of a given characteristic. <br /></td></tr>
+<tr class="memitem:aaa15ef423eb016bc366cac69b3313af5" id="r_aaa15ef423eb016bc366cac69b3313af5"><td class="memItemLeft"><a id="aaa15ef423eb016bc366cac69b3313af5" name="aaa15ef423eb016bc366cac69b3313af5"></a>
+static std::string&#160;</td><td class="memItemRight"><b>getName</b> (CharacteristicType type)</td></tr>
+<tr class="memdesc:aaa15ef423eb016bc366cac69b3313af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the enum value to a string. <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">상세한 설명</h2>
+<div class="textblock"><p>Characteristics are the properties of a kart that influence gameplay mechanics. </p>
+<p>The biggest parts are:</p><ul>
+<li><a class="el" href="classPhysics.html">Physics</a></li>
+<li>Visuals</li>
+<li>Items</li>
+<li>and miscellaneous properties like nitro and startup boost.</li>
+</ul>
+<p>The documentation of these properties can be found in the kart_characteristics.xml file. Large parts of this file are generated by tools/create_kart_properties.py. Please don't change the generated code here, instead change the script, regenerate the code and overwrite the whole generated part with the result. </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">멤버 함수 문서화</h2>
+<a id="a06ff13a3695d68dd734cb2c793d1486a" name="a06ff13a3695d68dd734cb2c793d1486a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06ff13a3695d68dd734cb2c793d1486a">&#9670;&#160;</a></span>copyFrom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AbstractCharacteristic::copyFrom </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classAbstractCharacteristic.html">AbstractCharacteristic</a> *</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classXmlCharacteristic.html#a05872a797e4cb7907f2e4443ee3665fd">XmlCharacteristic</a>에서 구현되었습니다.</p>
+
+</div>
+</div>
+<a id="ab98dba43ce5e02c28ce3f13d78ca6d08" name="ab98dba43ce5e02c28ce3f13d78ca6d08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab98dba43ce5e02c28ce3f13d78ca6d08">&#9670;&#160;</a></span>process()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractCharacteristic::process </td>
+          <td>(</td>
+          <td class="paramtype">CharacteristicType</td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="unionAbstractCharacteristic_1_1Value.html">Value</a></td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool *</td>          <td class="paramname"><span class="paramname"><em>is_set</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The process function is the core of this characteristics system. </p>
+<p>The process function should change the given value.</p>
+<p>Any computation of the properties should happen here and modify the values of the value-pointer (be sure to use the right type!) and the is_set parameter when the value was set by the call (and wasn't set before).</p>
+<dl class="params"><dt>매개변수</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The characteristic that should be modified. </td></tr>
+    <tr><td class="paramname">value</td><td>The current value and result at the same time. </td></tr>
+    <tr><td class="paramname">is_set</td><td>If the current value was already set (so it can be used for computations).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The input and output argument is saved in value. is_set describes if the value is already set or if it's undefined. The function also has to set is_set if the state changed. </p>
+
+<p><a class="el" href="classCachedCharacteristic.html#a18f695da3982ee07e534a74b6f5803c6">CachedCharacteristic</a>, <a class="el" href="classCombinedCharacteristic.html#a2d38634502323a30a923c40e76fe4141">CombinedCharacteristic</a>, <a class="el" href="classXmlCharacteristic.html#a4a50df82874bd600f527febf7020c5ac">XmlCharacteristic</a>에서 재구현되었습니다.</p>
+
+</div>
+</div>
+<hr/>이 클래스에 대한 문서화 페이지는 다음의 파일들로부터 생성되었습니다.:<ul>
+<li>karts/<a class="el" href="abstract__characteristic_8hpp_source.html">abstract_characteristic.hpp</a></li>
+<li>karts/<b>abstract_characteristic.cpp</b></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

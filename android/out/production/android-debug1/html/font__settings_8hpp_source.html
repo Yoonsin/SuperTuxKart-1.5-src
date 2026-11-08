@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: font/font_settings.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>font</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">font_settings.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2016 SuperTuxKart-Team</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_FONT_SETTINGS_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_FONT_SETTINGS_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;utils/leak_check.hpp&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;SColor.h&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">using namespace </span>irr;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classFontSettings.html">   32</a></span><span class="keyword">class </span><a class="code hl_function" href="classFontSettings.html#abfa435aa22a4f843c53d9b42b311dc0c">FontSettings</a></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classFontSettings.html#a8813d46c65d02a8640a49d4140e9ba72">   36</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classFontSettings.html#a8813d46c65d02a8640a49d4140e9ba72">m_black_border</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classFontSettings.html#ac6e9424f3e59f6f00a0bf2168817f87a">   41</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classFontSettings.html#ac6e9424f3e59f6f00a0bf2168817f87a">m_colored_border</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">/* True if the border to draw should be thin */</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">bool</span> m_thin_border;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classFontSettings.html#a843fed05717cbcd591180fed1dbac02e">   47</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="classFontSettings.html#a843fed05717cbcd591180fed1dbac02e">m_scale</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classFontSettings.html#ac3f5646e8c2301a00fc71d9016eec3c5">   50</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classFontSettings.html#ac3f5646e8c2301a00fc71d9016eec3c5">m_shadow</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classFontSettings.html#a926130f17a2d00e3d1dd62bf7c75d6f1">   53</a></span>    video::SColor <a class="code hl_variable" href="classFontSettings.html#a926130f17a2d00e3d1dd62bf7c75d6f1">m_shadow_color</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classFontSettings.html#a3d154d5b221e1a2c432371366d19a008">   56</a></span>    video::SColor <a class="code hl_variable" href="classFontSettings.html#a3d154d5b221e1a2c432371366d19a008">m_border_color</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    LEAK_CHECK()</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classFontSettings.html#abfa435aa22a4f843c53d9b42b311dc0c">   63</a></span>    <a class="code hl_function" href="classFontSettings.html#abfa435aa22a4f843c53d9b42b311dc0c">FontSettings</a>(<span class="keywordtype">bool</span> black_border = false, <span class="keywordtype">bool</span> colored_border = false,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                 <span class="keywordtype">bool</span> thin_border = false, <span class="keywordtype">float</span> scale = 1.0f,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                 <span class="keywordtype">bool</span> shadow = false,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                 const video::SColor&amp; shadow_color = video::SColor(0, 0, 0, 0),</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                 const video::SColor&amp; border_color = video::SColor(0, 0, 0, 0))</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <a class="code hl_variable" href="classFontSettings.html#a8813d46c65d02a8640a49d4140e9ba72">m_black_border</a> = black_border;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <a class="code hl_variable" href="classFontSettings.html#ac6e9424f3e59f6f00a0bf2168817f87a">m_colored_border</a> = colored_border;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        m_thin_border = thin_border;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <a class="code hl_variable" href="classFontSettings.html#a843fed05717cbcd591180fed1dbac02e">m_scale</a> = scale;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <a class="code hl_variable" href="classFontSettings.html#ac3f5646e8c2301a00fc71d9016eec3c5">m_shadow</a> = shadow;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <a class="code hl_variable" href="classFontSettings.html#a926130f17a2d00e3d1dd62bf7c75d6f1">m_shadow_color</a> = shadow_color;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <a class="code hl_variable" href="classFontSettings.html#a3d154d5b221e1a2c432371366d19a008">m_border_color</a> = border_color;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
+</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classFontSettings.html#aa4892b6c7aa118f3612affa4bd146efc">   80</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontSettings.html#aa4892b6c7aa118f3612affa4bd146efc">setScale</a>(<span class="keywordtype">float</span> scale)                             { <a class="code hl_variable" href="classFontSettings.html#a843fed05717cbcd591180fed1dbac02e">m_scale</a> = scale; }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classFontSettings.html#a7e1de73570de100a8607f70183deebb4">   83</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classFontSettings.html#a7e1de73570de100a8607f70183deebb4">getScale</a>()<span class="keyword"> const                                  </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFontSettings.html#a843fed05717cbcd591180fed1dbac02e">m_scale</a>; }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classFontSettings.html#a5e51aeaf8a0c73f9b44891f39244847a">   87</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontSettings.html#a5e51aeaf8a0c73f9b44891f39244847a">setShadowColor</a>(<span class="keyword">const</span> video::SColor &amp;col)     { <a class="code hl_variable" href="classFontSettings.html#a926130f17a2d00e3d1dd62bf7c75d6f1">m_shadow_color</a> = col; }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classFontSettings.html#a512f62495be2d7aa582d2e251e1a5752">   90</a></span>    <span class="keyword">const</span> video::SColor&amp; <a class="code hl_function" href="classFontSettings.html#a512f62495be2d7aa582d2e251e1a5752">getShadowColor</a>()<span class="keyword"> const      </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFontSettings.html#a926130f17a2d00e3d1dd62bf7c75d6f1">m_shadow_color</a>; }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classFontSettings.html#a3ecad6aa732045299d0584dd8c048089">   93</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classFontSettings.html#a3ecad6aa732045299d0584dd8c048089">useShadow</a>()<span class="keyword"> const                                 </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFontSettings.html#ac3f5646e8c2301a00fc71d9016eec3c5">m_shadow</a>; }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classFontSettings.html#a6cab29f506d63248c85cd14de62e3b4f">   97</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontSettings.html#a6cab29f506d63248c85cd14de62e3b4f">setShadow</a>(<span class="keywordtype">bool</span> shadow)                          { <a class="code hl_variable" href="classFontSettings.html#ac3f5646e8c2301a00fc71d9016eec3c5">m_shadow</a> = shadow; }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classFontSettings.html#a8604d2db05ce27de96643937bb664d9e">  101</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontSettings.html#a8604d2db05ce27de96643937bb664d9e">setBlackBorder</a>(<span class="keywordtype">bool</span> border)               { <a class="code hl_variable" href="classFontSettings.html#a8813d46c65d02a8640a49d4140e9ba72">m_black_border</a> = border; }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classFontSettings.html#aafd551b8ca64fdb7c5a99d87aee13b3a">  105</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontSettings.html#aafd551b8ca64fdb7c5a99d87aee13b3a">setColoredBorder</a>(<span class="keywordtype">bool</span> border )          { <a class="code hl_variable" href="classFontSettings.html#ac6e9424f3e59f6f00a0bf2168817f87a">m_colored_border</a> = border; }</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classFontSettings.html#a1df34172b95a251f073819ac5af7d75f">  108</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontSettings.html#a1df34172b95a251f073819ac5af7d75f">setThinBorder</a>(<span class="keywordtype">bool</span> thin)                     { m_thin_border = thin; }</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="classFontSettings.html#a97b930fb7ed6f7b07d5ab2c106c998d2">  112</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classFontSettings.html#a97b930fb7ed6f7b07d5ab2c106c998d2">setBorderColor</a>(<span class="keyword">const</span> video::SColor &amp;col)     { <a class="code hl_variable" href="classFontSettings.html#a3d154d5b221e1a2c432371366d19a008">m_border_color</a> = col; }</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classFontSettings.html#a3059035c1a5ee6b9f5b75e9bf178fe51">  115</a></span>    <span class="keyword">const</span> video::SColor&amp; <a class="code hl_function" href="classFontSettings.html#a3059035c1a5ee6b9f5b75e9bf178fe51">getBorderColor</a>()<span class="keyword"> const      </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFontSettings.html#a3d154d5b221e1a2c432371366d19a008">m_border_color</a>; }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classFontSettings.html#a4ece2c7a535e4ad3d19e2ed0c99e2a94">  118</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classFontSettings.html#a4ece2c7a535e4ad3d19e2ed0c99e2a94">useBlackBorder</a>()<span class="keyword"> const                      </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFontSettings.html#a8813d46c65d02a8640a49d4140e9ba72">m_black_border</a>; }</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="classFontSettings.html#a3ff462daa604c5e1e3aa0cc443ffaf39">  121</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classFontSettings.html#a3ff462daa604c5e1e3aa0cc443ffaf39">useColoredBorder</a>()<span class="keyword"> const                  </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classFontSettings.html#ac6e9424f3e59f6f00a0bf2168817f87a">m_colored_border</a>; }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classFontSettings.html#a1b5d121e0c7f5947907594ae30139c31">  124</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classFontSettings.html#a1b5d121e0c7f5947907594ae30139c31">useThinBorder</a>()<span class="keyword"> const                        </span>{ <span class="keywordflow">return</span> m_thin_border; }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>};   <span class="comment">// FontSettings</span></div>
+</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment">/* EOF */</span></div>
+<div class="ttc" id="aclassFontSettings_html_a1b5d121e0c7f5947907594ae30139c31"><div class="ttname"><a href="classFontSettings.html#a1b5d121e0c7f5947907594ae30139c31">FontSettings::useThinBorder</a></div><div class="ttdeci">bool useThinBorder() const</div><div class="ttdoc">Return if the border should be thin or not.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:124</div></div>
+<div class="ttc" id="aclassFontSettings_html_a1df34172b95a251f073819ac5af7d75f"><div class="ttname"><a href="classFontSettings.html#a1df34172b95a251f073819ac5af7d75f">FontSettings::setThinBorder</a></div><div class="ttdeci">void setThinBorder(bool thin)</div><div class="ttdoc">Set whether the text outline should be thin or not.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:108</div></div>
+<div class="ttc" id="aclassFontSettings_html_a3059035c1a5ee6b9f5b75e9bf178fe51"><div class="ttname"><a href="classFontSettings.html#a3059035c1a5ee6b9f5b75e9bf178fe51">FontSettings::getBorderColor</a></div><div class="ttdeci">const video::SColor &amp; getBorderColor() const</div><div class="ttdoc">Return the color of the border.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:115</div></div>
+<div class="ttc" id="aclassFontSettings_html_a3d154d5b221e1a2c432371366d19a008"><div class="ttname"><a href="classFontSettings.html#a3d154d5b221e1a2c432371366d19a008">FontSettings::m_border_color</a></div><div class="ttdeci">video::SColor m_border_color</div><div class="ttdoc">Used when m_colored_border is true</div><div class="ttdef"><b>Definition</b> font_settings.hpp:56</div></div>
+<div class="ttc" id="aclassFontSettings_html_a3ecad6aa732045299d0584dd8c048089"><div class="ttname"><a href="classFontSettings.html#a3ecad6aa732045299d0584dd8c048089">FontSettings::useShadow</a></div><div class="ttdeci">bool useShadow() const</div><div class="ttdoc">Return if shadow is enabled.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:93</div></div>
+<div class="ttc" id="aclassFontSettings_html_a3ff462daa604c5e1e3aa0cc443ffaf39"><div class="ttname"><a href="classFontSettings.html#a3ff462daa604c5e1e3aa0cc443ffaf39">FontSettings::useColoredBorder</a></div><div class="ttdeci">bool useColoredBorder() const</div><div class="ttdoc">Return if black border is enabled.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:121</div></div>
+<div class="ttc" id="aclassFontSettings_html_a4ece2c7a535e4ad3d19e2ed0c99e2a94"><div class="ttname"><a href="classFontSettings.html#a4ece2c7a535e4ad3d19e2ed0c99e2a94">FontSettings::useBlackBorder</a></div><div class="ttdeci">bool useBlackBorder() const</div><div class="ttdoc">Return if black border is enabled.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:118</div></div>
+<div class="ttc" id="aclassFontSettings_html_a512f62495be2d7aa582d2e251e1a5752"><div class="ttname"><a href="classFontSettings.html#a512f62495be2d7aa582d2e251e1a5752">FontSettings::getShadowColor</a></div><div class="ttdeci">const video::SColor &amp; getShadowColor() const</div><div class="ttdoc">Return the color of shadow.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:90</div></div>
+<div class="ttc" id="aclassFontSettings_html_a5e51aeaf8a0c73f9b44891f39244847a"><div class="ttname"><a href="classFontSettings.html#a5e51aeaf8a0c73f9b44891f39244847a">FontSettings::setShadowColor</a></div><div class="ttdeci">void setShadowColor(const video::SColor &amp;col)</div><div class="ttdoc">Set the color of shadow.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:87</div></div>
+<div class="ttc" id="aclassFontSettings_html_a6cab29f506d63248c85cd14de62e3b4f"><div class="ttname"><a href="classFontSettings.html#a6cab29f506d63248c85cd14de62e3b4f">FontSettings::setShadow</a></div><div class="ttdeci">void setShadow(bool shadow)</div><div class="ttdoc">Set whether shadow is enabled.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:97</div></div>
+<div class="ttc" id="aclassFontSettings_html_a7e1de73570de100a8607f70183deebb4"><div class="ttname"><a href="classFontSettings.html#a7e1de73570de100a8607f70183deebb4">FontSettings::getScale</a></div><div class="ttdeci">float getScale() const</div><div class="ttdoc">Return the scaling.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:83</div></div>
+<div class="ttc" id="aclassFontSettings_html_a843fed05717cbcd591180fed1dbac02e"><div class="ttname"><a href="classFontSettings.html#a843fed05717cbcd591180fed1dbac02e">FontSettings::m_scale</a></div><div class="ttdeci">float m_scale</div><div class="ttdoc">Scaling when rendering.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:47</div></div>
+<div class="ttc" id="aclassFontSettings_html_a8604d2db05ce27de96643937bb664d9e"><div class="ttname"><a href="classFontSettings.html#a8604d2db05ce27de96643937bb664d9e">FontSettings::setBlackBorder</a></div><div class="ttdeci">void setBlackBorder(bool border)</div><div class="ttdoc">Set whether black border is enabled.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:101</div></div>
+<div class="ttc" id="aclassFontSettings_html_a8813d46c65d02a8640a49d4140e9ba72"><div class="ttname"><a href="classFontSettings.html#a8813d46c65d02a8640a49d4140e9ba72">FontSettings::m_black_border</a></div><div class="ttdeci">bool m_black_border</div><div class="ttdoc">True if black border will be drawn when rendering.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:36</div></div>
+<div class="ttc" id="aclassFontSettings_html_a926130f17a2d00e3d1dd62bf7c75d6f1"><div class="ttname"><a href="classFontSettings.html#a926130f17a2d00e3d1dd62bf7c75d6f1">FontSettings::m_shadow_color</a></div><div class="ttdeci">video::SColor m_shadow_color</div><div class="ttdoc">Save the color of shadow when rendering.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:53</div></div>
+<div class="ttc" id="aclassFontSettings_html_a97b930fb7ed6f7b07d5ab2c106c998d2"><div class="ttname"><a href="classFontSettings.html#a97b930fb7ed6f7b07d5ab2c106c998d2">FontSettings::setBorderColor</a></div><div class="ttdeci">void setBorderColor(const video::SColor &amp;col)</div><div class="ttdoc">Set the color of border (used when a non-black border is requested).</div><div class="ttdef"><b>Definition</b> font_settings.hpp:112</div></div>
+<div class="ttc" id="aclassFontSettings_html_aa4892b6c7aa118f3612affa4bd146efc"><div class="ttname"><a href="classFontSettings.html#aa4892b6c7aa118f3612affa4bd146efc">FontSettings::setScale</a></div><div class="ttdeci">void setScale(float scale)</div><div class="ttdoc">Set the scaling.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:80</div></div>
+<div class="ttc" id="aclassFontSettings_html_aafd551b8ca64fdb7c5a99d87aee13b3a"><div class="ttname"><a href="classFontSettings.html#aafd551b8ca64fdb7c5a99d87aee13b3a">FontSettings::setColoredBorder</a></div><div class="ttdeci">void setColoredBorder(bool border)</div><div class="ttdoc">Set whether a custom colored border is enabled.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:105</div></div>
+<div class="ttc" id="aclassFontSettings_html_abfa435aa22a4f843c53d9b42b311dc0c"><div class="ttname"><a href="classFontSettings.html#abfa435aa22a4f843c53d9b42b311dc0c">FontSettings::FontSettings</a></div><div class="ttdeci">FontSettings(bool black_border=false, bool colored_border=false, bool thin_border=false, float scale=1.0f, bool shadow=false, const video::SColor &amp;shadow_color=video::SColor(0, 0, 0, 0), const video::SColor &amp;border_color=video::SColor(0, 0, 0, 0))</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:63</div></div>
+<div class="ttc" id="aclassFontSettings_html_ac3f5646e8c2301a00fc71d9016eec3c5"><div class="ttname"><a href="classFontSettings.html#ac3f5646e8c2301a00fc71d9016eec3c5">FontSettings::m_shadow</a></div><div class="ttdeci">bool m_shadow</div><div class="ttdoc">True if shadow will be drawn when rendering.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:50</div></div>
+<div class="ttc" id="aclassFontSettings_html_ac6e9424f3e59f6f00a0bf2168817f87a"><div class="ttname"><a href="classFontSettings.html#ac6e9424f3e59f6f00a0bf2168817f87a">FontSettings::m_colored_border</a></div><div class="ttdeci">bool m_colored_border</div><div class="ttdoc">True if a custom colored border will be drawn when rendering.</div><div class="ttdef"><b>Definition</b> font_settings.hpp:41</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

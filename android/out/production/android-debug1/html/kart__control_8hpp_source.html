@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SuperTuxKart: karts/controller/kart_control.hpp 소스 파일</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SuperTuxKart
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 다음에 의해 생성됨 :  Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',false);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="검색" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">로딩중...</div>
+<div class="SRStatus" id="Searching">검색중...</div>
+<div class="SRStatus" id="NoMatches">일치하는것 없음</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>karts</b></li><li class="navelem"><b>controller</b></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">kart_control.hpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//  SuperTuxKart - a fun racing game with go-kart</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) 2008-2015  Joerg Henrichs</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//  This program is free software; you can redistribute it and/or</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//  modify it under the terms of the GNU General Public License</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//  as published by the Free Software Foundation; either version 3</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//  of the License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//  This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//  but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  GNU General Public License for more details.</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//  along with this program; if not, write to the Free Software</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#ifndef HEADER_KART_CONTROL_HPP</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define HEADER_KART_CONTROL_HPP</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">utils/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">class </span><a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classKartControl.html">   29</a></span><span class="keyword">class </span>KartControl</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classKartControl.html#a1fca41f3f8d5e8c045508a111f3ab17b">   35</a></span>    <span class="keyword">enum</span>  <a class="code hl_enumeration" href="classKartControl.html#a1fca41f3f8d5e8c045508a111f3ab17b">SkidControl</a> {SC_NONE, SC_NO_DIRECTION, SC_LEFT, SC_RIGHT};</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classKartControl.html#a2194c13fea7a840e13a5d497a5f2c509">   39</a></span>    int16_t <a class="code hl_variable" href="classKartControl.html#a2194c13fea7a840e13a5d497a5f2c509">m_steer</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classKartControl.html#aacf396e7bfaddb9edb98e1d7ddfc0ea6">   41</a></span>    uint16_t <a class="code hl_variable" href="classKartControl.html#aacf396e7bfaddb9edb98e1d7ddfc0ea6">m_accel</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classKartControl.html#a3b5a2c36eef9ed45949b2b1b269439ad">   43</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_variable" href="classKartControl.html#a3b5a2c36eef9ed45949b2b1b269439ad">m_brake</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classKartControl.html#ad1686d0229651a7ddbde35fcbe069ef6">   45</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_variable" href="classKartControl.html#ad1686d0229651a7ddbde35fcbe069ef6">m_nitro</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classKartControl.html#ae726bdfdae4f92c3cf3788eacd4af27b">   47</a></span>    <a class="code hl_enumeration" href="classKartControl.html#a1fca41f3f8d5e8c045508a111f3ab17b">SkidControl</a> <a class="code hl_variable" href="classKartControl.html#ae726bdfdae4f92c3cf3788eacd4af27b">m_skid</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classKartControl.html#abac86575855e6f00c02e7bedadfe1467">   49</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_variable" href="classKartControl.html#abac86575855e6f00c02e7bedadfe1467">m_rescue</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classKartControl.html#a8fcfbe7a6002089dafe2abfec056f3b0">   51</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_variable" href="classKartControl.html#a8fcfbe7a6002089dafe2abfec056f3b0">m_fire</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classKartControl.html#a414a2e371442afdf804f89dc0c1010c8">   53</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_variable" href="classKartControl.html#a414a2e371442afdf804f89dc0c1010c8">m_look_back</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartControl.html#a10d086f1557be1deaf8bd2808a0ea5ae">setSteer</a>(<span class="keywordtype">float</span> f);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartControl.html#af823096d70c7171bd5afb3c41c4f9797">setAccel</a>(<span class="keywordtype">float</span> f);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartControl.html#a8d6184015b4b11bf12e014eb5d76add3">setBrake</a>(<span class="keywordtype">bool</span> b);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartControl.html#a8dbb01bb7267bd81d6b95fdf3e02caae">setNitro</a>(<span class="keywordtype">bool</span> b);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartControl.html#aa2b7c43632916129278982429931ec76">setSkidControl</a>(<a class="code hl_enumeration" href="classKartControl.html#a1fca41f3f8d5e8c045508a111f3ab17b">SkidControl</a> sc);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartControl.html#ac9f9ccc7fa0c13d03ef85e7c1bd04170">setRescue</a>(<span class="keywordtype">bool</span> b);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartControl.html#a6dbf56b581a1a9fa4d46e9d567653e8f">setFire</a>(<span class="keywordtype">bool</span> b);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartControl.html#aa01218f5294a76d3291b64e5a1ddb166">setLookBack</a>(<span class="keywordtype">bool</span> b);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    KartControl()</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <a class="code hl_function" href="classKartControl.html#a94577d98ba4744986ea1c86c59282695">reset</a>();</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00071" data-start="{" data-end="}">
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classKartControl.html#a94577d98ba4744986ea1c86c59282695">   71</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartControl.html#a94577d98ba4744986ea1c86c59282695">reset</a>()</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <a class="code hl_variable" href="classKartControl.html#a2194c13fea7a840e13a5d497a5f2c509">m_steer</a>     = 0;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <a class="code hl_variable" href="classKartControl.html#aacf396e7bfaddb9edb98e1d7ddfc0ea6">m_accel</a>     = 0;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <a class="code hl_variable" href="classKartControl.html#a3b5a2c36eef9ed45949b2b1b269439ad">m_brake</a>     = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <a class="code hl_variable" href="classKartControl.html#ad1686d0229651a7ddbde35fcbe069ef6">m_nitro</a>     = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <a class="code hl_variable" href="classKartControl.html#ae726bdfdae4f92c3cf3788eacd4af27b">m_skid</a>      = SC_NONE;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <a class="code hl_variable" href="classKartControl.html#abac86575855e6f00c02e7bedadfe1467">m_rescue</a>    = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <a class="code hl_variable" href="classKartControl.html#a8fcfbe7a6002089dafe2abfec056f3b0">m_fire</a>      = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <a class="code hl_variable" href="classKartControl.html#a414a2e371442afdf804f89dc0c1010c8">m_look_back</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }   <span class="comment">// reset</span></div>
+</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classKartControl.html#a9ecc056b8bd1504cd3298afd435b8454">   85</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classKartControl.html#a9ecc056b8bd1504cd3298afd435b8454">operator==</a>(<span class="keyword">const</span> KartControl &amp;other)</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classKartControl.html#a2194c13fea7a840e13a5d497a5f2c509">m_steer</a>     == other.<a class="code hl_variable" href="classKartControl.html#a2194c13fea7a840e13a5d497a5f2c509">m_steer</a>   &amp;&amp;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>               <a class="code hl_variable" href="classKartControl.html#aacf396e7bfaddb9edb98e1d7ddfc0ea6">m_accel</a>     == other.<a class="code hl_variable" href="classKartControl.html#aacf396e7bfaddb9edb98e1d7ddfc0ea6">m_accel</a>   &amp;&amp;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>               <a class="code hl_variable" href="classKartControl.html#a3b5a2c36eef9ed45949b2b1b269439ad">m_brake</a>     == other.<a class="code hl_variable" href="classKartControl.html#a3b5a2c36eef9ed45949b2b1b269439ad">m_brake</a>   &amp;&amp;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>               <a class="code hl_variable" href="classKartControl.html#ad1686d0229651a7ddbde35fcbe069ef6">m_nitro</a>     == other.<a class="code hl_variable" href="classKartControl.html#ad1686d0229651a7ddbde35fcbe069ef6">m_nitro</a>   &amp;&amp;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>               <a class="code hl_variable" href="classKartControl.html#ae726bdfdae4f92c3cf3788eacd4af27b">m_skid</a>      == other.<a class="code hl_variable" href="classKartControl.html#ae726bdfdae4f92c3cf3788eacd4af27b">m_skid</a>    &amp;&amp;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>               <a class="code hl_variable" href="classKartControl.html#abac86575855e6f00c02e7bedadfe1467">m_rescue</a>    == other.<a class="code hl_variable" href="classKartControl.html#abac86575855e6f00c02e7bedadfe1467">m_rescue</a>  &amp;&amp;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>               <a class="code hl_variable" href="classKartControl.html#a8fcfbe7a6002089dafe2abfec056f3b0">m_fire</a>      == other.<a class="code hl_variable" href="classKartControl.html#a8fcfbe7a6002089dafe2abfec056f3b0">m_fire</a>    &amp;&amp;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>               <a class="code hl_variable" href="classKartControl.html#a414a2e371442afdf804f89dc0c1010c8">m_look_back</a> == other.<a class="code hl_variable" href="classKartControl.html#a414a2e371442afdf804f89dc0c1010c8">m_look_back</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }    <span class="comment">// operator==</span></div>
+</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartControl.html#abe8adb2904c8bf0295e763666f7471cb">saveState</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartControl.html#ae0d4dbaa1c2d796956759947f327c98d">rewindTo</a>(<a class="code hl_class" href="classBareNetworkString.html">BareNetworkString</a> *buffer);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00104" data-start="{" data-end="}">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classKartControl.html#aa4707a691e725ccec462ec47dc03fbc5">  104</a></span>    <span class="keywordtype">char</span> <a class="code hl_function" href="classKartControl.html#aa4707a691e725ccec462ec47dc03fbc5">getButtonsCompressed</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">return</span>  (<a class="code hl_variable" href="classKartControl.html#a3b5a2c36eef9ed45949b2b1b269439ad">m_brake</a>     ?  1 : 0)</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>              + (<a class="code hl_variable" href="classKartControl.html#ad1686d0229651a7ddbde35fcbe069ef6">m_nitro</a>     ?  2 : 0)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>              + (<a class="code hl_variable" href="classKartControl.html#abac86575855e6f00c02e7bedadfe1467">m_rescue</a>    ?  4 : 0)</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>              + (<a class="code hl_variable" href="classKartControl.html#a8fcfbe7a6002089dafe2abfec056f3b0">m_fire</a>      ?  8 : 0)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>              + (<a class="code hl_variable" href="classKartControl.html#a414a2e371442afdf804f89dc0c1010c8">m_look_back</a> ? 16 : 0)</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>              + (<a class="code hl_variable" href="classKartControl.html#ae726bdfdae4f92c3cf3788eacd4af27b">m_skid</a>&lt;&lt;5);             <span class="comment">// m_skid is in {0,1,2,3}</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    }   <span class="comment">// getButtonsCompressed</span></div>
+</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="}">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classKartControl.html#ac1831b0abd983d53aefa1b102bea74a1">  117</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKartControl.html#ac1831b0abd983d53aefa1b102bea74a1">setButtonsCompressed</a>(<span class="keywordtype">char</span> c)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <a class="code hl_variable" href="classKartControl.html#a3b5a2c36eef9ed45949b2b1b269439ad">m_brake</a>     = (c &amp;  1) != 0;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <a class="code hl_variable" href="classKartControl.html#ad1686d0229651a7ddbde35fcbe069ef6">m_nitro</a>     = (c &amp;  2) != 0;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <a class="code hl_variable" href="classKartControl.html#abac86575855e6f00c02e7bedadfe1467">m_rescue</a>    = (c &amp;  4) != 0;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <a class="code hl_variable" href="classKartControl.html#a8fcfbe7a6002089dafe2abfec056f3b0">m_fire</a>      = (c &amp;  8) != 0;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <a class="code hl_variable" href="classKartControl.html#a414a2e371442afdf804f89dc0c1010c8">m_look_back</a> = (c &amp; 16) != 0;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <a class="code hl_variable" href="classKartControl.html#ae726bdfdae4f92c3cf3788eacd4af27b">m_skid</a>      = (<a class="code hl_enumeration" href="classKartControl.html#a1fca41f3f8d5e8c045508a111f3ab17b">SkidControl</a>)((c &amp; 96) &gt;&gt; 5);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    }   <span class="comment">// setButtonsCompressed</span></div>
+</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classKartControl.html#aec148bb40d77ece9285d6a32ad31232c">  128</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classKartControl.html#aec148bb40d77ece9285d6a32ad31232c">getSteer</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<span class="keywordtype">float</span>)<a class="code hl_variable" href="classKartControl.html#a2194c13fea7a840e13a5d497a5f2c509">m_steer</a> / 32767.0f; }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classKartControl.html#a844d75ec891ee6c0617c7ce3e23a78ed">  131</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classKartControl.html#a844d75ec891ee6c0617c7ce3e23a78ed">getAccel</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (<span class="keywordtype">float</span>)<a class="code hl_variable" href="classKartControl.html#aacf396e7bfaddb9edb98e1d7ddfc0ea6">m_accel</a> / 65535.0f; }</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classKartControl.html#a5b7426ab3f9fda82ad40e800dde9fed8">  134</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classKartControl.html#a5b7426ab3f9fda82ad40e800dde9fed8">getBrake</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classKartControl.html#a3b5a2c36eef9ed45949b2b1b269439ad">m_brake</a>; }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classKartControl.html#a64561dd7bdea088e4f1353cce8518f87">  137</a></span>    <span class="keywordtype">bool</span>  <a class="code hl_function" href="classKartControl.html#a64561dd7bdea088e4f1353cce8518f87">getNitro</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classKartControl.html#ad1686d0229651a7ddbde35fcbe069ef6">m_nitro</a>; }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classKartControl.html#ad0c711a43a7b4e696d70020f01228813">  142</a></span>    <a class="code hl_enumeration" href="classKartControl.html#a1fca41f3f8d5e8c045508a111f3ab17b">SkidControl</a> <a class="code hl_function" href="classKartControl.html#ad0c711a43a7b4e696d70020f01228813">getSkidControl</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classKartControl.html#ae726bdfdae4f92c3cf3788eacd4af27b">m_skid</a>; }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="classKartControl.html#ae1f5580f0415f5060d69cf02c264ca50">  145</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classKartControl.html#ae1f5580f0415f5060d69cf02c264ca50">getRescue</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classKartControl.html#abac86575855e6f00c02e7bedadfe1467">m_rescue</a>; }</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="classKartControl.html#a91a7b82be69617c246eb752af604f8c1">  148</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classKartControl.html#a91a7b82be69617c246eb752af604f8c1">getFire</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classKartControl.html#a8fcfbe7a6002089dafe2abfec056f3b0">m_fire</a>; }</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="comment">// ------------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="classKartControl.html#a36522b47c1c40ba5540cc5550b71d235">  152</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classKartControl.html#a36522b47c1c40ba5540cc5550b71d235">getLookBack</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classKartControl.html#a414a2e371442afdf804f89dc0c1010c8">m_look_back</a>; }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>};</div>
+</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="ttc" id="aclassBareNetworkString_html"><div class="ttname"><a href="classBareNetworkString.html">BareNetworkString</a></div><div class="ttdoc">Describes a chain of 8-bit unsigned integers.</div><div class="ttdef"><b>Definition</b> network_string.hpp:53</div></div>
+<div class="ttc" id="aclassKartControl_html_a10d086f1557be1deaf8bd2808a0ea5ae"><div class="ttname"><a href="classKartControl.html#a10d086f1557be1deaf8bd2808a0ea5ae">KartControl::setSteer</a></div><div class="ttdeci">void setSteer(float f)</div><div class="ttdoc">Sets the current steering value.</div><div class="ttdef"><b>Definition</b> kart_control.cpp:27</div></div>
+<div class="ttc" id="aclassKartControl_html_a1fca41f3f8d5e8c045508a111f3ab17b"><div class="ttname"><a href="classKartControl.html#a1fca41f3f8d5e8c045508a111f3ab17b">KartControl::SkidControl</a></div><div class="ttdeci">SkidControl</div><div class="ttdoc">The skidding control state: SC_NONE: not pressed; SC_NO_DIRECTION: pressed, but no steering; SC_LEFT/...</div><div class="ttdef"><b>Definition</b> kart_control.hpp:35</div></div>
+<div class="ttc" id="aclassKartControl_html_a2194c13fea7a840e13a5d497a5f2c509"><div class="ttname"><a href="classKartControl.html#a2194c13fea7a840e13a5d497a5f2c509">KartControl::m_steer</a></div><div class="ttdeci">int16_t m_steer</div><div class="ttdoc">The current steering value in [-32767, 32767].</div><div class="ttdef"><b>Definition</b> kart_control.hpp:39</div></div>
+<div class="ttc" id="aclassKartControl_html_a36522b47c1c40ba5540cc5550b71d235"><div class="ttname"><a href="classKartControl.html#a36522b47c1c40ba5540cc5550b71d235">KartControl::getLookBack</a></div><div class="ttdeci">bool getLookBack() const</div><div class="ttdoc">Returns if the kart wants to look back (which also implies that it will fire backwards.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:152</div></div>
+<div class="ttc" id="aclassKartControl_html_a3b5a2c36eef9ed45949b2b1b269439ad"><div class="ttname"><a href="classKartControl.html#a3b5a2c36eef9ed45949b2b1b269439ad">KartControl::m_brake</a></div><div class="ttdeci">bool m_brake</div><div class="ttdoc">True if the kart brakes.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:43</div></div>
+<div class="ttc" id="aclassKartControl_html_a414a2e371442afdf804f89dc0c1010c8"><div class="ttname"><a href="classKartControl.html#a414a2e371442afdf804f89dc0c1010c8">KartControl::m_look_back</a></div><div class="ttdeci">bool m_look_back</div><div class="ttdoc">True if the kart looks (and shoots) backwards.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:53</div></div>
+<div class="ttc" id="aclassKartControl_html_a5b7426ab3f9fda82ad40e800dde9fed8"><div class="ttname"><a href="classKartControl.html#a5b7426ab3f9fda82ad40e800dde9fed8">KartControl::getBrake</a></div><div class="ttdeci">bool getBrake() const</div><div class="ttdoc">Returns if the kart is braking.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:134</div></div>
+<div class="ttc" id="aclassKartControl_html_a64561dd7bdea088e4f1353cce8518f87"><div class="ttname"><a href="classKartControl.html#a64561dd7bdea088e4f1353cce8518f87">KartControl::getNitro</a></div><div class="ttdeci">bool getNitro() const</div><div class="ttdoc">Returns if the kart activates nitro.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:137</div></div>
+<div class="ttc" id="aclassKartControl_html_a6dbf56b581a1a9fa4d46e9d567653e8f"><div class="ttname"><a href="classKartControl.html#a6dbf56b581a1a9fa4d46e9d567653e8f">KartControl::setFire</a></div><div class="ttdeci">void setFire(bool b)</div><div class="ttdoc">Sets if the kart wants to fire.</div><div class="ttdef"><b>Definition</b> kart_control.cpp:71</div></div>
+<div class="ttc" id="aclassKartControl_html_a844d75ec891ee6c0617c7ce3e23a78ed"><div class="ttname"><a href="classKartControl.html#a844d75ec891ee6c0617c7ce3e23a78ed">KartControl::getAccel</a></div><div class="ttdeci">float getAccel() const</div><div class="ttdoc">Returns current acceleration in [0, 1].</div><div class="ttdef"><b>Definition</b> kart_control.hpp:131</div></div>
+<div class="ttc" id="aclassKartControl_html_a8d6184015b4b11bf12e014eb5d76add3"><div class="ttname"><a href="classKartControl.html#a8d6184015b4b11bf12e014eb5d76add3">KartControl::setBrake</a></div><div class="ttdeci">void setBrake(bool b)</div><div class="ttdoc">Sets if the kart is braking.</div><div class="ttdef"><b>Definition</b> kart_control.cpp:43</div></div>
+<div class="ttc" id="aclassKartControl_html_a8dbb01bb7267bd81d6b95fdf3e02caae"><div class="ttname"><a href="classKartControl.html#a8dbb01bb7267bd81d6b95fdf3e02caae">KartControl::setNitro</a></div><div class="ttdeci">void setNitro(bool b)</div><div class="ttdoc">Sets if the kart activates nitro.</div><div class="ttdef"><b>Definition</b> kart_control.cpp:50</div></div>
+<div class="ttc" id="aclassKartControl_html_a8fcfbe7a6002089dafe2abfec056f3b0"><div class="ttname"><a href="classKartControl.html#a8fcfbe7a6002089dafe2abfec056f3b0">KartControl::m_fire</a></div><div class="ttdeci">bool m_fire</div><div class="ttdoc">True if fire is selected.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:51</div></div>
+<div class="ttc" id="aclassKartControl_html_a91a7b82be69617c246eb752af604f8c1"><div class="ttname"><a href="classKartControl.html#a91a7b82be69617c246eb752af604f8c1">KartControl::getFire</a></div><div class="ttdeci">bool getFire() const</div><div class="ttdoc">Returns if fire is selected.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:148</div></div>
+<div class="ttc" id="aclassKartControl_html_a94577d98ba4744986ea1c86c59282695"><div class="ttname"><a href="classKartControl.html#a94577d98ba4744986ea1c86c59282695">KartControl::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Resets all controls.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:71</div></div>
+<div class="ttc" id="aclassKartControl_html_a9ecc056b8bd1504cd3298afd435b8454"><div class="ttname"><a href="classKartControl.html#a9ecc056b8bd1504cd3298afd435b8454">KartControl::operator==</a></div><div class="ttdeci">bool operator==(const KartControl &amp;other)</div><div class="ttdoc">Tests if two KartControls are equal.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:85</div></div>
+<div class="ttc" id="aclassKartControl_html_aa01218f5294a76d3291b64e5a1ddb166"><div class="ttname"><a href="classKartControl.html#aa01218f5294a76d3291b64e5a1ddb166">KartControl::setLookBack</a></div><div class="ttdeci">void setLookBack(bool b)</div><div class="ttdoc">Sets if the kart wants to look (and therefore also fires) backwards.</div><div class="ttdef"><b>Definition</b> kart_control.cpp:78</div></div>
+<div class="ttc" id="aclassKartControl_html_aa2b7c43632916129278982429931ec76"><div class="ttname"><a href="classKartControl.html#aa2b7c43632916129278982429931ec76">KartControl::setSkidControl</a></div><div class="ttdeci">void setSkidControl(SkidControl sc)</div><div class="ttdoc">Sets the skid control for this kart.</div><div class="ttdef"><b>Definition</b> kart_control.cpp:57</div></div>
+<div class="ttc" id="aclassKartControl_html_aa4707a691e725ccec462ec47dc03fbc5"><div class="ttname"><a href="classKartControl.html#aa4707a691e725ccec462ec47dc03fbc5">KartControl::getButtonsCompressed</a></div><div class="ttdeci">char getButtonsCompressed() const</div><div class="ttdoc">Compresses all buttons into a single byte.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:104</div></div>
+<div class="ttc" id="aclassKartControl_html_aacf396e7bfaddb9edb98e1d7ddfc0ea6"><div class="ttname"><a href="classKartControl.html#aacf396e7bfaddb9edb98e1d7ddfc0ea6">KartControl::m_accel</a></div><div class="ttdeci">uint16_t m_accel</div><div class="ttdoc">Acceleration, in [0, 65535].</div><div class="ttdef"><b>Definition</b> kart_control.hpp:41</div></div>
+<div class="ttc" id="aclassKartControl_html_abac86575855e6f00c02e7bedadfe1467"><div class="ttname"><a href="classKartControl.html#abac86575855e6f00c02e7bedadfe1467">KartControl::m_rescue</a></div><div class="ttdeci">bool m_rescue</div><div class="ttdoc">True if rescue is selected.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:49</div></div>
+<div class="ttc" id="aclassKartControl_html_abe8adb2904c8bf0295e763666f7471cb"><div class="ttname"><a href="classKartControl.html#abe8adb2904c8bf0295e763666f7471cb">KartControl::saveState</a></div><div class="ttdeci">void saveState(BareNetworkString *buffer) const</div><div class="ttdoc">Copies the important data from this objects into a memory buffer.</div><div class="ttdef"><b>Definition</b> kart_control.cpp:84</div></div>
+<div class="ttc" id="aclassKartControl_html_ac1831b0abd983d53aefa1b102bea74a1"><div class="ttname"><a href="classKartControl.html#ac1831b0abd983d53aefa1b102bea74a1">KartControl::setButtonsCompressed</a></div><div class="ttdeci">void setButtonsCompressed(char c)</div><div class="ttdoc">Sets the buttons from a compressed (1 byte) representation.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:117</div></div>
+<div class="ttc" id="aclassKartControl_html_ac9f9ccc7fa0c13d03ef85e7c1bd04170"><div class="ttname"><a href="classKartControl.html#ac9f9ccc7fa0c13d03ef85e7c1bd04170">KartControl::setRescue</a></div><div class="ttdeci">void setRescue(bool b)</div><div class="ttdoc">Returns if this kart wants to get rescued.</div><div class="ttdef"><b>Definition</b> kart_control.cpp:64</div></div>
+<div class="ttc" id="aclassKartControl_html_ad0c711a43a7b4e696d70020f01228813"><div class="ttname"><a href="classKartControl.html#ad0c711a43a7b4e696d70020f01228813">KartControl::getSkidControl</a></div><div class="ttdeci">SkidControl getSkidControl() const</div><div class="ttdoc">Returns the skidding control state: SC_NONE: not pressed; SC_NO_DIRECTION: pressed,...</div><div class="ttdef"><b>Definition</b> kart_control.hpp:142</div></div>
+<div class="ttc" id="aclassKartControl_html_ad1686d0229651a7ddbde35fcbe069ef6"><div class="ttname"><a href="classKartControl.html#ad1686d0229651a7ddbde35fcbe069ef6">KartControl::m_nitro</a></div><div class="ttdeci">bool m_nitro</div><div class="ttdoc">True if the kart activates nitro.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:45</div></div>
+<div class="ttc" id="aclassKartControl_html_ae0d4dbaa1c2d796956759947f327c98d"><div class="ttname"><a href="classKartControl.html#ae0d4dbaa1c2d796956759947f327c98d">KartControl::rewindTo</a></div><div class="ttdeci">void rewindTo(BareNetworkString *buffer)</div><div class="ttdoc">Restores this object from a previously saved memory buffer.</div><div class="ttdef"><b>Definition</b> kart_control.cpp:93</div></div>
+<div class="ttc" id="aclassKartControl_html_ae1f5580f0415f5060d69cf02c264ca50"><div class="ttname"><a href="classKartControl.html#ae1f5580f0415f5060d69cf02c264ca50">KartControl::getRescue</a></div><div class="ttdeci">bool getRescue() const</div><div class="ttdoc">Returns true if the kart triggered rescue.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:145</div></div>
+<div class="ttc" id="aclassKartControl_html_ae726bdfdae4f92c3cf3788eacd4af27b"><div class="ttname"><a href="classKartControl.html#ae726bdfdae4f92c3cf3788eacd4af27b">KartControl::m_skid</a></div><div class="ttdeci">SkidControl m_skid</div><div class="ttdoc">Skidding control state.</div><div class="ttdef"><b>Definition</b> kart_control.hpp:47</div></div>
+<div class="ttc" id="aclassKartControl_html_aec148bb40d77ece9285d6a32ad31232c"><div class="ttname"><a href="classKartControl.html#aec148bb40d77ece9285d6a32ad31232c">KartControl::getSteer</a></div><div class="ttdeci">float getSteer() const</div><div class="ttdoc">Returns the current steering value in [-1, 1].</div><div class="ttdef"><b>Definition</b> kart_control.hpp:128</div></div>
+<div class="ttc" id="aclassKartControl_html_af823096d70c7171bd5afb3c41c4f9797"><div class="ttname"><a href="classKartControl.html#af823096d70c7171bd5afb3c41c4f9797">KartControl::setAccel</a></div><div class="ttdeci">void setAccel(float f)</div><div class="ttdoc">Sets the acceleration.</div><div class="ttdef"><b>Definition</b> kart_control.cpp:35</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Declares the general types that are used by the network.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+생성시간 : <span class="timestamp"></span>, 프로젝트명 : SuperTuxKart, 생성자 : &#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
