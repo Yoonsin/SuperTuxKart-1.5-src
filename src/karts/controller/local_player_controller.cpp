@@ -266,17 +266,19 @@ void LocalPlayerController::convertAIToPlayerActions()
     std::vector<std::pair<PlayerAction, int> > all_actions;
 
     float steer_val = m_ai_controls->getSteer();
-    if (steer_val < 0.0f)
+    // Quantize steer value to mimic human steering and eliminate floating point micro-jitter
+    int steer_quantized = int(fabsf(steer_val) * 64.0f) * (32768 / 64);
+    if (steer_quantized > 32768) steer_quantized = 32768;
+
+    if (steer_val < -0.015f)
     {
         all_actions.emplace_back(PA_STEER_RIGHT, 0);
-        all_actions.emplace_back(PA_STEER_LEFT,
-            int(fabsf(steer_val) * 32768));
+        all_actions.emplace_back(PA_STEER_LEFT, steer_quantized);
     }
-    else if (steer_val > 0.0f)
+    else if (steer_val > 0.015f)
     {
         all_actions.emplace_back(PA_STEER_LEFT, 0);
-        all_actions.emplace_back(PA_STEER_RIGHT,
-            int(fabsf(steer_val) * 32768));
+        all_actions.emplace_back(PA_STEER_RIGHT, steer_quantized);
     }
     else
     {
@@ -301,6 +303,10 @@ void LocalPlayerController::convertAIToPlayerActions()
 
     for (const auto& a : all_actions)
     {
+        // Only send network actions when state actually changes (matching human play & NetworkAIController)
+        if (!PlayerController::action(a.first, a.second, /*dry_run*/true))
+            continue;
+
         if (NetworkConfig::get()->isNetworking() &&
             NetworkConfig::get()->isClient() &&
             !RewindManager::get()->isRewinding())
