@@ -407,14 +407,14 @@ void RaceManager::startNew(bool from_overworld)
         }
         if (!csv_name.empty())
         {
-#ifdef ANDROID
+#if defined (ANDROID) || defined (__ANDROID__)
             Log::info("CourseEval", "ANDROID branch, config dir='%s'",
                 file_manager->getUserConfigDir().c_str());
 #else
             Log::info("CourseEval", "NON-ANDROID branch, config dir='%s'",
                 file_manager->getUserConfigDir().c_str());
 #endif
-#ifdef ANDROID
+#if defined (ANDROID) || defined (__ANDROID__)
             const std::string csv_path = file_manager->getUserConfigFile(csv_name);
             Log::info("RaceManager", "user dir='%s'",
                 file_manager->getUserConfigDir().c_str());
