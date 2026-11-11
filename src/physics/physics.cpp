@@ -453,8 +453,8 @@ void Physics::KartKartCollision(AbstractKart *kart_a,
             kart_a->getIdent(),
             kart_b->getWorldKartId(),
             kart_b->getIdent(),
-            kart_a->getXYZ(),
-            kart_b->getXYZ()
+            kart_a->getBody()->getWorldTransform().getOrigin(),
+            kart_b->getBody()->getWorldTransform().getOrigin()
         );
     }
 

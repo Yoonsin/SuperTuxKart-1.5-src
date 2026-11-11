@@ -80,6 +80,7 @@ private:
     static std::string m_rtt_log_directory;
     static bool m_discrepancy_log_enabled;
     static std::string m_discrepancy_log_directory;
+    static bool m_auto_drive_enabled;
 
     /** Separate process of server instance. */
     ChildLoop* m_client_loop;
@@ -193,6 +194,9 @@ public:
     static void setDiscrepancyLogDirectory(const std::string& directory)
         { m_discrepancy_log_directory = directory; }
     static bool isDiscrepancyLoggingEnabled() { return m_discrepancy_log_enabled; }
+
+    static void setAutoDriveEnabled(bool enabled) { m_auto_drive_enabled = enabled; }
+    static bool isAutoDriveEnabled() { return m_auto_drive_enabled; }
 
     /** Creates the STKHost. It takes all confifguration parameters from
      *  NetworkConfig. This STKHost can either be a client or a server.

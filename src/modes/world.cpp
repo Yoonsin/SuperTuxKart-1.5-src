@@ -1,4 +1,4 @@
-﻿//
+//
 //  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2006-2015 SuperTuxKart-Team
 //
@@ -538,8 +538,8 @@ std::shared_ptr<AbstractKart> World::createKart
         {
             controller = new LocalPlayerController(new_kart.get(),
                 local_player_id, handicap);
-            const PlayerProfile* p = StateManager::get()
-                ->getActivePlayer(local_player_id)->getConstProfile();
+            auto ap = StateManager::get()->getActivePlayer(local_player_id);
+            const PlayerProfile* p = ap ? ap->getConstProfile() : nullptr;
             if (p && p->getDefaultKartColor() > 0.0f)
             {
                 ri->setHue(p->getDefaultKartColor());

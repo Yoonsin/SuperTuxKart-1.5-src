@@ -79,6 +79,7 @@ bool     STKHost::m_enable_console = false;
 bool     STKHost::m_rtt_log_enabled = false;
 std::string  STKHost::m_rtt_log_directory = "";
 bool     STKHost::m_discrepancy_log_enabled = false;
+bool     STKHost::m_auto_drive_enabled = false;
 std::string  STKHost::m_discrepancy_log_directory = "";
 
 std::shared_ptr<LobbyProtocol> STKHost::create(ChildLoop* cl)
@@ -1730,7 +1731,13 @@ void STKHost::finishRTTLogging()
     std::strftime(buffer, sizeof(buffer), "%Y%m%d_%H%M%S", now);
     const std::string role = NetworkConfig::get()->isServer() ? "server" : "client";
     const std::string file_name = "rtt_log_" + role + "_" + std::string(buffer) + ".csv";
-	const std::string file_path = ((!m_rtt_log_directory.empty()) ? m_rtt_log_directory + "/" : "./") + file_name;
+    if (!m_rtt_log_directory.empty() && file_manager)
+    {
+        file_manager->checkAndCreateDirectoryP(m_rtt_log_directory);
+    }
+    const std::string file_path = m_rtt_log_directory.empty() ?
+        (file_manager ? file_manager->getUserConfigFile(file_name) : "./" + file_name) :
+        m_rtt_log_directory + "/" + file_name;
     
     std::ofstream out(file_path.c_str(),std::ios::out | std::ios::trunc);
     
@@ -1841,9 +1848,7 @@ void STKHost::finishDiscrepancyLogging()
         records.swap(m_discrepancy_records);
     }
 
-    if (records.empty())
-        return;
-
+    // Set Time Format (YYYYMMDD_HHMMSS)
     StkTime::TimeType t = StkTime::getTimeSinceEpoch();
     struct tm* now = std::localtime(&t);
     char buffer[32];
@@ -1854,7 +1859,9 @@ void STKHost::finishDiscrepancyLogging()
     {
         file_manager->checkAndCreateDirectoryP(m_discrepancy_log_directory);
     }
-    const std::string file_path = ((!m_discrepancy_log_directory.empty()) ? m_discrepancy_log_directory + "/" : "./") + file_name;
+    const std::string file_path = m_discrepancy_log_directory.empty() ?
+        (file_manager ? file_manager->getUserConfigFile(file_name) : "./" + file_name) :
+        m_discrepancy_log_directory + "/" + file_name;
 
     std::ofstream out(file_path.c_str(), std::ios::out | std::ios::trunc);
     if (!out.is_open())
