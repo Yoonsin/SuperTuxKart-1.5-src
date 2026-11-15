@@ -1,4 +1,4 @@
-//  SuperTuxKart - a fun racing game with go-kart
+﻿//  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2009-2015 Marianne Gagnon
 //
 //  This program is free software; you can redistribute it and/or
@@ -272,7 +272,7 @@ void OptionsScreenVideo::init()
     //I18N: In the video options
     vsync->addLabel(_("Vertical Sync"));
 #ifdef MOBILE_STK
-    std::set<int> fps = { 30, 60, 120 };
+    std::set<int> fps = { 30, 60, 120, 240 };
 #else
     std::set<int> fps = { 30, 60, 120, 180, 250, 500, 1000 };
 #endif

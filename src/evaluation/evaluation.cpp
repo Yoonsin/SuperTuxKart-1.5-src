@@ -1,6 +1,9 @@
 ﻿#pragma once
 #include "evaluation.hpp"
-
+#include <cstdio>
+#include <ctime>
+#include <iomanip>
+#include <locale>
 #include <fstream>
 #include <sstream>
 #include <numeric>
@@ -25,14 +28,62 @@
 #include "io/file_manager.hpp"
 #include "network/stk_host.hpp"
 
+#include "config/user_config.hpp"
+#include "karts/abstract_kart.hpp"
+#include "modes/world.hpp"
+#include "race/race_manager.hpp"
+#include "tracks/track.hpp"
+#include "utils/file_utils.hpp"
+
 void Evaluation::reset()
 {
+	//기존 스코어
 	m_current_score = 100.0f;
 	m_wr_index = 0;
 	m_st_index = 0;
 	m_result = { false, 0.0f };
 
+	//savecsv용
+	m_wall_collision_count = 0;
+	m_fall_rescue_count = 0;
+	m_outside_time = 0.0;
+	m_wall_contact_time = -1.0;
+	m_csv_written = false;
+
+	m_active_route_chunk = -1;
+
 	clearRouteChunks();
+}
+
+bool Evaluation::isRecordingKart(const AbstractKart* kart) const
+{
+	World* world = World::getWorld();
+
+	return UserConfigParams::m_course_evaluation
+		&& RaceManager::get()->getMinorMode()
+		== RaceManager::MINOR_MODE_TIME_TRIAL
+		&& world
+		&& kart
+		&& kart == world->getLocalPlayerKart(0)
+		&& world->isActiveRacePhase()
+		&& !kart->hasFinishedRace()
+		&& !kart->isEliminated()
+		&& !m_csv_written;
+}
+
+void Evaluation::onWallContact(double race_time)
+{
+	if (m_wall_contact_time < 0.0 || race_time - m_wall_contact_time >= 0.5)
+	{
+		++m_wall_collision_count;
+	}
+
+	m_wall_contact_time = race_time;
+}
+
+void Evaluation::onFallRescue()
+{
+	++m_fall_rescue_count;
 }
 
 void Evaluation::loadWorldRecordCSV(const std::string& filename)
@@ -198,7 +249,7 @@ Result Evaluation::getDistance(const Vec3& Player, const Vec3& wr_A, const Vec3&
 	return { false, 0.0 };
 }
 
-void Evaluation::update(const Vec3& Player)
+void Evaluation::update(const Vec3& Player, float elapsed_time)
 {
 	if (m_wr_point.empty() || m_st_point.empty())
 	{
@@ -220,10 +271,11 @@ void Evaluation::update(const Vec3& Player)
 		}
 	}
 	*/
-	int search_index = 150;
+
+	int search_index = 100;
 	int start_st = std::max(0, m_st_index - search_index);
 	int end_st = std::min((int)m_st_point.size() - 1, m_st_index + search_index);
-	float min_distance = 500;
+	float min_distance = 350;
 	for (int i = start_st; i <= end_st; i++)
 	{
 		float distance = (Player - m_st_point[i].pos).length();
@@ -258,8 +310,9 @@ void Evaluation::update(const Vec3& Player)
 
 	if (m_result.RouteDeviation)
 	{
+		m_outside_time += elapsed_time;
+
 		m_current_score -= m_result.SubScore;
-		//recordcsv();
 		if (m_current_score < 0.0f)
 		{
 			m_current_score = 0.0f;
@@ -268,38 +321,81 @@ void Evaluation::update(const Vec3& Player)
 	}
 }
 
-void Evaluation::recordcsv()
+//새로추가
+void Evaluation::recordcsv(float driving_time)
 {
-	/*
-	std::string directory = STKHost::getRTTLogDirectory();
-	if (directory.empty())
+	if (!UserConfigParams::m_course_evaluation || m_csv_written)
 	{
-		directory = file_manager->getUserConfigFile("/evaluation_record.csv");
-	}
-	else
-	{
-		directory += "/evaluation_record.csv";
-	}
-	std::ofstream file(directory);
-
-	if (!file.is_open())
-	{
-		Log::error("Failed to open evaluation_record.csv for writing.", "");
 		return;
 	}
-	file << "Time\n";
 
-	if (m_result.RouteDeviation)
+	const auto now = std::chrono::system_clock::now();
+	const std::time_t now_time = std::chrono::system_clock::to_time_t(now);
+	const std::tm* local_time = std::localtime(&now_time);
+
+	if (!local_time)
 	{
-
+		Log::error("Evaluation", "Could not get local time.");
+		return;
 	}
-	else
+
+	char datetime[32];
+
+	if (std::strftime(datetime, sizeof(datetime), "%Y%m%d_%H%M%S", local_time) == 0)
 	{
-
+		Log::error("Evaluation", "Could not format date/time.");
+		return;
 	}
-	file.close();
-	Log::info("Evaluation", " 좌표 기록 완료");
-	*/
+
+	const auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count() % 1000;
+
+#if defined(ANDROID) || defined(__ANDROID__)
+	const char* platform = "android";
+#elif defined(_WIN32) || defined(WIN32)
+	const char* platform = "windows";
+#else
+	const char* platform = "unknown";
+#endif
+
+	const std::string track = Track::getCurrentTrack()->getIdent();
+
+	std::ostringstream filename;
+	filename.imbue(std::locale::classic());
+
+	filename << datetime << std::setfill('0') << std::setw(3) << milliseconds << "_" << track << "_" << platform << ".csv";
+
+	const std::string path = file_manager->getUserConfigFile(filename.str());
+
+	std::ostringstream csv;
+	csv.imbue(std::locale::classic());
+
+	csv << "driving time,wall collision," "fall rescue,outside time,total score\n";
+	m_current_score -= m_fall_rescue_count * 5.0f + m_wall_collision_count * 2.0f;
+	csv << std::fixed << std::setprecision(3) << driving_time << "," << m_wall_collision_count << "," << m_fall_rescue_count << "," << m_outside_time << "," << m_current_score << "\n";
+
+	FILE* file = FileUtils::fopenU8Path(path, "w");
+
+	if (!file)
+	{
+		Log::error("Evaluation", "Could not open '%s'.", path.c_str());
+		return;
+	}
+
+	const std::string content = csv.str();
+
+	const bool written = std::fwrite(content.data(), 1, content.size(), file) == content.size();
+
+	const int close_result = std::fclose(file);
+
+	if (!written || close_result != 0)
+	{
+		Log::error("Evaluation", "Could not write '%s'.", path.c_str());
+		return;
+	}
+
+	m_csv_written = true;
+
+	Log::info("Evaluation", "Saved result CSV: '%s'.", path.c_str());
 }
 
 void Evaluation::render()

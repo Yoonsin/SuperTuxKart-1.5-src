@@ -1,4 +1,4 @@
-//
+﻿//
 //  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2004-2015 Ingo Ruhnke <grumbel@gmx.de>
 //  Copyright (C) 2006-2015 SuperTuxKart-Team
@@ -400,6 +400,7 @@ void MainLoop::updateRace(int ticks, bool fast_forward)
  */
 void MainLoop::run()
 {
+
     m_curr_time = std::chrono::steady_clock::now();
     // DT keeps track of the leftover time, since the race update
     // happens in fixed timesteps

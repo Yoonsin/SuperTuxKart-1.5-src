@@ -150,32 +150,35 @@ void History::Save()
         std::strftime(timestamp, sizeof(timestamp),"%Y%m%d_%H%M%S", local_time);
     std::string trackname = Track::getCurrentTrack()->getIdent().c_str();
     const std::string filename = std::string("history_") + timestamp + "_" + trackname + ".dat";
+    
+    //테스트 버전
+    FILE* fd = nullptr;
+    std::string save_path;
 
-    FILE* fd = fopen(filename.c_str(), "w");
-    if (fd)
-    {
-#ifdef ANDROID
-        const std::string fn = file_manager->getUserConfigFile(filename);
-        fd = FileUtils::fopenU8Path(fn, "w");
-        if (fd)
-            Log::info("History", "Saved in '%s'.", fn.c_str());
-#endif
-        Log::info("History", "Saved in ./%s.", filename.c_str());
-    }
-    else
-    {
-        std::string fn = file_manager->getUserConfigFile("filename");
-        fd = FileUtils::fopenU8Path(fn, "w");
-        if (fd)
-            Log::info("History", "Saved in '%s'.", fn.c_str());
-    }
+#if defined(ANDROID) || defined(__ANDROID__)
+    // Android에서는 STK 사용자 설정 폴더에 저장합니다.
+    save_path = file_manager->getUserConfigFile(filename);
+    fd = FileUtils::fopenU8Path(save_path, "w");
+#else
+    // PC에서는 현재 폴더부터 시도합니다.
+    save_path = filename;
+    fd = FileUtils::fopenU8Path(save_path, "w");
+
     if (!fd)
     {
-        Log::info("History", "Can't open %s for writing - can't save history.", filename.c_str());
-        Log::info("History", "Make sure the history file in the current directory "
-            "or the config directory is writable.");
+        save_path = file_manager->getUserConfigFile(filename);
+        fd = FileUtils::fopenU8Path(save_path, "w");
+    }
+#endif
+
+    if (!fd)
+    {
+        Log::error("History", "Could not save history to '%s'.",
+            save_path.c_str());
         return;
     }
+
+    Log::info("History", "Saved in '%s'.", save_path.c_str());
 
     const int num_karts = world->getNumKarts();
     fprintf(fd, "STK-version:      %s\n", STK_VERSION);

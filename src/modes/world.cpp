@@ -449,6 +449,12 @@ void World::reset(bool restart)
     if (m_process_type == PT_MAIN)
         irr_driver->reset();
     m_unfair_team = false;
+    //새로 추가
+    if (UserConfigParams::m_course_evaluation)
+    {
+        Evaluation::get()->reset();
+        m_timer = 0.0;
+    }
 }   // reset
 
 //-----------------------------------------------------------------------------
@@ -744,6 +750,26 @@ void World::onGo()
  */
 void World::terminateRace()
 {
+    //새로 추가
+    AbstractKart* evaluation_player = getLocalPlayerKart(0);
+
+    if (UserConfigParams::m_course_evaluation &&
+        RaceManager::get()->getMinorMode()
+        == RaceManager::MINOR_MODE_TIME_TRIAL &&
+        evaluation_player &&
+        evaluation_player->hasFinishedRace() &&
+        !evaluation_player->isEliminated())
+    {
+        Evaluation::get()->recordcsv(evaluation_player->getFinishTime());
+    }
+    //수정 버전
+#ifdef ANDROID
+    // History 재생 중에는 다시 저장하지 않습니다.
+    if (history && !history->replayHistory())
+    {
+        history->Save();
+    }
+#endif
     // In case the user opened paused dialog in network
     if (!GUIEngine::isNoGraphics())
     {
@@ -1224,8 +1250,27 @@ void World::update(int ticks)
     PROFILER_PUSH_CPU_MARKER("World::update (physics)", 0xa0, 0x7F, 0x00);
     Physics::get()->update(ticks);
     PROFILER_POP_CPU_MARKER();
+    //새 함수
+    AbstractKart* player_kart = getLocalPlayerKart(0);
+    Evaluation* evaluation = Evaluation::get();
+
+    if (evaluation->isRecordingKart(player_kart))
+    {
+        m_timer += stk_config->ticks2Time(ticks);
+
+        if (m_timer >= 0.1)
+        {
+            evaluation->update(player_kart->getXYZ(), static_cast<float>(m_timer));
+            m_timer = 0.0;
+        }
+    }
+    else
+    {
+        m_timer = 0.0;
+    }//새 함수
 
     //eval로 위치 받아오기
+    /*
     AbstractKart* player_kart = getLocalPlayerKart(0);
     if (player_kart)
     {
@@ -1238,7 +1283,7 @@ void World::update(int ticks)
             Evaluation::get()->update(pos);
         }
         // tick == ticks, position == pos
-    }
+    }*/
     
     //eval로 위치 받아오기
     /*

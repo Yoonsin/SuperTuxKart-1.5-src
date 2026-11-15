@@ -1,4 +1,4 @@
-//
+﻿//
 //  SuperTuxKart - a fun racing game with go-kart
 //  Copyright (C) 2004-2016 Steve Baker <sjbaker1@airmail.net>
 //  Copyright (C) 2006-2016 SuperTuxKart-Team, Joerg Henrichs, Steve Baker
@@ -89,6 +89,7 @@
 #include "utils/string_utils.hpp"
 #include "utils/translation.hpp"
 #include "utils/vs.hpp"
+#include "evaluation/evaluation.hpp"//추가
 
 #include <ICameraSceneNode.h>
 #include <IDummyTransformationSceneNode.h>
@@ -1695,6 +1696,7 @@ void Kart::update(int ticks)
     PROFILER_PUSH_CPU_MARKER("Kart::Update (material)", 0x60, 0x34, 0x7F);
     if (!material)   // kart falling off the track
     {
+
         // let kart fall a bit before rescuing
         const Vec3 *min, *max;
         Track::getCurrentTrack()->getAABB(&min, &max);
@@ -1702,6 +1704,12 @@ void Kart::update(int ticks)
         if((min->getY() - getXYZ().getY() > 17 || dist_to_sector > 25) && !m_flying &&
            !has_animation_before)
         {
+
+            if (Evaluation::get()->isRecordingKart(this))
+            {
+                Evaluation::get()->onFallRescue();
+            }
+
             RescueAnimation::create(this);
             m_last_factor_engine_sound = 0.0f;
         }
@@ -2316,6 +2324,7 @@ void Kart::setSlipstreamEffect(float f)
  */
 void Kart::crashed(AbstractKart *k, bool update_attachments)
 {
+
     if(update_attachments)
     {
         assert(k);
@@ -2333,6 +2342,22 @@ void Kart::crashed(AbstractKart *k, bool update_attachments)
  */
 void Kart::crashed(const Material *m, const Vec3 &normal)
 {
+    //새로 추가
+    Evaluation* evaluation = Evaluation::get();
+
+    if (evaluation->isRecordingKart(this) && !getKartAnimation() && (!m || m->getCollisionReaction() != Material::RESCUE))
+    {
+        const Vec3 kart_up = getTrans().getBasis().getColumn(1);
+        const float normal_length = normal.length();
+
+        // 접촉 법선이 카트의 위쪽 방향과 거의 수직이면
+        // 바닥보다 벽에 가까운 접촉으로 판단합니다.
+        if (normal_length > 0.001f && fabsf(normal.dot(kart_up) / normal_length) < 0.5f)
+        {
+            evaluation->onWallContact(World::getWorld()->getTime());
+        }
+    }//새로 추가
+
     if (m && !(m->getCollisionReaction() == Material::RESCUE))
         playCrashSFX(m, NULL);
 #ifdef DEBUG
