@@ -763,7 +763,7 @@ void World::terminateRace()
         Evaluation::get()->recordcsv(evaluation_player->getFinishTime());
     }
     //수정 버전
-#ifdef ANDROID
+#if defined(ANDROID) || defined(__ANDROID__)
     // History 재생 중에는 다시 저장하지 않습니다.
     if (history && !history->replayHistory())
     {
