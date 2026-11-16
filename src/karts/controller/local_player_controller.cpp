@@ -353,27 +353,15 @@ void LocalPlayerController::update(int ticks)
         Log::debug("LocalPlayerController", "irr_driver", "-------------------------------------");
     }
 
-    PlayerController::update(ticks);
-
     if (m_ai_controller && !RewindManager::get()->isRewinding() &&
         !m_kart->hasFinishedRace() &&
         World::getWorld()->getPhase() < WorldStatus::DELAY_FINISH_PHASE)
     {
         m_ai_controller->update(ticks);
         convertAIToPlayerActions();
-
-        // Ensure AI control directly overrides PlayerController's keyboard neutralizer
-        m_controls->setSteer(m_ai_controls->getSteer());
-        m_controls->setSkidControl(m_ai_controls->getSkidControl());
-        m_controls->setAccel(m_ai_controls->getAccel());
-        m_controls->setBrake(m_ai_controls->getBrake());
-        if (m_ai_controls->getFire())
-            m_controls->setFire(true);
-        if (m_ai_controls->getNitro())
-            m_controls->setNitro(true);
-        if (m_ai_controls->getRescue())
-            m_controls->setRescue(true);
     }
+
+    PlayerController::update(ticks);
 
     // look backward when the player requests or
     // if automatic reverse camera is active

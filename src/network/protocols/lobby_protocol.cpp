@@ -84,9 +84,12 @@ void LobbyProtocol::loadWorld()
 
     // Make sure that if there is only a single local player this player can
     // use all input devices.
-    StateManager::ActivePlayer *ap = RaceManager::get()->getNumLocalPlayers()>1
-                                   ? NULL
-                                   : StateManager::get()->getActivePlayer(0);
+    StateManager::ActivePlayer *ap =
+        (!NetworkConfig::get()->isNetworkAIInstance() &&
+         StateManager::get()->activePlayerCount() == 1 &&
+         RaceManager::get()->getNumLocalPlayers() == 1)
+        ? StateManager::get()->getActivePlayer(0)
+        : NULL;
     // We only need to use input manager in main process
     if (m_process_type == PT_MAIN)
         input_manager->getDeviceManager()->setSinglePlayer(ap);
