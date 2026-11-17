@@ -116,6 +116,7 @@ void FreeForAll::reset(bool restart)
             kart->getBody()->setAngularFactor(Vec3(0.0f));
         }
     }
+    
     m_duel_ticks = 0;
     m_cycle_id = 0;
     m_duel_fired = false;

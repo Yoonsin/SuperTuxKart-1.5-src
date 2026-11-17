@@ -202,7 +202,8 @@ void LinearWorld::update(int ticks)
                 auto peer = npp->getPeer();
                 if ((peer && peer->isAIPeer()) || sl->isAIProfile(npp))
                     has_ai = true;
-                else if (!getKart(i)->hasFinishedRace())
+                
+                if (!getKart(i)->hasFinishedRace())
                     all_players_finished = false;
             }
         }

@@ -2094,7 +2094,8 @@ void ServerLobby::startSelection(const Event *event)
         case RaceManager::MINOR_MODE_FREE_FOR_ALL:
         {
             m_default_vote->m_num_laps = 0;
-            m_default_vote->m_reverse = rg.get(2) == 0;
+            m_default_vote->m_reverse = false;
+            //m_default_vote->m_reverse = rg.get(2) == 0;
             break;
         }
         case RaceManager::MINOR_MODE_CAPTURE_THE_FLAG:
@@ -3285,7 +3286,8 @@ void ServerLobby::handlePlayerVote(Event* event)
     else if (RaceManager::get()->getMinorMode() ==
         RaceManager::MINOR_MODE_FREE_FOR_ALL)
     {
-        vote.m_num_laps = 0;
+        vote.m_reverse = false;
+        //vote.m_num_laps = 0;
     }
     else if (RaceManager::get()->getMinorMode() ==
         RaceManager::MINOR_MODE_CAPTURE_THE_FLAG)
@@ -4447,8 +4449,8 @@ std::set<std::shared_ptr<STKPeer>> ServerLobby::getSpectatorsByLimit()
         player_limit = std::min(player_limit, (unsigned)ServerConfig::m_max_players_in_game);
 
     // only 10 players allowed for battle or soccer
-    if (RaceManager::get()->isBattleMode() || RaceManager::get()->isSoccerMode())
-        player_limit = std::min(player_limit, 10u);
+    //if (RaceManager::get()->isBattleMode() || RaceManager::get()->isSoccerMode())
+        //player_limit = std::min(player_limit, 10u);
 
     unsigned ingame_players = 0, waiting_players = 0, total_players = 0;
     STKHost::get()->updatePlayers(&ingame_players, &waiting_players, &total_players);
