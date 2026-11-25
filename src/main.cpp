@@ -632,6 +632,8 @@ void cmdLineHelp()
     "       --discrepancy-log-dir=DIR Set the discrepancy log output directory.\n"
     "       --profile-log      Save profiler data for each multiplayer race.\n"
     "       --profile-log-dir=DIR  Set the profile log output directory.\n"
+    "       --auto-item-avoid  Auto dodge after firing in --auto-item-fire mode.\n"
+    "       --manual-item-avoid Manual dodge (D key / look-back button) in --auto-item-fire mode.\n"
     "       --score-log        Save bowling HIT/MISS score log in --auto-item-fire mode.\n"
     "       --score-log-dir=DIR Set the score log output directory (default: config directory).\n"
     "       --quad-log         Save first visits to track quads as CSV.\n"
@@ -1063,6 +1065,18 @@ int handleCmdLinePreliminary()
     {
         UserConfigParams::m_auto_item_fire = true;
         Log::info("main", "[auto-item-fire] Experimental duel mode enabled.");
+    }
+
+    if (CommandLine::has("--auto-item-avoid"))
+    {
+        UserConfigParams::m_auto_item_avoid = true;
+        Log::info("main", "[auto-item-avoid] Auto dodge enabled.");
+    }
+
+    if (CommandLine::has("--manual-item-avoid"))
+    {
+        UserConfigParams::m_manual_item_avoid = true;
+        Log::info("main", "[manual-item-avoid] Manual dodge enabled (D key / look-back button).");
     }
 
     if (CommandLine::has("--score-log"))

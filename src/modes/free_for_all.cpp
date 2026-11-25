@@ -44,6 +44,20 @@
 #include <ctime>
 #include <iostream>
 
+#include "karts/controller/player_controller.hpp"   // getSteerInput()
+#include "physics/btKart.hpp"                        // updateAllWheelPositions()
+
+// ====================================================================
+// [auto-item-avoid] 회피 실험 설정값 — 실험할 때는 여기 숫자만 바꾸세요
+// ====================================================================
+static const float AVOID_DISTANCE     = 3.0f; // 회피 거리 (미터)
+static const int   AVOID_PRESS_DELAY  = 29;   // 발사 후 몇 틱 뒤에 회피 버튼을 누를지
+static const int   AVOID_HOLD_BUTTON  = 20;   // 회피 버튼을 몇 틱 동안 누르고 있을지
+static const int   AVOID_MOVE_TICKS   = 20;   // 옆으로 이동하는 시간 (틱)
+static const int   AVOID_STAY_TICKS   = 60;   // 옆에 머무는 시간 (틱)
+static const int   AVOID_RETURN_TICKS = 20;   // 원래 자리로 돌아오는 시간 (틱)
+// ====================================================================
+
 // ----------------------------------------------------------------------------
 /** Constructor. Sets up the clock mode etc.
  */
@@ -117,10 +131,18 @@ void FreeForAll::reset(bool restart)
             kart->makeKartRest();
             kart->getBody()->setLinearFactor(Vec3(0.0f));
             kart->getBody()->setAngularFactor(Vec3(0.0f));
+            m_home_trans[i] = kart->getTrans();   // [auto-item-avoid] 지금 위치 = 원래 자리
         }
     }
     m_duel_ticks = 0;
     m_duel_fired = false;
+    // [auto-item-avoid] 회피 상태 초기화
+    for (int i = 0; i < 2; i++)
+    {
+        m_dodge_start_tick[i] = -1;
+        m_dodge_tick_by_round[i].clear();
+        m_prev_steer[i]       = false;
+    }
     m_count_down_reached_zero = false;
     if (RaceManager::get()->hasTimeTarget())
     {
@@ -261,10 +283,16 @@ void FreeForAll::update(int ticks)
         {
             if(NetworkConfig::get()->isClient())
                 setKartTimingEvent(ticks);
+            else if (UserConfigParams::m_auto_item_avoid ||
+                     UserConfigParams::m_manual_item_avoid)   // [auto/manual-item-avoid] 서버
+                updateDodge();
         }
-        else 
+        else
         {
             setKartTimingEvent(ticks);
+            if (UserConfigParams::m_auto_item_avoid ||
+                UserConfigParams::m_manual_item_avoid)      // [auto/manual-item-avoid] 오프라인 테스트용
+                updateDodge();
         }
     }
     // ====================================================================
@@ -281,6 +309,9 @@ void FreeForAll::setKartTimingEvent(int ticks)
         m_duel_ticks += ticks;
         int shoot_tick = 240; // 2초 (240틱) 단위로 반복
         int reset_tick = 1200; // 10초 (1200틱) 단위로 반복
+        int release_tick = shoot_tick + 120; // 누른 뒤 120틱(1초) 뒤에 뗌
+        int dodge_press_tick   = shoot_tick + AVOID_PRESS_DELAY;          // [auto-item-avoid] 회피 버튼 누름
+        int dodge_release_tick = dodge_press_tick + AVOID_HOLD_BUTTON;    // [auto-item-avoid] 회피 버튼 뗌
 
         for (int kart_id = 0; kart_id < 2; kart_id++) {
             // 만약 네트워크 게임이고 내 로컬 플레이어가 아니면 입력 제외
@@ -290,7 +321,8 @@ void FreeForAll::setKartTimingEvent(int ticks)
             getKart(kart_id)->getControls().setSteer(0.0f);     // 조향(회전) 차단
             getKart(kart_id)->getControls().setAccel(false);    // 가속 차단
             getKart(kart_id)->getControls().setBrake(false);    // 브레이크 차단
-            getKart(kart_id)->getControls().setLookBack(false); // 뒤보기 차단
+            if (!UserConfigParams::m_manual_item_avoid)         // [manual-item-avoid] 수동 회피 모드에서는 회피 버튼(뒤 보기) 유지
+                getKart(kart_id)->getControls().setLookBack(false); // 뒤보기 차단
             
             int player_kart_id = (getKart(kart_id)->getController()->isPlayerController()) ? kart_id : -1;
 			//if (player_kart_id != kart_id) continue; //플레이어만 던지고 싶을 때 주석 해제
@@ -311,18 +343,102 @@ void FreeForAll::setKartTimingEvent(int ticks)
                 // //Log::info("ticks", "%d", m_duel_ticks);
             }
 
-			// shoot_tick 이후 1틱이 지나면 발사 버튼을 떼도록 처리 (연속 발사 방지)
-            if (old_ticks <= shoot_tick + 1 && m_duel_ticks > shoot_tick + 1)
+			// 누른 뒤 120틱이 지나면 발사 버튼을 뗌
+            if (old_ticks < release_tick && m_duel_ticks >= release_tick)
             {
                 if (dynamic_cast<AIBaseController*>(getKart(kart_id)->getController()))
                     getKart(kart_id)->getControls().setFire(false);
-                else 
+                else
                     getKart(kart_id)->getController()->action(PlayerAction::PA_FIRE, 0);
+            }
+
+            // [auto-item-avoid] 회피 버튼 누르고 떼기 (발사와 같은 모양)
+            if (UserConfigParams::m_auto_item_avoid)
+            {
+                if (old_ticks < dodge_press_tick && m_duel_ticks >= dodge_press_tick)
+                    getKart(kart_id)->getController()->action(PlayerAction::PA_STEER_LEFT, 32768);
+
+                if (old_ticks < dodge_release_tick && m_duel_ticks >= dodge_release_tick)
+                    getKart(kart_id)->getController()->action(PlayerAction::PA_STEER_LEFT, 0);
             }
         }
         if (m_duel_ticks >= reset_tick) m_duel_ticks = 0;
     }
 }
+
+// ----------------------------------------------------------------------------
+/** [auto-item-avoid] 서버(또는 오프라인)에서 회피 버튼 입력을 감지하고,
+ *  카트를 옆으로 옮겼다가 원래 자리로 되돌립니다. 모든 틱은 서버 틱입니다.
+ */
+void FreeForAll::updateDodge()
+{
+    if (RewindManager::get()->isRewinding() || !isActiveRacePhase())
+        return;
+
+    const int now = getTicksSinceStart();          // 서버 틱 (하나의 시간축)
+
+    for (int i = 0; i < 2; i++)
+    {
+        AbstractKart* kart = getKart(i);
+
+        // ① 회피 버튼이 눌렸는지 확인
+        PlayerController* pc = dynamic_cast<PlayerController*>(kart->getController());
+        // [manual-item-avoid] 수동 모드: 뒤 보기(D키 / 거울 버튼), 자동 모드: 조향 입력
+        bool pressed = UserConfigParams::m_manual_item_avoid
+                     ? kart->getControls().getLookBack()
+                     : (pc && pc->getSteerInput() != 0);
+
+        // ② "방금 눌렀다" → 회피 시작 (이미 회피 중이면 무시)
+        if (pressed && !m_prev_steer[i] && m_dodge_start_tick[i] < 0)
+        {
+            m_dodge_start_tick[i] = now;
+            m_dodge_tick_by_round[i][ExperimentLogger::getRoundId(now)] = now;  // 기록용 (라운드별 저장)
+        }
+        m_prev_steer[i] = pressed;
+
+        // ③ 회피 중이 아니면 넘어감
+        if (m_dodge_start_tick[i] < 0) continue;
+
+        // ④ 맞아서 폭발 애니메이션 중이면 위치를 건드리지 않음
+        if (kart->getKartAnimation()) continue;
+
+        // ⑤ 지난 틱 수에 따라 옆으로 얼마나 비킬지 계산
+        int e = now - m_dodge_start_tick[i];
+        float offset;
+        if (e < AVOID_MOVE_TICKS)                                              // 이동 중
+            offset = AVOID_DISTANCE * e / AVOID_MOVE_TICKS;
+        else if (e < AVOID_MOVE_TICKS + AVOID_STAY_TICKS)                      // 머무는 중
+            offset = AVOID_DISTANCE;
+        else if (e < AVOID_MOVE_TICKS + AVOID_STAY_TICKS + AVOID_RETURN_TICKS) // 복귀 중
+            offset = AVOID_DISTANCE *
+                (1.0f - float(e - AVOID_MOVE_TICKS - AVOID_STAY_TICKS) / AVOID_RETURN_TICKS);
+        else                                                                   // 끝: 정확히 원래 자리
+        {
+            offset = 0.0f;
+            m_dodge_start_tick[i] = -1;
+        }
+        placeKart(i, offset);
+    }
+}   // updateDodge
+
+// ----------------------------------------------------------------------------
+/** [auto-item-avoid] 카트를 원래 자리에서 옆 방향으로 offset(미터)만큼 옮깁니다.
+ *  world.cpp 의 World::moveKartTo() 와 같은 방식으로 위치를 적용합니다.
+ */
+void FreeForAll::placeKart(int kart_id, float offset)
+{
+    AbstractKart* kart = getKart(kart_id);
+    btTransform t = m_home_trans[kart_id];
+
+    // 카트 기준 옆 방향(x축)으로 offset만큼 이동
+    Vec3 side = t.getBasis().getColumn(0);
+    t.setOrigin(t.getOrigin() + side * offset);
+
+    kart->setXYZ(t.getOrigin());
+    kart->setRotation(t.getRotation());
+    kart->getBody()->setCenterOfMassTransform(t);
+    kart->getVehicle()->updateAllWheelPositions();
+}   // placeKart
 
 // ----------------------------------------------------------------------------
 /** The battle is over if only one kart is left, or no player kart.

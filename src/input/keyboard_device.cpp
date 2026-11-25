@@ -20,6 +20,7 @@
 #include "input/keyboard_device.hpp"
 
 #include "input/keyboard_config.hpp"
+#include "config/user_config.hpp"
 // ----------------------------------------------------------------------------
 KeyboardDevice::KeyboardDevice(KeyboardConfig *configuration)
 {
@@ -60,6 +61,12 @@ bool KeyboardDevice::processAndMapInput(Input::InputType type,  const int id,
     assert(type==Input::IT_KEYBOARD);
     if (mode == InputManager::INGAME)
     {
+        // [manual-item-avoid] 게임 중 D키 = 뒤 보기(회피 버튼)
+        if (UserConfigParams::m_manual_item_avoid && id == IRR_KEY_D)
+        {
+            *action = PA_LOOK_BACK;
+            return true;
+        }
         return m_configuration->getGameAction(Input::IT_KEYBOARD, id, 0,
                                               action);
     }

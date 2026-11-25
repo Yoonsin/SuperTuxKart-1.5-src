@@ -264,7 +264,9 @@ void LocalPlayerController::update(int ticks)
         camera = Camera::getCamera(m_camera_index);
     if (camera && camera->getType() != Camera::CM_TYPE_END)
     {
-        if (m_controls->getLookBack() || (UserConfigParams::m_reverse_look_threshold > 0 &&
+        // [manual-item-avoid] 수동 회피 모드에서는 뒤 보기로 카메라를 돌리지 않음
+        if ((m_controls->getLookBack() && !UserConfigParams::m_manual_item_avoid) ||
+            (UserConfigParams::m_reverse_look_threshold > 0 &&
             m_kart->getSpeed() < -UserConfigParams::m_reverse_look_threshold))
             camera->setMode(Camera::CM_REVERSE);
         else

@@ -39,6 +39,8 @@ protected:
 
 public:
                  PlayerController(AbstractKart *kart);
+    // [auto-item-avoid] 지금 눌린 조향 버튼 값 (0이면 안 눌림)
+    int getSteerInput() const { return m_steer_val; }
     virtual     ~PlayerController  ();
     virtual void update            (int ticks) OVERRIDE;
     virtual bool action            (PlayerAction action, int value,

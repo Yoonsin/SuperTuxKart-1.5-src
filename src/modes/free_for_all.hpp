@@ -21,6 +21,7 @@
 #include "modes/world_with_rank.hpp"
 #include "states_screens/race_gui_base.hpp"
 
+#include <map>
 #include <vector>
 
 class NetworkString;
@@ -35,6 +36,14 @@ protected:
     int m_duel_ticks;
     bool m_duel_fired;
 
+    // [auto-item-avoid] 회피용 상태
+    btTransform m_home_trans[2];     // 카트 0, 1의 원래 자리
+    int  m_dodge_start_tick[2];      // 진행 중인 회피의 시작 서버 틱 (-1 = 회피 중 아님)
+    std::map<int, int> m_dodge_tick_by_round[2];   // 카트별: 라운드 번호 → 회피 시작 서버 틱 (기록용)
+    bool m_prev_steer[2];            // 직전 틱 버튼 상태 (누른 "순간" 감지용)
+
+    void updateDodge();                          // 서버: 회피 감지 + 이동
+    void placeKart(int kart_id, float offset);   // 원래 자리에서 옆으로 offset만큼 옮기기
 
     // ------------------------------------------------------------------------
     void handleScoreInServer(int kart_id, int hitter);
@@ -82,6 +91,13 @@ public:
     bool getKartFFAResult(int kart_id) const;
     // ------------------------------------------------------------------------
     void setKartTimingEvent (int ticks);
+    // ------------------------------------------------------------------------
+    // [auto-item-avoid] 해당 라운드의 회피 시작 서버 틱 (회피가 없었으면 -1)
+    int getDodgeTickInRound(int kart_id, int round_id) const
+    {
+        auto it = m_dodge_tick_by_round[kart_id].find(round_id);
+        return (it == m_dodge_tick_by_round[kart_id].end()) ? -1 : it->second;
+    }
     // ------------------------------------------------------------------------
     virtual std::pair<uint32_t, uint32_t> getGameStartedProgress() const
         OVERRIDE;

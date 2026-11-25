@@ -812,6 +812,12 @@ namespace UserConfigParams
     /** True if experimental auto-item-fire duel mode is enabled (--auto-item-fire). */
     PARAM_PREFIX bool m_auto_item_fire PARAM_DEFAULT(false);
 
+    /** 자동 회피 실험 모드 (--auto-item-avoid). */
+    PARAM_PREFIX bool m_auto_item_avoid PARAM_DEFAULT(false);
+
+    /** 사람이 직접 회피 (--manual-item-avoid). Windows: D키, Android: 뒤 보기 버튼. */
+    PARAM_PREFIX bool m_manual_item_avoid PARAM_DEFAULT(false);
+
     PARAM_PREFIX bool m_score_log PARAM_DEFAULT(false);
 
     PARAM_PREFIX bool m_timing_log PARAM_DEFAULT(false);

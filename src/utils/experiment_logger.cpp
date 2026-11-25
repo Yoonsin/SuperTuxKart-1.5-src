@@ -82,14 +82,19 @@ void ExperimentLogger::logEvent(double timeStamp,
                                 const std::string& victimPlatform,
                                 Result result,
                                 int score0,
-                                int score1)
+                                int score1,
+                                int shotTick,
+                                int dodgeTick,
+                                int dodgeDelay,
+                                int endTick)
 {
     if (!m_enabled) return;
     if (!UserConfigParams::m_score_log) return;
     if (!UserConfigParams::m_auto_item_fire) return;
 
     m_score_data.push_back({timeStamp, roundId, shooterKart, shooterPlatform,
-                            victimKart, victimPlatform, result, score0, score1});
+                            victimKart, victimPlatform, result, score0, score1,
+                            shotTick, dodgeTick, dodgeDelay, endTick});
 }
 
 // ----------------------------------------------------------------------------
@@ -105,6 +110,14 @@ void ExperimentLogger::logShot(int created_ticks, int shooterKart, int victimKar
     if (!ffa || ffa->getNumKarts() != 2) return;
 
     const bool is_hit = victimKart >= 0;
+
+    // [auto-item-avoid] 서버 틱 계산 (하나의 시간축)
+    const int target_kart = 1 - shooterKart;              // 공을 맞아야 하는 쪽 (카트 2대뿐)
+    const int end_tick    = World::getWorld()->getTicksSinceStart();
+    // 공이 생긴 라운드의 회피 틱을 꺼냄 (그 라운드에 회피가 없었으면 -1)
+    const int dodge_tick  = ffa->getDodgeTickInRound(target_kart, getRoundId(created_ticks));
+    const int dodge_delay = (dodge_tick >= 0) ? dodge_tick - created_ticks : -1;
+
     logEvent(getTimeMilliseconds(),
              getRoundId(created_ticks),
              shooterKart,
@@ -113,7 +126,8 @@ void ExperimentLogger::logShot(int created_ticks, int shooterKart, int victimKar
              is_hit ? getKartPlatform(victimKart) : "",
              is_hit ? Result::Hit : Result::Miss,
              ffa->getKartScore(0),
-             ffa->getKartScore(1));
+             ffa->getKartScore(1),
+             created_ticks, dodge_tick, dodge_delay, end_tick);
 }
 
 bool ExperimentLogger::saveCsv() {
@@ -135,7 +149,8 @@ bool ExperimentLogger::saveCsv() {
     if (out) {
         out.seekp(0, std::ios::end);
         if (out.tellp() == 0)
-            out << "Timestamp,RoundId,ShooterKart,ShooterPlatform,VictimKart,VictimPlatform,Result,Score0,Score1\n";
+            out << "Timestamp,RoundId,ShooterKart,ShooterPlatform,VictimKart,VictimPlatform,"
+                   "Result,Score0,Score1,ShotTick,DodgeTick,DodgeDelay,EndTick\n";
         out << std::setprecision(17);
         for (const auto& event : m_score_data) {
             std::string result = (event.result == Result::Hit) ? "HIT" : "MISS";
@@ -145,7 +160,9 @@ bool ExperimentLogger::saveCsv() {
             writeCsvField(out, event.victimPlatform);
             out << ',';
             writeCsvField(out, result);
-            out << ',' << event.score0 << ',' << event.score1 << '\n';
+            out << ',' << event.score0 << ',' << event.score1
+                << ',' << event.shotTick << ',' << event.dodgeTick
+                << ',' << event.dodgeDelay << ',' << event.endTick << '\n';
         }
         out.close();
         if (out) {

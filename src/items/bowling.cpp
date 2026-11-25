@@ -19,6 +19,7 @@
 #include "items/bowling.hpp"
 
 #include "audio/sfx_base.hpp"
+#include "config/user_config.hpp"
 #include "audio/sfx_manager.hpp"
 #include "graphics/hit_sfx.hpp"
 #include "graphics/material.hpp"
@@ -206,7 +207,8 @@ void Bowling::onFireFlyable()
     float y_offset = 0.5f*m_owner->getKartLength() + m_extend.getZ()*0.5f;
 
     // if the kart is looking backwards, release from the back
-    if( m_owner->getControls().getLookBack())
+    // [manual-item-avoid] 수동 회피 모드에서는 뒤 보기여도 항상 앞으로 던짐
+    if( m_owner->getControls().getLookBack() && !UserConfigParams::m_manual_item_avoid)
     {
         y_offset   = -y_offset;
         m_speed    = -m_speed*2;

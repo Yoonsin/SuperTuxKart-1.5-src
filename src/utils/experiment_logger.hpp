@@ -41,6 +41,12 @@ public:
         //두 카트의 누적 점수
         int score0;
         int score1;
+
+        // [auto-item-avoid] 서버 틱 기록 (하나의 시간축)
+        int shotTick;    // 공이 생긴 틱
+        int dodgeTick;   // 맞는 쪽 카트의 회피 시작 틱 (-1 = 이번 라운드 회피 없음)
+        int dodgeDelay;  // dodgeTick - shotTick (-1 = 회피 없음)
+        int endTick;     // 맞은 틱(HIT) 또는 공이 사라진 틱(MISS)
     };
     std::vector<ScoreData> m_score_data;
 
@@ -58,7 +64,11 @@ public:
         const std::string& victimPlatform,
         Result result,
         int score0,
-        int score1);
+        int score1,
+        int shotTick,
+        int dodgeTick,
+        int dodgeDelay,
+        int endTick);
     void logShot(int created_ticks, int shooterKart, int victimKart);
     bool saveCsv();
 
