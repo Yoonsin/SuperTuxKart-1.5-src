@@ -68,7 +68,7 @@ void SmoothNetworkBody::checkSmoothing(const btTransform& current_transform,
     float adjust_length = (current_transform.getOrigin() -
         m_prev_position_data.first.getOrigin()).length();
 
-    if (STKHost::isDiscrepancyLoggingEnabled() && STKHost::existHost() && m_is_kart && m_is_local_kart)
+    if (STKHost::isDiscrepancyLoggingEnabled() && STKHost::existHost() && m_is_kart)
     {
         btQuaternion q1 = current_transform.getRotation().normalized();
         btQuaternion q2 = m_prev_position_data.first.getRotation().normalized();
