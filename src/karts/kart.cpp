@@ -439,7 +439,12 @@ void Kart::reset()
     applyEngineForce (0.0f);
 
     AbstractKart::reset();
-    SmoothNetworkBody::setNetworkKartInfo(getWorldKartId(), getIdent());
+    {
+        std::string net_name = m_controller ?
+            StringUtils::wideToUtf8(m_controller->getName(false)) : getIdent();
+        bool is_local = m_controller && m_controller->isLocalPlayerController();
+        SmoothNetworkBody::setNetworkKartInfo(getWorldKartId(), net_name, is_local);
+    }
 #ifndef SERVER_ONLY
     if (m_skidmarks)
     {
@@ -588,6 +593,13 @@ void Kart::setController(Controller *controller)
     assert(m_saved_controller==NULL);
     m_saved_controller = m_controller;
     m_controller       = controller;
+    if (m_controller)
+    {
+        SmoothNetworkBody::setNetworkKartInfo(
+            getWorldKartId(),
+            StringUtils::wideToUtf8(m_controller->getName(false)),
+            m_controller->isLocalPlayerController());
+    }
 }   // setController
 
 // -----------------------------------------------------------------------------
