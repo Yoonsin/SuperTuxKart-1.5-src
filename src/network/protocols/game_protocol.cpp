@@ -35,6 +35,7 @@
 #include "network/stk_host.hpp"
 #include "network/stk_peer.hpp"
 #include "tracks/track.hpp"
+#include "utils/experiment_logger.hpp"
 #include "utils/log.hpp"
 #include "utils/time.hpp"
 #include "main_loop.hpp"
@@ -226,6 +227,20 @@ void GameProtocol::handleControllerAction(Event *event)
                 "Controller action: %d %d %d %d %d %d",
                 cur_ticks, kart_id, std::get<0>(a), std::get<1>(a),
                 std::get<2>(a), std::get<3>(a));
+        }
+        // [input-log] 서버가 받은 발사·회피 "누름" 입력 기록
+        //  (입력에 적혀 온 틱 cur_ticks, 서버가 받은 틱 not_rewound)
+        if (ExperimentLogger::shouldLogInput())
+        {
+            const auto& a = decompressAction(w, x, y, z);
+            const PlayerAction action = std::get<0>(a);
+            if (std::get<1>(a) != 0 &&
+                (action == PA_FIRE || action == PA_STEER_LEFT ||
+                 action == PA_LOOK_BACK))
+            {
+                ExperimentLogger::get()->logInput(kart_id, (int)action,
+                    cur_ticks, not_rewound);
+            }
         }
         BareNetworkString *s = new BareNetworkString(3);
         s->addUInt8(kart_id).addUInt8(w).addUInt16(x).addUInt16(y)

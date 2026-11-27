@@ -1,12 +1,15 @@
 #ifndef HEADER_EXPERIMENT_LOGGER_HPP
 #define HEADER_EXPERIMENT_LOGGER_HPP
 
+#include <mutex>
 #include <string>
 #include <vector>
 
 class ExperimentLogger {
 private:
     std::string m_log_prefix;
+    std::string m_input_log_prefix;   // [input-log] input_log_*.csv 저장 경로 접두어
+    unsigned int m_input_file_number = 0;
     unsigned int m_file_number = 0;
     bool m_enabled;
 
@@ -50,6 +53,17 @@ public:
     };
     std::vector<ScoreData> m_score_data;
 
+    // [input-log] 서버가 받은 발사·회피 입력 1번 = 1줄
+    struct InputData
+    {
+        int kart;            // 카트 번호
+        int action;          // PlayerAction (PA_FIRE / PA_STEER_LEFT / PA_LOOK_BACK)
+        int clientTick;      // 입력에 적혀 온 틱 (클라이언트가 눌렀다는 틱)
+        int serverRecvTick;  // 서버가 입력을 받은 순간의 서버 틱
+    };
+    std::vector<InputData> m_input_data;
+    std::mutex m_input_mutex;   // 입력은 네트워크 스레드에서 들어오므로 잠금 필요
+
     static ExperimentLogger* get();
     ~ExperimentLogger();
 
@@ -70,7 +84,11 @@ public:
         int dodgeDelay,
         int endTick);
     void logShot(int created_ticks, int shooterKart, int victimKart);
+    // [input-log] 네트워크 스레드에서 호출됨 (서버 전용)
+    void logInput(int kart, int action, int client_tick, int server_recv_tick);
+    static bool shouldLogInput();
     bool saveCsv();
+    bool saveInputCsv();
 
     static bool shouldLogShot();
     static int getRoundId(int created_ticks);

@@ -237,5 +237,7 @@ void Bowling::onFireFlyable()
     setAdjustUpVelocity(false);
 
     // should not live forever, auto-destruct after 20 seconds
-    m_max_lifespan = stk_config->time2Ticks(20);
+    // [auto-item-fire] 실험 모드에서는 1초 뒤 사라짐 (3초 주기에 빗나간 공이 쌓이지 않도록)
+    m_max_lifespan = stk_config->time2Ticks(
+        UserConfigParams::m_auto_item_fire ? 1.0f : 20.0f);
 }   // onFireFlyable

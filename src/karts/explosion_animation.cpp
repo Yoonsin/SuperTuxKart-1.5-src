@@ -19,6 +19,7 @@
 #include "karts/explosion_animation.hpp"
 
 #include "audio/sfx_manager.hpp"
+#include "config/user_config.hpp"
 #include "graphics/camera/camera.hpp"
 #include "graphics/stars.hpp"
 #include "guiengine/engine.hpp"
@@ -114,7 +115,9 @@ ExplosionAnimation::ExplosionAnimation(AbstractKart* kart, bool direct_hit)
              btTransform(btQuaternion(0.0f, 0.0f, 0.0f, 1.0f)));
     }
 
-    float t = m_kart->getKartProperties()->getExplosionInvulnerabilityTime();
+    // [auto-item-fire] 실험 모드에서는 무적 시간 0초 (일반 게임은 기본값 유지)
+    float t = UserConfigParams::m_auto_item_fire ? 0.0f
+            : m_kart->getKartProperties()->getExplosionInvulnerabilityTime();
     m_kart->setInvulnerableTicks(stk_config->time2Ticks(t));
     m_kart->playCustomSFX(SFXManager::CUSTOM_EXPLODE);
     m_kart->getAttachment()->clear();

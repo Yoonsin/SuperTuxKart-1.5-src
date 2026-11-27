@@ -1,6 +1,7 @@
 #include "utils/experiment_logger.hpp"
 #include "config/stk_config.hpp"
 #include "config/user_config.hpp"
+#include "input/input.hpp"
 #include "io/file_manager.hpp"
 #include "modes/free_for_all.hpp"
 #include "network/network_config.hpp"
@@ -47,6 +48,7 @@ ExperimentLogger* ExperimentLogger::get() {
 
 ExperimentLogger::ExperimentLogger() : m_enabled(true) {
     m_log_prefix = file_manager->getUserConfigFile("score_log_");
+    m_input_log_prefix = file_manager->getUserConfigFile("input_log_");
 }
 
 ExperimentLogger::~ExperimentLogger() {
@@ -62,6 +64,7 @@ bool ExperimentLogger::setLogDirectory(const std::string& directory)
     if (dir.empty())
     {
         m_log_prefix = file_manager->getUserConfigFile("score_log_");
+        m_input_log_prefix = file_manager->getUserConfigFile("input_log_");
         return true;
     }
     if (!file_manager->checkAndCreateDirectoryP(dir) ||
@@ -71,6 +74,7 @@ bool ExperimentLogger::setLogDirectory(const std::string& directory)
     if (dir.back() != '/')
         dir += '/';
     m_log_prefix = dir + "score_log_";
+    m_input_log_prefix = dir + "input_log_";   // [input-log] score-log와 같은 폴더
     return true;
 }
 
@@ -130,7 +134,74 @@ void ExperimentLogger::logShot(int created_ticks, int shooterKart, int victimKar
              created_ticks, dodge_tick, dodge_delay, end_tick);
 }
 
+// ----------------------------------------------------------------------------
+/** [input-log] 서버가 클라이언트의 발사·회피 "누름" 입력을 받을 때 호출됩니다.
+ *  네트워크 스레드에서 불리므로 값만 저장하고, 계산은 저장할 때 합니다.
+ *  \param kart 입력한 카트 번호.
+ *  \param action PlayerAction (PA_FIRE / PA_STEER_LEFT / PA_LOOK_BACK).
+ *  \param client_tick 입력에 적혀 온 틱 (클라이언트가 눌렀다는 틱).
+ *  \param server_recv_tick 서버가 입력을 받은 순간의 서버 틱.
+ */
+void ExperimentLogger::logInput(int kart, int action, int client_tick,
+                                int server_recv_tick)
+{
+    if (!m_enabled) return;
+    std::lock_guard<std::mutex> lock(m_input_mutex);
+    m_input_data.push_back({kart, action, client_tick, server_recv_tick});
+}
+
+// ----------------------------------------------------------------------------
+/** [input-log] 입력을 기록해야 하는지 확인합니다. 네트워크 스레드에서
+ *  호출되므로 World 에는 접근하지 않습니다. 서버 전용입니다. */
+bool ExperimentLogger::shouldLogInput()
+{
+    return UserConfigParams::m_score_log && UserConfigParams::m_auto_item_fire &&
+           NetworkConfig::get()->isNetworking() && NetworkConfig::get()->isServer();
+}
+
+// ----------------------------------------------------------------------------
+/** [input-log] 모아 둔 입력을 input_log_*.csv 로 한 번에 저장합니다. */
+bool ExperimentLogger::saveInputCsv()
+{
+    std::vector<InputData> data;
+    {
+        std::lock_guard<std::mutex> lock(m_input_mutex);
+        if (m_input_data.empty()) return true;
+        data.swap(m_input_data);
+    }
+
+    const std::time_t now = std::time(nullptr);
+    char timestamp[32];
+    std::strftime(timestamp, sizeof(timestamp), "%Y%m%d_%H%M%S", std::localtime(&now));
+    std::string log_path;
+    struct stat info;
+    do {
+        std::ostringstream name;
+        name << m_input_log_prefix << timestamp << '_'
+             << std::setfill('0') << std::setw(3) << ++m_input_file_number << ".csv";
+        log_path = name.str();
+    } while (FileUtils::statU8Path(log_path, &info) == 0);
+
+    std::ofstream out(log_path, std::ios::app);
+    if (out) {
+        out << "RoundId,Kart,Platform,Action,ServerRecvTick,ExecTick,ClientTick,LateTicks\n";
+        for (const auto& in : data) {
+            const char* action = (in.action == PA_FIRE) ? "FIRE" : "DODGE";
+            const int exec_tick = std::max(in.clientTick, in.serverRecvTick);
+            out << getRoundId(in.serverRecvTick) << ',' << in.kart << ',';
+            writeCsvField(out, getKartPlatform(in.kart));
+            out << ',' << action << ',' << in.serverRecvTick << ',' << exec_tick
+                << ',' << in.clientTick << ',' << (in.serverRecvTick - in.clientTick) << '\n';
+        }
+        out.close();
+        if (out) return true;
+    }
+    std::cerr << "[ExperimentLogger] Failed to save " << log_path << std::endl;
+    return false;
+}
+
 bool ExperimentLogger::saveCsv() {
+    saveInputCsv();   // [input-log] score-log와 같은 시점에 저장
     if (m_score_data.empty()) return true;
 
     const std::time_t now = std::time(nullptr);
@@ -191,7 +262,7 @@ bool ExperimentLogger::shouldLogShot()
  *  볼링공이 만들어진 틱으로 몇 번째 발사인지 계산합니다. */
 int ExperimentLogger::getRoundId(int created_ticks)
 {
-    const int round_ticks = stk_config->time2Ticks(10.0f);
+    const int round_ticks = stk_config->time2Ticks(3.0f);   // 발사 주기 3초
     return created_ticks / round_ticks + 1;
 }
 

@@ -307,8 +307,8 @@ void FreeForAll::setKartTimingEvent(int ticks)
     {
         int old_ticks = m_duel_ticks;
         m_duel_ticks += ticks;
-        int shoot_tick = 240; // 2초 (240틱) 단위로 반복
-        int reset_tick = 1200; // 10초 (1200틱) 단위로 반복
+        int shoot_tick = 120; // 사이클 시작 후 1초 (120틱)에 발사
+        int reset_tick = 360; // 3초 (360틱) 단위로 반복 (무적 0초와 함께 사용)
         int release_tick = shoot_tick + 120; // 누른 뒤 120틱(1초) 뒤에 뗌
         int dodge_press_tick   = shoot_tick + AVOID_PRESS_DELAY;          // [auto-item-avoid] 회피 버튼 누름
         int dodge_release_tick = dodge_press_tick + AVOID_HOLD_BUTTON;    // [auto-item-avoid] 회피 버튼 뗌
