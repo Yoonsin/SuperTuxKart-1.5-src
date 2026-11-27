@@ -188,8 +188,6 @@ protected:
 
     double m_timer;
 
-    double m_last_timer;
-
     virtual void  onGo() OVERRIDE;
     /** Returns true if the race is over. Must be defined by all modes. */
     virtual bool  isRaceOver() = 0;

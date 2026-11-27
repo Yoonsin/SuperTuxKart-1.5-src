@@ -19,6 +19,7 @@
 #include "karts/rescue_animation.hpp"
 
 #include "config/user_config.hpp"
+#include "evaluation/evaluation.hpp"
 #include "graphics/referee.hpp"
 #include "items/attachment.hpp"
 #include "karts/abstract_kart.hpp"
@@ -40,7 +41,19 @@ RescueAnimation* RescueAnimation::create(AbstractKart* kart,
     // will be created
     if (World::getWorld()->isGoalPhase())
         return NULL;
-    return new RescueAnimation(kart, is_auto_rescue);
+    // Repeated requests during one rescue must not restart or count it twice.
+    if (kart->getKartAnimation() &&
+        kart->getKartAnimation()->getAnimationType() == KAT_RESCUE)
+    {
+        return static_cast<RescueAnimation*>(kart->getKartAnimation());
+    }
+
+    Evaluation* evaluation = Evaluation::get();
+    const bool count_rescue = evaluation->isRecordingKart(kart);
+    RescueAnimation* rescue = new RescueAnimation(kart, is_auto_rescue);
+    if (count_rescue)
+        evaluation->onFallRescue();
+    return rescue;
 }   // create
 
 //-----------------------------------------------------------------------------

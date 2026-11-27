@@ -1,7 +1,7 @@
-package org.supertuxkart.stk_dbg;
+package org.supertuxkart.stk;
 
 import org.libsdl.app.SDLActivity;
-import org.supertuxkart.stk_dbg.STKInputConnection;
+import org.supertuxkart.stk.STKInputConnection;
 
 import android.content.Context;
 import android.text.InputType;

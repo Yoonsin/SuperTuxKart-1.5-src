@@ -1,32 +1,29 @@
-﻿#pragma once
-#include "evaluation.hpp"
+﻿#include "evaluation.hpp"
 #include <cstdio>
 #include <ctime>
 #include <iomanip>
 #include <locale>
 #include <fstream>
 #include <sstream>
-#include <numeric>
 #include <algorithm>
 #include <chrono>
 
 #include <SMesh.h>
 #include <SMeshBuffer.h>
 #include <IMeshSceneNode.h>
-#include <IVideoDriver.h>
 
 #include "utils/log.hpp"
-#include "utils/profiler.hpp"
 #include "graphics/irr_driver.hpp"
+#include "graphics/material_manager.hpp"
 #include "graphics/central_settings.hpp"
 #include "tracks/terrain_info.hpp"
 
 #include "graphics/sp/sp_base.hpp"
 #include "graphics/sp/sp_mesh.hpp"
+#include "graphics/sp/sp_mesh_buffer.hpp"
 #include "graphics/sp/sp_mesh_node.hpp"
 
 #include "io/file_manager.hpp"
-#include "network/stk_host.hpp"
 
 #include "config/user_config.hpp"
 #include "karts/abstract_kart.hpp"
@@ -34,14 +31,13 @@
 #include "race/race_manager.hpp"
 #include "tracks/track.hpp"
 #include "utils/file_utils.hpp"
+#include "karts/controller/ghost_controller.hpp"
 
 void Evaluation::reset()
 {
 	//기존 스코어
 	m_current_score = 100.0f;
-	m_wr_index = 0;
 	m_st_index = 0;
-	m_result = { false, 0.0f };
 
 	//savecsv용
 	m_wall_collision_count = 0;
@@ -50,25 +46,89 @@ void Evaluation::reset()
 	m_wall_contact_time = -1.0;
 	m_csv_written = false;
 
-	m_active_route_chunk = -1;
-
 	clearRouteChunks();
+}
+
+AbstractKart* Evaluation::getEvaluationKart() const
+{
+	World* world = World::getWorld();
+
+	if (!world)
+		return nullptr;
+
+	if (RaceManager::get()->isWatchingReplay())
+	{
+		return world->getNumKarts() > 0 ? world->getKart(0) : nullptr;
+	}
+
+	return world->getLocalPlayerKart(0);
+}
+
+bool Evaluation::isEvaluatingKart(const AbstractKart* kart) const
+{
+	World* world = World::getWorld();
+
+	if (!UserConfigParams::m_course_evaluation ||
+		!RaceManager::get()->isTimeTrialMode() ||
+		!world ||
+		!kart ||
+		kart != getEvaluationKart() ||
+		!world->isActiveRacePhase() ||
+		kart->hasFinishedRace() ||
+		kart->isEliminated() ||
+		m_csv_written)
+	{
+		return false;
+	}
+
+	if (RaceManager::get()->isWatchingReplay())
+	{
+		const GhostController* ghost = dynamic_cast<const GhostController*>(kart->getController());
+
+		return ghost && !ghost->isReplayEnd();
+	}
+
+	return true;
 }
 
 bool Evaluation::isRecordingKart(const AbstractKart* kart) const
 {
-	World* world = World::getWorld();
+	// 실제 주행에서만 충돌·구조 횟수를 기록합니다.
+	return !RaceManager::get()->isWatchingReplay() &&
+		isEvaluatingKart(kart);
+}
 
-	return UserConfigParams::m_course_evaluation
-		&& RaceManager::get()->getMinorMode()
-		== RaceManager::MINOR_MODE_TIME_TRIAL
-		&& world
-		&& kart
-		&& kart == world->getLocalPlayerKart(0)
-		&& world->isActiveRacePhase()
-		&& !kart->hasFinishedRace()
-		&& !kart->isEliminated()
-		&& !m_csv_written;
+void Evaluation::loadTrackReference(
+	const std::string& track_name)
+{
+	// 이전 트랙의 기준 좌표가 남지 않도록 초기화합니다.
+	m_st_point.clear();
+	m_st_index = 0;
+
+	std::string csv_name;
+
+	if (track_name == "hacienda")
+	{
+		csv_name = "hacienda_comparison.csv";
+	}
+	else if (track_name == "lighthouse")
+	{
+		csv_name = "lighthouse_comparison.csv";
+	}
+	else
+	{
+		return;
+	}
+
+#if defined(ANDROID) || defined(__ANDROID__)
+	const std::string csv_path = file_manager->getUserConfigFile(csv_name);
+#else
+	const std::string csv_path = "../../../data/evaluation/" + csv_name;
+#endif
+
+	Log::info("Evaluation", "csv path='%s', exists=%d", csv_path.c_str(), (int)file_manager->fileExists(csv_path));
+
+	loadWorldRecordCSV(csv_path);
 }
 
 void Evaluation::onWallContact(double race_time)
@@ -88,9 +148,7 @@ void Evaluation::onFallRescue()
 
 void Evaluation::loadWorldRecordCSV(const std::string& filename)
 {
-	m_wr_point.clear();
 	m_st_point.clear();
-	m_wr_index = 0;
 	m_st_index = 0;
 
 	std::ifstream file(filename);
@@ -110,29 +168,8 @@ void Evaluation::loadWorldRecordCSV(const std::string& filename)
 
 		std::istringstream ss(line);
 		std::string token;
-		WorldRecordPoint wr_point;
 		StandardPoint st_point;
 		float x, y, z;
-
-		if (std::getline(ss, token, ','))
-		{
-			wr_point.time = std::stof(token);
-		}
-		if (std::getline(ss, token, ','))
-		{
-			x = std::stof(token);
-		}
-		if (std::getline(ss, token, ','))
-		{
-			y = std::stof(token);
-		}
-		if (std::getline(ss, token, ','))
-		{
-			z = std::stof(token);
-		}
-
-		wr_point.pos = Vec3(x, y, z);
-		m_wr_point.push_back(wr_point);
 
 		if (std::getline(ss, token, ','))
 		{
@@ -154,128 +191,37 @@ void Evaluation::loadWorldRecordCSV(const std::string& filename)
 		st_point.pos = Vec3(x, y, z);
 		m_st_point.push_back(st_point);
 	}
-	Log::info("Evaluation", " 좌표 로드 완료 %d", m_wr_point.size());
+	Log::info("Evaluation", " 좌표 로드 완료 %d", m_st_point.size());
 }
 
-Result Evaluation::getDistance(const Vec3& Player, const Vec3& wr_A, const Vec3& wr_B, const Vec3& st_A, const Vec3& st_B)
+Result Evaluation::getDistance(const Vec3& Player, const Vec3& st_A)
 {
-	float wr_A_y = wr_A.getY();
 	float st_A_y = st_A.getY();
 	float p_y = Player.getY();
-	/*
-	if(p_y - wr_A_y > 0.3f || wr_A_y - p_y > 0.3f)
+	if (p_y - st_A_y > 1.25f || st_A_y - p_y > 1.25f)
 	{
-		return { true, 0.01 };
-	}
-	*/
-	if (p_y - st_A_y > 0.5f || st_A_y - p_y > 0.5f)
-	{
+		Log::info("Evaluation", "Y축 차이");
 		return { true, 0.1 };
 	}
-	/*
-	Vec3 LineAB = wr_B - wr_A;
-	float dot_AB = LineAB.dot(LineAB);
-	if(dot_AB == 0.0f || LineAB.length() < 0.001f)
-	{
-		float distance = (wr_A - Player).length();
-		if (distance > 2.5f)
-		{
-			//대략적으로 0.2점 감점, 추후에 변경 가능
-			return { true, 0.01 };
-		}
-		//통과
-		return { false, 0.0 };
-	}
-	*/
 	float distanceA = (st_A - Player).length();
-	float distanceB = (st_B - Player).length();
-	if (distanceA > 2.5f && distanceB > 2.5f)
+	if (distanceA > 2.5f)
 	{
 		return { true, 0.1 };
 	}
-	/*
-	Vec3 LineAB = st_B - st_A;
-	float dot_AB = LineAB.dot(LineAB);
-	if (dot_AB == 0.0f || LineAB.length() < 0.001f)
-	{
-		float distance = (st_A - Player).length();
-		if (distance > 2.5f)
-		{
-			//대략적으로 0.2점 감점, 추후에 변경 가능
-			return { true, 0.1 };
-		}
-		//통과
-		return { false, 0.0 };
-	}
-
-
-
-	Vec3 LineAP = Player - st_A;
-	float dot_AP_AB = LineAP.dot(LineAB);
-	//여기는 우선 냅둠
-	//if ((LineAB - dot_AP_AB).length() < 0.0f)
-	//{
-
-	//}
-	Vec3 LineAA = (wr_A - st_A);
-	//라인 보정
-	if (LineAA.length() <= 2.4f || LineAA.length() > 5.0f)
-	{
-		float distance = 2.5f;
-		if((st_A - Player).length() > distance)
-		{
-			return { true, 0.1 };
-		}
-		return { false, 0.0 };
-	}
-
-	float dot_AP_AA = LineAP.dot(LineAA);
-	if(dot_AP_AA < 0.0f)
-	{
-		if(LineAP.length() > 2.5f)
-		{
-			return { true, 0.1 };
-		}
-	}
-
-	if(dot_AP_AA - LineAA.length() > 0.0f)
-	{
-		if(LineAP.length() > 2.5f)
-		{
-			return { true, 0.1 };
-		}
-	}
-	*/
 	return { false, 0.0 };
 }
 
 void Evaluation::update(const Vec3& Player, float elapsed_time)
 {
-	if (m_wr_point.empty() || m_st_point.empty())
+	if (m_st_point.empty())
 	{
 		return;
 	}
 
-	/*
-	int search_index = 200;
-	int start_wr = std::max(0, m_wr_index - search_index);
-	int end_wr = std::min((int)m_wr_point.size() - 1, m_wr_index + search_index);
-	float min_distance = 500;
-	for(int i = start_wr; i <= end_wr; i++)
-	{
-		float distance = (Player - m_wr_point[i].pos).length();
-		if(distance < min_distance)
-		{
-			min_distance = distance;
-			m_wr_index = i;
-		}
-	}
-	*/
-
 	int search_index = 100;
 	int start_st = std::max(0, m_st_index - search_index);
 	int end_st = std::min((int)m_st_point.size() - 1, m_st_index + search_index);
-	float min_distance = 350;
+	float min_distance = 500;
 	for (int i = start_st; i <= end_st; i++)
 	{
 		float distance = (Player - m_st_point[i].pos).length();
@@ -288,31 +234,15 @@ void Evaluation::update(const Vec3& Player, float elapsed_time)
 
 	updateRouteVisibility();
 
-	Vec3 wr_A = m_wr_point[m_st_index].pos;
-	Vec3 wr_B = wr_A;
 	Vec3 st_A = m_st_point[m_st_index].pos;
-	Vec3 st_B = st_A;
 
-	if (m_st_index < (int)m_st_point.size() - 1)
-	{
-		wr_B = m_wr_point[m_st_index + 1].pos;
-		st_B = m_st_point[m_st_index + 1].pos;
-	}
-	else if (m_st_index > 0)
-	{
-		wr_A = m_wr_point[m_st_index - 1].pos;
-		wr_B = m_wr_point[m_st_index].pos;
-		st_A = m_st_point[m_st_index - 1].pos;
-		st_B = m_st_point[m_st_index].pos;
-	}
+	const Result result = getDistance(Player, st_A);
 
-	m_result = getDistance(Player, wr_A, wr_B, st_A, st_B);
-
-	if (m_result.RouteDeviation)
+	if (result.RouteDeviation)
 	{
 		m_outside_time += elapsed_time;
 
-		m_current_score -= m_result.SubScore;
+		m_current_score -= result.SubScore;
 		if (m_current_score < 0.0f)
 		{
 			m_current_score = 0.0f;
@@ -321,13 +251,28 @@ void Evaluation::update(const Vec3& Player, float elapsed_time)
 	}
 }
 
-//새로추가
 void Evaluation::recordcsv(float driving_time)
 {
-	if (!UserConfigParams::m_course_evaluation || m_csv_written)
-	{
-		return;
-	}
+	/*
+    // Replay evaluation may update scores, but must not write result CSVs.
+    if (RaceManager::get()->isWatchingReplay() ||
+        !UserConfigParams::m_course_evaluation || m_csv_written)
+    {
+        return;
+    }
+	*/
+#if defined(ANDROID) || defined(__ANDROID__)
+	const char* platform = "android";
+	const std::string result_dir = file_manager->getUserConfigDir();
+
+#elif defined(_WIN32) || defined(WIN32)
+	const char* platform = "windows";
+	const std::string result_dir = file_manager->getUserConfigDir();
+
+#else
+	const char* platform = "unknown";
+	const std::string result_dir = file_manager->getUserConfigDir();
+#endif
 
 	const auto now = std::chrono::system_clock::now();
 	const std::time_t now_time = std::chrono::system_clock::to_time_t(now);
@@ -349,14 +294,6 @@ void Evaluation::recordcsv(float driving_time)
 
 	const auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count() % 1000;
 
-#if defined(ANDROID) || defined(__ANDROID__)
-	const char* platform = "android";
-#elif defined(_WIN32) || defined(WIN32)
-	const char* platform = "windows";
-#else
-	const char* platform = "unknown";
-#endif
-
 	const std::string track = Track::getCurrentTrack()->getIdent();
 
 	std::ostringstream filename;
@@ -364,13 +301,15 @@ void Evaluation::recordcsv(float driving_time)
 
 	filename << datetime << std::setfill('0') << std::setw(3) << milliseconds << "_" << track << "_" << platform << ".csv";
 
-	const std::string path = file_manager->getUserConfigFile(filename.str());
+	const std::string path = result_dir + filename.str();
+
+	//const std::string path = file_manager->getUserConfigFile(filename.str());
 
 	std::ostringstream csv;
 	csv.imbue(std::locale::classic());
 
 	csv << "driving time,wall collision," "fall rescue,outside time,total score\n";
-	m_current_score -= m_fall_rescue_count * 5.0f + m_wall_collision_count * 2.0f;
+	//m_current_score -= m_fall_rescue_count * 5.0f + m_wall_collision_count * 2.0f;
 	csv << std::fixed << std::setprecision(3) << driving_time << "," << m_wall_collision_count << "," << m_fall_rescue_count << "," << m_outside_time << "," << m_current_score << "\n";
 
 	FILE* file = FileUtils::fopenU8Path(path, "w");
@@ -402,7 +341,7 @@ void Evaluation::render()
 {
 	clearRouteChunks();
 
-	if (m_wr_point.size() < 2 || m_st_point.size() < 2 || !irr_driver)
+	if (m_st_point.size() < 2 || !irr_driver)
 	{
 		return;
 	}
@@ -435,8 +374,10 @@ irr::scene::ISceneNode* Evaluation::createRouteChunk(size_t start, size_t end)
 	irr::scene::SMeshBuffer* buffer = new irr::scene::SMeshBuffer();
 	buffer->Material.Lighting = false;
 	buffer->Material.BackfaceCulling = false;
+	buffer->Material.MaterialType = irr::video::EMT_TRANSPARENT_VERTEX_ALPHA;
+	buffer->Material.ZWriteEnable = false;
 
-	const irr::video::SColor lineColor(50, 255, 0, 0);
+	const irr::video::SColor lineColor(96, 255, 0, 0);
 	const float width = 2.35f;
 	const float lift = 0.1f;
 
@@ -531,6 +472,13 @@ irr::scene::ISceneNode* Evaluation::createRouteChunk(size_t start, size_t end)
 		SP::SPMesh* spm = SP::convertEVTStandard(mesh, &lineColor);
 		if (spm)
 		{
+            // convertEVTStandard selects a solid material; use alpha blending
+            // explicitly so the route's vertex alpha is respected.
+            for (irr::u32 i = 0; i < spm->getMeshBufferCount(); ++i)
+            {
+                spm->getSPMeshBuffer(i)->setSTKMaterial(
+                    material_manager->getDefaultSPMaterial("alphablend"));
+            }
 			SP::SPMeshNode* spmn = new SP::SPMeshNode(
 				spm, smgr->getRootSceneNode(), smgr, -1, "evaluation_route");
 
@@ -554,7 +502,7 @@ irr::scene::ISceneNode* Evaluation::createRouteChunk(size_t start, size_t end)
 		{
 			node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			node->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, false);
-			node->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, true);
+			node->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, false);
 			node->setAutomaticCulling(irr::scene::EAC_OFF);
 		}
 

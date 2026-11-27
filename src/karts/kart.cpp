@@ -1705,11 +1705,6 @@ void Kart::update(int ticks)
            !has_animation_before)
         {
 
-            if (Evaluation::get()->isRecordingKart(this))
-            {
-                Evaluation::get()->onFallRescue();
-            }
-
             RescueAnimation::create(this);
             m_last_factor_engine_sound = 0.0f;
         }

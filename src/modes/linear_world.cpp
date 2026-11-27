@@ -337,10 +337,14 @@ void LinearWorld::finishQuadLog()
     if (m_quad_log_entries.empty())
         return;
 
+    const std::string timestamp = StkTime::getFilenameTimestamp();
+    if (timestamp.empty())
+    {
+        Log::error("QuadLog", "Could not format save time.");
+        return;
+    }
     const std::string file_name = "quad_log_" +
-        Track::getCurrentTrack()->getIdent() + "_" +
-        StringUtils::toString(StkTime::getTimeSinceEpoch()) + "_" +
-        StringUtils::toString(StkTime::getMonoTimeMs()) + ".csv";
+        Track::getCurrentTrack()->getIdent() + "_" + timestamp + ".csv";
     const std::string file_path = m_quad_log_directory.empty() ?
         file_manager->getUserConfigFile(file_name) :
         m_quad_log_directory + "/" + file_name;

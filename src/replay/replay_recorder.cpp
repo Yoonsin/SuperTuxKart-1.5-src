@@ -35,6 +35,7 @@
 #include "race/race_manager.hpp"
 #include "tracks/track.hpp"
 #include "utils/string_utils.hpp"
+#include "utils/time.hpp"
 #include "utils/translation.hpp"
 
 #include <algorithm>
@@ -374,12 +375,16 @@ void ReplayRecorder::save()
             min_time = cur_time;
     }
 
-    int day, month, year;
-    StkTime::getDate(&day, &month, &year);
     std::string time = StringUtils::toString(min_time);
+    const std::string timestamp = StkTime::getFilenameTimestamp();
+    if (timestamp.empty())
+    {
+        Log::error("ReplayRecorder", "Could not format save time.");
+        return;
+    }
     std::replace(time.begin(), time.end(), '.', '_');
     std::ostringstream oss;
-    oss << Track::getCurrentTrack()->getIdent() << "_" << year << month << day
+    oss << Track::getCurrentTrack()->getIdent() << "_" << timestamp
         << "_" << num_karts << "_" << time << ".replay";
     m_filename = oss.str();
 

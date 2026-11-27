@@ -18,7 +18,6 @@
 
 #include "race/race_manager.hpp"
 
-#include <iostream>
 #include <algorithm>
 #include <random>
 
@@ -67,7 +66,6 @@
 #include "utils/string_utils.hpp"
 #include "utils/translation.hpp"
 #include "io/rich_presence.hpp"
-#include "evaluation/evaluation.hpp"
 
 #include <IrrlichtDevice.h>
 
@@ -387,44 +385,6 @@ void RaceManager::computeRandomKartList()
  */
 void RaceManager::startNew(bool from_overworld)
 {
-    //수정사항
-    //모든 설정 여기서
-    if (UserConfigParams::m_course_evaluation)
-    {
-        //m_major_mode = MAJOR_MODE_SINGLE;
-        //m_minor_mode = MINOR_MODE_LAP_TRIAL;
-
-        Evaluation::get()->reset();
-        const std::string track_name = getTrackName();
-        std::string csv_name;
-
-        if (track_name == "hacienda")
-        {
-            csv_name = "hacienda_comparison.csv";
-        }
-        else if (track_name == "lighthouse")
-        {
-            csv_name = "lighthouse_comparison.csv";
-        }
-        if (!csv_name.empty())
-        {
-#if defined (ANDROID) || defined (__ANDROID__)
-            const std::string csv_path = file_manager->getUserConfigFile(csv_name);
-            Log::info("RaceManager", "user dir='%s'",
-                file_manager->getUserConfigDir().c_str());
-            Log::info("RaceManager", "csv path='%s', exists=%d",
-                csv_path.c_str(), file_manager->fileExists(csv_path));
-#else
-            const std::string csv_path = "../../../data/evaluation/" + csv_name;
-#endif
-            Evaluation::get()->loadWorldRecordCSV(csv_path);
-        }
-    }
-
-    const std::string track_id = getTrackName();
-    Log::info("RaceManager", "evaluation track='%s'", track_id.c_str());
-    //수정사항
-
     m_num_ghost_karts = 0;
     if (m_has_ghost_karts)
         m_num_ghost_karts = ReplayPlay::get()->getNumGhostKart();
@@ -737,10 +697,6 @@ void RaceManager::startNextRace()
     // Calling this here reduces code duplication in init and restartRace()
     // functions.
     World::getWorld()->reset();
-    //임시 추가
-    if (UserConfigParams::m_course_evaluation) {
-        Evaluation::get()->render();
-    }
 
     if (NetworkConfig::get()->isNetworking())
     {

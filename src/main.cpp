@@ -1060,7 +1060,8 @@ int handleCmdLinePreliminary()
 /** Handles command line options.
  *  \param argc Number of command line options
  */
-int handleCmdLine(bool has_server_config, bool has_parent_process)
+int handleCmdLine(bool has_server_config, bool has_parent_process,
+                  std::string& replay_file)
 {
     // Some generic variables used in scanning:
     int n;
@@ -1811,7 +1812,6 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
     {
         Log::verbose("main", "Course evaluation mode requested from command-line");
 
-        //UserConfigParams::m_no_start_screen = true;
         UserConfigParams::m_course_evaluation = true;
 	}   // --course-evaluation
     
@@ -1832,6 +1832,15 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
         ProfileWorld::setProfileModeTime((float)n);
         RaceManager::get()->setNumLaps(999999); // profile end depends on time
     }   // --profile-time
+
+    const bool has_replay = CommandLine::has("--replay", &replay_file);
+    const bool has_plain_replay = CommandLine::has("--replay");
+
+    if (has_plain_replay || (has_replay && replay_file.empty()))
+    {
+        Log::error("main", "--replay requires a filename: --replay=FILE.");
+        return 0;
+    }
 
     s.clear();
     const bool has_named_history = CommandLine::has("--history", &s);
@@ -1901,6 +1910,19 @@ int handleCmdLine(bool has_server_config, bool has_parent_process)
     {
         OfficialKarts::dumpOfficialKarts();
         return 0;
+    }
+    if (!replay_file.empty())
+    {
+        if (history->replayHistory() || UserConfigParams::m_benchmark ||
+            ProfileWorld::isProfileMode() ||
+            NetworkConfig::get()->isNetworking())
+        {
+            Log::error("main", "--replay cannot be combined with history, "
+                "benchmark, profiling or networking modes.");
+            return 0;
+        }
+
+        UserConfigParams::m_no_start_screen = true;
     }
 
     CommandLine::reportInvalidParameters();
@@ -2286,7 +2308,7 @@ int main(int argc, char *argv[])
 
     try
     {
-        std::string s, server_config;
+        std::string s, server_config, replay_file;
 
         handleCmdLineOutputModifier();
 
@@ -2459,7 +2481,7 @@ int main(int argc, char *argv[])
                                                           "banana.png")    );
 
         //handleCmdLine() needs InitTuxkart() so it can't be called first
-        if (!handleCmdLine(!server_config.empty(), has_parent_process))
+        if (!handleCmdLine(!server_config.empty(), has_parent_process, replay_file))
             exit(0);
 
 #ifndef SERVER_ONLY
@@ -2669,7 +2691,93 @@ int main(int argc, char *argv[])
         // =============
         if(!ProfileWorld::isProfileMode())
         {
-            if(UserConfigParams::m_no_start_screen)
+            // 명령행으로 지정한 replay를 즉시 관전합니다.
+            if (!replay_file.empty())
+            {
+                //std::string replay_path = replay_file;
+
+                //테스트
+#if defined(ANDROID) || defined(__ANDROID__)
+                // Android: 지정 경로 → 설정 폴더 → replay 폴더
+                const std::string candidates[] = {replay_file, file_manager->getUserConfigFile(replay_file), file_manager->getReplayDir() + replay_file};
+#elif defined(_WIN32) || defined(WIN32)
+                // Windows: resolve data/replay relative to the working directory.
+                const std::string candidates[] = {"../../../data/replay/" + replay_file, replay_file};
+#else
+                const std::string candidates[] = {replay_file, file_manager->getUserConfigFile(replay_file), file_manager->getReplayDir() + replay_file};
+#endif
+
+                std::string replay_path;
+
+                for (const std::string& path : candidates)
+                {
+                    const bool exists = file_manager->fileExists(path);
+
+                    Log::info("main", "Replay path='%s', exists=%d",
+                        path.c_str(), (int)exists);
+
+                    if (exists)
+                    {
+                        replay_path = path;
+                        break;
+                    }
+                }
+
+                if (replay_path.empty())
+                    throw std::runtime_error("Replay file not found: " + replay_file);
+
+                if (!ReplayPlay::get()->addReplayFile(replay_path, true))
+                    throw std::runtime_error("Cannot load replay: " + replay_path);
+                //테스트
+                /*
+                // Search the supplied path, user config, then replay directory.
+                if (!file_manager->fileExists(replay_path))
+                    replay_path = file_manager->getUserConfigFile(replay_file);
+                if (!file_manager->fileExists(replay_path))
+                    replay_path = file_manager->getReplayDir() + replay_file;
+
+                if (!ReplayPlay::get()->addReplayFile(replay_path, true))
+                    throw std::runtime_error("Cannot load replay: " + replay_path);
+                */
+                const ReplayPlay::ReplayData& rd =
+                    ReplayPlay::get()->getCurrentReplayData();
+
+                RaceManager::MinorRaceModeType mode;
+                if (rd.m_minor_mode == "normal")
+                    mode = RaceManager::MINOR_MODE_NORMAL_RACE;
+                else if (rd.m_minor_mode == "time-trial")
+                    mode = RaceManager::MINOR_MODE_TIME_TRIAL;
+                else if (rd.m_minor_mode == "egg-hunt")
+                    mode = RaceManager::MINOR_MODE_EASTER_EGG;
+                else
+                    throw std::runtime_error(
+                        "Unsupported replay mode: " + rd.m_minor_mode);
+
+                if (rd.m_kart_list.empty() ||
+                    rd.m_difficulty >= RaceManager::DIFFICULTY_COUNT ||
+                    (mode != RaceManager::MINOR_MODE_EASTER_EGG && rd.m_laps == 0))
+                {
+                    throw std::runtime_error(
+                        "Invalid replay race settings: " + replay_file);
+                }
+
+                ReplayPlay::get()->setSecondReplayFile(0, false);
+
+                RaceManager::get()->setMinorMode(mode);
+                RaceManager::get()->setReverseTrack(rd.m_reverse);
+                RaceManager::get()->setDifficulty(
+                    (RaceManager::Difficulty)rd.m_difficulty);
+                RaceManager::get()->setRaceGhostKarts(true);
+                RaceManager::get()->setRecordRace(false);
+                RaceManager::get()->setWatchingReplay(true);
+                RaceManager::get()->setNumKarts(0);
+
+                PlayerManager::getCurrentPlayer()->setCurrentChallenge("");
+
+                Log::info("main", "Watching replay '%s'.", replay_path.c_str());
+                RaceManager::get()->startWatchingReplay(rd.m_track_name, rd.m_laps);
+            }
+            else if (UserConfigParams::m_no_start_screen)
             {
                 if (UserConfigParams::m_benchmark)
                 {

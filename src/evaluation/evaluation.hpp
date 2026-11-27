@@ -6,13 +6,6 @@
 
 #include <irrlicht.h>
 
-
-
-struct WorldRecordPoint
-{
-	float time;
-	Vec3 pos;
-};
 struct StandardPoint
 {
 	float time;
@@ -28,13 +21,9 @@ class AbstractKart;
 class Evaluation
 {
 private:
-	std::vector<WorldRecordPoint> m_wr_point;
 	std::vector<StandardPoint> m_st_point;
-	Result m_result;
 
 	float m_current_score;
-	float m_time_offset;
-	int m_wr_index;
 	int m_st_index;
 	unsigned int m_wall_collision_count = 0;
 	unsigned int m_fall_rescue_count = 0;
@@ -42,8 +31,9 @@ private:
 	double m_wall_contact_time = -1.0;
 	bool m_csv_written = false;
 
-	Evaluation() : m_current_score(100.0f), m_time_offset(0.0f), m_wr_index(0), m_st_index(0), m_result{ false, 0.0f }, m_active_route_chunk(-1) {}
-	Result getDistance(const Vec3& Player, const Vec3& wr_A, const Vec3& wr_B, const Vec3& st_A, const Vec3& st_B);
+	Evaluation() : m_current_score(100.0f), m_st_index(0),
+	               m_active_route_chunk(-1) {}
+	Result getDistance(const Vec3& Player, const Vec3& st_A);
 
 	enum { ROUTE_CHUNK_POINTS = 100 };
 	std::vector<irr::scene::ISceneNode*> m_route_chunks;
@@ -62,11 +52,13 @@ public:
 	void reset();
 	float getScore() const { return m_current_score; }
 	void loadWorldRecordCSV(const std::string& filename);
+	void loadTrackReference(const std::string& track_name);
 
-	//추가
 	void render();
 	void update(const Vec3& kart_pos, float elapsed_time);
 
+	AbstractKart* getEvaluationKart() const;
+	bool isEvaluatingKart(const AbstractKart* kart) const;
 	bool isRecordingKart(const AbstractKart* kart) const;
 
 	void onWallContact(double race_time);

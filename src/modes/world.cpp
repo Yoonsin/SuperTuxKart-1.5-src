@@ -84,7 +84,6 @@
 #include "utils/translation.hpp"
 #include "utils/string_utils.hpp"
 
-//새로 추가
 #include "evaluation/evaluation.hpp"
 #include "karts/abstract_kart.hpp"
 
@@ -167,7 +166,6 @@ void World::init()
     unsigned int gk = 0;
     m_red_ai = m_blue_ai = 0;
     m_timer = 0;
-    m_last_timer = 0;
     if (RaceManager::get()->hasGhostKarts())
         gk = ReplayPlay::get()->getNumGhostKart();
 
@@ -439,6 +437,17 @@ void World::reset(bool restart)
     RaceManager::get()->reset();
     // Make sure to overwrite the data from the previous race.
     if (!history->replayHistory()) history->initRecording();
+    if (UserConfigParams::m_course_evaluation &&
+        !history->replayHistory() &&
+        !RaceManager::get()->isWatchingReplay() &&
+        !NetworkConfig::get()->isNetworking() &&
+        (RaceManager::get()->getMinorMode() == RaceManager::MINOR_MODE_NORMAL_RACE ||
+         RaceManager::get()->isTimeTrialMode() ||
+         RaceManager::get()->isEggHuntMode()))
+    {
+        RaceManager::get()->setRecordRace(true);
+    }
+
     if (RaceManager::get()->isRecordingRace())
     {
         Log::info("World", "Start Recording race.");
@@ -449,11 +458,22 @@ void World::reset(bool restart)
     if (m_process_type == PT_MAIN)
         irr_driver->reset();
     m_unfair_team = false;
-    //새로 추가
     if (UserConfigParams::m_course_evaluation)
     {
-        Evaluation::get()->reset();
+        Evaluation* evaluation = Evaluation::get();
+
+        evaluation->reset();
+
+        evaluation->loadTrackReference(RaceManager::get()->getTrackName());
+
+        evaluation->render();
+
         m_timer = 0.0;
+
+        if (RaceManager::get()->isWatchingReplay())
+        {
+            Log::info("Evaluation", "Evaluating replay kart 0: route deviation only; " "collision and rescue events are not stored in replays.");
+        }
     }
 }   // reset
 
@@ -631,6 +651,11 @@ Controller* World::loadAIController(AbstractKart* kart)
 //-----------------------------------------------------------------------------
 World::~World()
 {
+    if (m_process_type == PT_MAIN && UserConfigParams::m_course_evaluation)
+    {
+        Evaluation::get()->reset();
+    }
+
     if (m_process_type == PT_MAIN)
     {
         material_manager->unloadAllTextures();
@@ -750,7 +775,6 @@ void World::onGo()
  */
 void World::terminateRace()
 {
-    //새로 추가
     AbstractKart* evaluation_player = getLocalPlayerKart(0);
 
     if (UserConfigParams::m_course_evaluation &&
@@ -762,14 +786,7 @@ void World::terminateRace()
     {
         Evaluation::get()->recordcsv(evaluation_player->getFinishTime());
     }
-    //수정 버전
-#if defined(ANDROID) || defined(__ANDROID__)
-    // History 재생 중에는 다시 저장하지 않습니다.
-    if (history && !history->replayHistory())
-    {
-        history->Save();
-    }
-#endif
+
     // In case the user opened paused dialog in network
     if (!GUIEngine::isNoGraphics())
     {
@@ -1250,56 +1267,26 @@ void World::update(int ticks)
     PROFILER_PUSH_CPU_MARKER("World::update (physics)", 0xa0, 0x7F, 0x00);
     Physics::get()->update(ticks);
     PROFILER_POP_CPU_MARKER();
-    //새 함수
-    AbstractKart* player_kart = getLocalPlayerKart(0);
     Evaluation* evaluation = Evaluation::get();
+    //최근 수정
+    AbstractKart* evaluation_kart = evaluation->getEvaluationKart();
 
-    if (evaluation->isRecordingKart(player_kart))
+    if (evaluation->isEvaluatingKart(evaluation_kart))
     {
         m_timer += stk_config->ticks2Time(ticks);
 
         if (m_timer >= 0.1)
         {
-            evaluation->update(player_kart->getXYZ(), static_cast<float>(m_timer));
+            evaluation->update(evaluation_kart->getXYZ(), static_cast<float>(m_timer));
             m_timer = 0.0;
         }
     }
     else
     {
         m_timer = 0.0;
-    }//새 함수
-
-    //eval로 위치 받아오기
-    /*
-    AbstractKart* player_kart = getLocalPlayerKart(0);
-    if (player_kart)
-    {
-        m_timer += stk_config->ticks2Time(ticks);
-
-        if (m_timer >= 0.1f)
-        {
-            m_timer -= 0.1f;
-            const Vec3& pos = player_kart->getXYZ();
-            Evaluation::get()->update(pos);
-        }
-        // tick == ticks, position == pos
-    }*/
-    
-    //eval로 위치 받아오기
-    /*
-    AbstractKart* player_kart = getLocalPlayerKart(0);
-    if (player_kart)
-    {
-        m_timer = getTimeMilliseconds();
-
-        if (m_timer - m_last_timer >= 100.0f)
-        {
-            m_last_timer = m_timer;
-            const Vec3& pos = player_kart->getXYZ();
-            Evaluation::get()->update(pos);
-        }
     }
-    */
+
+    
     PROFILER_POP_CPU_MARKER();
     updateTimeTargetSound();
 

@@ -64,6 +64,32 @@ std::string StkTime::getLogTime()
 }   // getLogTime
 
 // ----------------------------------------------------------------------------
+std::string StkTime::getFilenameTimestamp()
+{
+    const auto now = std::chrono::system_clock::now();
+    const std::time_t now_time = std::chrono::system_clock::to_time_t(now);
+    std::tm local_time = {};
+#ifdef WIN32
+    if (localtime_s(&local_time, &now_time) != 0)
+#else
+    if (!localtime_r(&now_time, &local_time))
+#endif
+        return "";
+
+    char datetime[32];
+    if (std::strftime(datetime, sizeof(datetime), "%Y%m%d_%H%M%S",
+                      &local_time) == 0)
+        return "";
+
+    const auto milliseconds = std::chrono::duration_cast<
+        std::chrono::milliseconds>(now.time_since_epoch()).count() % 1000;
+    char timestamp[32];
+    snprintf(timestamp, sizeof(timestamp), "%s%03d", datetime,
+             static_cast<int>(milliseconds));
+    return timestamp;
+}   // getFilenameTimestamp
+
+// ----------------------------------------------------------------------------
 
 /** Converts the time in this object to a human readable string. */
 std::string StkTime::toString(const TimeType &tt)
